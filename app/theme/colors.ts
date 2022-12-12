@@ -3,7 +3,9 @@
 const palette = {
   neutral100: "#FFFFFF",
   neutral200: "#F4F2F1",
+  neutral250: "#DEDDDE",
   neutral300: "#D7CEC9",
+  neutral350: "#1E2022",
   neutral400: "#B6ACA6",
   neutral500: "#978F8A",
   neutral600: "#564E4A",
@@ -60,6 +62,7 @@ export const colors = {
    * The default color of the screen background.
    */
   background: palette.neutral200,
+  backgroundDark: "rgba(0, 0, 0, 1)",
   /**
    * The default border color.
    */

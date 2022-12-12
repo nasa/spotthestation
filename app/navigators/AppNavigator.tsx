@@ -8,6 +8,7 @@ import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
+  NavigatorScreenParams,
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
@@ -15,9 +16,8 @@ import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
 import Config from "../config"
-import {
-  WelcomeScreen,
-} from "../screens"
+import { TabNavigator, TabParamList } from "./TabNavigator"
+import { OnboardingNavigator, OnboardingParamList } from "./OnboardingNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 
 /**
@@ -34,8 +34,8 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  Welcome: undefined
-  // 🔥 Your screens go here
+  Main: NavigatorScreenParams<TabParamList>
+  Onboarding: NavigatorScreenParams<OnboardingParamList>
 }
 
 /**
@@ -56,9 +56,10 @@ const AppStack = observer(function AppStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
+      initialRouteName="Onboarding"
     >
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      {/** 🔥 Your screens go here */}
+      <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
+      <Stack.Screen name="Main" component={TabNavigator} /> 
     </Stack.Navigator>
   )
 })
