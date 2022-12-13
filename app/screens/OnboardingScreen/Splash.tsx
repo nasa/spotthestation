@@ -27,7 +27,7 @@ export function Splash() {
           <Text tx="onboarding.splash.title" style={$title} />
           <View style={$bottomRowContainer}>
             <Text tx="onboarding.splash.subTitle" style={$subTitle} />
-            <IconLinkButton icon="back" size={$buttonSize} imageStyle={$imageStyle} onPress={handleNavigate} />
+            <IconLinkButton icon="back" buttonStyle={$buttonSize} imageStyle={$imageStyle} onPress={handleNavigate} />
           </View>
         </View>
       </ImageBackground>

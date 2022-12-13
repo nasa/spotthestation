@@ -107,6 +107,8 @@ export const iconRegistry = {
   brandGoogle: require("../../assets/icons/brand-google.png"),
   delete: require("../../assets/icons/delete.png"),
   mail: require("../../assets/icons/mail.png"),
+  mailAccepted: require("../../assets/icons/mail-accepted.png"),
+  changePassword: require("../../assets/icons/change-password.png"),
 }
 
 const $imageStyle: ImageStyle = {

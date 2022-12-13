@@ -23,7 +23,7 @@ export interface LinkButtonWithArrowProps extends PressableProps {
   /**
    * An optional style override useful for padding & margin.
    */
-  size?: StyleProp<ViewStyle>
+  buttonStyle?: StyleProp<ViewStyle>
   /**
    * An optional icon style.
    */
@@ -32,14 +32,14 @@ export interface LinkButtonWithArrowProps extends PressableProps {
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
   const {
-    size: $size,
+    buttonStyle: $buttonStyle,
     icon,
     imageStyle: $imageStyle,
     ...rest
   } = props
 
   return (
-    <Pressable style={[$viewStyle, $size]} accessibilityRole="button" {...rest}>
+    <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
       <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} />
     </Pressable>
   )

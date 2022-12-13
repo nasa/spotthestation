@@ -1,12 +1,14 @@
 import { Link } from "@react-navigation/native"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ViewStyle, TextStyle, View, TextInput } from "react-native"
+import Modal from "react-native-modal"
 import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
+import { ForgotPassword } from "./ForgotPassword"
 
 export function Login() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
@@ -15,6 +17,7 @@ export function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loginError, setLoginError] = useState('')
   const [isCanLogin, setIsCanLogin] = useState(false)
   const [isPasswordHidden, setIsPasswordHidden] = useState(false)
@@ -158,9 +161,9 @@ export function Login() {
         <View style={$loginWithContainer}>
           <Text tx={"onboarding.login.loginWith"} style={$loginWith} />
           <View style={$loginWithButtonsContainer}>
-            <IconLinkButton icon="brandGoogle" size={$buttonSize} />
-            <IconLinkButton icon="brandFacebook" size={$buttonSize} />
-            <IconLinkButton icon="brandTwitter" size={$buttonSize} />
+            <IconLinkButton icon="brandGoogle" buttonStyle={$buttonSize} />
+            <IconLinkButton icon="brandFacebook" buttonStyle={$buttonSize} />
+            <IconLinkButton icon="brandTwitter" buttonStyle={$buttonSize} />
           </View>
         </View>
         <View style={$questionContainer}>
@@ -170,6 +173,22 @@ export function Login() {
           </Link>
         </View>
       </View>
+      <Modal
+        isVisible={isForgotPassword}
+        onBackdropPress={() => setIsForgotPassword(!isForgotPassword)}
+        onSwipeComplete={() => setIsForgotPassword(!isForgotPassword)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <ForgotPassword onClose={() => setIsForgotPassword(!isForgotPassword)} />
+      </Modal>
     </Screen>
   )
 }
@@ -177,6 +196,13 @@ export function Login() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral900,
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  justifyContent: 'flex-end',
+  left: 0,
+  margin: 0
 }
 
 const $bodyContainer: ViewStyle = {

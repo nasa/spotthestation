@@ -199,7 +199,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
           underlineColorAndroid={colors.transparent}
           textAlignVertical="top"
           placeholder={placeholderContent}
-          placeholderTextColor={colors.textDim}
+          placeholderTextColor={colors.palette.neutral450}
           {...TextInputProps}
           editable={!disabled}
           style={$inputStyles}
@@ -246,7 +246,7 @@ const $inputStyle: TextStyle = {
   flex: 1,
   alignSelf: "stretch",
   fontFamily: typography.primary.normal,
-  color: colors.palette.neutral450,
+  color: colors.palette.neutral250,
   fontSize: 18,
   height: 56,
   // https://github.com/facebook/react-native/issues/21720#issuecomment-532642093

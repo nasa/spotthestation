@@ -38,6 +38,30 @@ const en = {
       loginWith: "or login with",
       haveAccountQustion: "Don’t have an account?",
       signUpLink: "Sign Up",
+    },
+    forgotPassword: {
+      title: "Forgot Password?",
+      titleMailed: "Check Your Inbox",
+      subtitle: "No worries, we’ll send you reset instructions",
+      subtitleMailed: "We sent a password reset link to",
+      resetButton: "Reset password",
+      openEmailAppButton: "Open Email App",
+      rememberQustion: "Remember your password?",
+      loginLink: "Login",
+      doNotReceiveQustion: "Don’t receive the email?",
+      resend: "Resend",
+    },
+    resetPassword: {
+      title: "Set New Password",
+      subtitle: "Your new password must be different from previously used passwords.",
+      resetButton: "Change password",
+      password: "Password",
+      confirmPassword: "Confirm Password",
+      success: {
+        title: "Password Changed",
+        subtitle: "You have successuffly changed your passsword. Please go back to login screen.",
+        button: "Back To Login",
+      }
     }
   },
   issNowTab: {
