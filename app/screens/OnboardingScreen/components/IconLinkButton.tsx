@@ -7,7 +7,7 @@ import {
   ViewStyle,
   ImageStyle
 } from "react-native"
-import { Icon } from "../../../components"
+import { Icon, IconTypes } from "../../../components"
 import { colors } from "../../../theme/colors"
 
 export interface ButtonAccessoryProps {
@@ -16,6 +16,10 @@ export interface ButtonAccessoryProps {
 }
 
 export interface LinkButtonWithArrowProps extends PressableProps {
+  /**
+   * The name of the icon
+   */
+  icon: IconTypes
   /**
    * An optional style override useful for padding & margin.
    */
@@ -26,16 +30,17 @@ export interface LinkButtonWithArrowProps extends PressableProps {
   imageStyle?: StyleProp<ImageStyle>
 }
 
-export function LinkButtonWithArrow(props: LinkButtonWithArrowProps) {
+export function IconLinkButton(props: LinkButtonWithArrowProps) {
   const {
     size: $size,
+    icon,
     imageStyle: $imageStyle,
     ...rest
   } = props
 
   return (
     <Pressable style={[$viewStyle, $size]} accessibilityRole="button" {...rest}>
-      <Icon icon="back" size={20} color={colors.palette.neutral100} style={$imageStyle} />
+      <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} />
     </Pressable>
   )
 }

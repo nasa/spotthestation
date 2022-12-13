@@ -25,6 +25,19 @@ const en = {
     splash: {
       title: "Spot the Station",
       subTitle: "Gaze up into the sky and view the International Space Station (ISS)",
+    },
+    login: {
+      title: "Login to\nyour account",
+      loginError: "Try again!\nIncorrect Credentials",
+      placeholder: {
+        email: "Email Address",
+        password: "Password",
+      },
+      forgotPassword: "Forgot Password?",
+      loginButton: "Login",
+      loginWith: "or login with",
+      haveAccountQustion: "Don’t have an account?",
+      signUpLink: "Sign Up",
     }
   },
   issNowTab: {

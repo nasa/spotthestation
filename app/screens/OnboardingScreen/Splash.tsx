@@ -1,11 +1,11 @@
 import React from "react"
 import { ImageBackground, ViewStyle, Image, ImageStyle, View, TextStyle } from "react-native"
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native"
 import { Screen, Text } from "../../components"
 import { colors } from "../../theme/colors"
 import { typography } from "../../theme/typography"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
-import { LinkButtonWithArrow } from "./components/LinkButtonWithArrow"
+import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
 
 const background = require("../../../assets/images/bg.png")
@@ -27,12 +27,12 @@ export function Splash() {
           <Text tx="onboarding.splash.title" style={$title} />
           <View style={$bottomRowContainer}>
             <Text tx="onboarding.splash.subTitle" style={$subTitle} />
-            <LinkButtonWithArrow size={$buttonSize} imageStyle={$imageStyle} onPress={handleNavigate} />
+            <IconLinkButton icon="back" size={$buttonSize} imageStyle={$imageStyle} onPress={handleNavigate} />
           </View>
         </View>
       </ImageBackground>
     </Screen>
-  );
+  )
 }
 
 const $container: ViewStyle = {
@@ -68,7 +68,7 @@ const $title: TextStyle = {
   marginLeft: 36,
   fontSize: 48,
   lineHeight: 64,
-  fontFamily: typography.secondary.bold,
+  fontFamily: typography.primary.bold,
   color: colors.palette.neutral100,
 }
 
@@ -76,7 +76,7 @@ const $subTitle: TextStyle = {
   width: 270,
   fontSize: 24,
   lineHeight: 29,
-  fontFamily: typography.secondary.normal,
+  fontFamily: typography.primary.normal,
   color: colors.palette.neutral250
 }
 

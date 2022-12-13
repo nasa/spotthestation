@@ -102,6 +102,11 @@ export const iconRegistry = {
   settings: require("../../assets/icons/settings.png"),
   view: require("../../assets/icons/view.png"),
   x: require("../../assets/icons/x.png"),
+  brandFacebook: require("../../assets/icons/brand-facebook.png"),
+  brandTwitter: require("../../assets/icons/brand-twitter.png"),
+  brandGoogle: require("../../assets/icons/brand-google.png"),
+  delete: require("../../assets/icons/delete.png"),
+  mail: require("../../assets/icons/mail.png"),
 }
 
 const $imageStyle: ImageStyle = {

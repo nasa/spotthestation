@@ -10,5 +10,6 @@ export function NasaLogo() {
 const $logo: ImageStyle = {
   width: 110,
   height: 110,
-  marginTop: 36
+  marginTop: 36,
+  marginLeft: 36
 }

@@ -7,6 +7,7 @@ const palette = {
   neutral300: "#D7CEC9",
   neutral350: "#1E2022",
   neutral400: "#B6ACA6",
+  neutral450: "#ADADAE",
   neutral500: "#978F8A",
   neutral600: "#564E4A",
   neutral700: "#3C3836",
@@ -34,6 +35,11 @@ const palette = {
 
   angry100: "#F2D6CD",
   angry500: "#C03403",
+ 
+  nasaRed: "#FC3D21",
+  inputError: "#FC3D2115",
+
+  buttonBlue: "#0B3D91",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
