@@ -109,6 +109,7 @@ export const iconRegistry = {
   mail: require("../../assets/icons/mail.png"),
   mailAccepted: require("../../assets/icons/mail-accepted.png"),
   changePassword: require("../../assets/icons/change-password.png"),
+  smartphone: require("../../assets/icons/smartphone.png"),
 }
 
 const $imageStyle: ImageStyle = {

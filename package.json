@@ -59,6 +59,7 @@
     "react": "18.0.0",
     "react-native": "0.69.7",
     "react-native-bootsplash": "4.3.2",
+    "react-native-confirmation-code-field": "^7.3.1",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-modal": "^13.0.1",
     "react-native-reanimated": "~2.9.1",

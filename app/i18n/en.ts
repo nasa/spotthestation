@@ -62,6 +62,25 @@ const en = {
         subtitle: "You have successuffly changed your passsword. Please go back to login screen.",
         button: "Back To Login",
       }
+    },
+    signUp: {
+      title: "Sign Up",
+      email: "Email Address",
+      phone: "Mobile Number",
+      password: "Confirm Password",
+      button: "Sign Up",
+      privacy: {
+        first: "I agree to the",
+        tos: "Terms of Services",
+        second: "and",
+        pp: "Privacy Policy",
+      }
+    },
+    otp: {
+      title: "Enter OTP",
+      subtitle: "Please enter the OTP code sent to your mobile number",
+      question: "Don’t receive any code?",
+      resend: "Resend"
     }
   },
   issNowTab: {

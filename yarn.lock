@@ -11818,10 +11818,10 @@ react-native-codegen@^0.69.2:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-email-link@^1.14.3:
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/react-native-email-link/-/react-native-email-link-1.14.3.tgz#188d501ab9cbbee9c6aa5d1190149b071f7c51d2"
-  integrity sha512-3biiaDKjJft6/13cYQkh/CmVae+pU7j+ThX7lFDu7eR6iRrMf9mTXyjejSboWr/M+xE34Vm0bKy8R1tXKjC2zQ==
+react-native-confirmation-code-field@^7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-7.3.1.tgz#e705ee5b73d7749cac29da287379fa8690904fe6"
+  integrity sha512-5vI6BclB31e4vTYg0HmV/Vy9zI5MQZfHr1EN3kYzvaZq4GMIsyr6lrSmnQW1TtWR7Z8oURrhCpwo+JsWXxCoug==
 
 react-native-flipper@^0.164.0:
   version "0.164.0"

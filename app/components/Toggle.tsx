@@ -389,13 +389,13 @@ function Switch(props: ToggleInputProps) {
   const offBackgroundColor = [
     disabled && colors.palette.neutral400,
     status === "error" && colors.errorBackground,
-    colors.palette.neutral300,
+    colors.palette.neutral550,
   ].filter(Boolean)[0]
 
   const onBackgroundColor = [
     disabled && colors.transparent,
     status === "error" && colors.errorBackground,
-    colors.palette.secondary500,
+    colors.palette.buttonBlue,
   ].filter(Boolean)[0]
 
   const knobBackgroundColor = (function () {
@@ -565,7 +565,7 @@ const $inputOuterBase: ViewStyle = {
 const $inputOuterVariants: Record<Variants, StyleProp<ViewStyle>> = {
   checkbox: [$inputOuterBase, { borderRadius: 4 }],
   radio: [$inputOuterBase, { borderRadius: 12 }],
-  switch: [$inputOuterBase, { height: 32, width: 56, borderRadius: 16, borderWidth: 0 }],
+  switch: [$inputOuterBase, { height: 28, width: 46, borderRadius: 16, borderWidth: 0 }],
 }
 
 const $checkboxInner: ViewStyle = {
@@ -610,8 +610,8 @@ const $switchInner: ViewStyle = {
 const $switchDetail: SwitchToggleProps["inputDetailStyle"] = {
   borderRadius: 12,
   position: "absolute",
-  width: 24,
-  height: 24,
+  width: 20,
+  height: 20,
 }
 
 const $helper: TextStyle = {
