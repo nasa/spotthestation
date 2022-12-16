@@ -8,7 +8,7 @@ import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
 import { SignupLocation } from "./SignupLocation"
 import { SignupNotificationSettings } from "./SignupNotificationSettings"
-import { FieldTypes, ProfileData, SignupProfile } from "./SignupProfile"
+import { FieldTypes, SignupProfile } from "./SignupProfile"
 
 export function SignupCompleteProfile() {
   const navigation = useNavigation()
@@ -16,7 +16,7 @@ export function SignupCompleteProfile() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const [step, setStep] = useState(1)
-  const [profileData, setProfileData] = useState<ProfileData>({
+  const [profileData, setProfileData] = useState({
     firsName: "",
     lastName: "",
     country: "",
@@ -24,7 +24,13 @@ export function SignupCompleteProfile() {
     city: ""
   })
   const [notifications, setNotifications] = useState(false)
-  const [location, setLocation] = useState({})
+  const [location, setLocation] = useState({
+    title: "",
+    location: {
+      lat: null,
+      lng: null
+    }
+  })
 
   const handleBack = useCallback(() => {
     if (step === 1) navigation.goBack()

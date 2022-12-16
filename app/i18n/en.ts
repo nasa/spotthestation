@@ -107,6 +107,10 @@ const en = {
         selectLocation: "Enter your location",
         detecting: "Detecting location...",
         doneButton: "Done",
+        serviceAlertTitle: "Location Service not enabled",
+        serviceAlertBody: "Please enable your location services to continue",
+        permissionAlertTitle: "Permission not granted",
+        permissionAlertBody: "Allow the app to use location service.",
       }
     }
   },

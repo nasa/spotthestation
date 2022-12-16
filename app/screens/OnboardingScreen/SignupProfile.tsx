@@ -199,7 +199,7 @@ const $dropdownSelected: TextStyle = {
 
 const $dropdownText: TextStyle = {
   flex: 1,
-  alignSelf: "stretch",
+  // alignSelf: "stretch",
   fontFamily: typography.primary.normal,
   fontSize: 18,
   paddingVertical: 0,

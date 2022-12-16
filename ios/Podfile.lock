@@ -17,6 +17,8 @@ PODS:
   - EXGL (12.0.1):
     - ExpoModulesCore
     - React-jsi
+  - EXLocation (14.3.0):
+    - ExpoModulesCore
   - Expo (46.0.17):
     - ExpoModulesCore
   - ExpoKeepAwake (10.2.1):
@@ -451,6 +453,7 @@ DEPENDENCIES:
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXGL (from `../node_modules/expo-gl`)
+  - EXLocation (from `../node_modules/expo-location/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLocalization (from `../node_modules/expo-localization/ios`)
@@ -557,6 +560,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   EXGL:
     :path: "../node_modules/expo-gl"
+  EXLocation:
+    :path: "../node_modules/expo-location/ios"
   Expo:
     :path: "../node_modules/expo"
   ExpoKeepAwake:
@@ -655,6 +660,7 @@ SPEC CHECKSUMS:
   EXFileSystem: 927e0a8885aa9c49e50fc38eaba2c2389f2f1019
   EXFont: 06df627203afcb8a3b3152ec06eb2f11f46f0cff
   EXGL: 5f24aaf2552f784d5d59e960823faf53d120893c
+  EXLocation: b8cba3cb354bee6abb181c1dd245abe5aef22955
   Expo: 4de8a31146bb0480353b3ed1850e015c4862625f
   ExpoKeepAwake: 8b47e5358d54ea4922b630a74f2acb026ab7a28b
   ExpoLocalization: 63204f4b9d4f653469d266332ceaa6c6ac8a305d

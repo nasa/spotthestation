@@ -6192,6 +6192,13 @@ expo-localization@13.1.0:
   dependencies:
     rtl-detect "^1.0.2"
 
+expo-location@~14.3.0:
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/expo-location/-/expo-location-14.3.0.tgz#f613147e36afad974732ddc1b4e142d7e1b8bba2"
+  integrity sha512-CKU6bW1rB6521LruyUsZm6dQXXBix9E64ZZmOpVgom1DQ3Bfd23IBvXXeUQeIhy+NbOzF1itFrPTLzspgl6wPg==
+  dependencies:
+    "@expo/config-plugins" "~5.0.0"
+
 expo-modules-autolinking@0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/expo-modules-autolinking/-/expo-modules-autolinking-0.10.1.tgz#9d7e004cbfee7cb12245cc2686180c2d14ed9095"
