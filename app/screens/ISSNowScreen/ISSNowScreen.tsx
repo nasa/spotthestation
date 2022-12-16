@@ -30,13 +30,13 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               1000
             )
             gl.canvas = { width: gl.drawingBufferWidth, height: gl.drawingBufferHeight }
-            const renderer = new Renderer({ gl });
-            renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+            const renderer = new Renderer({ gl })
+            renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
-            const globe = new Mesh();
-            globe.geometry = new SphereGeometry(300, 100, 100);
+            const globe = new Mesh()
+            globe.geometry = new SphereGeometry(300, 100, 100)
             globe.material = new MeshNormalMaterial({ wireframe: true })
-            globe.name = 'earth';
+            globe.name = 'earth'
 
             scene.add(globe)
 
@@ -45,9 +45,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             camera.position.z = 600
 
             const render = () => {
-              requestAnimationFrame(render);
-              renderer.render(scene, camera);
-              gl.endFrameEXP();
+              requestAnimationFrame(render)
+              renderer.render(scene, camera)
+              gl.endFrameEXP()
             }
 
             render()

@@ -81,6 +81,33 @@ const en = {
       subtitle: "Please enter the OTP code sent to your mobile number",
       question: "Don’t receive any code?",
       resend: "Resend"
+    },
+    completeProfile: {
+      profile: {
+        tittle: "Complete Your Profile",
+        firsName: "First Name",
+        lastName: "Last Name",
+        country: "Country",
+        state: "State",
+        city: "City",
+        skipButton: "Skip",
+        nextButton: "Next",
+      },
+      notification: {
+        tittle: "Notification Settings",
+        label: "Get Push Notification Alerts",
+        tip: "Get alerts when the space station is approaching your location.",
+        nextButton: "Next",
+      },
+      location: {
+        tittle: "Your Location",
+        subtitle: "Please allow the app to detect your location automatically, or provide your location manually.",
+        detectButton: "Detect My Location",
+        orLabel: "or",
+        selectLocation: "Enter your location",
+        detecting: "Detecting location...",
+        doneButton: "Done",
+      }
     }
   },
   issNowTab: {

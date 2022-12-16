@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, ImageStyle } from "react-native";
+import { Image, ImageStyle } from "react-native"
 
 const nasaLogo = require("../../../../assets/images/nasa-logo.png")
 

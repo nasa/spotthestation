@@ -5,6 +5,4 @@
  *
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
-export default {
-  API_URL: "CHANGEME",
-}
+export default {}

@@ -51,9 +51,8 @@ export function SignupOTP() {
           keyboardType="number-pad"
           textContentType="oneTimeCode"
           renderCell={({index, symbol, isFocused}) => (
-            <View style={[$cell, (isFocused || symbol) && $activeCell]}>
+            <View key={index} style={[$cell, (isFocused || symbol) && $activeCell]}>
               <Text
-                key={index}
                 style={$cellText}
                 onLayout={getCellOnLayoutHandler(index)}>
                 {symbol || (isFocused ? <Cursor /> : null)}
@@ -76,7 +75,7 @@ export function SignupOTP() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral900,
-  paddingTop: 36
+  paddingTop: 24
 }
 
 const $contentContainer: ViewStyle = {

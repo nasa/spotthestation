@@ -110,6 +110,15 @@ export const iconRegistry = {
   mailAccepted: require("../../assets/icons/mail-accepted.png"),
   changePassword: require("../../assets/icons/change-password.png"),
   smartphone: require("../../assets/icons/smartphone.png"),
+  currentLocation: require("../../assets/icons/current-location.png"),
+  globe: require("../../assets/icons/globe.png"),
+  map: require("../../assets/icons/map.png"),
+  search: require("../../assets/icons/search.png"),
+  trash: require("../../assets/icons/trash.png"),
+  tv: require("../../assets/icons/tv.png"),
+  user: require("../../assets/icons/user.png"),
+  xCircle: require("../../assets/icons/x-circle.png"),
+  chevronDown: require("../../assets/icons/chevron-down.png"),
 }
 
 const $imageStyle: ImageStyle = {

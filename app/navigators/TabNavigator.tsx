@@ -55,7 +55,7 @@ export function TabNavigator() {
         listeners={{
           tabPress: e => {
             // add your conditions here
-            e.preventDefault(); // <-- this function blocks navigating to screen
+            e.preventDefault() // <-- this function blocks navigating to screen
           },
         }}
       />
@@ -72,7 +72,7 @@ export function TabNavigator() {
         listeners={{
           tabPress: e => {
             // add your conditions here
-            e.preventDefault(); // <-- this function blocks navigating to screen
+            e.preventDefault() // <-- this function blocks navigating to screen
           },
         }}
       />
@@ -100,7 +100,7 @@ export function TabNavigator() {
         listeners={{
           tabPress: e => {
             // add your conditions here
-            e.preventDefault(); // <-- this function blocks navigating to screen
+            e.preventDefault() // <-- this function blocks navigating to screen
           },
         }}
       />
@@ -117,7 +117,7 @@ export function TabNavigator() {
         listeners={{
           tabPress: e => {
             // add your conditions here
-            e.preventDefault(); // <-- this function blocks navigating to screen
+            e.preventDefault() // <-- this function blocks navigating to screen
           },
         }}
       />

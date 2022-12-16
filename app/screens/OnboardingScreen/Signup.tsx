@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Keyboard, TextStyle, View, ViewStyle } from "react-native"
-import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps, Toggle} from "../../components"
+import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps, Toggle, IconTypes} from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -27,68 +27,17 @@ export function Signup() {
   const handleBack = () => navigation.goBack()
   const handleSignUp = () => navigation.navigate("SignupOTP" as never)
 
-  const PasswordRightAccessory = useMemo(
-    () =>
-      function PasswordRightAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <>
-            <Icon
-              icon={isPasswordHidden ? "view" : "hidden"}
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={props.style}
-              onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-            />
-          </>
-        )
-      },
-    [isPasswordHidden],
-  )
-
-  const PasswordLeftAccessory = useMemo(
-    () =>
-      function PasswordLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="lock"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [],
-  )
-
-  const EmailLeftAccessory = useMemo(
-    () =>
-      function EmailLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="mail"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [],
-  )
-
-  const PhoneLeftAccessory = useMemo(
-    () =>
-      function PhoneLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="smartphone"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [],
-  )
+  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, onPress?) => {
+    return (
+      <Icon
+        icon={icon}
+        size={28}
+        color={colors.palette.neutral450}
+        containerStyle={props.style}
+        onPress={onPress}
+      />
+    )
+  }
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -104,7 +53,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.email"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
-          LeftAccessory={EmailLeftAccessory}
+          LeftAccessory={(props) => accessory(props, "mail")}
         />
         <TextField
           value={phone}
@@ -116,7 +65,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.phone"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPhone(nativeEvent.text)}
-          LeftAccessory={PhoneLeftAccessory}
+          LeftAccessory={(props) => accessory(props, "smartphone")}
         />
         <TextField
           value={password}
@@ -127,8 +76,12 @@ export function Signup() {
           placeholderTx="onboarding.signUp.password"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-          RightAccessory={PasswordRightAccessory}
-          LeftAccessory={PasswordLeftAccessory}
+          LeftAccessory={(props) => accessory(props, "lock")}
+          RightAccessory={(props) => accessory(
+            props, 
+            isPasswordHidden ? "view" : "hidden",
+            () => setIsPasswordHidden(!isPasswordHidden)
+          )}
           onSubmitEditing={() => Keyboard.dismiss()}
         />
         <View style={$policiesContainer}>
@@ -162,7 +115,8 @@ export function Signup() {
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.palette.neutral900
+  backgroundColor: colors.palette.neutral900,
+  marginTop: 24
 }
 
 const $contentContainer: ViewStyle = {
@@ -206,7 +160,6 @@ const $inputWrapper: ViewStyle = {
 
 const $back: ViewStyle = {
   marginLeft: 18,
-  marginTop: 36
 }
 
 const $policiesContainer: ViewStyle = {

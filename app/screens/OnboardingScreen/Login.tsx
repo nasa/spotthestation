@@ -2,7 +2,7 @@ import { Link } from "@react-navigation/native"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ViewStyle, TextStyle, View, TextInput } from "react-native"
 import Modal from "react-native-modal"
-import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../../components"
+import { Button, Icon, IconTypes, Screen, Text, TextField, TextFieldAccessoryProps } from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -58,51 +58,17 @@ export function Login() {
     [isPasswordHidden, loginError],
   )
 
-  const EmailRightAccessory = useMemo(
-    () =>
-      function PasswordRightAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="delete"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-            onPress={() => setEmail('')}
-          />
-        )
-      },
-    [],
-  )
-
-  const PasswordLeftAccessory = useMemo(
-    () =>
-      function PasswordLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="lock"
-            size={28}
-            color={loginError ? colors.palette.nasaRed : colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [loginError],
-  )
-
-  const EmailLeftAccessory = useMemo(
-    () =>
-      function EmailLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="mail"
-            size={28}
-            color={loginError ? colors.palette.nasaRed : colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [loginError],
-  )
+  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, color: string, onPress?) => {
+    return (
+      <Icon
+        icon={icon}
+        size={28}
+        color={color}
+        containerStyle={props.style}
+        onPress={onPress}
+      />
+    )
+  }
 
   return (
     <Screen
@@ -124,8 +90,8 @@ export function Login() {
             placeholderTx="onboarding.login.placeholder.email"
             onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
             inputWrapperStyle={loginError ? $error : {}}
-            LeftAccessory={EmailLeftAccessory}
-            RightAccessory={loginError && EmailRightAccessory}
+            LeftAccessory={(props) => accessory(props, "mail", loginError ? colors.palette.nasaRed : colors.palette.neutral450)}
+            RightAccessory={(props) => loginError && accessory(props, "delete", colors.palette.neutral450, () => setEmail(''))}
             onSubmitEditing={() => passwordInput.current?.focus()}
           />
           <TextField
@@ -139,7 +105,7 @@ export function Login() {
             onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
             inputWrapperStyle={loginError ? $error : {}}
             RightAccessory={PasswordRightAccessory}
-            LeftAccessory={PasswordLeftAccessory}
+            LeftAccessory={(props) => accessory(props, "lock", loginError ? colors.palette.nasaRed : colors.palette.neutral450)}
             onSubmitEditing={handleLogin}
           />
         </View>

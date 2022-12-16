@@ -2,18 +2,12 @@ import React from "react"
 import {
   Pressable,
   PressableProps,
-  PressableStateCallbackType,
   StyleProp,
   ViewStyle,
   ImageStyle
 } from "react-native"
 import { Icon, IconTypes } from "../../../components"
 import { colors } from "../../../theme/colors"
-
-export interface ButtonAccessoryProps {
-  style: StyleProp<any>
-  pressableState: PressableStateCallbackType
-}
 
 export interface LinkButtonWithArrowProps extends PressableProps {
   /**

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Keyboard, TextInput, TextStyle, View, ViewStyle } from "react-native"
-import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps } from "../../components"
+import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps, IconTypes } from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -31,56 +31,17 @@ export function NewPassword() {
     setIsSuccess(true)
   }
 
-  const PasswordRightAccessory = useMemo(
-    () =>
-      function PasswordRightAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <>
-            <Icon
-              icon={isPasswordHidden ? "view" : "hidden"}
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={props.style}
-              onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-            />
-          </>
-        )
-      },
-    [isPasswordHidden],
-  )
-
-  const ConfirmPasswordRightAccessory = useMemo(
-    () =>
-      function ConfirmPasswordRightAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <>
-            <Icon
-              icon={isConfirmPasswordHidden ? "view" : "hidden"}
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={props.style}
-              onPress={() => setIsConfirmPasswordHidden(!isConfirmPasswordHidden)}
-            />
-          </>
-        )
-      },
-    [isConfirmPasswordHidden],
-  )
-
-  const PasswordLeftAccessory = useMemo(
-    () =>
-      function PasswordLeftAccessory(props: TextFieldAccessoryProps) {
-        return (
-          <Icon
-            icon="lock"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      },
-    [],
-  )
+  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, onPress?) => {
+    return (
+      <Icon
+        icon={icon}
+        size={28}
+        color={colors.palette.neutral450}
+        containerStyle={props.style}
+        onPress={onPress}
+      />
+    )
+  }
 
   const renderGeneral = () => {
     return (
@@ -98,8 +59,12 @@ export function NewPassword() {
             placeholderTx="onboarding.resetPassword.password"
             inputWrapperStyle={$password}
             onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-            RightAccessory={PasswordRightAccessory}
-            LeftAccessory={PasswordLeftAccessory}
+            LeftAccessory={(props) => accessory(props, "lock")}
+            RightAccessory={(props) => accessory(
+              props, 
+              isPasswordHidden ? "view" : "hidden",
+              () => setIsPasswordHidden(!isPasswordHidden)
+            )}
             onSubmitEditing={() => confirmPasswordInputRef.current?.focus()}
           />
           <TextField
@@ -111,8 +76,12 @@ export function NewPassword() {
             secureTextEntry={isConfirmPasswordHidden}
             placeholderTx="onboarding.resetPassword.confirmPassword"
             onChange={({ nativeEvent }) => setConfirmPassword(nativeEvent.text)}
-            RightAccessory={ConfirmPasswordRightAccessory}
-            LeftAccessory={PasswordLeftAccessory}
+            LeftAccessory={(props) => accessory(props, "lock")}
+            RightAccessory={(props) => accessory(
+              props, 
+              isConfirmPasswordHidden ? "view" : "hidden",
+              () => setIsConfirmPasswordHidden(!isConfirmPasswordHidden)
+            )}
             onSubmitEditing={() => Keyboard.dismiss()}
           />
           <Button tx="onboarding.resetPassword.resetButton"
@@ -154,7 +123,7 @@ export function NewPassword() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral900,
-  paddingTop: 36
+  paddingTop: 24
 }
 
 const $successContainer: ViewStyle = {
