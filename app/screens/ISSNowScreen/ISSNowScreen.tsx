@@ -1,59 +1,90 @@
 import { observer } from "mobx-react-lite"
 import React from "react"
-import { View, ViewStyle } from "react-native"
-import { Scene, PerspectiveCamera, SphereGeometry, MeshNormalMaterial, Mesh } from "three"
+import { ViewStyle } from "react-native"
+import * as THREE from "three"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
-import { Renderer } from "expo-three"
-import { Screen, Text } from "../../components"
-import { colors, spacing } from "../../theme"
-import { Details } from "./components/Details"
+import ExpoTHREE from "expo-three"
+import { Screen } from "../../components"
+import { colors } from "../../theme"
+// import { Details } from "./components/Details"
+import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
+  const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+
   return (
-    <Screen preset="fixed" contentContainerStyle={$container} safeAreaEdges={["top"]}>
+    <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <>
-        <View style={$topContainer}>
-          <Text
-            testID="welcome-heading"
-            text="Hello, World!"
-            preset="heading"
-          />
-        </View>
         <GLView
-          style={{ flex: 1, backgroundColor: 'black'}}
-          onContextCreate={(gl: ExpoWebGLRenderingContext) => {
-            const scene = new Scene()
-            const camera = new PerspectiveCamera(
+          style={$container}
+          onContextCreate={async (gl: ExpoWebGLRenderingContext) => {
+            const scene = new THREE.Scene()
+            const camera = new THREE.PerspectiveCamera(
               75,
               gl.drawingBufferWidth / gl.drawingBufferHeight,
-              0.1,
+              0.01,
               1000
             )
+
+            const ambient = new THREE.AmbientLight('white')
+            ambient.intensity = 666
+
+            camera.position.set(0, 0, 850)
+
             gl.canvas = { width: gl.drawingBufferWidth, height: gl.drawingBufferHeight }
-            const renderer = new Renderer({ gl })
+            const renderer = new ExpoTHREE.Renderer({ gl })
             renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
-            const globe = new Mesh()
-            globe.geometry = new SphereGeometry(300, 100, 100)
-            globe.material = new MeshNormalMaterial({ wireframe: true })
+            const globe = new THREE.Mesh()
+            globe.geometry = new THREE.SphereGeometry(300, 100, 100)
+            globe.material = new THREE.MeshBasicMaterial({
+              map: await ExpoTHREE.loadTextureAsync({
+                asset: require("../../../assets/images/globe-textures.jpeg"),
+              })
+            })
             globe.name = 'earth'
 
+            const clouds = new THREE.Mesh()
+            clouds.geometry = new THREE.SphereGeometry(310, 100, 100)
+            clouds.material = new THREE.MeshBasicMaterial({
+              map: await ExpoTHREE.loadTextureAsync({
+                asset: require("../../../assets/images/clouds.png"),
+              }),
+              transparent: true,
+            })
+            clouds.name = 'clouds'
+
+
+            const circle = new THREE.Mesh()
+            circle.material = new THREE.LineBasicMaterial( { color: 0x00ff00 } ),
+            circle.geometry = new THREE.TorusGeometry( 315, 1, 100, 100 ),
+            // circle.geometry.vertices.shift()
+            
+            circle.rotation.y = Math.PI/1.5
+            scene.add( circle )
+
+            // camera.add(ambient)
             scene.add(globe)
+            scene.add(clouds)
 
-            camera.position.y = 0
-            camera.position.x = 0
-            camera.position.z = 600
-
-            const render = () => {
-              requestAnimationFrame(render)
-              renderer.render(scene, camera)
-              gl.endFrameEXP()
+            function update() {
+              ['x', 'y', 'z'].forEach(axis => {
+                clouds.rotation[axis] += Math.random() / 10000
+              })
             }
 
+            const render = () => {
+              timeout = requestAnimationFrame(render)
+              update()
+              renderer.render(scene, camera)
+
+              gl.endFrameEXP()
+            }
             render()
           }}
+          key="d"
         />
-        <Details />
+        {/* <Details /> */}
       </>
     </Screen>
   )
@@ -61,12 +92,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.background,
+  backgroundColor: colors.backgroundDark,
   justifyContent: "space-between"
-}
-
-const $topContainer: ViewStyle = {
-  display: "flex",
-  justifyContent: "center",
-  paddingHorizontal: spacing.large,
 }

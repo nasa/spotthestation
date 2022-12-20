@@ -53,6 +53,7 @@
     "expo-splash-screen": "~0.16.1",
     "expo-status-bar": "~1.4.0",
     "expo-three": "^7.0.0",
+    "expo-three-orbit-controls": "^2.0.0",
     "i18n-js": "3.9.2",
     "mobx": "6.6.0",
     "mobx-react-lite": "3.4.0",

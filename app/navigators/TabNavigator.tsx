@@ -1,10 +1,11 @@
+/* eslint-disable react-native/no-color-literals */
+/* eslint-disable react-native/no-inline-styles */
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Icon } from "../components"
-import { translate } from "../i18n"
+import { Icon, Text } from "../components"
 import { ISSNowScreen } from "../screens"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
@@ -34,10 +35,10 @@ export function TabNavigator() {
 
   return (
     <Tab.Navigator
-      initialRouteName="ISSNow"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#000000',
+        tabBarActiveTintColor: colors.palette.neutral100,
         tabBarStyle: [$tabBar, { height: bottom + 70 }],
         tabBarLabelStyle: $tabBarLabel,
         tabBarItemStyle: $tabBarItem,
@@ -47,16 +48,12 @@ export function TabNavigator() {
         name="Home"
         component={ISSNowScreen}
         options={{
-          tabBarLabel: translate("tabNavigator.homeTab"),
-          tabBarIcon: ({ color, size }) => (
-            <Icon icon="components" color={color} size={size} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text tx="tabNavigator.homeTab" style={{ color: focused ? color : "transparent" }} />
           ),
-        }}
-        listeners={{
-          tabPress: e => {
-            // add your conditions here
-            e.preventDefault() // <-- this function blocks navigating to screen
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Icon icon="home" color={color} size={size} />
+          ),
         }}
       />
 
@@ -64,16 +61,12 @@ export function TabNavigator() {
         name="SkyView"
         component={ISSNowScreen}
         options={{
-          tabBarLabel: translate("tabNavigator.skyViewTab"),
-          tabBarIcon: ({ color, size }) => (
-            <Icon icon="components" color={color} size={size} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent" }} />
           ),
-        }}
-        listeners={{
-          tabPress: e => {
-            // add your conditions here
-            e.preventDefault() // <-- this function blocks navigating to screen
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Icon icon="globe" color={color} size={size} />
+          ),
         }}
       />
 
@@ -81,9 +74,11 @@ export function TabNavigator() {
         name="ISSNow"
         component={ISSNowScreen}
         options={{
-          tabBarLabel: translate("tabNavigator.issNowTab"),
+          tabBarLabel: ({ focused, color }) => (
+            <Text tx="tabNavigator.issNowTab" style={{ color: focused ? color : "transparent" }} />
+          ),
           tabBarIcon: ({ color, size }) => (
-            <Icon icon="components" color={color} size={size} />
+            <Icon icon="tv" color={ color } size={size} />
           ),
         }}
       />
@@ -92,16 +87,12 @@ export function TabNavigator() {
         name="Resources"
         component={ISSNowScreen}
         options={{
-          tabBarLabel: translate("tabNavigator.resourcesTab"),
-          tabBarIcon: ({ color, size }) => (
-            <Icon icon="components" color={color} size={size} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} />
           ),
-        }}
-        listeners={{
-          tabPress: e => {
-            // add your conditions here
-            e.preventDefault() // <-- this function blocks navigating to screen
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Icon icon="book" color={ color } size={size} />
+          ),
         }}
       />
 
@@ -109,16 +100,12 @@ export function TabNavigator() {
         name="Account"
         component={ISSNowScreen}
         options={{
-          tabBarLabel: translate("tabNavigator.accountTab"),
-          tabBarIcon: ({ color, size }) => (
-            <Icon icon="components" color={color} size={size} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text tx="tabNavigator.accountTab" style={{ color: focused ? color : "transparent" }} />
           ),
-        }}
-        listeners={{
-          tabPress: e => {
-            // add your conditions here
-            e.preventDefault() // <-- this function blocks navigating to screen
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Icon icon="user" color={ color } size={size} />
+          ),
         }}
       />
     </Tab.Navigator>
@@ -126,12 +113,12 @@ export function TabNavigator() {
 }
 
 const $tabBar: ViewStyle = {
-  backgroundColor: colors.background,
+  backgroundColor: colors.backgroundDark,
   borderTopColor: colors.transparent,
 }
 
 const $tabBarItem: ViewStyle = {
-  paddingTop: spacing.medium,
+  paddingTop: spacing.small,
 }
 
 const $tabBarLabel: TextStyle = {
