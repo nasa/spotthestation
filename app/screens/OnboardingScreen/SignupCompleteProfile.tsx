@@ -17,7 +17,7 @@ export function SignupCompleteProfile() {
 
   const [step, setStep] = useState(1)
   const [profileData, setProfileData] = useState({
-    firsName: "",
+    firstName: "",
     lastName: "",
     country: "",
     state: "",

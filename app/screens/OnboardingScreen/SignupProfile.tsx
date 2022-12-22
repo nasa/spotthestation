@@ -2,11 +2,12 @@ import React from "react"
 import { PressableProps, TextStyle, View, ViewStyle } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { translate } from "../../i18n"
-import { TextFieldAccessoryProps, IconTypes, Icon, TextField, Button, Text } from "../../components"
+import { Icon, TextField, Button, Text } from "../../components"
 import { colors, spacing, typography } from "../../theme"
+import { Accessory } from "../../components/Accessory"
 
 export interface ProfileData {
-  firsName: string,
+  firstName: string,
   lastName: string,
   country: string,
   state: string,
@@ -14,7 +15,7 @@ export interface ProfileData {
 }
 
 export enum FieldTypes {
-  firsName = "firsName",
+  firstName = "firstName",
   lastName = "lastName",
   country = "country",
   state = "state",
@@ -37,31 +38,19 @@ export interface SignupProfileProps {
 }
 
 export function SignupProfile({ value, onValueChange, onAction }: SignupProfileProps) {
-  const isNextDisabled = Object.keys(value).some(key => !value[key]) 
-
-  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, onPress?) => {
-    return (
-      <Icon
-        icon={icon}
-        size={28}
-        color={colors.palette.neutral450}
-        containerStyle={props.style}
-        onPress={onPress}
-      />
-    )
-  }
+  const isNextDisabled = Object.keys(value).some(key => !value[key])
 
   return (
     <>
       <Text tx="onboarding.completeProfile.profile.tittle" style={$title} />
       <TextField
-        value={value.firsName}
+        value={value.firstName}
         autoCapitalize="words"
         autoComplete="name"
         autoCorrect={false}
-        placeholderTx="onboarding.completeProfile.profile.firsName"
-        onChangeText={(text) => onValueChange(text, FieldTypes.firsName)}
-        LeftAccessory={(props) => accessory(props, "user")}
+        placeholderTx="onboarding.completeProfile.profile.firstName"
+        onChangeText={(text) => onValueChange(text, FieldTypes.firstName)}
+        LeftAccessory={(props) => <Accessory props={props} icon="user" />}
       />
       <TextField
         value={value.lastName}
@@ -71,7 +60,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.lastName"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.lastName)}
-        LeftAccessory={(props) => accessory(props, "user")}
+        LeftAccessory={(props) => <Accessory props={props} icon="user" />}
       />
       <Dropdown
         style={[$dropdown, $inputMargin]}
@@ -108,7 +97,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.state"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.state)}
-        LeftAccessory={(props) => accessory(props, "map")}
+        LeftAccessory={(props) => <Accessory props={props} icon="map" />}
       />
       <TextField
         value={value.city}
@@ -118,7 +107,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.city"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.city)}
-        LeftAccessory={(props) => accessory(props, "pin")}
+        LeftAccessory={(props) => <Accessory props={props} icon="pin" />}
       />
       <View style={$buttonsContainer}>
         <Button

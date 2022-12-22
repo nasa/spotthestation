@@ -1,8 +1,9 @@
 import { Link } from "@react-navigation/native"
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useCallback, useMemo, useRef, useState } from "react"
 import { ViewStyle, TextStyle, View, TextInput } from "react-native"
 import Modal from "react-native-modal"
-import { Button, Icon, IconTypes, Screen, Text, TextField, TextFieldAccessoryProps } from "../../components"
+import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../../components"
+import { Accessory } from "../../components/Accessory"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -19,14 +20,10 @@ export function Login() {
   const [password, setPassword] = useState('')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loginError, setLoginError] = useState('')
-  const [isCanLogin, setIsCanLogin] = useState(false)
   const [isPasswordHidden, setIsPasswordHidden] = useState(false)
   const [isForgotPassword, setIsForgotPassword] = useState(false)
 
-  useEffect(() => {
-    if(email && password) setIsCanLogin(true)
-    else setIsCanLogin(false)
-  }, [email, password]) 
+  const isCanLogin = useMemo(() => email && password, [email, password])
 
   const handleLogin = useCallback(() => {
     if (!isCanLogin) return
@@ -58,18 +55,6 @@ export function Login() {
     [isPasswordHidden, loginError],
   )
 
-  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, color: string, onPress?) => {
-    return (
-      <Icon
-        icon={icon}
-        size={28}
-        color={color}
-        containerStyle={props.style}
-        onPress={onPress}
-      />
-    )
-  }
-
   return (
     <Screen
       preset="fixed"
@@ -90,8 +75,20 @@ export function Login() {
             placeholderTx="onboarding.login.placeholder.email"
             onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
             inputWrapperStyle={loginError ? $error : {}}
-            LeftAccessory={(props) => accessory(props, "mail", loginError ? colors.palette.nasaRed : colors.palette.neutral450)}
-            RightAccessory={(props) => loginError && accessory(props, "delete", colors.palette.neutral450, () => setEmail(''))}
+            LeftAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon="mail"
+                color={loginError ? colors.palette.nasaRed : colors.palette.neutral450} 
+              />
+            )}
+            RightAccessory={(props) => loginError && (
+              <Accessory 
+                props={props} 
+                icon="delete"
+                onPress={() => setEmail('')}
+              />
+            )}
             onSubmitEditing={() => passwordInput.current?.focus()}
           />
           <TextField
@@ -105,7 +102,13 @@ export function Login() {
             onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
             inputWrapperStyle={loginError ? $error : {}}
             RightAccessory={PasswordRightAccessory}
-            LeftAccessory={(props) => accessory(props, "lock", loginError ? colors.palette.nasaRed : colors.palette.neutral450)}
+            LeftAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon="lock"
+                color={loginError ? colors.palette.nasaRed : colors.palette.neutral450} 
+              />
+            )}
             onSubmitEditing={handleLogin}
           />
         </View>
@@ -133,7 +136,7 @@ export function Login() {
           </View>
         </View>
         <View style={$questionContainer}>
-          <Text tx={"onboarding.login.haveAccountQustion"} style={$question} />
+          <Text tx={"onboarding.login.haveAccountQuestion"} style={$question} />
           <Link to={{ screen: "Signup" }}>
             <Text tx={"onboarding.login.signUpLink"} style={$link} />
           </Link>

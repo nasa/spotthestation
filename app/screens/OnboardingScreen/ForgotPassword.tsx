@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle, Linking, Platform } from "react-native"
-import { Button, Icon, Text, TextField, TextFieldAccessoryProps } from "../../components"
+import { Button, Icon, Text, TextField } from "../../components"
+import { Accessory } from "../../components/Accessory"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 
@@ -31,18 +32,6 @@ export function ForgotPassword({ onClose }: ForgotPasswordProps) {
     Linking.openURL('message:0')
   }
 
-  const EmailLeftAccessory = 
-    (props: TextFieldAccessoryProps) => {
-        return (
-          <Icon
-            icon="mail"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={props.style}
-          />
-        )
-      }
-
   return (
     <View style={$modalBodyContainer}>
       <Pressable
@@ -69,7 +58,7 @@ export function ForgotPassword({ onClose }: ForgotPasswordProps) {
             keyboardType="email-address"
             placeholderTx="onboarding.login.placeholder.email"
             onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
-            LeftAccessory={EmailLeftAccessory}
+            LeftAccessory={(props) => <Accessory props={props} icon="mail" />}
             onSubmitEditing={handleSendMail}
             inputWrapperStyle={$textField}
           />
@@ -83,7 +72,7 @@ export function ForgotPassword({ onClose }: ForgotPasswordProps) {
           onPressIn={isMailed ? handleOpenEmailApp : handleSendMail}
         />
         <View style={$questionContainer}>
-          <Text tx={`onboarding.forgotPassword.${isMailed ? "doNotReceiveQustion" : "rememberQustion"}`} style={$question} />
+          <Text tx={`onboarding.forgotPassword.${isMailed ? "doNotReceiveQuestion" : "rememberQuestion"}`} style={$question} />
           <Pressable onPress={isMailed ? handleSendMail : onClose}>
             <Text tx={`onboarding.forgotPassword.${isMailed ? "resend" : "loginLink"}`} style={$link} />
           </Pressable>

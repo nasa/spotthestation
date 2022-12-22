@@ -216,7 +216,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     if (status === Statuses.detecting) return renderDetecting()
     if (status === Statuses.result) return renderResult()
     return ''
-  }, [status, value, isFocus, textValue])
+  }, [status, renderStart, renderDetecting, renderResult])
 
   return (
     <>

@@ -33,7 +33,6 @@ export function SignupOTP() {
   const handleSend = () => {
     // TODO
   }
-  
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">

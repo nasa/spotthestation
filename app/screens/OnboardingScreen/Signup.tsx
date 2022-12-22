@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
-import React, { useEffect, useState } from "react"
+import React, { useMemo, useState } from "react"
 import { Keyboard, TextStyle, View, ViewStyle } from "react-native"
-import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps, Toggle, IconTypes} from "../../components"
+import { Screen, TextField, Text, Button, Toggle } from "../../components"
+import { Accessory } from "../../components/Accessory"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -17,27 +18,14 @@ export function Signup() {
   const [phone, setPhone] = useState('')
   const [isPasswordHidden, setIsPasswordHidden] = useState(true)
   const [privacySwitchValue, setPrivacySwitchValue] = useState(false)
-  const [isCanSignUp, setIsCanSignUp] = useState(false)
 
-  useEffect(() => {
-    if (password && email && phone && privacySwitchValue) setIsCanSignUp(true)
-    else setIsCanSignUp(false)
-  }, [password, email, phone, privacySwitchValue])
+  const isCanSignUp = useMemo(
+    () => password && email && phone && privacySwitchValue,
+    [password, email, phone, privacySwitchValue]
+  )
 
   const handleBack = () => navigation.goBack()
   const handleSignUp = () => navigation.navigate("SignupOTP" as never)
-
-  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, onPress?) => {
-    return (
-      <Icon
-        icon={icon}
-        size={28}
-        color={colors.palette.neutral450}
-        containerStyle={props.style}
-        onPress={onPress}
-      />
-    )
-  }
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -53,7 +41,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.email"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
-          LeftAccessory={(props) => accessory(props, "mail")}
+          LeftAccessory={(props) => <Accessory props={props} icon="mail" />}
         />
         <TextField
           value={phone}
@@ -65,7 +53,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.phone"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPhone(nativeEvent.text)}
-          LeftAccessory={(props) => accessory(props, "smartphone")}
+          LeftAccessory={(props) => <Accessory props={props} icon="smartphone" />}
         />
         <TextField
           value={password}
@@ -76,11 +64,13 @@ export function Signup() {
           placeholderTx="onboarding.signUp.password"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-          LeftAccessory={(props) => accessory(props, "lock")}
-          RightAccessory={(props) => accessory(
-            props, 
-            isPasswordHidden ? "view" : "hidden",
-            () => setIsPasswordHidden(!isPasswordHidden)
+          LeftAccessory={(props) => <Accessory props={props} icon="lock" />}
+          RightAccessory={(props) => (
+            <Accessory
+              props={props}
+              icon={isPasswordHidden ? "view" : "hidden"}
+              onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+            />
           )}
           onSubmitEditing={() => Keyboard.dismiss()}
         />

@@ -36,7 +36,7 @@ const en = {
       forgotPassword: "Forgot Password?",
       loginButton: "Login",
       loginWith: "or login with",
-      haveAccountQustion: "Don’t have an account?",
+      haveAccountQuestion: "Don’t have an account?",
       signUpLink: "Sign Up",
     },
     forgotPassword: {
@@ -46,9 +46,9 @@ const en = {
       subtitleMailed: "We sent a password reset link to",
       resetButton: "Reset password",
       openEmailAppButton: "Open Email App",
-      rememberQustion: "Remember your password?",
+      rememberQuestion: "Remember your password?",
       loginLink: "Login",
-      doNotReceiveQustion: "Don’t receive the email?",
+      doNotReceiveQuestion: "Don’t receive the email?",
       resend: "Resend",
     },
     resetPassword: {
@@ -85,7 +85,7 @@ const en = {
     completeProfile: {
       profile: {
         tittle: "Complete Your Profile",
-        firsName: "First Name",
+        firstName: "First Name",
         lastName: "Last Name",
         country: "Country",
         state: "State",

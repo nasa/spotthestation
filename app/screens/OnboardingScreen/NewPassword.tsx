@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useMemo, useRef, useState } from "react"
 import { Keyboard, TextInput, TextStyle, View, ViewStyle } from "react-native"
-import { Screen, TextField, Text, Button, Icon, TextFieldAccessoryProps, IconTypes } from "../../components"
+import { Screen, TextField, Text, Button, Icon } from "../../components"
+import { Accessory } from "../../components/Accessory"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -18,29 +19,17 @@ export function NewPassword() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isPasswordHidden, setIsPasswordHidden] = useState(true)
   const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true)
-  const [isCanReset, setIsCanReset] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   
-  useEffect(() => {
-    if (password && confirmPassword && password === confirmPassword) setIsCanReset(true)
-  }, [password, confirmPassword])
+  const isCanReset = useMemo(
+    () => password && confirmPassword && password === confirmPassword,
+    [password, confirmPassword]
+  )
 
   const handleBack = () => navigation.goBack()
   const handleBackToLogin = () => navigation.navigate("Login" as never)
   const handleReset = () => {
     setIsSuccess(true)
-  }
-
-  const accessory = (props: TextFieldAccessoryProps, icon: IconTypes, onPress?) => {
-    return (
-      <Icon
-        icon={icon}
-        size={28}
-        color={colors.palette.neutral450}
-        containerStyle={props.style}
-        onPress={onPress}
-      />
-    )
   }
 
   const renderGeneral = () => {
@@ -59,11 +48,20 @@ export function NewPassword() {
             placeholderTx="onboarding.resetPassword.password"
             inputWrapperStyle={$password}
             onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-            LeftAccessory={(props) => accessory(props, "lock")}
-            RightAccessory={(props) => accessory(
-              props, 
-              isPasswordHidden ? "view" : "hidden",
-              () => setIsPasswordHidden(!isPasswordHidden)
+            LeftAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon="lock"
+                color={colors.palette.neutral450} 
+              />
+            )}
+            RightAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon={isPasswordHidden ? "view" : "hidden"}
+                color={colors.palette.neutral450}
+                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+              />
             )}
             onSubmitEditing={() => confirmPasswordInputRef.current?.focus()}
           />
@@ -76,11 +74,18 @@ export function NewPassword() {
             secureTextEntry={isConfirmPasswordHidden}
             placeholderTx="onboarding.resetPassword.confirmPassword"
             onChange={({ nativeEvent }) => setConfirmPassword(nativeEvent.text)}
-            LeftAccessory={(props) => accessory(props, "lock")}
-            RightAccessory={(props) => accessory(
-              props, 
-              isConfirmPasswordHidden ? "view" : "hidden",
-              () => setIsConfirmPasswordHidden(!isConfirmPasswordHidden)
+            LeftAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon="lock"
+              />
+            )}
+            RightAccessory={(props) => (
+              <Accessory 
+                props={props} 
+                icon={isConfirmPasswordHidden ? "view" : "hidden"}
+                onPress={() => setIsConfirmPasswordHidden(!isConfirmPasswordHidden)}
+              />
             )}
             onSubmitEditing={() => Keyboard.dismiss()}
           />
