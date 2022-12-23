@@ -6,7 +6,7 @@ import React from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import { ISSNowScreen } from "../screens"
+import { ISSNowScreen, HomeScreen } from "../screens"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
@@ -46,7 +46,7 @@ export function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={ISSNowScreen}
+        component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.homeTab" style={{ color: focused ? color : "transparent" }} />

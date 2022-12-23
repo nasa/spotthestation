@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
-import { Text, Toggle } from "../../../components"
-import { colors, spacing } from "../../../theme"
-import { convertToImperial } from "../../../utils/convertToImperial"
-import { formatDate } from "../../../utils/formatDate"
+import { Text, Toggle } from "../../../../components"
+import { colors, spacing } from "../../../../theme"
+import { convertToImperial } from "../../../../utils/convertToImperial"
+import { formatDate } from "../../../../utils/formatDate"
 
 const locationDetails = {
   latitude: 100,
