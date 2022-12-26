@@ -20,7 +20,7 @@ enum Statuses {
 
 export interface SignupLocationProps {
   /**
-   * Data aboute location
+   * Data about location
    */
   value: LocationType
   /**
