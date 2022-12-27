@@ -122,6 +122,26 @@ const en = {
       speed: "Speed",
       switchLabel: "Metric/Imperial"
     }
+  },
+  homeScreen: {
+    verify: {
+      title: "Verify Email",
+      subtitle: "Please verify your email address",
+      remindButton: "Remind me later",
+      generalButton: "Verify now",
+    },
+    verified: {
+      title: "Email Verified!",
+      subtitle: "Your email address",
+      subtitle2: "has been",
+      subtitle3: "verified successfully",
+      generalButton: "Okay",
+    },
+    header: {
+      welcome: "Welcome, ",
+      firstTimeHead: "SIGHTING TIME",
+      secondTimeHead: "COUNTDOWN",
+    }
   }
 }
 

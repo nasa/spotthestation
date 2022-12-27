@@ -14,10 +14,11 @@ import ControlsView from "./ControlsView"
 
 export interface GlobeProps {
   marker?: number[]
+  zoom?: number
   path?: any
 }
 
-export function Globe({ marker, path = true }: GlobeProps ) {
+export function Globe({ marker, path = true, zoom }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
 
   const createMarker = async () => {
@@ -188,7 +189,7 @@ export function Globe({ marker, path = true }: GlobeProps ) {
     const ambient = new AmbientLight('white')
     ambient.intensity = 666
 
-    camera.position.set(0, 0, 850)
+    camera.position.set(0, 0, zoom || 850)
 
     setCamera(camera)
 

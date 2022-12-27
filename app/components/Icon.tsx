@@ -121,6 +121,8 @@ export const iconRegistry = {
   chevronDown: require("../../assets/icons/chevron-down.png"),
   book: require("../../assets/icons/book.png"),
   home: require("../../assets/icons/home.png"),
+  emailVerify: require("../../assets/icons/email-verify.png"),
+  emailVerified: require("../../assets/icons/email-verified.png"),
 }
 
 const $imageStyle: ImageStyle = {
