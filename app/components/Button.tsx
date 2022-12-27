@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react"
+import React, { ReactNode } from "react"
 import {
   Pressable,
   PressableProps,
@@ -53,14 +53,12 @@ export interface ButtonProps extends PressableProps {
   preset?: Presets
   /**
    * An optional component to render on the right side of the text.
-   * Example: `RightAccessory={(props) => <View {...props} />}`
    */
-  RightAccessory?: ComponentType<ButtonAccessoryProps>
+  renderRightAccessory?: (props: { style: StyleProp<any> }) => ReactNode
   /**
    * An optional component to render on the left side of the text.
-   * Example: `LeftAccessory={(props) => <View {...props} />}`
    */
-  LeftAccessory?: ComponentType<ButtonAccessoryProps>
+  renderLeftAccessory?: (props: { style: StyleProp<any> }) => ReactNode
   /**
    * Children components.
    */
@@ -83,8 +81,8 @@ export function Button(props: ButtonProps) {
     textStyle: $textStyleOverride,
     pressedTextStyle: $pressedTextStyleOverride,
     children,
-    RightAccessory,
-    LeftAccessory,
+    renderRightAccessory,
+    renderLeftAccessory,
     ...rest
   } = props
 
@@ -108,15 +106,13 @@ export function Button(props: ButtonProps) {
     <Pressable style={$viewStyle} accessibilityRole="button" {...rest}>
       {(state) => (
         <>
-          {!!LeftAccessory && <LeftAccessory style={$leftAccessoryStyle} pressableState={state} />}
+          {!!renderLeftAccessory && renderLeftAccessory({ style: $leftAccessoryStyle }) }
 
           <Text tx={tx} text={text} txOptions={txOptions} style={$textStyle(state)}>
             {children}
           </Text>
 
-          {!!RightAccessory && (
-            <RightAccessory style={$rightAccessoryStyle} pressableState={state} />
-          )}
+          {!!renderRightAccessory && renderRightAccessory({ style: $rightAccessoryStyle })}
         </>
       )}
     </Pressable>

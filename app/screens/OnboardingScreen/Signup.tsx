@@ -41,7 +41,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.email"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
-          LeftAccessory={(props) => <Accessory props={props} icon="mail" />}
+          renderLeftAccessory={({ style }) => <Accessory style={style} icon="mail" />}
         />
         <TextField
           value={phone}
@@ -53,7 +53,7 @@ export function Signup() {
           placeholderTx="onboarding.signUp.phone"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPhone(nativeEvent.text)}
-          LeftAccessory={(props) => <Accessory props={props} icon="smartphone" />}
+          renderLeftAccessory={({ style }) => <Accessory style={style} icon="smartphone" />}
         />
         <TextField
           value={password}
@@ -64,10 +64,10 @@ export function Signup() {
           placeholderTx="onboarding.signUp.password"
           inputWrapperStyle={$inputWrapper}
           onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-          LeftAccessory={(props) => <Accessory props={props} icon="lock" />}
-          RightAccessory={(props) => (
+          renderLeftAccessory={({ style }) => <Accessory style={style} icon="lock" />}
+          renderRightAccessory={({ style }) => (
             <Accessory
-              props={props}
+              style={style}
               icon={isPasswordHidden ? "view" : "hidden"}
               onPress={() => setIsPasswordHidden(!isPasswordHidden)}
             />

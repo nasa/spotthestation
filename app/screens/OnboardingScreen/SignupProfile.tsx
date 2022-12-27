@@ -50,7 +50,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         autoCorrect={false}
         placeholderTx="onboarding.completeProfile.profile.firstName"
         onChangeText={(text) => onValueChange(text, FieldTypes.firstName)}
-        LeftAccessory={(props) => <Accessory props={props} icon="user" />}
+        renderLeftAccessory={({ style }) => <Accessory style={style} icon="user" />}
       />
       <TextField
         value={value.lastName}
@@ -60,7 +60,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.lastName"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.lastName)}
-        LeftAccessory={(props) => <Accessory props={props} icon="user" />}
+        renderLeftAccessory={({ style }) => <Accessory style={style} icon="user" />}
       />
       <Dropdown
         style={[$dropdown, $inputMargin]}
@@ -71,7 +71,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         value={value.country}
         labelField="label"
         valueField="value"
-        onChange={({ value }) => onValueChange(value, FieldTypes.country)}
+        onChange={({ value }) => onValueChange(value as string, FieldTypes.country)}
         renderLeftIcon={() => (
           <Icon
             icon="globe"
@@ -97,7 +97,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.state"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.state)}
-        LeftAccessory={(props) => <Accessory props={props} icon="map" />}
+        renderLeftAccessory={({ style }) => <Accessory style={style} icon="map" />}
       />
       <TextField
         value={value.city}
@@ -107,7 +107,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.city"
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.city)}
-        LeftAccessory={(props) => <Accessory props={props} icon="pin" />}
+        renderLeftAccessory={({ style  }) => <Accessory style={style} icon="pin" />}
       />
       <View style={$buttonsContainer}>
         <Button

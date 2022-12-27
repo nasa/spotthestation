@@ -1,8 +1,7 @@
-import React from "react"
-import { PressableProps } from "react-native"
+import React, { memo } from "react"
+import { PressableProps, StyleProp } from "react-native"
 import { colors } from "../theme"
 import { IconTypes, Icon } from "./Icon"
-import { TextFieldAccessoryProps } from "./TextField"
 
 export interface AccessoryProps {
   icon: IconTypes
@@ -11,17 +10,18 @@ export interface AccessoryProps {
 
   onPress?: PressableProps["onPress"]
 
-  props: TextFieldAccessoryProps,
+  style: StyleProp<any>,
 }
 
-export const Accessory = ({icon, color, props, onPress}: AccessoryProps) => {
+export const Accessory = memo(function Accessory({icon, color, style, onPress}: AccessoryProps) {
   return (
     <Icon
       icon={icon}
       size={28}
       color={color || colors.palette.neutral450}
-      containerStyle={props.style}
+      containerStyle={style}
       onPress={onPress}
     />
   )
-}
+})
+

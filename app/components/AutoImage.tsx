@@ -62,8 +62,8 @@ export function AutoImage(props: AutoImageProps) {
 
   const [width, height] = useAutoImage(
     Platform.select({
-      web: (source?.uri as string) ?? (source as string),
-      default: source?.uri as string,
+      web: (source?.uri ) ?? (source as string),
+      default: source?.uri ,
     }),
     [maxWidth, maxHeight],
   )

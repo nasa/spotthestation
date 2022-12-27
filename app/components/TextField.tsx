@@ -1,4 +1,4 @@
-import React, { ComponentType, forwardRef, Ref, useImperativeHandle, useRef } from "react"
+import React, { forwardRef, ReactNode, Ref, useImperativeHandle, useRef } from "react"
 import {
   StyleProp,
   TextInput,
@@ -11,13 +11,6 @@ import {
 import { isRTL, translate } from "../i18n"
 import { colors, spacing, typography } from "../theme"
 import { Text, TextProps } from "./Text"
-
-export interface TextFieldAccessoryProps {
-  style: StyleProp<any>
-  status: TextFieldProps["status"]
-  multiline: boolean
-  editable: boolean
-}
 
 export interface TextFieldProps extends Omit<TextInputProps, "ref"> {
   /**
@@ -85,16 +78,12 @@ export interface TextFieldProps extends Omit<TextInputProps, "ref"> {
   inputWrapperStyle?: StyleProp<ViewStyle>
   /**
    * An optional component to render on the right side of the input.
-   * Example: `RightAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} color={props.editable ? colors.textDim : colors.text} />}`
-   * Note: It is a good idea to memoize this.
    */
-  RightAccessory?: ComponentType<TextFieldAccessoryProps>
+  renderRightAccessory?: (props: { style: StyleProp<any> }) => ReactNode
   /**
    * An optional component to render on the left side of the input.
-   * Example: `LeftAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} color={props.editable ? colors.textDim : colors.text} />}`
-   * Note: It is a good idea to memoize this.
    */
-  LeftAccessory?: ComponentType<TextFieldAccessoryProps>
+  renderLeftAccessory?: (props: { style: StyleProp<any> }) => ReactNode
 }
 
 /**
@@ -114,8 +103,8 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     helperTx,
     helperTxOptions,
     status,
-    RightAccessory,
-    LeftAccessory,
+    renderRightAccessory,
+    renderLeftAccessory,
     HelperTextProps,
     LabelTextProps,
     style: $inputStyleOverride,
@@ -139,8 +128,8 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     $inputWrapperStyle,
     status === "error" && { borderColor: colors.error },
     TextInputProps.multiline && { minHeight: 112 },
-    LeftAccessory && { paddingStart: 0 },
-    RightAccessory && { paddingEnd: 0 },
+    renderLeftAccessory && { paddingStart: 0 },
+    renderRightAccessory && { paddingEnd: 0 },
     $inputWrapperStyleOverride,
   ]
 
@@ -185,14 +174,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
       )}
 
       <View style={$inputWrapperStyles}>
-        {!!LeftAccessory && (
-          <LeftAccessory
-            style={$leftAccessoryStyle}
-            status={status}
-            editable={!disabled}
-            multiline={TextInputProps.multiline}
-          />
-        )}
+        {!!renderLeftAccessory && renderLeftAccessory({ style: $leftAccessoryStyle })}
 
         <TextInput
           ref={input}
@@ -205,14 +187,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
           style={$inputStyles}
         />
 
-        {!!RightAccessory && (
-          <RightAccessory
-            style={$rightAccessoryStyle}
-            status={status}
-            editable={!disabled}
-            multiline={TextInputProps.multiline}
-          />
-        )}
+        {!!renderRightAccessory && renderRightAccessory({ style: $rightAccessoryStyle })}
       </View>
 
       {!!(helper || helperTx) && (

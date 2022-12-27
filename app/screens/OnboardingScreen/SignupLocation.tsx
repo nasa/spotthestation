@@ -103,11 +103,11 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           style={$button}
           textStyle={$buttonText}
           onPress={handleDetect}
-          LeftAccessory={(props) => (
+          renderLeftAccessory={({ style }) => (
             <Icon
               icon="currentLocation"
               size={24}
-              style={props.style}
+              style={style}
             />
           )}
         />

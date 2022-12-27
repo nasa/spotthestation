@@ -58,7 +58,7 @@ export function ForgotPassword({ onClose }: ForgotPasswordProps) {
             keyboardType="email-address"
             placeholderTx="onboarding.login.placeholder.email"
             onChange={({ nativeEvent }) => setEmail(nativeEvent.text)}
-            LeftAccessory={(props) => <Accessory props={props} icon="mail" />}
+            renderLeftAccessory={({ style }) => <Accessory style={style} icon="mail" />}
             onSubmitEditing={handleSendMail}
             inputWrapperStyle={$textField}
           />

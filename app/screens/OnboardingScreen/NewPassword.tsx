@@ -48,16 +48,16 @@ export function NewPassword() {
             placeholderTx="onboarding.resetPassword.password"
             inputWrapperStyle={$password}
             onChange={({ nativeEvent }) => setPassword(nativeEvent.text)}
-            LeftAccessory={(props) => (
+            renderLeftAccessory={({ style }) => (
               <Accessory 
-                props={props} 
+                style={style}
                 icon="lock"
                 color={colors.palette.neutral450} 
               />
             )}
-            RightAccessory={(props) => (
+            renderRightAccessory={({ style }) => (
               <Accessory 
-                props={props} 
+                style={style}
                 icon={isPasswordHidden ? "view" : "hidden"}
                 color={colors.palette.neutral450}
                 onPress={() => setIsPasswordHidden(!isPasswordHidden)}
@@ -74,15 +74,15 @@ export function NewPassword() {
             secureTextEntry={isConfirmPasswordHidden}
             placeholderTx="onboarding.resetPassword.confirmPassword"
             onChange={({ nativeEvent }) => setConfirmPassword(nativeEvent.text)}
-            LeftAccessory={(props) => (
+            renderLeftAccessory={({ style }) => (
               <Accessory 
-                props={props} 
+                style={style}
                 icon="lock"
               />
             )}
-            RightAccessory={(props) => (
+            renderRightAccessory={({ style }) => (
               <Accessory 
-                props={props} 
+                style={style}
                 icon={isConfirmPasswordHidden ? "view" : "hidden"}
                 onPress={() => setIsConfirmPasswordHidden(!isConfirmPasswordHidden)}
               />
