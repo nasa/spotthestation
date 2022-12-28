@@ -2,9 +2,8 @@ import React from "react"
 import { PressableProps, TextStyle, View, ViewStyle } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { translate } from "../../i18n"
-import { Icon, TextField, Button, Text } from "../../components"
+import { Icon, TextField, Button, Text, Accessory } from "../../components"
 import { colors, spacing, typography } from "../../theme"
-import { Accessory } from "../../components/Accessory"
 
 export interface ProfileData {
   firstName: string,

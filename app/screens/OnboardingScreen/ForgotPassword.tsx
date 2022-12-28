@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle, Linking, Platform } from "react-native"
-import { Button, Icon, Text, TextField } from "../../components"
-import { Accessory } from "../../components/Accessory"
+import { Button, Icon, Text, TextField, Accessory } from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 
