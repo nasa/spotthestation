@@ -141,8 +141,15 @@ const en = {
       welcome: "Welcome, ",
       firstTimeHead: "SIGHTING TIME",
       secondTimeHead: "COUNTDOWN",
+    },
+    selectLocation: {
+      title: "Select Location",
+      inputPlaceholder: "Search location by city, pin...",
+      current: "Current location",
+      saved: "Saved locations",
+      nearby: "Nearby locations"
     }
-  }
+  },
 }
 
 export default en

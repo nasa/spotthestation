@@ -1,5 +1,5 @@
 import React from "react"
-import { ViewStyle, View, TextStyle } from "react-native"
+import { ViewStyle, View, TextStyle, PressableProps } from "react-native"
 import { colors, typography } from "../../../theme"
 import { Text } from "../../../components"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -11,9 +11,10 @@ interface User {
 
 export interface HomeHeaderProps {
   user: User
+  onLocationPress: PressableProps["onPress"]
 }
 
-export function HomeHeader({ user }: HomeHeaderProps) {
+export function HomeHeader({ user, onLocationPress }: HomeHeaderProps) {
 
   return (
     <View style={$headerContainer}>
@@ -25,7 +26,7 @@ export function HomeHeader({ user }: HomeHeaderProps) {
           </View>
           <Text text={user.address} style={$addressText}/>
         </View>
-        <IconLinkButton icon="pin" />
+        <IconLinkButton icon="pin" onPress={onLocationPress} />
       </View>
       <View style={$rowContainer}>
         <View style={$timeContainer}>

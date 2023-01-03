@@ -8,14 +8,16 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { VerifyEmail } from "./VerifyEmail"
+import { SelectLocation } from "./SelectLocation"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
-  const [isVerify, setIsVerify] = useState(true)
+  const [isVerify, setIsVerify] = useState(false)
+  const [isLocation, setIsLocation] = useState(false)
 
   return (
     <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <HomeHeader user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} />
+      <HomeHeader user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} onLocationPress={() => setIsLocation(true)} />
       <Globe zoom={550} />
       <View style={$flatMap} />
       <Modal
@@ -33,6 +35,22 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <VerifyEmail onClose={() => setIsVerify(!isVerify)} />
+      </Modal>
+      <Modal
+        isVisible={isLocation}
+        onBackdropPress={() => setIsLocation(!isLocation)}
+        onSwipeComplete={() => setIsLocation(!isLocation)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <SelectLocation onClose={() => setIsLocation(!isLocation)} />
       </Modal>
     </Screen>
   )

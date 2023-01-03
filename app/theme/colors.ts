@@ -42,6 +42,7 @@ const palette = {
   inputError: "#FC3D2115",
 
   buttonBlue: "#0B3D91",
+  green: "#11CE69",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
