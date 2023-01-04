@@ -6,9 +6,11 @@ import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
 import { translate } from "../../i18n"
 import { colors, spacing, typography } from "../../theme"
+import { getCurrentLocation } from "../../utils/geolocation"
 
 export interface LocationType {
   title: string,
+  subtitle: string,
   location: Point
 }
 
@@ -44,35 +46,6 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     else if (status === Statuses.result && !value.title) setStatus(Statuses.start)
   }, [value])
 
-  const getCurrentLocation = async () => {
-    const { status: permission } = await Location.requestForegroundPermissionsAsync()
-  
-    if (permission !== 'granted') {
-      Alert.alert(
-        translate("onboarding.completeProfile.location.permissionAlertTitle"),
-        translate("onboarding.completeProfile.location.permissionAlertBody"),
-        [{ text: 'OK', onPress: () => setStatus(Statuses.start) }],
-        { cancelable: false }
-      )
-    }
-  
-    const { coords } = await Location.getCurrentPositionAsync()
-  
-    if (coords) {
-      const { latitude, longitude } = coords
-      const response = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude
-      })
-  
-      for (const item of response) {
-        const address = `${item.name}, ${item.street}, ${item.postalCode}, ${item.city}`
-  
-        onValueChange({ title: address, location: {lat: latitude, lng: longitude}})
-      }
-    }
-  }
-
   const handleClear = () => {
     addressRef.current?.clear()
     setTextValue("")
@@ -82,7 +55,15 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     setStatus(Statuses.detecting)
 
     if (await Location.hasServicesEnabledAsync()) {
-      await getCurrentLocation()
+      const location = await getCurrentLocation(() =>
+        Alert.alert(
+          translate("onboarding.completeProfile.location.permissionAlertTitle"),
+          translate("onboarding.completeProfile.location.permissionAlertBody"),
+          [{ text: 'OK', onPress: () => setStatus(Statuses.start) }],
+          { cancelable: false }
+        )
+      )
+      onValueChange(location)
     } else {
       Alert.alert(
         translate("onboarding.completeProfile.location.serviceAlertTitle"),
@@ -119,7 +100,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             key: Config.GOOGLE_API_TOKEN,
             language: 'en',
           }}
-          onPress={(data, details = null) => onValueChange({ title: data?.description, location: details?.geometry?.location })}
+          onPress={(data, details = null) => onValueChange({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })}
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}
@@ -197,7 +178,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             icon="trash"
             size={28}
             color={colors.palette.neutral450}
-            onPress={() => onValueChange({ title: "", location: { lat: null, lng: null }})}
+            onPress={() => onValueChange({ title: "", subtitle: "", location: { lat: null, lng: null }})}
           />
         </View>
         <Button

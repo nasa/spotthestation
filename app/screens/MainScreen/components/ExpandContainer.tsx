@@ -17,10 +17,10 @@ export function ExpandContainer({ defaultValue = true, title, expandble = true, 
   return (
     <View style={$container}>
       <View style={$headContainer}>
-        <>
+        <View style={$titleContainer}>
           <Text tx={title} style={$title} />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />} 
-        </>
+        </View>
         {expandble && <Icon icon="chevronDown" size={18} onPress={() => setExpanded(!expanded)} style={expanded && $up} />}
       </View>
       {expanded && children}
@@ -37,6 +37,10 @@ const $headContainer: ViewStyle = {
   marginBottom: 18,
   flexDirection: "row",
   justifyContent: "space-between"
+}
+
+const $titleContainer: ViewStyle = {
+  flexDirection: "row",
 }
 
 const $title: TextStyle = {

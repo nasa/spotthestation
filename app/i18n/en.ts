@@ -147,7 +147,13 @@ const en = {
       inputPlaceholder: "Search location by city, pin...",
       current: "Current location",
       saved: "Saved locations",
-      nearby: "Nearby locations"
+      nearby: "Nearby locations",
+      search: "Search results"
+    },
+    selectSightings: {
+      title: "Upcoming Sightings",
+      signites: "Sightings",
+      button: "Notify Me (15 min before)",
     }
   },
 }

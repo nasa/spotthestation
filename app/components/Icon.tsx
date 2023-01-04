@@ -123,6 +123,7 @@ export const iconRegistry = {
   home: require("../../assets/icons/home.png"),
   emailVerify: require("../../assets/icons/email-verify.png"),
   emailVerified: require("../../assets/icons/email-verified.png"),
+  clock: require("../../assets/icons/clock.png"),
 }
 
 const $imageStyle: ImageStyle = {

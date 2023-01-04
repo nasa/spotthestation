@@ -9,15 +9,21 @@ import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { VerifyEmail } from "./VerifyEmail"
 import { SelectLocation } from "./SelectLocation"
+import { Sightings } from "./Signitings"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isVerify, setIsVerify] = useState(false)
   const [isLocation, setIsLocation] = useState(false)
+  const [isSightings, setIsSightings] = useState(false)
 
   return (
     <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <HomeHeader user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} onLocationPress={() => setIsLocation(true)} />
+      <HomeHeader 
+        user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} 
+        onLocationPress={() => setIsLocation(true)}
+        onSightingsPress={() => setIsSightings(true)}
+      />
       <Globe zoom={550} />
       <View style={$flatMap} />
       <Modal
@@ -51,6 +57,22 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <SelectLocation onClose={() => setIsLocation(!isLocation)} />
+      </Modal>
+      <Modal
+        isVisible={isSightings}
+        onBackdropPress={() => setIsSightings(!isSightings)}
+        onSwipeComplete={() => setIsSightings(!isSightings)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <Sightings onClose={() => setIsSightings(!isSightings)} />
       </Modal>
     </Screen>
   )

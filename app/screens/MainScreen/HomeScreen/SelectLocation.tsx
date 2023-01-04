@@ -1,13 +1,14 @@
-import React, { useRef, useState } from "react"
+/* eslint-disable camelcase */
+import React, { useEffect, useState } from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle, ScrollView } from "react-native"
-import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
-import { translate } from "../../../i18n"
-import { Icon, Text } from "../../../components"
-import { colors, spacing, typography } from "../../../theme"
-import Config from "../../../config"
+
+import { Accessory, Icon, Text, TextField } from "../../../components"
+import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 export interface SelectLocationProps {
   /**
@@ -17,16 +18,38 @@ export interface SelectLocationProps {
 }
 
 export function SelectLocation({ onClose }: SelectLocationProps) {
-  const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
+  const [current, setCurrent] = useState<LocationType | null>(null)
+  const [nearby, setNearby] = useState<LocationType[] | []>([])
+  const [searchResult, setSearchResult] = useState<LocationType[] | []>([])
+
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
-  const handleClear = () => {
-    addressRef.current?.clear()
-    setTextValue("")
+  const getLocations = async () => {
+    const location = await getCurrentLocation()
+    const res = await getNearbyPlaces(location.location, 100)
+    setCurrent(location)
+    setNearby(res)
   }
+
+  const setPlaces = async (value: string) => {
+    const location = await getPlaces(value)
+    
+    setSearchResult(location)
+  }
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    getLocations()
+  }, [])
+
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    setPlaces(textValue)
+  }, [textValue])
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -37,79 +60,56 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
         <Icon icon="x" color={colors.palette.neutral450} />
       </Pressable>
       <Text tx="homeScreen.selectLocation.title" style={$title} />
-      <GooglePlacesAutocomplete
-        ref={addressRef}
-        placeholder={translate("homeScreen.selectLocation.inputPlaceholder")}
-        query={{
-          key: Config.GOOGLE_API_TOKEN,
-          language: 'en',
-        }}
-        onPress={(data, details = null) => console.log(data, details)}
-        onFail={(error) => console.error(error)}
-        enablePoweredByContainer={false}
-        isRowScrollable={false}
-        fetchDetails={true}
-        keepResultsAfterBlur={true}
-        styles={{
-          textInputContainer: isFocus ? [$locations, $active] : $locations,
-          textInput: {
-            ...$dropdownText,
-            ...$dropdownSelected,
-          },
-          listView: $locationsListContainer,
-          row: $locationsRow,
-          separator: { height: 0 },
-          container: { flex: 0, }
-        }}
-        textInputProps={{
-          placeholderTextColor: colors.palette.neutral450,
-          onFocus: () => setIsFocus(true),
-          onBlur: () => setIsFocus(false),
-          onChangeText: (text) => setTextValue(text),
-          clearButtonMode: "never",
-        }}
-        renderRow={({ description }) => {
-          return <Text text={description} style={$locationsRowText} ellipsizeMode='tail' numberOfLines={1} />
-        }}
-        renderLeftButton={() => (
-          <Icon
+      <TextField
+        value={textValue}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholderTx="homeScreen.selectLocation.inputPlaceholder"
+        onChangeText={(text) => setTextValue(text)}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+        inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
+        renderLeftAccessory={({ style }) => (
+          <Accessory 
             icon="search"
-            size={28}
             color={colors.palette.neutral450}
-            containerStyle={$dropdownLeftAccessory}
+            style={style}
           />
         )}
-        renderRightButton={() => isFocus && textValue ? (
-          <Icon
-            icon="xCircle"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={$dropdownRightAccessory}
-            onPress={handleClear}
+        renderRightAccessory={(({ style }) => isFocus && textValue ? (
+          <Accessory 
+            style={style}
+            icon={"xCircle"}
+            onPress={() => setTextValue("")}
           />
         ) : (
-          <Icon
-            icon="currentLocation"
-            size={28}
-            color={colors.palette.neutral450}
-            containerStyle={$dropdownRightAccessory}
-            onPress={handleClear}
+          <Accessory 
+            style={style}
+            icon={"currentLocation"}
           />
-        )}
+        ))}
       />
       <ScrollView style={$scrollContainer}>
-        <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
-          <ListItem icon="pin" title="7th Avenue," subtitle="Phoenix, AZ, 34960" selected={true} />
-        </ExpandContainer>
-        <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
-          <ListItem icon="pin" title="George Bush St, Times Square" subtitle="New York City, NY, 83957" />
-          <ListItem icon="pin" title="Navy Garden" subtitle="San Diego, CA, 54813" />
-        </ExpandContainer>
-        <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={3} defaultValue={false}>
-          <ListItem icon="pin" title="" subtitle="" />
-          <ListItem icon="pin" title="" subtitle="" />
-          <ListItem icon="pin" title="" subtitle="" />
-        </ExpandContainer>
+        {(!isFocus && searchResult.length === 0) && (
+          <>
+            {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
+              <ListItem icon="pin" title={current.title} subtitle={current.subtitle} selected={true} />
+            </ExpandContainer>}
+            <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
+              <ListItem icon="pin" title="George Bush St, Times Square" subtitle="New York City, NY, 83957" />
+              <ListItem icon="pin" title="Navy Garden" subtitle="San Diego, CA, 54813" />
+            </ExpandContainer>
+            {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
+                {nearby.map((place: LocationType) => <ListItem key={place.title} icon="pin" title={place.title} subtitle={place.subtitle} />)}
+              </ExpandContainer>
+            }
+          </>
+        )}
+        {(isFocus || searchResult.length > 0) && 
+          <ExpandContainer title="homeScreen.selectLocation.search" itemsCount={searchResult.length} expandble={false}>
+            {searchResult.map((place: LocationType) => <ListItem key={place.title} icon="pin" title={place.title} subtitle={place.subtitle} />)}
+          </ExpandContainer>
+        }
       </ScrollView>
     </View>
   )
@@ -159,57 +159,4 @@ const $active: ViewStyle = {
   borderWidth: 1.5,
   borderColor: colors.palette.buttonBlue,
   backgroundColor: colors.palette.overlayBlue,
-}
-
-const $locationsListContainer: ViewStyle = {
-  borderRadius: 12,
-  backgroundColor: colors.palette.neutral550,
-  overflow: "hidden",
-  width: "85%",
-  alignSelf: "center",
-  marginTop: 3
-}
-
-const $dropdownLeftAccessory: ViewStyle = {
-  marginStart: spacing.large,
-  height: 56,
-  justifyContent: "center",
-  alignItems: "center",
-}
-
-const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
-  justifyContent: "center",
-  alignItems: "center",
-}
-
-const $dropdownSelected: TextStyle = {
-  color: colors.palette.neutral250,
-}
-
-const $locationsRow: TextStyle = {
-  backgroundColor: 'transparent',
-  paddingHorizontal: spacing.large
-}
-
-const $locationsRowText: TextStyle = {
-  fontSize: 18,
-  lineHeight: 22,
-  color: colors.palette.neutral250,
-  
-}
-
-const $dropdownText: TextStyle = {
-  flex: 1,
-  height: 56,
-  alignSelf: "stretch",
-  fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
-  paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
-  textAlignVertical: "center",
-  borderRadius: 0,
-  backgroundColor: "transparent"
 }
