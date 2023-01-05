@@ -48,15 +48,14 @@ export class Api {
   }
 
   async getPlaces(url: string, key: "results" | "candidates"): Promise<{ kind: "ok"; places: GooglePlaceDetail[] } | GeneralApiProblem> {
-    const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
+    const response: ApiResponse<Record<typeof key, GooglePlaceDetail[]>> = await this.apisauce.get(url, {}, { baseURL: "" })
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return { kind: "ok", places: response.data[key] as GooglePlaceDetail[] }
+    return { kind: "ok", places: response.data[key] }
   }
 }
 

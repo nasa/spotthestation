@@ -9,6 +9,7 @@ import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import Snackbar from "react-native-snackbar"
 
 export interface SelectLocationProps {
   /**
@@ -21,8 +22,8 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [current, setCurrent] = useState<LocationType | null>(null)
-  const [nearby, setNearby] = useState<LocationType[] | []>([])
-  const [searchResult, setSearchResult] = useState<LocationType[] | []>([])
+  const [nearby, setNearby] = useState<LocationType[]>([])
+  const [searchResult, setSearchResult] = useState<LocationType[]>([])
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -41,14 +42,21 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    getLocations()
+    getLocations().catch((e: Error) => {
+      Snackbar.show({
+        text: e.message || "Some error occured",
+        duration: Snackbar.LENGTH_SHORT,
+      })
+    })
   }, [])
 
-
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    setPlaces(textValue)
+    setPlaces(textValue).catch((e: Error) => {
+      Snackbar.show({
+        text: e.message || "Some error occured",
+        duration: Snackbar.LENGTH_SHORT,
+      })
+    })
   }, [textValue])
 
   return (
@@ -65,7 +73,7 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
         autoCapitalize="none"
         autoCorrect={false}
         placeholderTx="homeScreen.selectLocation.inputPlaceholder"
-        onChangeText={(text) => setTextValue(text)}
+        onChangeText={setTextValue}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
