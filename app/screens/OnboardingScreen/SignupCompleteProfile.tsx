@@ -54,7 +54,7 @@ export function SignupCompleteProfile() {
   }, [step, profileData, notifications, location])
 
   return (
-    <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
+    <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <IconLinkButton icon="back" onPress={handleBack} buttonStyle={$back} />
       <View style={$contentContainer}>
         <Text text={`${step} of 3`} style={$step} />

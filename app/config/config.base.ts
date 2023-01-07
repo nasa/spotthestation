@@ -1,10 +1,11 @@
-import { API_URL, GOOGLE_API_TOKEN } from "@env"
+import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN } from "@env"
 
 export interface ConfigBaseProps {
   persistNavigation: "always" | "dev" | "prod" | "never"
   catchErrors: "always" | "dev" | "prod" | "never"
   exitRoutes: string[]
   GOOGLE_API_TOKEN: string
+  MAPBOX_API_TOKEN: string
   API_URL: string
 }
 
@@ -27,6 +28,8 @@ const BaseConfig: ConfigBaseProps = {
   exitRoutes: [],
 
   GOOGLE_API_TOKEN,
+  
+  MAPBOX_API_TOKEN,
 
   API_URL
 }

@@ -243,6 +243,9 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+        // ext {
+        //     RNMapboxMapsImpl = "mapbox"
+        // }   
     }
 
     // applicationVariants are e.g. debug, release
@@ -356,3 +359,21 @@ def isNewArchitectureEnabled() {
     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
 }
+
+// allprojects {
+//     repositories {
+//         maven {
+//             url 'https://api.mapbox.com/downloads/v2/releases/maven'
+//             authentication {
+//                 basic(BasicAuthentication)
+//             }
+//             credentials {
+//                 // Do not change the username below.
+//                 // This should always be `mapbox` (not your username).
+//                 username = 'mapbox'
+//                 // Use the secret token you stored in gradle.properties as the password
+//                 password = "оооо" ?: ""
+//             }
+//         }
+//     }
+// }

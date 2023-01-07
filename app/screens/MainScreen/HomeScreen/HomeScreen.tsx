@@ -1,7 +1,11 @@
 import { observer } from "mobx-react-lite"
-import React, { useState } from "react"
-import { ViewStyle, View } from "react-native"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { ViewStyle } from "react-native"
 import Modal from "react-native-modal"
+// import MapboxGL from "@rnmapbox/maps"
+// import GeoJSONTerminator from "@webgeodatavore/geojson.terminator"
+// import Config from "../../../config"
+import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle } from "react-native-maps"
 import { Screen } from "../../../components"
 import { colors } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -92,6 +96,5 @@ const $modal: ViewStyle = {
 }
 
 const $flatMap: ViewStyle = {
-  width: "100%",
-  height: 200
+  flex: 1
 }
