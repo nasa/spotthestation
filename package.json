@@ -65,6 +65,7 @@
     "react-native-config": "^1.4.11",
     "react-native-confirmation-code-field": "^7.3.1",
     "react-native-element-dropdown": "^2.5.1",
+    "react-native-email-link": "^1.14.3",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-maps": "1.4.0-beta.1",

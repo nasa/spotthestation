@@ -1,5 +1,5 @@
-import React from "react"
-import { PressableProps, TextStyle, View, ViewStyle } from "react-native"
+import React, { useRef } from "react"
+import { PressableProps, TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { translate } from "../../i18n"
 import { Icon, TextField, Button, Text, Accessory } from "../../components"
@@ -33,10 +33,14 @@ export interface SignupProfileProps {
   /**
    * Action to move to the next step.
    */
-  onAction: PressableProps["onPress"]
+  onAction: PressableProps["onPress"] | TextInputProps["onSubmitEditing"]
 }
 
 export function SignupProfile({ value, onValueChange, onAction }: SignupProfileProps) {
+  const lastNameRef = useRef<TextInput>(null)
+  const stateRef = useRef<TextInput>(null)
+  const cityRef = useRef<TextInput>(null)
+  const countryRef = useRef<View>(null)
   const isNextDisabled = Object.keys(value).some(key => !value[key])
 
   return (
@@ -50,8 +54,10 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         placeholderTx="onboarding.completeProfile.profile.firstName"
         onChangeText={(text) => onValueChange(text, FieldTypes.firstName)}
         renderLeftAccessory={({ style }) => <Accessory style={style} icon="user" />}
+        onSubmitEditing={() => lastNameRef.current.focus()}
       />
       <TextField
+        ref={lastNameRef}
         value={value.lastName}
         autoCapitalize="words"
         autoComplete="name"
@@ -60,8 +66,10 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.lastName)}
         renderLeftAccessory={({ style }) => <Accessory style={style} icon="user" />}
+        onSubmitEditing={() => stateRef.current.focus()}
       />
       <Dropdown
+        ref={countryRef}
         style={[$dropdown, $inputMargin]}
         placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
         selectedTextStyle={[$dropdownText, $dropdownSelected]}
@@ -70,7 +78,10 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         value={value.country}
         labelField="label"
         valueField="value"
-        onChange={({ value }) => onValueChange(value as string, FieldTypes.country)}
+        onChange={({ value }) => {
+          onValueChange(value as string, FieldTypes.country)
+          stateRef.current.focus()
+        }}
         renderLeftIcon={() => (
           <Icon
             icon="globe"
@@ -89,6 +100,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         )}
       />
       <TextField
+        ref={stateRef}
         value={value.state}
         autoCapitalize="none"
         autoComplete="postal-address-region"
@@ -97,8 +109,10 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.state)}
         renderLeftAccessory={({ style }) => <Accessory style={style} icon="map" />}
+        onSubmitEditing={() => cityRef.current.focus()}
       />
       <TextField
+        ref={cityRef}
         value={value.city}
         autoCapitalize="words"
         autoComplete="name"
@@ -107,6 +121,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
         inputWrapperStyle={$inputMargin}
         onChangeText={(text) => onValueChange(text, FieldTypes.city)}
         renderLeftAccessory={({ style  }) => <Accessory style={style} icon="pin" />}
+        onSubmitEditing={onAction as TextInputProps["onSubmitEditing"]}
       />
       <View style={$buttonsContainer}>
         <Button
@@ -114,7 +129,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
           pressedStyle={[$button, $skipButton]}
           style={[$button, $skipButton]}
           textStyle={$buttonText}
-          onPress={onAction}
+          onPress={onAction as PressableProps["onPress"]}
         />
         <Button
           tx="onboarding.completeProfile.profile.nextButton"
@@ -122,7 +137,7 @@ export function SignupProfile({ value, onValueChange, onAction }: SignupProfileP
           disabled={isNextDisabled}
           style={isNextDisabled ? [$button, $disabled] : $button}
           textStyle={$buttonText}
-          onPress={onAction}
+          onPress={onAction as PressableProps["onPress"]}
         />
       </View>
     </>

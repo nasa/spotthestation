@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle, Linking, Platform } from "react-native"
+import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
+import { openInbox } from "react-native-email-link"
 import { Button, Icon, Text, TextField, Accessory } from "../../components"
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
-
-// const { UIMailLauncher } = NativeModules
 
 export interface ForgotPasswordProps {
   /**
@@ -22,13 +21,7 @@ export function ForgotPassword({ onClose }: ForgotPasswordProps) {
   }
 
   const handleOpenEmailApp = () => {
-    if (Platform.OS === 'android') {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      // UIMailLauncher.launchMailApp() //TODO
-      return 
-    }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Linking.openURL('message:0')
+    openInbox().catch((error) => console.log(error))
   }
 
   return (

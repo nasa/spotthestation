@@ -18,7 +18,7 @@ export class NightOverlay {
 
     this.getShadowPosition = () => {
       const sunPosition = this.calculatePositionOfSun()
-      return sunPosition ? { latitude: sunPosition.latitude, longitude: sunPosition.longitude } : null
+      return sunPosition ? { latitude: -sunPosition.latitude, longitude: sunPosition.longitude + 180 } : null
     }
 
     this.jday = (date) => {

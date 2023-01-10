@@ -49,6 +49,7 @@
         "resizeMode": "contain",
         "backgroundColor": "#191015"
       }
-    }
+    },
+    "plugins": ["react-native-email-link"]
   }
 }

@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import { ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 // import MapboxGL from "@rnmapbox/maps"
@@ -9,7 +9,6 @@ import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle } from "react-nativ
 import { Screen } from "../../../components"
 import { colors } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
-import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { VerifyEmail } from "./VerifyEmail"
 import { SelectLocation } from "./SelectLocation"
@@ -96,5 +95,5 @@ const $modal: ViewStyle = {
 }
 
 const $flatMap: ViewStyle = {
-  flex: 1
+  height: 200
 }
