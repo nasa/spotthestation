@@ -9,7 +9,7 @@ import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
-import Snackbar from "react-native-snackbar"
+// import Snackbar from "react-native-snackbar"
 
 export interface SelectLocationProps {
   /**
@@ -43,19 +43,19 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
 
   useEffect(() => {
     getLocations().catch((e: Error) => {
-      Snackbar.show({
-        text: e.message || "Some error occured",
-        duration: Snackbar.LENGTH_SHORT,
-      })
+      // Snackbar.show({
+      //   text: e.message || "Some error occured",
+      //   duration: Snackbar.LENGTH_SHORT,
+      // })
     })
   }, [])
 
   useEffect(() => {
     setPlaces(textValue).catch((e: Error) => {
-      Snackbar.show({
-        text: e.message || "Some error occured",
-        duration: Snackbar.LENGTH_SHORT,
-      })
+      // Snackbar.show({
+      //   text: e.message || "Some error occured",
+      //   duration: Snackbar.LENGTH_SHORT,
+      // })
     })
   }, [textValue])
 

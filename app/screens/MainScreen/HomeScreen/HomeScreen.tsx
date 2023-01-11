@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useMemo, useRef, useState } from "react"
-import { ViewStyle } from "react-native"
+import React, { useState } from "react"
+import { View, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 // import MapboxGL from "@rnmapbox/maps"
 // import GeoJSONTerminator from "@webgeodatavore/geojson.terminator"
 // import Config from "../../../config"
-import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle } from "react-native-maps"
+// import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle } from "react-native-maps"
 import { Screen } from "../../../components"
 import { colors } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -13,6 +13,7 @@ import { HomeHeader } from "./HomeHeader"
 import { VerifyEmail } from "./VerifyEmail"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Signitings"
+import { Globe } from "../components/Globe"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
