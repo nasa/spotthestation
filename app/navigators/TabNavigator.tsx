@@ -6,14 +6,14 @@ import React, { useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import { ISSNowScreen, HomeScreen } from "../screens"
+import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps } from "../screens"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 export type TabParamList = {
   Home: undefined
   SkyView: undefined
-  ISSNow: undefined
+  ISSNow: ISSNowScreenRouteProps
   Resources: undefined
   Account: undefined
 }
@@ -60,7 +60,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="SkyView"
-        component={ISSNowScreen}
+        component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent" }} />
@@ -89,7 +89,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="Resources"
-        component={ISSNowScreen}
+        component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} ellipsizeMode="tail" numberOfLines={1} />
@@ -102,7 +102,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="Account"
-        component={ISSNowScreen}
+        component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.accountTab" style={{ color: focused ? color : "transparent" }} />

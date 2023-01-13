@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import { ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
@@ -16,10 +16,9 @@ export interface GlobeProps {
   marker?: number[]
   zoom?: number
   path?: any
-  globeRef?: any
 }
 
-export function Globe({ marker, path = true, zoom, globeRef }: GlobeProps ) {
+export function Globe({ marker, path = true, zoom }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
 
   const createMarker = async () => {
@@ -237,12 +236,11 @@ export function Globe({ marker, path = true, zoom, globeRef }: GlobeProps ) {
     }
     render()
   }
-  
+
   return (
     <>
       <ControlsView style={$pan} camera={camera}>
         <GLView
-          ref={globeRef}
           style={$container}
           onContextCreate={contextRenderer}
           key="d"

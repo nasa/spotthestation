@@ -4,10 +4,11 @@ import {
   PressableProps,
   StyleProp,
   ViewStyle,
-  ImageStyle
+  ImageStyle,
+  TextStyle
 } from "react-native"
 // import { BlurView } from "@react-native-community/blur"
-import { Icon, IconTypes } from "../../../components"
+import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
 
 
@@ -15,7 +16,7 @@ export interface LinkButtonWithArrowProps extends PressableProps {
   /**
    * The name of the icon
    */
-  icon: IconTypes
+  icon?: IconTypes
   /**
    * An optional style override useful for padding & margin.
    */
@@ -24,6 +25,14 @@ export interface LinkButtonWithArrowProps extends PressableProps {
    * An optional icon style.
    */
   imageStyle?: StyleProp<ImageStyle>
+  /**
+   * An optional text instead of icon.
+   */
+  text?: string
+  /**
+   * An optional text style.
+   */
+  textStyle?: StyleProp<TextStyle>
 }
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
@@ -31,13 +40,19 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
     buttonStyle: $buttonStyle,
     icon,
     imageStyle: $imageStyle,
+    textStyle: $textStyle,
+    text,
     ...rest
   } = props
 
   return (
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
       {/* <BlurView > */}
-        <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} />
+        {icon ? 
+          <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} /> 
+          : 
+          <Text text={text} style={[$text, $textStyle]} />
+        }
       {/* </BlurView> */}
     </Pressable>
   )
@@ -51,4 +66,10 @@ const $viewStyle: ViewStyle = {
   height: 42,
   backgroundColor: colors.palette.neutral350,
   borderRadius: 100,
+}
+
+const $text: TextStyle = {
+  color: colors.palette.neutral100,
+  fontSize: 28,
+  lineHeight: 28
 }

@@ -14,10 +14,11 @@ import { NightOverlay } from "../components/NightOverlay"
 
 interface FlatMapProps {
   style?: ViewStyle,
-  withNightOverlay?: boolean
+  withNightOverlay?: boolean,
+  zoom?: number
 }
 
-export function FlatMap({ style, withNightOverlay = true}: FlatMapProps) {
+export function FlatMap({ style, withNightOverlay = true, zoom = 3 }: FlatMapProps) {
   const [nightOverlayCenter, setNightOverlayCenter] = useState<LatLng>({ latitude: 0, longitude: 0 })
   const [nightOverlayRadius, setNightOverlayRadius] = useState(0)
   const mapRef = useRef<MapView | null>(null)
@@ -29,6 +30,13 @@ export function FlatMap({ style, withNightOverlay = true}: FlatMapProps) {
       return new NightOverlay()
     }, [])
   }
+
+  useEffect(() => {
+    mapRef.current?.getCamera().then((cam) => {
+      cam.zoom = zoom
+      mapRef.current?.setCamera(cam)
+    }).catch(e => console.log(e))
+  }, [zoom])
   
   useEffect(() => {
     let timeout: NodeJS.Timer
@@ -39,7 +47,7 @@ export function FlatMap({ style, withNightOverlay = true}: FlatMapProps) {
       timeout = setInterval(() => {
         setNightOverlayCenter(nightOverlay.getShadowPosition())
         setNightOverlayRadius(nightOverlay.getShadowRadiusFromAngle(1))
-        circleRef.current && circleRef.current.setNativeProps({ fillColor: "rgba(0,0,0,0.5)" })   
+        circleRef.current && circleRef.current.setNativeProps({ fillColor: "rgba(11, 61, 145, 0.5)" })   
       }, 10000)
     }
 
@@ -68,6 +76,7 @@ export function FlatMap({ style, withNightOverlay = true}: FlatMapProps) {
         ref={mapRef}
         style={style}
         mapType="satellite"
+        zoomEnabled={false}
         initialRegion={{
           latitude: 28.999,
           longitude: 28.999,
@@ -80,7 +89,7 @@ export function FlatMap({ style, withNightOverlay = true}: FlatMapProps) {
             ref={circleRef}
             center={nightOverlayCenter}
             radius={nightOverlayRadius}
-            fillColor="rgba(0,0,0,0.5)"
+            fillColor="rgba(11, 61, 145, 0.5)"
             strokeWidth={1}
           />
         )}
