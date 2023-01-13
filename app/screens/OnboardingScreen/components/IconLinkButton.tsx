@@ -6,8 +6,10 @@ import {
   ViewStyle,
   ImageStyle
 } from "react-native"
+// import { BlurView } from "@react-native-community/blur"
 import { Icon, IconTypes } from "../../../components"
 import { colors } from "../../../theme/colors"
+
 
 export interface LinkButtonWithArrowProps extends PressableProps {
   /**
@@ -34,7 +36,9 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
 
   return (
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
-      <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} />
+      {/* <BlurView > */}
+        <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} />
+      {/* </BlurView> */}
     </Pressable>
   )
 }

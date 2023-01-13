@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
-import React from "react"
+import React, { useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
@@ -32,14 +32,15 @@ const Tab = createBottomTabNavigator<TabParamList>()
 
 export function TabNavigator() {
   const { bottom } = useSafeAreaInsets()
-
+  const [isTabsVisible, setIsTabsVisible] = useState(true)
+  
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.palette.neutral100,
-        tabBarStyle: [$tabBar, { height: bottom + 70 }],
+        tabBarStyle: [$tabBar, { height: bottom + 70, display: isTabsVisible ? "flex" : "none" }],
         tabBarLabelStyle: $tabBarLabel,
         tabBarItemStyle: $tabBarItem,
       }}
@@ -73,6 +74,9 @@ export function TabNavigator() {
       <Tab.Screen
         name="ISSNow"
         component={ISSNowScreen}
+        initialParams={{
+          toggleBottomTabs: setIsTabsVisible
+        }}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.issNowTab" style={{ color: focused ? color : "transparent" }} />
@@ -88,7 +92,7 @@ export function TabNavigator() {
         component={ISSNowScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} ellipsizeMode="tail" numberOfLines={1} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="book" color={ color } size={size} />

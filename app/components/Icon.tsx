@@ -124,6 +124,7 @@ export const iconRegistry = {
   emailVerify: require("../../assets/icons/email-verify.png"),
   emailVerified: require("../../assets/icons/email-verified.png"),
   clock: require("../../assets/icons/clock.png"),
+  maximize: require("../../assets/icons/maximize.png"),
 }
 
 const $imageStyle: ImageStyle = {
