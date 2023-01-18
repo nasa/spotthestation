@@ -93,5 +93,6 @@ const $modal: ViewStyle = {
 }
 
 const $flatMap: ViewStyle = {
+  width: "100%",
   height: 200
 }

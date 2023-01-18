@@ -7,7 +7,7 @@ import {
   ImageStyle,
   TextStyle
 } from "react-native"
-// import { BlurView } from "@react-native-community/blur"
+import { BlurView } from 'expo-blur'
 import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
 
@@ -33,6 +33,10 @@ export interface LinkButtonWithArrowProps extends PressableProps {
    * An optional text style.
    */
   textStyle?: StyleProp<TextStyle>
+  /**
+   * An optional intensity of button blur.
+   */
+  blurIntensity?: number
 }
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
@@ -42,23 +46,25 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
     imageStyle: $imageStyle,
     textStyle: $textStyle,
     text,
+    blurIntensity = 0,
     ...rest
   } = props
 
   return (
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
-      {/* <BlurView > */}
+      <BlurView intensity={blurIntensity} style={$viewStyle}>
         {icon ? 
           <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} /> 
           : 
           <Text text={text} style={[$text, $textStyle]} />
         }
-      {/* </BlurView> */}
+      </BlurView>
     </Pressable>
   )
 }
 
 const $viewStyle: ViewStyle = {
+  position: "relative",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -66,6 +72,7 @@ const $viewStyle: ViewStyle = {
   height: 42,
   backgroundColor: colors.palette.neutral350,
   borderRadius: 100,
+  overflow: "hidden"
 }
 
 const $text: TextStyle = {

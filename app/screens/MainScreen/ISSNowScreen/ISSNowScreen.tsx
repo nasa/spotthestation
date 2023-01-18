@@ -1,4 +1,5 @@
 import { useRoute } from "@react-navigation/native"
+import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
@@ -41,7 +42,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   const $modControl: ViewStyle = {
     ...$control,
-    left: 18
+    left: 18,
+    padding: 0,
   }
 
   const $zoomControl: ViewStyle = {
@@ -63,12 +65,13 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           icon={isFullScreen ? "x" : "maximize"} 
           onPress={() => setIsFullScreen(!isFullScreen)} 
           buttonStyle={isFullScreen && $lightIcon}
+          blurIntensity={50}
         />
         <View style={$textContainer}>
           <Text text="7th Avenue, Phoenix, AZ" style={$location} />
           <Text text="8 Oct 2022 12:18:28" style={$date} />
         </View>
-        <IconLinkButton icon="pin" buttonStyle={isFullScreen && $lightIcon} />
+        <IconLinkButton icon="pin" buttonStyle={isFullScreen && $lightIcon} blurIntensity={50} />
       </View>
       <View style={[$body, $bodyStyleOverride]}>
         {isGlobe ? 
@@ -77,18 +80,20 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           <FlatMap style={$flatMap} zoom={3 + zoomLevel} />
         }
         <View style={[$modButtons, $modControl]}>
-          <IconLinkButton 
-            text="2D"
-            textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-            onPress={() => setIsGlobe(false)}
-            buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
-          />
-          <IconLinkButton
-            text="3D"
-            textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-            onPress={() => setIsGlobe(true)} 
-            buttonStyle={isGlobe ? [$modButton, $active] : $modButton}
-          />
+          <BlurView style={$modButtons}>
+            <IconLinkButton 
+              text="2D"
+              textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
+              onPress={() => setIsGlobe(false)}
+              buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
+            />
+            <IconLinkButton
+              text="3D"
+              textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
+              onPress={() => setIsGlobe(true)} 
+              buttonStyle={isGlobe ? [$modButton, $active] : $modButton}
+            />
+          </BlurView>
         </View>
         <View style={[$zoomButtons, $zoomControl]}>
           <IconLinkButton 
@@ -96,12 +101,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             disabled={zoomLevel === 5}
             onPress={() => setZoomLevel(zoomLevel + 1)}
             buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
+            blurIntensity={50}
           />
           <IconLinkButton
             text="-"
             disabled={zoomLevel === 0}
             onPress={() => setZoomLevel(zoomLevel - 1)} 
             buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
+            blurIntensity={50}
           />
         </View>
       </View>
@@ -170,6 +177,7 @@ const $modButtons: ViewStyle = {
   justifyContent: "space-between",
   padding: 2,
   borderRadius: 100,
+  overflow: "hidden",
   ...$lightIcon
 }
 

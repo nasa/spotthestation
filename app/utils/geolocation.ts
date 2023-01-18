@@ -22,9 +22,9 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
     const item = response[0]
 
-    const address = `${item.street}, ${item.postalCode}, ${item.city}`
+    const address = `${item?.street}, ${item?.postalCode}, ${item?.city}`
 
-    return { title: item.name, subtitle: address, location: {lat: latitude, lng: longitude}}
+    return { title: item?.name, subtitle: address, location: {lat: latitude, lng: longitude}}
   }
 
   return null
