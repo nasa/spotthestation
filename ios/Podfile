@@ -25,7 +25,7 @@ target 'NasaIssApp' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'  # support for GoogleMaps on iOS
   pod 'Google-Maps-iOS-Utils' # support for GoogleMaps on iOS
-  
+
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -45,10 +45,6 @@ target 'NasaIssApp' do
     # Pods for testing
   end
 
-  pre_install do |installer|
-    $RNMapboxMaps.pre_install(installer)
-  end
-
   post_install do |installer|
     react_native_post_install(installer)
     installer.pods_project.targets.each do |target|
@@ -56,7 +52,6 @@ target 'NasaIssApp' do
         config.build_settings["ONLY_ACTIVE_ARCH"] = "NO"
       end
     end
-    $RNMapboxMaps.post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
     File.delete("./.xcode.env.local") if File.exist?("./.xcode.env.local")
   end

@@ -5,7 +5,7 @@
     "name": "NasaIssApp",
     "slug": "NasaIssApp",
     "scheme": "nasaissapp",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-all.png",
     "splash": {
@@ -17,7 +17,9 @@
       "fallbackToCacheTimeout": 0
     },
     "jsEngine": "hermes",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "icon": "./assets/images/app-icon-android-legacy.png",
       "package": "com.nasaissapp",
@@ -29,7 +31,8 @@
         "image": "./assets/images/splash-logo-android-universal.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
-      }
+      },
+      "versionCode": 2023011908
     },
     "ios": {
       "icon": "./assets/images/app-icon-ios.png",
@@ -40,7 +43,8 @@
         "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
-      }
+      },
+      "buildNumber": "2023011908"
     },
     "web": {
       "favicon": "./assets/images/app-icon-web-favicon.png",
@@ -50,6 +54,8 @@
         "backgroundColor": "#191015"
       }
     },
-    "plugins": ["react-native-email-link"]
+    "plugins": [
+      "react-native-email-link"
+    ]
   }
 }
