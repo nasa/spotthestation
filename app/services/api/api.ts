@@ -16,6 +16,7 @@ import type {
   ApiConfig,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
+import { ISSData } from "../../utils/loadAndFormatISSDate"
 
 /**
  * Configuring the apisauce instance.
@@ -56,6 +57,18 @@ export class Api {
     }
 
     return { kind: "ok", places: response.data[key] }
+  }
+
+  async getISSData(): Promise<ISSData | GeneralApiProblem> {
+    const response: ApiResponse<ISSData> = await this.apisauce.get("/tracking/nasa", {}, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
+    console.log(response)
+    
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    return response.data
   }
 }
 
