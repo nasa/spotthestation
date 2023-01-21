@@ -40,6 +40,7 @@
     "@react-navigation/native-stack": "^6.0.2",
     "@react-navigation/stack": "~6.2.1",
     "@types/rn-fetch-blob": "^1.2.3",
+    "@viro-community/react-viro": "^2.23.0",
     "@webgeodatavore/geojson.terminator": "^1.0.2",
     "apisauce": "2.1.5",
     "date-fns": "^2.29.2",

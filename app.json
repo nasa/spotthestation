@@ -54,8 +54,6 @@
         "backgroundColor": "#191015"
       }
     },
-    "plugins": [
-      "react-native-email-link"
-    ]
+    "plugins": ["react-native-email-link", "@viro-community/react-viro"]
   }
 }
