@@ -60,7 +60,10 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="SkyView"
-        component={HomeScreen}
+        component={SkyViewScreen}
+        initialParams={{
+          toggleBottomTabs: setIsTabsVisible
+        }}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent" }} />

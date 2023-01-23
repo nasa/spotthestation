@@ -476,11 +476,6 @@ PODS:
   - RNSnackbar (2.4.0):
     - React-Core
   - SocketRocket (0.6.0)
-  - Turf (2.6.1)
-  - ViroKit (1.0):
-    - React
-  - ViroReact (1.0):
-    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -570,8 +565,6 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
-  - "ViroKit (from `../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/`)"
-  - "ViroReact (from `../node_modules/@viro-community/react-viro/ios`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -709,10 +702,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSnackbar:
     :path: "../node_modules/react-native-snackbar"
-  ViroKit:
-    :path: "../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/"
-  ViroReact:
-    :path: "../node_modules/@viro-community/react-viro/ios"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -732,7 +721,7 @@ SPEC CHECKSUMS:
   Expo: 2aa7370e08c458536b7089120e84ed8bd204357b
   ExpoKeepAwake: 8b47e5358d54ea4922b630a74f2acb026ab7a28b
   ExpoLocalization: 63204f4b9d4f653469d266332ceaa6c6ac8a305d
-  ExpoModulesCore: f9d1730cc2dde38e46b0becb97628b3ebbd29f21
+  ExpoModulesCore: 1b2f5f91eff132671f6d0642aad2ba7915c6ff41
   FBLazyVector: 6b7f5692909b4300d50e7359cdefbcd09dd30faa
   FBReactNativeSpec: affcf71d996f6b0c01f68883482588297b9d5e6e
   Flipper: 19985db5fff887a746c0e15585917bf1ab304317
@@ -790,12 +779,9 @@ SPEC CHECKSUMS:
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  Turf: 469ce2c3d22e5e8e4818d5a3b254699a5c89efa4
-  ViroKit: 700d3d4ca086368d06224de1cbbc19781aea2094
-  ViroReact: f4980e6b04918c4340637f9cbaae22a6bb7ea440
   Yoga: 0b84a956f7393ef1f37f3bb213c516184e4a689d
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: d68710386520738c93e4e81220836c9d9091ebdd
+PODFILE CHECKSUM: 6006085ef8c765cd651cf501ac19d3644319fab1
 
 COCOAPODS: 1.11.3

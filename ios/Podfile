@@ -1,4 +1,3 @@
-$RNMapboxMapsImpl = 'mapbox'
 pod_folder = Pathname.new(__FILE__).dirname.realpath
 
 require File.join(File.dirname(`cd #{pod_folder} && node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
@@ -39,9 +38,6 @@ target 'NasaIssApp' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
-
-  pod 'ViroReact', :path => '../node_modules/@viro-community/react-viro/ios'
-  pod 'ViroKit', :path => '../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/'
 
   target 'NasaIssAppTests' do
     inherit! :complete
