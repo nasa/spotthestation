@@ -156,6 +156,30 @@ const en = {
       button: "Notify Me (15 min before)",
     }
   },
+  skyView: {
+    header: "Sky View",
+    timeHeader: "TIME LEFT",
+    share: {
+      title: "Share",
+      subtitle: "these great moments to your\nfriends and family"
+    },
+    details: {
+      title: "Internaional Space Station - Details",
+      distance: "Distance",
+      orbitalSpeed: "Orbital speed",
+      longitude: "longitude",
+      latitude: "latitude",
+      altitude: "altitude",
+      crewOnboard: "crew onboard",
+      launched: "Launched",
+      mass: "Mass",
+      length: "Length",
+      orbitalPeriod: "Orbital Period",
+      orbitsPerDay: "Orbits/Day",
+      orbitalDecay: "Orbital Decay",
+      noOfOrbits: "No. of orbits",
+    }
+  }
 }
 
 export default en

@@ -6,13 +6,13 @@ import React, { useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps } from "../screens"
+import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen } from "../screens"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 export type TabParamList = {
   Home: undefined
-  SkyView: undefined
+  SkyView: SkyViewScreenRouteProps
   ISSNow: ISSNowScreenRouteProps
   Resources: undefined
   Account: undefined

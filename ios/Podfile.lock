@@ -713,7 +713,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/"
   ViroReact:
     :path: "../node_modules/@viro-community/react-viro/ios"
-
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 

@@ -25,7 +25,7 @@ export const HomeScreen = observer(function HomeScreen() {
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
       />
-      <Globe zoom={550} />
+      <Globe zoom={550} marker={[0,0]} />
       <FlatMap style={$flatMap} />
       <Modal
         isVisible={isVerify}

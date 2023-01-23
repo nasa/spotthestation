@@ -105,6 +105,9 @@ export const iconRegistry = {
   brandFacebook: require("../../assets/icons/brand-facebook.png"),
   brandTwitter: require("../../assets/icons/brand-twitter.png"),
   brandGoogle: require("../../assets/icons/brand-google.png"),
+  brandInstagram: require("../../assets/icons/brand-instagram.png"),
+  brandLinkedin: require("../../assets/icons/brand-linkedin.png"),
+  brandWhatsapp: require("../../assets/icons/brand-whatsapp.png"),
   delete: require("../../assets/icons/delete.png"),
   mail: require("../../assets/icons/mail.png"),
   mailAccepted: require("../../assets/icons/mail-accepted.png"),
@@ -125,6 +128,11 @@ export const iconRegistry = {
   emailVerified: require("../../assets/icons/email-verified.png"),
   clock: require("../../assets/icons/clock.png"),
   maximize: require("../../assets/icons/maximize.png"),
+  capture: require("../../assets/icons/capture.png"),
+  compass: require("../../assets/icons/compass.png"),
+  line: require("../../assets/icons/line.png"),
+  share: require("../../assets/icons/share.png"),
+  video: require("../../assets/icons/video.png"),
 }
 
 const $imageStyle: ImageStyle = {

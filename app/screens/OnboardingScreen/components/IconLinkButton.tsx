@@ -37,12 +37,22 @@ export interface LinkButtonWithArrowProps extends PressableProps {
    * An optional intensity of button blur.
    */
   blurIntensity?: number
+  /**
+   * An optional icon color.
+   */
+  iconColor?: string
+  /**
+   * An optional icon size.
+   */
+  iconSize?: number
 }
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
   const {
     buttonStyle: $buttonStyle,
     icon,
+    iconColor,
+    iconSize,
     imageStyle: $imageStyle,
     textStyle: $textStyle,
     text,
@@ -54,7 +64,7 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
       <BlurView intensity={blurIntensity} style={$viewStyle}>
         {icon ? 
-          <Icon icon={icon} size={20} color={colors.palette.neutral100} style={$imageStyle} /> 
+          <Icon icon={icon} size={iconSize || 20} color={iconColor || colors.palette.neutral100} style={$imageStyle} /> 
           : 
           <Text text={text} style={[$text, $textStyle]} />
         }
