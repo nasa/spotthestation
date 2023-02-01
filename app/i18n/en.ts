@@ -19,7 +19,7 @@ const en = {
     skyViewTab: "Sky View",
     issNowTab: "ISS Now",
     resourcesTab: "Resources",
-    accountTab: "Account",
+    settingsTab: "Settings",
   },
   onboarding: {
     splash: {

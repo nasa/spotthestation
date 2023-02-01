@@ -40,6 +40,7 @@
     "@react-navigation/native-stack": "^6.0.2",
     "@react-navigation/stack": "~6.2.1",
     "@types/rn-fetch-blob": "^1.2.3",
+    "@types/uuid": "^9.0.0",
     "@webgeodatavore/geojson.terminator": "^1.0.2",
     "apisauce": "2.1.5",
     "date-fns": "^2.29.2",
@@ -67,8 +68,8 @@
     "react-native-config": "^1.4.11",
     "react-native-confirmation-code-field": "^7.3.1",
     "react-native-element-dropdown": "^2.5.1",
-    "react-native-email-link": "^1.14.3",
     "react-native-gesture-handler": "~2.5.0",
+    "react-native-get-random-values": "^1.8.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-maps": "1.4.0-beta.1",
     "react-native-modal": "^13.0.1",
@@ -82,7 +83,8 @@
     "reactotron-react-js": "^3.3.7",
     "reactotron-react-native": "5.0.3",
     "rn-fetch-blob": "^0.12.0",
-    "three": "^0.147.0"
+    "three": "^0.147.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.0",

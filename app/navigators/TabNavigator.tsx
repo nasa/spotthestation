@@ -15,7 +15,7 @@ export type TabParamList = {
   SkyView: SkyViewScreenRouteProps
   ISSNow: ISSNowScreenRouteProps
   Resources: undefined
-  Account: undefined
+  Settings: undefined
 }
 
 /**
@@ -104,14 +104,14 @@ export function TabNavigator() {
       />
 
       <Tab.Screen
-        name="Account"
+        name="Settings"
         component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.accountTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.settingsTab" style={{ color: focused ? color : "transparent" }} />
           ),
           tabBarIcon: ({ color, size }) => (
-            <Icon icon="user" color={ color } size={size} />
+            <Icon icon="settings" color={ color } size={size} />
           ),
         }}
       />

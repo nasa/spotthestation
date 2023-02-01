@@ -8,13 +8,11 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { FlatMap } from "../components/FlatMap"
 import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
-import { VerifyEmail } from "./VerifyEmail"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Signitings"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
-  const [isVerify, setIsVerify] = useState(false)
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
 
@@ -27,22 +25,6 @@ export const HomeScreen = observer(function HomeScreen() {
       />
       <Globe zoom={550} marker={[0,0]} />
       <FlatMap style={$flatMap} />
-      <Modal
-        isVisible={isVerify}
-        onBackdropPress={() => setIsVerify(!isVerify)}
-        onSwipeComplete={() => setIsVerify(!isVerify)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={$modal}
-      >
-        <VerifyEmail onClose={() => setIsVerify(!isVerify)} />
-      </Modal>
       <Modal
         isVisible={isLocation}
         onBackdropPress={() => setIsLocation(!isLocation)}

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ImageBackground, ViewStyle, Image, ImageStyle, View, TextStyle } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Screen, Text } from "../../components"
@@ -7,6 +7,8 @@ import { typography } from "../../theme/typography"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
+import * as storage from "../../utils/storage"
+import { getUserId } from "../../utils/generateUUID"
 
 const background = require("../../../assets/images/bg.png")
 const iss = require("../../../assets/images/iss-with-path.png")
@@ -16,7 +18,15 @@ export function Splash() {
   
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
-  const handleNavigate = () => navigation.navigate("Login" as never)
+  const generateUser = async () => {
+    if ((!await storage.load("userId"))) await storage.save("userId", getUserId())
+  }
+
+  useEffect(() => {
+    generateUser().catch(e => console.log(e))
+  }, [])
+
+  const handleNavigate = () => navigation.navigate("SignupCompleteProfile" as never)
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} statusBarStyle="light">

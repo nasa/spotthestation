@@ -20,6 +20,8 @@ enum Statuses {
   result = "result",
 }
 
+const defaultLocation: LocationType = { title: "Washington, D.C., United States", subtitle: "", location: { lat: 38.89511, lng: -77.03637 }}
+
 export interface SignupLocationProps {
   /**
    * Data about location
@@ -59,16 +61,22 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         Alert.alert(
           translate("onboarding.completeProfile.location.permissionAlertTitle"),
           translate("onboarding.completeProfile.location.permissionAlertBody"),
-          [{ text: 'OK', onPress: () => setStatus(Statuses.start) }],
+          [{ text: 'OK', onPress: () => {
+            onValueChange(defaultLocation)
+            setStatus(Statuses.result)
+          } }],
           { cancelable: false }
         )
       )
-      onValueChange(location)
+      if (location) onValueChange(location)
     } else {
       Alert.alert(
         translate("onboarding.completeProfile.location.serviceAlertTitle"),
         translate("onboarding.completeProfile.location.serviceAlertBody"),
-        [{ text: 'OK', onPress: () => setStatus(Statuses.start) }],
+        [{ text: 'OK', onPress: () => {
+          onValueChange(defaultLocation)
+          setStatus(Statuses.result)
+        } }],
         { cancelable: false }
       )
     }
