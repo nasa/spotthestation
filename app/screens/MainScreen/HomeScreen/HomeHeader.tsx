@@ -11,12 +11,13 @@ interface User {
 
 export interface HomeHeaderProps {
   user: User
+  sighting?: string
+  countdown?: string
   onLocationPress: PressableProps["onPress"]
   onSightingsPress: PressableProps["onPress"]
 }
 
-export function HomeHeader({ user, onLocationPress, onSightingsPress }: HomeHeaderProps) {
-
+export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting = "", countdown = "" }: HomeHeaderProps) {
   return (
     <View style={$headerContainer}>
       <View style={$rowContainer}>
@@ -32,11 +33,11 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress }: HomeHead
       <View style={$rowContainer}>
         <Pressable style={$timeContainer} onPress={onSightingsPress}>
           <Text tx="homeScreen.header.firstTimeHead" style={$headText} />
-          <Text text="04:30" style={$timeText} />
+          <Text text={sighting} style={$timeText} />
         </Pressable>
         <View style={$timeContainer}>
           <Text tx="homeScreen.header.secondTimeHead" style={$headText} />
-          <Text text="01:35:55" style={$timeText} />
+          <Text text={countdown} style={$timeText} />
         </View>
       </View>
     </View>

@@ -6,17 +6,28 @@ import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { isToday, isTomorrow } from "date-fns"
+import { formatDate } from "../../../utils/formatDate"
+
+export interface Sighting {
+  date: Date
+  visibility: number
+}
 
 export interface SightingsProps {
-  /**
-   * A function for closing modal.
-   */
+  sightings: Sighting[]
   onClose?: PressableProps["onPress"]
 }
 
-export function Sightings({ onClose }: SightingsProps) {
+export function Sightings({ onClose, sightings }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
+
+  const formatedDate = (date: Date): string => {
+    if (isToday(date)) return `Today, ${formatDate(date.toISOString(), "H:mm aa")}`
+    if (isTomorrow(date)) return `Tomorrow, ${formatDate(date.toISOString(), "H:mm aa")}`
+    return formatDate(date.toISOString(), "eeee, MMM d, H:mm aa")
+  }
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -29,7 +40,14 @@ export function Sightings({ onClose }: SightingsProps) {
       <Text tx="homeScreen.selectSightings.title" style={$title} />
       <ScrollView style={$scrollContainer}>
         <ExpandContainer title="homeScreen.selectSightings.signites" expandble={false}>
-          <ListItem icon="clock" title="Today, 12:43 PM" subtitle="Visible for 6 min" />
+          {sightings.map((sighting) => 
+            <ListItem 
+              key={sighting.date.toISOString()} 
+              icon="clock" 
+              title={formatedDate(sighting.date)} 
+              subtitle={`Visible for ${sighting.visibility} min`} 
+            />
+          )}
         </ExpandContainer>
       </ScrollView>
       <View style={$scrollContainer}>
