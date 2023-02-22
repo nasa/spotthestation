@@ -23,7 +23,7 @@ import { ISSData } from "../../utils/loadAndFormatISSDate"
  */
 export const DEFAULT_API_CONFIG: ApiConfig = {
   url: Config.API_URL,
-  timeout: 10000,
+  timeout: 100000,
 }
 
 /**
@@ -68,6 +68,19 @@ export class Api {
       if (problem) return problem
     }
 
+    return response.data
+  }
+
+  async getISSSightings(): Promise<any> {
+    const response: ApiResponse<any> = await this.apisauce.get("/tracking/oem-nasa", {}, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
+    console.log(response)
+    
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return response.data
   }
 }

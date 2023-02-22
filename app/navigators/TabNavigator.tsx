@@ -6,7 +6,7 @@ import React, { useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen } from "../screens"
+import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen, Resources } from "../screens"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
@@ -92,7 +92,7 @@ export function TabNavigator() {
 
       <Tab.Screen
         name="Resources"
-        component={HomeScreen}
+        component={Resources}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} ellipsizeMode="tail" numberOfLines={1} />
