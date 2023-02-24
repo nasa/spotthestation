@@ -13,7 +13,7 @@ import {
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
 import type {
-  ApiConfig,
+  ApiConfig, GetISSSightingsParams, ISSSighting,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { ISSData } from "../../utils/loadAndFormatISSDate"
@@ -71,16 +71,18 @@ export class Api {
     return response.data
   }
 
-  async getISSSightings(): Promise<any> {
-    const response: ApiResponse<any> = await this.apisauce.get("/tracking/oem-nasa", {}, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
-    console.log(response)
+  async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSighting[] | GeneralApiProblem> {
+    const response: ApiResponse<ISSSighting[]> = await this.apisauce.get(
+      `/tracking/oem-nasa?zone=${zone}&lat=${lat}&lon=${lon}`, 
+      {}, 
+      { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL }
+    )
     
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return response.data
   }
 }

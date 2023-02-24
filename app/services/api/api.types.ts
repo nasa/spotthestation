@@ -34,6 +34,20 @@ export interface ApiFeedResponse {
   items: EpisodeItem[]
 }
 
+export interface GetISSSightingsParams {
+  zone: string,
+  lat: number,
+  lon: number
+}
+
+export interface ISSSighting {
+  date: string
+  maxHeight: number
+  appears: string
+  disappears: string
+  visible: number
+}
+
 /**
  * The options used to configure apisauce.
  */

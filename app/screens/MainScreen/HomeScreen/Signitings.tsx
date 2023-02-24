@@ -8,14 +8,10 @@ import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { isToday, isTomorrow } from "date-fns"
 import { formatDate } from "../../../utils/formatDate"
-
-export interface Sighting {
-  date: Date
-  visibility: number
-}
+import { ISSSighting } from "../../../services/api"
 
 export interface SightingsProps {
-  sightings: Sighting[]
+  sightings: ISSSighting[]
   onClose?: PressableProps["onPress"]
 }
 
@@ -23,10 +19,10 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
-  const formatedDate = (date: Date): string => {
-    if (isToday(date)) return `Today, ${formatDate(date.toISOString(), "H:mm aa")}`
-    if (isTomorrow(date)) return `Tomorrow, ${formatDate(date.toISOString(), "H:mm aa")}`
-    return formatDate(date.toISOString(), "eeee, MMM d, H:mm aa")
+  const formatedDate = (date: string): string => {
+    if (isToday(new Date(date))) return `Today, ${formatDate(date, "H:mm aa")}`
+    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, "H:mm aa")}`
+    return formatDate(date, "eeee, MMM d, H:mm aa")
   }
 
   return (
@@ -40,12 +36,12 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
       <Text tx="homeScreen.selectSightings.title" style={$title} />
       <ScrollView style={$scrollContainer}>
         <ExpandContainer title="homeScreen.selectSightings.signites" expandble={false}>
-          {sightings.map((sighting) => 
-            <ListItem 
-              key={sighting.date.toISOString()} 
+          {sightings.map((sighting: ISSSighting) => 
+            <ListItem
+              key={sighting.date}
               icon="clock" 
               title={formatedDate(sighting.date)} 
-              subtitle={`Visible for ${sighting.visibility} min`} 
+              subtitle={`Visible for ${sighting.visible} min`} 
             />
           )}
         </ExpandContainer>

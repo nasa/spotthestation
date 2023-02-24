@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 import { Screen } from "../../../components"
+import { api, ISSSighting } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDate } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -11,28 +12,14 @@ import { FlatMap } from "../components/FlatMap"
 import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { SelectLocation } from "./SelectLocation"
-import { Sighting, Sightings } from "./Signitings"
-
-const sightings: Sighting[] = [
-  {
-    date: new Date("2023-02-07T13:10"),
-    visibility: 1
-  },
-  {
-    date: new Date("2023-02-08T16:34"),
-    visibility: 1
-  },
-  {
-    date: new Date("2023-02-09T16:34"),
-    visibility: 1
-  }
-]
+import { Sightings } from "./Signitings"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
-  const [currentSightning, setCurrentSightning] = useState(sightings[0])
+  const [sightings, setSightings] = useState<ISSSighting[]>([])
+  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: '2023-03-08T11:47:42.000000', visible: 0, maxHeight: 0, appears: '', disappears: '' })
   const [countdown, setCountdown] = useState("00:00:00")
 
   const formatTimer = (diff: string): string => {
@@ -47,26 +34,32 @@ export const HomeScreen = observer(function HomeScreen() {
 
     return result
   }
-
-  const timeDiff = (callback: (diff: string) => void) => {
-    const result = sightings.filter((sighting) => sighting.date > new Date(new Date().getTime() - 1800000))
+  
+  const timeDiff = useCallback((callback: (diff: string) => void) => {
+    const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
    
     if (result.length === 0) return
     if (result.length > 0) setCurrentSightning(result[0])
 
-    const duration = intervalToDuration({ start: result[0].date, end: new Date() })
+    const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
     
     callback(formatTimer(diff))
-  }
+  }, [sightings])
 
   const startCountdown = useCallback(() => {
     timeDiff(setCountdown)
     setInterval(() => timeDiff(setCountdown), 1000)
-  }, [countdown])
+  }, [countdown, sightings])
 
   useEffect(() => {
     startCountdown()
+  }, [sightings])
+
+  useEffect(() => {
+    api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
+    .then((res) => setSightings(res as ISSSighting[]))
+    .catch(e => console.log(e))
   }, [])
 
   return (
@@ -75,7 +68,7 @@ export const HomeScreen = observer(function HomeScreen() {
         user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} 
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
-        sighting={formatDate(currentSightning.date.toISOString(), "H:mm")}
+        sighting={formatDate(currentSightning.date)}
         countdown={countdown}
       />
       <Globe zoom={550} marker={[0,0]} />

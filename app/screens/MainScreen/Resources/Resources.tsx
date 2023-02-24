@@ -15,7 +15,9 @@ export const Resources = observer(function HomeScreen() {
   const [sightings, setIsSightings] = useState<any>([])
  
   const getSightings = useCallback(() => {
-    api.getISSSightings().then((res) => setIsSightings(res)).catch(e => console.log(e))
+    api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
+    .then((res) => setIsSightings(res))
+    .catch(e => console.log(e))
   }, [])
 
   useEffect(() => {

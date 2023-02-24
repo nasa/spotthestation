@@ -45,12 +45,20 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
   const createSphere = async (radius: number, texture, name, transparent) => {
     const sphere = new Mesh()
     sphere.geometry = new SphereGeometry(radius, GLOBE_SEGMENTS, GLOBE_SEGMENTS)
-    sphere.material = new MeshBasicMaterial({
-      map: await loadTextureAsync({
-        asset: texture,
-      }),
-      transparent
+
+    const tx = await loadTextureAsync({
+      asset: texture,
     })
+
+    if (tx) {
+      sphere.material = new MeshBasicMaterial({
+        map: tx,
+        transparent
+      })
+    } else {
+      sphere.material = new MeshBasicMaterial({ color: 0xffffff, transparent })
+    }
+    
     sphere.name = name
 
     return sphere
@@ -194,6 +202,7 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
     setCamera(camera)
 
     const renderer: WebGLRenderer = new Renderer({ gl })
+    renderer.debug.checkShaderErrors = false
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
     const globe = await createSphere(GLOBE_RADIUS, require("../../../../assets/images/globe-textures-night.jpeg"), "earth", false)
