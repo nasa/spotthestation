@@ -13,7 +13,7 @@ import {
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
 import type {
-  ApiConfig, GetISSSightingsParams, ISSSighting,
+  ApiConfig, GetISSSightingsParams, ISSSighting, ISSSightingResponse,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { ISSData } from "../../utils/loadAndFormatISSDate"
@@ -71,7 +71,7 @@ export class Api {
     return response.data
   }
 
-  async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSighting[] | GeneralApiProblem> {
+  async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSightingResponse> {
     const response: ApiResponse<ISSSighting[]> = await this.apisauce.get(
       `/tracking/oem-nasa?zone=${zone}&lat=${lat}&lon=${lon}`, 
       {}, 
@@ -80,10 +80,10 @@ export class Api {
     
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return problem
+      if (problem) return { ok: false, data: response.data }
     }
 
-    return response.data
+    return { ok: true, data: response.data }
   }
 }
 

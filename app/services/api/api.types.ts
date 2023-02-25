@@ -48,6 +48,11 @@ export interface ISSSighting {
   visible: number
 }
 
+export interface ISSSightingResponse {
+  ok: boolean
+  data: ISSSighting[] | string
+}
+
 /**
  * The options used to configure apisauce.
  */

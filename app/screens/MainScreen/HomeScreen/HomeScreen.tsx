@@ -3,8 +3,9 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle } from "react-native"
 import Modal from "react-native-modal"
+import Snackbar from 'react-native-snackbar'
 import { Screen } from "../../../components"
-import { api, ISSSighting } from "../../../services/api"
+import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDate } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -58,7 +59,24 @@ export const HomeScreen = observer(function HomeScreen() {
 
   useEffect(() => {
     api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
-    .then((res) => setSightings(res as ISSSighting[]))
+    .then(({ ok, data }: ISSSightingResponse) => {
+      if (ok) {
+        setSightings(data as ISSSighting[])
+      } else {
+        Snackbar.show({
+          text: data as string,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: 'Dismiss',
+            textColor: 'red',
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      }
+      
+    })
     .catch(e => console.log(e))
   }, [])
 

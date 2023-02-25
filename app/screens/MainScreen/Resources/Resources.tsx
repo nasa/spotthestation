@@ -4,19 +4,37 @@
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useState } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
+import Snackbar from "react-native-snackbar"
 import { Screen, Text } from "../../../components"
-import { api } from "../../../services/api"
+import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
 import { colors } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 
 
 export const Resources = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
-  const [sightings, setIsSightings] = useState<any>([])
+  const [sightings, setSightings] = useState<any>([])
  
   const getSightings = useCallback(() => {
     api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
-    .then((res) => setIsSightings(res))
+    .then(({ ok, data }: ISSSightingResponse) => {
+      if (ok) {
+        setSightings(data as ISSSighting[])
+      } else {
+        Snackbar.show({
+          text: data as string,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: 'Dismiss',
+            textColor: 'red',
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      }
+      
+    })
     .catch(e => console.log(e))
   }, [])
 
