@@ -4,6 +4,19 @@ import Config from "../config"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { api } from "../services/api"
 
+export interface TimeZoneData {
+  dstOffset: number
+  rawOffset: number
+  status: string
+  timeZoneId: string
+  timeZoneName: string
+}
+
+export interface TimeZoneDataResponse {
+  zone: TimeZoneData
+  kind: string
+}
+
 export const getCurrentLocation = async (alert?: () => void): Promise<LocationType> => {
   const { status: permission } = await Location.requestForegroundPermissionsAsync()
 
@@ -15,6 +28,7 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
   if (coords) {
     const { latitude, longitude } = coords
+
     const response = await Location.reverseGeocodeAsync({
       latitude,
       longitude
@@ -22,9 +36,9 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
     const item = response[0]
 
-    const address = `${item?.street}, ${item?.postalCode}, ${item?.city}`
+    const address = `${item?.street}, ${item?.streetNumber}, ${item?.postalCode}, ${item?.city}`
 
-    return { title: item?.name, subtitle: address, location: {lat: latitude, lng: longitude}}
+    return { title: item?.name === item?.streetNumber ? address : item?.name, subtitle: address, location: {lat: latitude, lng: longitude}}
   }
 
   return null
@@ -60,4 +74,8 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
   }
 
   return places
+}
+
+export const getLocationTimeZone = async ({ lng, lat }: Point, timestamp: number): Promise<TimeZoneDataResponse> => {
+  return await api.getLocationTimeZone(`https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=${Config.GOOGLE_API_TOKEN}`) as TimeZoneDataResponse
 }

@@ -6,8 +6,9 @@ import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
-import { SignupLocation } from "./SignupLocation"
+import { LocationType, SignupLocation } from "./SignupLocation"
 import { SignupNotificationSettings } from "./SignupNotificationSettings"
+import * as storage from "../../utils/storage"
 
 export function CompleteProfile() {
   const navigation = useNavigation()
@@ -34,9 +35,14 @@ export function CompleteProfile() {
 
   const handleDone = () => navigation.navigate("Main" as never)
 
+  const handleLocationChange = async (location: LocationType) => {
+    setLocation(location)
+    await storage.save('currentLocation', location)
+  }
+
   const renderBody = useCallback(() => {
     switch(step) {
-      case 2: return <SignupLocation value={location} onValueChange={setLocation} onAction={handleDone} />
+      case 2: return <SignupLocation value={location} onValueChange={handleLocationChange} onAction={handleDone} />
       default: return <SignupNotificationSettings value={notifications} onValueChange={setNotifications} onAction={handleNext} />
     }
   }, [step, notifications, location])

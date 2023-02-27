@@ -9,11 +9,13 @@ import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDate } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
 import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Signitings"
+import { getLocationTimeZone } from "../../../utils/geolocation"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
@@ -22,6 +24,9 @@ export const HomeScreen = observer(function HomeScreen() {
   const [sightings, setSightings] = useState<ISSSighting[]>([])
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: '2023-03-08T11:47:42.000000', visible: 0, maxHeight: 0, appears: '', disappears: '' })
   const [countdown, setCountdown] = useState("00:00:00")
+  const [address, setAddress] = useState("")
+  const [location, setLocation] = useState(null)
+  
 
   const formatTimer = (diff: string): string => {
     const result = diff.split(",").map(item => {
@@ -57,39 +62,49 @@ export const HomeScreen = observer(function HomeScreen() {
     startCountdown()
   }, [sightings])
 
-  useEffect(() => {
-    api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
-    .then(({ ok, data }: ISSSightingResponse) => {
-      if (ok) {
-        setSightings(data as ISSSighting[])
-      } else {
-        Snackbar.show({
-          text: data as string,
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: 'Dismiss',
-            textColor: 'red',
-            onPress: () => {
-              Snackbar.dismiss()
+  const getSightings = async () => {
+    const { location: { lat, lng }, subtitle } = await storage.load('currentLocation')
+    setAddress(subtitle as string)
+    if (lat && lng) setLocation([lat, lng])
+    
+    const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
+    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    api.getISSSightings({ zone: timeZone, lat, lon: lng })
+      .then(({ ok, data }: ISSSightingResponse) => {
+        if (ok) {
+          setSightings(data as ISSSighting[])
+        } else {
+          Snackbar.show({
+            text: data as string,
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: 'Dismiss',
+              textColor: 'red',
+              onPress: () => {
+                Snackbar.dismiss()
+              },
             },
-          },
-        })
-      }
-      
-    })
-    .catch(e => console.log(e))
+          })
+        }
+        
+      })
+      .catch(e => console.log(e))
+  }
+
+  useEffect(() => {
+    getSightings().catch(e => console.log(e))
   }, [])
 
   return (
     <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <HomeHeader 
-        user={{ firstName: "John", address: "7th Avenue, Phoenix, AZ" }} 
+        user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
         sighting={formatDate(currentSightning.date)}
         countdown={countdown}
       />
-      <Globe zoom={550} marker={[0,0]} />
+      <Globe zoom={550} marker={location} />
       <FlatMap style={$flatMap} />
       <Modal
         isVisible={isLocation}

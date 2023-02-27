@@ -1,4 +1,4 @@
-import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN, ISS_TRAJECTORY_DATA_FILE_URL, ISS_TRAJECTORY_DATA_API_URL } from "@env"
+import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN, ISS_TRAJECTORY_DATA_FILE_URL, ISS_TRAJECTORY_DATA_API_URL, CONTACT_EMAIL } from "@env"
 
 export interface ConfigBaseProps {
   persistNavigation: "always" | "dev" | "prod" | "never"
@@ -9,6 +9,7 @@ export interface ConfigBaseProps {
   API_URL: string
   ISS_TRAJECTORY_DATA_FILE_URL: string
   ISS_TRAJECTORY_DATA_API_URL: string
+  CONTACT_EMAIL: string
 }
 
 export type PersistNavigationConfig = ConfigBaseProps["persistNavigation"]
@@ -37,7 +38,9 @@ const BaseConfig: ConfigBaseProps = {
 
   ISS_TRAJECTORY_DATA_FILE_URL,
   
-  ISS_TRAJECTORY_DATA_API_URL
+  ISS_TRAJECTORY_DATA_API_URL,
+  
+  CONTACT_EMAIL
 }
 
 export default BaseConfig

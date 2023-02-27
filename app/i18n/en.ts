@@ -179,6 +179,27 @@ const en = {
       orbitalDecay: "Orbital Decay",
       noOfOrbits: "No. of orbits",
     }
+  },
+  settings: {
+    header: "Settings",
+    termsAndConditions: "Terms and Conditions",
+    contactUs: "Contact Us",
+    termsAndConditionsData: {
+      backButton: 'Settings',
+      title: 'Terms and Conditions',
+      intro: `Lorem ipsum dolor sit amet consectetur. Tellus iaculis convallis id mauris id. Volutpat eget sit odio vitae maecenas urna molestie ac elit. Arcu vulputate ipsum auctor tincidunt. Massa sit cras nisl morbi quis in tellus sit. Donec placerat vel vitae neque at donec. `,
+      subtitle: 'Heading lorem ipsum goes here',
+      text: `Pretium venenatis elementum faucibus lectus eu adipiscing commodo est et. Scelerisque pellentesque placerat fermentum eget id adipiscing mauris id. Pretium gravida rhoncus vel cursus non odio tortor ut accumsan. Scelerisque duis eleifend laoreet donec risus in suspendisse eu tincidunt.
+      Consequat tellus nunc eu in dui. Nibh quis dolor sit rhoncus massa viverra faucibus arcu. Libero varius et ultrices ut ac. Scelerisque nunc tempor volutpat eleifend tellus risus sit. Massa mauris elementum sagittis mattis. Metus pretium morbi leo nullam mattis mauris scelerisque feugiat sit. Tortor facilisi vel egestas volutpat molestie. Sed pretium tempus vulputate ut mattis sit ultrices lacinia. Ultrices nullam amet quis eget vel aliquet ut.`,
+    },
+    contactUsData: {
+      backButton: 'Settings',
+      title: 'Contact Us',
+      titlePlaceholder: 'Choose title',
+      commentsPlaceholder: 'Input comments',
+      ideasPlaceholder: 'Input ideas',
+      sendButton: 'Send',
+    }
   }
 }
 

@@ -16,6 +16,11 @@
       <data android:scheme="mailto"/>
     </intent>
   </queries>
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.DIAL" />
+    </intent>
+  </queries>
   <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="true" android:theme="@style/BootTheme">
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>
     <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="46.0.0"/>

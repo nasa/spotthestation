@@ -17,6 +17,7 @@ import type {
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { ISSData } from "../../utils/loadAndFormatISSDate"
+import { TimeZoneDataResponse } from "../../utils/geolocation"
 
 /**
  * Configuring the apisauce instance.
@@ -57,6 +58,17 @@ export class Api {
     }
 
     return { kind: "ok", places: response.data[key] }
+  }
+
+  async getLocationTimeZone(url: string): Promise<TimeZoneDataResponse | GeneralApiProblem> {
+    const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    return { kind: "ok", zone: response.data }
   }
 
   async getISSData(): Promise<ISSData | GeneralApiProblem> {

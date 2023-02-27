@@ -133,6 +133,7 @@ export const iconRegistry = {
   line: require("../../assets/icons/line.png"),
   share: require("../../assets/icons/share.png"),
   video: require("../../assets/icons/video.png"),
+  shield: require("../../assets/icons/shield.png"),
 }
 
 const $imageStyle: ImageStyle = {
