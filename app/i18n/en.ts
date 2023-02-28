@@ -154,6 +154,21 @@ const en = {
       title: "Upcoming Sightings",
       signites: "Sightings",
       button: "Notify Me (15 min before)",
+    },
+    coachMarks: {
+      skip: 'Skip tour',
+      next: 'Next',
+      finish: 'Finish',
+      locationTitle: 'Change Location',
+      locationData: 'You can select or change your location to a different one directly from here',
+      sightingsTitle: 'Next Sighting & Countdown',
+      sightingsData: 'This section shows you the sighting time and contdown time for the upcoming ISS sighting near your selected location, be ready!!!',
+      globeTitle: 'Intreractive Earth',
+      globeData: 'You can always interact with the earth by swiping gesture and see the reatime position of the ISS at any time.',
+      mapTitle: '2D Map View',
+      mapData: 'To see the full path of ISS and also the  night and day region across the earth',
+      navigationTitle: 'Navigation',
+      navigationData: 'You can browse through different features of the app and your profile from this navigation below.',
     }
   },
   skyView: {

@@ -134,6 +134,9 @@ export const iconRegistry = {
   share: require("../../assets/icons/share.png"),
   video: require("../../assets/icons/video.png"),
   shield: require("../../assets/icons/shield.png"),
+  list: require("../../assets/icons/list.png"),
+  mapPinOutlined: require("../../assets/icons/map-pin-outlined.png"),
+  bigArrow: require("../../assets/icons/big-arrow.png"),
 }
 
 const $imageStyle: ImageStyle = {

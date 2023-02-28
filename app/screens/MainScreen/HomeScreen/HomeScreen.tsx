@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useState } from "react"
-import { ViewStyle } from "react-native"
+import { Platform, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 import Snackbar from 'react-native-snackbar'
 import { Screen } from "../../../components"
@@ -16,9 +17,12 @@ import { HomeHeader } from "./HomeHeader"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Signitings"
 import { getLocationTimeZone } from "../../../utils/geolocation"
+import { CoachMark } from "./CoachMark"
+import { normalizeHeight } from "../../../utils/normalizeHeight"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
   const [sightings, setSightings] = useState<ISSSighting[]>([])
@@ -26,6 +30,8 @@ export const HomeScreen = observer(function HomeScreen() {
   const [countdown, setCountdown] = useState("00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState(null)
+  const [coachVisible, setCoachVisible] = useState(false)
+  const [stage, setStage] = useState(1)
   
 
   const formatTimer = (diff: string): string => {
@@ -65,6 +71,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const getSightings = async () => {
     const { location: { lat, lng }, subtitle } = await storage.load('currentLocation')
     setAddress(subtitle as string)
+    setCoachVisible(!await storage.load('coachCompleted'))
     if (lat && lng) setLocation([lat, lng])
     
     const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
@@ -94,6 +101,62 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     getSightings().catch(e => console.log(e))
   }, [])
+
+  const handleSetCoachCompleted = async () => {
+    setCoachVisible(false)
+    await storage.save('coachCompleted', true)
+  }
+
+  const renderCoachMarks = useCallback(() => {
+    switch (stage) {
+      case 1: return <CoachMark
+        icon="mapPinOutlined"
+        title="homeScreen.coachMarks.locationTitle"
+        bodyText="homeScreen.coachMarks.locationData"
+        style={{ marginTop: normalizeHeight(.18) }}
+        stage={stage} 
+        onPressFinish={handleSetCoachCompleted} 
+        onPressNext={() => setStage(stage + 1)} 
+      />
+      case 2: return <CoachMark
+        icon="clock"
+        title="homeScreen.coachMarks.sightingsTitle"
+        bodyText="homeScreen.coachMarks.sightingsData"
+        style={{ marginTop: normalizeHeight(.28) }}
+        stage={stage} 
+        onPressFinish={handleSetCoachCompleted} 
+        onPressNext={() => setStage(stage + 1)} 
+      />
+      case 3: return <CoachMark
+        icon="globe"
+        title="homeScreen.coachMarks.globeTitle"
+        bodyText="homeScreen.coachMarks.globeData"
+        style={{ marginTop: normalizeHeight(.5) }}
+        stage={stage} 
+        onPressFinish={handleSetCoachCompleted} 
+        onPressNext={() => setStage(stage + 1)} 
+      />
+      case 4: return <CoachMark
+        icon="map"
+        title="homeScreen.coachMarks.mapTitle"
+        bodyText="homeScreen.coachMarks.mapData"
+        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.05) : normalizeHeight(.18) }}
+        stage={stage} 
+        onPressFinish={handleSetCoachCompleted} 
+        onPressNext={() => setStage(stage + 1)} 
+      />
+      case 5: return <CoachMark
+        icon="list"
+        title="homeScreen.coachMarks.navigationTitle"
+        bodyText="homeScreen.coachMarks.navigationData"
+        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.33) : normalizeHeight(.45) }}
+        stage={stage} 
+        onPressFinish={handleSetCoachCompleted} 
+        onPressNext={() => setStage(stage + 1)} 
+      />
+      default: return ''
+    }
+  }, [stage])
 
   return (
     <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -137,6 +200,15 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <Sightings onClose={() => setIsSightings(!isSightings)} sightings={sightings} />
+      </Modal>
+      <Modal
+        isVisible={coachVisible}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={.4}
+        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
+      >
+        {renderCoachMarks()}
       </Modal>
     </Screen>
   )
