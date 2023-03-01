@@ -1,61 +1,56 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
-import Snackbar from "react-native-snackbar"
-import { Screen, Text } from "../../../components"
-import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
-import { colors } from "../../../theme"
+import { Icon, Screen, Text } from "../../../components"
+import { colors, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { FeedItem } from "../components/FeedItem"
 
+const items = [{
+  tags: ['launch', 'live'],
+  title: "title",
+  subtitle: "subtitle",
+  date: "2023-03-08T11:47:42.000000",
+  image: "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+  type: "event",
+  body: `Pretium venenatis elementum faucibus lectus eu adipiscing commodo est et. Scelerisque pellentesque placerat fermentum eget id adipiscing mauris id. Pretium gravida rhoncus vel cursus non odio tortor ut accumsan. Scelerisque duis eleifend laoreet donec risus in suspendisse eu tincidunt.
+  Consequat tellus nunc eu in dui. Nibh quis dolor sit rhoncus massa viverra faucibus arcu. Libero varius et ultrices ut ac. Scelerisque nunc tempor volutpat eleifend tellus risus sit. Massa mauris elementum sagittis mattis. Metus pretium morbi leo nullam mattis mauris scelerisque feugiat sit. Tortor facilisi vel egestas volutpat molestie. Sed pretium tempus vulputate ut mattis sit ultrices lacinia. Ultrices nullam amet quis eget vel aliquet ut.`,
+  details: [{
+    key: 'Launch Date & Time',
+    value: '2023-03-08T11:47:42.000000',
+  }, {
+    key: 'Duration',
+    value: '30 min',
+  }]
+}]
 
 export const Resources = observer(function HomeScreen() {
+  const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
-  const [sightings, setSightings] = useState<any>([])
- 
-  const getSightings = useCallback(() => {
-    api.getISSSightings({ zone: 'US/Central', lat: 32.766996932, lon: -98.29249883 })
-    .then(({ ok, data }: ISSSightingResponse) => {
-      if (ok) {
-        setSightings(data as ISSSighting[])
-      } else {
-        Snackbar.show({
-          text: data as string,
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: 'Dismiss',
-            textColor: 'red',
-            onPress: () => {
-              Snackbar.dismiss()
-            },
-          },
-        })
-      }
-      
-    })
-    .catch(e => console.log(e))
-  }, [])
-
-  useEffect(() => {
-    getSightings()
-  }, [])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <Text style={$title}>Austin TX</Text>
+      <View style={$headerContainer}>
+        <Text tx="resources.header" style={$header} />
+        <Icon icon="search" size={24} containerStyle={$searchButton} />
+      </View>
       <ScrollView style={$scrollContainer}>
-        {sightings.map(item => (
-          // eslint-disable-next-line react/jsx-key
-          <View style={$scrollContainer}>
-            <Text style={$title}>{`Date: ${item.date}`}</Text>
-            <Text style={$title}>{`Visible: ${item.visible}`}</Text>
-            <Text style={$title}>{`MaxHeight: ${item.maxHeight}`}</Text>
-            <Text style={$title}>{`Appears: ${item.appears}`}</Text>
-            <Text style={$title}>{`Disappears: ${item.disappears}`}</Text>
-          </View>
-        ))}
+        <View style={[$scrollContainer, $bodyContainer]}>
+          {items.map(item => (
+            <FeedItem
+              key={item.title}
+              onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
+              tags={item.tags} 
+              title={item.title}
+              date={item.date}
+              image={item.image}
+            />
+          ))}
+        </View>
       </ScrollView>
     </Screen>
   )
@@ -64,13 +59,36 @@ export const Resources = observer(function HomeScreen() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between"
+  paddingHorizontal: 18
 }
 
-const $title: TextStyle = {
-  color: colors.palette.neutral100,
+const $headerContainer: ViewStyle = {
+  flexDirection: 'row',
+  justifyContent: 'space-between'
+}
+
+const $searchButton: ViewStyle = {
+  width: 42, 
+  height: 42, 
+  borderRadius: 24, 
+  backgroundColor: colors.palette.neutral350,
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
+const $bodyContainer: ViewStyle = {
+  justifyContent: "space-between",
+  flexDirection: 'row',
+  flexWrap: "wrap"
+}
+
+const $header: TextStyle = {
+  fontFamily: typography.primary.normal,
+  fontSize: 36,
+  lineHeight: 44,
+  color: colors.palette.neutral250,
 }
 
 const $scrollContainer: ViewStyle = { 
-  padding: 10,
+  flex: 1,
 }

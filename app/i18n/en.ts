@@ -215,6 +215,9 @@ const en = {
       ideasPlaceholder: 'Input ideas',
       sendButton: 'Send',
     }
+  },
+  resources: {
+    header: 'Resources'
   }
 }
 

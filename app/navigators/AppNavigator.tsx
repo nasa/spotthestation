@@ -20,6 +20,7 @@ import { TabNavigator, TabParamList } from "./TabNavigator"
 import { OnboardingNavigator, OnboardingParamList } from "./OnboardingNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { SettingsNavigator, SettingsParamList } from "./SettingsNavigation"
+import { ResourcesNavigator, ResourcesParamList } from "./ResourcesNavigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -38,6 +39,7 @@ export type AppStackParamList = {
   Main: NavigatorScreenParams<TabParamList>
   Onboarding: NavigatorScreenParams<OnboardingParamList>
   SettingsScreens: NavigatorScreenParams<SettingsParamList>
+  ResourcesScreens: NavigatorScreenParams<ResourcesParamList>
 }
 
 /**
@@ -63,6 +65,7 @@ const AppStack = observer(function AppStack() {
       <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
       <Stack.Screen name="Main" component={TabNavigator} />
       <Stack.Screen name="SettingsScreens" component={SettingsNavigator} />
+      <Stack.Screen name="ResourcesScreens" component={ResourcesNavigator} />
     </Stack.Navigator>
   )
 })
