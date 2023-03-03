@@ -1,9 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import Orientation from 'react-native-orientation-locker'
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -12,6 +15,7 @@ import { Globe } from "../components/Globe"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
+  toggleIsLandscape: (value: boolean) => void
 }
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
@@ -20,9 +24,19 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
+  const [isLandscape, setIsLandscape] = useState(false)
+
+  const onOrientationDidChange = (orientation) => {
+    if (orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT') {
+      setIsLandscape(true)
+    } else {
+      setIsLandscape(false)
+    }
+  }
 
   const $containerStyleOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? 0 : 18
+    paddingHorizontal: isFullScreen ? 0 : 18,
+    margin: 0
   }
 
   const $headerStyleOverride: ViewStyle = {
@@ -31,8 +45,19 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     left: isFullScreen ? 0 : 18
   }
 
+  const $headerStyleForLandscapeOverride: ViewStyle = { 
+    paddingHorizontal: isFullScreen ? 18 : 54,
+    left: isFullScreen ? 0 : 18
+  }
+
   const $bodyStyleOverride: ViewStyle = {
     marginTop: isFullScreen ? 0 : topInset + 80
+  }
+
+  const $bodyStyleForLandscapeOverride: ViewStyle = {
+    marginTop: isFullScreen ? 0 : 12,
+    marginBottom: isFullScreen ? 0 : 12,
+    marginHorizontal: isFullScreen ? 0 : 36,
   }
 
   const $control: ViewStyle = {
@@ -51,16 +76,39 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     right: 18
   }
 
+  const $modButtonsOverload: ViewStyle = {
+    flexDirection: 'row',
+    height: 'auto',
+    bottom: isFullScreen ? 34 : 18
+  }
+
+  useEffect(() => {
+    const initial = Orientation.getInitialOrientation()
+    
+    if (initial === 'LANDSCAPE-LEFT' || initial === 'LANDSCAPE-RIGHT') {
+      setIsLandscape(true)
+    } else {
+      setIsLandscape(false)
+    }
+
+    Orientation.addOrientationListener(onOrientationDidChange)
+    return () => {
+      Orientation.removeOrientationListener(onOrientationDidChange)
+    }
+  }, [])
+
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
+  useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
   return (
     <Screen 
       preset="fixed" 
       contentContainerStyle={[$container, $containerStyleOverride]} 
-      style={{backgroundColor: colors.palette.neutral900}} 
+      style={{ backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
+      isPortrait={false}
     >
-      <View style={[$header, $headerStyleOverride]}>
+      <View style={[$header, $headerStyleOverride, isLandscape && $headerStyleForLandscapeOverride]}>
         <IconLinkButton 
           icon={isFullScreen ? "x" : "maximize"} 
           onPress={() => setIsFullScreen(!isFullScreen)} 
@@ -73,14 +121,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         </View>
         <IconLinkButton icon="pin" buttonStyle={isFullScreen && $lightIcon} blurIntensity={50} />
       </View>
-      <View style={[$body, $bodyStyleOverride]}>
+      <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
         {isGlobe ? 
-          <Globe key={isFullScreen.toString() + zoomLevel.toString()} zoom={800 - (60 * zoomLevel)} /> 
+          <Globe key={isFullScreen.toString() + zoomLevel.toString() + isLandscape.toString()} zoom={800 - (60 * zoomLevel)} /> 
           :
           <FlatMap style={$flatMap} zoom={3 + zoomLevel} />
         }
-        <View style={[$modButtons, $modControl]}>
-          <BlurView style={$modButtons}>
+        <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
+          <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>
             <IconLinkButton 
               text="2D"
               textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
@@ -95,7 +143,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             />
           </BlurView>
         </View>
-        <View style={[$zoomButtons, $zoomControl]}>
+        <View style={[$zoomButtons, $zoomControl, isLandscape && $modButtonsOverload]}>
           <IconLinkButton 
             text="+"
             disabled={zoomLevel === 5}

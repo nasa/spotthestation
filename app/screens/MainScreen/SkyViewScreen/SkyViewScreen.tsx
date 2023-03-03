@@ -1,9 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import Orientation from 'react-native-orientation-locker'
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -13,6 +15,7 @@ import { Share } from "./Share"
 
 export interface SkyViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
+  toggleIsLandscape: (value: boolean) => void
 }
 
 export const SkyViewScreen = observer(function ISSNowScreen() {
@@ -21,6 +24,15 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
   const bottomInset = useSafeAreaInsets().bottom
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [isShare, setIsShare] = useState(false)
+  const [isLandscape, setIsLandscape] = useState(false)
+
+  const onOrientationDidChange = (orientation) => {
+    if (orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT') {
+      setIsLandscape(true)
+    } else {
+      setIsLandscape(false)
+    }
+  }
 
   const $containerStyleOverride: ViewStyle = {
     paddingHorizontal: isFullScreen ? 0 : 18
@@ -44,7 +56,21 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
     height: isFullScreen ? 54 : 44
   }
 
+  useEffect(() => {
+    const initial = Orientation.getInitialOrientation()
+    
+    if (initial === 'LANDSCAPE-LEFT' || initial === 'LANDSCAPE-RIGHT') {
+      setIsLandscape(true)
+    } else {
+      setIsLandscape(false)
+    }
+
+    Orientation.addOrientationListener(onOrientationDidChange)
+    return () => Orientation.removeOrientationListener(onOrientationDidChange)
+  }, [])
+
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
+  useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
   return (
     <Screen
@@ -52,6 +78,7 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
       contentContainerStyle={[$container, $containerStyleOverride]} 
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
+      isPortrait={false}
     >
       <View style={[$headerContainer, $headerStyleOverride]}>
         {isFullScreen ? 
@@ -63,18 +90,18 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
       <View style={[$body, $bodyStyleOverride]}>
         <ARView />
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
-          <View style={$buttonColumn}>
-            <IconLinkButton icon="line" buttonStyle={$button} />
-            <IconLinkButton icon="compass" buttonStyle={[$button, isFullScreen && $activeButton]} onPress={() => setIsFullScreen(true)} />
+          <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
+            <IconLinkButton icon="line" buttonStyle={[$button, isLandscape && { marginRight: 24 }]} />
+            <IconLinkButton icon="compass" buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]} onPress={() => setIsFullScreen(true)} />
           </View>
           <View style={$timeContainer}>
             <Text tx="skyView.timeHeader" style={$timeHeader} />
             <Text text="03:27:02" style={$time} />
           </View>
-          <View style={$buttonColumn}>
-            <IconLinkButton icon="share" buttonStyle={$button} onPress={() => setIsShare(true)} />
-            <IconLinkButton icon="capture" buttonStyle={$button} />
-            <IconLinkButton icon="video" buttonStyle={$button} />
+          <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
+            <IconLinkButton icon="share" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} onPress={() => setIsShare(true)} />
+            <IconLinkButton icon="capture" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} />
+            <IconLinkButton icon="video" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} />
           </View>
         </View>
       </View>

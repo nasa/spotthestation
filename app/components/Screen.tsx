@@ -14,6 +14,7 @@ import {
   View,
   ViewStyle,
 } from "react-native"
+import { OrientationLocker, PORTRAIT, UNLOCK } from "react-native-orientation-locker"
 import { colors } from "../theme"
 import { ExtendedEdge, useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 
@@ -54,6 +55,8 @@ interface BaseScreenProps {
    * Pass any additional props directly to the KeyboardAvoidingView component.
    */
   KeyboardAvoidingViewProps?: KeyboardAvoidingViewProps
+  
+  isPortrait?: boolean
 }
 
 interface FixedScreenProps extends BaseScreenProps {
@@ -197,6 +200,7 @@ export function Screen(props: ScreenProps) {
     safeAreaEdges,
     StatusBarProps,
     statusBarStyle = "dark",
+    isPortrait = true
   } = props
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
@@ -204,6 +208,7 @@ export function Screen(props: ScreenProps) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
+        <OrientationLocker orientation={isPortrait ? PORTRAIT : UNLOCK} />
         <StatusBar style={statusBarStyle} {...StatusBarProps} />
 
         <KeyboardAvoidingView

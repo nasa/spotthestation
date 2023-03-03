@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
 import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen, Resources, SettingsScreen } from "../screens"
 import { ResourcesScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/ResourcesScreen"
-import { colors, spacing, typography } from "../theme"
+import { colors, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 export type TabParamList = {
@@ -34,6 +34,7 @@ const Tab = createBottomTabNavigator<TabParamList>()
 export function TabNavigator() {
   const { bottom } = useSafeAreaInsets()
   const [isTabsVisible, setIsTabsVisible] = useState(true)
+  const [isLandscape, setIsLandscape] = useState(false)
   
   return (
     <Tab.Navigator
@@ -41,7 +42,7 @@ export function TabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.palette.neutral100,
-        tabBarStyle: [$tabBar, { height: bottom + 70, display: isTabsVisible ? "flex" : "none" }],
+        tabBarStyle: [$tabBar, { height: isLandscape ? 80 : bottom + 70, display: isTabsVisible ? "flex" : "none" }],
         tabBarLabelStyle: $tabBarLabel,
         tabBarItemStyle: $tabBarItem,
       }}
@@ -51,11 +52,12 @@ export function TabNavigator() {
         component={HomeScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.homeTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.homeTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="home" color={color} size={size} />
           ),
+          unmountOnBlur: true
         }}
       />
 
@@ -63,15 +65,17 @@ export function TabNavigator() {
         name="SkyView"
         component={SkyViewScreen}
         initialParams={{
-          toggleBottomTabs: setIsTabsVisible
+          toggleBottomTabs: setIsTabsVisible,
+          toggleIsLandscape: setIsLandscape
         }}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="globe" color={color} size={size} />
           ),
+          unmountOnBlur: true
         }}
       />
 
@@ -79,15 +83,17 @@ export function TabNavigator() {
         name="ISSNow"
         component={ISSNowScreen}
         initialParams={{
-          toggleBottomTabs: setIsTabsVisible
+          toggleBottomTabs: setIsTabsVisible,
+          toggleIsLandscape: setIsLandscape
         }}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.issNowTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.issNowTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="tv" color={ color } size={size} />
           ),
+          unmountOnBlur: true
         }}
       />
 
@@ -99,11 +105,12 @@ export function TabNavigator() {
         }}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} ellipsizeMode="tail" numberOfLines={1} />
+            <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} ellipsizeMode="tail" numberOfLines={1} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="book" color={ color } size={size} />
           ),
+          unmountOnBlur: true
         }}
       />
 
@@ -112,11 +119,12 @@ export function TabNavigator() {
         component={SettingsScreen}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.settingsTab" style={{ color: focused ? color : "transparent" }} />
+            <Text tx="tabNavigator.settingsTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="settings" color={ color } size={size} />
           ),
+          unmountOnBlur: true
         }}
       />
     </Tab.Navigator>
@@ -129,12 +137,14 @@ const $tabBar: ViewStyle = {
 }
 
 const $tabBarItem: ViewStyle = {
-  paddingTop: spacing.small,
+  padding: 0,
+  margin: 0,
+  flexDirection: 'column'
 }
 
 const $tabBarLabel: TextStyle = {
   fontSize: 12,
   fontFamily: typography.primary.medium,
   lineHeight: 16,
-  flex: 1,
+  flex: 1
 }
