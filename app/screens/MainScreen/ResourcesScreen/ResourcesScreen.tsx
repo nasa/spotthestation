@@ -1,14 +1,17 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useCallback, useState } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
-import { Icon, Screen, Text } from "../../../components"
+import { Accessory, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
+import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 
 const items = [{
   tags: ['launch', 'live'],
@@ -28,30 +31,108 @@ const items = [{
   }]
 }]
 
+const suggestions = ['NASA Upcoming Missons', 'Interviews of the Week', 'ARTEMIS II']
+
+export interface ResourcesScreenRouteProps {
+  toggleBottomTabs: (value: boolean) => void
+}
+
 export const Resources = observer(function HomeScreen() {
   const navigation = useNavigation()
+  const route: ResourcesScreenRouteProps = useRoute().params as ResourcesScreenRouteProps
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+  const [isSearch, setIsSearch] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const renderSearch = useCallback(() => {
+    if (searchQuery) {
+      return <ExpandContainer title="resources.searchResults" itemsCount={items.length} expandble={false}>
+        {items.map(item => (
+          <FeedSearchResultItem
+            key={item.title}
+            onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
+            tags={item.tags}
+            title={item.title}
+            type={item.type}
+            image={item.image}
+          />
+        ))}
+      </ExpandContainer>
+    } else {
+      return (
+        <ScrollView style={$scrollContainer}>
+          <View style={[$scrollContainer, $bodyContainer]}>
+            <ExpandContainer title="resources.recentSearches" expandble={false}>
+              {items.map(item => (
+                <FeedSearchResultItem
+                  key={item.title}
+                  onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
+                  tags={item.tags}
+                  title={item.title}
+                  type={item.type}
+                  image={item.image}
+                />
+              ))}
+            </ExpandContainer>
+            <ExpandContainer title="resources.suggestions" expandble={false}>
+              {suggestions.map(suggestion => (<View key={suggestion} style={$suggestionContainer}>
+                <Icon icon='search' size={28} />
+                <Text text={suggestion} style={$suggestion} />
+              </View>))}
+            </ExpandContainer>
+          </View>
+        </ScrollView>
+      )
+    }
+  }, [searchQuery])
+
+  const renderBody = useCallback(() => {
+    if (isSearch) {
+      route.toggleBottomTabs(false)
+      return renderSearch()
+    } else {
+      route.toggleBottomTabs(true)
+      return (
+        <ScrollView style={$scrollContainer}>
+          <View style={[$scrollContainer, $bodyContainer]}>
+            {items.map(item => (
+              <FeedItem
+                key={item.title}
+                onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
+                tags={item.tags} 
+                title={item.title}
+                date={item.date}
+                image={item.image}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      )
+    }
+  }, [isSearch, renderSearch])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <View style={$headerContainer}>
-        <Text tx="resources.header" style={$header} />
-        <Icon icon="search" size={24} containerStyle={$searchButton} />
+        {isSearch ? (<View style={{ flex: 1, marginRight: 18 }}>
+          <TextField
+            value={searchQuery}
+            inputWrapperStyle={$searchField}
+            placeholderTx="resources.searchPlaceholder"
+            onChangeText={setSearchQuery}
+            renderLeftAccessory={({ style }) => (
+              <Accessory 
+                icon="search"
+                color={colors.palette.neutral450}
+                style={style}
+              />
+            )}
+          />
+        </View>)
+         : <Text tx="resources.header" style={$header} />}
+        <Icon icon={isSearch ? 'x' : 'search'} size={24} containerStyle={[$searchButton, isSearch && $xButton]} onPress={() => setIsSearch(!isSearch)} />
       </View>
-      <ScrollView style={$scrollContainer}>
-        <View style={[$scrollContainer, $bodyContainer]}>
-          {items.map(item => (
-            <FeedItem
-              key={item.title}
-              onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
-              tags={item.tags} 
-              title={item.title}
-              date={item.date}
-              image={item.image}
-            />
-          ))}
-        </View>
-      </ScrollView>
+      {renderBody()}
     </Screen>
   )
 })
@@ -64,7 +145,8 @@ const $container: ViewStyle = {
 
 const $headerContainer: ViewStyle = {
   flexDirection: 'row',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  alignItems: 'center'
 }
 
 const $searchButton: ViewStyle = {
@@ -76,10 +158,24 @@ const $searchButton: ViewStyle = {
   justifyContent: 'center'
 }
 
+const $xButton: ViewStyle = {
+  ...$searchButton,
+  width: 56, 
+  height: 56, 
+  borderRadius: 36,
+  backgroundColor: colors.palette.neutral550,
+}
+
 const $bodyContainer: ViewStyle = {
   justifyContent: "space-between",
   flexDirection: 'row',
   flexWrap: "wrap"
+}
+
+const $suggestionContainer: ViewStyle = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingBottom: 24
 }
 
 const $header: TextStyle = {
@@ -89,6 +185,23 @@ const $header: TextStyle = {
   color: colors.palette.neutral250,
 }
 
+const $suggestion: TextStyle = {
+  fontFamily: typography.primary.normal,
+  fontSize: 18,
+  lineHeight: 21,
+  color: colors.palette.neutral250,
+  paddingLeft: 12
+}
+
 const $scrollContainer: ViewStyle = { 
   flex: 1,
+}
+
+const $searchField: ViewStyle = {
+  borderWidth: 1.5,
+  borderColor: "transparent",
+  borderRadius: 28,
+  height: 56,
+  backgroundColor: colors.palette.neutral550,
+  overflow: "hidden",
 }

@@ -217,7 +217,11 @@ const en = {
     }
   },
   resources: {
-    header: 'Resources'
+    header: 'Resources',
+    searchPlaceholder: 'Search articles, events, etc...',
+    recentSearches: 'RECENT SEARCHES',
+    suggestions: 'SUGGESTIONS',
+    searchResults: 'Search Results',
   }
 }
 

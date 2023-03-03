@@ -9,10 +9,11 @@ export interface TagProps {
 
 export function Tag({ title }: TagProps) {
   const setTagStyles = (): TextStyle => {
-    switch (title) {
+    switch (title.toLowerCase()) {
       case 'launch': return $launch
       case 'live': return $live
       case 'docking': return $docking
+      case 'nasa history': return $docking
       default: return {}
     }
   }
@@ -40,6 +41,11 @@ const $launch: TextStyle = {
 
 const $live: TextStyle = {
   backgroundColor: colors.palette.nasaRed,
+  color: colors.palette.neutral100,
+}
+
+const $history: TextStyle = {
+  backgroundColor: colors.palette.buttonBlue,
   color: colors.palette.neutral100,
 }
 

@@ -7,6 +7,7 @@ import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
 import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen, Resources, SettingsScreen } from "../screens"
+import { ResourcesScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/ResourcesScreen"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
@@ -14,7 +15,7 @@ export type TabParamList = {
   Home: undefined
   SkyView: SkyViewScreenRouteProps
   ISSNow: ISSNowScreenRouteProps
-  Resources: undefined
+  Resources: ResourcesScreenRouteProps
   Settings: undefined
 }
 
@@ -93,6 +94,9 @@ export function TabNavigator() {
       <Tab.Screen
         name="Resources"
         component={Resources}
+        initialParams={{
+          toggleBottomTabs: setIsTabsVisible
+        }}
         options={{
           tabBarLabel: ({ focused, color }) => (
             <Text tx="tabNavigator.resourcesTab" style={{ color: focused ? color : "transparent" }} ellipsizeMode="tail" numberOfLines={1} />
