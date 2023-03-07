@@ -37,13 +37,36 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <ScrollView style={$scrollContainer} scrollEnabled contentContainerStyle={$scrollSontentContainerStyle}>
-        <Pressable onPress={() => navigation.goBack()} style={$backButton}>
+      <ScrollView
+        accessible
+        accessibilityLabel="Contact scrollable us area"
+        accessibilityHint="Contact scrollable us area"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer} 
+        scrollEnabled 
+        contentContainerStyle={$scrollSontentContainerStyle}
+      >
+        <Pressable 
+          accessible
+          accessibilityLabel="Back button"
+          accessibilityHint="Navigates to the previous screen"
+          accessibilityRole="button"
+          onPress={() => navigation.goBack()} 
+          style={$backButton}
+        >
           <Icon icon="caretLeft" color={colors.palette.neutral250} />
           <Text tx="settings.contactUsData.backButton" style={$backButtonText} />
         </Pressable>
-        <Text tx="settings.contactUsData.title" style={$header} />
+        <Text
+          accessible
+          accessibilityLabel="title"
+          accessibilityHint="title"
+          accessibilityRole="text"
+          tx="settings.contactUsData.title" 
+          style={$header} 
+        />
         <Dropdown
+          accessibilityLabel="title select"
           style={[$dropdown, $inputMargin]}
           placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
           selectedTextStyle={[$dropdownText, $dropdownSelected]}
@@ -75,6 +98,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           )}
         />
         <TextField
+          accessible
+          accessibilityLabel="comments input"
+          accessibilityHint="comments input"
+          accessibilityRole="text"
           value={comments}
           multiline
           numberOfLines={12}
@@ -85,6 +112,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           onChangeText={setComments}
         />
         <TextField
+          accessible
+          accessibilityLabel="ideas input"
+          accessibilityHint="ideas input"
+          accessibilityRole="text"
           value={ideas}
           multiline
           numberOfLines={12}
@@ -95,6 +126,9 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           onChangeText={setIdeas}
         />
         <Button
+          accessible
+          accessibilityLabel="send button"
+          accessibilityHint="Navigates to the mail app"
           tx="settings.contactUsData.sendButton"
           textStyle={$buttonText}
           style={!title || !comments || !ideas ? [$button, $disabled] : $button}

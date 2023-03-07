@@ -28,13 +28,30 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
       <Pressable
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
         style={$close}
         onPress={onClose}
       >
         <Icon icon="x" color={colors.palette.neutral450} />
       </Pressable>
-      <Text tx="homeScreen.selectSightings.title" style={$title} />
-      <ScrollView style={$scrollContainer}>
+      <Text
+        accessible
+        accessibilityLabel="title"
+        accessibilityHint="title"
+        accessibilityRole="text"
+        tx="homeScreen.selectSightings.title" 
+        style={$title}
+      />
+      <ScrollView
+        accessible
+        accessibilityLabel="Sightings scrollable area"
+        accessibilityHint="Sightings scrollable area"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer}
+      >
         <ExpandContainer title="homeScreen.selectSightings.signites" expandble={false}>
           {sightings.map((sighting: ISSSighting) => 
             <ListItem
@@ -48,6 +65,9 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
       </ScrollView>
       <View style={$scrollContainer}>
         <Button
+          accessible
+          accessibilityLabel="notify button"
+          accessibilityHint="title"
           tx="homeScreen.selectSightings.button"
           style={$button}
           textStyle={$buttonText}

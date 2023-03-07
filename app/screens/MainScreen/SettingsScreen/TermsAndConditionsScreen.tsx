@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable } from "react-native"
+import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -21,19 +21,41 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <ScrollView style={$scrollContainer} scrollEnabled contentContainerStyle={$scrollSontentContainerStyle}>
-        <Pressable onPress={() => navigation.goBack()} style={$backButton}>
+      <ScrollView 
+        accessible
+        accessibilityLabel="terms And Conditions scrollable us area"
+        accessibilityHint="terms And Conditions scrollable us area"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer} 
+        scrollEnabled 
+        contentContainerStyle={$scrollSontentContainerStyle}
+      >
+        <Pressable
+          accessible
+          accessibilityLabel="Back button"
+          accessibilityHint="Navigates to the previous screen"
+          accessibilityRole="button"
+          onPress={() => navigation.goBack()} 
+          style={$backButton}
+        >
           <Icon icon="caretLeft" color={colors.palette.neutral250} />
           <Text tx="settings.termsAndConditionsData.backButton" style={$backButtonText} />
         </Pressable>
-        <Text tx="settings.termsAndConditionsData.title" style={$title} />
-        <Text tx="settings.termsAndConditionsData.intro" style={$text} />
-        <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-        <Text tx="settings.termsAndConditionsData.text" style={$text} />
-        <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-        <Text tx="settings.termsAndConditionsData.text" style={$text} />
-        <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-        <Text tx="settings.termsAndConditionsData.text" style={$text} />
+        <View
+          accessible
+          accessibilityLabel="terms And Conditions"
+          accessibilityHint="terms And Conditions"
+          accessibilityRole="text"
+        >
+          <Text tx="settings.termsAndConditionsData.title" style={$title} />
+          <Text tx="settings.termsAndConditionsData.intro" style={$text} />
+          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+          <Text tx="settings.termsAndConditionsData.text" style={$text} />
+          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+          <Text tx="settings.termsAndConditionsData.text" style={$text} />
+          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+          <Text tx="settings.termsAndConditionsData.text" style={$text} />
+        </View>
       </ScrollView>
     </Screen>
   )

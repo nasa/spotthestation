@@ -61,7 +61,7 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
   } = props
 
   return (
-    <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="button" {...rest}>
+    <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="imagebutton" {...rest}>
       <BlurView intensity={blurIntensity} style={$viewStyle}>
         {icon ? 
           <Icon icon={icon} size={iconSize || 20} color={iconColor || colors.palette.neutral100} style={$imageStyle} /> 

@@ -18,7 +18,14 @@ export function ExpandContainer({ defaultValue = true, title, expandble = true, 
     <View style={$container}>
       <View style={$headContainer}>
         <View style={$titleContainer}>
-          <Text tx={title} style={$title} />
+          <Text 
+            accessible
+            accessibilityLabel="title"
+            accessibilityHint={title}
+            accessibilityRole="text"
+            tx={title} 
+            style={$title} 
+          />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />} 
         </View>
         {expandble && <Icon icon="chevronDown" size={18} onPress={() => setExpanded(!expanded)} style={expanded && $up} />}

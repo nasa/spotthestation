@@ -49,9 +49,23 @@ export function CompleteProfile() {
 
   return (
     <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <IconLinkButton icon="back" onPress={handleBack} buttonStyle={$back} />
+      <IconLinkButton 
+        icon="back"
+        accessible
+        accessibilityLabel="Back button"
+        accessibilityHint="Navigates to the previous screen"
+        onPress={handleBack} 
+        buttonStyle={$back} 
+      />
       <View style={$contentContainer}>
-        <Text text={`${step} of 2`} style={$step} />
+        <Text
+          accessible
+          accessibilityLabel="Step counter"
+          accessibilityHint="Display current step"
+          accessibilityRole="text"
+          text={`${step} of 2`} 
+          style={$step}
+        />
         {renderBody()}
       </View>
     </Screen>

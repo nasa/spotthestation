@@ -9,7 +9,7 @@ import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
-// import Snackbar from "react-native-snackbar"
+import Snackbar from "react-native-snackbar"
 
 export interface SelectLocationProps {
   /**
@@ -43,32 +43,46 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
 
   useEffect(() => {
     getLocations().catch((e: Error) => {
-      // Snackbar.show({
-      //   text: e.message || "Some error occured",
-      //   duration: Snackbar.LENGTH_SHORT,
-      // })
+      Snackbar.show({
+        text: e.message || "Some error occured",
+        duration: Snackbar.LENGTH_SHORT,
+      })
     })
   }, [])
 
   useEffect(() => {
     setPlaces(textValue).catch((e: Error) => {
-      // Snackbar.show({
-      //   text: e.message || "Some error occured",
-      //   duration: Snackbar.LENGTH_SHORT,
-      // })
+      Snackbar.show({
+        text: e.message || "Some error occured",
+        duration: Snackbar.LENGTH_SHORT,
+      })
     })
   }, [textValue])
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
       <Pressable
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
         style={$close}
         onPress={onClose}
       >
         <Icon icon="x" color={colors.palette.neutral450} />
       </Pressable>
-      <Text tx="homeScreen.selectLocation.title" style={$title} />
+      <Text
+        accessible
+        accessibilityLabel="title"
+        accessibilityHint="title"
+        accessibilityRole="text"
+        tx="homeScreen.selectLocation.title" style={$title}
+      />
       <TextField
+        accessible
+        accessibilityLabel="search location"
+        accessibilityHint="type for search location"
+        accessibilityRole="search"
         value={textValue}
         autoCapitalize="none"
         autoCorrect={false}
@@ -97,7 +111,13 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
           />
         ))}
       />
-      <ScrollView style={$scrollContainer}>
+      <ScrollView 
+        accessible
+        accessibilityLabel="search location"
+        accessibilityHint="type for search location"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer}
+      >
         {(!isFocus && searchResult.length === 0) && (
           <>
             {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>

@@ -29,13 +29,22 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
   }
 
   return (
-    <View style={[$modalBodyContainer, style]}>
+    <View 
+      accessible
+      accessibilityLabel="coach mark"
+      accessibilityHint="coach mark"
+      accessibilityRole="text"
+      style={[$modalBodyContainer, style]}
+    >
       {renderArrow()}
       <Text text={`${stage}/5`} style={$stage} />
       <Icon icon={icon} size={44} />
       <Text tx={title} style={$title} />
       <Text tx={bodyText} style={$body} />
       {stage === 5 ? <Button
+          accessible
+          accessibilityLabel="finish button"
+          accessibilityHint="finish coach mark"
           tx="homeScreen.coachMarks.finish"
           textStyle={$nextButtonText}
           style={$nextButton}
@@ -43,6 +52,9 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
           onPress={onPressFinish}
         /> : <View style={$buttonsContainer}>
         <Button
+          accessible
+          accessibilityLabel="skip button"
+          accessibilityHint="skip coach mark"
           tx="homeScreen.coachMarks.skip"
           textStyle={$skipButtonText}
           style={$skipButton}
@@ -50,6 +62,9 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
           onPress={onPressFinish}
         />
         <Button
+          accessible
+          accessibilityLabel="next button"
+          accessibilityHint="next coach mark"
           tx="homeScreen.coachMarks.next"
           textStyle={$nextButtonText}
           style={$nextButton}

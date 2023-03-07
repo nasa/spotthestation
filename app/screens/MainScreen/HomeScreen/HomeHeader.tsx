@@ -22,20 +22,66 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
     <View style={$headerContainer}>
       <View style={$rowContainer}>
         <View style={$userContainer}>
-          <View style={$nameContainer}>
+          <View
+            accessible
+            accessibilityLabel="header"
+            accessibilityHint="header"
+            accessibilityRole="text"
+            style={$nameContainer}
+          >
             <Text tx="homeScreen.header.welcome" style={$welcomeText} />
             <Text text={user.firstName} style={[$welcomeText, $nameText]} />
           </View>
-          <Text text={user.address} style={$addressText}/>
+          <Text
+            accessible
+            accessibilityLabel="address"
+            accessibilityHint="address"
+            accessibilityRole="text"
+            text={user.address} 
+            style={$addressText}
+          />
         </View>
-        <IconLinkButton icon="pin" onPress={onLocationPress} />
+        <IconLinkButton
+          accessible
+          accessibilityLabel="pin button"
+          accessibilityHint="open select location modal"
+          icon="pin" 
+          onPress={onLocationPress}
+        />
       </View>
       <View style={$rowContainer}>
-        <Pressable style={$timeContainer} onPress={onSightingsPress}>
-          <Text tx="homeScreen.header.firstTimeHead" style={$headText} />
-          <Text text={sighting} style={$timeText} />
+        <Pressable 
+          accessible
+          accessibilityLabel="next sighting"
+          accessibilityHint="open sightings modal"
+          accessibilityRole="button"
+          style={$timeContainer} 
+          onPress={onSightingsPress}
+        >
+          <Text 
+            accessible
+            accessibilityLabel="sighting header"
+            accessibilityHint="sighting header"
+            accessibilityRole="text"
+            tx="homeScreen.header.firstTimeHead" 
+            style={$headText} 
+          />
+          <Text 
+            accessible
+            accessibilityLabel="sighting"
+            accessibilityHint="sighting"
+            accessibilityRole="text"
+            text={sighting} 
+            style={$timeText}
+          />
         </Pressable>
-        <View style={$timeContainer}>
+        <View 
+          accessible
+          accessibilityLabel="countdown"
+          accessibilityHint="countdown to next sighting"
+          accessibilityRole="text"
+          style={$timeContainer}
+        >
           <Text tx="homeScreen.header.secondTimeHead" style={$headText} />
           <Text text={countdown} style={$timeText} />
         </View>

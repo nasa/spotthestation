@@ -13,7 +13,7 @@ export function Tag({ title }: TagProps) {
       case 'launch': return $launch
       case 'live': return $live
       case 'docking': return $docking
-      case 'nasa history': return $docking
+      case 'nasa history': return $history
       default: return {}
     }
   }

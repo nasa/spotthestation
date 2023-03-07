@@ -13,10 +13,23 @@ export interface ListItemProps {
 
 export function ListItem({ title, subtitle, selected = false, icon, onPress }: ListItemProps) {
   return (
-    <Pressable style={$container} onPress={onPress}>
+    <Pressable 
+      accessible
+      accessibilityLabel="pressable list item"
+      accessibilityHint="pressable list item"
+      accessibilityRole="button"
+      style={$container} 
+      onPress={onPress}
+    >
       <Icon icon={icon} size={24} color={colors.palette.neutral450} />
       <View style={$bodyContainer}>
-        <View style={$titleContainer}>
+        <View 
+          accessible
+          accessibilityLabel="list item body"
+          accessibilityHint="list item body"
+          accessibilityRole="text"
+          style={$titleContainer}
+        >
           <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
         </View>

@@ -82,26 +82,78 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
     >
       <View style={[$headerContainer, $headerStyleOverride]}>
         {isFullScreen ? 
-          <IconLinkButton icon="x" onPress={() => setIsFullScreen(false)} buttonStyle={[$button, $closeButton]}/> 
+          <IconLinkButton 
+            accessible
+            accessibilityLabel="x button"
+            accessibilityHint="disable full screen mode"
+            icon="x" 
+            onPress={() => setIsFullScreen(false)} 
+            buttonStyle={[$button, $closeButton]}
+          /> 
           : 
-          <Text tx="skyView.header" style={$header} />
+          <Text 
+            accessible
+            accessibilityLabel="header"
+            accessibilityHint="header"
+            accessibilityRole="text"
+            tx="skyView.header" 
+            style={$header}
+          />
         }
       </View>
       <View style={[$body, $bodyStyleOverride]}>
         <ARView />
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
-            <IconLinkButton icon="line" buttonStyle={[$button, isLandscape && { marginRight: 24 }]} />
-            <IconLinkButton icon="compass" buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]} onPress={() => setIsFullScreen(true)} />
+            <IconLinkButton
+              accessible
+              accessibilityLabel="path line"
+              accessibilityHint="enable/disable path line"
+              icon="line" 
+              buttonStyle={[$button, isLandscape && { marginRight: 24 }]}
+            />
+            <IconLinkButton
+              accessible
+              accessibilityLabel="compass"
+              accessibilityHint="enable full screen"
+              icon="compass" 
+              buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]}
+              onPress={() => setIsFullScreen(true)} 
+            />
           </View>
-          <View style={$timeContainer}>
+          <View
+            accessible
+            accessibilityLabel="countdown"
+            accessibilityHint="countdown to next visibility"
+            accessibilityRole="text"
+            style={$timeContainer}
+          >
             <Text tx="skyView.timeHeader" style={$timeHeader} />
             <Text text="03:27:02" style={$time} />
           </View>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
-            <IconLinkButton icon="share" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} onPress={() => setIsShare(true)} />
-            <IconLinkButton icon="capture" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} />
-            <IconLinkButton icon="video" buttonStyle={[$button, isLandscape && { marginLeft: 24 }]} />
+            <IconLinkButton 
+              accessible
+              accessibilityLabel="share"
+              accessibilityHint="open share modal"
+              icon="share" 
+              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+              onPress={() => setIsShare(true)} 
+            />
+            <IconLinkButton 
+              accessible
+              accessibilityLabel="capture"
+              accessibilityHint="take a photo"
+              icon="capture" 
+              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+            />
+            <IconLinkButton 
+              accessible
+              accessibilityLabel="video"
+              accessibilityHint="record a video"
+              icon="video" 
+              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+            />
           </View>
         </View>
       </View>

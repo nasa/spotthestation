@@ -12,11 +12,27 @@ export interface SettingsItemProps {
 
 export function SettingsItem({ title, icon, onPress }: SettingsItemProps) {
   return (
-    <Pressable style={$container} onPress={onPress}>
+    <Pressable 
+      accessible
+      accessibilityLabel="pressable settings item"
+      accessibilityHint="pressable settings item"
+      accessibilityRole="button"
+      style={$container} 
+      onPress={onPress}
+    >
       <View style={$bodyContainer}>
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
         <View style={$titleContainer}>
-          <Text tx={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
+          <Text 
+            accessible
+            accessibilityLabel="title"
+            accessibilityHint={title}
+            accessibilityRole="text"
+            tx={title} 
+            style={$titleText} 
+            ellipsizeMode='tail' 
+            numberOfLines={1}
+          />
         </View>
         <Icon icon="caretRight" size={24} color={colors.palette.neutral550} />
       </View>

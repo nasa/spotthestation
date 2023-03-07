@@ -60,7 +60,13 @@ export const Resources = observer(function HomeScreen() {
       </ExpandContainer>
     } else {
       return (
-        <ScrollView style={$scrollContainer}>
+        <ScrollView 
+          accessible
+          accessibilityLabel="recent results"
+          accessibilityHint="recent results"
+          accessibilityRole="scrollbar"
+          style={$scrollContainer}
+        >
           <View style={[$scrollContainer, $bodyContainer]}>
             <ExpandContainer title="resources.recentSearches" expandble={false}>
               {items.map(item => (
@@ -77,7 +83,14 @@ export const Resources = observer(function HomeScreen() {
             <ExpandContainer title="resources.suggestions" expandble={false}>
               {suggestions.map(suggestion => (<View key={suggestion} style={$suggestionContainer}>
                 <Icon icon='search' size={28} />
-                <Text text={suggestion} style={$suggestion} />
+                <Text
+                  accessible
+                  accessibilityLabel="suggestion"
+                  accessibilityHint={suggestion}
+                  accessibilityRole="text"
+                  text={suggestion} 
+                  style={$suggestion}
+                />
               </View>))}
             </ExpandContainer>
           </View>
@@ -93,7 +106,13 @@ export const Resources = observer(function HomeScreen() {
     } else {
       route.toggleBottomTabs(true)
       return (
-        <ScrollView style={$scrollContainer}>
+        <ScrollView 
+          accessible
+          accessibilityLabel="feed"
+          accessibilityHint="feed"
+          accessibilityRole="scrollbar"
+          style={$scrollContainer}
+        >
           <View style={[$scrollContainer, $bodyContainer]}>
             {items.map(item => (
               <FeedItem
@@ -116,6 +135,10 @@ export const Resources = observer(function HomeScreen() {
       <View style={$headerContainer}>
         {isSearch ? (<View style={{ flex: 1, marginRight: 18 }}>
           <TextField
+            accessible
+            accessibilityLabel="search"
+            accessibilityHint="type to search events"
+            accessibilityRole="search"
             value={searchQuery}
             inputWrapperStyle={$searchField}
             placeholderTx="resources.searchPlaceholder"
@@ -129,7 +152,14 @@ export const Resources = observer(function HomeScreen() {
             )}
           />
         </View>)
-         : <Text tx="resources.header" style={$header} />}
+         : <Text 
+            accessible
+            accessibilityLabel="header"
+            accessibilityHint="header"
+            accessibilityRole="text"
+            tx="resources.header" 
+            style={$header} 
+          />}
         <Icon icon={isSearch ? 'x' : 'search'} size={24} containerStyle={[$searchButton, isSearch && $xButton]} onPress={() => setIsSearch(!isSearch)} />
       </View>
       {renderBody()}

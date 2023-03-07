@@ -85,8 +85,18 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
   const renderStart = useCallback(() => {
     return (
       <>
-        <Text tx="onboarding.completeProfile.location.subtitle" style={$subtitle} />
+        <Text
+          accessible
+          accessibilityLabel="location subtitle"
+          accessibilityHint="location subtitle"
+          accessibilityRole="text"
+          tx="onboarding.completeProfile.location.subtitle" 
+          style={$subtitle} 
+        />
         <Button
+          accessible
+          accessibilityLabel="detect button"
+          accessibilityHint="detecting current location"
           tx="onboarding.completeProfile.location.detectButton"
           pressedStyle={$button}
           style={$button}
@@ -100,7 +110,14 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             />
           )}
         />
-        <Text tx="onboarding.completeProfile.location.orLabel" style={$orLabel} />
+        <Text
+          accessible
+          accessibilityLabel="or"
+          accessibilityHint="or"
+          accessibilityRole="text"
+          tx="onboarding.completeProfile.location.orLabel" 
+          style={$orLabel}
+        />
         <GooglePlacesAutocomplete
           ref={addressRef}
           placeholder={translate("onboarding.completeProfile.location.selectLocation")}
@@ -161,12 +178,23 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
       <>
         <View style={$rowContainer}>
           <ActivityIndicator
+            accessible
+            accessibilityLabel="loader"
+            accessibilityHint="Loading"
+            accessibilityRole="progressbar"
             animating={status === Statuses.detecting}
             size="small"
             color={colors.palette.neutral450}
             style={$loader}
           />
-          <Text tx="onboarding.completeProfile.location.detecting" style={$result} />
+          <Text 
+            accessible
+            accessibilityLabel="detecting"
+            accessibilityHint="detecting current location"
+            accessibilityRole="text"
+            tx="onboarding.completeProfile.location.detecting" 
+            style={$result}
+          />
         </View>
       </>
     )
@@ -181,7 +209,16 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             size={28}
             color={colors.palette.neutral450}
           />
-          <Text text={value.title} style={$result} ellipsizeMode='tail' numberOfLines={1} />
+          <Text
+            accessible
+            accessibilityLabel="address"
+            accessibilityHint="display current address"
+            accessibilityRole="text"
+            text={value.title} 
+            style={$result} 
+            ellipsizeMode='tail' 
+            numberOfLines={1} 
+          />
           <Icon
             icon="trash"
             size={28}
@@ -190,6 +227,9 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           />
         </View>
         <Button
+          accessible
+          accessibilityLabel="Done button"
+          accessibilityHint="navigate to main screen"
           tx="onboarding.completeProfile.location.doneButton"
           pressedStyle={$button}
           style={$button}
@@ -209,7 +249,14 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
 
   return (
     <>
-      <Text tx="onboarding.completeProfile.location.tittle" style={$title} />
+      <Text
+        accessible
+        accessibilityLabel="location title"
+        accessibilityHint="location title"
+        accessibilityRole="text"
+        tx="onboarding.completeProfile.location.tittle"
+        style={$title}
+      />
       {renderBody()}
     </>
   )

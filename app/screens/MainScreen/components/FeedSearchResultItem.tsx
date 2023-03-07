@@ -14,13 +14,48 @@ export interface FeedSearchResultItemProps {
 
 export function FeedSearchResultItem({ title, image, type, tags = [], onPress }: FeedSearchResultItemProps) {
   return (
-    <Pressable style={$container} onPress={onPress}>
-      <View style={$tagsContainer}>
+    <Pressable 
+      accessible
+      accessibilityLabel="pressable feed item"
+      accessibilityHint="pressable feed item"
+      accessibilityRole="button"
+      style={$container} 
+      onPress={onPress}
+    >
+      <View 
+        accessible
+        accessibilityLabel="tags"
+        accessibilityHint="tags"
+        accessibilityRole="text"
+        style={$tagsContainer}
+      >
         {tags.map(tag => <Tag key={tag} title={tag} />)}
       </View>
-      <Image source={{ uri: image }} style={$imageContainer} resizeMode="cover" />
-      <Text text={type} style={$typeText} />
-      <Text text={title} style={$titleText} />
+      <Image
+        accessible
+        accessibilityLabel="image"
+        accessibilityHint="image"
+        accessibilityRole="image" 
+        source={{ uri: image }} 
+        style={$imageContainer} 
+        resizeMode="cover" 
+      />
+      <Text 
+        accessible
+        accessibilityLabel="type"
+        accessibilityHint={type}
+        accessibilityRole="text"
+        text={type} 
+        style={$typeText}
+      />
+      <Text 
+        accessible
+        accessibilityLabel="title"
+        accessibilityHint={title}
+        accessibilityRole="text"
+        text={title} 
+        style={$titleText} 
+      />
     </Pressable>
   )
 }

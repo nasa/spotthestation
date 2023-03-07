@@ -16,65 +16,154 @@ export function Details({ onClose }: DetailsProps) {
   return (
     <View style={$modalBodyContainer}>
       <Pressable
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
         style={$close}
         onPress={onClose}
       >
         <Icon icon="x" color={colors.palette.neutral450} />
       </Pressable>
       <View style={$contentContainer}>
-        <Text tx="skyView.details.title" style={$title} />
+        <Text
+          accessible
+          accessibilityLabel="modal title"
+          accessibilityHint="modal title"
+          accessibilityRole="text"
+          tx="skyView.details.title" 
+          style={$title}
+        />
         <View style={$buttonsContainer}>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="distance"
+            accessibilityHint="distance"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.distance" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="orbital Speed"
+            accessibilityHint="orbital Speed"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.orbitalSpeed" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="longitude"
+            accessibilityHint="longitude"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.longitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="latitude"
+            accessibilityHint="latitude"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.latitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="altitude"
+            accessibilityHint="altitude"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.altitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
-          <View style={$detailBox}>
+          <View 
+            accessible
+            accessibilityLabel="crew On board"
+            accessibilityHint="crew On board"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
             <Text tx="skyView.details.crewOnboard" style={$detailTitle} />
             <Text text="7" style={$detailValue} />
           </View>
         </View>
         <View style={$buttonsContainer}>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="launched"
+            accessibilityHint="launched"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.launched" style={$detailRowTitle} />
             <Text text="20 November 1998 (23 yrs ago)" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="mass"
+            accessibilityHint="mass"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.mass" style={$detailRowTitle} />
             <Text text="444,615 kg" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="length"
+            accessibilityHint="length"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.length" style={$detailRowTitle} />
             <Text text="73.0 m" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="orbital Period"
+            accessibilityHint="orbital Period"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.orbitalPeriod" style={$detailRowTitle} />
             <Text text="92.9 min" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="orbits Per Day"
+            accessibilityHint="orbits Per Day"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.orbitsPerDay" style={$detailRowTitle} />
             <Text text="15.49" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="launched"
+            accessibilityHint="launched"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.launched" style={$detailRowTitle} />
             <Text text="2 km / month" style={$detailRowValue} />
           </View>
-          <View style={$detailRow}>
+          <View 
+            accessible
+            accessibilityLabel="launched"
+            accessibilityHint="launched"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
             <Text tx="skyView.details.launched" style={$detailRowTitle} />
             <Text text={`133,312\n(as of June 2022)`} style={$detailRowValue} />
           </View>

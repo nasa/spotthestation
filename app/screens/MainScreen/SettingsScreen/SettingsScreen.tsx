@@ -25,7 +25,14 @@ export const SettingsScreen = observer(function SettingsScreen() {
       statusBarStyle="light"
     >
       <View style={[$headerContainer, $headerStyleOverride]}>
-        <Text tx="settings.header" style={$header} />
+        <Text 
+          accessible
+          accessibilityLabel="header"
+          accessibilityHint="header"
+          accessibilityRole="text"
+          tx="settings.header" 
+          style={$header} 
+        />
       </View>
       <View style={$itemsConteiner}>
         <SettingsItem icon="shield" title="settings.termsAndConditions" onPress={() => handleNavigate("TermsAndConditions")} />

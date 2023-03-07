@@ -34,10 +34,32 @@ export function Splash() {
         <NasaLogo />
         <Image source={iss} style={$iss} />
         <View style={$bottomContainer}>
-          <Text tx="onboarding.splash.title" style={$title} />
+          <Text
+            accessible
+            accessibilityLabel="Splash title"
+            accessibilityHint="Splash screen title"
+            accessibilityRole="text"
+            tx="onboarding.splash.title"
+            style={$title}
+          />
           <View style={$bottomRowContainer}>
-            <Text tx="onboarding.splash.subTitle" style={$subTitle} />
-            <IconLinkButton icon="back" buttonStyle={$buttonSize} imageStyle={$imageStyle} onPress={handleNavigate} />
+            <Text
+              accessible
+              accessibilityLabel="Splash subtitle"
+              accessibilityHint="Splash screen subtitle"
+              accessibilityRole="text"
+              tx="onboarding.splash.subTitle"
+              style={$subTitle}
+            />
+            <IconLinkButton 
+              icon="back"
+              accessible
+              accessibilityLabel="Arrow right button"
+              accessibilityHint="Navigates to the next screen"
+              buttonStyle={$buttonSize} 
+              imageStyle={$imageStyle} 
+              onPress={handleNavigate}
+            />
           </View>
         </View>
       </ImageBackground>

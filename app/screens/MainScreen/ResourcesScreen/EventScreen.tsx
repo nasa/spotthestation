@@ -31,28 +31,83 @@ export const EventScreen = observer(function EventScreen() {
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <ScrollView style={$scrollContainer}>
+      <ScrollView 
+        accessible
+        accessibilityLabel="event scrollable us area"
+        accessibilityHint="event scrollable us area"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer}
+      >
         <View>
-          <Pressable onPress={() => navigation.goBack()} style={$backButton}>
+          <Pressable 
+            accessible
+            accessibilityLabel="Back button"
+            accessibilityHint="Navigates to the previous screen"
+            accessibilityRole="button"
+            onPress={() => navigation.goBack()} 
+            style={$backButton}
+          >
             <Icon icon="caretLeft" color={colors.palette.neutral250} />
             <Text tx="resources.header" style={$backButtonText} />
           </Pressable>
-          <Text text={item?.title} style={$title} />
-          <View style={$tagsContainer}>
+          <Text
+            accessible
+            accessibilityLabel="title"
+            accessibilityHint="title"
+            accessibilityRole="text"
+            text={item?.title} 
+            style={$title}
+          />
+          <View
+            accessible
+            accessibilityLabel="tags"
+            accessibilityHint="tags"
+            accessibilityRole="text"
+            style={$tagsContainer}
+          >
             {item?.tags?.map(tag => <Tag key={tag} title={tag} />)}
           </View>
-          <Image source={{ uri: item?.image }} style={$imageContainer} resizeMode="cover" />
-          <Text text={`${item?.type} Details`} style={$subtitle}/>
+          <Image 
+            accessible
+            accessibilityLabel="image"
+            accessibilityHint="image"
+            accessibilityRole="image"
+            source={{ uri: item?.image }} 
+            style={$imageContainer} 
+            resizeMode="cover"
+          />
+          <Text 
+            accessible
+            accessibilityLabel="Details title"
+            accessibilityHint="Details title"
+            accessibilityRole="text"
+            text={`${item?.type} Details`} 
+            style={$subtitle}
+          />
           <View style={$detailsContainer}>
             {item?.details?.map(({ key, value}) => (
-              <View key={key} style={$detailsRow}>
+              <View 
+                accessible
+                accessibilityLabel={key}
+                accessibilityHint={key}
+                accessibilityRole="text"
+                key={key} 
+                style={$detailsRow}
+              >
                 <Text text={key} style={$detailKey} />
                 <Text text={value} style={$detailValue} />
               </View>
             ))}
           </View>
-          <Text text={item?.subtitle} style={$subtitle}/>
-          <Text text={item?.body} style={$text} />
+          <View
+            accessible
+            accessibilityLabel="body"
+            accessibilityHint="Event body text"
+            accessibilityRole="text"
+          >
+            <Text text={item?.subtitle} style={$subtitle}/>
+            <Text text={item?.body} style={$text} />
+          </View>
         </View>
       </ScrollView>
     </Screen>

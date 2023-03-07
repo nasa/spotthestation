@@ -17,36 +17,96 @@ export function Share({ onClose }: ShareProps) {
   return (
     <View style={$modalBodyContainer}>
       <Pressable
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
         style={$close}
         onPress={onClose}
       >
         <Icon icon="x" color={colors.palette.neutral450} />
       </Pressable>
       <View style={$contentContainer}>
-        <Text tx="skyView.share.title" style={$title} />
-        <Text tx="skyView.share.subtitle" style={$subtitle} />
+        <Text 
+          accessible
+          accessibilityLabel="title"
+          accessibilityHint="title"
+          accessibilityRole="text"
+          tx="skyView.share.title" 
+          style={$title}
+        />
+        <Text 
+          accessible
+          accessibilityLabel="subtitle"
+          accessibilityHint="subtitle"
+          accessibilityRole="text"
+          tx="skyView.share.subtitle" 
+          style={$subtitle}
+        />
         <View style={$buttonsContainer}>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="facebook"
+            accessibilityHint="share to facebook"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="brandFacebook" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Facebook" style={$label} />
           </Pressable>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="Twitter"
+            accessibilityHint="share to Twitter"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="brandTwitter" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Twitter" style={$label} />
           </Pressable>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="Instagram"
+            accessibilityHint="share to Instagram"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="brandInstagram" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Instagram" style={$label} />
           </Pressable>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="Linked In"
+            accessibilityHint="share to Linked In"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="brandLinkedin" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Linked In" style={$label} />
           </Pressable>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="Whatsapp"
+            accessibilityHint="share to Whatsapp"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="brandWhatsapp" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Whatsapp" style={$label} />
           </Pressable>
-          <Pressable onPress={onClose} style={$pressable}>
+          <Pressable
+            accessible
+            accessibilityLabel="mail"
+            accessibilityHint="share to mail"
+            accessibilityRole="button"
+            onPress={onClose} 
+            style={$pressable}
+          >
             <IconLinkButton icon="mail" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
             <Text text="Mail" style={$label} />
           </Pressable>

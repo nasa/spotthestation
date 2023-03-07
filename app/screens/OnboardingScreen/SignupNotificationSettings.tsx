@@ -21,18 +21,41 @@ export interface SignupNotificationSettingsProps {
 export function SignupNotificationSettings({ value, onValueChange, onAction }: SignupNotificationSettingsProps) {
   return (
     <>
-      <Text tx="onboarding.completeProfile.notification.tittle" style={$title} />
+      <Text 
+        accessible
+        accessibilityLabel="detecting"
+        accessibilityHint="detecting current location"
+        accessibilityRole="text"
+        tx="onboarding.completeProfile.notification.tittle" 
+        style={$title}
+      />
       <View style={$valueContainer}>
         <Icon icon="tv" size={24} containerStyle={$icon} />
         <View style={$switchContainer}>
-          <View style={$labelContainer}>
+          <View 
+            accessible
+            accessibilityLabel="notification"
+            accessibilityHint="notification"
+            accessibilityRole="text"
+            style={$labelContainer}
+          >
             <Text tx="onboarding.completeProfile.notification.label" style={$label} />
             <Text tx="onboarding.completeProfile.notification.tip" style={$tip} />
           </View>
-          <Toggle variant="switch" value={value} onValueChange={onValueChange} />
+          <Toggle
+            accessible
+            accessibilityLabel="switch button"
+            accessibilityHint="toggle notifications"
+            variant="switch" 
+            value={value} 
+            onValueChange={onValueChange}
+          />
         </View>
       </View>
       <Button
+        accessible
+        accessibilityLabel="next button"
+        accessibilityHint="navigate to location detection"
         tx="onboarding.completeProfile.notification.nextButton"
         pressedStyle={$button}
         style={$button}

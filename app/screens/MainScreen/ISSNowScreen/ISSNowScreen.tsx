@@ -109,7 +109,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       isPortrait={false}
     >
       <View style={[$header, $headerStyleOverride, isLandscape && $headerStyleForLandscapeOverride]}>
-        <IconLinkButton 
+        <IconLinkButton
+          accessible
+          accessibilityLabel="x or maximize button"
+          accessibilityHint="enable/disable full screen mode"
           icon={isFullScreen ? "x" : "maximize"} 
           onPress={() => setIsFullScreen(!isFullScreen)} 
           buttonStyle={isFullScreen && $lightIcon}
@@ -119,7 +122,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           <Text text="7th Avenue, Phoenix, AZ" style={$location} />
           <Text text="8 Oct 2022 12:18:28" style={$date} />
         </View>
-        <IconLinkButton icon="pin" buttonStyle={isFullScreen && $lightIcon} blurIntensity={50} />
+        <IconLinkButton 
+          accessible
+          accessibilityLabel="pin button"
+          accessibilityHint="change location"
+          icon="pin" 
+          buttonStyle={isFullScreen && $lightIcon} 
+          blurIntensity={50} 
+        />
       </View>
       <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
         {isGlobe ? 
@@ -130,12 +140,18 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>
             <IconLinkButton 
+              accessible
+              accessibilityLabel="2D button"
+              accessibilityHint="enable map view"
               text="2D"
               textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
               onPress={() => setIsGlobe(false)}
               buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
             />
             <IconLinkButton
+              accessible
+              accessibilityLabel="3D button"
+              accessibilityHint="enable globe view"
               text="3D"
               textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
               onPress={() => setIsGlobe(true)} 
@@ -145,6 +161,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         </View>
         <View style={[$zoomButtons, $zoomControl, isLandscape && $modButtonsOverload]}>
           <IconLinkButton 
+            accessible
+            accessibilityLabel="+ button"
+            accessibilityHint="zoom view"
             text="+"
             disabled={zoomLevel === 5}
             onPress={() => setZoomLevel(zoomLevel + 1)}
@@ -152,6 +171,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             blurIntensity={50}
           />
           <IconLinkButton
+            accessible
+            accessibilityLabel="- button"
+            accessibilityHint="zoom out view"
             text="-"
             disabled={zoomLevel === 0}
             onPress={() => setZoomLevel(zoomLevel - 1)} 
