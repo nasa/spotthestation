@@ -13,12 +13,20 @@ import Snackbar from "react-native-snackbar"
 
 export interface SelectLocationProps {
   /**
+   * A current selected location.
+   */
+  selectedLocation?: LocationType
+  /**
    * A function for closing modal.
    */
   onClose?: PressableProps["onPress"]
+  /**
+   * A function for select new location.
+   */
+  onLocationPress?: (value: LocationType) => void
 }
 
-export function SelectLocation({ onClose }: SelectLocationProps) {
+export function SelectLocation({ onClose, onLocationPress, selectedLocation }: SelectLocationProps) {
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [current, setCurrent] = useState<LocationType | null>(null)
@@ -58,6 +66,16 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
       })
     })
   }, [textValue])
+
+  const isSelected = (value: LocationType) => {
+    if (selectedLocation) {
+      const { location: selected } = selectedLocation
+      const { location } = value
+      return selected.lat === location.lat && selected.lng === location.lng
+    }
+    
+    return false
+  }
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -121,21 +139,53 @@ export function SelectLocation({ onClose }: SelectLocationProps) {
         {(!isFocus && searchResult.length === 0) && (
           <>
             {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
-              <ListItem icon="pin" title={current.title} subtitle={current.subtitle} selected={true} />
+              <ListItem 
+                icon="pin" 
+                title={current.title} 
+                subtitle={current.subtitle} 
+                selected={isSelected(current)} 
+                onPress={() => onLocationPress(current)} 
+              />
             </ExpandContainer>}
             <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
-              <ListItem icon="pin" title="George Bush St, Times Square" subtitle="New York City, NY, 83957" />
-              <ListItem icon="pin" title="Navy Garden" subtitle="San Diego, CA, 54813" />
+              <ListItem 
+                icon="pin" 
+                title="George Bush St, Times Square" 
+                subtitle="New York City, NY, 83957"
+              />
+              <ListItem 
+                icon="pin" 
+                title="Navy Garden" 
+                subtitle="San Diego, CA, 54813"
+              />
             </ExpandContainer>
             {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
-                {nearby.map((place: LocationType) => <ListItem key={place.title} icon="pin" title={place.title} subtitle={place.subtitle} />)}
+                {nearby.map((place: LocationType) => 
+                  <ListItem 
+                    key={place.title} 
+                    icon="pin" 
+                    title={place.title} 
+                    subtitle={place.subtitle} 
+                    selected={isSelected(place)} 
+                    onPress={() => onLocationPress(place)} 
+                  />)
+                }
               </ExpandContainer>
             }
           </>
         )}
         {(isFocus || searchResult.length > 0) && 
           <ExpandContainer title="homeScreen.selectLocation.search" itemsCount={searchResult.length} expandble={false}>
-            {searchResult.map((place: LocationType) => <ListItem key={place.title} icon="pin" title={place.title} subtitle={place.subtitle} />)}
+            {searchResult.map((place: LocationType) => 
+              <ListItem 
+                key={place.title}
+                icon="pin" 
+                title={place.title}
+                subtitle={place.subtitle}
+                selected={isSelected(place)}
+                onPress={() => onLocationPress(place)}
+              />)
+            }
           </ExpandContainer>
         }
       </ScrollView>

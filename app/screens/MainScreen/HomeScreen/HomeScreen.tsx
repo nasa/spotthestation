@@ -19,6 +19,8 @@ import { Sightings } from "./Signitings"
 import { getLocationTimeZone } from "../../../utils/geolocation"
 import { CoachMark } from "./CoachMark"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { formatTimer } from "../components/helpers"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
@@ -32,20 +34,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [location, setLocation] = useState(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
-  
-
-  const formatTimer = (diff: string): string => {
-    const result = diff.split(",").map(item => {
-      const value = item.split(" ")[0]
-      return value.length === 1 ? `0${value}` : value
-    }).join(":")
-
-    if (result.length === 0) return `00:00:00`
-    if (result.length === 2) return `00:00:${result}`
-    if (result.length === 5) return `00:${result}`
-
-    return result
-  }
+  const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
   
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
@@ -93,7 +82,6 @@ export const HomeScreen = observer(function HomeScreen() {
             },
           })
         }
-        
       })
       .catch(e => console.log(e))
   }
@@ -105,6 +93,12 @@ export const HomeScreen = observer(function HomeScreen() {
   const handleSetCoachCompleted = async () => {
     setCoachVisible(false)
     await storage.save('coachCompleted', true)
+  }
+
+  const handleChangeLocation = async (location: LocationType) => {
+    setAddress(location.subtitle)
+    setCurrentLocation(location)
+    await storage.save('currentLocation', location)
   }
 
   const renderCoachMarks = useCallback(() => {
@@ -183,7 +177,11 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <SelectLocation onClose={() => setIsLocation(!isLocation)} />
+        <SelectLocation 
+          selectedLocation={currentLocation}
+          onLocationPress={handleChangeLocation}
+          onClose={() => setIsLocation(!isLocation)}
+        />
       </Modal>
       <Modal
         isVisible={isSightings}

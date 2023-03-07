@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -12,6 +12,12 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 // import { Details } from "./Details"
 import { ARView } from "../components/ARView"
 import { Share } from "./Share"
+import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
+import { intervalToDuration, formatDuration } from "date-fns"
+import Snackbar from "react-native-snackbar"
+import { getLocationTimeZone } from "../../../utils/geolocation"
+import { formatTimer } from "../components/helpers"
+import * as storage from "../../../utils/storage"
 
 export interface SkyViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -25,6 +31,58 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [isShare, setIsShare] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
+  const [sightings, setSightings] = useState<ISSSighting[]>([])
+  const [countdown, setCountdown] = useState("00:00:00")
+
+  const timeDiff = useCallback((callback: (diff: string) => void) => {
+    const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
+   
+    if (result.length === 0) return
+
+    const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
+    const diff = formatDuration(duration, { delimiter: ',' })
+    
+    callback(formatTimer(diff))
+  }, [sightings])
+
+  const startCountdown = useCallback(() => {
+    timeDiff(setCountdown)
+    setInterval(() => timeDiff(setCountdown), 1000)
+  }, [countdown, sightings])
+
+  useEffect(() => {
+    startCountdown()
+  }, [sightings])
+
+  const getSightings = async () => {
+    const { location: { lat, lng } } = await storage.load('currentLocation')
+    
+    const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
+    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    api.getISSSightings({ zone: timeZone, lat, lon: lng })
+      .then(({ ok, data }: ISSSightingResponse) => {
+        if (ok) {
+          setSightings(data as ISSSighting[])
+        } else {
+          Snackbar.show({
+            text: data as string,
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: 'Dismiss',
+              textColor: 'red',
+              onPress: () => {
+                Snackbar.dismiss()
+              },
+            },
+          })
+        }
+      })
+      .catch(e => console.log(e))
+  }
+
+  useEffect(() => {
+    getSightings().catch(e => console.log(e))
+  }, [])
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT') {
@@ -129,7 +187,7 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
             style={$timeContainer}
           >
             <Text tx="skyView.timeHeader" style={$timeHeader} />
-            <Text text="03:27:02" style={$time} />
+            <Text text={countdown} style={$time} />
           </View>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
             <IconLinkButton 

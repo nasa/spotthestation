@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useRoute } from "@react-navigation/native"
@@ -7,11 +8,16 @@ import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
+import Modal from "react-native-modal"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { FlatMap } from "../components/FlatMap"
 import { Globe } from "../components/Globe"
+import { formatDate } from "../../../utils/formatDate"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import * as storage from "../../../utils/storage"
+import { SelectLocation } from "../HomeScreen/SelectLocation"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -25,6 +31,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
   const [isLandscape, setIsLandscape] = useState(false)
+  const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
+  const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
+  const [isLocation, setIsLocation] = useState(false)
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT') {
@@ -97,8 +106,29 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     }
   }, [])
 
+  useEffect(() => {
+    const secTimer = setInterval( () => {
+      setCurrentDateTime(new Date().toISOString())
+    },1000)
+
+    return () => clearInterval(secTimer)
+  }, [])
+
+  const getCurrentLocation = async () => {
+    setCurrentLocation(await storage.load('currentLocation') as LocationType)
+  }
+
+  useEffect(() => {
+    getCurrentLocation()
+  }, []) 
+
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
+
+  const handleChangeLocation = async (location: LocationType) => {
+    setCurrentLocation(location)
+    await storage.save('currentLocation', location)
+  }
 
   return (
     <Screen 
@@ -119,8 +149,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           blurIntensity={50}
         />
         <View style={$textContainer}>
-          <Text text="7th Avenue, Phoenix, AZ" style={$location} />
-          <Text text="8 Oct 2022 12:18:28" style={$date} />
+          <Text text={currentLocation?.subtitle || ''} style={$location} ellipsizeMode="tail" numberOfLines={1} />
+          <Text text={`${formatDate(currentDateTime, "dd MMM yyyy k:mm:ss")}`} style={$date} />
         </View>
         <IconLinkButton 
           accessible
@@ -129,6 +159,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           icon="pin" 
           buttonStyle={isFullScreen && $lightIcon} 
           blurIntensity={50} 
+          onPress={() => setIsLocation(true)}
         />
       </View>
       <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
@@ -182,6 +213,26 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           />
         </View>
       </View>
+      <Modal
+        isVisible={isLocation}
+        onBackdropPress={() => setIsLocation(!isLocation)}
+        onSwipeComplete={() => setIsLocation(!isLocation)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <SelectLocation 
+          selectedLocation={currentLocation}
+          onLocationPress={handleChangeLocation}
+          onClose={() => setIsLocation(!isLocation)}
+        />
+      </Modal>
     </Screen>
   )
 })
@@ -273,4 +324,11 @@ const $active: ViewStyle = {
 
 const $disabled: ViewStyle = {
   opacity: .25
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  justifyContent: 'flex-end',
+  left: 0,
+  margin: 0
 }

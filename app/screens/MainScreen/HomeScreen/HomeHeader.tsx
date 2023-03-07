@@ -103,7 +103,8 @@ const $rowContainer: ViewStyle = {
 }
 
 const $userContainer: ViewStyle = {
-  marginBottom: 18
+  marginBottom: 18,
+  width: '85%'
 }
 
 const $welcomeText: TextStyle = {
