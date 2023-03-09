@@ -73,7 +73,6 @@ export class Api {
 
   async getISSData(): Promise<ISSData | GeneralApiProblem> {
     const response: ApiResponse<ISSData> = await this.apisauce.get("/tracking/nasa", {}, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
-    console.log(response)
     
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)

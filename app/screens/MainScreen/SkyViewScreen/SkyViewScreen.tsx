@@ -18,6 +18,7 @@ import Snackbar from "react-native-snackbar"
 import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
+import Ruler from "../components/Compass"
 
 export interface SkyViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -158,6 +159,7 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
             style={$header}
           />
         }
+        <Ruler />
       </View>
       <View style={[$body, $bodyStyleOverride]}>
         <ARView />
