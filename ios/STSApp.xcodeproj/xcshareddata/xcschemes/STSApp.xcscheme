@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "NasaIssApp.app"
-               BlueprintName = "NasaIssApp"
-               ReferencedContainer = "container:NasaIssApp.xcodeproj">
+               BuildableName = "STSApp.app"
+               BlueprintName = "STSApp"
+               ReferencedContainer = "container:STSApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "NasaIssAppTests.xctest"
-               BlueprintName = "NasaIssAppTests"
-               ReferencedContainer = "container:NasaIssApp.xcodeproj">
+               BuildableName = "STSAppTests.xctest"
+               BlueprintName = "STSAppTests"
+               ReferencedContainer = "container:STSApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "NasaIssApp.app"
-            BlueprintName = "NasaIssApp"
-            ReferencedContainer = "container:NasaIssApp.xcodeproj">
+            BuildableName = "STSApp.app"
+            BlueprintName = "STSApp"
+            ReferencedContainer = "container:STSApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "NasaIssApp.app"
-            BlueprintName = "NasaIssApp"
-            ReferencedContainer = "container:NasaIssApp.xcodeproj">
+            BuildableName = "STSApp.app"
+            BlueprintName = "STSApp"
+            ReferencedContainer = "container:STSApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

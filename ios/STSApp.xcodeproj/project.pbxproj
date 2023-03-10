@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* NasaIssAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NasaIssAppTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-NasaIssApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-NasaIssApp.a */; };
+		00E356F31AD99517003FC87E /* STSAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* STSAppTests.m */; };
+		0A605917C53C6708EC912D21 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA69DCA74DB00FF35D26E62B /* ExpoModulesProvider.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */; };
-		400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */; };
-		7699B88040F8A987B510C191 /* libPods-NasaIssApp-NasaIssAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NasaIssApp-NasaIssAppTests.a */; };
+		6209724588EEBF0B49EF4A3F /* libPods-STSApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F883E2A1FB83B24DEE5D7153 /* libPods-STSApp.a */; };
+		8966A062FEF751F26D65A441 /* libPods-STSApp-STSAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F779CCD2C892DB871C332E5 /* libPods-STSApp-STSAppTests.a */; };
+		B11695E39903CBBA008A4C3B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */; };
 		E2A4288027284282AD0938DE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E60350F78A4D2BA180AF80 /* noop-file.swift */; };
 		FCDD02A92976AB0F0094E655 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */; };
 		FCDD02AB297752FC0094E655 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02AA297752FC0094E655 /* BootSplash.storyboard */; };
@@ -31,25 +31,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* NasaIssAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasaIssAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* STSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* NasaIssAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NasaIssAppTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* NasaIssApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaIssApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* STSAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSAppTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* STSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NasaIssApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NasaIssApp/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NasaIssApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NasaIssApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NasaIssApp/main.m; sourceTree = "<group>"; };
 		14E60350F78A4D2BA180AF80 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "NasaIssApp/noop-file.swift"; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-NasaIssApp-NasaIssAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NasaIssApp-NasaIssAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22BE3040AE6A8A2838EE8179 /* Pods-STSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp.debug.xcconfig"; path = "Target Support Files/Pods-STSApp/Pods-STSApp.debug.xcconfig"; sourceTree = "<group>"; };
+		2971B6878EA56CDCCDB7CD55 /* Pods-STSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp.release.xcconfig"; path = "Target Support Files/Pods-STSApp/Pods-STSApp.release.xcconfig"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-NasaIssApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaIssApp.debug.xcconfig"; path = "Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-NasaIssApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaIssApp.release.xcconfig"; path = "Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-NasaIssApp-NasaIssAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaIssApp-NasaIssAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-NasaIssApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NasaIssApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp-STSAppTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		7C22EE4E44799A548365F961 /* Pods-STSApp-STSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSAppTests.release.xcconfig"; path = "Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-NasaIssApp-NasaIssAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NasaIssApp-NasaIssAppTests.release.xcconfig"; path = "Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NasaIssApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		8F779CCD2C892DB871C332E5 /* libPods-STSApp-STSAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-STSApp-STSAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B17E4F534288BA17CF966093 /* Pods-STSApp-STSAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSAppTests.debug.xcconfig"; path = "Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA69DCA74DB00FF35D26E62B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F883E2A1FB83B24DEE5D7153 /* libPods-STSApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-STSApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		FCDD02AA297752FC0094E655 /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-NasaIssApp-NasaIssAppTests.a in Frameworks */,
+				8966A062FEF751F26D65A441 /* libPods-STSApp-STSAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,20 +71,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-NasaIssApp.a in Frameworks */,
+				6209724588EEBF0B49EF4A3F /* libPods-STSApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* NasaIssAppTests */ = {
+		00E356EF1AD99517003FC87E /* STSAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* NasaIssAppTests.m */,
+				00E356F21AD99517003FC87E /* STSAppTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = NasaIssAppTests;
+			path = STSAppTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -91,7 +95,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* NasaIssApp */ = {
+		13B07FAE1A68108700A75B9A /* STSApp */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -103,15 +107,23 @@
 				14E60350F78A4D2BA180AF80 /* noop-file.swift */,
 				FCDD02AA297752FC0094E655 /* BootSplash.storyboard */,
 			);
-			name = NasaIssApp;
+			name = STSApp;
+			sourceTree = "<group>";
+		};
+		1FC9BAAF705AE500767B14E7 /* STSAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */,
+			);
+			name = STSAppTests;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-NasaIssApp.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-NasaIssApp-NasaIssAppTests.a */,
+				F883E2A1FB83B24DEE5D7153 /* libPods-STSApp.a */,
+				8F779CCD2C892DB871C332E5 /* libPods-STSApp-STSAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,18 +131,10 @@
 		547A8E9E9663ECB3355FB756 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				6289853FD5D818F15D17248E /* NasaIssApp */,
-				E4DC8A9EFE6F9C5F90DD96E4 /* NasaIssAppTests */,
+				D3441E34BF52F0D467B2C461 /* STSApp */,
+				1FC9BAAF705AE500767B14E7 /* STSAppTests */,
 			);
 			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		6289853FD5D818F15D17248E /* NasaIssApp */ = {
-			isa = PBXGroup;
-			children = (
-				951E59D51E504BC9C5F46169 /* ExpoModulesProvider.swift */,
-			);
-			name = NasaIssApp;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -143,9 +147,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* NasaIssApp */,
+				13B07FAE1A68108700A75B9A /* STSApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* NasaIssAppTests */,
+				00E356EF1AD99517003FC87E /* STSAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -159,8 +163,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* NasaIssApp.app */,
-				00E356EE1AD99517003FC87E /* NasaIssAppTests.xctest */,
+				13B07F961A680F5B00A75B9A /* STSApp.app */,
+				00E356EE1AD99517003FC87E /* STSAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,24 +176,28 @@
 				5709B34CF0A7D63546082F79 /* Pods-NasaIssApp.release.xcconfig */,
 				5B7EB9410499542E8C5724F5 /* Pods-NasaIssApp-NasaIssAppTests.debug.xcconfig */,
 				89C6BE57DB24E9ADA2F236DE /* Pods-NasaIssApp-NasaIssAppTests.release.xcconfig */,
+				22BE3040AE6A8A2838EE8179 /* Pods-STSApp.debug.xcconfig */,
+				2971B6878EA56CDCCDB7CD55 /* Pods-STSApp.release.xcconfig */,
+				B17E4F534288BA17CF966093 /* Pods-STSApp-STSAppTests.debug.xcconfig */,
+				7C22EE4E44799A548365F961 /* Pods-STSApp-STSAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E4DC8A9EFE6F9C5F90DD96E4 /* NasaIssAppTests */ = {
+		D3441E34BF52F0D467B2C461 /* STSApp */ = {
 			isa = PBXGroup;
 			children = (
-				D5AFED2E09CC2E86D1338C0F /* ExpoModulesProvider.swift */,
+				EA69DCA74DB00FF35D26E62B /* ExpoModulesProvider.swift */,
 			);
-			name = NasaIssAppTests;
+			name = STSApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* NasaIssAppTests */ = {
+		00E356ED1AD99517003FC87E /* STSAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NasaIssAppTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "STSAppTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -203,14 +211,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = NasaIssAppTests;
+			name = STSAppTests;
 			productName = NasaIssAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* NasaIssAppTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* STSAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* NasaIssApp */ = {
+		13B07F861A680F5B00A75B9A /* STSApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NasaIssApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "STSApp" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -225,9 +233,9 @@
 			);
 			dependencies = (
 			);
-			name = NasaIssApp;
+			name = STSApp;
 			productName = NasaIssApp;
-			productReference = 13B07F961A680F5B00A75B9A /* NasaIssApp.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* STSApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -247,7 +255,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NasaIssApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "STSApp" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -260,8 +268,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* NasaIssApp */,
-				00E356ED1AD99517003FC87E /* NasaIssAppTests */,
+				13B07F861A680F5B00A75B9A /* STSApp */,
+				00E356ED1AD99517003FC87E /* STSAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -309,15 +317,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -335,7 +343,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NasaIssApp-NasaIssAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-STSApp-STSAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -357,7 +365,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NasaIssApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-STSApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -370,15 +378,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -387,15 +395,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp/Pods-NasaIssApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-STSApp/Pods-STSApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -404,15 +412,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NasaIssApp-NasaIssAppTests/Pods-NasaIssApp-NasaIssAppTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -441,8 +449,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* NasaIssAppTests.m in Sources */,
-				2215ACBC1E62C44583DB69A9 /* ExpoModulesProvider.swift in Sources */,
+				00E356F31AD99517003FC87E /* STSAppTests.m in Sources */,
+				B11695E39903CBBA008A4C3B /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,8 +460,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				400EB2C1E1807E6CBC68B7AB /* ExpoModulesProvider.swift in Sources */,
 				E2A4288027284282AD0938DE /* noop-file.swift in Sources */,
+				0A605917C53C6708EC912D21 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +470,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* NasaIssApp */;
+			target = 13B07F861A680F5B00A75B9A /* STSApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -470,7 +478,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-NasaIssApp-NasaIssAppTests.debug.xcconfig */;
+			baseConfigurationReference = B17E4F534288BA17CF966093 /* Pods-STSApp-STSAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -495,13 +503,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasaIssApp.app/NasaIssApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STSApp.app/STSApp";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-NasaIssApp-NasaIssAppTests.release.xcconfig */;
+			baseConfigurationReference = 7C22EE4E44799A548365F961 /* Pods-STSApp-STSAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -523,13 +531,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NasaIssApp.app/NasaIssApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STSApp.app/STSApp";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-NasaIssApp.debug.xcconfig */;
+			baseConfigurationReference = 22BE3040AE6A8A2838EE8179 /* Pods-STSApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -550,7 +558,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nasaissapp;
-				PRODUCT_NAME = NasaIssApp;
+				PRODUCT_NAME = STSApp;
 				PROVISIONING_PROFILE_SPECIFIER = "nasa-development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -561,7 +569,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-NasaIssApp.release.xcconfig */;
+			baseConfigurationReference = 2971B6878EA56CDCCDB7CD55 /* Pods-STSApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -581,7 +589,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nasaissapp;
-				PRODUCT_NAME = NasaIssApp;
+				PRODUCT_NAME = STSApp;
 				PROVISIONING_PROFILE_SPECIFIER = "nasa-development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -730,7 +738,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "NasaIssAppTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "STSAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -739,7 +747,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NasaIssApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "STSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -748,7 +756,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NasaIssApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "STSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -146,5 +146,5 @@ dist/
 
 # @end expo-cli
 ios/IPA
-ios/NasaIssApp.xcarchive
+iOS/STSApp.xcarchive
 

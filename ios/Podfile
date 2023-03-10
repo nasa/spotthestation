@@ -9,7 +9,7 @@ install! 'cocoapods', :deterministic_uuids => false
 
 production = ENV["PRODUCTION"] == "1"
 
-target 'NasaIssApp' do
+target 'STSApp' do
   use_expo_modules!
   post_integrate do |installer|
     begin
@@ -39,7 +39,7 @@ target 'NasaIssApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'NasaIssAppTests' do
+  target 'STSAppTests' do
     inherit! :complete
     # Pods for testing
   end

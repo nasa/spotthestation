@@ -22,14 +22,14 @@ yarn
 cd ios
 pod install
 export RCT_NO_LAUNCH_PACKAGER=1
-xcodebuild -workspace NasaIssApp.xcworkspace -scheme "NasaIssApp" clean
-xcodebuild -workspace NasaIssApp.xcworkspace -scheme "NasaIssApp" -configuration Release -destination generic/platform=iOS -archivePath ./NasaIssApp.xcarchive  archive | xcpretty
+xcodebuild -workspace STSApp.xcworkspace -scheme "STSApp" clean
+xcodebuild -workspace STSApp.xcworkspace -scheme "STSApp" -configuration Release -destination generic/platform=iOS -archivePath ./STSApp.xcarchive  archive | xcpretty
 rm -Rf IPA
 mkdir IPA
-xcodebuild -exportArchive -archivePath ./NasaIssApp.xcarchive -exportPath ./IPA -exportOptionsPlist ../scripts/exportOptions.plist
+xcodebuild -exportArchive -archivePath ./STSApp.xcarchive -exportPath ./IPA -exportOptionsPlist ../scripts/exportOptions.plist
 
 # Upload to Firebase App Distribution
-IPA_PATH="./IPA/NasaIssApp.ipa"
+IPA_PATH="./IPA/STSApp.ipa"
 GOOGLE_APP_ID=$(defaults read $(pwd)/GoogleService-Info GOOGLE_APP_ID)
 firebase appdistribution:distribute $IPA_PATH --app $GOOGLE_APP_ID --groups "ios-testers"
 cd ..
