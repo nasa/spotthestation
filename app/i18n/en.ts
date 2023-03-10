@@ -16,7 +16,7 @@ const en = {
   },
   tabNavigator: {
     homeTab: "Home",
-    skyViewTab: "Sky View",
+    issViewTab: "ISS View",
     issNowTab: "ISS Now",
     resourcesTab: "Resources",
     settingsTab: "Settings",
@@ -171,8 +171,8 @@ const en = {
       navigationData: 'You can browse through different features of the app and your profile from this navigation below.',
     }
   },
-  skyView: {
-    header: "Sky View",
+  issView: {
+    header: "ISS View",
     timeHeader: "TIME LEFT",
     share: {
       title: "Share",

@@ -18,15 +18,14 @@ import Snackbar from "react-native-snackbar"
 import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
-import Ruler from "../components/Compass"
 
-export interface SkyViewScreenRouteProps {
+export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
   toggleIsLandscape: (value: boolean) => void
 }
 
-export const SkyViewScreen = observer(function ISSNowScreen() {
-  const route: SkyViewScreenRouteProps  = useRoute().params as SkyViewScreenRouteProps
+export const ISSViewScreen = observer(function ISSNowScreen() {
+  const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -155,14 +154,13 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
             accessibilityLabel="header"
             accessibilityHint="header"
             accessibilityRole="text"
-            tx="skyView.header" 
+            tx="issView.header" 
             style={$header}
           />
         }
-        <Ruler />
       </View>
       <View style={[$body, $bodyStyleOverride]}>
-        <ARView />
+        <ARView isFullScreen={isFullScreen} />
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
             <IconLinkButton
@@ -188,7 +186,7 @@ export const SkyViewScreen = observer(function ISSNowScreen() {
             accessibilityRole="text"
             style={$timeContainer}
           >
-            <Text tx="skyView.timeHeader" style={$timeHeader} />
+            <Text tx="issView.timeHeader" style={$timeHeader} />
             <Text text={countdown} style={$time} />
           </View>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>

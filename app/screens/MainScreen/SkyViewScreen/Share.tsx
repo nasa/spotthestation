@@ -32,7 +32,7 @@ export function Share({ onClose }: ShareProps) {
           accessibilityLabel="title"
           accessibilityHint="title"
           accessibilityRole="text"
-          tx="skyView.share.title" 
+          tx="issView.share.title" 
           style={$title}
         />
         <Text 
@@ -40,7 +40,7 @@ export function Share({ onClose }: ShareProps) {
           accessibilityLabel="subtitle"
           accessibilityHint="subtitle"
           accessibilityRole="text"
-          tx="skyView.share.subtitle" 
+          tx="issView.share.subtitle" 
           style={$subtitle}
         />
         <View style={$buttonsContainer}>

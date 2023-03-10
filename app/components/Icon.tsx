@@ -138,6 +138,7 @@ export const iconRegistry = {
   mapPinOutlined: require("../../assets/icons/map-pin-outlined.png"),
   fiMapPin: require("../../assets/icons/fi_map-pin.png"),
   bigArrow: require("../../assets/icons/big-arrow.png"),
+  iss: require("../../assets/icons/iss.png"),
 }
 
 const $imageStyle: ImageStyle = {

@@ -6,14 +6,14 @@ import React, { useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, SkyViewScreenRouteProps, SkyViewScreen, Resources, SettingsScreen } from "../screens"
+import { ISSNowScreen, HomeScreen, ISSNowScreenRouteProps, ISSViewScreenRouteProps, ISSViewScreen, Resources, SettingsScreen } from "../screens"
 import { ResourcesScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/ResourcesScreen"
 import { colors, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 
 export type TabParamList = {
   Home: undefined
-  SkyView: SkyViewScreenRouteProps
+  ISSView: ISSViewScreenRouteProps
   ISSNow: ISSNowScreenRouteProps
   Resources: ResourcesScreenRouteProps
   Settings: undefined
@@ -62,15 +62,15 @@ export function TabNavigator() {
       />
 
       <Tab.Screen
-        name="SkyView"
-        component={SkyViewScreen}
+        name="ISSView"
+        component={ISSViewScreen}
         initialParams={{
           toggleBottomTabs: setIsTabsVisible,
           toggleIsLandscape: setIsLandscape
         }}
         options={{
           tabBarLabel: ({ focused, color }) => (
-            <Text tx="tabNavigator.skyViewTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
+            <Text tx="tabNavigator.issViewTab" style={{ color: focused ? color : "transparent", marginTop: -20 }} />
           ),
           tabBarIcon: ({ color, size }) => (
             <Icon icon="globe" color={color} size={size} />

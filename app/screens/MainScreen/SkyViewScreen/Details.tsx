@@ -31,7 +31,7 @@ export function Details({ onClose }: DetailsProps) {
           accessibilityLabel="modal title"
           accessibilityHint="modal title"
           accessibilityRole="text"
-          tx="skyView.details.title" 
+          tx="issView.details.title" 
           style={$title}
         />
         <View style={$buttonsContainer}>
@@ -42,7 +42,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.distance" style={$detailTitle} />
+            <Text tx="issView.details.distance" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
           <View 
@@ -52,7 +52,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.orbitalSpeed" style={$detailTitle} />
+            <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
           <View 
@@ -62,7 +62,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.longitude" style={$detailTitle} />
+            <Text tx="issView.details.longitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
           <View 
@@ -72,7 +72,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.latitude" style={$detailTitle} />
+            <Text tx="issView.details.latitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
           <View 
@@ -82,7 +82,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.altitude" style={$detailTitle} />
+            <Text tx="issView.details.altitude" style={$detailTitle} />
             <Text text="125 km" style={$detailValue} />
           </View>
           <View 
@@ -92,7 +92,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="skyView.details.crewOnboard" style={$detailTitle} />
+            <Text tx="issView.details.crewOnboard" style={$detailTitle} />
             <Text text="7" style={$detailValue} />
           </View>
         </View>
@@ -104,7 +104,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.launched" style={$detailRowTitle} />
+            <Text tx="issView.details.launched" style={$detailRowTitle} />
             <Text text="20 November 1998 (23 yrs ago)" style={$detailRowValue} />
           </View>
           <View 
@@ -114,7 +114,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.mass" style={$detailRowTitle} />
+            <Text tx="issView.details.mass" style={$detailRowTitle} />
             <Text text="444,615 kg" style={$detailRowValue} />
           </View>
           <View 
@@ -124,7 +124,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.length" style={$detailRowTitle} />
+            <Text tx="issView.details.length" style={$detailRowTitle} />
             <Text text="73.0 m" style={$detailRowValue} />
           </View>
           <View 
@@ -134,7 +134,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.orbitalPeriod" style={$detailRowTitle} />
+            <Text tx="issView.details.orbitalPeriod" style={$detailRowTitle} />
             <Text text="92.9 min" style={$detailRowValue} />
           </View>
           <View 
@@ -144,7 +144,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.orbitsPerDay" style={$detailRowTitle} />
+            <Text tx="issView.details.orbitsPerDay" style={$detailRowTitle} />
             <Text text="15.49" style={$detailRowValue} />
           </View>
           <View 
@@ -154,7 +154,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.launched" style={$detailRowTitle} />
+            <Text tx="issView.details.launched" style={$detailRowTitle} />
             <Text text="2 km / month" style={$detailRowValue} />
           </View>
           <View 
@@ -164,7 +164,7 @@ export function Details({ onClose }: DetailsProps) {
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="skyView.details.launched" style={$detailRowTitle} />
+            <Text tx="issView.details.launched" style={$detailRowTitle} />
             <Text text={`133,312\n(as of June 2022)`} style={$detailRowValue} />
           </View>
         </View>
