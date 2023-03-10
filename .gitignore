@@ -145,3 +145,6 @@ web-build/
 dist/
 
 # @end expo-cli
+ios/IPA
+ios/NasaIssApp.xcarchive
+
