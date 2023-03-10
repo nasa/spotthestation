@@ -36,9 +36,8 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="nasaissapp"/>
+        <data android:scheme="stsapp"/>
         <data android:scheme="com.nasaissapp"/>
-        <data android:scheme="exp+nasaissapp"/>
       </intent-filter>
     </activity>
   </application>

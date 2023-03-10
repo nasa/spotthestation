@@ -10,7 +10,12 @@ import {
 import { colors } from "../../../theme"
 import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
 import { coordinatesToPosition } from "./helpers"
+import { iconRegistry } from "../../../components/Icon"
+
 import ControlsView from "./ControlsView"
+
+const CloudsTexture = require("../../../../assets/images/clouds.png")
+const GlobeTexturesNight = require("../../../../assets/images/globe-textures-night.jpg")
 
 export interface GlobeProps {
   marker?: number[]
@@ -24,7 +29,7 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
   const createMarker = async () => {
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
-      asset: require("../../../../assets/icons/fi_map-pin.png"),
+      asset: iconRegistry.fiMapPin,
     })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
@@ -205,8 +210,8 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
     renderer.debug.checkShaderErrors = false
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
-    const globe = await createSphere(GLOBE_RADIUS, require("../../../../assets/images/globe-textures-night.jpeg"), "earth", false)
-    const clouds = await createSphere(GLOBE_RADIUS + 10, require("../../../../assets/images/clouds.png"), "clouds", true)
+    const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true)
+    const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "earth", false)
 
     if (marker) {
       const point = await createMarker()

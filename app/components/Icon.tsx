@@ -136,6 +136,7 @@ export const iconRegistry = {
   shield: require("../../assets/icons/shield.png"),
   list: require("../../assets/icons/list.png"),
   mapPinOutlined: require("../../assets/icons/map-pin-outlined.png"),
+  fiMapPin: require("../../assets/icons/fi_map-pin.png"),
   bigArrow: require("../../assets/icons/big-arrow.png"),
 }
 
