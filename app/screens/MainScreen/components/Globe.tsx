@@ -1,7 +1,9 @@
 import React from "react"
-import { ViewStyle } from "react-native"
+import { Platform, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
+import * as FileSystem from "expo-file-system"
+import { Asset } from "expo-asset"
 import {
   Sprite, SpriteMaterial, Texture, Camera, AmbientLight, 
   Line, LineBasicMaterial, Mesh, MeshBasicMaterial, 
@@ -17,6 +19,23 @@ import ControlsView from "./ControlsView"
 const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/globe-textures-night.jpg")
 
+async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
+  if (Platform.OS === 'ios') return assetModule
+
+  const localUri = `${FileSystem.cacheDirectory}asset_${localFilename}`
+  const fileInfo = await FileSystem.getInfoAsync(localUri, { size: false })
+  if (!fileInfo.exists) {
+    const asset = Asset.fromModule(assetModule)
+    await asset.downloadAsync()
+    console.log(`copyAssetToCacheAsync ${asset.localUri} -> ${localUri}`)
+    await FileSystem.copyAsync({
+      from: asset.localUri,
+      to: localUri,
+    })
+  }
+  return localUri
+}
+
 export interface GlobeProps {
   marker?: number[]
   zoom?: number
@@ -27,9 +46,10 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
 
   const createMarker = async () => {
+    const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string,'fiMapPin.png')
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
-      asset: iconRegistry.fiMapPin,
+      asset: uri,
     })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
@@ -47,12 +67,13 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
     return mesh
   }
 
-  const createSphere = async (radius: number, texture, name, transparent) => {
+  const createSphere = async (radius: number, texture, name: string, transparent) => {
     const sphere = new Mesh()
     sphere.geometry = new SphereGeometry(radius, GLOBE_SEGMENTS, GLOBE_SEGMENTS)
+    const uri = await copyAssetToCacheAsync(texture as string,`${name}.png`)
 
     const tx = await loadTextureAsync({
-      asset: texture,
+      asset: uri,
     })
 
     if (tx) {
