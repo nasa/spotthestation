@@ -2,57 +2,67 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { magnetometer, SensorTypes, setUpdateIntervalForType } from 'react-native-sensors'
+import CompassHeading from 'react-native-compass-heading'
 import { Icon } from '../../../components'
 import { colors } from '../../../theme'
 const compassLine = require('../../../../assets/icons/compass-line.png')
 
-setUpdateIntervalForType(SensorTypes.magnetometer, 100)
-
-const RAD_TO_DEG = 180 / Math.PI
-
-const getAzimuth = (x: number, y: number): number => {
-  const angle = Math.atan2(y, x) * RAD_TO_DEG
-  return angle - 90 >= 0 ? angle - 90 : 360 + (angle - 90)
-}
-
 const LINE_LENGTH = 260
 const LETTER_OFFSET = 10
 
+const normalizeHeading = (heading: number) => {
+  if (heading < 0) return 360 + heading
+  if (heading > 360) return heading - 360
+  return heading
+}
+
+const isInHeadingRange = (left, right, heading) => {
+  if (right < left) return heading > left || heading < right
+  return heading >= left && heading <= right
+}
+
+const headingOffset = (h1, h2) => {
+  if (h2 < h1) return h2 - (h1 - 360)
+  return h2 - h1
+}
+
 export const Compass = ({ issPosition, isFullScreen }) => {
   const topInset = useSafeAreaInsets().top
-  const [orientation, setOrientation] = useState(0)
+  const [heading, setHeading] = useState(0)
 
-  const left = orientation - 45
-  const right = orientation + 45
+  const left = normalizeHeading(heading - 45)
+  const right = normalizeHeading(heading + 45)
 
   const letterPositions = [
     { letter: 'N', offset: 0 },
     { letter: 'E', offset: 90 },
     { letter: 'S', offset: 180 },
     { letter: 'W', offset: 270 },
-    { letter: 'N', offset: 360 },
-  ].filter(letter => letter.offset >= left && letter.offset <= right)
+  ].filter(letter => isInHeadingRange(left, right, letter.offset))
 
   useEffect(() => {
-    const subscription = magnetometer.subscribe(({ x, y }) => {
-      setOrientation(getAzimuth(x, y))
+    CompassHeading.start(1, (result) => {
+      setHeading(Number(result.heading))
+    }).catch((err) => {
+      console.log(err)
     })
 
     return () => {
-      subscription.unsubscribe()
+      CompassHeading.stop().catch((err) => {
+        console.log(err)
+      })
     }
   }, [])
 
-  const issVisible = issPosition >= left && issPosition <= right
+  const issVisible = isInHeadingRange(left, right, issPosition)
 
   return (
     <View style={[$container, { marginTop: isFullScreen ? topInset + 24 : 0 }]}>
       <Image source={compassLine} style={$line} />
-      {issVisible && <Icon icon="iss" size={24} containerStyle={[$issIcon, { marginLeft: ((issPosition - left) / 90) * LINE_LENGTH }]} />}
+      {issVisible && <Icon icon="iss" size={24} containerStyle={[$issIcon, { marginLeft: (headingOffset(left, issPosition) / 90) * LINE_LENGTH }]} />}
       <View style={$lettersContainer}>
         {letterPositions.map(({ letter, offset }) => {
-          const letterPosition = ((offset - left) / 90) * LINE_LENGTH
+          const letterPosition = (headingOffset(left, offset) / 90) * LINE_LENGTH
           return (
             <View key={letter} style={[$letterContainer, { marginLeft: letterPosition }]}>
               <Text
