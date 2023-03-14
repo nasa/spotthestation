@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { ViewStyle } from "react-native"
 // import MapboxGL from "@rnmapbox/maps"
 // import GeoJSONTerminator from "@webgeodatavore/geojson.terminator"
 // import Config from "../../../config"
-import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle } from "react-native-maps"
+import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle, Polyline, Marker } from "react-native-maps"
+import { Icon } from "../../../components"
+import { colors } from "../../../theme"
 import { NightOverlay } from "../components/NightOverlay"
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -15,10 +18,12 @@ import { NightOverlay } from "../components/NightOverlay"
 interface FlatMapProps {
   style?: ViewStyle,
   withNightOverlay?: boolean,
-  zoom?: number
+  zoom?: number,
+  issPathCoords?: LatLng[]
+  issMarkerPosition?: LatLng
 }
 
-export function FlatMap({ style, withNightOverlay = true, zoom = 3 }: FlatMapProps) {
+export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoords = [], issMarkerPosition }: FlatMapProps) {
   const [nightOverlayCenter, setNightOverlayCenter] = useState<LatLng>({ latitude: 0, longitude: 0 })
   const [nightOverlayRadius, setNightOverlayRadius] = useState(0)
   const mapRef = useRef<MapView | null>(null)
@@ -93,6 +98,14 @@ export function FlatMap({ style, withNightOverlay = true, zoom = 3 }: FlatMapPro
             strokeWidth={1}
           />
         )}
+        {Boolean(issPathCoords.length) && <Polyline
+          coordinates={issPathCoords}
+          strokeColor={colors.palette.green}
+          strokeWidth={3}
+        />}
+        {Boolean(issMarkerPosition) && <Marker coordinate={issMarkerPosition}>
+          <Icon icon="iss" size={36} />
+        </Marker>}
       </MapView>
     </>
   )

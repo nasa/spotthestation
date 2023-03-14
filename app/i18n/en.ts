@@ -225,6 +225,10 @@ const en = {
       upcomingTip: 'Turn off to stop receiving event notifications.',
       notificationTypes: 'NOTIFICATION TYPES',
       inAppLabel: 'In App',
+      notifyMeBefore: 'NOTIFY ME BEFORE',
+      turnOffNotifications: 'TURN OFF NOTIFICATIONS',
+      from: 'From',
+      until: 'Until',
     },
     locationSettingsData: {
       backButton: 'Settings'
