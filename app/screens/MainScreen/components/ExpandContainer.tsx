@@ -10,9 +10,10 @@ export interface ExpandContainerProps {
   title: TxKeyPath
   expandble?: boolean
   children?: ReactNode
+  actionTitle?: string
 }
 
-export function ExpandContainer({ defaultValue = true, title, expandble = true, children, itemsCount }: ExpandContainerProps) {
+export function ExpandContainer({ defaultValue = true, title, expandble = true, children, itemsCount, actionTitle }: ExpandContainerProps) {
   const [expanded, setExpanded] = useState(defaultValue)
   return (
     <View style={$container}>
@@ -29,6 +30,14 @@ export function ExpandContainer({ defaultValue = true, title, expandble = true, 
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />} 
         </View>
         {expandble && <Icon icon="chevronDown" size={18} onPress={() => setExpanded(!expanded)} style={expanded && $up} />}
+        {actionTitle && <Text 
+            accessible
+            accessibilityLabel="action"
+            accessibilityHint="action title"
+            accessibilityRole="text"
+            text={actionTitle} 
+            style={$title}
+          />}
       </View>
       {expanded && children}
     </View>

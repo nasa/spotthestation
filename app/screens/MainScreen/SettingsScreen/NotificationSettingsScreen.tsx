@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import DateTimePicker from '@react-native-community/datetimepicker'
+import DateTimePickerModal from "react-native-modal-datetime-picker"
 import * as storage from "../../../utils/storage"
 import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
@@ -18,6 +18,7 @@ import { formatDate } from "../../../utils/formatDate"
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
+  const bottomInset = useSafeAreaInsets().bottom
   const [from, setFrom] = useState(false)
   const [until, setUntil] = useState(false)
   const [settings, setSettings] = useState({
@@ -62,7 +63,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   return (
     <Screen
       preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride]} 
+      contentContainerStyle={[$container, $headerStyleOverride, { paddingBottom: bottomInset + 24 }]} 
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
@@ -225,24 +226,26 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             </View>
           </View>
         </ExpandContainer>
-        {from && <DateTimePicker
+        <DateTimePickerModal
+          isVisible={from}
           mode="time"
-          value={settings?.muteFrom}
-          is24Hour={false}
-          onChange={(e, date) => {
+          date={settings?.muteFrom}
+          onConfirm={(date) => {
             setFrom(false)
             handleChange(date, 'muteFrom')
           }}
-        />}
-        {until && <DateTimePicker 
+          onCancel={() => setFrom(false)}
+        />
+        <DateTimePickerModal
+          isVisible={until}
           mode="time"
-          value={settings?.muteUntil}
-          is24Hour={false}
-          onChange={(e, date) => {
+          date={settings?.muteUntil}
+          onConfirm={(date) => {
             setUntil(false)
             handleChange(date, 'muteUntil')
           }}
-        />}
+          onCancel={() => setUntil(false)}
+        />
       </ScrollView>
     </Screen>
   )

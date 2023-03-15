@@ -231,7 +231,11 @@ const en = {
       until: 'Until',
     },
     locationSettingsData: {
-      backButton: 'Settings'
+      backButton: 'Settings',
+      generalTitle: 'Location Settings',
+      addNewLocation: {
+        generalTitle: 'Add New Location'
+      }
     }
   },
   resources: {

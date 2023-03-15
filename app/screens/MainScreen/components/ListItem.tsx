@@ -1,17 +1,18 @@
 import React from "react"
 import { ViewStyle, View, TextStyle, Pressable, PressableProps } from "react-native"
-import { Text, Icon, IconTypes } from "../../../components"
+import { Text, Icon, IconTypes, Toggle } from "../../../components"
 import { typography, colors } from "../../../theme"
 
 export interface ListItemProps {
   selected?: boolean
+  withSwitch?: boolean
   title: string
   subtitle: string
   icon: IconTypes
   onPress?: PressableProps["onPress"]
 }
 
-export function ListItem({ title, subtitle, selected = false, icon, onPress }: ListItemProps) {
+export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, onPress }: ListItemProps) {
   return (
     <Pressable 
       accessible
@@ -33,7 +34,14 @@ export function ListItem({ title, subtitle, selected = false, icon, onPress }: L
           <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
         </View>
-        <Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />
+          {withSwitch ? (<Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle location alerts"
+              variant="switch" 
+              value={selected}
+            />) : (<Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />)
+          }
       </View>
     </Pressable>
   )

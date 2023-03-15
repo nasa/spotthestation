@@ -140,6 +140,8 @@ export const iconRegistry = {
   bigArrow: require("../../assets/icons/big-arrow.png"),
   iss: require("../../assets/icons/iss.png"),
   bellRing: require("../../assets/icons/bell-ringing.png"),
+  plusCircle: require("../../assets/icons/plus-circle.png"),
+  save: require("../../assets/icons/save.png"),
 }
 
 const $imageStyle: ImageStyle = {
