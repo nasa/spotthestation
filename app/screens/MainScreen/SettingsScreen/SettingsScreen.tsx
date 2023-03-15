@@ -35,6 +35,8 @@ export const SettingsScreen = observer(function SettingsScreen() {
         />
       </View>
       <View style={$itemsConteiner}>
+        <SettingsItem icon="mapPinOutlined" title="settings.locationSettings" onPress={() => handleNavigate("LocationSettings")} />
+        <SettingsItem icon="bellRing" title="settings.notificationSettings" onPress={() => handleNavigate("NotificationSettings")} />
         <SettingsItem icon="shield" title="settings.termsAndConditions" onPress={() => handleNavigate("TermsAndConditions")} />
         <SettingsItem icon="mail" title="settings.contactUs" onPress={() => handleNavigate("ContactUs")} />
       </View>

@@ -13,14 +13,16 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
+import * as storage from "../utils/storage"
 import Config from "../config"
 import { TabNavigator, TabParamList } from "./TabNavigator"
 import { OnboardingNavigator, OnboardingParamList } from "./OnboardingNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { SettingsNavigator, SettingsParamList } from "./SettingsNavigation"
 import { ResourcesNavigator, ResourcesParamList } from "./ResourcesNavigator"
+import Snackbar from "react-native-snackbar"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -57,10 +59,27 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
+  const [isSettingsCompleted, setIsSettingsCompleted] = useState(false)
+
+  useEffect(() => {
+    storage.load('isSettingsCompleted')
+      .then((res) => setIsSettingsCompleted(!!res))
+      .catch((err) => Snackbar.show({
+        text: err as string,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Dismiss',
+          textColor: 'red',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      }))
+  }, [])
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="Onboarding"
+      initialRouteName={isSettingsCompleted ? "Main" : "Onboarding"}
     >
       <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
       <Stack.Screen name="Main" component={TabNavigator} />

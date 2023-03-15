@@ -1,9 +1,14 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import RootStoreActions from "./actions"
+import { Sighting } from "./Sightings"
 
 /**
  * A RootStore model.
  */
-export const RootStoreModel = types.model("RootStore").props({})
+export const RootStoreModel = types.model("RootStore", {
+  sightings: types.optional(types.array(Sighting), []),
+}).props({})
+  .actions(RootStoreActions)
 
 /**
  * The RootStore instance.

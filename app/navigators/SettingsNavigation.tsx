@@ -3,10 +3,14 @@ import { StackScreenProps } from "@react-navigation/stack"
 import React from "react"
 import { ContactUsScreen } from "../screens/MainScreen/SettingsScreen/ContactUsScreen"
 import { TermsAndConditionsScreen } from "../screens/MainScreen/SettingsScreen/TermsAndConditionsScreen"
+import { NotificationSettingsScreen } from "../screens/MainScreen/SettingsScreen/NotificationSettingsScreen"
+import { LocationSettingsScreen } from "../screens/MainScreen/SettingsScreen/LocationSettingsScreen"
 
 export type SettingsParamList = {
   TermsAndConditions: undefined
   ContactUs: undefined
+  LocationSettings: undefined
+  NotificationSettings: undefined
 }
 
 export type SettingsStackScreenProps<T extends keyof SettingsParamList> = StackScreenProps<
@@ -24,6 +28,8 @@ export function SettingsNavigator() {
     >
       <Stack.Screen name="TermsAndConditions" component={TermsAndConditionsScreen} />
       <Stack.Screen name="ContactUs" component={ContactUsScreen} />
+      <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} />
+      <Stack.Screen name="LocationSettings" component={LocationSettingsScreen} />
     </Stack.Navigator>
   )
 }

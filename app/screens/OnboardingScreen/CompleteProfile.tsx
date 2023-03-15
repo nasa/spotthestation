@@ -9,6 +9,7 @@ import { IconLinkButton } from "./components/IconLinkButton"
 import { LocationType, SignupLocation } from "./SignupLocation"
 import { SignupNotificationSettings } from "./SignupNotificationSettings"
 import * as storage from "../../utils/storage"
+import Snackbar from "react-native-snackbar"
 
 export function CompleteProfile() {
   const navigation = useNavigation()
@@ -33,17 +34,36 @@ export function CompleteProfile() {
 
   const handleNext = useCallback(() => setStep(step + 1), [step])
 
-  const handleDone = () => navigation.navigate("Main" as never)
+  const handleDone = () => {
+    storage.save('isSettingsCompleted', true)
+      .then(() => navigation.navigate("Main" as never))
+      .catch(err => Snackbar.show({
+        text: err as string,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Dismiss',
+          textColor: 'red',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      }))
+  }
 
   const handleLocationChange = async (location: LocationType) => {
     setLocation(location)
     await storage.save('currentLocation', location)
   }
 
+  const handleNotificationsChange = async (notifications: boolean) => {
+    setNotifications(notifications)
+    await storage.save('notifications', notifications)
+  }
+
   const renderBody = useCallback(() => {
     switch(step) {
       case 2: return <SignupLocation value={location} onValueChange={handleLocationChange} onAction={handleDone} />
-      default: return <SignupNotificationSettings value={notifications} onValueChange={setNotifications} onAction={handleNext} />
+      default: return <SignupNotificationSettings value={notifications} onValueChange={handleNotificationsChange} onAction={handleNext} />
     }
   }, [step, notifications, location])
 

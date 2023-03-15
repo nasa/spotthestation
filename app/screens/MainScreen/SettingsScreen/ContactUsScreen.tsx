@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
@@ -16,7 +17,6 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
   const topInset = useSafeAreaInsets().top
   const [title, setTitle] = useState('')
   const [comments, setComments] = useState('')
-  const [ideas, setIdeas] = useState('')
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + 24,
@@ -24,11 +24,11 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
 
   const handleSend = useCallback(() => {
     email(Config.CONTACT_EMAIL, {
-      subject: title,
-      body: `Comments:\n\n\t${comments}\n\nImprovement Ideas:\n\n\t${ideas}`,
+      subject: `Spot the Station Mobile App: [${title}]`,
+      body: `Comments:\n\n\t${comments}`,
       checkCanOpen: false
     }).catch(console.error)
-  }, [title, comments, ideas])
+  }, [title, comments])
 
   return (
     <Screen
@@ -44,7 +44,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
         accessibilityRole="scrollbar"
         style={$scrollContainer} 
         scrollEnabled 
-        contentContainerStyle={$scrollSontentContainerStyle}
+        contentContainerStyle={$scrollContentContainerStyle}
       >
         <Pressable 
           accessible
@@ -72,9 +72,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           selectedTextStyle={[$dropdownText, $dropdownSelected]}
           placeholder={translate("settings.contactUsData.titlePlaceholder")}
           data={[
-            { label: "App Crashing", value: "App Crashing" },
-            { label: "Feature Suggestions", value: "Feature Suggestions" },
-            { label: "General Questions", value: "General Questions" }
+            { label: "Report an Issue", value: "Report an Issue" },
+            { label: "Improvement Ideas", value: "Improvement Ideas" },
+            { label: "General Questions", value: "General Questions" },
+            { label: "Comments", value: "Comments" }
           ]}
           itemContainerStyle={{
             backgroundColor: colors.palette.neutral350,
@@ -104,26 +105,12 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           accessibilityRole="text"
           value={comments}
           multiline
-          numberOfLines={12}
+          numberOfLines={20}
           textAlignVertical="top"
           placeholderTx="settings.contactUsData.commentsPlaceholder"
           inputWrapperStyle={[$inputMargin, $multiline]}
           style={[$multiline, $inputWithoutPadding]}
           onChangeText={setComments}
-        />
-        <TextField
-          accessible
-          accessibilityLabel="ideas input"
-          accessibilityHint="ideas input"
-          accessibilityRole="text"
-          value={ideas}
-          multiline
-          numberOfLines={12}
-          textAlignVertical="top"
-          placeholderTx="settings.contactUsData.ideasPlaceholder"
-          inputWrapperStyle={[$inputMargin, $multiline]}
-          style={[$multiline, $inputWithoutPadding]}
-          onChangeText={setIdeas}
         />
         <Button
           accessible
@@ -131,10 +118,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           accessibilityHint="Navigates to the mail app"
           tx="settings.contactUsData.sendButton"
           textStyle={$buttonText}
-          style={!title || !comments || !ideas ? [$button, $disabled] : $button}
+          style={!title || !comments ? [$button, $disabled] : $button}
           pressedStyle={$button}
           onPress={handleSend}
-          disabled={!title || !comments || !ideas}
+          disabled={!title || !comments}
         />
       </ScrollView>
     </Screen>
@@ -153,7 +140,7 @@ const $backButton: ViewStyle = {
   paddingBottom: 11
 }
 
-const $scrollSontentContainerStyle: ViewStyle = { 
+const $scrollContentContainerStyle: ViewStyle = { 
   flexGrow: 1,
   paddingBottom: 60
 }
@@ -207,7 +194,7 @@ const $disabled: ViewStyle = {
 const $multiline: TextStyle = {
   height: 'auto',
   textAlignVertical: 'top',
-  paddingTop: 10
+  paddingVertical: 10
 }
 
 const $dropdownContainer: ViewStyle = {
@@ -233,7 +220,8 @@ const $dropdownText: TextStyle = {
   paddingVertical: 0,
   paddingHorizontal: 0,
   marginHorizontal: spacing.small,
-  textAlignVertical: "center"
+  textAlignVertical: "center",
+  color: colors.palette.neutral250
 }
 
 const $dropdownRightAccessory: ViewStyle = {

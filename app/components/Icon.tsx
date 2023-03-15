@@ -139,6 +139,7 @@ export const iconRegistry = {
   fiMapPin: require("../../assets/icons/fi_map-pin.png"),
   bigArrow: require("../../assets/icons/big-arrow.png"),
   iss: require("../../assets/icons/iss.png"),
+  bellRing: require("../../assets/icons/bell-ringing.png"),
 }
 
 const $imageStyle: ImageStyle = {

@@ -197,6 +197,8 @@ const en = {
   },
   settings: {
     header: "Settings",
+    locationSettings: "Location Settings",
+    notificationSettings: "Notification Settings",
     termsAndConditions: "Terms and Conditions",
     contactUs: "Contact Us",
     termsAndConditionsData: {
@@ -212,8 +214,20 @@ const en = {
       title: 'Contact Us',
       titlePlaceholder: 'Choose title',
       commentsPlaceholder: 'Input comments',
-      ideasPlaceholder: 'Input ideas',
       sendButton: 'Send',
+    },
+    notificationSettingsData: {
+      backButton: 'Settings',
+      notificationTitle: 'Notification Settings',
+      privacyTitle: 'Privacy Settings',
+      iisVisibleLabel: 'Notify me when I can see the ISS',
+      upcomingLabel: 'Upcoming Events',
+      upcomingTip: 'Turn off to stop receiving event notifications.',
+      notificationTypes: 'NOTIFICATION TYPES',
+      inAppLabel: 'In App',
+    },
+    locationSettingsData: {
+      backButton: 'Settings'
     }
   },
   resources: {

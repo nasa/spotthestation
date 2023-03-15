@@ -4,9 +4,8 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
-import Snackbar from 'react-native-snackbar'
 import { Screen } from "../../../components"
-import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
+import { ISSSighting } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDate } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -21,13 +20,15 @@ import { CoachMark } from "./CoachMark"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
+import { useStores } from "../../../models"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
+  const { sightings, getISSSightings } = useStores()
+  
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
-  const [sightings, setSightings] = useState<ISSSighting[]>([])
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: '2023-03-08T11:47:42.000000', visible: 0, maxHeight: 0, appears: '', disappears: '' })
   const [countdown, setCountdown] = useState("00:00:00")
   const [address, setAddress] = useState("")
@@ -65,25 +66,7 @@ export const HomeScreen = observer(function HomeScreen() {
     
     const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
     const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    api.getISSSightings({ zone: timeZone, lat, lon: lng })
-      .then(({ ok, data }: ISSSightingResponse) => {
-        if (ok) {
-          setSightings(data as ISSSighting[])
-        } else {
-          Snackbar.show({
-            text: data as string,
-            duration: Snackbar.LENGTH_LONG,
-            action: {
-              text: 'Dismiss',
-              textColor: 'red',
-              onPress: () => {
-                Snackbar.dismiss()
-              },
-            },
-          })
-        }
-      })
-      .catch(e => console.log(e))
+    await getISSSightings({ zone: timeZone, lat, lon: lng })
   }
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
@@ -12,13 +14,12 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 // import { Details } from "./Details"
 import { ARView } from "../components/ARView"
 import { Share } from "./Share"
-import { api, ISSSighting, ISSSightingResponse } from "../../../services/api"
 import { intervalToDuration, formatDuration } from "date-fns"
-import Snackbar from "react-native-snackbar"
 import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
 import { Camera } from "react-native-vision-camera"
+import { useStores } from "../../../models"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -29,10 +30,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
+  const { sightings, getISSSightings } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [isShare, setIsShare] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
-  const [sightings, setSightings] = useState<ISSSighting[]>([])
   const [countdown, setCountdown] = useState("00:00:00")
   const [isCameraAuthorized, setIsCameraAuthorized] = useState(false)
 
@@ -61,25 +62,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     
     const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
     const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    api.getISSSightings({ zone: timeZone, lat, lon: lng })
-      .then(({ ok, data }: ISSSightingResponse) => {
-        if (ok) {
-          setSightings(data as ISSSighting[])
-        } else {
-          Snackbar.show({
-            text: data as string,
-            duration: Snackbar.LENGTH_LONG,
-            action: {
-              text: 'Dismiss',
-              textColor: 'red',
-              onPress: () => {
-                Snackbar.dismiss()
-              },
-            },
-          })
-        }
-      })
-      .catch(e => console.log(e))
+    await getISSSightings({ zone: timeZone, lat, lon: lng })
   }
 
   useEffect(() => {
