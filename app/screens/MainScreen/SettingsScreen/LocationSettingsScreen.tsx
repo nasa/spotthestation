@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable } from "react-native"
@@ -14,6 +14,7 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
+  const route = useRoute()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const [current, setCurrent] = useState<LocationType | null>(null)
@@ -23,19 +24,28 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     top: topInset + 24,
   }
 
-  const getCurrentLocation = async () => {
+  const getLocations = async () => {
     setCurrent(await storage.load('currentLocation') as LocationType)
-  }
-
-  const getSavedLocation = async () => {
     const res = await storage.load('savedLocations')
     if (res) setSaved(res as LocationType[] || [])
   }
 
   useEffect(() => {
-    getCurrentLocation().catch(e => console.log(e))
-    getSavedLocation().catch(e => console.log(e))
-  })
+    getLocations().catch(e => console.log(e))
+  }, [route])
+
+  const handleToggle = async (location: LocationType, type: string) => {
+    const res: LocationType[] = (await storage.load('savedLocations')) || []
+    const cur: LocationType = (await storage.load('currentLocation'))
+    
+    if (type === 'saved') {
+      await storage.save('savedLocations', res.map(item => item.title === location.title ? { ...item, alert: !item.alert } : item))
+    } else {
+      await storage.save('currentLocation', { ...cur, alert: !cur.alert })
+    }
+    
+    getLocations().catch(e => console.log(e))
+  }
 
   return (
     <Screen
@@ -70,6 +80,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             icon="pin"
             title={current.title} 
             subtitle={current.subtitle}
+            selected={current.alert}
+            onToggle={() => handleToggle(current, 'current')}
             withSwitch
           />
         </ExpandContainer>}
@@ -79,7 +91,10 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             icon="pin"
             title={location.title} 
             subtitle={location.subtitle}
+            selected={location.alert}
+            onToggle={() => handleToggle(location, 'saved')}
             withSwitch
+            onPress={() => navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)}
           />)}
         </ExpandContainer>
         <IconLinkButton 

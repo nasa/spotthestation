@@ -21,9 +21,11 @@ interface FlatMapProps {
   zoom?: number,
   issPathCoords?: LatLng[]
   issMarkerPosition?: LatLng
+  onPress?: (params: any) => void
+  markers?: LatLng[]
 }
 
-export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoords = [], issMarkerPosition }: FlatMapProps) {
+export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoords = [], issMarkerPosition, onPress, markers = [] }: FlatMapProps) {
   const [nightOverlayCenter, setNightOverlayCenter] = useState<LatLng>({ latitude: 0, longitude: 0 })
   const [nightOverlayRadius, setNightOverlayRadius] = useState(0)
   const mapRef = useRef<MapView | null>(null)
@@ -88,6 +90,7 @@ export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoord
           latitudeDelta: 120,
           longitudeDelta: 120,
         }}
+        onPress={onPress}
       >
         {withNightOverlay && (
           <Circle
@@ -106,6 +109,7 @@ export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoord
         {Boolean(issMarkerPosition) && <Marker coordinate={issMarkerPosition}>
           <Icon icon="iss" size={36} />
         </Marker>}
+        {Boolean(markers.length) && markers.map(marker => <Marker key={marker.longitude} coordinate={marker} />)}
       </MapView>
     </>
   )

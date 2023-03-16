@@ -10,6 +10,7 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import Snackbar from "react-native-snackbar"
+import * as storage from "../../../utils/storage"
 
 export interface SelectLocationProps {
   /**
@@ -32,6 +33,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   const [current, setCurrent] = useState<LocationType | null>(null)
   const [nearby, setNearby] = useState<LocationType[]>([])
   const [searchResult, setSearchResult] = useState<LocationType[]>([])
+  const [saved, setSaved] = useState<LocationType[]>([])
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -39,6 +41,8 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   const getLocations = async () => {
     const location = await getCurrentLocation()
     const res = await getNearbyPlaces(location.location, 100)
+    const savedLocations = await storage.load('savedLocations')
+    if (savedLocations) setSaved(savedLocations as LocationType[] || [])
     setCurrent(location)
     setNearby(res)
   }
@@ -148,16 +152,14 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
               />
             </ExpandContainer>}
             <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
-              <ListItem 
-                icon="pin" 
-                title="George Bush St, Times Square" 
-                subtitle="New York City, NY, 83957"
-              />
-              <ListItem 
-                icon="pin" 
-                title="Navy Garden" 
-                subtitle="San Diego, CA, 54813"
-              />
+              {saved.map(location => <ListItem 
+                key={location.subtitle}
+                icon="pin"
+                title={location.title} 
+                subtitle={location.subtitle}
+                selected={isSelected(location)} 
+                onPress={() => onLocationPress(location)}
+              />)}
             </ExpandContainer>
             {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
                 {nearby.map((place: LocationType) => 

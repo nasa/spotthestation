@@ -9,10 +9,11 @@ export interface ListItemProps {
   title: string
   subtitle: string
   icon: IconTypes
+  onToggle?: () => void
   onPress?: PressableProps["onPress"]
 }
 
-export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, onPress }: ListItemProps) {
+export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, onPress, onToggle }: ListItemProps) {
   return (
     <Pressable 
       accessible
@@ -40,6 +41,7 @@ export function ListItem({ title, subtitle, selected = false, withSwitch = false
               accessibilityHint="toggle location alerts"
               variant="switch" 
               value={selected}
+              onValueChange={onToggle}
             />) : (<Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />)
           }
       </View>

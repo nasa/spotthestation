@@ -234,7 +234,16 @@ const en = {
       backButton: 'Settings',
       generalTitle: 'Location Settings',
       addNewLocation: {
-        generalTitle: 'Add New Location'
+        generalTitle: 'Add New Location',
+        confirnModalButton: 'Confirm',
+        saveButton: 'Save Location',
+        searchInputPlaceholder: 'Enter city, ZIP or address',
+        nameInputPlaceholder: 'Save Location Name',
+      },
+      removeLocation: {
+        question: 'Are you sure to delete this location?',
+        cancelButton: 'Cancel',
+        removeButton: 'Delete',
       }
     }
   },

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-native/no-inline-styles */
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useRef, useState } from "react"
-import { ViewStyle, TextStyle, ScrollView, View } from "react-native"
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import { ViewStyle, TextStyle, View, Pressable } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
-import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
+import { Icon, Screen, Text, Button } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
@@ -15,39 +15,46 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 import Config from "react-native-config"
 import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
-import { RemoveLocationModal } from "./RemoveLocationModal"
 import Snackbar from "react-native-snackbar"
+import { FlatMap } from "../components/FlatMap"
+import { LatLng } from "react-native-maps"
+import { api } from "../../../services/api"
 
-export interface AddNewLocationScreenParams {
-  defaultLocation?: LocationType
-}
-
-export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
+export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
-  const { params: { defaultLocation } } = useRoute()
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
-  const [isRemove, setIsRemove] = useState(false)
+  const [isSave, setIsSave] = useState(false)
   const [textValue, setTextValue] = useState("")
-  const [titleValue, setTitleValue] = useState(defaultLocation?.title || "")
-  const [location, setLocation] = useState<LocationType>({...defaultLocation})
+  const [location, setLocation] = useState<LocationType>(null)
+  const [marker, setMarker] = useState<LatLng>(null)
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + 18,
   }
 
   const handleClear = () => {
     addressRef.current?.clear()
     setTextValue("")
+    setLocation(null)
   }
 
+  useEffect(() => {
+    if (marker) {
+      api.getLocationByCoords(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${marker.latitude},${marker.longitude}&key=${Config.GOOGLE_API_TOKEN}`)
+      .then((res) => {
+        setLocation({ location: { lat: marker.latitude, lng: marker.longitude }, title: 'Location', subtitle: res.places.results[0].formatted_address })
+        setIsSave(true)
+      })
+      .catch(e => console.log(e))
+    }
+  }, [marker])
+
   const handleSave = useCallback(async () => {
-    location.title = titleValue
-    let res: LocationType[] = (await storage.load('savedLocations')) || []
-    
-    if (defaultLocation) res = res.filter(item => item.title !== defaultLocation.title)
+    const res: LocationType[] = (await storage.load('savedLocations')) || []
+  
     res.push(location)
     await storage.save('savedLocations', res)
     Snackbar.show({
@@ -61,36 +68,21 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         },
       },
     })
-  }, [titleValue, location])
-
-  const handleRemove = useCallback(async () => {
-    const res: LocationType[] = await storage.load('savedLocations')
-    
-    await storage.save('savedLocations', res.filter(item => item.title !== defaultLocation.title))
     navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
-  }, [defaultLocation])
+  }, [location])
 
   return (
     <Screen
       preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride]} 
+      contentContainerStyle={$container} 
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <ScrollView
-        accessible
-        accessibilityLabel="Location settings scrollable us area"
-        accessibilityHint="Location settings scrollable us area"
-        accessibilityRole="scrollbar"
-        style={$scrollContainer} 
-        scrollEnabled 
-        contentContainerStyle={$scrollContentContainerStyle}
-      >
+      <FlatMap style={{ flex: 1 }} withNightOverlay={false} onPress={({ nativeEvent }) => setMarker(nativeEvent.coordinate)} markers={marker ? [marker] : []} />
+      <View style={[$topContainer, $headerStyleOverride]}>
         <View style={$topButtonsContainer}>
           <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)} />
-          {!defaultLocation && <IconLinkButton icon="map" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('AddNewLocationMap' as never)} />}
         </View>
-        <Text tx="settings.locationSettingsData.addNewLocation.generalTitle" style={$title} />
         <GooglePlacesAutocomplete
           ref={addressRef}
           placeholder={translate("settings.locationSettingsData.addNewLocation.searchInputPlaceholder")}
@@ -143,62 +135,41 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             />
           )}
         />
-        <TextField
-          accessible
-          accessibilityLabel="location title input"
-          accessibilityHint="location title input"
-          accessibilityRole="text"
-          value={titleValue}
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholderTx="settings.locationSettingsData.addNewLocation.nameInputPlaceholder"
-          onChangeText={setTitleValue}
-          inputWrapperStyle={$locations}
-          renderLeftAccessory={({ style }) => (
-            <Accessory 
-              icon="save"
-              color={colors.palette.neutral450}
-              style={style}
-            />
-          )}
-        />
-        <View style={$buttonsContainer}>
-          {defaultLocation && <IconLinkButton 
-            icon="trash" 
-            buttonStyle={$removeButton}
-            viewStyle={$removeButton} 
-            iconColor={colors.palette.neutral100} 
-            iconSize={28} 
-            onPress={() => setIsRemove(true)}
-          />}
-          <Button
-            accessible
-            accessibilityLabel="save button"
-            accessibilityHint="save location"
-            tx="settings.locationSettingsData.addNewLocation.saveButton"
-            style={[$save, defaultLocation && { width: '80%'}]}
-            textStyle={$saveText}
-            pressedStyle={$save}
-            onPress={handleSave}
-          />
+      </View>
+      
+      <Modal
+        isVisible={isSave}
+        onBackdropPress={() => setIsSave(!isSave)}
+        onSwipeComplete={() => setIsSave(!isSave)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <View style={$modalBodyContainer}>
+          <Pressable
+            style={$close}
+            onPress={() => setIsSave(!isSave)}
+          >
+            <Icon icon="x" color={colors.palette.neutral450} />
+          </Pressable>
+          <View style={$contentContainer}>
+            <Text text={location?.subtitle} style={$title} />
+            <Button
+              tx="settings.locationSettingsData.addNewLocation.confirnModalButton"
+              pressedStyle={$modalButton}
+              textStyle={$buttonText}
+              style={$modalButton}
+              onPressIn={handleSave}
+            /> 
+          </View>
         </View>
-        <Modal
-          isVisible={isRemove}
-          onBackdropPress={() => setIsRemove(!isRemove)}
-          onSwipeComplete={() => setIsRemove(!isRemove)}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={$modal}
-        >
-          <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={handleRemove} location={defaultLocation} />
-        </Modal>
-      </ScrollView>
+      </Modal>
     </Screen>
   )
 })
@@ -216,41 +187,18 @@ const $topButtonsContainer: ViewStyle = {
   marginBottom: 36
 }
 
-const $buttonsContainer: ViewStyle = {
-  flexDirection: 'row',
-  alignItems: "center",
-  justifyContent: "space-between",
-}
-
-const $scrollContentContainerStyle: ViewStyle = { 
-  flexGrow: 1,
-  paddingBottom: 60
-}
-
-const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 18,
+const $topContainer: ViewStyle = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
+  paddingHorizontal: 36
 }
 
 const $button: ViewStyle = {
   backgroundColor: colors.palette.neutral550,
   width: 42,
   height: 42
-}
-
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
-  color: colors.palette.neutral450,
-  textAlign: 'left',
-  paddingBottom: 24
-}
-
-const $title: TextStyle = {
-  ...$text,
-  fontSize: 36,
-  lineHeight: 44,
-  color: colors.palette.neutral250,
 }
 
 const $locations: ViewStyle = {
@@ -266,7 +214,7 @@ const $locations: ViewStyle = {
 const $active: ViewStyle = {
   borderWidth: 1.5,
   borderColor: colors.palette.buttonBlue,
-  backgroundColor: colors.palette.overlayBlue,
+  backgroundColor: colors.palette.neutral350,
 }
 
 const $locationsListContainer: ViewStyle = {
@@ -322,22 +270,6 @@ const $dropdownText: TextStyle = {
   backgroundColor: "transparent"
 }
 
-const $save: ViewStyle = {
-  width: "100%",
-  height: 56,
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
-  borderWidth: 0,
-  marginVertical: 24
-}
-
-const $saveText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: 18,
-  fontFamily: typography.primary.medium,
-  lineHeight: 21,
-}
-
 const $modal: ViewStyle = {
   flex: 1,
   justifyContent: 'flex-end',
@@ -345,9 +277,49 @@ const $modal: ViewStyle = {
   margin: 0
 }
 
-const $removeButton: ViewStyle = {
-  width: 56,
+const $buttonText: TextStyle = {
+  color: colors.palette.neutral100,
+  fontSize: 18,
+  fontFamily: typography.primary.medium,
+  lineHeight: 22
+}
+
+const $modalBodyContainer: ViewStyle = {
+  backgroundColor: colors.palette.neutral350,
+  borderTopLeftRadius: 18,
+  borderTopRightRadius: 18,
+}
+
+const $contentContainer: ViewStyle = {
+  width: "100%",
+  paddingHorizontal: 36,
+  paddingBottom: 18,
+  alignItems: 'center',
+  marginTop: 56
+}
+
+const $close: ViewStyle = {
+  position: "absolute",
+  top: 0,
+  right: 0,
+  padding: 18
+}
+
+const $title: TextStyle = {
+  textAlign: "center",
+  color: colors.palette.neutral450,
+  fontSize: 18,
+  fontFamily: typography.primary.normal,
+  lineHeight: 22,
+  paddingBottom: 24
+}
+
+const $modalButton: ViewStyle = {
+  width: '40%',
   height: 56,
-  backgroundColor: colors.palette.nasaRed,
-  alignSelf: 'center'
+  backgroundColor: colors.palette.buttonBlue,
+  borderRadius: 28,
+  borderWidth: 0,
+  marginTop: 24,
+  marginBottom: 24
 }

@@ -96,6 +96,18 @@ export class Api {
 
     return { ok: true, data: response.data }
   }
+
+  async getLocationByCoords(url: string): Promise<any> {
+    const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
+    console.log(response)
+    
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    return { kind: "ok", places: response.data }
+  }
 }
 
 // Singleton instance of the API for convenience

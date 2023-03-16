@@ -11,7 +11,8 @@ import { getCurrentLocation } from "../../utils/geolocation"
 export interface LocationType {
   title: string,
   subtitle: string,
-  location: Point
+  location: Point,
+  alert?: boolean
 }
 
 enum Statuses {

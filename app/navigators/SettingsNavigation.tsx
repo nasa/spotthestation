@@ -5,14 +5,17 @@ import { ContactUsScreen } from "../screens/MainScreen/SettingsScreen/ContactUsS
 import { TermsAndConditionsScreen } from "../screens/MainScreen/SettingsScreen/TermsAndConditionsScreen"
 import { NotificationSettingsScreen } from "../screens/MainScreen/SettingsScreen/NotificationSettingsScreen"
 import { LocationSettingsScreen } from "../screens/MainScreen/SettingsScreen/LocationSettingsScreen"
-import { AddNewLocationScreen } from "../screens/MainScreen/SettingsScreen/AddNewLocationScreen"
+import { AddNewLocationScreen, AddNewLocationScreenParams } from "../screens/MainScreen/SettingsScreen/AddNewLocationScreen"
+import { useRoute } from "@react-navigation/native"
+import { AddNewLocationMapScreen } from "../screens/MainScreen/SettingsScreen/AddNewLocationMapScreen"
 
 export type SettingsParamList = {
   TermsAndConditions: undefined
   ContactUs: undefined
   LocationSettings: undefined
   NotificationSettings: undefined
-  AddNewLocation: undefined
+  AddNewLocation: AddNewLocationScreenParams
+  AddNewLocationMap: undefined
 }
 
 export type SettingsStackScreenProps<T extends keyof SettingsParamList> = StackScreenProps<
@@ -23,6 +26,7 @@ export type SettingsStackScreenProps<T extends keyof SettingsParamList> = StackS
 const Stack = createNativeStackNavigator<SettingsParamList>()
 
 export function SettingsNavigator() {
+  const { params } = useRoute()
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
@@ -32,7 +36,8 @@ export function SettingsNavigator() {
       <Stack.Screen name="ContactUs" component={ContactUsScreen} />
       <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} />
       <Stack.Screen name="LocationSettings" component={LocationSettingsScreen} />
-      <Stack.Screen name="AddNewLocation" component={AddNewLocationScreen} />
+      <Stack.Screen name="AddNewLocation" component={AddNewLocationScreen} initialParams={params} />
+      <Stack.Screen name="AddNewLocationMap" component={AddNewLocationMapScreen} />
     </Stack.Navigator>
   )
 }

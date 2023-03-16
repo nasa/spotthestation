@@ -62,8 +62,7 @@ export const getNearbyPlaces = async ({ lng, lat }: Point, radius: number): Prom
 
 export const getPlaces = async (search: string): Promise<LocationType[]> => {
   const places: LocationType[] = []
-  const res = await api.getPlaces(`
-    https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=${Config.GOOGLE_API_TOKEN}`,
+  const res = await api.getPlaces(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=${Config.GOOGLE_API_TOKEN}`,
     "candidates"
   ) 
 

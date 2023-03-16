@@ -142,6 +142,7 @@ export const iconRegistry = {
   bellRing: require("../../assets/icons/bell-ringing.png"),
   plusCircle: require("../../assets/icons/plus-circle.png"),
   save: require("../../assets/icons/save.png"),
+  removeLocation: require("../../assets/icons/remove-location.png"),
 }
 
 const $imageStyle: ImageStyle = {
