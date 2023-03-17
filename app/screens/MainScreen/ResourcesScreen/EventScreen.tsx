@@ -5,10 +5,12 @@ import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View, Image, ImageStyle } from "react-native"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { Tag } from "../components/Tag"
+import { WebView } from 'react-native-webview'
+
 
 export interface EventScreenRouteProps {
   item: any
@@ -21,25 +23,13 @@ export const EventScreen = observer(function EventScreen() {
   const topInset = useSafeAreaInsets().top
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    paddingTop: topInset,
+    backgroundColor: colors.backgroundDark,
+    flex: 1,
   }
 
-  return (
-    <Screen
-      preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride]} 
-      style={{backgroundColor: colors.palette.neutral900}} 
-      statusBarStyle="light"
-    >
-      <ScrollView 
-        accessible
-        accessibilityLabel="event scrollable us area"
-        accessibilityHint="event scrollable us area"
-        accessibilityRole="scrollbar"
-        style={$scrollContainer}
-      >
-        <View>
-          <Pressable 
+  return <View style={$headerStyleOverride}>
+          <Pressable
             accessible
             accessibilityLabel="Back button"
             accessibilityHint="Navigates to the previous screen"
@@ -50,68 +40,120 @@ export const EventScreen = observer(function EventScreen() {
             <Icon icon="caretLeft" color={colors.palette.neutral250} />
             <Text tx="resources.header" style={$backButtonText} />
           </Pressable>
-          <Text
-            accessible
-            accessibilityLabel="title"
-            accessibilityHint="title"
-            accessibilityRole="text"
-            text={item?.title} 
-            style={$title}
-          />
-          <View
-            accessible
-            accessibilityLabel="tags"
-            accessibilityHint="tags"
-            accessibilityRole="text"
-            style={$tagsContainer}
-          >
-            {item?.tags?.map(tag => <Tag key={tag} title={tag} />)}
-          </View>
-          <Image 
-            accessible
-            accessibilityLabel="image"
-            accessibilityHint="image"
-            accessibilityRole="image"
-            source={{ uri: item?.image }} 
-            style={$imageContainer} 
-            resizeMode="cover"
-          />
-          <Text 
-            accessible
-            accessibilityLabel="Details title"
-            accessibilityHint="Details title"
-            accessibilityRole="text"
-            text={`${item?.type} Details`} 
-            style={$subtitle}
-          />
-          <View style={$detailsContainer}>
-            {item?.details?.map(({ key, value}) => (
-              <View 
-                accessible
-                accessibilityLabel={key}
-                accessibilityHint={key}
-                accessibilityRole="text"
-                key={key} 
-                style={$detailsRow}
-              >
-                <Text text={key} style={$detailKey} />
-                <Text text={value} style={$detailValue} />
-              </View>
-            ))}
-          </View>
-          <View
-            accessible
-            accessibilityLabel="body"
-            accessibilityHint="Event body text"
-            accessibilityRole="text"
-          >
-            <Text text={item?.subtitle} style={$subtitle}/>
-            <Text text={item?.body} style={$text} />
-          </View>
+          <WebView source={{ uri: item }} containerStyle={{ flex: 1 }} />
         </View>
-      </ScrollView>
-    </Screen>
-  )
+  //   <Pressable
+  //     accessible
+  //     accessibilityLabel="Back button"
+  //     accessibilityHint="Navigates to the previous screen"
+  //     accessibilityRole="button"
+  //     onPress={() => navigation.goBack()} 
+  //     style={$backButton}
+  //   >
+  //     <Icon icon="caretLeft" color={colors.palette.neutral250} />
+  //     <Text tx="resources.header" style={$backButtonText} />
+  //   </Pressable>
+  // </WebView>
+  // (
+  //   <Screen
+  //     preset="fixed" 
+  //     contentContainerStyle={[$container, $headerStyleOverride]} 
+  //     style={{backgroundColor: colors.palette.neutral900}} 
+  //     statusBarStyle="light"
+  //   >
+  //     <Pressable 
+  //       accessible
+  //       accessibilityLabel="Back button"
+  //       accessibilityHint="Navigates to the previous screen"
+  //       accessibilityRole="button"
+  //       onPress={() => navigation.goBack()} 
+  //       style={$backButton}
+  //     >
+  //       <Icon icon="caretLeft" color={colors.palette.neutral250} />
+  //       <Text tx="resources.header" style={$backButtonText} />
+  //     </Pressable>
+  //     <Text><WebView source={{ uri: 'https://reactnative.dev/' }} /></Text>
+  //     <ScrollView 
+  //       accessible
+  //       accessibilityLabel="event scrollable us area"
+  //       accessibilityHint="event scrollable us area"
+  //       accessibilityRole="scrollbar"
+  //       style={$scrollContainer}
+  //     >
+  //       <View>
+  //         <Pressable 
+  //           accessible
+  //           accessibilityLabel="Back button"
+  //           accessibilityHint="Navigates to the previous screen"
+  //           accessibilityRole="button"
+  //           onPress={() => navigation.goBack()} 
+  //           style={$backButton}
+  //         >
+  //           <Icon icon="caretLeft" color={colors.palette.neutral250} />
+  //           <Text tx="resources.header" style={$backButtonText} />
+  //         </Pressable>
+  //         <Text
+  //           accessible
+  //           accessibilityLabel="title"
+  //           accessibilityHint="title"
+  //           accessibilityRole="text"
+  //           text={item?.title} 
+  //           style={$title}
+  //         />
+  //         <View
+  //           accessible
+  //           accessibilityLabel="tags"
+  //           accessibilityHint="tags"
+  //           accessibilityRole="text"
+  //           style={$tagsContainer}
+  //         >
+  //           {item?.tags?.map(tag => <Tag key={tag} title={tag} />)}
+  //         </View>
+  //         <Image 
+  //           accessible
+  //           accessibilityLabel="image"
+  //           accessibilityHint="image"
+  //           accessibilityRole="image"
+  //           source={{ uri: item?.image }} 
+  //           style={$imageContainer} 
+  //           resizeMode="cover"
+  //         />
+  //         <Text 
+  //           accessible
+  //           accessibilityLabel="Details title"
+  //           accessibilityHint="Details title"
+  //           accessibilityRole="text"
+  //           text={`${item?.type} Details`} 
+  //           style={$subtitle}
+  //         />
+  //         <View style={$detailsContainer}>
+  //           {item?.details?.map(({ key, value}) => (
+  //             <View 
+  //               accessible
+  //               accessibilityLabel={key}
+  //               accessibilityHint={key}
+  //               accessibilityRole="text"
+  //               key={key} 
+  //               style={$detailsRow}
+  //             >
+  //               <Text text={key} style={$detailKey} />
+  //               <Text text={value} style={$detailValue} />
+  //             </View>
+  //           ))}
+  //         </View>
+  //         <View
+  //           accessible
+  //           accessibilityLabel="body"
+  //           accessibilityHint="Event body text"
+  //           accessibilityRole="text"
+  //         >
+  //           <Text text={item?.subtitle} style={$subtitle}/>
+  //           <Text text={item?.body} style={$text} />
+  //         </View>
+  //       </View>
+  //     </ScrollView>
+  //   </Screen>
+  // )
 })
 
 const $container: ViewStyle = {
@@ -131,6 +173,9 @@ const $detailsContainer: ViewStyle = {
 const $backButton: ViewStyle = {
   flexDirection: "row",
   alignItems: 'center',
+  zIndex: 999,
+  backgroundColor: colors.backgroundDark,
+  width: "100%",
   paddingBottom: 11
 }
 

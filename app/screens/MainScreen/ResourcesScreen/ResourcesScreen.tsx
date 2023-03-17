@@ -4,9 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useState } from "react"
-import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
-import { Accessory, Icon, Screen, Text, TextField } from "../../../components"
+import React, { useCallback, useEffect, useState } from "react"
+import { FlatList, ScrollView, TextStyle, View, ViewStyle } from "react-native"
+import { XMLParser } from 'fast-xml-parser'
+import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
+import { api } from "../../../services/api"
 import { colors, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { ExpandContainer } from "../components/ExpandContainer"
@@ -43,6 +45,17 @@ export const Resources = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isSearch, setIsSearch] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [type, setType] = useState('about')
+  const [news, setNews] = useState([])
+
+  useEffect(() => {
+    api.getFeed().then(res => {
+      const parser = new XMLParser()
+      const jObj = parser.parse(res.places)
+      setNews(jObj.rss.channel.item)
+      
+    }).catch(e => console.log(e))
+  }, [])
 
   const renderSearch = useCallback(() => {
     if (searchQuery) {
@@ -114,21 +127,31 @@ export const Resources = observer(function HomeScreen() {
           style={$scrollContainer}
         >
           <View style={[$scrollContainer, $bodyContainer]}>
-            {items.map(item => (
-              <FeedItem
+            {news.map(item => (<FeedItem
                 key={item.title}
-                onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
-                tags={item.tags} 
+                onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
+                // tags={item.tags} 
                 title={item.title}
-                date={item.date}
-                image={item.image}
-              />
-            ))}
+                date={(new Date(item.pubDate)).toISOString()}
+                image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1]}
+              />))}
           </View>
         </ScrollView>
+        // <FlatList 
+        //   data={news} 
+        //   renderItem={({item}) => <FeedItem
+        //             key={item.title}
+        //             onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
+        //             // tags={item.tags} 
+        //             title={item.title}
+        //             date={(new Date(item.pubDate)).toISOString()}
+        //             image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1]}
+        //           />}
+        //   contentContainerStyle={$bodyContainer}
+        // />
       )
     }
-  }, [isSearch, renderSearch])
+  }, [isSearch, renderSearch, news])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -161,6 +184,21 @@ export const Resources = observer(function HomeScreen() {
             style={$header} 
           />}
         <Icon icon={isSearch ? 'x' : 'search'} size={24} containerStyle={[$searchButton, isSearch && $xButton]} onPress={() => setIsSearch(!isSearch)} />
+      </View>
+      <View style={$horizontalScrollContainer}>
+        <ScrollView horizontal style={$horizontalScrollContainer}>
+          {['about', 'news'].map(item => <Button
+            key={item}
+            accessible
+            accessibilityLabel={`${item} button`}
+            accessibilityHint={`show ${item} view`}
+            text={item}
+            style={[$button, item === type && $active]}
+            textStyle={$buttonText}
+            pressedStyle={$button}
+            onPress={() => setType(item)}
+          />)}
+        </ScrollView>
       </View>
       {renderBody()}
     </Screen>
@@ -227,6 +265,11 @@ const $scrollContainer: ViewStyle = {
   flex: 1,
 }
 
+const $horizontalScrollContainer: ViewStyle = { 
+  width: '100%',
+  height: 60
+}
+
 const $searchField: ViewStyle = {
   borderWidth: 1.5,
   borderColor: "transparent",
@@ -234,4 +277,26 @@ const $searchField: ViewStyle = {
   height: 56,
   backgroundColor: colors.palette.neutral550,
   overflow: "hidden",
+}
+
+const $button: ViewStyle = {
+  width: '40%',
+  height: 48,
+  backgroundColor: 'transparent',
+  borderRadius: 28,
+  borderWidth: 0,
+  marginRight: 24,
+  paddingHorizontal: 20
+}
+
+const $active: ViewStyle = {
+  backgroundColor: colors.palette.neutral550
+}
+
+const $buttonText: TextStyle = {
+  color: colors.palette.neutral100,
+  fontSize: 18,
+  fontFamily: typography.primary.medium,
+  lineHeight: 22,
+  textTransform: 'capitalize'
 }
