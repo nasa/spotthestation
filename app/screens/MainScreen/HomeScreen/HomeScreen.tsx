@@ -136,7 +136,7 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [stage])
 
   return (
-    <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
+    <Screen preset="auto" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <HomeHeader 
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}

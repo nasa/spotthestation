@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -5,7 +6,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useState } from "react"
-import { FlatList, ScrollView, TextStyle, View, ViewStyle } from "react-native"
+import { ActivityIndicator, FlatList, ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { XMLParser } from 'fast-xml-parser'
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { api } from "../../../services/api"
@@ -16,21 +17,19 @@ import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 
 const items = [{
-  tags: ['launch', 'live'],
-  title: "title",
-  subtitle: "subtitle",
-  date: "2023-03-08T11:47:42.000000",
-  image: "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+  tags: ['history'],
+  title: "Expedition 68 Welcomes Crew-6 Members Aboard Station",
+  date: "2023-03-03T00:00:00.000000",
+  image: "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/03/blog_crew_crew_greeting.jpg",
   type: "event",
-  body: `Pretium venenatis elementum faucibus lectus eu adipiscing commodo est et. Scelerisque pellentesque placerat fermentum eget id adipiscing mauris id. Pretium gravida rhoncus vel cursus non odio tortor ut accumsan. Scelerisque duis eleifend laoreet donec risus in suspendisse eu tincidunt.
-  Consequat tellus nunc eu in dui. Nibh quis dolor sit rhoncus massa viverra faucibus arcu. Libero varius et ultrices ut ac. Scelerisque nunc tempor volutpat eleifend tellus risus sit. Massa mauris elementum sagittis mattis. Metus pretium morbi leo nullam mattis mauris scelerisque feugiat sit. Tortor facilisi vel egestas volutpat molestie. Sed pretium tempus vulputate ut mattis sit ultrices lacinia. Ultrices nullam amet quis eget vel aliquet ut.`,
-  details: [{
-    key: 'Launch Date & Time',
-    value: '2023-03-08T11:47:42.000000',
-  }, {
-    key: 'Duration',
-    value: '30 min',
-  }]
+  link: 'https://blogs.nasa.gov/spacestation/2023/03/03/expedition-68-welcomes-crew-6-members-aboard-station/'
+}, {
+  tags: ['history'],
+  title: "International Space Station Facts and Figures",
+  date: "2023-01-04T00:00:00.000000",
+  image: "https://www.nasa.gov/sites/default/files/thumbnails/image/iss-blowout_updated_view-web-version-010323.png",
+  type: "event",
+  link: 'https://www.nasa.gov/feature/facts-and-figures'
 }]
 
 const suggestions = ['NASA Upcoming Missons', 'Interviews of the Week', 'ARTEMIS II']
@@ -44,32 +43,81 @@ export const Resources = observer(function HomeScreen() {
   const route: ResourcesScreenRouteProps = useRoute().params as ResourcesScreenRouteProps
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isSearch, setIsSearch] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [type, setType] = useState('about')
   const [news, setNews] = useState([])
+  const [page, setPage] = useState(1)
 
-  useEffect(() => {
-    api.getFeed().then(res => {
+  const fetchData = useCallback((paged = 1) => {
+    setIsLoading(true)
+    api.getFeed(+paged).then(res => {
       const parser = new XMLParser()
       const jObj = parser.parse(res.places)
-      setNews(jObj.rss.channel.item)
-      
-    }).catch(e => console.log(e))
+      setNews([...news, ...jObj.rss.channel.item])
+      setIsLoading(false)
+    }).catch(e => {
+      setIsLoading(false)
+      console.log(e)
+    })
+  }, [news])
+
+  useEffect(() => {
+    fetchData()
   }, [])
+
+  const renderFooter = () => {
+    if (isLoading) {
+      return (
+        <View style={{ paddingVertical: 20 }}>
+          <ActivityIndicator size="large" />
+        </View>
+      )
+    } else {
+      return null
+    }
+  }
+
+  const renderStatic = () => {
+    return (
+      <ScrollView 
+        accessible
+        accessibilityLabel="recent results"
+        accessibilityHint="recent results"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer}
+      >
+        <View style={[$scrollContainer, $bodyContainer]}>
+          {items.map(item => <FeedItem
+                      key={item.title}
+                      onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.link } as never)}
+                      tags={item.tags} 
+                      title={item.title}
+                      date={(new Date(item.date)).toISOString()}
+                      image={item.image}
+                    />)}
+        </View>
+      </ScrollView>
+    )
+  }
 
   const renderSearch = useCallback(() => {
     if (searchQuery) {
       return <ExpandContainer title="resources.searchResults" itemsCount={items.length} expandble={false}>
-        {items.map(item => (
-          <FeedSearchResultItem
+        <FlatList 
+          data={[...news].filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))} 
+          renderItem={({item}) => <FeedSearchResultItem
             key={item.title}
-            onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
-            tags={item.tags}
+            onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)}
+            // tags={item.tags}
             title={item.title}
             type={item.type}
-            image={item.image}
-          />
-        ))}
+            image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}
+          />}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          contentContainerStyle={{ paddingBottom: 200 }}
+        />
       </ExpandContainer>
     } else {
       return (
@@ -81,18 +129,6 @@ export const Resources = observer(function HomeScreen() {
           style={$scrollContainer}
         >
           <View style={[$scrollContainer, $bodyContainer]}>
-            <ExpandContainer title="resources.recentSearches" expandble={false}>
-              {items.map(item => (
-                <FeedSearchResultItem
-                  key={item.title}
-                  onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item } as never)} 
-                  tags={item.tags}
-                  title={item.title}
-                  type={item.type}
-                  image={item.image}
-                />
-              ))}
-            </ExpandContainer>
             <ExpandContainer title="resources.suggestions" expandble={false}>
               {suggestions.map(suggestion => (<View key={suggestion} style={$suggestionContainer}>
                 <Icon icon='search' size={28} />
@@ -110,7 +146,7 @@ export const Resources = observer(function HomeScreen() {
         </ScrollView>
       )
     }
-  }, [searchQuery])
+  }, [searchQuery, news])
 
   const renderBody = useCallback(() => {
     if (isSearch) {
@@ -119,36 +155,25 @@ export const Resources = observer(function HomeScreen() {
     } else {
       route.toggleBottomTabs(true)
       return (
-        <ScrollView 
-          accessible
-          accessibilityLabel="feed"
-          accessibilityHint="feed"
-          accessibilityRole="scrollbar"
-          style={$scrollContainer}
-        >
-          <View style={[$scrollContainer, $bodyContainer]}>
-            {news.map(item => (<FeedItem
-                key={item.title}
-                onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
-                // tags={item.tags} 
-                title={item.title}
-                date={(new Date(item.pubDate)).toISOString()}
-                image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1]}
-              />))}
-          </View>
-        </ScrollView>
-        // <FlatList 
-        //   data={news} 
-        //   renderItem={({item}) => <FeedItem
-        //             key={item.title}
-        //             onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
-        //             // tags={item.tags} 
-        //             title={item.title}
-        //             date={(new Date(item.pubDate)).toISOString()}
-        //             image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1]}
-        //           />}
-        //   contentContainerStyle={$bodyContainer}
-        // />
+        <FlatList 
+          data={news} 
+          renderItem={({item}) => <FeedItem
+                      key={item.title}
+                      onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
+                      // tags={item.tags} 
+                      title={item.title}
+                      date={(new Date(item.pubDate)).toISOString()}
+                      image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}
+                    />}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: 'space-between'}}
+          onEndReached={() => {
+            setPage(page + 1)
+            fetchData(page + 1)
+          }}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={renderFooter}
+        />
       )
     }
   }, [isSearch, renderSearch, news])
@@ -200,7 +225,7 @@ export const Resources = observer(function HomeScreen() {
           />)}
         </ScrollView>
       </View>
-      {renderBody()}
+      {type === 'news' ? renderBody() : renderStatic()}
     </Screen>
   )
 })
@@ -237,7 +262,8 @@ const $xButton: ViewStyle = {
 const $bodyContainer: ViewStyle = {
   justifyContent: "space-between",
   flexDirection: 'row',
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  paddingBottom: 200
 }
 
 const $suggestionContainer: ViewStyle = {
@@ -267,7 +293,8 @@ const $scrollContainer: ViewStyle = {
 
 const $horizontalScrollContainer: ViewStyle = { 
   width: '100%',
-  height: 60
+  height: 80,
+  marginTop: 10
 }
 
 const $searchField: ViewStyle = {
@@ -281,7 +308,8 @@ const $searchField: ViewStyle = {
 
 const $button: ViewStyle = {
   width: '40%',
-  height: 48,
+  height: 46,
+  minHeight: 40,
   backgroundColor: 'transparent',
   borderRadius: 28,
   borderWidth: 0,

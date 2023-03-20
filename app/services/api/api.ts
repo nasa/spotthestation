@@ -108,8 +108,8 @@ export class Api {
     return { kind: "ok", places: response.data }
   }
 
-  async getFeed() {
-    const response: ApiResponse<any> = await this.apisauce.get('https://blogs.nasa.gov/spacestation/feed/', {}, { baseURL: "" })
+  async getFeed(page: number) {
+    const response: ApiResponse<any> = await this.apisauce.get(`https://blogs.nasa.gov/spacestation/feed?paged=${page}`, {}, { baseURL: "" })
     
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)

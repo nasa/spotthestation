@@ -57,6 +57,7 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
 const $container: ViewStyle = {
   position: 'relative',
   width: "47%",
+  height: 'auto',
   justifyContent: "space-between",
   alignItems: "flex-start",
   paddingTop: 16,
