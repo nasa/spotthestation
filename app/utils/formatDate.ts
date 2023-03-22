@@ -20,3 +20,19 @@ export const formatDate = (date: string, dateFormat?: string, options?: Options)
   }
   return format(parseISO(date), dateFormat ?? "MMM dd, yyyy", dateOptions)
 }
+
+export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
+  const startHours = start.getHours()
+  const startMinutes = start.getMinutes()
+  const startSeconds = start.getSeconds()
+  const endHours = end.getHours()
+  const endMinutes = end.getMinutes()
+  const endSeconds = end.getSeconds()
+
+  const startDate = new Date(date)
+  startDate.setHours(startHours, startMinutes, startSeconds, 0)
+  const endDate = new Date(date)
+  endDate.setHours(endHours, endMinutes, endSeconds, 0)
+
+  return date >= startDate || date < endDate
+}

@@ -57,7 +57,7 @@ export function CompleteProfile() {
 
   const handleNotificationsChange = async (notifications: boolean) => {
     setNotifications(notifications)
-    await storage.save('notifications', notifications)
+    await storage.save('inApp', notifications)
   }
 
   const renderBody = useCallback(() => {

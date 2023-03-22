@@ -182,7 +182,7 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <Sightings onClose={() => setIsSightings(!isSightings)} sightings={sightings} />
       </Modal>
-      <Modal
+      {coachVisible && <Modal
         isVisible={coachVisible}
         useNativeDriver
         useNativeDriverForBackdrop
@@ -190,7 +190,7 @@ export const HomeScreen = observer(function HomeScreen() {
         style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
       >
         {renderCoachMarks()}
-      </Modal>
+      </Modal>}
     </Screen>
   )
 })

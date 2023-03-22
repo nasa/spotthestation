@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle, ScrollView } from "react-native"
+import { ViewStyle, View, Pressable, PressableProps, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
 
 import { Accessory, Icon, Text, TextField } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -83,114 +83,120 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Pressable
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        style={$close}
-        onPress={onClose}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? "padding" : undefined}
+        keyboardVerticalOffset={0}
+        style={$keyboardAvoidingViewStyle}
       >
-        <Icon icon="x" color={colors.palette.neutral450} />
-      </Pressable>
-      <Text
-        accessible
-        accessibilityLabel="title"
-        accessibilityHint="title"
-        accessibilityRole="text"
-        tx="homeScreen.selectLocation.title" style={$title}
-      />
-      <TextField
-        accessible
-        accessibilityLabel="search location"
-        accessibilityHint="type for search location"
-        accessibilityRole="search"
-        value={textValue}
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholderTx="homeScreen.selectLocation.inputPlaceholder"
-        onChangeText={setTextValue}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
-        renderLeftAccessory={({ style }) => (
-          <Accessory 
-            icon="search"
-            color={colors.palette.neutral450}
-            style={style}
-          />
-        )}
-        renderRightAccessory={(({ style }) => isFocus && textValue ? (
-          <Accessory 
-            style={style}
-            icon={"xCircle"}
-            onPress={() => setTextValue("")}
-          />
-        ) : (
-          <Accessory 
-            style={style}
-            icon={"currentLocation"}
-          />
-        ))}
-      />
-      <ScrollView 
-        accessible
-        accessibilityLabel="search location"
-        accessibilityHint="type for search location"
-        accessibilityRole="scrollbar"
-        style={$scrollContainer}
-      >
-        {(!isFocus && searchResult.length === 0) && (
-          <>
-            {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
-              <ListItem 
-                icon="pin" 
-                title={current.title} 
-                subtitle={current.subtitle} 
-                selected={isSelected(current)} 
-                onPress={() => onLocationPress(current)} 
-              />
-            </ExpandContainer>}
-            <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
-              {saved.map(location => <ListItem 
-                key={location.subtitle}
-                icon="pin"
-                title={location.title} 
-                subtitle={location.subtitle}
-                selected={isSelected(location)} 
-                onPress={() => onLocationPress(location)}
-              />)}
-            </ExpandContainer>
-            {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
-                {nearby.map((place: LocationType) => 
-                  <ListItem 
-                    key={place.title} 
-                    icon="pin" 
-                    title={place.title} 
-                    subtitle={place.subtitle} 
-                    selected={isSelected(place)} 
-                    onPress={() => onLocationPress(place)} 
-                  />)
-                }
+        <Pressable
+          accessible
+          accessibilityLabel="x button"
+          accessibilityHint="close modal"
+          accessibilityRole="button"
+          style={$close}
+          onPress={onClose}
+        >
+          <Icon icon="x" color={colors.palette.neutral450} />
+        </Pressable>
+        <Text
+          accessible
+          accessibilityLabel="title"
+          accessibilityHint="title"
+          accessibilityRole="text"
+          tx="homeScreen.selectLocation.title" style={$title}
+        />
+        <TextField
+          accessible
+          accessibilityLabel="search location"
+          accessibilityHint="type for search location"
+          accessibilityRole="search"
+          value={textValue}
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholderTx="homeScreen.selectLocation.inputPlaceholder"
+          onChangeText={setTextValue}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
+          renderLeftAccessory={({ style }) => (
+            <Accessory 
+              icon="search"
+              color={colors.palette.neutral450}
+              style={style}
+            />
+          )}
+          renderRightAccessory={(({ style }) => isFocus && textValue ? (
+            <Accessory 
+              style={style}
+              icon={"xCircle"}
+              onPress={() => setTextValue("")}
+            />
+          ) : (
+            <Accessory 
+              style={style}
+              icon={"currentLocation"}
+            />
+          ))}
+        />
+        <ScrollView 
+          accessible
+          accessibilityLabel="search location"
+          accessibilityHint="type for search location"
+          accessibilityRole="scrollbar"
+          style={$scrollContainer}
+        >
+          {(!isFocus && searchResult.length === 0) && (
+            <>
+              {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
+                <ListItem 
+                  icon="pin" 
+                  title={current.title} 
+                  subtitle={current.subtitle} 
+                  selected={isSelected(current)} 
+                  onPress={() => onLocationPress(current)} 
+                />
+              </ExpandContainer>}
+              <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
+                {saved.map(location => <ListItem 
+                  key={location.subtitle}
+                  icon="pin"
+                  title={location.title} 
+                  subtitle={location.subtitle}
+                  selected={isSelected(location)} 
+                  onPress={() => onLocationPress(location)}
+                />)}
               </ExpandContainer>
-            }
-          </>
-        )}
-        {(isFocus || searchResult.length > 0) && 
-          <ExpandContainer title="homeScreen.selectLocation.search" itemsCount={searchResult.length} expandble={false}>
-            {searchResult.map((place: LocationType) => 
-              <ListItem 
-                key={place.title}
-                icon="pin" 
-                title={place.title}
-                subtitle={place.subtitle}
-                selected={isSelected(place)}
-                onPress={() => onLocationPress(place)}
-              />)
-            }
-          </ExpandContainer>
-        }
-      </ScrollView>
+              {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
+                  {nearby.map((place: LocationType) => 
+                    <ListItem 
+                      key={place.title} 
+                      icon="pin" 
+                      title={place.title} 
+                      subtitle={place.subtitle} 
+                      selected={isSelected(place)} 
+                      onPress={() => onLocationPress(place)} 
+                    />)
+                  }
+                </ExpandContainer>
+              }
+            </>
+          )}
+          {(isFocus || searchResult.length > 0) && 
+            <ExpandContainer title="homeScreen.selectLocation.search" itemsCount={searchResult.length} expandble={false}>
+              {searchResult.map((place: LocationType) => 
+                <ListItem 
+                  key={place.title}
+                  icon="pin" 
+                  title={place.title}
+                  subtitle={place.subtitle}
+                  selected={isSelected(place)}
+                  onPress={() => onLocationPress(place)}
+                />)
+              }
+            </ExpandContainer>
+          }
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   )
 }
@@ -239,4 +245,8 @@ const $active: ViewStyle = {
   borderWidth: 1.5,
   borderColor: colors.palette.buttonBlue,
   backgroundColor: colors.palette.overlayBlue,
+}
+
+const $keyboardAvoidingViewStyle: ViewStyle = {
+  flex: 1,
 }

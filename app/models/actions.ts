@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -15,8 +16,7 @@ const RootStoreActions = (self) => ({
 
       if (ok) {
         self.sightings = data
-        notifications.cancelAllLocalNotifications()
-        data.forEach(element => notifications.scheduleNotification(new Date(element.date)))
+        notifications.setNotifications(data)
       } else {
         Snackbar.show({
           text: data as string,
