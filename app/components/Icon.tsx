@@ -143,6 +143,7 @@ export const iconRegistry = {
   plusCircle: require("../../assets/icons/plus-circle.png"),
   save: require("../../assets/icons/save.png"),
   removeLocation: require("../../assets/icons/remove-location.png"),
+  position: require("../../assets/icons/position.png"),
 }
 
 const $imageStyle: ImageStyle = {

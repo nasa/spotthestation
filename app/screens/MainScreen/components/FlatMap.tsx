@@ -1,116 +1,90 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import React, { useEffect, useMemo, useRef, useState } from "react"
-import { ViewStyle } from "react-native"
-// import MapboxGL from "@rnmapbox/maps"
-// import GeoJSONTerminator from "@webgeodatavore/geojson.terminator"
-// import Config from "../../../config"
-import MapView, { Circle, LatLng, PROVIDER_GOOGLE, MapCircle, Polyline, Marker } from "react-native-maps"
+import React, { useEffect, useMemo, useState } from "react"
+import { ViewStyle, View, Image, ImageStyle } from "react-native"
+import { Svg, Polygon, Polyline } from "react-native-svg"
 import { Icon } from "../../../components"
 import { colors } from "../../../theme"
-import { NightOverlay } from "../components/NightOverlay"
-
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-// MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN)
-// MapboxGL.setTelemetryEnabled(false)
-// MapboxGL.setConnected(true)
-// MapboxGL.setWellKnownTileServer('Mapbox')
+import { compute, latLonTo2D } from "../../../utils/terminator"
+const map = require('../../../../assets/images/World-Map.jpg')
 
 interface FlatMapProps {
   style?: ViewStyle,
-  withNightOverlay?: boolean,
-  zoom?: number,
-  issPathCoords?: LatLng[]
-  issMarkerPosition?: LatLng
-  onPress?: (params: any) => void
-  markers?: LatLng[]
+  issPathCoords?: [number, number][]
+  issMarkerPosition?: [number, number]
 }
 
-export function FlatMap({ style, withNightOverlay = true, zoom = 3, issPathCoords = [], issMarkerPosition, onPress, markers = [] }: FlatMapProps) {
-  const [nightOverlayCenter, setNightOverlayCenter] = useState<LatLng>({ latitude: 0, longitude: 0 })
-  const [nightOverlayRadius, setNightOverlayRadius] = useState(0)
-  const mapRef = useRef<MapView | null>(null)
-  const circleRef = useRef<MapCircle | null>(null)
-  let nightOverlay: NightOverlay
-
-  if (withNightOverlay) {
-    nightOverlay = useMemo(() => {
-      return new NightOverlay()
-    }, [])
-  }
+export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMapProps) {
+  const [layout, setLayout] = useState({ width: 0, height: 0 })
+  const [terminatorCoords2D, setTerminatorCoords2D] = useState<[number, number][]>([])
 
   useEffect(() => {
-    mapRef.current?.getCamera().then((cam) => {
-      cam.zoom = zoom
-      mapRef.current?.setCamera(cam)
-    }).catch(e => console.log(e))
-  }, [zoom])
-  
-  useEffect(() => {
-    let timeout: NodeJS.Timer
+    const update = () => setTerminatorCoords2D(compute(new Date()).map((latLon) => latLonTo2D(latLon)))
+    update()
 
-    if (withNightOverlay) {
-      setNightOverlayCenter(nightOverlay.getShadowPosition())
-      setNightOverlayRadius(nightOverlay.getShadowRadiusFromAngle(1))
-      timeout = setInterval(() => {
-        setNightOverlayCenter(nightOverlay.getShadowPosition())
-        setNightOverlayRadius(nightOverlay.getShadowRadiusFromAngle(1))
-        circleRef.current && circleRef.current.setNativeProps({ fillColor: "rgba(11, 61, 145, 0.5)" })   
-      }, 10000)
-    }
-
+    const timeout = setInterval(update, 10000)
     return () => {
       clearInterval(timeout)
     }
   }, [])
 
-  return (
-    <>
-      {/* <MapboxGL.MapView 
-          style={$flatMap}
-          logoEnabled={false}
-          styleURL="mapbox://styles/mapbox/satellite-streets-v12"
-          attributionEnabled={false}
-          // zoomEnabled={false}
-          scaleBarEnabled={false}
-        >
-          <MapboxGL.ShapeSource id="daynight-layer" shape={geoJSON}>
-            <MapboxGL.FillLayer id="daynight" sourceID="daynight-layer" style={{ fillOpacity: 0.5, fillColor: colors.palette.buttonBlue }} />
-          </MapboxGL.ShapeSource>
-          <MapboxGL.Camera zoomLevel={0} centerCoordinate={[-122.4473, 37.7535]} />
-        </MapboxGL.MapView> */}
-      <MapView
-        provider={PROVIDER_GOOGLE}
-        ref={mapRef}
-        style={style}
-        mapType="satellite"
-        zoomEnabled={false}
-        initialRegion={{
-          latitude: 28.999,
-          longitude: 28.999,
-          latitudeDelta: 120,
-          longitudeDelta: 120,
-        }}
-        onPress={onPress}
-      >
-        {withNightOverlay && (
-          <Circle
-            ref={circleRef}
-            center={nightOverlayCenter}
-            radius={nightOverlayRadius}
-            fillColor="rgba(11, 61, 145, 0.5)"
-            strokeWidth={1}
-          />
-        )}
-        {Boolean(issPathCoords.length) && <Polyline
-          coordinates={issPathCoords}
-          strokeColor={colors.palette.green}
-          strokeWidth={3}
-        />}
-        {Boolean(issMarkerPosition) && <Marker coordinate={issMarkerPosition}>
-          <Icon icon="iss" size={36} />
-        </Marker>}
-        {Boolean(markers.length) && markers.map(marker => <Marker key={marker.longitude} coordinate={marker} />)}
-      </MapView>
-    </>
+  const issPathCoords2D = useMemo(
+    () => issPathCoords.map((latLon) => latLonTo2D(latLon)),
+    [issPathCoords]
   )
+
+  const issCoords2D = latLonTo2D(issMarkerPosition)
+
+  return (
+      <View style={style}>
+        <Image source={map} style={$map} />
+        <Svg
+          style={$overlay}
+          onLayout={({ nativeEvent }) => setLayout(nativeEvent.layout)}
+        >
+          <Polygon
+            fillOpacity={0.5}
+            points={terminatorCoords2D.map((c) => [c[0] * layout.width, c[1] * layout.height].toString()).join(' ')}
+            fill={colors.palette.buttonBlue}
+          />
+
+          {Boolean(issPathCoords2D.length) && (
+            <Polyline
+              points={issPathCoords2D.filter((c) => c[0] < issCoords2D[0]).map((c) => [c[0] * layout.width, c[1] * layout.height].toString()).join(' ')}
+              stroke={colors.palette.green}
+              strokeWidth={3}
+            />
+          )}
+
+          {Boolean(issPathCoords2D.length) && (
+            <Polyline
+              points={issPathCoords2D.filter((c) => c[0] >= issCoords2D[0]).map((c) => [c[0] * layout.width, c[1] * layout.height].toString()).join(' ')}
+              stroke={colors.palette.neutral450}
+              strokeDasharray={"5, 5"}
+              strokeWidth={3}
+            />
+          )}
+        </Svg>
+        {Boolean(issMarkerPosition) && (
+          // eslint-disable-next-line react-native/no-inline-styles
+          <View style={{
+            position: 'absolute',
+            left: issCoords2D[0] * layout.width - 18,
+            top: issCoords2D[1] * layout.height - 18
+          }}>
+            <Icon icon="position" size={36} />
+          </View>
+        )}
+      </View>
+  )
+}
+
+const $map: ImageStyle = {
+  width: '100%',
+  height: '100%' ,
+  position: 'absolute'
+}
+
+const $overlay: ViewStyle = {
+  width: '100%',
+  height: '100%'
 }

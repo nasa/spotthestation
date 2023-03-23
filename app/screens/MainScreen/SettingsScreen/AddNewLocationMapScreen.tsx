@@ -16,9 +16,9 @@ import Config from "react-native-config"
 import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
-import { FlatMap } from "../components/FlatMap"
 import { LatLng } from "react-native-maps"
 import { api } from "../../../services/api"
+import { GoogleMap } from "../components/GoogleMap"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const navigation = useNavigation()
@@ -78,7 +78,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <FlatMap style={{ flex: 1 }} withNightOverlay={false} onPress={({ nativeEvent }) => setMarker(nativeEvent.coordinate)} markers={marker ? [marker] : []} />
+      <GoogleMap style={{ flex: 1 }} withNightOverlay={false} onPress={({ nativeEvent }) => setMarker(nativeEvent.coordinate)} markers={marker ? [marker] : []} />
       <View style={[$topContainer, $headerStyleOverride]}>
         <View style={$topButtonsContainer}>
           <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)} />

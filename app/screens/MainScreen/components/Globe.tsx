@@ -5,9 +5,10 @@ import { Renderer, loadTextureAsync } from "expo-three"
 import * as FileSystem from "expo-file-system"
 import { Asset } from "expo-asset"
 import {
-  Sprite, SpriteMaterial, Texture, Camera, AmbientLight, 
-  Line, LineBasicMaterial, Mesh, MeshBasicMaterial, 
-  PerspectiveCamera, Scene, SphereGeometry, TorusGeometry, WebGLRenderer 
+  Sprite, SpriteMaterial, Texture, Camera, AmbientLight, Vector3,
+  Line, LineBasicMaterial, Mesh, MeshBasicMaterial, CatmullRomCurve3,
+  BufferGeometry,
+  PerspectiveCamera, Scene, SphereGeometry, WebGLRenderer, LineDashedMaterial,
 } from "three"
 import { colors } from "../../../theme"
 import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
@@ -18,6 +19,15 @@ import ControlsView from "./ControlsView"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/globe-textures-night.jpg")
+
+
+const dstSqr = (pt1: [number, number], pt2: [number, number]) => {
+  return (pt1[0] - pt2[0])*(pt1[0] - pt2[0]) + (pt1[1] - pt2[1])*(pt1[1] - pt2[1])
+}
+
+const getCrossProduct = (pt1: [number, number], pt2: [number, number]) => {
+  return pt2[0] * pt1[1] - pt2[1] * pt1[0]
+}
 
 async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
   if (Platform.OS === 'ios') return assetModule
@@ -39,10 +49,11 @@ async function copyAssetToCacheAsync(assetModule: string | number, localFilename
 export interface GlobeProps {
   marker?: number[]
   zoom?: number
-  path?: any
+  issMarkerPosition?: [number, number]
+  issPathCoords?: [number, number][]
 }
 
-export function Globe({ marker, path = true, zoom }: GlobeProps ) {
+export function Globe({ marker, zoom, issPathCoords = [], issMarkerPosition }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
 
   const createMarker = async () => {
@@ -62,6 +73,29 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
     )
     
     mesh.scale.set(24,24,1)
+    mesh.position.set(x, y, z)
+
+    return mesh
+  }
+
+  const createISSMarker = async (position: [number, number]) => {
+    const uri = await copyAssetToCacheAsync(iconRegistry.position as string,'position.png')
+    const mesh = new Sprite()
+    const texture: Texture = await loadTextureAsync({
+      asset: uri,
+    })
+    texture.needsUpdate = true
+    mesh.material = new SpriteMaterial({
+      map: texture,
+      color: 0xffffff
+    })
+
+    const [x,y,z] = coordinatesToPosition(
+      position,
+      GLOBE_RADIUS + 20
+    )
+
+    mesh.scale.set(32,32,1)
     mesh.position.set(x, y, z)
 
     return mesh
@@ -90,125 +124,38 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
     return sphere
   }
 
-  const createCircle = () => {
-    // const curve = new EllipseCurve(
-    //   0,  0,            // ax, aY
-    //   311, 311,           // xRadius, yRadius
-    //   0,  2 * Math.PI,  // aStartAngle, aEndAngle
-    //   false,            // aClockwise
-    //   0                 // aRotation
-    // )
-    
-    // const points = curve.getPoints( 50 )
-    // const geometry = new BufferGeometry().setFromPoints( points )
-    
-    // const material = new LineDashedMaterial( {
-    //     color: 0xffffff,
-    //     linewidth: 1,
-    //     scale: 1,
-    //     dashSize: 10,
-    //     gapSize: 60,
-    //   } )
-    
-    // Create the final object to add to the scene
-    // const ellipse = new Line( geometry, material )
+  const createOrbit = () => {
+    const curve = new CatmullRomCurve3(
+      issPathCoords.map((coords) => {
+        return new Vector3(...coordinatesToPosition(
+          coords,
+          GLOBE_RADIUS + 20
+        ))
+      }),
+      true
+    )
 
-    // scene.add(ellipse)
+    const points = curve.getPoints(100)
+    const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
+    const pastPoints = points
+      .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) >= 0)
+      .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
 
-    // const material = new LineDashedMaterial( {
-    //   color: 0xffffff,
-    //   linewidth: 1,
-    //   // scale: 1,
-    //   dashSize: 10,
-    //   gapSize: 60,
-    // } )
+    const futurePoints = points
+      .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) < 0)
+      .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
 
-    // geometry = new CircleGeometry( rad+delta, segs ),    
-          // geometry = new CircleGeometry( rad+delta, segs ),    
-    // geometry = new CircleGeometry( rad+delta, segs ),    
-    // geometry.vertices.shift();
-    // circle = new Line( geometry, material );
+    const pastLine = new Line()
+    pastLine.material = new LineBasicMaterial( { color: 0x00ff00, linewidth: 6 } )
+    pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
 
-    const circle = new Line()
-    // circle.material = material
-    circle.material = new LineBasicMaterial( { color: 0x00ff00 } )
-    circle.geometry = new TorusGeometry(311, 2, 100, 100 )
-    
-    circle.rotation.y = Math.PI/3.5
+    const futureLine = new Line()
+    futureLine.material = new LineDashedMaterial( { color: 0xADADAE, linewidth: 6, dashSize: 5, gapSize: 5 } )
+    futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
 
-    // const curve = new SplineCurve([
-    //   new Vector3(-300, 0, 0),
-    //   new Vector3(-150, 150, 0),
-    //   new Vector3(0, 0, 0),
-    //   new Vector3(150, -150, 0),
-    //   new Vector3(300, 0, 0),
-    // ])
+    futureLine.computeLineDistances()
 
-    // const curve2 = new SplineCurve( [
-    //   new Vector3(0, 300, 300),
-    //   new Vector3(-300, -300, 0),
-    //   new Vector3(0, 0, 300),
-    // ] )
-    
-    // const points = curve.getPoints( 300 )
-    // const geometry = new BufferGeometry().setFromPoints( points )
-
-    // const points2 = curve2.getPoints( 300 )
-    // const geometry2 = new BufferGeometry().setFromPoints( points2 )
-    
-    // const material = new LineBasicMaterial( { color: 0xff0000 } )
-    
-    // Create the final object to add to the scene
-    // const splineObject = new Line( geometry, material )
-    // const splineObject2 = new Line( geometry2, material )
-
-    // scene.add( splineObject )
-    // scene.add( splineObject2 )
-
-
-    // const curve = new CubicBezierCurve3(
-    //   new Vector3(-300, 0, 0),
-    //   new Vector3(-200, 350, 0),
-    //   new Vector3(200, 350, 0),
-    //   new Vector3(300, 0, 0),
-    // )
-    
-    // const points = curve.getPoints( 600 )
-    // const geometry = new BufferGeometry().setFromPoints( points )
-    
-    // const material =new LineDashedMaterial( {
-    //       color: 0x00ff00,
-    //       linewidth: 5,
-    //       scale: 1,
-    //       dashSize: 10,
-    //       gapSize: 60,
-    //     } )
-    
-    // Create the final object to add to the scene
-    // const curveObject = new Line( geometry, material )
-
-    // const curve2 = new CubicBezierCurve3(
-    //   new Vector3(-300, 0, 0),
-    //   new Vector3(-200, -350, 0),
-    //   new Vector3(200, -350, 0),
-    //   new Vector3(300, 0, 0),
-    // )
-    
-    // const points2 = curve2.getPoints( 600 )
-    // const geometry2 = new BufferGeometry().setFromPoints( points2 )
-    
-    // const material2 =new LineDashedMaterial( {
-    //       color: 0x00ff00,
-    //       linewidth: 5,
-    //       scale: 1,
-    //       dashSize: 10,
-    //       gapSize: 60,
-    //     } )
-    
-    // Create the final object to add to the scene
-    // const curveObject2 = new Line( geometry2, material2 )
-
-    return circle
+    return [pastLine, futureLine]
   }
   
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
@@ -239,17 +186,13 @@ export function Globe({ marker, path = true, zoom }: GlobeProps ) {
       scene.add(point)
     }
 
-    // const directionalLight = new DirectionalLight(0xffffff)
-    // directionalLight.position.set(400, 400, 400)
-    // scene.add(directionalLight)
+    if (issPathCoords) {
+      scene.add(...createOrbit())
+    }
 
-    // const directionalLight2 = new DirectionalLight(0xffffff)
-    // directionalLight2.position.set(-400, -400, -400)
-    // scene.add(directionalLight2)
-
-    if (path) {
-      const stationPath = createCircle()
-      scene.add(stationPath)
+    if (issMarkerPosition) {
+      const marker = await createISSMarker(issMarkerPosition)
+      scene.add(marker)
     }
 
     camera.add(ambient)

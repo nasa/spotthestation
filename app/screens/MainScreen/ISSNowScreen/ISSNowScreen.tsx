@@ -12,17 +12,21 @@ import Modal from "react-native-modal"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import { FlatMap } from "../components/FlatMap"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
+import { GoogleMap } from "../components/GoogleMap"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
   toggleIsLandscape: (value: boolean) => void
 }
+
+const issPathCoords: [number, number][] = Array(360).fill(null).map((_, idx) => {
+  return [0, -180 + idx]
+})
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const route: ISSNowScreenRouteProps  = useRoute().params as ISSNowScreenRouteProps
@@ -164,9 +168,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       </View>
       <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
         {isGlobe ? 
-          <Globe key={isFullScreen.toString() + zoomLevel.toString() + isLandscape.toString()} zoom={800 - (60 * zoomLevel)} /> 
+          <Globe
+            key={isFullScreen.toString() + zoomLevel.toString() + isLandscape.toString()}
+            issPathCoords={issPathCoords}
+            issMarkerPosition={[0,-90]}
+            zoom={800 - (60 * zoomLevel)}
+          />
           :
-          <FlatMap style={$flatMap} zoom={3 + zoomLevel} />
+          <GoogleMap style={$flatMap} zoom={3 + zoomLevel} />
         }
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>

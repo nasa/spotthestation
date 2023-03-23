@@ -22,6 +22,10 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 
+const issPathCoords: [number, number][] = Array(360).fill(null).map((_, idx) => {
+  return [0, -180 + idx]
+})
+
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
@@ -144,8 +148,8 @@ export const HomeScreen = observer(function HomeScreen() {
         sighting={formatDate(currentSightning.date)}
         countdown={countdown}
       />
-      <Globe zoom={550} marker={location} />
-      <FlatMap style={$flatMap} />
+      <Globe zoom={550} marker={location} issPathCoords={issPathCoords} issMarkerPosition={[0,-90]} />
+      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={[0,-90]} />
       <Modal
         isVisible={isLocation}
         onBackdropPress={() => setIsLocation(!isLocation)}
