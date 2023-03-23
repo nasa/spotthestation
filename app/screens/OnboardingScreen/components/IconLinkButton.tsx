@@ -46,6 +46,8 @@ export interface LinkButtonWithArrowProps extends PressableProps {
    * An optional icon size.
    */
   iconSize?: number
+
+  backgroundColor?: string
 }
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
@@ -58,13 +60,14 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
     imageStyle: $imageStyle,
     textStyle: $textStyle,
     text,
+    backgroundColor,
     blurIntensity = 0,
     ...rest
   } = props
 
   return (
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="imagebutton" {...rest}>
-      <BlurView intensity={blurIntensity} style={[$viewStyle, $viewStyleOverride]}>
+      <BlurView intensity={blurIntensity} style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}>
         {icon ? 
           <Icon icon={icon} size={iconSize || 20} color={iconColor || colors.palette.neutral100} style={$imageStyle} /> 
           : 

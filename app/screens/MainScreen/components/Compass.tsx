@@ -5,26 +5,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import CompassHeading from 'react-native-compass-heading'
 import { Icon } from '../../../components'
 import { colors } from '../../../theme'
+import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../utils/geometry"
+
 const compassLine = require('../../../../assets/icons/compass-line.png')
 
 const LINE_LENGTH = 260
 const LETTER_OFFSET = 10
-
-const normalizeHeading = (heading: number) => {
-  if (heading < 0) return 360 + heading
-  if (heading > 360) return heading - 360
-  return heading
-}
-
-const isInHeadingRange = (left, right, heading) => {
-  if (right < left) return heading > left || heading < right
-  return heading >= left && heading <= right
-}
-
-const headingOffset = (h1, h2) => {
-  if (h2 < h1) return h2 - (h1 - 360)
-  return h2 - h1
-}
 
 export const Compass = ({ issPosition, isFullScreen }) => {
   const topInset = useSafeAreaInsets().top
@@ -82,9 +68,6 @@ export const Compass = ({ issPosition, isFullScreen }) => {
 
 const $container: ViewStyle = {
   height: 20,
-  position: 'absolute',
-  top: 0,
-  alignSelf: 'center',
   width: LINE_LENGTH
 }
 

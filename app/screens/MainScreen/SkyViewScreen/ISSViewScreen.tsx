@@ -3,7 +3,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -19,6 +19,8 @@ import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
 import { useStores } from "../../../models"
+import Snackbar from "react-native-snackbar"
+import { ViroARSceneNavigator } from "@viro-community/react-viro"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -31,9 +33,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const bottomInset = useSafeAreaInsets().bottom
   const { sightings, getISSSightings } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(false)
+  const [isPathVisible, setIsPathVisible] = useState(false)
   const [isShare, setIsShare] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
+  const [isRecording, setIsRecording] = useState(false)
+  const [recordedSeconds, setRecordedSeconds] = useState(0)
+  const arView = useRef<ViroARSceneNavigator>()
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
@@ -67,12 +73,84 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     getSightings().catch(e => console.log(e))
   }, [])
 
+  useEffect(() => {
+    if (!isRecording) return undefined
+
+    const interval = setInterval(() => {
+      setRecordedSeconds((s) => s + 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [isRecording])
+
   const onOrientationDidChange = (orientation) => {
     if (orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT') {
       setIsLandscape(true)
     } else {
       setIsLandscape(false)
     }
+  }
+
+  const takeScreenshot = () => {
+    if (!arView.current) return
+
+    arView.current.sceneNavigator
+      .takeScreenshot("iss.jpg", true)
+      .then(() => {
+          Snackbar.show({
+            text: "Photo saved to your library",
+            duration: Snackbar.LENGTH_LONG,
+          })
+      })
+      .catch(() => {
+        Snackbar.show({
+          text: "Something went wrong",
+          duration: Snackbar.LENGTH_LONG,
+        })
+      })
+  }
+
+  const startRecording = () => {
+    if (!arView.current) return
+
+    arView.current.sceneNavigator
+      .startVideoRecording(
+        'iss.mp4',
+        true,
+        () => {
+          setIsRecording(false)
+          setRecordedSeconds(0)
+          Snackbar.show({
+            text: "Something went wrong",
+            duration: Snackbar.LENGTH_LONG,
+          })
+      })
+
+    setIsRecording(true)
+    setRecordedSeconds(0)
+  }
+
+  const stopRecording = () => {
+    if (!arView.current) return
+
+    arView.current.sceneNavigator
+      .stopVideoRecording()
+      .then(() => {
+        Snackbar.show({
+          text: "Video saved to your library",
+          duration: Snackbar.LENGTH_LONG,
+        })
+      })
+      .catch(() => {
+        Snackbar.show({
+          text: "Something went wrong",
+          duration: Snackbar.LENGTH_LONG,
+        })
+      })
+      .finally(() => {
+        setIsRecording(false)
+        setRecordedSeconds(0)
+      })
   }
 
   const $containerStyleOverride: ViewStyle = {
@@ -143,7 +221,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         }
       </View>
       <View style={[$body, $bodyStyleOverride]}>
-        <ARView isFullScreen={isFullScreen} />
+        <ARView
+          ref={arView}
+          isFullScreen={isFullScreen}
+          isPathVisible={isPathVisible}
+          isRecording={isRecording}
+          recordedSeconds={recordedSeconds}
+        />
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
             <IconLinkButton
@@ -151,7 +235,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               accessibilityLabel="path line"
               accessibilityHint="enable/disable path line"
               icon="line" 
-              buttonStyle={[$button, isLandscape && { marginRight: 24 }]}
+              buttonStyle={[$button, isPathVisible && $activeButton, isLandscape && { marginRight: 24 }]}
+              onPress={() => setIsPathVisible(!isPathVisible)}
             />
             <IconLinkButton
               accessible
@@ -185,16 +270,36 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               accessible
               accessibilityLabel="capture"
               accessibilityHint="take a photo"
-              icon="capture" 
+              icon="capture"
               buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+              onPress={takeScreenshot}
             />
-            <IconLinkButton 
+            { isRecording ? (
+              <>
+                <View>
+                  <IconLinkButton
+                    accessible
+                    accessibilityLabel="video"
+                    accessibilityHint="stop recording"
+                    icon="videoOff"
+                    onPress={stopRecording}
+                    backgroundColor={colors.palette.nasaRed}
+                    buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  />
+                  <Text style={$stop}>Stop</Text>
+                </View>
+              </>
+            ) : (
+              <IconLinkButton
               accessible
               accessibilityLabel="video"
               accessibilityHint="record a video"
-              icon="video" 
+              icon="video"
+              onPress={startRecording}
               buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
-            />
+              />
+            )}
+
           </View>
         </View>
       </View>
@@ -301,4 +406,16 @@ const $time: TextStyle = {
   lineHeight: 39,
   color: colors.palette.neutral100,
   textAlign: "center"
+}
+
+const $stop: TextStyle = {
+  position: 'absolute',
+  top: '100%',
+  alignSelf: 'center',
+  marginTop: 7,
+  fontFamily: typography.primary.normal,
+  fontSize: 13,
+  lineHeight: 16,
+  color: colors.palette.neutral100,
+  textTransform: "uppercase",
 }

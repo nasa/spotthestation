@@ -2,10 +2,9 @@ import React, { useMemo } from "react"
 import { ViewStyle, View, useWindowDimensions, PixelRatio, Text, TextStyle } from "react-native"
 import Svg, { Path } from 'react-native-svg'
 import { arc as d3Arc } from 'd3-shape'
+import { degToRad } from "../../../utils/geometry"
 
 const arc = d3Arc()
-
-const degToRad = (deg) => deg * (Math.PI/180)
 
 export const DirectionCircle = ({ screenX, screenY }) => {
   const dimensions = useWindowDimensions()
@@ -40,7 +39,7 @@ export const DirectionCircle = ({ screenX, screenY }) => {
   }, [viewDistance, arrowAngle])
 
   const alignArc = useMemo(() => {
-    const spread = alignDistance < 20 ? 180 : degToRad(Math.max(0, 180 - Math.floor(alignDistance / 2)))
+    const spread = alignDistance < 20 ? 180 : degToRad(Math.min(180, Math.max(0, 210 - Math.floor(alignDistance / 2))))
     return arc({
       outerRadius: 45,
       innerRadius: isSpotted ? 30 : 42,

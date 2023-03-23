@@ -133,6 +133,7 @@ export const iconRegistry = {
   line: require("../../assets/icons/line.png"),
   share: require("../../assets/icons/share.png"),
   video: require("../../assets/icons/video.png"),
+  videoOff: require("../../assets/icons/video-off.png"),
   shield: require("../../assets/icons/shield.png"),
   list: require("../../assets/icons/list.png"),
   mapPinOutlined: require("../../assets/icons/map-pin-outlined.png"),
