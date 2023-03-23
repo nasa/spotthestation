@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { Platform, TextStyle, View, ViewStyle } from "react-native"
+import React, { useCallback, useEffect, useState } from "react"
+import { Platform, View, ViewStyle } from "react-native"
 import {
   ViroARScene,
-  ViroSphere,
-  ViroText,
+  ViroImage,
   ViroTrackingStateConstants,
   ViroARSceneNavigator,
 } from '@viro-community/react-viro'
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
 import CompassHeading from "react-native-compass-heading"
+import { DirectionCircle } from "./DirectionCircle"
 
-const issHeading = 45
+const issHeading = 270
 const issAltitude = 30
 
 const worldTransform = (input: [number, number, number], heading): [number, number, number] => {
@@ -25,7 +25,14 @@ const worldTransform = (input: [number, number, number], heading): [number, numb
   return [x, input[1], z]
 }
 
-const ISSSceneAR = () => {
+interface ISSSceneProps {
+  sceneNavigator: {
+    project: (value: [number, number, number]) => Promise<{ screenPosition: [number, number] }>
+  }
+  onScreenPositionChange: (value: [number, number]) => void
+}
+
+const ISSSceneAR = ({ sceneNavigator, onScreenPositionChange }: ISSSceneProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [heading, setHeading] = useState(0)
 
@@ -55,39 +62,25 @@ const ISSSceneAR = () => {
   const y = Math.sin(issAltitude * (Math.PI/180)) * 10
   const z = Math.cos(issHeading * (Math.PI/180)) * -10
 
+  function onCamera() {
+    sceneNavigator.project([x, y, z])
+      .then(({ screenPosition })=> {
+        onScreenPositionChange(screenPosition)
+      }).catch((err) => {
+        console.error(err)
+      })
+  }
+
   return (
-    <ViroARScene onTrackingUpdated={onInitialized}>
+    <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
       { isVisible && (
         <>
-          <ViroText
-            text="N"
-            position={worldTransform([0, 0, -10], heading)}
-            rotation={[0, 0, 0]}
-            style={$textStyle}
-          />
-          <ViroText
-            text="E"
-            position={worldTransform([10, 0, 0], heading)}
-            rotation={[0, -90, 0]}
-            style={$textStyle}
-          />
-          <ViroText
-            text="S"
-            position={worldTransform([0, 0, 10], heading)}
-            rotation={[0, -180, 0]}
-            style={$textStyle}
-          />
-          <ViroText
-            text="W"
-            position={worldTransform([-10, 0, 0], heading)}
-            rotation={[0, 90, 0]}
-            style={$textStyle}
-          />
-          <ViroSphere
-            heightSegmentCount={20}
-            widthSegmentCount={20}
-            radius={0.5}
+          <ViroImage
+            height={1}
+            width={1}
+            rotation={[0, -issHeading, 0]}
             position={worldTransform([x, y, z], heading)}
+            source={require("../../../../assets/icons/iss.png")}
           />
         </>
       )}
@@ -96,16 +89,30 @@ const ISSSceneAR = () => {
 }
 
 export function ARView({ isFullScreen }) {
+  const [position, setPosition] = useState([0, 0])
+  const onScreenPositionChange = useCallback((pos: [number, number]) => {
+    setPosition(pos)
+  }, [])
+
+  const Scene = useCallback((props) => {
+    return <ISSSceneAR {...props} onScreenPositionChange={onScreenPositionChange} />
+  }, [onScreenPositionChange])
+
   return (
     <View style={$container}>
       <ViroARSceneNavigator
         worldAlignment="GravityAndHeading"
         autofocus={true}
         initialScene={{
-          scene: ISSSceneAR,
+          scene: Scene as any,
         }}
         style={$container}
       />
+
+      { isFullScreen && (
+        <DirectionCircle screenX={position[0]} screenY={position[1]} />
+      )}
+
       <Compass issPosition={issHeading} isFullScreen={isFullScreen} />
     </View>
   )
@@ -114,12 +121,4 @@ export function ARView({ isFullScreen }) {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-}
-
-const $textStyle: TextStyle = {
-  fontFamily: 'Arial',
-  fontSize: 50,
-  color: '#ffffff',
-  textAlignVertical: 'center',
-  textAlign: 'center',
 }
