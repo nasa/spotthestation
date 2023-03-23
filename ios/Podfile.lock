@@ -488,10 +488,10 @@ PODS:
   - RNSnackbar (2.4.0):
     - React-Core
   - SocketRocket (0.6.0)
-  - VisionCamera (2.15.4):
+  - ViroKit (1.0):
     - React
-    - React-callinvoker
-    - React-Core
+  - ViroReact (1.0):
+    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -587,7 +587,8 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
-  - VisionCamera (from `../node_modules/react-native-vision-camera`)
+  - "ViroKit (from `../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/`)"
+  - "ViroReact (from `../node_modules/@viro-community/react-viro/ios`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -737,8 +738,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSnackbar:
     :path: "../node_modules/react-native-snackbar"
-  VisionCamera:
-    :path: "../node_modules/react-native-vision-camera"
+  ViroKit:
+    :path: "../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/"
+  ViroReact:
+    :path: "../node_modules/@viro-community/react-viro/ios"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -822,10 +825,11 @@ SPEC CHECKSUMS:
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  VisionCamera: 5fc30ecebdfd0335d11123ec9511dcbc27ee4046
+  ViroKit: 700d3d4ca086368d06224de1cbbc19781aea2094
+  ViroReact: f4980e6b04918c4340637f9cbaae22a6bb7ea440
   Yoga: 0b84a956f7393ef1f37f3bb213c516184e4a689d
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 4e7ca966c5feab16e330f08be21b9d26b69c1a42
+PODFILE CHECKSUM: 1316fa40aefcd4765c0a3a5a87affc8f2b071410
 
 COCOAPODS: 1.11.3

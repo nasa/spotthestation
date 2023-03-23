@@ -82,7 +82,9 @@ export const Compass = ({ issPosition, isFullScreen }) => {
 
 const $container: ViewStyle = {
   height: 20,
-  position: 'relative',
+  position: 'absolute',
+  top: 0,
+  alignSelf: 'center',
   width: LINE_LENGTH
 }
 

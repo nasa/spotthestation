@@ -18,7 +18,6 @@ import { intervalToDuration, formatDuration } from "date-fns"
 import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
-import { Camera } from "react-native-vision-camera"
 import { useStores } from "../../../models"
 
 export interface ISSViewScreenRouteProps {
@@ -35,7 +34,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isShare, setIsShare] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
-  const [isCameraAuthorized, setIsCameraAuthorized] = useState(false)
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
@@ -115,15 +113,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
-  useEffect(() => {
-    Camera.requestCameraPermission()
-      .then((newCameraPermission) => {
-        if (newCameraPermission === 'authorized') setIsCameraAuthorized(true)
-      }).catch((err) => {
-        console.error(err)
-      })
-  }, [])
-
   return (
     <Screen
       preset="fixed" 
@@ -154,7 +143,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         }
       </View>
       <View style={[$body, $bodyStyleOverride]}>
-        { isCameraAuthorized && <ARView isFullScreen={isFullScreen} /> }
+        <ARView isFullScreen={isFullScreen} />
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
             <IconLinkButton
