@@ -40,12 +40,30 @@ export interface GetISSSightingsParams {
   lon: number
 }
 
+export interface GetISSDataParams {
+  lat: number,
+  lon: number
+}
+
 export interface ISSSighting {
   date: string
   maxHeight: number
   appears: string
   disappears: string
   visible: number
+}
+
+export interface OrbitPoint {
+  date: string
+  latitude: number
+  longitude: number,
+  azimuth: number,
+  elevation: number,
+}
+
+export interface ISSDataResponse {
+  ok: boolean
+  data: OrbitPoint[] | string
 }
 
 export interface ISSSightingResponse {

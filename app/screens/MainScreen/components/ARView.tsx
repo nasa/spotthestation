@@ -8,17 +8,21 @@ import { colors } from "../../../theme"
 import { Compass } from "./Compass"
 import { DirectionCircle } from "./DirectionCircle"
 import { RecordingIndicator } from "./RecordingIndicator"
-import { ISSSceneAR, emitter, issHeading } from "./ISSSceneAR"
+import { ISSSceneAR, emitter } from "./ISSSceneAR"
+import { normalizeHeading } from "../../../utils/geometry"
 
 interface ARViewProps {
   isFullScreen: boolean
   isPathVisible: boolean
   isRecording: boolean
   recordedSeconds: number
+  pastIssPathCoords: [number, number][]
+  futureIssPathCoords: [number, number][]
+  issMarkerPosition: [number, number]
 }
 
 export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
-  function ARView({ isFullScreen, isPathVisible, isRecording, recordedSeconds }, ref) {
+  function ARView({ isFullScreen, isPathVisible, isRecording, recordedSeconds, pastIssPathCoords, futureIssPathCoords, issMarkerPosition,  }, ref) {
     const [position, setPosition] = useState([0, 0])
     const onScreenPositionChange = useCallback((pos: [number, number]) => {
       setPosition(pos)
@@ -36,6 +40,10 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
       emitter.emit('settings', { isPathVisible })
     }, [isPathVisible])
 
+    useEffect(() => {
+      emitter.emit('issData', { pastIssPathCoords, futureIssPathCoords, issMarkerPosition })
+    }, [pastIssPathCoords, futureIssPathCoords, issMarkerPosition])
+
     return (
       <View style={$container}>
         <ViroARSceneNavigator
@@ -52,7 +60,7 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
         )}
 
         <View style={$hudContainer}>
-          <Compass issPosition={issHeading} isFullScreen={isFullScreen} />
+          <Compass issPosition={normalizeHeading(issMarkerPosition[0])} isFullScreen={isFullScreen} />
           { isRecording && (
             <RecordingIndicator recordedSeconds={recordedSeconds} />
           )}

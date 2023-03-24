@@ -34,6 +34,32 @@ const RootStoreActions = (self) => ({
 			console.error(e)
 		}
 	}),
+
+  getISSData: flow(function* getISSData(params) {
+    try {
+      const {
+        data, ok,
+      } = yield api.getISSData(params)
+
+      if (ok) {
+        self.issData = data
+      } else {
+        Snackbar.show({
+          text: data as string,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: 'Dismiss',
+            textColor: 'red',
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }),
 })
 
 export default RootStoreActions

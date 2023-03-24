@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 import { Screen } from "../../../components"
@@ -21,22 +21,19 @@ import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
-
-const issPathCoords: [number, number][] = Array(360).fill(null).map((_, idx) => {
-  return [0, -180 + idx]
-})
+import { autorun } from "mobx"
 
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
-  const { sightings, getISSSightings } = useStores()
-  
+  const { sightings, issData, getISSSightings, getISSData } = useStores()
+
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: '2023-03-08T11:47:42.000000', visible: 0, maxHeight: 0, appears: '', disappears: '' })
   const [countdown, setCountdown] = useState("00:00:00")
   const [address, setAddress] = useState("")
-  const [location, setLocation] = useState(null)
+  const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
@@ -62,20 +59,94 @@ export const HomeScreen = observer(function HomeScreen() {
     startCountdown()
   }, [sightings])
 
-  const getSightings = async () => {
+  const [issPathCoords, setIssPathCoords] = useState([])
+  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
+  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
+  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
+  const updateTimer = useRef<NodeJS.Timer>()
+
+  function updateIssPath() {
+    let currentPositionIdx = 0
+
+    if (issData.length === 0) {
+      clearTimeout(updateTimer.current)
+      return
+    }
+
+    issData.forEach((point, idx) => {
+      if (Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) < Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())) {
+        currentPositionIdx = idx
+      }
+    })
+
+    let startPositionIdx = currentPositionIdx
+    for (; startPositionIdx > 0; startPositionIdx -= 1) {
+      if (issData[startPositionIdx].longitude < issData[startPositionIdx - 1].longitude) {
+        break
+      }
+    }
+
+    let endPositionIdx = currentPositionIdx
+    for (; endPositionIdx < issData.length - 1; endPositionIdx += 1) {
+      if (issData[endPositionIdx].longitude > issData[endPositionIdx + 1].longitude) {
+        break
+      }
+    }
+
+    setIssPathCoords(issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]))
+    setPastIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff >= 0 && diff < 60 * 60 * 1000
+      })
+      .map((p) => [p.latitude, p.longitude])
+    )
+
+    setFutureIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff < 0 && diff > -60 * 60 * 1000
+      })
+      .map((p) => [p.latitude, p.longitude])
+    )
+
+    setIssMarkerPosition([issData[currentPositionIdx].latitude, issData[currentPositionIdx].longitude])
+
+    clearTimeout(updateTimer.current)
+    updateTimer.current = setTimeout(updateIssPath, 30000)
+  }
+
+  useEffect(() => {
+    autorun(() => updateIssPath())
+  }, [])
+
+  const getLocation = async () => {
     const { location: { lat, lng }, subtitle } = await storage.load('currentLocation')
     setAddress(subtitle as string)
     setCoachVisible(!await storage.load('coachCompleted'))
     if (lat && lng) setLocation([lat, lng])
-    
-    const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
+  }
+
+  const getSightings = async () => {
+    const { kind, zone } = await getLocationTimeZone({ lat: location[0], lng: location[1] }, Date.now()/1000)
     const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    await getISSSightings({ zone: timeZone, lat, lon: lng })
+    await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
+  }
+
+  const getData = async () => {
+    await getISSData({ lat: location[0], lon: location[1] })
   }
 
   useEffect(() => {
-    getSightings().catch(e => console.log(e))
+    getLocation().catch((e) => console.log(e))
   }, [])
+
+  useEffect(() => {
+    if (!location) return
+
+    getSightings().catch(e => console.log(e))
+    getData().catch(e => console.log(e))
+  }, [location])
 
   const handleSetCoachCompleted = async () => {
     setCoachVisible(false)
@@ -148,8 +219,15 @@ export const HomeScreen = observer(function HomeScreen() {
         sighting={formatDate(currentSightning.date)}
         countdown={countdown}
       />
-      <Globe zoom={550} marker={location} issPathCoords={issPathCoords} issMarkerPosition={[0,-90]} />
-      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={[0,-90]} />
+      { pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
+        <Globe
+          zoom={550}
+          marker={location}
+          pastIssPathCoords={pastIssPathCoords}
+          futureIssPathCoords={futureIssPathCoords}
+          issMarkerPosition={issMarkerPosition} />
+      )}
+      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={issMarkerPosition} />
       <Modal
         isVisible={isLocation}
         onBackdropPress={() => setIsLocation(!isLocation)}

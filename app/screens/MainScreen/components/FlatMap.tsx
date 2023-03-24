@@ -32,7 +32,7 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMa
     [issPathCoords]
   )
 
-  const issCoords2D = latLonTo2D(issMarkerPosition)
+  const issCoords2D = issMarkerPosition ?  latLonTo2D(issMarkerPosition) : []
 
   return (
       <View style={style}>
@@ -51,6 +51,7 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMa
             <Polyline
               points={issPathCoords2D.filter((c) => c[0] < issCoords2D[0]).map((c) => [c[0] * layout.width, c[1] * layout.height].toString()).join(' ')}
               stroke={colors.palette.green}
+              fill="transparent"
               strokeWidth={3}
             />
           )}
@@ -59,6 +60,7 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMa
             <Polyline
               points={issPathCoords2D.filter((c) => c[0] >= issCoords2D[0]).map((c) => [c[0] * layout.width, c[1] * layout.height].toString()).join(' ')}
               stroke={colors.palette.neutral450}
+              fill="transparent"
               strokeDasharray={"5, 5"}
               strokeWidth={3}
             />

@@ -21,6 +21,7 @@ import * as storage from "../../../utils/storage"
 import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import { ViroARSceneNavigator } from "@viro-community/react-viro"
+import { autorun } from "mobx"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -31,7 +32,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const { sightings, getISSSightings } = useStores()
+  const { sightings, issData, getISSSightings, getISSData } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [isPathVisible, setIsPathVisible] = useState(false)
   const [isShare, setIsShare] = useState(false)
@@ -39,6 +40,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [countdown, setCountdown] = useState("00:00:00")
   const [isRecording, setIsRecording] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
+  const [location, setLocation] = useState<[number, number]>(null)
   const arView = useRef<ViroARSceneNavigator>()
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
@@ -61,17 +63,77 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     startCountdown()
   }, [sightings])
 
-  const getSightings = async () => {
-    const { location: { lat, lng } } = await storage.load('currentLocation')
-    
-    const { kind, zone } = await getLocationTimeZone({ lat, lng }, Date.now()/1000)
-    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    await getISSSightings({ zone: timeZone, lat, lon: lng })
+  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
+  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
+  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
+  const updateTimer = useRef<NodeJS.Timer>()
+
+  function updateIssPath() {
+    console.log(issData);
+    let currentPositionIdx = 0
+
+    if (issData.length === 0) {
+      clearTimeout(updateTimer.current)
+      return
+    }
+
+    issData.forEach((point, idx) => {
+      if (Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) < Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())) {
+        currentPositionIdx = idx
+      }
+    })
+
+    setPastIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff >= 0 && diff < 60 * 60 * 1000
+      })
+      .map((p) => [p.azimuth, p.elevation])
+    )
+
+    setFutureIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff < 0 && diff > -60 * 60 * 1000
+      })
+      .map((p) => [p.azimuth, p.elevation])
+    )
+
+    setIssMarkerPosition([issData[currentPositionIdx].azimuth, issData[currentPositionIdx].elevation])
+
+    clearTimeout(updateTimer.current)
+    updateTimer.current = setTimeout(updateIssPath, 30000)
   }
 
   useEffect(() => {
-    getSightings().catch(e => console.log(e))
+    autorun(() => updateIssPath())
   }, [])
+
+  const getLocation = async () => {
+    const { location: { lat, lng } } = await storage.load('currentLocation')
+    if (lat && lng) setLocation([lat, lng])
+  }
+
+  const getSightings = async () => {
+    const { kind, zone } = await getLocationTimeZone({ lat: location[0], lng: location[1] }, Date.now()/1000)
+    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
+  }
+
+  const getData = async () => {
+    await getISSData({ lat: location[0], lon: location[1] })
+  }
+
+  useEffect(() => {
+    getLocation().catch(e => console.log(e))
+  }, [])
+
+  useEffect(() => {
+    if (!location) return
+
+    getSightings().catch(e => console.log(e))
+    getData().catch(e => console.log(e))
+  }, [location])
 
   useEffect(() => {
     if (!isRecording) return undefined
@@ -221,13 +283,18 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         }
       </View>
       <View style={[$body, $bodyStyleOverride]}>
-        <ARView
-          ref={arView}
-          isFullScreen={isFullScreen}
-          isPathVisible={isPathVisible}
-          isRecording={isRecording}
-          recordedSeconds={recordedSeconds}
-        />
+        { Boolean(issMarkerPosition) && (
+          <ARView
+            ref={arView}
+            isFullScreen={isFullScreen}
+            isPathVisible={isPathVisible}
+            isRecording={isRecording}
+            recordedSeconds={recordedSeconds}
+            pastIssPathCoords={pastIssPathCoords}
+            futureIssPathCoords={futureIssPathCoords}
+            issMarkerPosition={issMarkerPosition}
+          />
+        )}
         <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
           <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
             <IconLinkButton

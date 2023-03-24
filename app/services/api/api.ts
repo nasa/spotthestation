@@ -13,11 +13,11 @@ import {
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
 import type {
-  ApiConfig, GetISSSightingsParams, ISSSighting, ISSSightingResponse,
+  ApiConfig, GetISSDataParams, GetISSSightingsParams, ISSSighting, ISSSightingResponse, OrbitPoint,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
-import { ISSData } from "../../utils/loadAndFormatISSDate"
 import { TimeZoneDataResponse } from "../../utils/geolocation"
+import { ISSDataResponse } from "./api.types"
 
 /**
  * Configuring the apisauce instance.
@@ -71,15 +71,17 @@ export class Api {
     return { kind: "ok", zone: response.data }
   }
 
-  async getISSData(): Promise<ISSData | GeneralApiProblem> {
-    const response: ApiResponse<ISSData> = await this.apisauce.get("/tracking/nasa", {}, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
-    
+  async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
+    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.get("/tracking/iss-data", {
+      lat, lon
+    }, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
+
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return problem
+      if (problem) return { ok: false, data: response.data }
     }
 
-    return response.data
+    return { ok: true, data: response.data }
   }
 
   async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSightingResponse> {

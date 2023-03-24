@@ -4,7 +4,7 @@
 import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
@@ -18,19 +18,18 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { GoogleMap } from "../components/GoogleMap"
+import { autorun } from "mobx"
+import { useStores } from "../../../models"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
   toggleIsLandscape: (value: boolean) => void
 }
 
-const issPathCoords: [number, number][] = Array(360).fill(null).map((_, idx) => {
-  return [0, -180 + idx]
-})
-
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const route: ISSNowScreenRouteProps  = useRoute().params as ISSNowScreenRouteProps
   const topInset = useSafeAreaInsets().top
+  const { issData, getISSData } = useStores()
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
@@ -124,7 +123,78 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     getCurrentLocation()
-  }, []) 
+  }, [])
+
+  const [issPathCoords, setIssPathCoords] = useState([])
+  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
+  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
+  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
+  const updateTimer = useRef<NodeJS.Timer>()
+
+  function updateIssPath() {
+    let currentPositionIdx = 0
+
+    if (issData.length === 0) {
+      clearTimeout(updateTimer.current)
+      return
+    }
+
+    issData.forEach((point, idx) => {
+      if (Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) < Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())) {
+        currentPositionIdx = idx
+      }
+    })
+
+    let startPositionIdx = currentPositionIdx
+    for (; startPositionIdx > 0; startPositionIdx -= 1) {
+      if (issData[startPositionIdx].longitude < issData[startPositionIdx - 1].longitude) {
+        break
+      }
+    }
+
+    let endPositionIdx = currentPositionIdx
+    for (; endPositionIdx < issData.length - 1; endPositionIdx += 1) {
+      if (issData[endPositionIdx].longitude > issData[endPositionIdx + 1].longitude) {
+        break
+      }
+    }
+
+    setIssPathCoords(issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]))
+    setPastIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff >= 0 && diff < 60 * 60 * 1000
+      })
+      .map((p) => [p.latitude, p.longitude])
+    )
+
+    setFutureIssPathCoords(issData
+      .filter((point) => {
+        const diff = new Date().valueOf() - new Date(point.date).valueOf()
+        return diff < 0 && diff > -60 * 60 * 1000
+      })
+      .map((p) => [p.latitude, p.longitude])
+    )
+
+    setIssMarkerPosition([issData[currentPositionIdx].latitude, issData[currentPositionIdx].longitude])
+
+    clearTimeout(updateTimer.current)
+    updateTimer.current = setTimeout(updateIssPath, 30000)
+  }
+
+  useEffect(() => {
+    autorun(() => updateIssPath())
+  }, [])
+
+  const getData = async () => {
+    await getISSData({ lat: currentLocation.location.lat, lon: currentLocation.location.lng })
+  }
+
+  useEffect(() => {
+    if (!currentLocation) return
+
+    getData().catch(e => console.log(e))
+  }, [currentLocation])
 
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
@@ -167,16 +237,21 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         />
       </View>
       <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
-        {isGlobe ? 
-          <Globe
-            key={isFullScreen.toString() + zoomLevel.toString() + isLandscape.toString()}
-            issPathCoords={issPathCoords}
-            issMarkerPosition={[0,-90]}
-            zoom={800 - (60 * zoomLevel)}
-          />
-          :
-          <GoogleMap style={$flatMap} zoom={3 + zoomLevel} />
-        }
+        {isGlobe && pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
+            <Globe
+              key={isFullScreen.toString() + zoomLevel.toString() + isLandscape.toString()}
+              pastIssPathCoords={pastIssPathCoords}
+              futureIssPathCoords={futureIssPathCoords}
+              issMarkerPosition={issMarkerPosition}
+              zoom={800 - (60 * zoomLevel)}
+            />
+          )}
+        { !isGlobe && <GoogleMap
+          issPathCoords={issPathCoords}
+          issMarkerPosition={issMarkerPosition}
+          style={$flatMap}
+          zoom={3 + zoomLevel}
+        /> }
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>
             <IconLinkButton 

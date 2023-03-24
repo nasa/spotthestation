@@ -19,8 +19,8 @@ interface GoogleMapProps {
   style?: ViewStyle,
   withNightOverlay?: boolean,
   zoom?: number,
-  issPathCoords?: LatLng[]
-  issMarkerPosition?: LatLng
+  issPathCoords?: [number, number][]
+  issMarkerPosition?: [number, number]
   onPress?: (params: any) => void
   markers?: LatLng[]
 }
@@ -102,11 +102,11 @@ export function GoogleMap({ style, withNightOverlay = true, zoom = 3, issPathCoo
           />
         )}
         {Boolean(issPathCoords.length) && <Polyline
-          coordinates={issPathCoords}
+          coordinates={issPathCoords.map((p) => ({ latitude: p[0], longitude: p[1] }))}
           strokeColor={colors.palette.green}
           strokeWidth={3}
         />}
-        {Boolean(issMarkerPosition) && <Marker coordinate={issMarkerPosition}>
+        {Boolean(issMarkerPosition) && <Marker coordinate={{ latitude: issMarkerPosition[0], longitude: issMarkerPosition[1] }}>
           <Icon icon="iss" size={36} />
         </Marker>}
         {Boolean(markers.length) && markers.map(marker => <Marker key={marker.longitude} coordinate={marker} />)}

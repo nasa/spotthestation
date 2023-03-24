@@ -50,10 +50,11 @@ export interface GlobeProps {
   marker?: number[]
   zoom?: number
   issMarkerPosition?: [number, number]
-  issPathCoords?: [number, number][]
+  pastIssPathCoords?: [number, number][]
+  futureIssPathCoords?: [number, number][]
 }
 
-export function Globe({ marker, zoom, issPathCoords = [], issMarkerPosition }: GlobeProps ) {
+export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoords = [], issMarkerPosition }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
 
   const createMarker = async () => {
@@ -125,33 +126,41 @@ export function Globe({ marker, zoom, issPathCoords = [], issMarkerPosition }: G
   }
 
   const createOrbit = () => {
-    const curve = new CatmullRomCurve3(
-      issPathCoords.map((coords) => {
+    const pastCurve = new CatmullRomCurve3(
+      pastIssPathCoords.map((coords) => {
         return new Vector3(...coordinatesToPosition(
           coords,
           GLOBE_RADIUS + 20
         ))
-      }),
-      true
+      })
     )
 
-    const points = curve.getPoints(100)
-    const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
-    const pastPoints = points
-      .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) >= 0)
-      .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
-
-    const futurePoints = points
-      .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) < 0)
-      .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
+    const futureCurve = new CatmullRomCurve3(
+      futureIssPathCoords.map((coords) => {
+        return new Vector3(...coordinatesToPosition(
+          coords,
+          GLOBE_RADIUS + 20
+        ))
+      })
+    )
+    //
+    // const points = curve.getPoints(100)
+    // const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
+    // const pastPoints = points
+    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) >= 0)
+    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
+    //
+    // const futurePoints = points
+    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) < 0)
+    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
 
     const pastLine = new Line()
     pastLine.material = new LineBasicMaterial( { color: 0x00ff00, linewidth: 6 } )
-    pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
+    pastLine.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
 
     const futureLine = new Line()
     futureLine.material = new LineDashedMaterial( { color: 0xADADAE, linewidth: 6, dashSize: 5, gapSize: 5 } )
-    futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
+    futureLine.geometry = new BufferGeometry().setFromPoints(futureCurve.getPoints(50))
 
     futureLine.computeLineDistances()
 
@@ -186,7 +195,7 @@ export function Globe({ marker, zoom, issPathCoords = [], issMarkerPosition }: G
       scene.add(point)
     }
 
-    if (issPathCoords) {
+    if (pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && issMarkerPosition) {
       scene.add(...createOrbit())
     }
 
