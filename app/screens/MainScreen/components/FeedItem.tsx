@@ -8,7 +8,7 @@ import { Tag } from "./Tag"
 export interface FeedItemProps {
   title: string
   image: string
-  date: string
+  date?: string
   tags?: string[]
   onPress?: PressableProps["onPress"]
 }
@@ -49,7 +49,7 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
         text={title} 
         style={$titleText} 
       />
-      <Text text={formatDate(date, 'MMM d, yyyy, H:mm a')} style={$dateText} />
+      {Boolean(date) && <Text text={formatDate(date, 'MMM d, yyyy')} style={$dateText} />}
     </Pressable>
   )
 }

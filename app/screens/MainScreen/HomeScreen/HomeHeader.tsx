@@ -22,16 +22,6 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
     <View style={$headerContainer}>
       <View style={$rowContainer}>
         <View style={$userContainer}>
-          <View
-            accessible
-            accessibilityLabel="header"
-            accessibilityHint="header"
-            accessibilityRole="text"
-            style={$nameContainer}
-          >
-            <Text tx="homeScreen.header.welcome" style={$welcomeText} />
-            <Text text={user.firstName} style={[$welcomeText, $nameText]} />
-          </View>
           <Text
             accessible
             accessibilityLabel="address"
@@ -107,26 +97,11 @@ const $userContainer: ViewStyle = {
   width: '85%'
 }
 
-const $welcomeText: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral450,
-  fontSize: 36,
-  lineHeight: 44
-}
-
 const $addressText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral100,
   fontSize: 20,
   lineHeight: 24
-}
-
-const $nameText: TextStyle = {
-  fontFamily: typography.primary.medium,
-}
-
-const $nameContainer: ViewStyle = {
-  flexDirection: "row"
 }
 
 const $timeContainer: ViewStyle = {
@@ -147,7 +122,7 @@ const $headText: TextStyle = {
 const $timeText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250,
-  fontSize: 28,
+  fontSize: 18,
   lineHeight: 36,
   textAlign: "center",
 }

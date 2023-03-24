@@ -93,7 +93,6 @@ export const Resources = observer(function HomeScreen() {
                       onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.link } as never)}
                       tags={item.tags} 
                       title={item.title}
-                      date={(new Date(item.date)).toISOString()}
                       image={item.image}
                     />)}
         </View>
@@ -109,7 +108,6 @@ export const Resources = observer(function HomeScreen() {
           renderItem={({item}) => <FeedSearchResultItem
             key={item.title}
             onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)}
-            // tags={item.tags}
             title={item.title}
             type={item.type}
             image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}
@@ -160,7 +158,6 @@ export const Resources = observer(function HomeScreen() {
           renderItem={({item}) => <FeedItem
                       key={item.title}
                       onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
-                      // tags={item.tags} 
                       title={item.title}
                       date={(new Date(item.pubDate)).toISOString()}
                       image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}

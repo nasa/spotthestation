@@ -138,7 +138,6 @@ const en = {
       generalButton: "Okay",
     },
     header: {
-      welcome: "Welcome, ",
       firstTimeHead: "SIGHTING TIME",
       secondTimeHead: "COUNTDOWN",
     },
