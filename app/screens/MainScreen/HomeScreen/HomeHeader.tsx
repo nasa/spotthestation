@@ -101,7 +101,7 @@ const $addressText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral100,
   fontSize: 20,
-  lineHeight: 24
+  lineHeight: 36
 }
 
 const $timeContainer: ViewStyle = {
@@ -114,7 +114,7 @@ const $timeContainer: ViewStyle = {
 const $headText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral450,
-  fontSize: 13,
+  fontSize: 14,
   lineHeight: 16,
   textAlign: "center",
 }

@@ -151,7 +151,7 @@ const en = {
     },
     selectSightings: {
       title: "Upcoming Sightings",
-      signites: "Sightings",
+      sightings: "Sightings",
       button: "Notify Me (15 min before)",
     },
     coachMarks: {

@@ -82,7 +82,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   }
 
   return (
-    <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
+    <View style={[$modalBodyContainer, $marginTop, $paddingBottom, $text]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? "padding" : undefined}
         keyboardVerticalOffset={0}
@@ -117,6 +117,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
           onChangeText={setTextValue}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
+          style={$text}
           inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
           renderLeftAccessory={({ style }) => (
             <Accessory 
@@ -222,13 +223,18 @@ const $close: ViewStyle = {
 }
 
 const $title: TextStyle = {
-  marginTop: 36,
+  marginTop: 10,
   marginBottom: 24,
   fontFamily: typography.primary?.normal,
-  fontSize: 36,
+  fontSize: 28,
   lineHeight: 44,
   color: colors.palette.neutral250,
   paddingHorizontal: 36,
+}
+
+const $text: TextStyle = {
+  fontFamily: typography.primary?.normal,
+  fontSize: 14,
 }
 
 const $locations: ViewStyle = {

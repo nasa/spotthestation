@@ -42,7 +42,7 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
         accessibilityLabel="title"
         accessibilityHint="title"
         accessibilityRole="text"
-        tx="homeScreen.selectSightings.title" 
+        tx="homeScreen.selectSightings.title"
         style={$title}
       />
       <ScrollView
@@ -52,13 +52,13 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
         accessibilityRole="scrollbar"
         style={$scrollContainer}
       >
-        <ExpandContainer title="homeScreen.selectSightings.signites" expandble={false}>
-          {sightings.map((sighting: ISSSighting) => 
+        <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false}>
+          {sightings.map((sighting: ISSSighting) =>
             <ListItem
               key={sighting.date}
-              icon="clock" 
-              title={formatedDate(sighting.date)} 
-              subtitle={`Visible for ${sighting.visible} min`} 
+              icon="clock"
+              title={formatedDate(sighting.date)}
+              subtitle={`Visible for ${sighting.visible} min`}
             />
           )}
         </ExpandContainer>
@@ -85,7 +85,7 @@ const $modalBodyContainer: ViewStyle = {
   flex: 1
 }
 
-const $scrollContainer: ViewStyle = { 
+const $scrollContainer: ViewStyle = {
   paddingHorizontal: 36
 }
 
@@ -97,10 +97,10 @@ const $close: ViewStyle = {
 }
 
 const $title: TextStyle = {
-  marginTop: 36,
+  marginTop: 10,
   marginBottom: 10,
   fontFamily: typography.primary?.normal,
-  fontSize: 36,
+  fontSize: 28,
   lineHeight: 44,
   color: colors.palette.neutral250,
   paddingHorizontal: 36,
