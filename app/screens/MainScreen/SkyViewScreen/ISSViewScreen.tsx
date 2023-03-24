@@ -51,7 +51,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
     
-    callback(formatTimer(diff))
+    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
   }, [sightings])
 
   const startCountdown = useCallback(() => {
@@ -469,7 +469,7 @@ const $timeHeader: TextStyle = {
 
 const $time: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 32,
+  fontSize: 24,
   lineHeight: 39,
   color: colors.palette.neutral100,
   textAlign: "center"

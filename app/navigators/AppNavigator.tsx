@@ -9,6 +9,7 @@ import {
   DefaultTheme,
   NavigationContainer,
   NavigatorScreenParams,
+  useNavigation,
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
@@ -59,11 +60,13 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
-  const [isSettingsCompleted, setIsSettingsCompleted] = useState(false)
-
+  const navigation = useNavigation()
+  
   useEffect(() => {
     storage.load('isSettingsCompleted')
-      .then((res) => setIsSettingsCompleted(!!res))
+      .then((res) => {
+        if (res) navigation.navigate('Main' as never)
+      })
       .catch((err) => Snackbar.show({
         text: err as string,
         duration: Snackbar.LENGTH_LONG,
@@ -76,10 +79,11 @@ const AppStack = observer(function AppStack() {
         },
       }))
   }, [])
+
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={isSettingsCompleted ? "Main" : "Onboarding"}
+      initialRouteName={"Onboarding"}
     >
       <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
       <Stack.Screen name="Main" component={TabNavigator} />

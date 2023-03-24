@@ -29,6 +29,8 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             accessibilityRole="text"
             text={user.address} 
             style={$addressText}
+            ellipsizeMode="tail"
+            numberOfLines={2}
           />
         </View>
         <IconLinkButton

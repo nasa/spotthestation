@@ -63,7 +63,7 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
           )}
         </ExpandContainer>
       </ScrollView>
-      <View style={$scrollContainer}>
+      {/* <View style={$scrollContainer}>
         <Button
           accessible
           accessibilityLabel="notify button"
@@ -73,7 +73,7 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
           textStyle={$buttonText}
           pressedStyle={$button}
         />
-      </View>
+      </View> */}
     </View>
   )
 }

@@ -10,15 +10,16 @@ export function coordinatesToPosition(coordinates, radius) {
   return [x, y, z]
 }
 
-export const formatTimer = (diff: string): string => {
+export const formatTimer = (diff: string, prefix: string): string => {
+  if (!diff.includes('second') ) diff = `${diff},00 seconds`
   const result = diff.split(",").map(item => {
     const value = item.split(" ")[0]
     return value.length === 1 ? `0${value}` : value
-  }).join(":")
+  }).join(":") 
 
   if (result.length === 0) return `00:00:00`
   if (result.length === 2) return `00:00:${result}`
   if (result.length === 5) return `00:${result}`
 
-  return result
+  return `${prefix}${result}`
 }

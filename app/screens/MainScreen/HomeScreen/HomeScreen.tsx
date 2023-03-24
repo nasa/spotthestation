@@ -30,8 +30,8 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
-  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: '2023-03-08T11:47:42.000000', visible: 0, maxHeight: 0, appears: '', disappears: '' })
-  const [countdown, setCountdown] = useState("00:00:00")
+  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '' })
+  const [countdown, setCountdown] = useState("T - 00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
@@ -46,8 +46,8 @@ export const HomeScreen = observer(function HomeScreen() {
 
     const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
-    
-    callback(formatTimer(diff))
+
+    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
   }, [sightings])
 
   const startCountdown = useCallback(() => {
@@ -157,6 +157,7 @@ export const HomeScreen = observer(function HomeScreen() {
     setAddress(location.subtitle)
     setCurrentLocation(location)
     await storage.save('currentLocation', location)
+    getSightings().catch(e => console.log(e))
   }
 
   const renderCoachMarks = useCallback(() => {
@@ -216,7 +217,7 @@ export const HomeScreen = observer(function HomeScreen() {
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
-        sighting={formatDate(currentSightning.date)}
+        sighting={currentSightning.date ? formatDate(currentSightning.date) : '-'}
         countdown={countdown}
       />
       { pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
