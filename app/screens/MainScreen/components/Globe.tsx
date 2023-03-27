@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { Platform, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
@@ -56,6 +56,57 @@ export interface GlobeProps {
 
 export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoords = [], issMarkerPosition }: GlobeProps ) {
   const [camera, setCamera] = React.useState<Camera | null>(null)
+  const issMarkerRef = useRef<Sprite>(null)
+  const pointRef = useRef<Sprite>(null)
+  const pastRef = useRef<Line>(null)
+  const futurehRef = useRef<Line>(null)
+  
+  useEffect(() => {
+    if (issMarkerRef.current) {
+      const [x, y, z] = coordinatesToPosition(
+        issMarkerPosition,
+        GLOBE_RADIUS + 20
+      )
+      issMarkerRef.current.position.set(x, y, z)
+    }
+  }, [issMarkerPosition])
+
+  useEffect(() => {
+    if (pointRef.current) {
+      const [x, y, z] = coordinatesToPosition(
+        marker,
+        GLOBE_RADIUS + 20
+      )
+      pointRef.current.position.set(x, y, z)
+    }
+  }, [marker])
+
+  useEffect(() => {
+    if (futurehRef.current && pastRef.current) {
+      const pastCurve = new CatmullRomCurve3(
+        pastIssPathCoords.map((coords) => {
+          return new Vector3(...coordinatesToPosition(
+            coords,
+            GLOBE_RADIUS + 20
+          ))
+        })
+      )
+  
+      const futureCurve = new CatmullRomCurve3(
+        futureIssPathCoords.map((coords) => {
+          return new Vector3(...coordinatesToPosition(
+            coords,
+            GLOBE_RADIUS + 20
+          ))
+        })
+      )
+
+      pastRef.current.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
+      futurehRef.current.geometry = new BufferGeometry().setFromPoints(futureCurve.getPoints(50))
+
+      futurehRef.current.computeLineDistances()
+    }
+  }, [pastIssPathCoords, futureIssPathCoords])
 
   const createMarker = async () => {
     const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string,'fiMapPin.png')
@@ -164,6 +215,9 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
 
     futureLine.computeLineDistances()
 
+    pastRef.current = pastLine
+    futurehRef.current = futureLine
+
     return [pastLine, futureLine]
   }
   
@@ -192,6 +246,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
 
     if (marker) {
       const point = await createMarker()
+      pointRef.current = point
       scene.add(point)
     }
 
@@ -201,6 +256,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
 
     if (issMarkerPosition) {
       const marker = await createISSMarker(issMarkerPosition)
+      issMarkerRef.current = marker
       scene.add(marker)
     }
 

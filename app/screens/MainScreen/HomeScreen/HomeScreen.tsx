@@ -139,7 +139,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
   useEffect(() => {
     getLocation().catch((e) => console.log(e))
-  }, [])
+  }, [currentLocation])
 
   useEffect(() => {
     if (!location) return
