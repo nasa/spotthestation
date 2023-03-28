@@ -55,7 +55,7 @@ export interface GlobeProps {
 }
 
 export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoords = [], issMarkerPosition }: GlobeProps ) {
-  const [camera, setCamera] = React.useState<Camera | null>(null)
+  const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
   const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
@@ -107,6 +107,13 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
       futurehRef.current.computeLineDistances()
     }
   }, [pastIssPathCoords, futureIssPathCoords])
+
+  useEffect(() => {
+    if (camera) {
+      camera.zoom = zoom
+      camera.updateProjectionMatrix()
+    }
+  }, [zoom, camera])
 
   const createMarker = async () => {
     const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string,'fiMapPin.png')
@@ -233,7 +240,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     const ambient = new AmbientLight('white')
     ambient.intensity = 666
 
-    camera.position.set(0, 0, zoom || 850)
+    camera.position.set(0, 0, 850)
 
     setCamera(camera)
 

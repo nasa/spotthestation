@@ -222,7 +222,7 @@ export const HomeScreen = observer(function HomeScreen() {
       />
       { pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
         <Globe
-          zoom={550}
+          zoom={1.5}
           marker={location}
           pastIssPathCoords={pastIssPathCoords}
           futureIssPathCoords={futureIssPathCoords}
