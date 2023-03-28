@@ -65,8 +65,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const handleRemove = useCallback(async () => {
     const res: LocationType[] = await storage.load('savedLocations')
-    
-    await storage.save('savedLocations', res.filter(item => item.title !== defaultLocation.title))
+
+    await storage.save('savedLocations', res.filter(item => item.subtitle !== defaultLocation.subtitle))
     navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
   }, [defaultLocation])
 

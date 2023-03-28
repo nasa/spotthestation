@@ -17,7 +17,7 @@ import { formatDate } from "../../../utils/formatDate"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
-import { GoogleMap } from "../components/GoogleMap"
+import { MapBox } from "../components/MapBox"
 import { autorun } from "mobx"
 import { useStores } from "../../../models"
 
@@ -245,11 +245,11 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               zoom={zoomLevel + 1}
             />
           )}
-        { !isGlobe && <GoogleMap
+        { !isGlobe && <MapBox
           issPathCoords={issPathCoords}
           issMarkerPosition={issMarkerPosition}
           style={$flatMap}
-          zoom={3 + zoomLevel}
+          zoom={zoomLevel}
         /> }
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>

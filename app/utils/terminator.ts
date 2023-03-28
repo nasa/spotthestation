@@ -108,6 +108,31 @@ export function compute (time: Date, resolution = 2): [number, number][] {
   return latLng
 }
 
+export function computeOld (time: Date, resolution = 2): [number, number][] {
+  const today = time ? new Date(time) : new Date()
+  const julianDay = julian(today)
+  const gst = GMST(julianDay)
+  const latLng: [number, number][] = []
+  const startMinus = -360
+
+  const sunEclPos = sunEclipticPosition(julianDay)
+  const eclObliq = eclipticObliquity(julianDay)
+  const sunEqPos = sunEquatorialPosition(sunEclPos.lambda, eclObliq)
+  for (let i = 0; i <= 720 * resolution; i++) {
+    const lng = startMinus + i / resolution
+    const ha = hourAngle(lng, sunEqPos, gst)
+    latLng[i + 1] = [latitude(ha, sunEqPos), lng]
+  }
+  if (sunEqPos.delta < 0) {
+    latLng[0] = [90, startMinus]
+    latLng[latLng.length] = [90, 360]
+  } else {
+    latLng[0] = [-90, startMinus]
+    latLng[latLng.length] = [-90, 360]
+  }
+  return latLng
+}
+
 export function latLonTo2D(latLng: [number, number]): [number, number] {
   const lon = latLng[1]
   const lat = latLng[0]
@@ -118,3 +143,33 @@ export function latLonTo2D(latLng: [number, number]): [number, number] {
   return [x, y]
 }
 
+export function toGeoJSON(latLngs: [number, number][]) {
+  /* Return 'pseudo' GeoJSON representation of the coordinates
+    Why 'pseudo'?
+    Coordinates longitude range go from -360 to 360
+    whereas it should be -180, + 180
+    API like OpenLayers or Leaflet can consume them although invalid
+    from GeoJSON spec
+    In this case, use something like GDAL/OGR to clip to a valid range with
+    ogr2ogr -f "GeoJSON" output.geojson input.geojson \
+    -clipsrc -180 90 180 90
+  */
+  return {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              ...latLngs.map(latLng => [...latLng].reverse()),
+              [latLngs[0][1], latLngs[0][0]]
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

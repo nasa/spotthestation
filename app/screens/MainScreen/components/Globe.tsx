@@ -5,7 +5,7 @@ import { Renderer, loadTextureAsync } from "expo-three"
 import * as FileSystem from "expo-file-system"
 import { Asset } from "expo-asset"
 import {
-  Sprite, SpriteMaterial, Texture, Camera, AmbientLight, Vector3,
+  Sprite, SpriteMaterial, Texture, AmbientLight, Vector3,
   Line, LineBasicMaterial, Mesh, MeshBasicMaterial, CatmullRomCurve3,
   BufferGeometry,
   PerspectiveCamera, Scene, SphereGeometry, WebGLRenderer, LineDashedMaterial,
