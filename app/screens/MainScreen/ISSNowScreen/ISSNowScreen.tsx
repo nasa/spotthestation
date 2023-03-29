@@ -348,7 +348,8 @@ const $flatMap: ViewStyle = {
 }
 
 const $textContainer: ViewStyle = {
-  flex: 1
+  flex: 1,
+  paddingHorizontal: 10
 }
 
 const $lightIcon: ViewStyle = {

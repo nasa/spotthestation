@@ -91,7 +91,8 @@ const $headerContainer: ViewStyle = {
 const $rowContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "flex-start",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  paddingBottom: 5
 }
 
 const $userContainer: ViewStyle = {

@@ -11,15 +11,14 @@ export function coordinatesToPosition(coordinates, radius) {
 }
 
 export const formatTimer = (diff: string, prefix: string): string => {
-  if (!diff.includes('second') ) diff = `${diff},00 seconds`
-  const result = diff.split(",").map(item => {
+  const diffArray = diff.split(",")
+  if (!diff.includes('second')) diffArray.push('00 seconds')
+  if (!diff.includes('minute')) diffArray.splice(diffArray.length - 2, 0, '00 minute')
+  if (!diff.includes('hour')) diffArray.splice(diffArray.length - 3, 0, '00 hour')
+  const result = diffArray.map(item => {
     const value = item.split(" ")[0]
     return value.length === 1 ? `0${value}` : value
-  }).join(":") 
-
-  if (result.length === 0) return `00:00:00`
-  if (result.length === 2) return `00:00:${result}`
-  if (result.length === 5) return `00:${result}`
+  }).join(":")
 
   return `${prefix}${result}`
 }

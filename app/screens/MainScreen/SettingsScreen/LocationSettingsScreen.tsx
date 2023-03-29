@@ -85,7 +85,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             withSwitch
           />
         </ExpandContainer>}
-        <ExpandContainer title="homeScreen.selectLocation.saved" expandble={false} actionTitle="Alert">
+        {Boolean(saved.length) && <ExpandContainer title="homeScreen.selectLocation.saved" expandble={false} actionTitle="Alert">
           {saved.map(location => <ListItem 
             key={location.subtitle}
             icon="pin"
@@ -96,7 +96,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             withSwitch
             onPress={() => navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)}
           />)}
-        </ExpandContainer>
+        </ExpandContainer>}
         <IconLinkButton 
           icon="plusCircle" 
           buttonStyle={[$addButton, { position: 'absolute', bottom: bottomInset + 64 }]} 
@@ -123,6 +123,7 @@ const $scrollContentContainerStyle: ViewStyle = {
 
 const $scrollContainer: ViewStyle = { 
   paddingHorizontal: 18,
+  paddingBottom: 10
 }
 
 const $backButton: ViewStyle = {

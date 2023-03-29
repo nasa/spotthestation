@@ -9,7 +9,6 @@
 #import <React/RCTAppSetupUtils.h>
 
 #import <ReactNativeConfig.h>
-#import <GoogleMaps/GoogleMaps.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
 
@@ -40,7 +39,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
   RCTBridge *bridge = [self.reactDelegate createBridgeWithDelegate:self launchOptions:launchOptions];
   NSString *mapsApiKey = [ReactNativeConfig envFor:@"GOOGLE_API_TOKEN"];
-  [GMSServices provideAPIKey:mapsApiKey];
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
 #if RCT_NEW_ARCH_ENABLED

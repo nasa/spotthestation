@@ -157,7 +157,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
                   onPress={() => onLocationPress(current)} 
                 />
               </ExpandContainer>}
-              <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={2}>
+              {Boolean(saved.length) && <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={saved.length}>
                 {saved.map(location => <ListItem 
                   key={location.subtitle}
                   icon="pin"
@@ -166,7 +166,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
                   selected={isSelected(location)} 
                   onPress={() => onLocationPress(location)}
                 />)}
-              </ExpandContainer>
+              </ExpandContainer>}
               {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
                   {nearby.map((place: LocationType) => 
                     <ListItem 

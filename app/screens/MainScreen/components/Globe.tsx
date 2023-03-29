@@ -18,7 +18,7 @@ import { iconRegistry } from "../../../components/Icon"
 import ControlsView from "./ControlsView"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
-const GlobeTexturesNight = require("../../../../assets/images/globe-textures-night.jpg")
+const GlobeTexturesNight = require("../../../../assets/images/globe-textures-day.jpeg")
 
 
 const dstSqr = (pt1: [number, number], pt2: [number, number]) => {
@@ -237,8 +237,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
       1000
     )
 
-    const ambient = new AmbientLight('white')
-    ambient.intensity = 666
+    const ambient = new AmbientLight('white', 666)
 
     camera.position.set(0, 0, 850)
 
