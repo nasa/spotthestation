@@ -46,6 +46,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       api.getLocationByCoords(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${marker.latitude},${marker.longitude}&key=${Config.GOOGLE_API_TOKEN}`)
       .then((res) => {
         setLocation({ location: { lat: marker.latitude, lng: marker.longitude }, title: 'Location', subtitle: res.places.results[0].formatted_address })
+        setTextValue(res.places.results[0].formatted_address)
         setIsSave(true)
       })
       .catch(e => console.log(e))
@@ -96,7 +97,11 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             key: Config.GOOGLE_API_TOKEN,
             language: 'en',
           }}
-          onPress={(data, details = null) => setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })}
+          onPress={(data, details = null) => {
+            setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })
+            setMarker({ latitude: details?.geometry?.location?.lat, longitude: details?.geometry?.location?.lng })
+            setIsSave(true)
+          }}
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}
@@ -118,7 +123,8 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             value: location?.subtitle || textValue,
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
-            onChangeText: (text) => setTextValue(text)
+            onChangeText: (text) => setTextValue(text),
+            clearButtonMode: "never"
           }}
           renderRow={({ description }) => {
             return <Text text={description} style={$locationsRowText} ellipsizeMode='tail' numberOfLines={1} />

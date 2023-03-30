@@ -37,7 +37,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
-  
+
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
    
@@ -120,10 +120,17 @@ export const HomeScreen = observer(function HomeScreen() {
     autorun(() => updateIssPath())
   }, [])
 
+  const getCoach = async () => {
+    setCoachVisible(!(await storage.load('coachCompleted')))
+  }
+
+  useEffect(() => {
+    getCoach().catch((e) => console.log(e))
+  }, [])
+
   const getLocation = async () => {
     const { location: { lat, lng }, subtitle } = await storage.load('currentLocation')
     setAddress(subtitle as string)
-    setCoachVisible(!await storage.load('coachCompleted'))
     if (lat && lng) setLocation([lat, lng])
   }
 
@@ -212,7 +219,7 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [stage])
 
   return (
-    <Screen preset="auto" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
+    <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <HomeHeader 
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}

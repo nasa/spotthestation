@@ -41,21 +41,23 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
           <Icon icon="caretLeft" color={colors.palette.neutral250} />
           <Text tx="settings.termsAndConditionsData.backButton" style={$backButtonText} />
         </Pressable>
-        <View
-          accessible
-          accessibilityLabel="terms And Conditions"
-          accessibilityHint="terms And Conditions"
-          accessibilityRole="text"
-        >
-          <Text tx="settings.termsAndConditionsData.title" style={$title} />
-          <Text tx="settings.termsAndConditionsData.intro" style={$text} />
-          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-          <Text tx="settings.termsAndConditionsData.text" style={$text} />
-          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-          <Text tx="settings.termsAndConditionsData.text" style={$text} />
-          <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-          <Text tx="settings.termsAndConditionsData.text" style={$text} />
-        </View>
+        <Pressable>
+          <View
+            accessible
+            accessibilityLabel="terms And Conditions"
+            accessibilityHint="terms And Conditions"
+            accessibilityRole="text"
+          >
+            <Text tx="settings.termsAndConditionsData.title" style={$title} />
+            <Text tx="settings.termsAndConditionsData.intro" style={$text} />
+            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+            <Text tx="settings.termsAndConditionsData.text" style={$text} />
+            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+            <Text tx="settings.termsAndConditionsData.text" style={$text} />
+            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
+            <Text tx="settings.termsAndConditionsData.text" style={$text} />
+          </View>
+        </Pressable>
       </ScrollView>
     </Screen>
   )
