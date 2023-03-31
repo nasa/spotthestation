@@ -4,7 +4,7 @@
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { View, ViewStyle, TextStyle } from "react-native"
+import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
@@ -22,6 +22,8 @@ import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import { ViroARSceneNavigator } from "@viro-community/react-viro"
 import { autorun } from "mobx"
+import RecordScreen, { RecordingResult } from 'react-native-record-screen'
+import CameraRoll from "@react-native-community/cameraroll"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -69,7 +71,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const updateTimer = useRef<NodeJS.Timer>()
 
   function updateIssPath() {
-    console.log(issData);
     let currentPositionIdx = 0
 
     if (issData.length === 0) {
@@ -129,6 +130,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [])
 
   useEffect(() => {
+    return () => { 
+      isRecording && stopRecording().catch(e => console.log(e)) 
+    }
+  }, [isRecording])
+
+  useEffect(() => {
     if (!location) return
 
     getSightings().catch(e => console.log(e))
@@ -172,47 +179,68 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       })
   }
 
-  const startRecording = () => {
-    if (!arView.current) return
-
-    arView.current.sceneNavigator
-      .startVideoRecording(
-        'iss.mp4',
-        true,
-        () => {
-          setIsRecording(false)
-          setRecordedSeconds(0)
-          Snackbar.show({
-            text: "Something went wrong",
-            duration: Snackbar.LENGTH_LONG,
-          })
-      })
-
-    setIsRecording(true)
-    setRecordedSeconds(0)
-  }
-
-  const stopRecording = () => {
-    if (!arView.current) return
-
-    arView.current.sceneNavigator
-      .stopVideoRecording()
-      .then(() => {
+  const startRecording = async () => {
+      setIsRecording(true)
+      const res = await RecordScreen.startRecording({ mic: false }).catch((error: any) => {
         Snackbar.show({
-          text: "Video saved to your library",
+          text: error,
           duration: Snackbar.LENGTH_LONG,
         })
-      })
-      .catch(() => {
-        Snackbar.show({
-          text: "Something went wrong",
-          duration: Snackbar.LENGTH_LONG,
-        })
-      })
-      .finally(() => {
         setIsRecording(false)
         setRecordedSeconds(0)
       })
+
+      if (res === RecordingResult.PermissionError) {
+        Snackbar.show({
+          text: res,
+          duration: Snackbar.LENGTH_LONG,
+        })
+        setIsRecording(false)
+        setRecordedSeconds(0)
+      }
+
+      setRecordedSeconds(0)
+  }
+
+  async function saveVideoToGallery(videoPath: string) {
+    if (Platform.OS === 'android') {
+      // On Android, we need to request permission to write to external storage
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Permission to save video',
+          message: 'This app needs permission to save videos to your device',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      )
+      if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+        // Permission denied, do nothing
+        return
+      }
+    }
+  
+    // Save video to gallery
+    await CameraRoll.save(videoPath, { type: 'video' })
+    Snackbar.show({
+      text: 'Video saved to gallery',
+      duration: Snackbar.LENGTH_LONG,
+    })
+  }
+
+  const stopRecording = async () => {
+    setIsRecording(false)
+    const res = await RecordScreen.stopRecording().catch((error: any) =>
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
+      })
+    )
+    if (res?.status === 'success') {
+      await saveVideoToGallery(res.result.outputURL as string)
+      setRecordedSeconds(0)
+    }
   }
 
   const $containerStyleOverride: ViewStyle = {

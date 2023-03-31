@@ -49,7 +49,7 @@ export function MapBox({ style, withNightOverlay = true, zoomEnabled=false, zoom
     <MapboxGL.MapView 
       style={style}
       logoEnabled={false}
-      styleURL={`mapbox://styles/mapbox/satellite-streets-${Platform.OS === "ios" ? 'v11' : 'v12'}`}
+      styleURL="mapbox://styles/mapbox/satellite-streets-v11"
       attributionEnabled={false}
       zoomEnabled={zoomEnabled}
       scaleBarEnabled={false}

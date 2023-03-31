@@ -27,16 +27,7 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Pressable
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        style={$close}
-        onPress={onClose}
-      >
-        <Icon icon="x" color={colors.palette.neutral450} />
-      </Pressable>
+      <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
       <Text
         accessible
         accessibilityLabel="title"

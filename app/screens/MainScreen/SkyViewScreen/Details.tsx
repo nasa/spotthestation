@@ -1,5 +1,5 @@
 import React from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Icon, Text } from "../../../components"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
@@ -15,16 +15,7 @@ export function Details({ onClose }: DetailsProps) {
   
   return (
     <View style={$modalBodyContainer}>
-      <Pressable
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        style={$close}
-        onPress={onClose}
-      >
-        <Icon icon="x" color={colors.palette.neutral450} />
-      </Pressable>
+      <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
       <View style={$contentContainer}>
         <Text
           accessible

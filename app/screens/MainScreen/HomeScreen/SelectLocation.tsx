@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
 
 import { Accessory, Icon, Text, TextField } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -88,16 +88,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
         keyboardVerticalOffset={0}
         style={$keyboardAvoidingViewStyle}
       >
-        <Pressable
-          accessible
-          accessibilityLabel="x button"
-          accessibilityHint="close modal"
-          accessibilityRole="button"
-          style={$close}
-          onPress={onClose}
-        >
-          <Icon icon="x" color={colors.palette.neutral450} />
-        </Pressable>
+        <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
         <Text
           accessible
           accessibilityLabel="title"
