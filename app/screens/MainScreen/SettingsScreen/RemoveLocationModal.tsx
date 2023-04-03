@@ -1,5 +1,5 @@
 import React from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Icon, Text, Button } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
@@ -13,12 +13,15 @@ export interface RemoveLocationModalProps {
 export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocationModalProps) {
   return (
     <View style={$modalBodyContainer}>
-      <Pressable
-        style={$close}
-        onPress={onClose}
-      >
-        <Icon icon="x" color={colors.palette.neutral450} />
-      </Pressable>
+      <Icon icon="x" 
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
+        color={colors.palette.neutral450} 
+        onPress={onClose} 
+        containerStyle={$close} 
+      />
       <View style={$generalIcon}>
         <Icon icon="removeLocation" />
       </View>
@@ -70,7 +73,8 @@ const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18
+  padding: 18,
+  zIndex: 5
 }
 
 const $generalIcon: ViewStyle = {

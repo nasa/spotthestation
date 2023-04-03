@@ -48,6 +48,7 @@ export const Resources = observer(function HomeScreen() {
   const [type, setType] = useState('about')
   const [news, setNews] = useState([])
   const [page, setPage] = useState(1)
+  const [isFocus, setIsFocus] = useState(false)
 
   const fetchData = useCallback((paged = 1) => {
     setIsLoading(true)
@@ -102,9 +103,10 @@ export const Resources = observer(function HomeScreen() {
 
   const renderSearch = useCallback(() => {
     if (searchQuery) {
-      return <ExpandContainer title="resources.searchResults" itemsCount={items.length} expandble={false}>
+      const searchRes = [...news].filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      return <ExpandContainer title="resources.searchResults" itemsCount={searchRes.length} expandble={false}>
         <FlatList 
-          data={[...news].filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))} 
+          data={searchRes}
           renderItem={({item}) => <FeedSearchResultItem
             key={item.title}
             onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)}
@@ -188,11 +190,20 @@ export const Resources = observer(function HomeScreen() {
             inputWrapperStyle={$searchField}
             placeholderTx="resources.searchPlaceholder"
             onChangeText={setSearchQuery}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
             renderLeftAccessory={({ style }) => (
               <Accessory 
                 icon="search"
                 color={colors.palette.neutral450}
                 style={style}
+              />
+            )}
+            renderRightAccessory={({ style }) => isFocus && searchQuery && (
+              <Accessory 
+                style={style}
+                icon={"xCircle"}
+                onPress={() => setSearchQuery("")}
               />
             )}
           />

@@ -13,8 +13,9 @@ export function coordinatesToPosition(coordinates, radius) {
 export const formatTimer = (diff: string, prefix: string): string => {
   const diffArray = diff.split(",")
   if (!diff.includes('second')) diffArray.push('00 seconds')
-  if (!diff.includes('minute')) diffArray.splice(diffArray.length - 1, 0, '00 minute')
-  if (!diff.includes('hour')) diffArray.splice(diffArray.length - 2, 0, '00 hour')
+  if (!diff.includes('minute')) diffArray.splice(diffArray.length - 1, 0, '00 minutes')
+  if (!diff.includes('hour')) diffArray.splice(diffArray.length - 2, 0, '00 hours')
+  if (!diff.includes('day')) diffArray.splice(diffArray.length - 3, 0, '00 days')
   const result = diffArray.map(item => {
     const value = item.split(" ")[0]
     return value.length === 1 ? `0${value}` : value

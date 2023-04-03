@@ -40,6 +40,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
 
   const getLocations = async () => {
     const location = await getCurrentLocation()
+    await storage.save('currentLocation', location)
     const res = await getNearbyPlaces(location.location, 100)
     const savedLocations = await storage.load('savedLocations')
     if (savedLocations) setSaved(savedLocations as LocationType[] || [])
@@ -48,9 +49,12 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   }
 
   const setPlaces = async (value: string) => {
-    const location = await getPlaces(value)
+    const locations = await getPlaces(value) 
     
-    setSearchResult(location)
+    setSearchResult(Object.values(locations.reduce((acc, obj) => {
+      acc[obj.title] = obj
+      return acc
+    }, {})))
   }
 
   useEffect(() => {
@@ -88,7 +92,15 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
         keyboardVerticalOffset={0}
         style={$keyboardAvoidingViewStyle}
       >
-        <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
+        <Icon icon="x" 
+          accessible
+          accessibilityLabel="x button"
+          accessibilityHint="close modal"
+          accessibilityRole="button"
+          color={colors.palette.neutral450} 
+          onPress={onClose} 
+          containerStyle={$close} 
+        />
         <Text
           accessible
           accessibilityLabel="title"
@@ -210,7 +222,8 @@ const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18
+  padding: 18,
+  zIndex: 5
 }
 
 const $title: TextStyle = {

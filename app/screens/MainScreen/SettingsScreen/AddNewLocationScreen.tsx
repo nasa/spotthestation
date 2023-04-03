@@ -41,12 +41,26 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const handleClear = () => {
     addressRef.current?.clear()
     setTextValue("")
+    setLocation(null)
   }
 
   const handleSave = useCallback(async () => {
     location.title = titleValue
     let res: LocationType[] = (await storage.load('savedLocations')) || []
-    
+    if (res.find(item => item.title === titleValue)) {
+      Snackbar.show({
+        text: 'Location with this title already exist!',
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Ok',
+          textColor: 'green',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })
+      return
+    }
     if (defaultLocation) res = res.filter(item => item.title !== defaultLocation.title)
     res.push(location)
     await storage.save('savedLocations', res)
@@ -66,7 +80,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const handleRemove = useCallback(async () => {
     const res: LocationType[] = await storage.load('savedLocations')
 
-    await storage.save('savedLocations', res.filter(item => item.subtitle !== defaultLocation.subtitle))
+    await storage.save('savedLocations', res.filter(item => item.title !== defaultLocation.title))
     navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
   }, [defaultLocation])
 
@@ -77,14 +91,12 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <ScrollView
+      <View
         accessible
         accessibilityLabel="Location settings scrollable us area"
         accessibilityHint="Location settings scrollable us area"
         accessibilityRole="scrollbar"
-        style={$scrollContainer} 
-        scrollEnabled 
-        contentContainerStyle={$scrollContentContainerStyle}
+        style={$scrollContainer}
       >
         <View style={$topButtonsContainer}>
           <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)} />
@@ -120,7 +132,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             value: location?.subtitle || textValue,
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
-            onChangeText: (text) => setTextValue(text)
+            onChangeText: (text) => setTextValue(text),
+            clearButtonMode: "never"
           }}
           renderRow={({ description }) => {
             return <Text text={description} style={$locationsRowText} ellipsizeMode='tail' numberOfLines={1} />
@@ -198,7 +211,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         >
           <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={handleRemove} location={defaultLocation} />
         </Modal>
-      </ScrollView>
+      </View>
     </Screen>
   )
 })

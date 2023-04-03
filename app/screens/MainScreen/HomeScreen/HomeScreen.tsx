@@ -31,7 +31,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '' })
-  const [countdown, setCountdown] = useState("T - 00:00:00")
+  const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
@@ -129,15 +129,30 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [])
 
   const getLocation = async () => {
-    const { location: { lat, lng }, subtitle } = await storage.load('currentLocation')
-    setAddress(subtitle as string)
+    let lat: number
+    let lng: number
+    let subtitle: string
+    const selected: LocationType = await storage.load('selectedLocation')
+    if (selected) {
+      lat = selected.location.lat
+      lng = selected.location.lng
+      subtitle = selected.subtitle
+      setCurrentLocation(selected)
+    } else {
+      const current: LocationType = await storage.load('currentLocation')
+      lat = current.location.lat
+      lng = current.location.lng
+      subtitle = current.subtitle
+      setCurrentLocation(current)
+    }
+    setAddress(subtitle)
     if (lat && lng) setLocation([lat, lng])
   }
 
-  const getSightings = async () => {
-    const { kind, zone } = await getLocationTimeZone({ lat: location[0], lng: location[1] }, Date.now()/1000)
+  const getSightings = async (value: [number,number]) => {
+    const { kind, zone } = await getLocationTimeZone({ lat: value[0], lng: value[1] }, Date.now()/1000)
     const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
+    await getISSSightings({ zone: timeZone, lat: value[0], lon: value[1] })
   }
 
   const getData = async () => {
@@ -146,12 +161,12 @@ export const HomeScreen = observer(function HomeScreen() {
 
   useEffect(() => {
     getLocation().catch((e) => console.log(e))
-  }, [currentLocation])
+  }, [])
 
   useEffect(() => {
     if (!location) return
 
-    getSightings().catch(e => console.log(e))
+    getSightings(location).catch(e => console.log(e))
     getData().catch(e => console.log(e))
   }, [location])
 
@@ -163,8 +178,9 @@ export const HomeScreen = observer(function HomeScreen() {
   const handleChangeLocation = async (location: LocationType) => {
     setAddress(location.subtitle)
     setCurrentLocation(location)
-    await storage.save('currentLocation', location)
-    getSightings().catch(e => console.log(e))
+    setIsLocation(false)
+    await storage.save('selectedLocation', location)
+    await getLocation()
   }
 
   const renderCoachMarks = useCallback(() => {
@@ -227,7 +243,7 @@ export const HomeScreen = observer(function HomeScreen() {
         sighting={currentSightning.date ? formatDate(currentSightning.date) : '-'}
         countdown={countdown}
       />
-      { pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
+      {pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
         <Globe
           zoom={1.5}
           marker={location}

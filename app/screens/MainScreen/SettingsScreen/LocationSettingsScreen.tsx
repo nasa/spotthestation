@@ -11,6 +11,7 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import * as storage from "../../../utils/storage"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
+import { getCurrentLocation } from "../../../utils/geolocation"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
@@ -25,9 +26,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   }
 
   const getLocations = async () => {
-    setCurrent(await storage.load('currentLocation') as LocationType)
     const res = await storage.load('savedLocations')
     if (res) setSaved(res as LocationType[] || [])
+    const location: LocationType = await getCurrentLocation()
+    await storage.save('currentLocation', location)
+    setCurrent(location)
   }
 
   useEffect(() => {
@@ -87,7 +90,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         </ExpandContainer>}
         {Boolean(saved.length) && <ExpandContainer title="homeScreen.selectLocation.saved" expandble={false} actionTitle="Alert">
           {saved.map(location => <ListItem 
-            key={location.subtitle}
+            key={location.title}
             icon="pin"
             title={location.title} 
             subtitle={location.subtitle}

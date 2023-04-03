@@ -16,7 +16,15 @@ export function Share({ onClose }: ShareProps) {
   
   return (
     <View style={$modalBodyContainer}>
-      <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
+      <Icon icon="x" 
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
+        color={colors.palette.neutral450} 
+        onPress={onClose} 
+        containerStyle={$close} 
+      />
       <View style={$contentContainer}>
         <Text 
           accessible
@@ -130,7 +138,8 @@ const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18
+  padding: 18,
+  zIndex: 5
 }
 
 const $title: TextStyle = {

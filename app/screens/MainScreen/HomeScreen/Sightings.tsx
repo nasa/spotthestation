@@ -1,5 +1,5 @@
 import React from "react"
-import { ViewStyle, View, Pressable, PressableProps, TextStyle, ScrollView } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
 import { Icon, Text, Button } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -27,7 +27,15 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Icon icon="x" color={colors.palette.neutral450} onPress={onClose} containerStyle={$close} />
+      <Icon icon="x" 
+        accessible
+        accessibilityLabel="x button"
+        accessibilityHint="close modal"
+        accessibilityRole="button"
+        color={colors.palette.neutral450} 
+        onPress={onClose} 
+        containerStyle={$close} 
+      />
       <Text
         accessible
         accessibilityLabel="title"
@@ -84,7 +92,8 @@ const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18
+  padding: 18,
+  zIndex: 5
 }
 
 const $title: TextStyle = {
@@ -97,18 +106,18 @@ const $title: TextStyle = {
   paddingHorizontal: 36,
 }
 
-const $button: ViewStyle = {
-  width: "100%",
-  height: 64,
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
-  borderWidth: 0,
-  marginVertical: 24
-}
+// const $button: ViewStyle = {
+//   width: "100%",
+//   height: 64,
+//   backgroundColor: colors.palette.buttonBlue,
+//   borderRadius: 28,
+//   borderWidth: 0,
+//   marginVertical: 24
+// }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: 18,
-  fontFamily: typography.primary.medium,
-  lineHeight: 21,
-}
+// const $buttonText: TextStyle = {
+//   color: colors.palette.neutral100,
+//   fontSize: 18,
+//   fontFamily: typography.primary.medium,
+//   lineHeight: 21,
+// }

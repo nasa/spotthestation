@@ -30,7 +30,7 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             text={user.address} 
             style={$addressText}
             ellipsizeMode="tail"
-            numberOfLines={2}
+            numberOfLines={1}
           />
         </View>
         <IconLinkButton
@@ -96,8 +96,7 @@ const $rowContainer: ViewStyle = {
 }
 
 const $userContainer: ViewStyle = {
-  marginBottom: 18,
-  width: '85%'
+  width: '85%',
 }
 
 const $addressText: TextStyle = {
