@@ -18,16 +18,7 @@ import { iconRegistry } from "../../../components/Icon"
 import ControlsView from "./ControlsView"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
-const GlobeTexturesNight = require("../../../../assets/images/globe-textures-day.jpeg")
-
-
-const dstSqr = (pt1: [number, number], pt2: [number, number]) => {
-  return (pt1[0] - pt2[0])*(pt1[0] - pt2[0]) + (pt1[1] - pt2[1])*(pt1[1] - pt2[1])
-}
-
-const getCrossProduct = (pt1: [number, number], pt2: [number, number]) => {
-  return pt2[0] * pt1[1] - pt2[1] * pt1[0]
-}
+const GlobeTexturesNight = require("../../../../assets/images/World-Map.jpg")
 
 async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
   if (Platform.OS === 'ios') return assetModule
@@ -248,7 +239,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
     const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true)
-    const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "earth", false)
+    const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "world-map", false)
 
     if (marker) {
       const point = await createMarker()
