@@ -148,3 +148,4 @@ dist/
 ios/IPA
 iOS/STSApp.xcarchive
 
+coverage/

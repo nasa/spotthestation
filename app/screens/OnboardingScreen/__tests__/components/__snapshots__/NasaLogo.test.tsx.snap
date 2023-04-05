@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTImageView
+  internal_analyticTag={null}
+  resizeMode="cover"
+  source={
+    Array [
+      Object {
+        "height": undefined,
+        "uri": undefined,
+        "width": undefined,
+      },
+    ]
+  }
+  style={
+    Object {
+      "height": 110,
+      "marginLeft": 36,
+      "marginTop": 36,
+      "overflow": "hidden",
+      "width": 110,
+    }
+  }
+/>
+`;

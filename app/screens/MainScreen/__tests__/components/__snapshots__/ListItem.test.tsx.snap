@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  accessibilityHint="pressable list item"
+  accessibilityLabel="pressable list item"
+  accessibilityRole="button"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingTop": 16,
+      "width": "100%",
+    }
+  }
+>
+  <div />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "borderBottomWidth": 1,
+        "borderColor": "#353739",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginLeft": 10,
+        "paddingBottom": 16,
+      }
+    }
+  >
+    <View
+      accessibilityHint="list item body"
+      accessibilityLabel="list item body"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <div />
+      <div />
+    </View>
+    <div />
+  </View>
+</View>
+`;

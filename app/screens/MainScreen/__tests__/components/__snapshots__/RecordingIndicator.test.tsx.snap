@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#FC3D21",
+      "borderRadius": 4,
+      "marginTop": 20,
+      "paddingBottom": 3,
+      "paddingTop": 5,
+      "width": 80,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#DEDDDE",
+        "fontSize": 16,
+        "lineHeight": 16,
+        "textAlign": "center",
+      }
+    }
+  >
+    01
+    :
+    06
+    :
+    41
+  </Text>
+</View>
+`;

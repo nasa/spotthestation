@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Array [
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        },
+        Object {},
+      ]
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={1}
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": undefined,
+            "width": undefined,
+          },
+          undefined,
+        ]
+      }
+    />
+    <RCTImageView
+      internal_analyticTag={null}
+      resizeMode="cover"
+      source={
+        Array [
+          Object {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        Object {
+          "height": 110,
+          "marginLeft": 36,
+          "marginTop": 36,
+          "overflow": "hidden",
+          "width": 110,
+        }
+      }
+    />
+    <RCTImageView
+      internal_analyticTag={null}
+      resizeMode="cover"
+      source={
+        Array [
+          Object {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        Object {
+          "height": undefined,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": "26%",
+          "width": undefined,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "position": "absolute",
+          "top": "68%",
+        }
+      }
+    >
+      <div />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 36,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <View
+          accessibilityHint="Navigates to the next screen"
+          accessibilityLabel="Arrow right button"
+          accessibilityRole="imagebutton"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 100,
+                "display": "flex",
+                "height": 42,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 42,
+              },
+              Object {
+                "height": 64,
+                "width": 64,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 100,
+                    "display": "flex",
+                    "height": 42,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 42,
+                  },
+                  undefined,
+                  undefined,
+                ],
+              ]
+            }
+          >
+            <ViewManagerAdapter_ExpoBlurView
+              proxiedProperties={
+                Object {
+                  "intensity": 0,
+                  "tint": "default",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;

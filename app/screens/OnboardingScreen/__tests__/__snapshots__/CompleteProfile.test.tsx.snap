@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="imagebutton"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 100,
+          "display": "flex",
+          "height": 42,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 42,
+        },
+        Object {
+          "marginLeft": 18,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 100,
+              "display": "flex",
+              "height": 42,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 42,
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    >
+      <ViewManagerAdapter_ExpoBlurView
+        proxiedProperties={
+          Object {
+            "intensity": 0,
+            "tint": "default",
+          }
+        }
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <div />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingBottom": 52,
+        "paddingHorizontal": 36,
+      }
+    }
+  >
+    <div />
+    <div />
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "marginBottom": 36,
+        }
+      }
+    >
+      <div />
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#1E2022",
+            "borderBottomWidth": 1,
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingBottom": 18,
+          }
+        }
+      >
+        <View
+          accessibilityHint="notification"
+          accessibilityLabel="notification"
+          accessibilityRole="text"
+          accessible={true}
+          style={
+            Object {
+              "width": "70%",
+            }
+          }
+        >
+          <div />
+          <div />
+        </View>
+        <div />
+      </View>
+    </View>
+    <div />
+  </View>
+</div>
+`;

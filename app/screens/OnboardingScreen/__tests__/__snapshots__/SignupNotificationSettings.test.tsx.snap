@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <div />,
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 36,
+      }
+    }
+  >
+    <div />
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#1E2022",
+          "borderBottomWidth": 1,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 18,
+        }
+      }
+    >
+      <View
+        accessibilityHint="notification"
+        accessibilityLabel="notification"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "width": "70%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <div />
+    </View>
+  </View>,
+  <div />,
+]
+`;

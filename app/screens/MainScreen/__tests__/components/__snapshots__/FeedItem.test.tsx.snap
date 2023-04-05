@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  accessibilityHint="pressable feed item"
+  accessibilityLabel="pressable feed item"
+  accessibilityRole="button"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "height": "auto",
+      "justifyContent": "space-between",
+      "paddingTop": 16,
+      "position": "relative",
+      "width": "47%",
+    }
+  }
+>
+  <View
+    accessibilityHint="tags"
+    accessibilityLabel="tags"
+    accessibilityRole="text"
+    accessible={true}
+    style={
+      Object {
+        "flexDirection": "row",
+        "left": 18,
+        "position": "absolute",
+        "top": 36,
+        "zIndex": 2,
+      }
+    }
+  />
+  <RCTImageView
+    accessibilityHint="image"
+    accessibilityLabel="image"
+    accessibilityRole="image"
+    accessible={true}
+    internal_analyticTag={null}
+    resizeMode="cover"
+    source={
+      Array [
+        Object {
+          "uri": "",
+        },
+      ]
+    }
+    style={
+      Object {
+        "aspectRatio": 0.7,
+        "borderRadius": 12,
+        "height": undefined,
+        "marginBottom": 12,
+        "overflow": "hidden",
+        "width": "100%",
+      }
+    }
+  />
+  <div />
+</View>
+`;

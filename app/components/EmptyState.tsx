@@ -104,9 +104,9 @@ interface EmptyStateProps {
 const EmptyStatePresets = {
   generic: {
     imageSource: sadFace,
-    heading: translate("emptyStateComponent.generic.heading"),
-    content: translate("emptyStateComponent.generic.content"),
-    button: translate("emptyStateComponent.generic.button"),
+    heading: '',
+    content: '',
+    button: '',
   },
 } as const
 
