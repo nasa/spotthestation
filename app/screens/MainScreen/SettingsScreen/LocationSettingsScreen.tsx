@@ -27,8 +27,9 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
   const getLocations = async () => {
     const res = await storage.load('savedLocations')
+    const cur = await storage.load('currentLocation')
     if (res) setSaved(res as LocationType[] || [])
-    const location: LocationType = await getCurrentLocation()
+    const location: LocationType = cur || await getCurrentLocation()
     await storage.save('currentLocation', location)
     setCurrent(location)
   }

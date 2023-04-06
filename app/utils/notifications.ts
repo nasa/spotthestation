@@ -29,17 +29,21 @@ class Notifications {
   };
 
   setNotifications = async (events: ISSSighting[]) => {
+    const eventsForNotify: ISSSighting[] = events.filter(item => item.notify)
     const start = new Date(await storage.load('muteFrom') as string)
     const end = new Date(await storage.load('muteUntil') as string)
     const iisVisible = await storage.load('iisVisible')
     const upcoming = await storage.load('upcoming')
     const inApp = await storage.load('inApp')
     const notifyBefore = await storage.load('notifyBefore')
-    const currentLocation = await storage.load('currentLocation')
-    
-    if (inApp && currentLocation.alert) {
+    let location = await storage.load('selectedLocation')
+    if (!location) location = await storage.load('currentLocation')
+   
+    const eventsList = eventsForNotify?.length ? eventsForNotify : events
+
+    if (inApp && location?.alert) {
       PushNotification.cancelAllLocalNotifications()
-      events.forEach(({ date }) => {
+      eventsList.forEach(({ date }) => {
         const eventDate = new Date(date)
         const muted = isDateBetweenHours(eventDate, start, end)
         
@@ -57,7 +61,7 @@ class Notifications {
               channelId: 'default-channel-id',
               title: `Spot the ISS in ${notifyBefore || 15} minutes!`,
               message: `The ISS is passing above you in ${notifyBefore || 15} minutes…`,
-              date: new Date(eventDate.getTime() - (notifyBefore || 15) * 1000),
+              date: new Date(eventDate.getTime() - (notifyBefore || 15) * 60000),
             })
           }
         }

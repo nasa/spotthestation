@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-native/no-inline-styles */
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
@@ -26,7 +27,7 @@ import { autorun } from "mobx"
 export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
-  const { sightings, issData, getISSSightings, getISSData } = useStores()
+  const { sightings, issData, getISSSightings, getISSData, setISSSightings } = useStores()
 
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
@@ -183,6 +184,10 @@ export const HomeScreen = observer(function HomeScreen() {
     await getLocation()
   }
 
+  const handleSetSightingNotification = (values: ISSSighting[]) => {
+    setISSSightings(values)
+  }
+
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
       case 1: return <CoachMark
@@ -251,7 +256,7 @@ export const HomeScreen = observer(function HomeScreen() {
           futureIssPathCoords={futureIssPathCoords}
           issMarkerPosition={issMarkerPosition} />
       )}
-      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={issMarkerPosition} />
+      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={issMarkerPosition} currentLocation={location} />
       <Modal
         isVisible={isLocation}
         onBackdropPress={() => setIsLocation(!isLocation)}
@@ -272,7 +277,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
-      <Modal
+      {isSightings && <Modal
         isVisible={isSightings}
         onBackdropPress={() => setIsSightings(!isSightings)}
         onSwipeComplete={() => setIsSightings(!isSightings)}
@@ -286,8 +291,8 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <Sightings onClose={() => setIsSightings(!isSightings)} sightings={sightings} />
-      </Modal>
+        <Sightings onClose={() => setIsSightings(!isSightings)} sightings={sightings} onNotify={handleSetSightingNotification} />
+      </Modal>}
       {coachVisible && <Modal
         isVisible={coachVisible}
         useNativeDriver

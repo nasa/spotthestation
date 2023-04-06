@@ -38,7 +38,7 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
     const address = `${item?.street}, ${item?.streetNumber}, ${item?.postalCode}, ${item?.city}`
 
-    return { title: item?.name === item?.streetNumber ? address : item?.name, subtitle: address, location: {lat: latitude, lng: longitude}}
+    return { title: item?.name === item?.streetNumber ? address : item?.name, subtitle: address, location: { lat: latitude, lng: longitude }, alert: false }
   }
 
   return null
@@ -53,7 +53,7 @@ export const getNearbyPlaces = async ({ lng, lat }: Point, radius: number): Prom
 
   if (res.kind === "ok") {
     for (const googlePlace of res.places) {
-      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.vicinity })
+      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.vicinity, alert: true })
     }
   }
 
@@ -68,7 +68,7 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
 
   if (res.kind === "ok") {
     for (const googlePlace of res.places) {
-      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.formatted_address })
+      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.formatted_address, alert: true })
     }
   }
 

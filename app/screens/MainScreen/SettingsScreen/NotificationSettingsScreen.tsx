@@ -76,176 +76,178 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
         scrollEnabled 
         contentContainerStyle={$scrollContentContainerStyle}
       >
-        <Pressable 
-          accessible
-          accessibilityLabel="Back button"
-          accessibilityHint="Navigates to the previous screen"
-          accessibilityRole="button"
-          onPress={() => navigation.goBack()} 
-          style={$backButton}
-        >
-          <Icon icon="caretLeft" color={colors.palette.neutral250} />
-          <Text tx="settings.notificationSettingsData.backButton" style={$backButtonText} />
-        </Pressable>
-        <Text tx="settings.notificationSettingsData.notificationTitle" style={$title} />
-        <View style={$switchContainer}>
-          <View 
+        <Pressable>
+          <Pressable 
             accessible
-            accessibilityLabel="iis Visible"
-            accessibilityHint="iis Visible notification switch"
-            accessibilityRole="text"
-            style={$labelContainer}
+            accessibilityLabel="Back button"
+            accessibilityHint="Navigates to the previous screen"
+            accessibilityRole="button"
+            onPress={() => navigation.goBack()} 
+            style={$backButton}
           >
-            <Text tx="settings.notificationSettingsData.iisVisibleLabel" style={$label} />
-          </View>
-          <Toggle
-            accessible
-            accessibilityLabel="switch button"
-            accessibilityHint="toggle iis Visible notification"
-            variant="switch" 
-            value={settings?.iisVisible} 
-            onValueChange={(value) => handleChange(value, 'iisVisible')}
-          />
-        </View>
-        <View style={$switchContainer}>
-          <View 
-            accessible
-            accessibilityLabel="upcoming events notification"
-            accessibilityHint="upcoming events notification switch"
-            accessibilityRole="text"
-            style={$labelContainer}
-          >
-            <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
-            <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
-          </View>
-          <Toggle
-            accessible
-            accessibilityLabel="switch button"
-            accessibilityHint="toggle upcoming events notifications"
-            variant="switch" 
-            value={settings?.upcoming}
-            onValueChange={(value) => handleChange(value, 'upcoming')}
-          />
-        </View>
-        <ExpandContainer title="settings.notificationSettingsData.notificationTypes" expandble={false}>
+            <Icon icon="caretLeft" color={colors.palette.neutral250} />
+            <Text tx="settings.notificationSettingsData.backButton" style={$backButtonText} />
+          </Pressable>
+          <Text tx="settings.notificationSettingsData.notificationTitle" style={$title} />
           <View style={$switchContainer}>
             <View 
               accessible
-              accessibilityLabel="in App notification"
-              accessibilityHint="in App notification switch"
+              accessibilityLabel="iis Visible"
+              accessibilityHint="iis Visible notification switch"
               accessibilityRole="text"
               style={$labelContainer}
             >
-              <Text tx="settings.notificationSettingsData.inAppLabel" style={$label} />
+              <Text tx="settings.notificationSettingsData.iisVisibleLabel" style={$label} />
             </View>
             <Toggle
               accessible
               accessibilityLabel="switch button"
-              accessibilityHint="toggle in App notification"
+              accessibilityHint="toggle iis Visible notification"
               variant="switch" 
-              value={settings?.inApp} 
-              onValueChange={(value) => handleChange(value, 'inApp')}
+              value={settings?.iisVisible} 
+              onValueChange={(value) => handleChange(value, 'iisVisible')}
             />
           </View>
-        </ExpandContainer>
-        <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false}>
-          <Dropdown
-            accessibilityLabel="period select"
-            style={[$dropdown, $inputMargin]}
-            placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
-            selectedTextStyle={[$dropdownText, $dropdownSelected]}
-            placeholder={translate("settings.contactUsData.titlePlaceholder")}
-            data={[
-              { label: "15 min", value: 15 },
-              { label: "30 min", value: 30 },
-            ]}
-            itemContainerStyle={{
-              backgroundColor: colors.palette.neutral350,
-            }}
-            containerStyle={$dropdownContainer}
-            itemTextStyle={$dropdownText}
-            activeColor={colors.palette.neutral450}
-            value={settings?.notifyBefore}
-            labelField="label"
-            valueField="value"
-            onChange={({ value }) => handleChange(value, 'notifyBefore')}
-            renderRightIcon={() => (
-              <Icon
-                icon="chevronDown"
-                size={28}
-                color={colors.palette.neutral450}
-                containerStyle={$dropdownRightAccessory}
-              />
-            )}
-          />
-        </ExpandContainer>
-        <Text tx="settings.notificationSettingsData.privacyTitle" style={$title} />
-        <ExpandContainer title="settings.notificationSettingsData.turnOffNotifications" expandble={false}>
-          <View style={$muteContainer}>
-            <View style={$muteButton}>
-              <Text tx="settings.notificationSettingsData.from" style={$muteButtonLabel} />
-              <Button
-                accessible
-                accessibilityLabel="from picker button"
-                accessibilityHint="open time picker"
-                textStyle={$buttonText}
-                style={$button}
-                pressedStyle={$button}
-                text={formatDate(settings?.muteFrom?.toISOString(), "h:mm aa")}
-                onPress={() => setFrom(true)}
-                renderRightAccessory={() => (
-                  <Icon
-                    icon="chevronDown"
-                    size={28}
-                    color={colors.palette.neutral250}
-                    containerStyle={$timeButtonRightAccessory}
-                  />
-                )}
-              />
+          <View style={$switchContainer}>
+            <View 
+              accessible
+              accessibilityLabel="upcoming events notification"
+              accessibilityHint="upcoming events notification switch"
+              accessibilityRole="text"
+              style={$labelContainer}
+            >
+              <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
+              <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
             </View>
-            <View style={$muteButton}>
-              <Text tx="settings.notificationSettingsData.until" style={$muteButtonLabel} />
-              <Button
-                accessible
-                accessibilityLabel="until picker button"
-                accessibilityHint="open time picker"
-                textStyle={$buttonText}
-                style={$button}
-                pressedStyle={$button}
-                text={formatDate(settings?.muteUntil?.toISOString(), "h:mm aa")}
-                onPress={() => setUntil(true)}
-                renderRightAccessory={() => (
-                  <Icon
-                    icon="chevronDown"
-                    size={28}
-                    color={colors.palette.neutral250}
-                    containerStyle={$timeButtonRightAccessory}
-                  />
-                )}
-              />
-            </View>
+            <Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle upcoming events notifications"
+              variant="switch" 
+              value={settings?.upcoming}
+              onValueChange={(value) => handleChange(value, 'upcoming')}
+            />
           </View>
-        </ExpandContainer>
-        <DateTimePickerModal
-          isVisible={from}
-          mode="time"
-          date={settings?.muteFrom}
-          onConfirm={(date) => {
-            setFrom(false)
-            handleChange(date, 'muteFrom')
-          }}
-          onCancel={() => setFrom(false)}
-        />
-        <DateTimePickerModal
-          isVisible={until}
-          mode="time"
-          date={settings?.muteUntil}
-          onConfirm={(date) => {
-            setUntil(false)
-            handleChange(date, 'muteUntil')
-          }}
-          onCancel={() => setUntil(false)}
-        />
+          <ExpandContainer title="settings.notificationSettingsData.notificationTypes" expandble={false}>
+            <View style={$switchContainer}>
+              <View 
+                accessible
+                accessibilityLabel="in App notification"
+                accessibilityHint="in App notification switch"
+                accessibilityRole="text"
+                style={$labelContainer}
+              >
+                <Text tx="settings.notificationSettingsData.inAppLabel" style={$label} />
+              </View>
+              <Toggle
+                accessible
+                accessibilityLabel="switch button"
+                accessibilityHint="toggle in App notification"
+                variant="switch" 
+                value={settings?.inApp} 
+                onValueChange={(value) => handleChange(value, 'inApp')}
+              />
+            </View>
+          </ExpandContainer>
+          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false}>
+            <Dropdown
+              accessibilityLabel="period select"
+              style={[$dropdown, $inputMargin]}
+              placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
+              selectedTextStyle={[$dropdownText, $dropdownSelected]}
+              placeholder={translate("settings.contactUsData.titlePlaceholder")}
+              data={[
+                { label: "15 min", value: 15 },
+                { label: "30 min", value: 30 },
+              ]}
+              itemContainerStyle={{
+                backgroundColor: colors.palette.neutral350,
+              }}
+              containerStyle={$dropdownContainer}
+              itemTextStyle={$dropdownText}
+              activeColor={colors.palette.neutral450}
+              value={settings?.notifyBefore}
+              labelField="label"
+              valueField="value"
+              onChange={({ value }) => handleChange(value, 'notifyBefore')}
+              renderRightIcon={() => (
+                <Icon
+                  icon="chevronDown"
+                  size={28}
+                  color={colors.palette.neutral450}
+                  containerStyle={$dropdownRightAccessory}
+                />
+              )}
+            />
+          </ExpandContainer>
+          <Text tx="settings.notificationSettingsData.privacyTitle" style={$title} />
+          <ExpandContainer title="settings.notificationSettingsData.turnOffNotifications" expandble={false}>
+            <View style={$muteContainer}>
+              <View style={$muteButton}>
+                <Text tx="settings.notificationSettingsData.from" style={$muteButtonLabel} />
+                <Button
+                  accessible
+                  accessibilityLabel="from picker button"
+                  accessibilityHint="open time picker"
+                  textStyle={$buttonText}
+                  style={$button}
+                  pressedStyle={$button}
+                  text={formatDate(settings?.muteFrom?.toISOString(), "h:mm aa")}
+                  onPress={() => setFrom(true)}
+                  renderRightAccessory={() => (
+                    <Icon
+                      icon="chevronDown"
+                      size={28}
+                      color={colors.palette.neutral250}
+                      containerStyle={$timeButtonRightAccessory}
+                    />
+                  )}
+                />
+              </View>
+              <View style={$muteButton}>
+                <Text tx="settings.notificationSettingsData.until" style={$muteButtonLabel} />
+                <Button
+                  accessible
+                  accessibilityLabel="until picker button"
+                  accessibilityHint="open time picker"
+                  textStyle={$buttonText}
+                  style={$button}
+                  pressedStyle={$button}
+                  text={formatDate(settings?.muteUntil?.toISOString(), "h:mm aa")}
+                  onPress={() => setUntil(true)}
+                  renderRightAccessory={() => (
+                    <Icon
+                      icon="chevronDown"
+                      size={28}
+                      color={colors.palette.neutral250}
+                      containerStyle={$timeButtonRightAccessory}
+                    />
+                  )}
+                />
+              </View>
+            </View>
+          </ExpandContainer>
+          <DateTimePickerModal
+            isVisible={from}
+            mode="time"
+            date={settings?.muteFrom}
+            onConfirm={(date) => {
+              setFrom(false)
+              handleChange(date, 'muteFrom')
+            }}
+            onCancel={() => setFrom(false)}
+          />
+          <DateTimePickerModal
+            isVisible={until}
+            mode="time"
+            date={settings?.muteUntil}
+            onConfirm={(date) => {
+              setUntil(false)
+              handleChange(date, 'muteUntil')
+            }}
+            onCancel={() => setUntil(false)}
+          />
+        </Pressable>
       </ScrollView>
     </Screen>
   )

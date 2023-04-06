@@ -51,6 +51,7 @@ export interface ISSSighting {
   appears: string
   disappears: string
   visible: number
+  notify?: boolean
 }
 
 export interface OrbitPoint {

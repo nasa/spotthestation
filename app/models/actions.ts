@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { flow } from 'mobx-state-tree'
 import Snackbar from 'react-native-snackbar'
-import { api } from '../services/api'
+import { api, ISSSighting } from '../services/api'
 import notifications from '../utils/notifications'
 
 const RootStoreActions = (self) => ({
@@ -34,6 +34,11 @@ const RootStoreActions = (self) => ({
 			console.error(e)
 		}
 	}),
+
+  setISSSightings: (values: ISSSighting[]) => {
+		self.sightings = [...values]
+    notifications.setNotifications(values)
+	},
 
   getISSData: flow(function* getISSData(params) {
     try {

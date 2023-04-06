@@ -33,6 +33,8 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
   startDate.setHours(startHours, startMinutes, startSeconds, 0)
   const endDate = new Date(date)
   endDate.setHours(endHours, endMinutes, endSeconds, 0)
+  
+  if (startHours === endHours || startMinutes === endMinutes || startSeconds === endSeconds) return false
 
   return date >= startDate || date < endDate
 }

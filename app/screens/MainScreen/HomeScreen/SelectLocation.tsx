@@ -39,8 +39,13 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const getLocations = async () => {
-    const location = await getCurrentLocation()
-    await storage.save('currentLocation', location)
+    let location: LocationType = await storage.load('currentLocation')
+
+    if (!location) {
+      location = await getCurrentLocation()
+      await storage.save('currentLocation', location)
+    }
+    
     const res = await getNearbyPlaces(location.location, 100)
     const savedLocations = await storage.load('savedLocations')
     if (savedLocations) setSaved(savedLocations as LocationType[] || [])
@@ -51,7 +56,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   const setPlaces = async (value: string) => {
     const locations = await getPlaces(value) 
     
-    setSearchResult(Object.values(locations.reduce((acc, obj) => {
+    setSearchResult(Object.values(locations.map(item => ({...item, alert: true })).reduce((acc, obj) => {
       acc[obj.title] = obj
       return acc
     }, {})))

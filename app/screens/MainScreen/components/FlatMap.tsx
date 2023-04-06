@@ -11,9 +11,10 @@ interface FlatMapProps {
   style?: ViewStyle,
   issPathCoords?: [number, number][]
   issMarkerPosition?: [number, number]
+  currentLocation?: [number, number]
 }
 
-export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMapProps) {
+export function FlatMap({ style, issPathCoords = [], issMarkerPosition, currentLocation }: FlatMapProps) {
   const [layout, setLayout] = useState({ width: 0, height: 0 })
   const [terminatorCoords2D, setTerminatorCoords2D] = useState<[number, number][]>([])
 
@@ -33,6 +34,7 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMa
   )
 
   const issCoords2D = issMarkerPosition ?  latLonTo2D(issMarkerPosition) : []
+  const currentLocation2D = currentLocation ?  latLonTo2D(currentLocation) : []
 
   return (
       <View style={style}>
@@ -74,6 +76,16 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition }: FlatMa
             top: issCoords2D[1] * layout.height - 18
           }}>
             <Icon icon="position" size={36} />
+          </View>
+        )}
+        {Boolean(currentLocation) && (
+          // eslint-disable-next-line react-native/no-inline-styles
+          <View style={{
+            position: 'absolute',
+            left: currentLocation2D[0] * layout.width - 18,
+            top: currentLocation2D[1] * layout.height - 18
+          }}>
+            <Icon icon="fiMapPin" size={15} />
           </View>
         )}
       </View>

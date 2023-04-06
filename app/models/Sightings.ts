@@ -6,4 +6,5 @@ export const Sighting = types.model('Sighting', {
   appears: types.optional(types.string, ''),
   disappears: types.optional(types.string, ''),
   visible: types.maybeNull(types.number),
+  notify: types.maybeNull(types.boolean),
 })

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
 import { Icon, Text, Button } from "../../../components"
@@ -13,17 +13,31 @@ import { ISSSighting } from "../../../services/api"
 export interface SightingsProps {
   sightings: ISSSighting[]
   onClose?: PressableProps["onPress"]
+  onNotify?: (values: ISSSighting[]) => void
 }
 
-export function Sightings({ onClose, sightings }: SightingsProps) {
+export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
+  const [sightingsForUpdate, setSightingsForUpdate] = useState<ISSSighting[]>([])
 
   const formatedDate = (date: string): string => {
     if (isToday(new Date(date))) return `Today, ${formatDate(date, "H:mm aa")}`
     if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, "H:mm aa")}`
     return formatDate(date, "eeee, MMM d, H:mm aa")
   }
+
+  const isSelected = useCallback((sighting: ISSSighting) => {
+    if (sightingsForUpdate.length) {
+      const res: ISSSighting = sightingsForUpdate.find(item => item.date === sighting.date)
+      return res?.notify
+    }
+    return false
+  }, [sightingsForUpdate])
+
+  useEffect(() => {
+    setSightingsForUpdate([...sightings])
+  }, [sightings])
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -57,12 +71,21 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
               key={sighting.date}
               icon="clock"
               title={formatedDate(sighting.date)}
+              selected={isSelected(sighting)}
               subtitle={`Visible for ${sighting.visible} min`}
+              onPress={() => {
+                setSightingsForUpdate(sightingsForUpdate.map(item => {
+                  if (item.date === sighting.date) {
+                    return {...item, notify: !item.notify}
+                  }
+                  return item
+                }))
+              }}
             />
           )}
         </ExpandContainer>
       </ScrollView>
-      {/* <View style={$scrollContainer}>
+      <View style={$scrollContainer}>
         <Button
           accessible
           accessibilityLabel="notify button"
@@ -71,8 +94,9 @@ export function Sightings({ onClose, sightings }: SightingsProps) {
           style={$button}
           textStyle={$buttonText}
           pressedStyle={$button}
+          onPress={() => onNotify(sightingsForUpdate)}
         />
-      </View> */}
+      </View>
     </View>
   )
 }
@@ -106,18 +130,18 @@ const $title: TextStyle = {
   paddingHorizontal: 36,
 }
 
-// const $button: ViewStyle = {
-//   width: "100%",
-//   height: 64,
-//   backgroundColor: colors.palette.buttonBlue,
-//   borderRadius: 28,
-//   borderWidth: 0,
-//   marginVertical: 24
-// }
+const $button: ViewStyle = {
+  width: "100%",
+  height: 64,
+  backgroundColor: colors.palette.buttonBlue,
+  borderRadius: 28,
+  borderWidth: 0,
+  marginVertical: 24
+}
 
-// const $buttonText: TextStyle = {
-//   color: colors.palette.neutral100,
-//   fontSize: 18,
-//   fontFamily: typography.primary.medium,
-//   lineHeight: 21,
-// }
+const $buttonText: TextStyle = {
+  color: colors.palette.neutral100,
+  fontSize: 18,
+  fontFamily: typography.primary.medium,
+  lineHeight: 21,
+}

@@ -118,7 +118,13 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [])
 
   const getCurrentLocation = async () => {
-    setCurrentLocation(await storage.load('currentLocation') as LocationType)
+    const selected: LocationType = await storage.load('selectedLocation')
+    if (selected) {
+      setCurrentLocation(selected)
+    } else {
+      const current: LocationType = await storage.load('currentLocation')
+      setCurrentLocation(current)
+    }
   }
 
   useEffect(() => {
@@ -201,7 +207,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   const handleChangeLocation = async (location: LocationType) => {
     setCurrentLocation(location)
-    await storage.save('currentLocation', location)
+    setIsLocation(false)
+    await storage.save('selectedLocation', location)
+    await getCurrentLocation()
   }
 
   return (
@@ -244,6 +252,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             futureIssPathCoords={futureIssPathCoords}
             issMarkerPosition={issMarkerPosition}
             zoom={zoomLevel + 1}
+            marker={[currentLocation.location.lat, currentLocation.location.lng]}
           />
         )}
         { !isGlobe && <MapBox
@@ -251,6 +260,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           issMarkerPosition={issMarkerPosition}
           style={$flatMap}
           zoom={zoomLevel}
+          markers={currentLocation?.location ? [{ latitude: currentLocation?.location?.lat, longitude: currentLocation?.location?.lng }] : []}
         /> }
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>

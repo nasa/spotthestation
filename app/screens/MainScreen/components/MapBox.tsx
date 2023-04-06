@@ -87,9 +87,9 @@ export function MapBox({ style, withNightOverlay = true, zoomEnabled=false, zoom
       }
       {Boolean(markers.length) && 
         markers.map(marker => (
-          <MapboxGL.ShapeSource key={marker.latitude.toString()} id="myShapeSourceMarker" shape={{type: 'Point', coordinates: [marker.longitude, marker.latitude]}}>
+          <MapboxGL.ShapeSource key={marker.latitude.toString()} id="myShapeSourceMarkerPosition" shape={{type: 'Point', coordinates: [marker.longitude, marker.latitude]}}>
             <MapboxGL.SymbolLayer
-              id="myShapeSourceMarker"
+              id="myShapeSourceMarkerPosition"
               style={{
                 iconImage: pinMarker,
                 iconSize: 1,

@@ -152,7 +152,7 @@ const en = {
     selectSightings: {
       title: "Upcoming Sightings",
       sightings: "Sightings",
-      button: "Notify Me (15 min before)",
+      button: "Notify Me",
     },
     coachMarks: {
       skip: 'Skip tour',
