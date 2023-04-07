@@ -138,7 +138,7 @@ const en = {
       generalButton: "Okay",
     },
     header: {
-      firstTimeHead: "SIGHTING TIME",
+      firstTimeHead: "NEXT SIGHTING",
       secondTimeHead: "COUNTDOWN",
     },
     selectLocation: {
@@ -153,6 +153,7 @@ const en = {
       title: "Upcoming Sightings",
       sightings: "Sightings",
       button: "Notify Me",
+      selectMessage: "Select events for which you would like to be notified."
     },
     coachMarks: {
       skip: 'Skip tour',

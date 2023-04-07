@@ -37,7 +37,7 @@ export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
 
   useEffect(() => {
     setSightingsForUpdate([...sightings])
-  }, [sightings])
+  }, [])
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -58,6 +58,14 @@ export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
         tx="homeScreen.selectSightings.title"
         style={$title}
       />
+      <Text
+        accessible
+        accessibilityLabel="title"
+        accessibilityHint="title"
+        accessibilityRole="text"
+        tx="homeScreen.selectSightings.selectMessage"
+        style={$selectMessageText}
+      />
       <ScrollView
         accessible
         accessibilityLabel="Sightings scrollable area"
@@ -66,14 +74,15 @@ export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
         style={$scrollContainer}
       >
         <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false}>
-          {sightings.map((sighting: ISSSighting) =>
+          {sightings.filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
             <ListItem
               key={sighting.date}
               icon="clock"
               title={formatedDate(sighting.date)}
               selected={isSelected(sighting)}
               subtitle={`Visible for ${sighting.visible} min`}
-              onPress={() => {
+              withSwitch
+              onToggle={() => {
                 setSightingsForUpdate(sightingsForUpdate.map(item => {
                   if (item.date === sighting.date) {
                     return {...item, notify: !item.notify}
@@ -144,4 +153,13 @@ const $buttonText: TextStyle = {
   fontSize: 18,
   fontFamily: typography.primary.medium,
   lineHeight: 21,
+}
+
+const $selectMessageText: TextStyle = {
+  width: "95%",
+  fontFamily: typography.primary?.normal,
+  fontSize: 18,
+  lineHeight: 22,
+  color: colors.palette.neutral100,
+  paddingHorizontal: 36,
 }

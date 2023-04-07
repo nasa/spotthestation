@@ -13,11 +13,12 @@ export interface HomeHeaderProps {
   user: User
   sighting?: string
   countdown?: string
+  timezone?: string
   onLocationPress: PressableProps["onPress"]
   onSightingsPress: PressableProps["onPress"]
 }
 
-export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting = "", countdown = "" }: HomeHeaderProps) {
+export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting = "", countdown = "", timezone = "" }: HomeHeaderProps) {
   return (
     <View style={$headerContainer}>
       <View style={$rowContainer}>
@@ -47,7 +48,7 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
           accessibilityLabel="next sighting"
           accessibilityHint="open sightings modal"
           accessibilityRole="button"
-          style={$timeContainer} 
+          style={[$timeContainer, $outlined]} 
           onPress={onSightingsPress}
         >
           <Text 
@@ -66,6 +67,14 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             text={sighting} 
             style={$timeText}
           />
+          <Text 
+            accessible
+            accessibilityLabel="timezone"
+            accessibilityHint="timezone"
+            accessibilityRole="text"
+            text={timezone} 
+            style={$tipText}
+          />
         </Pressable>
         <View 
           accessible
@@ -76,6 +85,7 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
         >
           <Text tx="homeScreen.header.secondTimeHead" style={$headText} />
           <Text text={countdown} style={$timeText} />
+          <Text text="DD:HH:MM:SS" style={$tipText} />
         </View>
       </View>
     </View>
@@ -110,7 +120,12 @@ const $timeContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   width: "48%",
   borderRadius: 10,
-  padding: 8
+  padding: 8,
+  borderWidth: 1.5
+}
+
+const $outlined: ViewStyle = {
+  borderColor: colors.palette.buttonBlue
 }
 
 const $headText: TextStyle = {
@@ -125,6 +140,11 @@ const $timeText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250,
   fontSize: 18,
-  lineHeight: 36,
+  lineHeight: 24,
   textAlign: "center",
+}
+
+const $tipText: TextStyle = {
+  ...$headText,
+  fontSize: 10
 }

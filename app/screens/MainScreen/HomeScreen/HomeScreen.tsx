@@ -8,7 +8,7 @@ import Modal from "react-native-modal"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
 import { colors } from "../../../theme"
-import { formatDate } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
@@ -16,7 +16,6 @@ import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Sightings"
-import { getLocationTimeZone } from "../../../utils/geolocation"
 import { CoachMark } from "./CoachMark"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
@@ -38,6 +37,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
+  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
@@ -151,8 +151,8 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const getSightings = async (value: [number,number]) => {
-    const { kind, zone } = await getLocationTimeZone({ lat: value[0], lng: value[1] }, Date.now()/1000)
-    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    const { timeZone, regionFormat } = await getCurrentTimeZome()
+    setCurrentTimeZone({ timeZone, regionFormat })
     await getISSSightings({ zone: timeZone, lat: value[0], lon: value[1] })
   }
 
@@ -245,8 +245,9 @@ export const HomeScreen = observer(function HomeScreen() {
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
-        sighting={currentSightning.date ? formatDate(currentSightning.date) : '-'}
+        sighting={currentSightning.date ? formatDate(currentSightning.date, currentTimeZone.regionFormat === 'US' ? "MMM dd, yyyy" : "dd MMM yyyy") : '-'}
         countdown={countdown}
+        timezone={currentTimeZone?.timeZone}
       />
       {pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
         <Globe

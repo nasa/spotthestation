@@ -15,7 +15,6 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 import { ARView } from "../components/ARView"
 import { Share } from "./Share"
 import { intervalToDuration, formatDuration } from "date-fns"
-import { getLocationTimeZone } from "../../../utils/geolocation"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
 import { useStores } from "../../../models"
@@ -24,6 +23,7 @@ import { ViroARSceneNavigator } from "@viro-community/react-viro"
 import { autorun } from "mobx"
 import RecordScreen, { RecordingResult } from 'react-native-record-screen'
 import CameraRoll from "@react-native-community/cameraroll"
+import { getCurrentTimeZome } from "../../../utils/formatDate"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -116,8 +116,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const getSightings = async () => {
-    const { kind, zone } = await getLocationTimeZone({ lat: location[0], lng: location[1] }, Date.now()/1000)
-    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    const { timeZone } = await getCurrentTimeZome()
     await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
   }
 

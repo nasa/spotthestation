@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Locale, format, parseISO } from "date-fns"
 import I18n from "i18n-js"
+import localization from 'expo-localization'
 
 import ar from "date-fns/locale/ar-SA"
 import ko from "date-fns/locale/ko"
 import en from "date-fns/locale/en-US"
+import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
+import * as storage from "../utils/storage"
+import { getLocationTimeZone } from "./geolocation"
 
 type Options = Parameters<typeof format>[2]
 
@@ -37,4 +43,29 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
   if (startHours === endHours || startMinutes === endMinutes || startSeconds === endSeconds) return false
 
   return date >= startDate || date < endDate
+}
+
+const getLocation = async () => {
+  const location: LocationType = await storage.load('selectedLocation')
+  if (!location) return storage.load('currentLocation')
+  return location
+}
+
+export const getCurrentTimeZome = async () => {
+  const currentLocation: LocationType = await getLocation()
+  if (currentLocation) {
+    const { location } = currentLocation
+    const { kind, zone } = await getLocationTimeZone(location, Date.now()/1000)
+    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
+    const regionFormat = ['US', 'America'].includes(timeZone.split('/')[0]) ? 'US' : 'other'
+    return {
+      timeZone,
+      regionFormat
+    }
+  } else {
+    return {
+      timeZone: localization.timezone,
+      regionFormat: localization.region
+    }
+  }
 }
