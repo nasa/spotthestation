@@ -24,6 +24,8 @@ import { autorun } from "mobx"
 import RecordScreen, { RecordingResult } from 'react-native-record-screen'
 import CameraRoll from "@react-native-community/cameraroll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
+import { ISSSighting } from "../../../services/api"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -46,7 +48,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const arView = useRef<ViroARSceneNavigator>()
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
-    const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
+    const events: ISSSighting[] = sightings.filter(item => item.notify)
+    const eventsList = events?.length ? events : sightings
+    const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
    
     if (result.length === 0) return
 
@@ -111,7 +115,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [])
 
   const getLocation = async () => {
-    const { location: { lat, lng } } = await storage.load('currentLocation')
+    let lat: number
+    let lng: number
+    const selected: LocationType = await storage.load('selectedLocation')
+    if (selected) {
+      lat = selected.location.lat
+      lng = selected.location.lng
+    } else {
+      const current: LocationType = await storage.load('currentLocation')
+      lat = current.location.lat
+      lng = current.location.lng
+    }
     if (lat && lng) setLocation([lat, lng])
   }
 

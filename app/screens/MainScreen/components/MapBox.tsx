@@ -63,7 +63,7 @@ export function MapBox({ style, withNightOverlay = true, zoomEnabled=false, zoom
           <MapboxGL.FillLayer id="daynight" sourceID="daynight-layer" style={{ fillOpacity: 0.5, fillColor: colors.palette.buttonBlue }} />
         </MapboxGL.ShapeSource>
       }
-      <MapboxGL.Camera zoomLevel={zoom} centerCoordinate={issMarkerPosition ? [...issMarkerPosition].reverse() : [0, 0]} />
+      <MapboxGL.Camera zoomLevel={zoom} centerCoordinate={markers.length ? [markers[0].longitude, markers[0].latitude] : [0, 0]} />
       {Boolean(issPathCoords?.length) &&
         <>
           <MapboxGL.ShapeSource id="myShapeSource" shape={{type: 'LineString', coordinates: issPathCoords.filter(item => item[1] < issMarkerPosition[1]).map(item => [...item].reverse())}}>

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Locale, format, parseISO } from "date-fns"
 import I18n from "i18n-js"
-import localization from 'expo-localization'
+import { getLocales, getCalendars } from 'expo-localization'
 
 import ar from "date-fns/locale/ar-SA"
 import ko from "date-fns/locale/ko"
@@ -58,14 +58,18 @@ export const getCurrentTimeZome = async () => {
     const { kind, zone } = await getLocationTimeZone(location, Date.now()/1000)
     const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
     const regionFormat = ['US', 'America'].includes(timeZone.split('/')[0]) ? 'US' : 'other'
+    
     return {
       timeZone,
-      regionFormat
+      regionFormat,
+      is24Hours: getCalendars()[0].uses24hourClock,
     }
   } else {
+    const calendar = getCalendars()[0]
     return {
-      timeZone: localization.timezone,
-      regionFormat: localization.region
+      timeZone: calendar.timeZone,
+      regionFormat: getLocales()[0].regionCode,
+      is24Hours: calendar.uses24hourClock,
     }
   }
 }

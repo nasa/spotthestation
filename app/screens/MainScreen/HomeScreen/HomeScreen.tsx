@@ -30,18 +30,20 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
-  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '' })
+  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
-  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
+  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US', is24Hours: false })
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
-    const result = sightings.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
-   
+    const events: ISSSighting[] = sightings.filter(item => item.notify)
+    const eventsList = events?.length ? events : sightings
+    const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
+    
     if (result.length === 0) return
     if (result.length > 0) setCurrentSightning(result[0])
 
@@ -151,8 +153,8 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const getSightings = async (value: [number,number]) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome()
-    setCurrentTimeZone({ timeZone, regionFormat })
+    const { timeZone, regionFormat, is24Hours } = await getCurrentTimeZome()
+    setCurrentTimeZone({ timeZone, regionFormat, is24Hours })
     await getISSSightings({ zone: timeZone, lat: value[0], lon: value[1] })
   }
 
@@ -184,8 +186,13 @@ export const HomeScreen = observer(function HomeScreen() {
     await getLocation()
   }
 
-  const handleSetSightingNotification = (values: ISSSighting[]) => {
-    setISSSightings(values)
+  const handleSetSightingNotification = (value: ISSSighting) => {
+    setISSSightings(sightings.map(item => {
+      if (item.date === value.date) {
+        return {...item, notify: !item.notify}
+      }
+      return item
+    }))
   }
 
   const renderCoachMarks = useCallback(() => {
@@ -292,7 +299,13 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <Sightings onClose={() => setIsSightings(!isSightings)} sightings={sightings} onNotify={handleSetSightingNotification} />
+        <Sightings 
+          onClose={() => setIsSightings(!isSightings)} 
+          sightings={[...sightings]} 
+          onToggle={handleSetSightingNotification} 
+          is24Hours={currentTimeZone.is24Hours}
+          isUS={currentTimeZone.regionFormat === 'US'}
+        />
       </Modal>}
       {coachVisible && <Modal
         isVisible={coachVisible}

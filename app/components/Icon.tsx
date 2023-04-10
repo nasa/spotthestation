@@ -145,6 +145,9 @@ export const iconRegistry = {
   save: require("../../assets/icons/save.png"),
   removeLocation: require("../../assets/icons/remove-location.png"),
   position: require("../../assets/icons/position.png"),
+  sun: require("../../assets/icons/sun.png"),
+  sunset: require("../../assets/icons/sunset.png"),
+  moon: require("../../assets/icons/moon.png"),
 }
 
 const $imageStyle: ImageStyle = {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -15,8 +16,14 @@ const RootStoreActions = (self) => ({
 			} = yield api.getISSSightings(params)
 
       if (ok) {
-        self.sightings = data
-        notifications.setNotifications(data)
+        const dataToSave = data.map(item => {
+          const sighting = self.sightings.find(el => el.date === item.date)
+          if (sighting) return {...item, notify: sighting.notify}
+          return item
+        })
+
+        self.sightings = [...dataToSave]
+        notifications.setNotifications(dataToSave)
       } else {
         Snackbar.show({
           text: data as string,

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
-import { Icon, Text, Button } from "../../../components"
+import { Icon, Text, IconTypes } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
@@ -12,32 +12,31 @@ import { ISSSighting } from "../../../services/api"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
+  is24Hours?: boolean
+  isUS?: boolean
   onClose?: PressableProps["onPress"]
-  onNotify?: (values: ISSSighting[]) => void
+  onToggle?: (values: ISSSighting) => void
 }
 
-export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
+export function Sightings({ onClose, sightings, onToggle, is24Hours, isUS }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
-  const [sightingsForUpdate, setSightingsForUpdate] = useState<ISSSighting[]>([])
 
   const formatedDate = (date: string): string => {
-    if (isToday(new Date(date))) return `Today, ${formatDate(date, "H:mm aa")}`
-    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, "H:mm aa")}`
-    return formatDate(date, "eeee, MMM d, H:mm aa")
+    const timeFormat = is24Hours ? "HH:mm" : "H:mm aa"
+    if (isToday(new Date(date))) return `Today, ${formatDate(date, timeFormat)}`
+    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, timeFormat)}`
+    return formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)
   }
 
-  const isSelected = useCallback((sighting: ISSSighting) => {
-    if (sightingsForUpdate.length) {
-      const res: ISSSighting = sightingsForUpdate.find(item => item.date === sighting.date)
-      return res?.notify
+  const setStageIcon = (stage): IconTypes => {
+    switch(stage) {
+      case 0: return 'moon'
+      case 1: return 'sunset'
+      case 2: return 'sun'
+      default: return 'sunset'
     }
-    return false
-  }, [sightingsForUpdate])
-
-  useEffect(() => {
-    setSightingsForUpdate([...sightings])
-  }, [])
+  }
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
@@ -74,38 +73,20 @@ export function Sightings({ onClose, sightings, onNotify }: SightingsProps) {
         style={$scrollContainer}
       >
         <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false}>
-          {sightings.filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
+          {[...sightings].filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
             <ListItem
               key={sighting.date}
               icon="clock"
+              secondIcon={setStageIcon(sighting.dayStage)}
               title={formatedDate(sighting.date)}
-              selected={isSelected(sighting)}
+              selected={sighting.notify}
               subtitle={`Visible for ${sighting.visible} min`}
               withSwitch
-              onToggle={() => {
-                setSightingsForUpdate(sightingsForUpdate.map(item => {
-                  if (item.date === sighting.date) {
-                    return {...item, notify: !item.notify}
-                  }
-                  return item
-                }))
-              }}
+              onToggle={() => onToggle(sighting)}
             />
           )}
         </ExpandContainer>
       </ScrollView>
-      <View style={$scrollContainer}>
-        <Button
-          accessible
-          accessibilityLabel="notify button"
-          accessibilityHint="title"
-          tx="homeScreen.selectSightings.button"
-          style={$button}
-          textStyle={$buttonText}
-          pressedStyle={$button}
-          onPress={() => onNotify(sightingsForUpdate)}
-        />
-      </View>
     </View>
   )
 }
@@ -137,22 +118,6 @@ const $title: TextStyle = {
   lineHeight: 44,
   color: colors.palette.neutral250,
   paddingHorizontal: 36,
-}
-
-const $button: ViewStyle = {
-  width: "100%",
-  height: 64,
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
-  borderWidth: 0,
-  marginVertical: 24
-}
-
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: 18,
-  fontFamily: typography.primary.medium,
-  lineHeight: 21,
 }
 
 const $selectMessageText: TextStyle = {

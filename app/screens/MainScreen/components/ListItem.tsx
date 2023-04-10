@@ -9,11 +9,12 @@ export interface ListItemProps {
   title: string
   subtitle: string
   icon: IconTypes
+  secondIcon?: IconTypes
   onToggle?: () => void
   onPress?: PressableProps["onPress"]
 }
 
-export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, onPress, onToggle }: ListItemProps) {
+export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle }: ListItemProps) {
   return (
     <Pressable 
       accessible
@@ -23,7 +24,10 @@ export function ListItem({ title, subtitle, selected = false, withSwitch = false
       style={$container} 
       onPress={onPress}
     >
-      <Icon icon={icon} size={24} color={colors.palette.neutral450} />
+      <View>
+        <Icon icon={icon} size={24} color={colors.palette.neutral450} />
+        {secondIcon && <Icon icon={secondIcon} size={24} color={colors.palette.neutral450} />}
+      </View>
       <View style={$bodyContainer}>
         <View 
           accessible

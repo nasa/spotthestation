@@ -51,6 +51,7 @@ export interface ISSSighting {
   appears: string
   disappears: string
   visible: number
+  dayStage: number
   notify?: boolean
 }
 
