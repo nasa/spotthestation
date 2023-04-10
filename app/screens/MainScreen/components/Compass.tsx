@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import CompassHeading from 'react-native-compass-heading'
 import { Icon } from '../../../components'
 import { colors } from '../../../theme'
 import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../utils/geometry"
+import watchHeading from "../../../utils/heading"
 
 const compassLine = require('../../../../assets/icons/compass-line.png')
 
@@ -14,7 +17,7 @@ const LETTER_OFFSET = 10
 
 export const Compass = ({ issPosition, isFullScreen }) => {
   const topInset = useSafeAreaInsets().top
-  const [heading, setHeading] = useState(0)
+  const [heading, setHeading] = useState<number>(null)
 
   const left = normalizeHeading(heading - 45)
   const right = normalizeHeading(heading + 45)
@@ -27,17 +30,8 @@ export const Compass = ({ issPosition, isFullScreen }) => {
   ].filter(letter => isInHeadingRange(left, right, letter.offset))
 
   useEffect(() => {
-    CompassHeading.start(1, (result) => {
-      setHeading(Number(result.heading))
-    }).catch((err) => {
-      console.log(err)
-    })
-
-    return () => {
-      CompassHeading.stop().catch((err) => {
-        console.log(err)
-      })
-    }
+    const unsub = watchHeading(setHeading)
+    return () => unsub()
   }, [])
 
   const issVisible = isInHeadingRange(left, right, issPosition)

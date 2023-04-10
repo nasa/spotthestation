@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react"
-import CompassHeading from "react-native-compass-heading"
+import React, { memo, useEffect, useMemo, useRef, useState } from "react"
+import throttle from 'lodash.throttle'
 import {
   ViroARScene,
   ViroImage,
@@ -11,6 +11,7 @@ import { azAltToCartesian, normalizeHeading } from "../../../utils/geometry"
 import { CatmullRomCurve3, Vector3 } from "three"
 import mitt from "mitt"
 import { Platform } from "react-native"
+import watchHeading from "../../../utils/heading"
 
 const icon = require("../../../../assets/icons/iss.png")
 const label = require("../../../../assets/icons/isslabel.png")
@@ -29,28 +30,39 @@ export const emitter = mitt()
 const worldTransform = (input: [number, number, number], heading): [number, number, number] => {
   if (Platform.OS === 'ios') return input
 
-  const angle = heading * (Math.PI/180)
+  const angle = (360 - heading) * (Math.PI/180)
 
   const x = input[0] * Math.cos(angle) - input[2] * Math.sin(angle)
-  const z = input[2] * Math.cos(angle) + input[0] * Math.sin(angle)
+  const z = input[0] * Math.sin(angle) + input[2] * Math.cos(angle)
 
   return [x, input[1], z]
 }
 
 export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneProps){
   const [isVisible, setIsVisible] = useState(false)
-  const [heading, setHeading] = useState(0)
+  const [initialHeading, setInitialHeading] = useState(null)
   const [settings, setSettings] = useState({ isPathVisible: false })
   const [pastIssPathCoords, setPastIssPathCoords] = useState<[number, number][]>([])
   const [futureIssPathCoords, setFutureIssPathCoords] = useState<[number, number][]>([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number]>([0,0])
-
+  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number]>([0, 0])
+  const headingRef = useRef<number>()
+  const trackingStateRef = useRef()
+  
   useEffect(() => {
     emitter.on('settings', setSettings)
     return () => {
       emitter.off('settings', setSettings)
     }
   }, [])
+
+  useEffect(() => {
+    const unsub = watchHeading((val) => {
+      headingRef.current = val
+      if (!isVisible) showScene()
+    })
+    return () => unsub()
+  }, [isVisible, initialHeading])
+
 
   useEffect(() => {
     const handler = (data) => {
@@ -64,23 +76,16 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     }
   }, [])
 
-  useEffect(() => {
-    CompassHeading.start(1, (result) => {
-      setHeading(Number(result.heading))
-    }).catch((err) => {
-      console.log(err)
-    })
-
-    return () => {
-      CompassHeading.stop().catch((err) => {
-        console.log(err)
-      })
-    }
-  }, [])
+  function showScene() {
+    if (trackingStateRef.current !== ViroTrackingStateConstants.TRACKING_NORMAL || headingRef.current === null) return
+    if (initialHeading === null) setInitialHeading(headingRef.current)
+    setIsVisible(true)
+  }
 
   function onInitialized(state) {
+    trackingStateRef.current = state
     if (state === ViroTrackingStateConstants.TRACKING_NORMAL) {
-      setIsVisible(true)
+      showScene()
     } else if (state === ViroTrackingStateConstants.TRACKING_UNAVAILABLE) {
       setIsVisible(false)
     }
@@ -99,8 +104,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
     const points = curve.getPoints(50)
 
-    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], heading))
-  }, [pastIssPathCoords, heading])
+    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], initialHeading))
+  }, [pastIssPathCoords, initialHeading])
 
   const futureOrbitCoords = useMemo<[number, number, number][]>(() => {
     if (futureIssPathCoords.length === 0) return []
@@ -111,19 +116,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
     const points = curve.getPoints(50)
 
-    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], heading))
-  }, [futureIssPathCoords, heading])
+    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], initialHeading))
+  }, [futureIssPathCoords, initialHeading])
 
-  const onCamera = useCallback(() => {
-    sceneNavigator.project(issCoords)
+  const onCamera = useMemo(() => throttle(() => {
+    sceneNavigator.project(worldTransform(issCoords, initialHeading))
       .then(({ screenPosition })=> {
         sceneNavigator.viroAppProps?.onScreenPositionChange(screenPosition)
       }).catch((err) => {
       console.error(err)
     })
-  }, [sceneNavigator, issCoords])
-
-  console.log('render')
+  }, 50), [sceneNavigator, issCoords, initialHeading])
 
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
@@ -132,8 +135,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
           <ViroImage
             height={1}
             width={1}
-            rotation={[0, -issMarkerPosition[0], 0]}
-            position={worldTransform(issCoords, heading)}
+            rotation={[0, -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
+            position={worldTransform(issCoords, initialHeading)}
             source={icon}
           />
           { settings.isPathVisible && (
@@ -142,11 +145,11 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
                 height={2.5}
                 width={1}
                 rotation={[0, -issMarkerPosition[0], 0]}
-                position={worldTransform([issCoords[0], issCoords[1] + 1.8, issCoords[2]], heading)}
+                position={worldTransform([issCoords[0], issCoords[1] + 1.8, issCoords[2]], initialHeading)}
                 source={label}
               />
               <ViroPolyline
-                position={worldTransform(azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0), heading)}
+                position={worldTransform(azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0), initialHeading)}
                 points={pastOrbitCoords}
                 thickness={0.05}
               />

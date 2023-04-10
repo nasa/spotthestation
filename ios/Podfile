@@ -53,6 +53,7 @@ target 'STSApp' do
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings["ONLY_ACTIVE_ARCH"] = "NO"
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.4'
       end
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
         target.build_configurations.each do |config|

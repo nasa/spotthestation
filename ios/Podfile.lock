@@ -481,6 +481,8 @@ PODS:
   - RNScreens (3.15.0):
     - React-Core
     - React-RCTImage
+  - RNSensors (7.3.6):
+    - React-Core
   - RNSnackbar (2.4.0):
     - React-Core
   - RNSVG (13.8.0):
@@ -585,6 +587,7 @@ DEPENDENCIES:
   - "rnmapbox-maps (from `../node_modules/@rnmapbox/maps`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSensors (from `../node_modules/react-native-sensors`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - "ViroKit (from `../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/`)"
@@ -743,6 +746,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSensors:
+    :path: "../node_modules/react-native-sensors"
   RNSnackbar:
     :path: "../node_modules/react-native-snackbar"
   RNSVG:
@@ -836,6 +841,7 @@ SPEC CHECKSUMS:
   rnmapbox-maps: bdfe08573876b9d02659a82b8d8733507446661b
   RNReanimated: 2cf7451318bb9cc430abeec8d67693f9cf4e039c
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
+  RNSensors: 117ba71c7eeeea0407ea0c0bb79e3495d602049b
   RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
@@ -845,6 +851,6 @@ SPEC CHECKSUMS:
   Yoga: 0b84a956f7393ef1f37f3bb213c516184e4a689d
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b7620f9b2a09b888a6dce4993362d782d3256136
+PODFILE CHECKSUM: 4dc1a8142369d98f87e0e3c69c7dd45b2d45beb6
 
 COCOAPODS: 1.11.3
