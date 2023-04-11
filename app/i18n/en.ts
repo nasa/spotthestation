@@ -174,6 +174,7 @@ const en = {
   issView: {
     header: "ISS View",
     timeHeader: "TIME LEFT",
+    cameraPermissionText: "You have not allowed use of your phone's camera. Click here to allow.",
     share: {
       title: "Share",
       subtitle: "these great moments to your\nfriends and family"

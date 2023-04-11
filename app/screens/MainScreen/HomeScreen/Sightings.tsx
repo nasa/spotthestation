@@ -9,21 +9,22 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { isToday, isTomorrow } from "date-fns"
 import { formatDate } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
+import { getCalendars } from 'expo-localization'
 
 export interface SightingsProps {
   sightings: ISSSighting[]
-  is24Hours?: boolean
   isUS?: boolean
   onClose?: PressableProps["onPress"]
   onToggle?: (values: ISSSighting) => void
 }
 
-export function Sightings({ onClose, sightings, onToggle, is24Hours, isUS }: SightingsProps) {
+export function Sightings({ onClose, sightings, onToggle, isUS }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const formatedDate = (date: string): string => {
-    const timeFormat = is24Hours ? "HH:mm" : "H:mm aa"
+    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    
     if (isToday(new Date(date))) return `Today, ${formatDate(date, timeFormat)}`
     if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, timeFormat)}`
     return formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)

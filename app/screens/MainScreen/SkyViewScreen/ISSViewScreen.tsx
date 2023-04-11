@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable n/no-callback-literal */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform } from "react-native"
+import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -32,14 +35,51 @@ export interface ISSViewScreenRouteProps {
   toggleIsLandscape: (value: boolean) => void
 }
 
+async function checkCameraPermissions(callback: (value: boolean) => void) {
+  if (Platform.OS === 'android') {
+    const result = await check(PERMISSIONS.ANDROID.CAMERA)
+    if (result === RESULTS.GRANTED) {
+      callback(true)
+    } else if (result === RESULTS.DENIED) {
+      callback(false)
+    }
+  } else if (Platform.OS === 'ios') {
+    const permission = PERMISSIONS.IOS.CAMERA
+    const permissionStatus = await check(permission)
+    if (permissionStatus === RESULTS.GRANTED) {
+      callback(true)
+    } else {
+      callback(false)
+    } 
+  }
+}
+
+async function requestCameraPermissions(callback: (value: boolean) => void) {
+  if (Platform.OS === 'android') {
+    const permissionResult = await request(PERMISSIONS.ANDROID.CAMERA)
+    if (permissionResult === RESULTS.GRANTED) {
+      callback(true)
+    }
+  } else if (Platform.OS === 'ios') {
+    const permissionResult = await request(PERMISSIONS.IOS.CAMERA)
+    
+    if (permissionResult === RESULTS.GRANTED) {
+      callback(true)
+    } else if (permissionResult === RESULTS.BLOCKED) {
+      callback(false)
+    }
+  }
+}
+
 export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const { sightings, issData, getISSSightings, getISSData } = useStores()
-  const [isFullScreen, setIsFullScreen] = useState(false)
-  const [isPathVisible, setIsPathVisible] = useState(false)
+  const [isFullScreen, setIsFullScreen] = useState(true)
+  const [isPathVisible, setIsPathVisible] = useState(true)
   const [isShare, setIsShare] = useState(false)
+  const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
   const [isRecording, setIsRecording] = useState(false)
@@ -68,6 +108,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     startCountdown()
   }, [sightings])
+
+  useEffect(() => {
+    checkCameraPermissions((value: boolean) => { setIsCameraAllowed(value); setIsFullScreen(value) })
+  }, [])
 
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
   const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
@@ -323,7 +367,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           />
         }
       </View>
-      <View style={[$body, $bodyStyleOverride]}>
+      {!isCameraAllowed ?
+        <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
+          <Text tx="issView.cameraPermissionText" style={$time} />
+        </Pressable> : <View style={[$body, $bodyStyleOverride]}>
         { Boolean(issMarkerPosition) && (
           <ARView
             ref={arView}
@@ -407,10 +454,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
               />
             )}
-
           </View>
         </View>
-      </View>
+      </View>}
       <Modal
         isVisible={isShare}
         onBackdropPress={() => setIsShare(!isShare)}

@@ -37,7 +37,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
-  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US', is24Hours: false })
+  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     const events: ISSSighting[] = sightings.filter(item => item.notify)
@@ -153,8 +153,8 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const getSightings = async (value: [number,number]) => {
-    const { timeZone, regionFormat, is24Hours } = await getCurrentTimeZome()
-    setCurrentTimeZone({ timeZone, regionFormat, is24Hours })
+    const { timeZone, regionFormat } = await getCurrentTimeZome()
+    setCurrentTimeZone({ timeZone, regionFormat })
     await getISSSightings({ zone: timeZone, lat: value[0], lon: value[1] })
   }
 
@@ -302,8 +302,7 @@ export const HomeScreen = observer(function HomeScreen() {
         <Sightings 
           onClose={() => setIsSightings(!isSightings)} 
           sightings={[...sightings]} 
-          onToggle={handleSetSightingNotification} 
-          is24Hours={currentTimeZone.is24Hours}
+          onToggle={handleSetSightingNotification}
           isUS={currentTimeZone.regionFormat === 'US'}
         />
       </Modal>}

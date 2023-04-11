@@ -18,6 +18,8 @@
 		E2A4288027284282AD0938DE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E60350F78A4D2BA180AF80 /* noop-file.swift */; };
 		FCDD02A92976AB0F0094E655 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */; };
 		FCDD02AB297752FC0094E655 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02AA297752FC0094E655 /* BootSplash.storyboard */; };
+		FCE2D66229E5EAB800F5C4D5 /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = 43499B009BF320E855D69AAD /* Mapbox */; };
+		FCE2D66329E5EAB800F5C4D5 /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = FE080EAF7890C2EBFADA5E4D /* Mapbox */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE2D66329E5EAB800F5C4D5 /* Mapbox in Frameworks */,
 				8966A062FEF751F26D65A441 /* libPods-STSApp-STSAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE2D66229E5EAB800F5C4D5 /* Mapbox in Frameworks */,
 				6209724588EEBF0B49EF4A3F /* libPods-STSApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +563,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = J234K424W5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NasaIssApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,6 +599,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = J234K424W5;
 				INFOPLIST_FILE = NasaIssApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

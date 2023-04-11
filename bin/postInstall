@@ -14,6 +14,8 @@ if (["darwin", "linux"].includes(process.platform)) {
   run('pkill -f "cli.js start" || set exit 0')
 }
 
+run("npx react-native setup-ios-permissions")
+
 /**
  * On darwin machine:
  *   1. Check if CocoaPods CLI is installed (and if not, install it)

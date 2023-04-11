@@ -62,14 +62,11 @@ export const getCurrentTimeZome = async () => {
     return {
       timeZone,
       regionFormat,
-      is24Hours: getCalendars()[0].uses24hourClock,
     }
   } else {
-    const calendar = getCalendars()[0]
     return {
-      timeZone: calendar.timeZone,
+      timeZone: getCalendars()[0].timeZone,
       regionFormat: getLocales()[0].regionCode,
-      is24Hours: calendar.uses24hourClock,
     }
   }
 }
