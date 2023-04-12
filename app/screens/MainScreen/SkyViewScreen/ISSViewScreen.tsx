@@ -11,12 +11,13 @@ import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'
+import RNFS from 'react-native-fs'
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 // import { Details } from "./Details"
 import { ARView } from "../components/ARView"
-import { Share } from "./Share"
+import { RNShare } from "./Share"
 import { intervalToDuration, formatDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
@@ -85,6 +86,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isRecording, setIsRecording] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
+  const [base64Media, setBase64Media] = useState('')
   const arView = useRef<ViroARSceneNavigator>()
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
@@ -296,6 +298,22 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
     if (res?.status === 'success') {
       await saveVideoToGallery(res.result.outputURL as string)
+      setBase64Media(res.result.outputURL as string)
+      // RNFS.readFile(res.result.outputURL as string, 'binary')
+      //   .then((fileData) => {
+      //     console.log(fileData)
+      //     // convert the binary data to base64 encoded string
+      //     const base64Data = Buffer.from(fileData, 'binary').toString('base64')
+      //     setBase64Media(base64Data)
+      //     console.log(base64Data)
+          
+      //   })
+      //   .catch((error) => {
+      //     Snackbar.show({
+      //       text: error,
+      //       duration: Snackbar.LENGTH_LONG,
+      //     })
+      //   })
       setRecordedSeconds(0)
     }
   }
@@ -471,7 +489,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-       <Share onClose={() => setIsShare(!isShare)} />
+       <RNShare onClose={() => setIsShare(!isShare)} url={base64Media} type="image" />
        {/* <Details onClose={() => setIsShare(!isShare)} /> */}
       </Modal>
     </Screen>

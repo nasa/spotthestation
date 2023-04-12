@@ -1,19 +1,42 @@
 import React from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
+import Share, { Social } from 'react-native-share'
 import { Icon, Text } from "../../../components"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 
 export interface ShareProps {
+  url: string
+  type?: 'image' | 'video'
   /**
    * A function for closing modal.
    */
   onClose?: PressableProps["onPress"]
 }
 
-export function Share({ onClose }: ShareProps) {
-  
+export function RNShare({ onClose, url, type }: ShareProps) {
+  const onShare = async (social: Social, email?: string) => {
+    console.log(social)
+    
+    let shareOptions = {
+      title: 'Share file',
+      social,
+      failOnCancel: false,
+      urls: [url],
+    }
+
+    if (type === 'video') shareOptions = {...shareOptions, type: 'video/mp4'}
+    if (email) shareOptions = {...shareOptions, email}
+
+    try {
+      const ShareResponse = await Share.shareSingle(shareOptions)
+      console.log('Result =>', ShareResponse)
+    } catch (error) {
+      console.log('Error =>', error)
+    }
+  }
+
   return (
     <View style={$modalBodyContainer}>
       <Icon icon="x" 
@@ -48,10 +71,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="facebook"
             accessibilityHint="share to facebook"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="brandFacebook" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="brandFacebook" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28} 
+              onPress={() => onShare(Social.Facebook)}
+            />
             <Text text="Facebook" style={$label} />
           </Pressable>
           <Pressable
@@ -59,10 +87,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="Twitter"
             accessibilityHint="share to Twitter"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="brandTwitter" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="brandTwitter" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28}
+              onPress={() => onShare(Social.Twitter)}
+            />
             <Text text="Twitter" style={$label} />
           </Pressable>
           <Pressable
@@ -70,10 +103,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="Instagram"
             accessibilityHint="share to Instagram"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="brandInstagram" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="brandInstagram" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28}
+              onPress={() => onShare(Social.Instagram)}
+            />
             <Text text="Instagram" style={$label} />
           </Pressable>
           <Pressable
@@ -81,10 +119,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="Linked In"
             accessibilityHint="share to Linked In"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="brandLinkedin" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="brandLinkedin" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28} 
+              onPress={() => onShare(Social.Linkedin)}
+            />
             <Text text="Linked In" style={$label} />
           </Pressable>
           <Pressable
@@ -92,10 +135,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="Whatsapp"
             accessibilityHint="share to Whatsapp"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="brandWhatsapp" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="brandWhatsapp" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28}
+              onPress={() => onShare(Social.Whatsapp)}
+            />
             <Text text="Whatsapp" style={$label} />
           </Pressable>
           <Pressable
@@ -103,10 +151,15 @@ export function Share({ onClose }: ShareProps) {
             accessibilityLabel="mail"
             accessibilityHint="share to mail"
             accessibilityRole="button"
-            onPress={onClose} 
             style={$pressable}
           >
-            <IconLinkButton icon="mail" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={28} />
+            <IconLinkButton 
+              icon="mail" 
+              buttonStyle={$button} 
+              iconColor={colors.palette.neutral250} 
+              iconSize={28}
+              onPress={() => onShare(Social.Email)}
+            />
             <Text text="Mail" style={$label} />
           </Pressable>
         </View>
