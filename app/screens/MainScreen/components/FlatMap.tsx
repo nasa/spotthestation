@@ -82,8 +82,8 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition, currentL
           // eslint-disable-next-line react-native/no-inline-styles
           <View style={{
             position: 'absolute',
-            left: currentLocation2D[0] * layout.width - 18,
-            top: currentLocation2D[1] * layout.height - 18
+            left: currentLocation2D[0] * layout.width,
+            top: currentLocation2D[1] * layout.height - 15
           }}>
             <Icon icon="fiMapPin" size={15} />
           </View>

@@ -81,7 +81,7 @@ function App(props: AppProps) {
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
 
-  const { rehydrated } = useInitialRootStore(() => {
+  const { rootStore, rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.
 
     // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.
@@ -106,7 +106,7 @@ function App(props: AppProps) {
 
   // otherwise, we're ready to render the app
   return (
-    <RootStoreProvider value={RootStoreModel.create({})} >
+    <RootStoreProvider value={rootStore} >
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <ErrorBoundary catchErrors={Config.catchErrors}>
           <AppNavigator
