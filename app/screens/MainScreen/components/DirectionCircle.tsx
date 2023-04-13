@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useMemo } from "react"
-import { ViewStyle, View, useWindowDimensions, PixelRatio, Text, TextStyle } from "react-native"
+import { ViewStyle, View, useWindowDimensions, PixelRatio, TextStyle } from "react-native"
 import Svg, { Path } from 'react-native-svg'
 import { arc as d3Arc } from 'd3-shape'
 import { degToRad } from "../../../utils/geometry"
 
 const arc = d3Arc()
 
-export const DirectionCircle = ({ screenX, screenY }) => {
+export const DirectionCircle = ({ screenX, screenY, setIsSpotted }) => {
   const dimensions = useWindowDimensions()
   const width = useMemo(() => dimensions.width * PixelRatio.get(), [dimensions])
   const height = useMemo(() => dimensions.height * PixelRatio.get(), [dimensions])
@@ -18,6 +19,8 @@ export const DirectionCircle = ({ screenX, screenY }) => {
   const viewDistance = useMemo(() => Math.max(0, alignDistance - width / 2), [alignDistance, width])
   const distance = useMemo(() => Math.sqrt(x * x + y * y), [x, y])
   const isSpotted = distance <= 70
+
+  setIsSpotted(isSpotted)
 
   const outerArc = useMemo(() => {
     return arc({
@@ -94,10 +97,6 @@ export const DirectionCircle = ({ screenX, screenY }) => {
       { !isSpotted && (
         <View style={$innerCircle}></View>
       )}
-
-      { isSpotted && (
-        <Text style={$text}>Capture this moment</Text>
-      )}
     </View>
   )
 }
@@ -125,11 +124,4 @@ const $outerCircle: ViewStyle = {
   alignSelf: 'center',
   width: 70,
   height: 70,
-}
-
-const $text: TextStyle = {
-  bottom: '25%',
-  fontSize: 24,
-  position: 'absolute',
-  color: '#fff'
 }

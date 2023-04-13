@@ -1,42 +1,18 @@
 import React from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
-import Share, { Social } from 'react-native-share'
 import { Icon, Text } from "../../../components"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 
 export interface ShareProps {
-  url: string
-  type?: 'image' | 'video'
   /**
    * A function for closing modal.
    */
   onClose?: PressableProps["onPress"]
 }
 
-export function RNShare({ onClose, url, type }: ShareProps) {
-  const onShare = async (social: Social, email?: string) => {
-    console.log(social)
-    
-    let shareOptions = {
-      title: 'Share file',
-      social,
-      failOnCancel: false,
-      urls: [url],
-    }
-
-    if (type === 'video') shareOptions = {...shareOptions, type: 'video/mp4'}
-    if (email) shareOptions = {...shareOptions, email}
-
-    try {
-      const ShareResponse = await Share.shareSingle(shareOptions)
-      console.log('Result =>', ShareResponse)
-    } catch (error) {
-      console.log('Error =>', error)
-    }
-  }
-
+export function RNShare({ onClose }: ShareProps) {
   return (
     <View style={$modalBodyContainer}>
       <Icon icon="x" 
@@ -78,7 +54,6 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
               iconSize={28} 
-              onPress={() => onShare(Social.Facebook)}
             />
             <Text text="Facebook" style={$label} />
           </Pressable>
@@ -94,7 +69,6 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
               iconSize={28}
-              onPress={() => onShare(Social.Twitter)}
             />
             <Text text="Twitter" style={$label} />
           </Pressable>
@@ -110,7 +84,6 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
               iconSize={28}
-              onPress={() => onShare(Social.Instagram)}
             />
             <Text text="Instagram" style={$label} />
           </Pressable>
@@ -125,8 +98,7 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               icon="brandLinkedin" 
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
-              iconSize={28} 
-              onPress={() => onShare(Social.Linkedin)}
+              iconSize={28}
             />
             <Text text="Linked In" style={$label} />
           </Pressable>
@@ -142,7 +114,6 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
               iconSize={28}
-              onPress={() => onShare(Social.Whatsapp)}
             />
             <Text text="Whatsapp" style={$label} />
           </Pressable>
@@ -158,7 +129,6 @@ export function RNShare({ onClose, url, type }: ShareProps) {
               buttonStyle={$button} 
               iconColor={colors.palette.neutral250} 
               iconSize={28}
-              onPress={() => onShare(Social.Email)}
             />
             <Text text="Mail" style={$label} />
           </Pressable>

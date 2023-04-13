@@ -360,6 +360,8 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
+  - react-native-view-shot (3.6.0):
+    - React-Core
   - react-native-webview (11.26.1):
     - React-Core
   - React-perflogger (0.69.7)
@@ -437,8 +439,6 @@ PODS:
   - RNCPushNotificationIOS (1.10.1):
     - React-Core
   - RNDateTimePicker (6.7.5):
-    - React-Core
-  - RNFS (2.20.0):
     - React-Core
   - RNGestureHandler (2.5.0):
     - React-Core
@@ -571,6 +571,7 @@ DEPENDENCIES:
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
   - react-native-record-screen (from `../node_modules/react-native-record-screen`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -589,7 +590,6 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
-  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "rnmapbox-maps (from `../node_modules/@rnmapbox/maps`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -711,6 +711,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-record-screen"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-view-shot:
+    :path: "../node_modules/react-native-view-shot"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -747,8 +749,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
-  RNFS:
-    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   rnmapbox-maps:
@@ -834,6 +834,7 @@ SPEC CHECKSUMS:
   react-native-orientation-locker: 851f6510d8046ea2f14aa169b1e01fcd309a94ba
   react-native-record-screen: b9f096219a9cfcce04958ff2773296c0c6ac59cd
   react-native-safe-area-context: dfe5aa13bee37a0c7e8059d14f72ffc076d120e9
+  react-native-view-shot: 705f999ac2a24e4e6c909c0ca65c732ed33ca2ff
   react-native-webview: 9f111dfbcfc826084d6c507f569e5e03342ee1c1
   React-perflogger: 8e832d4e21fdfa613033c76d58d7e617341e804b
   React-RCTActionSheet: 9ca778182a9523991bff6381045885b6e808bb73
@@ -852,7 +853,6 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
   RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
   RNDateTimePicker: 65e1d202799460b286ff5e741d8baf54695e8abd
-  RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   rnmapbox-maps: bdfe08573876b9d02659a82b8d8733507446661b
   RNPermissions: b0e38eca4ce809f39a1655c7dfb8fe957b844cfc

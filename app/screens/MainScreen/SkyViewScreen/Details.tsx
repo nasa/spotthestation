@@ -1,6 +1,7 @@
 import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Icon, Text } from "../../../components"
+import { OrbitPoint } from "../../../services/api/api.types"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 
@@ -8,10 +9,11 @@ export interface DetailsProps {
   /**
    * A function for closing modal.
    */
-  onClose?: PressableProps["onPress"]
+  onClose?: PressableProps["onPress"],
+  issData: OrbitPoint
 }
 
-export function Details({ onClose }: DetailsProps) {
+export function Details({ onClose, issData }: DetailsProps) {
   
   return (
     <View style={$modalBodyContainer}>
@@ -52,7 +54,7 @@ export function Details({ onClose }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-            <Text text="125 km" style={$detailValue} />
+            <Text text="7660 M/S" style={$detailValue} />
           </View>
           <View 
             accessible
@@ -62,7 +64,7 @@ export function Details({ onClose }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.longitude" style={$detailTitle} />
-            <Text text="125 km" style={$detailValue} />
+            <Text text={issData.longitude.toFixed(2)} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -72,7 +74,7 @@ export function Details({ onClose }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.latitude" style={$detailTitle} />
-            <Text text="125 km" style={$detailValue} />
+            <Text text={issData.latitude.toFixed(2)} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -82,7 +84,7 @@ export function Details({ onClose }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text text="125 km" style={$detailValue} />
+            <Text text={issData.elevation.toFixed(2)} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -104,7 +106,7 @@ export function Details({ onClose }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.launched" style={$detailRowTitle} />
-            <Text text="20 November 1998 (23 yrs ago)" style={$detailRowValue} />
+            <Text text={`20 November 1998 (${(new Date().getFullYear()) - (new Date('1998-11-20').getFullYear())} yrs ago)`} style={$detailRowValue} />
           </View>
           <View 
             accessible
@@ -202,7 +204,7 @@ const $close: ViewStyle = {
 const $title: TextStyle = {
   color: colors.palette.neutral250,
   width: "95%",
-  fontSize: 36,
+  fontSize: 32,
   fontFamily: typography.primary.normal,
   lineHeight: 44,
   paddingBottom: 36,
@@ -229,8 +231,8 @@ const $detailTitle: TextStyle = {
 const $detailValue: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250,
-  fontSize: 32,
-  lineHeight: 39,
+  fontSize: 22,
+  lineHeight: 28,
   textAlign: "center",
 }
 

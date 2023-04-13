@@ -11,13 +11,13 @@ import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'
-import RNFS from 'react-native-fs'
+import Share from 'react-native-share'
+import { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-// import { Details } from "./Details"
+import { Details } from "./Details"
 import { ARView } from "../components/ARView"
-import { RNShare } from "./Share"
 import { intervalToDuration, formatDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
 import * as storage from "../../../utils/storage"
@@ -79,14 +79,15 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const { sightings, issData, getISSSightings, getISSData } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
-  const [isShare, setIsShare] = useState(false)
+  const [isDetails, setIsDetails] = useState(false)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
   const [isRecording, setIsRecording] = useState(false)
+  const [isSpotted, setIsSpotted] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
-  const [base64Media, setBase64Media] = useState('')
+  const [mediaUrl, setMediaUrl] = useState('')
   const arView = useRef<ViroARSceneNavigator>()
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
@@ -118,6 +119,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
   const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
   const [issMarkerPosition, setIssMarkerPosition] = useState(null)
+  const [issMarkerIndex, setIssMarkerIndex] = useState(0)
   const updateTimer = useRef<NodeJS.Timer>()
 
   function updateIssPath() {
@@ -151,6 +153,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
 
     setIssMarkerPosition([issData[currentPositionIdx].azimuth, issData[currentPositionIdx].elevation])
+    setIssMarkerIndex(currentPositionIdx)
 
     clearTimeout(updateTimer.current)
     updateTimer.current = setTimeout(updateIssPath, 30000)
@@ -221,21 +224,19 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const takeScreenshot = () => {
     if (!arView.current) return
-
-    arView.current.sceneNavigator
-      .takeScreenshot("iss.jpg", true)
-      .then(() => {
-          Snackbar.show({
-            text: "Photo saved to your library",
-            duration: Snackbar.LENGTH_LONG,
-          })
+    captureScreen({
+      format: "jpg",
+      quality: 1,
+    }).then(
+      async (uri) => {
+        await saveToGallery(uri, 'photo')
+        setMediaUrl(uri)
+      },
+      (error) => Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
       })
-      .catch(() => {
-        Snackbar.show({
-          text: "Something went wrong",
-          duration: Snackbar.LENGTH_LONG,
-        })
-      })
+    )
   }
 
   const startRecording = async () => {
@@ -261,7 +262,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       setRecordedSeconds(0)
   }
 
-  async function saveVideoToGallery(videoPath: string) {
+  async function saveToGallery(path: string, type: "photo" | "video" | "auto") {
     if (Platform.OS === 'android') {
       // On Android, we need to request permission to write to external storage
       const granted = await PermissionsAndroid.request(
@@ -275,15 +276,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         },
       )
       if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-        // Permission denied, do nothing
         return
       }
     }
-  
-    // Save video to gallery
-    await CameraRoll.save(videoPath, { type: 'video' })
+
+    await CameraRoll.save(path, { type })
     Snackbar.show({
-      text: 'Video saved to gallery',
+      text: `${type.charAt(0).toUpperCase() + type.slice(1)} saved to gallery`,
       duration: Snackbar.LENGTH_LONG,
     })
   }
@@ -297,23 +296,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       })
     )
     if (res?.status === 'success') {
-      await saveVideoToGallery(res.result.outputURL as string)
-      setBase64Media(res.result.outputURL as string)
-      // RNFS.readFile(res.result.outputURL as string, 'binary')
-      //   .then((fileData) => {
-      //     console.log(fileData)
-      //     // convert the binary data to base64 encoded string
-      //     const base64Data = Buffer.from(fileData, 'binary').toString('base64')
-      //     setBase64Media(base64Data)
-      //     console.log(base64Data)
-          
-      //   })
-      //   .catch((error) => {
-      //     Snackbar.show({
-      //       text: error,
-      //       duration: Snackbar.LENGTH_LONG,
-      //     })
-      //   })
+      await saveToGallery(res.result.outputURL as string, 'video')
+      setMediaUrl(res.result.outputURL as string)
       setRecordedSeconds(0)
     }
   }
@@ -356,6 +340,29 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
+  const onShare = async (url?: string,) => {
+    let shareOptions = {
+      title: 'Share file',
+      failOnCancel: false,
+      urls: [url],
+    }
+
+    if (url.split('.').pop() === 'mp4') shareOptions = {...shareOptions, type: 'video/mp4'}
+
+    try {
+      await Share.open(shareOptions)
+      Snackbar.show({
+        text: 'Successfully shared!',
+        duration: Snackbar.LENGTH_LONG,
+      })
+    } catch (error) {
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
+      })
+    }
+  }
+
   return (
     <Screen
       preset="fixed" 
@@ -389,96 +396,97 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
           <Text tx="issView.cameraPermissionText" style={$time} />
         </Pressable> : <View style={[$body, $bodyStyleOverride]}>
-        { Boolean(issMarkerPosition) && (
-          <ARView
-            ref={arView}
-            isFullScreen={isFullScreen}
-            isPathVisible={isPathVisible}
-            isRecording={isRecording}
-            recordedSeconds={recordedSeconds}
-            pastIssPathCoords={pastIssPathCoords}
-            futureIssPathCoords={futureIssPathCoords}
-            issMarkerPosition={issMarkerPosition}
-          />
-        )}
-        <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
-          <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
-            <IconLinkButton
-              accessible
-              accessibilityLabel="path line"
-              accessibilityHint="enable/disable path line"
-              icon="line" 
-              buttonStyle={[$button, isPathVisible && $activeButton, isLandscape && { marginRight: 24 }]}
-              onPress={() => setIsPathVisible(!isPathVisible)}
-            />
-            <IconLinkButton
-              accessible
-              accessibilityLabel="compass"
-              accessibilityHint="enable full screen"
-              icon="compass" 
-              buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]}
-              onPress={() => setIsFullScreen(true)} 
-            />
-          </View>
-          <View
-            accessible
-            accessibilityLabel="countdown"
-            accessibilityHint="countdown to next visibility"
-            accessibilityRole="text"
-            style={$timeContainer}
-          >
-            <Text tx="issView.timeHeader" style={$timeHeader} />
-            <Text text={countdown} style={$time} />
-          </View>
-          <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
-            <IconLinkButton 
-              accessible
-              accessibilityLabel="share"
-              accessibilityHint="open share modal"
-              icon="share" 
-              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
-              onPress={() => setIsShare(true)} 
-            />
-            <IconLinkButton 
-              accessible
-              accessibilityLabel="capture"
-              accessibilityHint="take a photo"
-              icon="capture"
-              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
-              onPress={takeScreenshot}
-            />
-            { isRecording ? (
-              <>
-                <View>
-                  <IconLinkButton
-                    accessible
-                    accessibilityLabel="video"
-                    accessibilityHint="stop recording"
-                    icon="videoOff"
-                    onPress={stopRecording}
-                    backgroundColor={colors.palette.nasaRed}
-                    buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
-                  />
-                  <Text style={$stop}>Stop</Text>
-                </View>
-              </>
-            ) : (
-              <IconLinkButton
-              accessible
-              accessibilityLabel="video"
-              accessibilityHint="record a video"
-              icon="video"
-              onPress={startRecording}
-              buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+            { Boolean(issMarkerPosition) && (
+              <ARView
+                ref={arView}
+                isFullScreen={isFullScreen}
+                isPathVisible={isPathVisible}
+                isRecording={isRecording}
+                recordedSeconds={recordedSeconds}
+                pastIssPathCoords={pastIssPathCoords}
+                futureIssPathCoords={futureIssPathCoords}
+                issMarkerPosition={issMarkerPosition}
+                setIsSpotted={setIsSpotted}
               />
             )}
-          </View>
-        </View>
-      </View>}
+            <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
+              <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
+                <IconLinkButton
+                  accessible
+                  accessibilityLabel="path line"
+                  accessibilityHint="enable/disable path line"
+                  icon="line"
+                  buttonStyle={[$button, isPathVisible && $activeButton, isLandscape && { marginRight: 24 }]}
+                  onPress={() => setIsPathVisible(!isPathVisible)}
+                />
+                <IconLinkButton
+                  accessible
+                  accessibilityLabel="compass"
+                  accessibilityHint="enable full screen"
+                  icon="compass" 
+                  buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]}
+                  onPress={() => setIsFullScreen(true)}
+                />
+              </View>
+              <View
+                accessible
+                accessibilityLabel="countdown"
+                accessibilityHint="countdown to next visibility"
+                accessibilityRole="text"
+                style={$timeContainer}
+              >
+                <Text tx="issView.timeHeader" style={$timeHeader} />
+                <Text text={countdown} style={$time} />
+              </View>
+              <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
+                <IconLinkButton 
+                  accessible
+                  accessibilityLabel="share"
+                  accessibilityHint="open share modal"
+                  icon="share" 
+                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  onPress={() => onShare(mediaUrl)} 
+                /> 
+                <IconLinkButton 
+                  accessible
+                  accessibilityLabel="capture"
+                  accessibilityHint="take a photo"
+                  icon="capture"
+                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  onPress={takeScreenshot}
+                />
+                { isRecording ? (
+                  <>
+                    <View>
+                      <IconLinkButton
+                        accessible
+                        accessibilityLabel="video"
+                        accessibilityHint="stop recording"
+                        icon="videoOff"
+                        onPress={stopRecording}
+                        backgroundColor={colors.palette.nasaRed}
+                        buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                      />
+                      <Text style={$stop}>Stop</Text>
+                    </View>
+                  </>
+                ) : (
+                  <IconLinkButton
+                  accessible
+                  accessibilityLabel="video"
+                  accessibilityHint="record a video"
+                  icon="video"
+                  onPress={startRecording}
+                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  />
+                )}
+              </View>
+            </View>
+          </View>}
       <Modal
-        isVisible={isShare}
-        onBackdropPress={() => setIsShare(!isShare)}
-        onSwipeComplete={() => setIsShare(!isShare)}
+        isVisible={isDetails}
+        onBackdropPress={() => setIsDetails(!isDetails)}
+        onSwipeComplete={() => setIsDetails(!isDetails)}
         animationIn="slideInUp"
         animationOut="slideOutDown"
         swipeDirection="down"
@@ -489,12 +497,24 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-       <RNShare onClose={() => setIsShare(!isShare)} url={base64Media} type="image" />
-       {/* <Details onClose={() => setIsShare(!isShare)} /> */}
+        <Details issData={issData[issMarkerIndex]} onClose={() => setIsDetails(!isDetails)} />
       </Modal>
+      { isSpotted && (
+        <Text tx="issView.issCaptured" style={$text} onPress={setIsDetails} />
+      )}
     </Screen>
   )
 })
+
+const $text: TextStyle = {
+  bottom: '25%',
+  fontSize: 24,
+  width: '50%',
+  position: 'absolute',
+  color: '#fff',
+  zIndex: 9,
+  alignSelf: 'center'
+}
 
 const $container: ViewStyle = {
   flex: 1,

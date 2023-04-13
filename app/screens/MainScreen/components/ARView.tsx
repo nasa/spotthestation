@@ -19,10 +19,11 @@ interface ARViewProps {
   pastIssPathCoords: [number, number][]
   futureIssPathCoords: [number, number][]
   issMarkerPosition: [number, number]
+  setIsSpotted: (value: boolean) => void
 }
 
 export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
-  function ARView({ isFullScreen, isPathVisible, isRecording, recordedSeconds, pastIssPathCoords, futureIssPathCoords, issMarkerPosition,  }, ref) {
+  function ARView({ isFullScreen, isPathVisible, isRecording, recordedSeconds, pastIssPathCoords, futureIssPathCoords, issMarkerPosition, setIsSpotted }, ref) {
     const [position, setPosition] = useState([0, 0])
     const onScreenPositionChange = useCallback((pos: [number, number]) => {
       setPosition(pos)
@@ -56,7 +57,7 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
         />
 
         { isFullScreen && (
-          <DirectionCircle screenX={position[0]} screenY={position[1]} />
+          <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
         )}
 
         <View style={$hudContainer}>
