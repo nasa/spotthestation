@@ -1,8 +1,9 @@
+import { Euler, Vector3 } from "three"
+
 export const azAltToCartesian = (az, alt, distance): [number, number, number] => {
-  const x = Math.sin(az * (Math.PI/180)) * distance
-  const y = Math.sin(alt * (Math.PI/180)) * distance
-  const z = Math.cos(az * (Math.PI/180)) * -distance
-  return [x, y, z]
+  const euler = new Euler(alt * (Math.PI/180), -az * (Math.PI/180), 0, 'YXZ')
+  const vec = new Vector3(0, 0, -distance).applyEuler(euler)
+  return [vec.x, vec.y, vec.z]
 }
 
 export const normalizeHeading = (heading: number) => {

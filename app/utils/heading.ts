@@ -20,6 +20,10 @@ function handle() {
     res = normalizeHeading(res - 180)
   }
 
+  if (Platform.OS === 'ios' && accelerometerData.z > Math.cos(45 * Math.PI / 180)) {
+    res = normalizeHeading(res - 180)
+  }
+
   watchers.forEach((watcher) => watcher(res))
 }
 

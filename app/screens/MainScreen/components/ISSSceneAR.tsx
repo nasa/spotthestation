@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
 import throttle from 'lodash.throttle'
 import {
-  ViroARScene,
+  ViroARScene, ViroCameraTransform,
   ViroImage,
   ViroPolyline,
   ViroSphere,
@@ -24,6 +24,14 @@ interface ISSSceneProps {
     }
   }
 }
+
+type CameraTransformCallback = (cameraTransform: ViroCameraTransform) => void
+
+type ISSDataCallback = (data: {
+  pastIssPathCoords: [number, number][]
+  futureIssPathCoords: [number, number][]
+  issMarkerPosition: [number, number]
+}) => void
 
 export const emitter = mitt()
 
@@ -65,7 +73,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
 
   useEffect(() => {
-    const handler = (data) => {
+    const handler: ISSDataCallback = (data) => {
       setPastIssPathCoords(data.pastIssPathCoords)
       setFutureIssPathCoords(data.futureIssPathCoords)
       setIssMarkerPosition(data.issMarkerPosition)
@@ -119,14 +127,40 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], initialHeading))
   }, [futureIssPathCoords, initialHeading])
 
-  const onCamera = useMemo(() => throttle(() => {
-    sceneNavigator.project(worldTransform(issCoords, initialHeading))
-      .then(({ screenPosition })=> {
-        sceneNavigator.viroAppProps?.onScreenPositionChange(screenPosition)
-      }).catch((err) => {
-      console.error(err)
-    })
-  }, 50), [sceneNavigator, issCoords, initialHeading])
+  const onCamera = useMemo(() => {
+    const cb: CameraTransformCallback = ({ cameraTransform }) => {
+      const issWorldCoords = worldTransform(issCoords, initialHeading)
+      const totalAngle = new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180 / Math.PI
+
+      if (totalAngle < 85) {
+        sceneNavigator.project(issWorldCoords)
+          .then(({ screenPosition })=> {
+            sceneNavigator.viroAppProps?.onScreenPositionChange([screenPosition[0], screenPosition[1]])
+          }).catch((err) => {
+          console.error(err)
+        })
+      } else {
+        let angleX = new Vector3(...cameraTransform.forward)
+          .projectOnPlane(new Vector3(0, 1, 0))
+          .angleTo(new Vector3(...issWorldCoords).projectOnPlane(new Vector3(0, 1, 0))) * 180 / Math.PI
+
+        let angleY = new Vector3(...cameraTransform.forward)
+          .projectOnPlane(new Vector3(0, 1, 0))
+          .angleTo(new Vector3(...cameraTransform.forward)) * 180 / Math.PI
+
+        angleY = (cameraTransform.forward[1] > 0 ? angleY: -angleY) - issMarkerPosition[1]
+        angleX = new Vector3(...issWorldCoords).cross(new Vector3(...cameraTransform.forward)).y > 0 ? angleX : -angleX
+
+        if (Math.abs(angleX) > Math.abs(angleY)) {
+          sceneNavigator.viroAppProps?.onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0])
+        } else {
+          sceneNavigator.viroAppProps?.onScreenPositionChange([10000, angleY > 0 ? 1000000 : -1000000])
+        }
+      }
+    }
+
+    return throttle(cb, 50)
+  }, [sceneNavigator, issCoords, initialHeading])
 
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
@@ -135,7 +169,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
           <ViroImage
             height={1}
             width={1}
-            rotation={[0, -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
+            rotation={[issMarkerPosition[1], -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
             position={worldTransform(issCoords, initialHeading)}
             source={icon}
           />
