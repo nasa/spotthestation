@@ -153,7 +153,8 @@ const en = {
       title: "Upcoming Sightings",
       sightings: "Sightings",
       button: "Notify Me",
-      selectMessage: "Select events for which you would like to be notified."
+      selectMessage: "Select events for which you would like to be notified.",
+      switch: "Notify me for all upcoming events at this location."
     },
     coachMarks: {
       skip: 'Skip tour',
@@ -181,7 +182,7 @@ const en = {
       subtitle: "these great moments to your\nfriends and family"
     },
     details: {
-      title: "Internaional Space Station - Details",
+      title: "International Space Station - Details",
       distance: "Distance",
       orbitalSpeed: "Orbital speed",
       longitude: "longitude",
@@ -222,11 +223,9 @@ const en = {
       backButton: 'Settings',
       notificationTitle: 'Notification Settings',
       privacyTitle: 'Privacy Settings',
-      iisVisibleLabel: 'Notify me when I can see the ISS',
       upcomingLabel: 'Upcoming Events',
+      customizeLabel: 'Customize Notifications by Location',
       upcomingTip: 'Turn off to stop receiving event notifications.',
-      notificationTypes: 'NOTIFICATION TYPES',
-      inAppLabel: 'In App',
       notifyMeBefore: 'NOTIFY ME BEFORE',
       turnOffNotifications: 'TURN OFF NOTIFICATIONS',
       from: 'From',

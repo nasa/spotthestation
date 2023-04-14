@@ -32,35 +32,32 @@ class Notifications {
     const eventsForNotify: ISSSighting[] = events.filter(item => item.notify)
     const start = new Date(await storage.load('muteFrom') as string)
     const end = new Date(await storage.load('muteUntil') as string)
-    const iisVisible = await storage.load('iisVisible')
     const upcoming = await storage.load('upcoming')
-    const inApp = await storage.load('inApp')
+    const privacy = await storage.load('privacy')
     const notifyBefore = await storage.load('notifyBefore')
     let location = await storage.load('selectedLocation')
     if (!location) location = await storage.load('currentLocation')
    
     const eventsList = eventsForNotify?.length ? eventsForNotify : events
 
-    if (inApp && location?.alert) {
+    if (upcoming && location?.alert) {
       PushNotification.cancelAllLocalNotifications()
       eventsList.forEach(({ date }) => {
         const eventDate = new Date(date)
         const muted = isDateBetweenHours(eventDate, start, end)
         
-        if (!muted && Date.now() <= eventDate.getTime()) {
-          if (iisVisible) {
-            PushNotification.localNotificationSchedule({
-              channelId: 'default-channel-id',
-              title: 'Spot the ISS now!',
-              message: 'The ISS is passing above you…',
-              date: eventDate,
-            })
-          }
-          if (upcoming) {
+        if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
+          PushNotification.localNotificationSchedule({
+            channelId: 'default-channel-id',
+            title: 'Spot the ISS now!',
+            message: `The ISS is passing above you at ${location.title}`,
+            date: eventDate,
+          })
+          if (notifyBefore) {
             PushNotification.localNotificationSchedule({
               channelId: 'default-channel-id',
               title: `Spot the ISS in ${notifyBefore || 15} minutes!`,
-              message: `The ISS is passing above you in ${notifyBefore || 15} minutes…`,
+              message: `The ISS is passing above you in ${notifyBefore || 15} minutes at ${location.title}`,
               date: new Date(eventDate.getTime() - (notifyBefore || 15) * 60000),
             })
           }

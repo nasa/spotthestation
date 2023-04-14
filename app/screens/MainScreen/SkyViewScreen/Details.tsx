@@ -4,6 +4,7 @@ import { Icon, Text } from "../../../components"
 import { OrbitPoint } from "../../../services/api/api.types"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
+import { calculateDistance, calculateOrbitalSpeed } from "../components/helpers"
 
 export interface DetailsProps {
   /**
@@ -11,10 +12,13 @@ export interface DetailsProps {
    */
   onClose?: PressableProps["onPress"],
   issData: OrbitPoint
+  observer: [number, number]
 }
 
-export function Details({ onClose, issData }: DetailsProps) {
-  
+export function Details({ onClose, issData, observer }: DetailsProps) {
+  const distance = (data: OrbitPoint): number => {
+    return Math.round(calculateDistance(observer[0], observer[1], 0, data.latitude, data.longitude, data.elevation)/1000)
+  }
   return (
     <View style={$modalBodyContainer}>
       <Icon icon="x" 
@@ -44,7 +48,7 @@ export function Details({ onClose, issData }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.distance" style={$detailTitle} />
-            <Text text="125 km" style={$detailValue} />
+            <Text text={`${distance(issData)} km`} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -54,7 +58,7 @@ export function Details({ onClose, issData }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-            <Text text="7660 M/S" style={$detailValue} />
+            <Text text={`${calculateOrbitalSpeed(issData.latitude, issData.azimuth, issData.elevation)} M/S`} style={$detailValue} />
           </View>
           <View 
             accessible

@@ -497,7 +497,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <Details issData={issData[issMarkerIndex]} onClose={() => setIsDetails(!isDetails)} />
+        <Details issData={issData[issMarkerIndex]} onClose={() => setIsDetails(!isDetails)} observer={location} />
       </Modal>
       { isSpotted && (
         <Text tx="issView.issCaptured" style={$text} onPress={setIsDetails} />

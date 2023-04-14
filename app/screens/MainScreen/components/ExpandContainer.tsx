@@ -9,23 +9,29 @@ export interface ExpandContainerProps {
   itemsCount?: number
   title: TxKeyPath
   expandble?: boolean
+  reverseTitle?: boolean
   children?: ReactNode
   actionTitle?: string
+  containerStyle?: ViewStyle
 }
 
-export function ExpandContainer({ defaultValue = true, title, expandble = true, children, itemsCount, actionTitle }: ExpandContainerProps) {
+export function ExpandContainer({ defaultValue = true, title, expandble = true, children, itemsCount, actionTitle, reverseTitle, containerStyle }: ExpandContainerProps) {
   const [expanded, setExpanded] = useState(defaultValue)
+
+  const $titleContainerOverride: ViewStyle = reverseTitle && { flexDirection: 'row-reverse' }
+  const $titleOverride: TextStyle = reverseTitle && { textAlign: 'right', width: '100%' }
+
   return (
-    <View style={$container}>
+    <View style={[$container, containerStyle]}>
       <View style={$headContainer}>
-        <View style={$titleContainer}>
+        <View style={[$titleContainer, $titleContainerOverride]}>
           <Text 
             accessible
             accessibilityLabel="title"
             accessibilityHint={title}
             accessibilityRole="text"
             tx={title} 
-            style={$title} 
+            style={[$title, $titleOverride]} 
           />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />} 
         </View>

@@ -25,7 +25,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     iisVisible: false,
     upcoming: false,
     inApp: false,
-    notifyBefore: 30,
+    notifyBefore: 15,
+    privacy: false,
     muteFrom: new Date(),
     muteUntil: new Date()
   })
@@ -41,7 +42,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       iisVisible: await storage.load('iisVisible'),
       upcoming: await storage.load('upcoming'),
       inApp: await storage.load('inApp'),
-      notifyBefore: (await storage.load('notifyBefore')) || 30,
+      notifyBefore: (await storage.load('notifyBefore')) || 15,
+      privacy: await storage.load('privacy'),
       muteFrom: start ? new Date(start) : new Date(),
       muteUntil: end ? new Date(end) : new Date()
     })
@@ -51,7 +53,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     loadSettings()
   }, [])
   
-
   const handleChange = useCallback(async (value, field: string) => {
     setSettings({
       ...settings,
@@ -92,25 +93,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           <View style={$switchContainer}>
             <View 
               accessible
-              accessibilityLabel="iis Visible"
-              accessibilityHint="iis Visible notification switch"
-              accessibilityRole="text"
-              style={$labelContainer}
-            >
-              <Text tx="settings.notificationSettingsData.iisVisibleLabel" style={$label} />
-            </View>
-            <Toggle
-              accessible
-              accessibilityLabel="switch button"
-              accessibilityHint="toggle iis Visible notification"
-              variant="switch" 
-              value={settings?.iisVisible} 
-              onValueChange={(value) => handleChange(value, 'iisVisible')}
-            />
-          </View>
-          <View style={$switchContainer}>
-            <View 
-              accessible
               accessibilityLabel="upcoming events notification"
               accessibilityHint="upcoming events notification switch"
               accessibilityRole="text"
@@ -118,6 +100,12 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             >
               <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
               <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
+              <Pressable
+                onPress={() => navigation.navigate('Home' as never, { showSightings: true } as never)}
+                style={{ marginTop: 10 }}
+              >
+                <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
+              </Pressable>
             </View>
             <Toggle
               accessible
@@ -128,28 +116,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               onValueChange={(value) => handleChange(value, 'upcoming')}
             />
           </View>
-          <ExpandContainer title="settings.notificationSettingsData.notificationTypes" expandble={false}>
-            <View style={$switchContainer}>
-              <View 
-                accessible
-                accessibilityLabel="in App notification"
-                accessibilityHint="in App notification switch"
-                accessibilityRole="text"
-                style={$labelContainer}
-              >
-                <Text tx="settings.notificationSettingsData.inAppLabel" style={$label} />
-              </View>
-              <Toggle
-                accessible
-                accessibilityLabel="switch button"
-                accessibilityHint="toggle in App notification"
-                variant="switch" 
-                value={settings?.inApp} 
-                onValueChange={(value) => handleChange(value, 'inApp')}
-              />
-            </View>
-          </ExpandContainer>
-          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false}>
+          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false} containerStyle={{ marginTop: 10}}>
             <Dropdown
               accessibilityLabel="period select"
               style={[$dropdown, $inputMargin]}
@@ -180,8 +147,18 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               )}
             />
           </ExpandContainer>
-          <Text tx="settings.notificationSettingsData.privacyTitle" style={$title} />
-          <ExpandContainer title="settings.notificationSettingsData.turnOffNotifications" expandble={false}>
+          <View style={[$switchContainer, { marginTop: 15 }]}>
+            <Text tx="settings.notificationSettingsData.privacyTitle" style={$label} />
+            <Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle privacy notifications"
+              variant="switch" 
+              value={settings?.privacy}
+              onValueChange={(value) => handleChange(value, 'privacy')}
+            />
+          </View>
+          <ExpandContainer title="settings.notificationSettingsData.turnOffNotifications" expandble={false} containerStyle={{ marginTop: 0}}>
             <View style={$muteContainer}>
               <View style={$muteButton}>
                 <Text tx="settings.notificationSettingsData.from" style={$muteButtonLabel} />
@@ -190,8 +167,9 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                   accessibilityLabel="from picker button"
                   accessibilityHint="open time picker"
                   textStyle={$buttonText}
-                  style={$button}
-                  pressedStyle={$button}
+                  style={[$button, !settings.privacy && $disabled]}
+                  pressedStyle={[$button, !settings.privacy && $disabled]}
+                  disabled={!settings.privacy}
                   text={formatDate(settings?.muteFrom?.toISOString(), "h:mm aa")}
                   onPress={() => setFrom(true)}
                   renderRightAccessory={() => (
@@ -211,8 +189,9 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                   accessibilityLabel="until picker button"
                   accessibilityHint="open time picker"
                   textStyle={$buttonText}
-                  style={$button}
-                  pressedStyle={$button}
+                  style={[$button, !settings.privacy && $disabled]}
+                  pressedStyle={[$button, !settings.privacy && $disabled]}
+                  disabled={!settings.privacy}
                   text={formatDate(settings?.muteUntil?.toISOString(), "h:mm aa")}
                   onPress={() => setUntil(true)}
                   renderRightAccessory={() => (
@@ -394,7 +373,7 @@ const $button: ViewStyle = {
   backgroundColor: colors.palette.neutral550,
   borderRadius: 28,
   borderWidth: 0,
-  paddingHorizontal: 28,
+  paddingHorizontal: 16,
   justifyContent: "space-between"
 }
 
@@ -403,4 +382,8 @@ const $buttonText: TextStyle = {
   fontSize: 18,
   fontFamily: typography.primary.normal,
   lineHeight: 21,
+}
+
+const $disabled: ViewStyle = {
+  opacity: .5
 }

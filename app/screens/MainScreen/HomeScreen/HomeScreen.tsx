@@ -22,14 +22,21 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { autorun } from "mobx"
+import { useNavigation, useRoute } from "@react-navigation/native"
+
+export interface HomeScreenRouteProps {
+  showSightings: boolean
+}
 
 export const HomeScreen = observer(function HomeScreen() {
+  const route: HomeScreenRouteProps  = useRoute().params as HomeScreenRouteProps
+  const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { sightings, issData, getISSSightings, getISSData, setISSSightings } = useStores()
-
+  
   const [isLocation, setIsLocation] = useState(false)
-  const [isSightings, setIsSightings] = useState(false)
+  const [isSightings, setIsSightings] = useState(!!route?.showSightings)
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
@@ -61,6 +68,13 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     startCountdown()
   }, [sightings])
+
+  useEffect(() => {
+    // Clear the initialParams prop when the screen is unmounted
+    return () => {
+      navigation.setParams({ showSightings: false } as never)
+    }
+  }, [navigation])
 
   const [issPathCoords, setIssPathCoords] = useState([])
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
@@ -195,6 +209,10 @@ export const HomeScreen = observer(function HomeScreen() {
     }))
   }
 
+  const handleSetSightingNotificationToAll = (notify: boolean) => {
+    setISSSightings(sightings.map(item => ({...item, notify})))
+  }
+
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
       case 1: return <CoachMark
@@ -245,6 +263,16 @@ export const HomeScreen = observer(function HomeScreen() {
       default: return ''
     }
   }, [stage])
+
+  const renderSightings = useCallback(() => {
+    return <Sightings 
+    onClose={() => setIsSightings(!isSightings)} 
+    sightings={[...sightings]} 
+    onToggle={handleSetSightingNotification}
+    onToggleAll={handleSetSightingNotificationToAll}
+    isUS={currentTimeZone.regionFormat === 'US'}
+  />
+  }, [isSightings, sightings, currentTimeZone])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -299,12 +327,7 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <Sightings 
-          onClose={() => setIsSightings(!isSightings)} 
-          sightings={[...sightings]} 
-          onToggle={handleSetSightingNotification}
-          isUS={currentTimeZone.regionFormat === 'US'}
-        />
+        {renderSightings()}
       </Modal>}
       {coachVisible && <Modal
         isVisible={coachVisible}

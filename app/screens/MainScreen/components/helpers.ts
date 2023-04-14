@@ -23,3 +23,39 @@ export const formatTimer = (diff: string, prefix: string): string => {
 
   return `${prefix}${result}`
 }
+
+export const calculateDistance = (lat1, lon1, elev1, lat2, lon2, elev2) => {
+  const R = 6371000 // Earth's radius in meters
+  const phi1 = lat1 * Math.PI / 180 // convert to radians
+  const phi2 = lat2 * Math.PI / 180 // convert to radians
+  const deltaPhi = (lat2-lat1) * Math.PI / 180 // difference in radians
+  const deltaLambda = (lon2-lon1) * Math.PI / 180 // difference in radians
+
+  const a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) +
+            Math.cos(phi1) * Math.cos(phi2) *
+            Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+
+  const distance = R * c
+  const elevationDifference = elev2 - elev1
+  const totalDistance = Math.sqrt(distance*distance + elevationDifference*elevationDifference)
+
+  return totalDistance
+}
+
+export const calculateOrbitalSpeed = (latitude: number, azimuth: number, elevation: number): number => {
+  const earthRadius = 6371 // Earth's radius in kilometers
+  const G = 6.67430 * Math.pow(10, -11) // gravitational constant in m^3/kg/s^2
+  const earthMass = 5.972 * Math.pow(10, 24) // Earth's mass in kilograms
+  const omegaE = 7.2921159 * Math.pow(10, -5) // Earth's rotation rate in radians per second
+  
+  // Convert latitude and longitude to radians
+  const lat = latitude * (Math.PI / 180)
+  
+  // Calculate the distance from the satellite to the center of the Earth
+  const altitude = elevation + earthRadius
+  const r = altitude * 1000 // Convert altitude from km to meters
+  
+  // Calculate the velocity of the satellite
+  return Math.round(Math.sqrt((G * earthMass) / (r)) + (omegaE * r * Math.cos(lat)) * Math.cos(azimuth))
+}

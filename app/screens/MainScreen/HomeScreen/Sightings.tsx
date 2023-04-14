@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
-import { Icon, Text, IconTypes } from "../../../components"
+import { Icon, Text, IconTypes, Toggle } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
@@ -16,9 +16,11 @@ export interface SightingsProps {
   isUS?: boolean
   onClose?: PressableProps["onPress"]
   onToggle?: (values: ISSSighting) => void
+  onToggleAll?: (value: boolean) => void
 }
 
-export function Sightings({ onClose, sightings, onToggle, isUS }: SightingsProps) {
+export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS }: SightingsProps) {
+  const [isNotifyAll, setIsNotifyAll] = useState(false)
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
@@ -66,28 +68,43 @@ export function Sightings({ onClose, sightings, onToggle, isUS }: SightingsProps
         tx="homeScreen.selectSightings.selectMessage"
         style={$selectMessageText}
       />
-      <ScrollView
-        accessible
-        accessibilityLabel="Sightings scrollable area"
-        accessibilityHint="Sightings scrollable area"
-        accessibilityRole="scrollbar"
-        style={$scrollContainer}
-      >
-        <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false}>
-          {[...sightings].filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
-            <ListItem
-              key={sighting.date}
-              icon="clock"
-              secondIcon={setStageIcon(sighting.dayStage)}
-              title={formatedDate(sighting.date)}
-              selected={sighting.notify}
-              subtitle={`Visible for ${sighting.visible} min`}
-              withSwitch
-              onToggle={() => onToggle(sighting)}
-            />
-          )}
+      <View style={$switchContainer}>
+        <Text tx="homeScreen.selectSightings.switch" style={$label} />
+        <Toggle
+          accessible
+          accessibilityLabel="switch button"
+          accessibilityHint="toggle notifications"
+          variant="switch" 
+          value={isNotifyAll} 
+          onValueChange={() => {
+            setIsNotifyAll(!isNotifyAll)
+            onToggleAll(!isNotifyAll)
+          }}
+        />
+      </View>
+      <View style={$scrollContainer}>
+        <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false} reverseTitle>
+          <ScrollView
+            accessible
+            accessibilityLabel="Sightings scrollable area"
+            accessibilityHint="Sightings scrollable area"
+            accessibilityRole="scrollbar"
+          >
+            {[...sightings].filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
+              <ListItem
+                key={sighting.date}
+                icon="clock"
+                secondIcon={setStageIcon(sighting.dayStage)}
+                title={formatedDate(sighting.date)}
+                selected={sighting.notify}
+                subtitle={`Above the horizon ${sighting.visible} min`}
+                withSwitch
+                onToggle={() => onToggle(sighting)}
+              />
+            )}
+          </ScrollView>
         </ExpandContainer>
-      </ScrollView>
+      </View>
     </View>
   )
 }
@@ -128,4 +145,20 @@ const $selectMessageText: TextStyle = {
   lineHeight: 22,
   color: colors.palette.neutral100,
   paddingHorizontal: 36,
+}
+
+const $switchContainer: ViewStyle = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  borderBottomColor: colors.palette.neutral350,
+  paddingHorizontal: 36,
+  paddingTop: 15,
+}
+
+const $label: TextStyle = {
+  color: colors.palette.neutral250,
+  fontSize: 16,
+  fontFamily: typography.primary.normal,
+  lineHeight: 21,
+  width: '80%'
 }
