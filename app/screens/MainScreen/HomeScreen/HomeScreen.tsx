@@ -33,7 +33,10 @@ export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
-  const { sightings, issData, getISSSightings, getISSData, setISSSightings } = useStores()
+  const { 
+    sightings, issData, getISSSightings, getISSData, setISSSightings,
+    currentLocation, setCurrentLocation, selectedLocation, setSelectedLocation
+  } = useStores()
   
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(!!route?.showSightings)
@@ -43,7 +46,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
-  const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
+  // const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {

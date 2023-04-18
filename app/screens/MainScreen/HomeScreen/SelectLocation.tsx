@@ -10,7 +10,7 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import Snackbar from "react-native-snackbar"
-import * as storage from "../../../utils/storage"
+import { useStores } from "../../../models"
 
 export interface SelectLocationProps {
   /**
@@ -28,28 +28,24 @@ export interface SelectLocationProps {
 }
 
 export function SelectLocation({ onClose, onLocationPress, selectedLocation }: SelectLocationProps) {
+  const { savedLocations, currentLocation, setCurrentLocation } = useStores()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
-  const [current, setCurrent] = useState<LocationType | null>(null)
   const [nearby, setNearby] = useState<LocationType[]>([])
   const [searchResult, setSearchResult] = useState<LocationType[]>([])
-  const [saved, setSaved] = useState<LocationType[]>([])
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
-  const getLocations = async () => {
-    let location: LocationType = await storage.load('currentLocation')
+  const getLocation = async () => {
+    let location: LocationType = currentLocation
 
     if (!location) {
       location = await getCurrentLocation()
-      await storage.save('currentLocation', location)
+      setCurrentLocation(location)
     }
-    
     const res = await getNearbyPlaces(location.location, 100)
-    const savedLocations = await storage.load('savedLocations')
-    if (savedLocations) setSaved(savedLocations as LocationType[] || [])
-    setCurrent(location)
+
     setNearby(res)
   }
 
@@ -63,7 +59,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   }
 
   useEffect(() => {
-    getLocations().catch((e: Error) => {
+    getLocation().catch((e: Error) => {
       Snackbar.show({
         text: e.message || "Some error occured",
         duration: Snackbar.LENGTH_SHORT,
@@ -156,17 +152,17 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
         >
           {(!isFocus && searchResult.length === 0) && (
             <>
-              {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
+              {Boolean(currentLocation) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
                 <ListItem 
                   icon="pin" 
-                  title={current.title} 
-                  subtitle={current.subtitle} 
-                  selected={isSelected(current)} 
-                  onPress={() => onLocationPress(current)} 
+                  title={currentLocation.title} 
+                  subtitle={currentLocation.subtitle} 
+                  selected={isSelected(currentLocation)} 
+                  onPress={() => onLocationPress(currentLocation)} 
                 />
               </ExpandContainer>}
-              {Boolean(saved.length) && <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={saved.length}>
-                {saved.map(location => <ListItem 
+              {Boolean(savedLocations.length) && <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={savedLocations.length}>
+                {savedLocations.map(location => <ListItem 
                   key={location.subtitle}
                   icon="pin"
                   title={location.title} 

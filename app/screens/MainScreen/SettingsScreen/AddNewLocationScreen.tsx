@@ -4,19 +4,19 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useRef, useState } from "react"
-import { ViewStyle, TextStyle, ScrollView, View } from "react-native"
+import { ViewStyle, TextStyle, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
-import * as storage from "../../../utils/storage"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
 import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
 import Snackbar from "react-native-snackbar"
+import { useStores } from "../../../models"
 
 export interface AddNewLocationScreenParams {
   defaultLocation?: LocationType
@@ -24,6 +24,7 @@ export interface AddNewLocationScreenParams {
 
 export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const navigation = useNavigation()
+  const { savedLocations, setSavedLocations } = useStores()
   const topInset = useSafeAreaInsets().top
   const { params: { defaultLocation } } = useRoute()
 
@@ -44,9 +45,9 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     setLocation(null)
   }
 
-  const handleSave = useCallback(async () => {
+  const handleSave = useCallback(() => {
     location.title = titleValue
-    let res: LocationType[] = (await storage.load('savedLocations')) || []
+    let res = [...savedLocations]
     if (res.find(item => item.title === titleValue)) {
       Snackbar.show({
         text: 'Location with this title already exist!',
@@ -61,9 +62,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
       })
       return
     }
+    
     if (defaultLocation) res = res.filter(item => item.title !== defaultLocation.title)
-    res.push(location)
-    await storage.save('savedLocations', res)
+    res.push(location as any)
+    setSavedLocations(res)
     Snackbar.show({
       text: 'Location saved',
       duration: Snackbar.LENGTH_LONG,
@@ -75,14 +77,12 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         },
       },
     })
-  }, [titleValue, location])
+  }, [titleValue, location, savedLocations])
 
-  const handleRemove = useCallback(async () => {
-    const res: LocationType[] = await storage.load('savedLocations')
-
-    await storage.save('savedLocations', res.filter(item => item.title !== defaultLocation.title))
+  const handleRemove = useCallback(() => {
+    setSavedLocations(savedLocations.filter(item => item.title !== defaultLocation.title))
     navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
-  }, [defaultLocation])
+  }, [defaultLocation, savedLocations])
 
   return (
     <Screen
@@ -233,11 +233,6 @@ const $buttonsContainer: ViewStyle = {
   flexDirection: 'row',
   alignItems: "center",
   justifyContent: "space-between",
-}
-
-const $scrollContentContainerStyle: ViewStyle = { 
-  flexGrow: 1,
-  paddingBottom: 60
 }
 
 const $scrollContainer: ViewStyle = { 

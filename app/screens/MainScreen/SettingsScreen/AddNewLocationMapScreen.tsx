@@ -10,7 +10,6 @@ import Modal from "react-native-modal"
 import { Icon, Screen, Text, Button } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
-import * as storage from "../../../utils/storage"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
 import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
@@ -19,9 +18,11 @@ import Snackbar from "react-native-snackbar"
 import { LatLng } from "react-native-maps"
 import { api } from "../../../services/api"
 import { MapBox } from "../components/MapBox"
+import { useStores } from "../../../models"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const navigation = useNavigation()
+  const { savedLocations, setSavedLocations } = useStores()
   const topInset = useSafeAreaInsets().top
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
@@ -53,11 +54,8 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     }
   }, [marker])
 
-  const handleSave = useCallback(async () => {
-    const res: LocationType[] = (await storage.load('savedLocations')) || []
-  
-    res.push(location)
-    await storage.save('savedLocations', res)
+  const handleSave = useCallback(() => {
+    setSavedLocations([...savedLocations, location])
     Snackbar.show({
       text: 'Location saved',
       duration: Snackbar.LENGTH_LONG,
@@ -70,7 +68,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       },
     })
     navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
-  }, [location])
+  }, [location, savedLocations])
 
   return (
     <Screen

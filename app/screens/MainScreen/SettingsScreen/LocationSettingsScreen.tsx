@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-native/no-inline-styles */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useCallback } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
@@ -9,47 +10,38 @@ import { colors, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
-import * as storage from "../../../utils/storage"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { getCurrentLocation } from "../../../utils/geolocation"
+import { useStores } from "../../../models"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
   const route = useRoute()
+  const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const [current, setCurrent] = useState<LocationType | null>(null)
-  const [saved, setSaved] = useState<LocationType[]>([])
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + 24,
   }
 
-  const getLocations = async () => {
-    const res = await storage.load('savedLocations')
-    const cur = await storage.load('currentLocation')
-    if (res) setSaved(res as LocationType[] || [])
-    const location: LocationType = cur || await getCurrentLocation()
-    await storage.save('currentLocation', location)
-    setCurrent(location)
+  const getLocation = async (currentLocation: LocationType) => {
+    if (!currentLocation) setCurrentLocation(await getCurrentLocation())
   }
 
   useEffect(() => {
-    getLocations().catch(e => console.log(e))
-  }, [route])
+    getLocation(currentLocation).catch(e => console.log(e))
+  }, [currentLocation, route])
 
-  const handleToggle = async (location: LocationType, type: string) => {
-    const res: LocationType[] = (await storage.load('savedLocations')) || []
-    const cur: LocationType = (await storage.load('currentLocation'))
-    
+  const handleToggle = useCallback((location: LocationType, type: string) => {
     if (type === 'saved') {
-      await storage.save('savedLocations', res.map(item => item.title === location.title ? { ...item, alert: !item.alert } : item))
+      setSavedLocations(savedLocations.map(item => item.title === location.title ? { ...item, alert: !item.alert } : item))
     } else {
-      await storage.save('currentLocation', { ...cur, alert: !cur.alert })
+      setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert })
     }
     
-    getLocations().catch(e => console.log(e))
-  }
+    getLocation(currentLocation).catch(e => console.log(e))
+  }, [currentLocation, savedLocations])
 
   return (
     <Screen
@@ -79,18 +71,18 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           <Text tx="settings.locationSettingsData.backButton" style={$backButtonText} />
         </Pressable>
         <Text tx="settings.locationSettingsData.generalTitle" style={$title} />
-        {Boolean(current) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false} actionTitle="Alert">
+        {Boolean(currentLocation) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false} actionTitle="Alert">
           <ListItem 
             icon="pin"
-            title={current.title} 
-            subtitle={current.subtitle}
-            selected={current.alert}
-            onToggle={() => handleToggle(current, 'current')}
+            title={currentLocation.title} 
+            subtitle={currentLocation.subtitle}
+            selected={currentLocation.alert}
+            onToggle={() => handleToggle(currentLocation, 'current')}
             withSwitch
           />
         </ExpandContainer>}
-        {Boolean(saved.length) && <ExpandContainer title="homeScreen.selectLocation.saved" expandble={false} actionTitle="Alert">
-          {saved.map(location => <ListItem 
+        {Boolean(savedLocations.length) && <ExpandContainer title="homeScreen.selectLocation.saved" expandble={false} actionTitle="Alert">
+          {savedLocations.map(location => <ListItem 
             key={location.title}
             icon="pin"
             title={location.title} 

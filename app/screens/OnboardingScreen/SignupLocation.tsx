@@ -7,12 +7,14 @@ import Config from "../../config"
 import { translate } from "../../i18n"
 import { colors, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
+import { ISSSighting } from "../../services/api"
 
 export interface LocationType {
   title: string,
   subtitle: string,
   location: Point,
   alert?: boolean
+  sightings?: ISSSighting[]
 }
 
 enum Statuses {

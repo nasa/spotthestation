@@ -5,6 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { flow } from 'mobx-state-tree'
 import Snackbar from 'react-native-snackbar'
+import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
 import { api, ISSSighting } from '../services/api'
 import notifications from '../utils/notifications'
 
@@ -45,6 +46,18 @@ const RootStoreActions = (self) => ({
   setISSSightings: (values: ISSSighting[]) => {
 		self.sightings = [...values]
     notifications.setNotifications(values)
+	},
+
+  setCurrentLocation: (value: LocationType) => {
+		self.currentLocation = {...value}
+	},
+  
+  setSelectedLocation: (value: LocationType) => {
+		self.selectedLocation = {...value}
+	},
+
+  setSavedLocations: (values: LocationType[]) => {
+		self.savedLocations = [...values]
 	},
 
   getISSData: flow(function* getISSData(params) {
