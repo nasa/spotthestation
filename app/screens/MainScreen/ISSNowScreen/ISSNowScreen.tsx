@@ -29,13 +29,13 @@ export interface ISSNowScreenRouteProps {
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const route: ISSNowScreenRouteProps  = useRoute().params as ISSNowScreenRouteProps
   const topInset = useSafeAreaInsets().top
-  const { issData, getISSData } = useStores()
+  const { issData, getISSData, setSelectedLocation } = useStores()
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
   const [isLandscape, setIsLandscape] = useState(false)
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
-  const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
+  const [current, setCurrent] = useState<LocationType>(null)
   const [isLocation, setIsLocation] = useState(false)
 
   const onOrientationDidChange = (orientation) => {
@@ -120,10 +120,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const getCurrentLocation = async () => {
     const selected: LocationType = await storage.load('selectedLocation')
     if (selected) {
-      setCurrentLocation(selected)
+      setCurrent(selected)
     } else {
       const current: LocationType = await storage.load('currentLocation')
-      setCurrentLocation(current)
+      setCurrent(current)
     }
   }
 
@@ -193,21 +193,22 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [])
 
   const getData = async () => {
-    await getISSData({ lat: currentLocation.location.lat, lon: currentLocation.location.lng })
+    await getISSData({ lat: current.location.lat, lon: current.location.lng })
   }
 
   useEffect(() => {
-    if (!currentLocation) return
+    if (!current) return
 
     getData().catch(e => console.log(e))
-  }, [currentLocation])
+  }, [current])
 
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
   const handleChangeLocation = async (location: LocationType) => {
-    setCurrentLocation(location)
+    setCurrent(location)
     setIsLocation(false)
+    setSelectedLocation(location)
     await storage.save('selectedLocation', location)
     await getCurrentLocation()
   }
@@ -231,7 +232,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           blurIntensity={50}
         />
         <View style={$textContainer}>
-          <Text text={currentLocation?.subtitle || ''} style={$location} ellipsizeMode="tail" numberOfLines={1} />
+          <Text text={current?.subtitle || ''} style={$location} ellipsizeMode="tail" numberOfLines={1} />
           <Text text={`${formatDate(currentDateTime, "dd MMM yyyy k:mm:ss")}`} style={$date} />
         </View>
         <IconLinkButton 
@@ -252,7 +253,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             futureIssPathCoords={futureIssPathCoords}
             issMarkerPosition={issMarkerPosition}
             zoom={zoomLevel + 1}
-            marker={[currentLocation.location.lat, currentLocation.location.lng]}
+            marker={[current.location.lat, current.location.lng]}
           />
         )}
         { !isGlobe && <MapBox
@@ -260,7 +261,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           issMarkerPosition={issMarkerPosition}
           style={$flatMap}
           zoom={zoomLevel}
-          markers={currentLocation?.location ? [{ latitude: currentLocation?.location?.lat, longitude: currentLocation?.location?.lng }] : []}
+          markers={current?.location ? [{ latitude: current?.location?.lat, longitude: current?.location?.lng }] : []}
         /> }
         <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
           <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>
@@ -322,7 +323,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         style={$modal}
       >
         <SelectLocation 
-          selectedLocation={currentLocation}
+          selectedLocation={current}
           onLocationPress={handleChangeLocation}
           onClose={() => setIsLocation(!isLocation)}
         />

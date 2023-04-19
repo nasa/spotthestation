@@ -34,8 +34,8 @@ export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { 
-    sightings, issData, getISSSightings, getISSData, setISSSightings,
-    currentLocation, setCurrentLocation, selectedLocation, setSelectedLocation
+    issData, getISSSightings, getISSData, setISSSightings,
+    currentLocation, selectedLocation, setSelectedLocation
   } = useStores()
   
   const [isLocation, setIsLocation] = useState(false)
@@ -46,31 +46,33 @@ export const HomeScreen = observer(function HomeScreen() {
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
-  // const [currentLocation, setCurrentLocation] = useState<LocationType>(null)
+  const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
-    const events: ISSSighting[] = sightings.filter(item => item.notify)
-    const eventsList = events?.length ? events : sightings
-    const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
-    
-    if (result.length === 0) return
-    if (result.length > 0) setCurrentSightning(result[0])
-
-    const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
-    const diff = formatDuration(duration, { delimiter: ',' })
-
-    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
-  }, [sightings])
+    if (current) {
+      const events: ISSSighting[] = current.sightings.filter(item => item.notify)
+      const eventsList = events?.length ? events : current.sightings
+      const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
+      
+      if (result.length === 0) return
+      if (result.length > 0) setCurrentSightning(result[0])
+  
+      const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
+      const diff = formatDuration(duration, { delimiter: ',' })
+  
+      callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
+    }
+  }, [current])
 
   const startCountdown = useCallback(() => {
     timeDiff(setCountdown)
     setInterval(() => timeDiff(setCountdown), 1000)
-  }, [countdown, sightings])
+  }, [countdown, current])
 
   useEffect(() => {
     startCountdown()
-  }, [sightings])
+  }, [current])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -148,22 +150,22 @@ export const HomeScreen = observer(function HomeScreen() {
     getCoach().catch((e) => console.log(e))
   }, [])
 
-  const getLocation = async () => {
+  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
     let lat: number
     let lng: number
     let subtitle: string
-    const selected: LocationType = await storage.load('selectedLocation')
-    if (selected) {
-      lat = selected.location.lat
-      lng = selected.location.lng
-      subtitle = selected.subtitle
-      setCurrentLocation(selected)
+    if (selectedLocation) {
+      lat = selectedLocation.location.lat
+      lng = selectedLocation.location.lng
+      subtitle = selectedLocation.subtitle
+      setCurrent(selectedLocation)
     } else {
-      const current: LocationType = await storage.load('currentLocation')
-      lat = current.location.lat
-      lng = current.location.lng
-      subtitle = current.subtitle
-      setCurrentLocation(current)
+      if (currentLocation) {
+        lat = currentLocation.location.lat
+        lng = currentLocation.location.lng
+        subtitle = currentLocation.subtitle
+        setCurrent(currentLocation)
+      }
     }
     setAddress(subtitle)
     if (lat && lng) setLocation([lat, lng])
@@ -180,12 +182,12 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   useEffect(() => {
-    getLocation().catch((e) => console.log(e))
-  }, [])
+    getLocation(selectedLocation, currentLocation)
+  }, [selectedLocation, currentLocation])
 
   useEffect(() => {
     if (!location) return
-
+    
     getSightings(location).catch(e => console.log(e))
     getData().catch(e => console.log(e))
   }, [location])
@@ -195,26 +197,27 @@ export const HomeScreen = observer(function HomeScreen() {
     await storage.save('coachCompleted', true)
   }
 
-  const handleChangeLocation = async (location: LocationType) => {
+  const handleChangeLocation = useCallback(async (location: LocationType) => {
     setAddress(location.subtitle)
-    setCurrentLocation(location)
+    setCurrent(location)
     setIsLocation(false)
+    setSelectedLocation(location)
     await storage.save('selectedLocation', location)
-    await getLocation()
-  }
+    getLocation(selectedLocation, currentLocation)
+  }, [selectedLocation, currentLocation])
 
-  const handleSetSightingNotification = (value: ISSSighting) => {
-    setISSSightings(sightings.map(item => {
+  const handleSetSightingNotification = useCallback((value: ISSSighting) => {
+    setISSSightings({...current, sightings: current.sightings.map(item => {
       if (item.date === value.date) {
         return {...item, notify: !item.notify}
       }
       return item
-    }))
-  }
+    })})
+  }, [current])
 
-  const handleSetSightingNotificationToAll = (notify: boolean) => {
-    setISSSightings(sightings.map(item => ({...item, notify})))
-  }
+  const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
+    setISSSightings({...current, sightings: current.sightings.map(item => ({...item, notify}))})
+  }, [current])
 
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
@@ -270,12 +273,12 @@ export const HomeScreen = observer(function HomeScreen() {
   const renderSightings = useCallback(() => {
     return <Sightings 
     onClose={() => setIsSightings(!isSightings)} 
-    sightings={[...sightings]} 
+    sightings={current ? [...current.sightings] : []}
     onToggle={handleSetSightingNotification}
     onToggleAll={handleSetSightingNotificationToAll}
     isUS={currentTimeZone.regionFormat === 'US'}
   />
-  }, [isSightings, sightings, currentTimeZone])
+  }, [isSightings, current, currentTimeZone])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
@@ -311,7 +314,7 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <SelectLocation 
-          selectedLocation={currentLocation}
+          selectedLocation={current}
           onLocationPress={handleChangeLocation}
           onClose={() => setIsLocation(!isLocation)}
         />

@@ -110,7 +110,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             key: Config.GOOGLE_API_TOKEN,
             language: 'en',
           }}
-          onPress={(data, details = null) => setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })}
+          onPress={(data, details = null) => setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location, sightings: [] })}
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}

@@ -10,9 +10,12 @@ import { LocationType, SignupLocation } from "./SignupLocation"
 import { SignupNotificationSettings } from "./SignupNotificationSettings"
 import * as storage from "../../utils/storage"
 import Snackbar from "react-native-snackbar"
+import { observer } from "mobx-react-lite"
+import { useStores } from "../../models"
 
-export function CompleteProfile() {
+export const CompleteProfile = observer(function CompleteProfile() {
   const navigation = useNavigation()
+  const { setCurrentLocation } = useStores()
 
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
@@ -50,9 +53,9 @@ export function CompleteProfile() {
       }))
   }
 
-  const handleLocationChange = async (location: LocationType) => {
+  const handleLocationChange = (location: LocationType) => {
     setLocation(location)
-    await storage.save('currentLocation', location)
+    setCurrentLocation(location)
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {
@@ -90,7 +93,7 @@ export function CompleteProfile() {
       </View>
     </Screen>
   )
-}
+})
 
 const $container: ViewStyle = {
   flex: 1,

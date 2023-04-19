@@ -6,7 +6,7 @@
 import { flow } from 'mobx-state-tree'
 import Snackbar from 'react-native-snackbar'
 import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
-import { api, ISSSighting } from '../services/api'
+import { api } from '../services/api'
 import notifications from '../utils/notifications'
 
 const RootStoreActions = (self) => ({
@@ -14,17 +14,42 @@ const RootStoreActions = (self) => ({
 		try {
 			const {
 			  data, ok,
-			} = yield api.getISSSightings(params)
+			} = yield api.getISSSightings(params)    
 
       if (ok) {
-        const dataToSave = data.map(item => {
-          const sighting = self.sightings.find(el => el.date === item.date)
-          if (sighting) return {...item, notify: sighting.notify}
+        const selectedLocation = self.selectedLocation || self.currentLocation
+        const isCurrentLocation = selectedLocation.title === self.currentLocation?.title
+        const locationSightings = selectedLocation?.sightings || []
+        const dataToSave = data.map((item) => {
+          const sighting = locationSightings.find((el) => el.date === item.date)
+          if (sighting) return { ...item, notify: sighting.notify }
           return item
         })
 
-        self.sightings = [...dataToSave]
-        notifications.setNotifications(dataToSave)
+        const selectedLocationCopy = JSON.parse(JSON.stringify(selectedLocation))
+
+        selectedLocationCopy.sightings = [...dataToSave]
+        
+        self.selectedLocation = selectedLocationCopy
+        let savedLocations = []
+        if (!isCurrentLocation) {
+          savedLocations = self.savedLocations.filter((location) => location.title !== selectedLocation.title)
+          self.savedLocations = [...savedLocations, selectedLocationCopy]
+        } else {
+          self.currentLocation = selectedLocationCopy
+        }
+
+        const notifyFor = [
+          ...(
+            (isCurrentLocation ? self.savedLocations : [...savedLocations, selectedLocationCopy])
+              .reduce((acc, location) => [...acc, ...location.sightings], [])
+          ), 
+          ...(
+            isCurrentLocation ? selectedLocationCopy.sightings : (self.currentLocation?.sightings || [])
+          )
+        ]
+        
+        notifications.setNotifications(notifyFor)
       } else {
         Snackbar.show({
           text: data as string,
@@ -43,21 +68,42 @@ const RootStoreActions = (self) => ({
 		}
 	}),
 
-  setISSSightings: (values: ISSSighting[]) => {
-		self.sightings = [...values]
-    notifications.setNotifications(values)
+  setISSSightings: (value: LocationType) => {
+    const isCurrentLocation = value.title === self.currentLocation?.title
+    const valueCopy = JSON.parse(JSON.stringify(value))
+    self.selectedLocation = valueCopy
+
+    let savedLocations = []
+    if (!isCurrentLocation) {
+      savedLocations = self.savedLocations.filter((location) => location.title !== value.title)
+      self.savedLocations = [...savedLocations, valueCopy]
+    } else {
+      self.currentLocation = valueCopy
+    }
+
+    const notifyFor = [
+      ...(
+        (isCurrentLocation ? self.savedLocations : [...savedLocations, valueCopy])
+          .reduce((acc, location) => [...acc, ...location.sightings], [])
+      ), 
+      ...(
+        isCurrentLocation ? valueCopy.sightings : (self.currentLocation?.sightings || [])
+      )
+    ]
+    
+    notifications.setNotifications(notifyFor)
 	},
 
   setCurrentLocation: (value: LocationType) => {
-		self.currentLocation = {...value}
+		self.currentLocation = JSON.parse(JSON.stringify(value))
 	},
   
   setSelectedLocation: (value: LocationType) => {
-		self.selectedLocation = {...value}
+		self.selectedLocation = JSON.parse(JSON.stringify(value))
 	},
 
   setSavedLocations: (values: LocationType[]) => {
-		self.savedLocations = [...values]
+		self.savedLocations = JSON.parse(JSON.stringify(values))
 	},
 
   getISSData: flow(function* getISSData(params) {
