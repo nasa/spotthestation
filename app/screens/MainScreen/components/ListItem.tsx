@@ -1,6 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from "react"
 import { ViewStyle, View, TextStyle, Pressable, PressableProps } from "react-native"
 import { Text, Icon, IconTypes, Toggle } from "../../../components"
+import { TxKeyPath } from "../../../i18n"
 import { typography, colors } from "../../../theme"
 
 export interface ListItemProps {
@@ -10,11 +12,13 @@ export interface ListItemProps {
   subtitle: string
   icon: IconTypes
   secondIcon?: IconTypes
+  ctaTx?: TxKeyPath
   onToggle?: () => void
   onPress?: PressableProps["onPress"]
+  onCtaPress?: () => void
 }
 
-export function ListItem({ title, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle }: ListItemProps) {
+export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle, onCtaPress }: ListItemProps) {
   return (
     <Pressable 
       accessible
@@ -38,6 +42,12 @@ export function ListItem({ title, subtitle, selected = false, withSwitch = false
         >
           <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
+          {Boolean(ctaTx) && <Pressable
+            onPress={onCtaPress}
+            style={{ marginTop: 10 }}
+          >
+            <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
+          </Pressable>}
         </View>
           {withSwitch ? (<Toggle
               accessible
@@ -91,4 +101,11 @@ const $subtitleText: TextStyle = {
   lineHeight: 19,
   color: colors.palette.neutral100,
   paddingTop: 5
+}
+
+const $tip: TextStyle = {
+  color: colors.palette.neutral450,
+  fontSize: 18,
+  fontFamily: typography.primary.light,
+  lineHeight: 22,
 }

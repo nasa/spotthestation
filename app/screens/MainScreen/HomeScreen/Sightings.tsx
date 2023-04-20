@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
 import { Icon, Text, IconTypes, Toggle } from "../../../components"
@@ -14,13 +14,13 @@ import { getCalendars } from 'expo-localization'
 export interface SightingsProps {
   sightings: ISSSighting[]
   isUS?: boolean
+  isNotifyAll?: boolean
   onClose?: PressableProps["onPress"]
   onToggle?: (values: ISSSighting) => void
   onToggleAll?: (value: boolean) => void
 }
 
-export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS }: SightingsProps) {
-  const [isNotifyAll, setIsNotifyAll] = useState(false)
+export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isNotifyAll }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
@@ -77,7 +77,6 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS }: S
           variant="switch" 
           value={isNotifyAll} 
           onValueChange={() => {
-            setIsNotifyAll(!isNotifyAll)
             onToggleAll(!isNotifyAll)
           }}
         />
@@ -117,7 +116,9 @@ const $modalBodyContainer: ViewStyle = {
 }
 
 const $scrollContainer: ViewStyle = {
-  paddingHorizontal: 36
+  paddingHorizontal: 36,
+  flex: 1,
+  paddingBottom: 30
 }
 
 const $close: ViewStyle = {

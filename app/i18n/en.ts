@@ -234,6 +234,7 @@ const en = {
     locationSettingsData: {
       backButton: 'Settings',
       generalTitle: 'Location Settings',
+      cta: 'Customize notifications for this location',
       addNewLocation: {
         generalTitle: 'Add New Location',
         confirnModalButton: 'Confirm',

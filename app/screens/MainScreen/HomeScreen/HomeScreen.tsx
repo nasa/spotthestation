@@ -270,16 +270,6 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }, [stage])
 
-  const renderSightings = useCallback(() => {
-    return <Sightings 
-    onClose={() => setIsSightings(!isSightings)} 
-    sightings={current ? [...current.sightings] : []}
-    onToggle={handleSetSightingNotification}
-    onToggleAll={handleSetSightingNotificationToAll}
-    isUS={currentTimeZone.regionFormat === 'US'}
-  />
-  }, [isSightings, current, currentTimeZone])
-
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <HomeHeader 
@@ -333,7 +323,14 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        {renderSightings()}
+        <Sightings 
+          onClose={() => setIsSightings(!isSightings)} 
+          sightings={current ? current.sightings : []}
+          onToggle={handleSetSightingNotification}
+          onToggleAll={handleSetSightingNotificationToAll}
+          isUS={currentTimeZone.regionFormat === 'US'}
+          isNotifyAll={current && current.sightings.every(item => item.notify)}
+        />
       </Modal>}
       {coachVisible && <Modal
         isVisible={coachVisible}

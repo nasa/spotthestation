@@ -51,8 +51,8 @@ const getLocation = async () => {
   return location
 }
 
-export const getCurrentTimeZome = async () => {
-  const currentLocation: LocationType = await getLocation()
+export const getCurrentTimeZome = async (value?: LocationType) => {
+  const currentLocation: LocationType = value || await getLocation()
   if (currentLocation) {
     const { location } = currentLocation
     const { kind, zone } = await getLocationTimeZone(location, Date.now()/1000)
