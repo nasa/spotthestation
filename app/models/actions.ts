@@ -7,6 +7,7 @@ import { flow } from 'mobx-state-tree'
 import Snackbar from 'react-native-snackbar'
 import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
 import { api } from '../services/api'
+import { getCurrentTimeZome } from '../utils/formatDate'
 import notifications from '../utils/notifications'
 
 const RootStoreActions = (self) => ({
@@ -105,6 +106,45 @@ const RootStoreActions = (self) => ({
   setSavedLocations: (values: LocationType[]) => {
 		self.savedLocations = JSON.parse(JSON.stringify(values))
 	},
+
+  setNewSavedLocation: flow(function* setNewSavedLocation(value: LocationType) {
+    const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
+    const { timeZone } = yield getCurrentTimeZome(valueCopy)
+    const {
+      data, ok,
+    } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })    
+
+    if (ok) {
+      valueCopy.sightings = [...data]
+      
+      self.savedLocations = [...self.savedLocations, valueCopy]
+
+      Snackbar.show({
+        text: 'Sightings for last saved location loaded!',
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Dismiss',
+          textColor: 'green',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })
+    } else {
+      self.savedLocations = [...self.savedLocations, valueCopy]
+      Snackbar.show({
+        text: data as string,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Dismiss',
+          textColor: 'red',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })
+    }
+	}),
 
   getISSData: flow(function* getISSData(params) {
     try {

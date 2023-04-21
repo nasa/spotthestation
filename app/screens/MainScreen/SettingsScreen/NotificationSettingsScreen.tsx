@@ -116,7 +116,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               onValueChange={(value) => handleChange(value, 'upcoming')}
             />
           </View>
-          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false} containerStyle={{ marginTop: 10}}>
+          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false} containerStyle={{ marginTop: 10, borderBottomWidth: 1, borderBottomColor: colors.palette.neutral350}}>
             <Dropdown
               accessibilityLabel="period select"
               style={[$dropdown, $inputMargin]}
@@ -147,7 +147,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               )}
             />
           </ExpandContainer>
-          <View style={[$switchContainer, { marginTop: 15 }]}>
+          <View style={[$switchContainer, { marginTop: 15, borderBottomWidth: 0 }]}>
             <Text tx="settings.notificationSettingsData.privacyTitle" style={$label} />
             <Toggle
               accessible

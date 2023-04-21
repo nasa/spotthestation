@@ -24,7 +24,7 @@ export interface AddNewLocationScreenParams {
 
 export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const navigation = useNavigation()
-  const { savedLocations, setSavedLocations } = useStores()
+  const { savedLocations, setSavedLocations, setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
   const { params: { defaultLocation } } = useRoute()
 
@@ -63,9 +63,26 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
       return
     }
     
-    if (defaultLocation) res = res.filter(item => item.title !== defaultLocation.title)
-    res.push(location as any)
-    setSavedLocations(res)
+    if (defaultLocation) {
+      res = res.filter(item => item.title !== defaultLocation.title)
+      res.push(location as any)
+      setSavedLocations(res)
+    } else {
+      setNewSavedLocation(location).catch((error) => {
+        Snackbar.show({
+          text: error,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: 'Ok',
+            textColor: 'green',
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      })
+    }
+    
     Snackbar.show({
       text: 'Location saved',
       duration: Snackbar.LENGTH_LONG,

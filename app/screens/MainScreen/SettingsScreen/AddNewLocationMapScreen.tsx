@@ -22,7 +22,7 @@ import { useStores } from "../../../models"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const navigation = useNavigation()
-  const { savedLocations, setSavedLocations } = useStores()
+  const { setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
@@ -55,20 +55,33 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   }, [marker])
 
   const handleSave = useCallback(() => {
-    setSavedLocations([...savedLocations, location])
-    Snackbar.show({
-      text: 'Location saved',
-      duration: Snackbar.LENGTH_LONG,
-      action: {
-        text: 'Ok',
-        textColor: 'green',
-        onPress: () => {
-          Snackbar.dismiss()
+    setNewSavedLocation(location).then(() => {
+      Snackbar.show({
+        text: 'Location saved',
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Ok',
+          textColor: 'green',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
         },
-      },
+      })
+      navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+    }).catch((error) => {
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Ok',
+          textColor: 'green',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })
     })
-    navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
-  }, [location, savedLocations])
+  }, [location])
 
   return (
     <Screen
@@ -96,7 +109,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             language: 'en',
           }}
           onPress={(data, details = null) => {
-            setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })
+            setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location, sightings: [] })
             setMarker({ latitude: details?.geometry?.location?.lat, longitude: details?.geometry?.location?.lng })
             setIsSave(true)
           }}

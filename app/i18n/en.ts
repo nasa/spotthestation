@@ -224,7 +224,7 @@ const en = {
       notificationTitle: 'Notification Settings',
       privacyTitle: 'Privacy Settings',
       upcomingLabel: 'Upcoming Events',
-      customizeLabel: 'Customize Notifications by Location',
+      customizeLabel: 'Customize Notifications',
       upcomingTip: 'Turn off to stop receiving event notifications.',
       notifyMeBefore: 'NOTIFY ME BEFORE',
       turnOffNotifications: 'TURN OFF NOTIFICATIONS',

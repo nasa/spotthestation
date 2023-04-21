@@ -36,7 +36,7 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
     const item = response[0]
 
-    const address = `${item?.street}, ${item?.streetNumber}, ${item?.postalCode}, ${item?.city}`
+    const address = `${item?.streetNumber} ${item?.street}, ${item?.postalCode}, ${item?.city}`
 
     return { title: item?.name === item?.streetNumber ? address : item?.name, subtitle: address, location: { lat: latitude, lng: longitude }, alert: false }
   }
@@ -68,7 +68,7 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
 
   if (res.kind === "ok") {
     for (const googlePlace of res.places) {
-      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.formatted_address, alert: true })
+      places.push({ location: googlePlace.geometry.location, title: googlePlace.name, subtitle: googlePlace.formatted_address, alert: true, sightings: [] })
     }
   }
 

@@ -46,7 +46,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
             onPress={onCtaPress}
             style={{ marginTop: 10 }}
           >
-            <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
+            <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
           </Pressable>}
         </View>
           {withSwitch ? (<Toggle

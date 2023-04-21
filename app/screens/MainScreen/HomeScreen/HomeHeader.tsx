@@ -28,10 +28,10 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             accessibilityLabel="address"
             accessibilityHint="address"
             accessibilityRole="text"
-            text={user.address} 
+            text={user.address.replace(", ", "\n")} 
             style={$addressText}
             ellipsizeMode="tail"
-            numberOfLines={1}
+            numberOfLines={2}
           />
         </View>
         <IconLinkButton
@@ -113,7 +113,7 @@ const $addressText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral100,
   fontSize: 20,
-  lineHeight: 36
+  lineHeight: 26
 }
 
 const $timeContainer: ViewStyle = {
