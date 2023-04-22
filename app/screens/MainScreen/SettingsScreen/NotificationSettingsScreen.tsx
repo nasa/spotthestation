@@ -86,7 +86,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             onPress={() => navigation.goBack()} 
             style={$backButton}
           >
-            <Icon icon="caretLeft" color={colors.palette.neutral250} />
+            <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
             <Text tx="settings.notificationSettingsData.backButton" style={$backButtonText} />
           </Pressable>
           <Text tx="settings.notificationSettingsData.notificationTitle" style={$title} />

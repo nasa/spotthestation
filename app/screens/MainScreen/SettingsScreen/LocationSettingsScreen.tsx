@@ -109,7 +109,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             onPress={() => navigation.goBack()} 
             style={$backButton}
           >
-            <Icon icon="caretLeft" color={colors.palette.neutral250} />
+            <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
             <Text tx="settings.locationSettingsData.backButton" style={$backButtonText} />
           </Pressable>
           <Text tx="settings.locationSettingsData.generalTitle" style={$title} />

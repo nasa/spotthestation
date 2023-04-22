@@ -38,7 +38,7 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
           onPress={() => navigation.goBack()} 
           style={$backButton}
         >
-          <Icon icon="caretLeft" color={colors.palette.neutral250} />
+          <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
           <Text tx="settings.termsAndConditionsData.backButton" style={$backButtonText} />
         </Pressable>
         <Pressable>

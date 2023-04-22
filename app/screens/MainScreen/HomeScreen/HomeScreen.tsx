@@ -51,8 +51,8 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     if (current) {
-      const events: ISSSighting[] = current.sightings.filter(item => item.notify)
-      const eventsList = events?.length ? events : current.sightings
+      const events: ISSSighting[] = current?.sightings?.filter(item => item.notify) || []
+      const eventsList = events?.length ? events : (current.sightings || [])
       const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
       
       if (result.length === 0) return

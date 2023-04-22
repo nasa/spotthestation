@@ -21,6 +21,7 @@ export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocat
         color={colors.palette.neutral450} 
         onPress={onClose} 
         containerStyle={$close} 
+        size={36}
       />
       <View style={$generalIcon}>
         <Icon icon="removeLocation" />

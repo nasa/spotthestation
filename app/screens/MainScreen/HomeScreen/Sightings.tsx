@@ -51,6 +51,7 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
         color={colors.palette.neutral450} 
         onPress={onClose} 
         containerStyle={$close} 
+        size={36}
       />
       <Text
         accessible

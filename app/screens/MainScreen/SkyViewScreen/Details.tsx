@@ -29,6 +29,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
         color={colors.palette.neutral450} 
         onPress={onClose} 
         containerStyle={$close} 
+        size={36}
       />
       <View style={$contentContainer}>
         <Text

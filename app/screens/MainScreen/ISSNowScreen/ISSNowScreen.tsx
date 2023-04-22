@@ -4,7 +4,7 @@
 import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
@@ -29,7 +29,7 @@ export interface ISSNowScreenRouteProps {
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const route: ISSNowScreenRouteProps  = useRoute().params as ISSNowScreenRouteProps
   const topInset = useSafeAreaInsets().top
-  const { issData, getISSData, setSelectedLocation } = useStores()
+  const { currentLocation, selectedLocation ,issData, getISSData, setSelectedLocation } = useStores()
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
@@ -117,19 +117,17 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     return () => clearInterval(secTimer)
   }, [])
 
-  const getCurrentLocation = async () => {
-    const selected: LocationType = await storage.load('selectedLocation')
-    if (selected) {
-      setCurrent(selected)
+  const getCurrentLocation = useCallback(() => {
+    if (selectedLocation) {
+      setCurrent(selectedLocation)
     } else {
-      const current: LocationType = await storage.load('currentLocation')
-      setCurrent(current)
+      setCurrent(currentLocation)
     }
-  }
+  }, [])
 
   useEffect(() => {
     getCurrentLocation()
-  }, [])
+  }, [selectedLocation, currentLocation])
 
   const [issPathCoords, setIssPathCoords] = useState([])
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
@@ -193,7 +191,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [])
 
   const getData = async () => {
-    await getISSData({ lat: current.location.lat, lon: current.location.lng })
+    await getISSData({ lat: current?.location.lat, lon: current?.location.lng })
   }
 
   useEffect(() => {
@@ -205,13 +203,13 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
-  const handleChangeLocation = async (location: LocationType) => {
+  const handleChangeLocation = useCallback(async (location: LocationType) => {
     setCurrent(location)
     setIsLocation(false)
     setSelectedLocation(location)
     await storage.save('selectedLocation', location)
-    await getCurrentLocation()
-  }
+    getCurrentLocation()
+  },[selectedLocation, currentLocation])
 
   return (
     <Screen 
@@ -253,7 +251,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             futureIssPathCoords={futureIssPathCoords}
             issMarkerPosition={issMarkerPosition}
             zoom={zoomLevel + 1}
-            marker={[current.location.lat, current.location.lng]}
+            marker={current && [current?.location?.lat, current?.location?.lng]}
           />
         )}
         { !isGlobe && <MapBox

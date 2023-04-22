@@ -37,7 +37,7 @@ export const EventScreen = observer(function EventScreen() {
             onPress={() => navigation.goBack()} 
             style={$backButton}
           >
-            <Icon icon="caretLeft" color={colors.palette.neutral250} />
+            <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
             <Text tx="resources.header" style={$backButtonText} />
           </Pressable>
           <WebView source={{ uri: item }} containerStyle={{ flex: 1 }} />
