@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Platform } from 'react-native'
 import PushNotification from 'react-native-push-notification'
+import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
 import { ISSSighting } from '../services/api'
 import * as storage from "../utils/storage"
 import { isDateBetweenHours } from './formatDate'
@@ -28,41 +29,43 @@ class Notifications {
     })
   };
 
-  setNotifications = async (events: ISSSighting[]) => {
-    const eventsForNotify: ISSSighting[] = events.filter(item => item.notify)
+  setNotifications = async (locations: LocationType[]) => {
     const start = new Date(await storage.load('muteFrom') as string)
     const end = new Date(await storage.load('muteUntil') as string)
     const upcoming = await storage.load('upcoming')
     const privacy = await storage.load('privacy')
     const notifyBefore = await storage.load('notifyBefore')
-    let location = await storage.load('selectedLocation')
-    if (!location) location = await storage.load('currentLocation')
-   
-    const eventsList = eventsForNotify?.length ? eventsForNotify : events
-
-    if (upcoming && location?.alert) {
+    if (upcoming) {
       PushNotification.cancelAllLocalNotifications()
-      eventsList.forEach(({ date }) => {
-        const eventDate = new Date(date)
-        const muted = isDateBetweenHours(eventDate, start, end)
-        
-        if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
-          PushNotification.localNotificationSchedule({
-            channelId: 'default-channel-id',
-            title: 'Spot the ISS now!',
-            message: `The ISS is passing above you at ${location.title}`,
-            date: eventDate,
+      for await (const location of locations) {
+        const events = location?.sightings || []
+        const eventsForNotify: ISSSighting[] = events.filter(item => item.notify)
+        const eventsList = eventsForNotify?.length ? eventsForNotify : events
+
+        if (location?.alert) {
+          eventsList.forEach(({ date }) => {
+            const eventDate = new Date(date)
+            const muted = isDateBetweenHours(eventDate, start, end)
+            
+            if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
+              PushNotification.localNotificationSchedule({
+                channelId: 'default-channel-id',
+                title: 'Spot the ISS now!',
+                message: `The ISS is passing above you at ${location.title}`,
+                date: eventDate,
+              })
+              if (notifyBefore) {
+                PushNotification.localNotificationSchedule({
+                  channelId: 'default-channel-id',
+                  title: `Spot the ISS in ${notifyBefore || 15} minutes!`,
+                  message: `The ISS is passing above you in ${notifyBefore || 15} minutes at ${location.title}`,
+                  date: new Date(eventDate.getTime() - (notifyBefore || 15) * 60000),
+                })
+              }
+            }
           })
-          if (notifyBefore) {
-            PushNotification.localNotificationSchedule({
-              channelId: 'default-channel-id',
-              title: `Spot the ISS in ${notifyBefore || 15} minutes!`,
-              message: `The ISS is passing above you in ${notifyBefore || 15} minutes at ${location.title}`,
-              date: new Date(eventDate.getTime() - (notifyBefore || 15) * 60000),
-            })
-          }
         }
-      })
+      }
     }
   }
 }

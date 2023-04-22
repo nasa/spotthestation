@@ -41,13 +41,8 @@ const RootStoreActions = (self) => ({
         }
 
         const notifyFor = [
-          ...(
-            (isCurrentLocation ? self.savedLocations : [...savedLocations, selectedLocationCopy])
-              .reduce((acc, location) => [...acc, ...location.sightings], [])
-          ), 
-          ...(
-            isCurrentLocation ? selectedLocationCopy.sightings : (self.currentLocation?.sightings || [])
-          )
+          ...(isCurrentLocation ? self.savedLocations : [...savedLocations, selectedLocationCopy]), 
+          isCurrentLocation ? selectedLocationCopy : self.currentLocation
         ]
         
         notifications.setNotifications(notifyFor)
@@ -82,14 +77,9 @@ const RootStoreActions = (self) => ({
       self.currentLocation = valueCopy
     }
 
-    const notifyFor = [
-      ...(
-        (isCurrentLocation ? self.savedLocations : [...savedLocations, valueCopy])
-          .reduce((acc, location) => [...acc, ...location.sightings], [])
-      ), 
-      ...(
-        isCurrentLocation ? valueCopy.sightings : (self.currentLocation?.sightings || [])
-      )
+    const notifyFor: LocationType[] = [
+      ...(isCurrentLocation ? self.savedLocations : [...savedLocations, valueCopy]), 
+      isCurrentLocation ? valueCopy : self.currentLocation
     ]
     
     notifications.setNotifications(notifyFor)
