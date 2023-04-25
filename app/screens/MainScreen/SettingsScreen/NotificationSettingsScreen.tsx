@@ -11,7 +11,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker"
 import * as storage from "../../../utils/storage"
 import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
-import { colors, spacing, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { formatDate } from "../../../utils/formatDate"
 
@@ -32,7 +32,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   })
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const loadSettings = async () => {
@@ -64,7 +64,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   return (
     <Screen
       preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride, { paddingBottom: bottomInset + 24 }]} 
+      contentContainerStyle={[$container, $headerStyleOverride, { paddingBottom: bottomInset + scale(24) }]} 
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
@@ -102,7 +102,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
               <Pressable
                 onPress={() => navigation.navigate('Home' as never, { showSightings: true } as never)}
-                style={{ marginTop: 10 }}
+                style={{ marginTop: scale(10) }}
               >
                 <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
               </Pressable>
@@ -147,7 +147,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               )}
             />
           </ExpandContainer>
-          <View style={[$switchContainer, { marginTop: 15, borderBottomWidth: 0 }]}>
+          <View style={[$switchContainer, { marginTop: scale(15), borderBottomWidth: 0 }]}>
             <Text tx="settings.notificationSettingsData.privacyTitle" style={$label} />
             <Toggle
               accessible
@@ -240,17 +240,17 @@ const $container: ViewStyle = {
 
 const $scrollContentContainerStyle: ViewStyle = { 
   flexGrow: 1,
-  paddingBottom: 60
+  paddingBottom: scale(60)
 }
 
 const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 36,
+  paddingHorizontal: scale(36),
 }
 
 const $backButton: ViewStyle = {
   flexDirection: "row",
   alignItems: 'center',
-  paddingBottom: 11
+  paddingBottom: scale(11)
 }
 
 const $muteContainer: ViewStyle = {
@@ -264,34 +264,34 @@ const $muteButton: ViewStyle = {
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
   textAlign: 'left',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $backButtonText: TextStyle = {
   ...$text,
   color: colors.palette.neutral250,
   paddingBottom: 0,
-  paddingLeft: 5
+  paddingLeft: scale(5)
 }
 
 const $title: TextStyle = {
   ...$text,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
 }
 
 const $switchContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
-  paddingBottom: 18,
-  borderBottomWidth: 1,
+  paddingBottom: scale(18),
+  borderBottomWidth: scale(1),
   borderBottomColor: colors.palette.neutral350,
-  marginBottom: 18
+  marginBottom: scale(18)
 }
 
 const $labelContainer: ViewStyle = {
@@ -300,38 +300,38 @@ const $labelContainer: ViewStyle = {
 
 const $label: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 24,
+  fontSize: fontSizes[24],
   fontFamily: typography.primary.normal,
-  lineHeight: 29,
+  lineHeight: lineHeights[29],
 }
 
 const $tip: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.light,
-  lineHeight: 22,
+  lineHeight: lineHeights[22],
 }
 const $muteButtonLabel: TextStyle = {
   ...$tip,
   color: colors.palette.neutral250,
-  marginBottom: 10
+  marginBottom: scale(10)
 }
 
 const $dropdown: ViewStyle = {
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
 }
 
 const $inputMargin: ViewStyle = {
-  marginBottom: 18
+  marginBottom: scale(18)
 }
 
 const $dropdownContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderRadius: 10,
-  marginTop: -40,
+  borderRadius: scale(10),
+  marginTop: -scale(40),
   borderWidth: 0
 }
 
@@ -347,41 +347,41 @@ const $dropdownText: TextStyle = {
   flex: 1,
   // alignSelf: "stretch",
   fontFamily: typography.primary.normal,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   paddingVertical: 0,
   paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
+  marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   color: colors.palette.neutral250
 }
 
 const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
+  marginEnd: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 const $timeButtonRightAccessory: ViewStyle = {
-  height: 56,
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 
 const $button: ViewStyle = {
   width: "100%",
-  height: 56,
+  height: scale(56),
   backgroundColor: colors.palette.neutral550,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  paddingHorizontal: 16,
+  paddingHorizontal: scale(16),
   justifyContent: "space-between"
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $disabled: ViewStyle = {

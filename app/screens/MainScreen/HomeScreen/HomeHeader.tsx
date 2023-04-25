@@ -1,6 +1,6 @@
 import React from "react"
 import { ViewStyle, View, TextStyle, PressableProps, Pressable } from "react-native"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { Text } from "../../../components"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 
@@ -28,7 +28,7 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             accessibilityLabel="address"
             accessibilityHint="address"
             accessibilityRole="text"
-            text={user.address.replace(", ", "\n")} 
+            text={user?.address?.replace(", ", "\n")} 
             style={$addressText}
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -112,16 +112,16 @@ const $userContainer: ViewStyle = {
 const $addressText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral100,
-  fontSize: 20,
-  lineHeight: 26
+  fontSize: fontSizes[20],
+  lineHeight: lineHeights[26]
 }
 
 const $timeContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   width: "48%",
-  borderRadius: 10,
+  borderRadius: scale(10),
   padding: 8,
-  borderWidth: 1.5
+  borderWidth: scale(1.5)
 }
 
 const $outlined: ViewStyle = {
@@ -131,20 +131,20 @@ const $outlined: ViewStyle = {
 const $headText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral450,
-  fontSize: 14,
-  lineHeight: 16,
+  fontSize: fontSizes[14],
+  lineHeight: lineHeights[16],
   textAlign: "center",
 }
 
 const $timeText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250,
-  fontSize: 18,
-  lineHeight: 24,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[24],
   textAlign: "center",
 }
 
 const $tipText: TextStyle = {
   ...$headText,
-  fontSize: 10
+  fontSize: fontSizes[10]
 }

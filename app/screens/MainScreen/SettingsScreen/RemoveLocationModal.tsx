@@ -1,7 +1,7 @@
 import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Icon, Text, Button } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 export interface RemoveLocationModalProps {
@@ -54,8 +54,8 @@ export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocat
 
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: 18,
-  borderTopRightRadius: 18,
+  borderTopLeftRadius: scale(18),
+  borderTopRightRadius: scale(18),
 }
 
 const $buttonsContainer: ViewStyle = {
@@ -66,20 +66,20 @@ const $buttonsContainer: ViewStyle = {
 
 const $contentContainer: ViewStyle = {
   width: "100%",
-  paddingHorizontal: 36,
-  paddingBottom: 52
+  paddingHorizontal: scale(36),
+  paddingBottom: scale(52)
 }
 
 const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18,
+  padding: scale(18),
   zIndex: 5
 }
 
 const $generalIcon: ViewStyle = {
-  marginVertical: 36,
+  marginVertical: scale(36),
   width: "100%",
   alignItems: "center"
 }
@@ -87,43 +87,43 @@ const $generalIcon: ViewStyle = {
 const $locationTitle: TextStyle = {
   textAlign: "center",
   color: colors.palette.neutral250,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 22,
-  paddingBottom: 5
+  lineHeight: lineHeights[22],
+  paddingBottom: scale(5)
 }
 
 const $title: TextStyle = {
   textAlign: "center",
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 22,
-  paddingBottom: 24
+  lineHeight: lineHeights[22],
+  paddingBottom: scale(24)
 }
 
 const $locationAddress: TextStyle = {
   textAlign: "center",
   color: colors.palette.neutral450,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: 19,
-  paddingBottom: 36
+  lineHeight: lineHeights[19],
+  paddingBottom: scale(36)
 }
 
 const $button: ViewStyle = {
   width: '40%',
-  height: 64,
+  height: scale(64),
   backgroundColor: colors.palette.neutral550,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  marginTop: 24,
-  marginBottom: 24
+  marginTop: scale(24),
+  marginBottom: scale(24)
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 22
+  lineHeight: lineHeights[22]
 }

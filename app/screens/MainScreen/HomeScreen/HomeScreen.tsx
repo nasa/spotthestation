@@ -7,7 +7,7 @@ import { Platform, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
-import { colors } from "../../../theme"
+import { colors, scale } from "../../../theme"
 import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
@@ -360,5 +360,5 @@ const $modal: ViewStyle = {
 
 const $flatMap: ViewStyle = {
   width: "100%",
-  height: 200
+  height: scale(200)
 }

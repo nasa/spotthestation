@@ -1,7 +1,7 @@
 import React, { ErrorInfo } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text } from "../../components"
-import { colors, spacing } from "../../theme"
+import { colors, scale, spacing } from "../../theme"
 
 export interface ErrorDetailsProps {
   error: Error
@@ -43,8 +43,8 @@ export function ErrorDetails(props: ErrorDetailsProps) {
 
 const $contentContainer: ViewStyle = {
   alignItems: "center",
-  paddingHorizontal: spacing.large,
-  paddingTop: spacing.extraLarge,
+  paddingHorizontal: scale(spacing.large),
+  paddingTop: (spacing.extraLarge),
   flex: 1,
 }
 
@@ -55,18 +55,18 @@ const $topSection: ViewStyle = {
 
 const $heading: TextStyle = {
   color: colors.error,
-  marginBottom: spacing.medium,
+  marginBottom: scale(spacing.medium),
 }
 
 const $errorSection: ViewStyle = {
   flex: 2,
   backgroundColor: colors.separator,
-  marginVertical: spacing.medium,
-  borderRadius: 6,
+  marginVertical: scale(spacing.medium),
+  borderRadius: scale(6),
 }
 
 const $errorSectionContentContainer: ViewStyle = {
-  padding: spacing.medium,
+  padding: scale(spacing.medium),
 }
 
 const $errorContent: TextStyle = {
@@ -74,11 +74,11 @@ const $errorContent: TextStyle = {
 }
 
 const $errorBacktrace: TextStyle = {
-  marginTop: spacing.medium,
+  marginTop: scale(spacing.medium),
   color: colors.textDim,
 }
 
 const $resetButton: ViewStyle = {
   backgroundColor: colors.error,
-  paddingHorizontal: spacing.huge,
+  paddingHorizontal: scale(spacing.huge),
 }

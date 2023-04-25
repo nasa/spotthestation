@@ -1,6 +1,6 @@
 import React from "react"
 import { ViewStyle, TextStyle, View, Text } from "react-native"
-import { colors } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export const RecordingIndicator = ({ recordedSeconds }) => {
   const hours = Math.floor(recordedSeconds / 3600)
@@ -21,17 +21,17 @@ export const RecordingIndicator = ({ recordedSeconds }) => {
 }
 
 const $container: ViewStyle = {
-  marginTop: 20,
+  marginTop: scale(20),
   backgroundColor: colors.palette.nasaRed,
-  paddingTop: 5,
-  paddingBottom: 3,
-  borderRadius: 4,
-  width: 80,
+  paddingTop: scale(5),
+  paddingBottom: scale(3),
+  borderRadius: scale(4),
+  width: scale(80),
 }
 
 const $text: TextStyle = {
-  fontSize: 16,
-  lineHeight: 16,
+  fontSize: fontSizes[16],
+  lineHeight: lineHeights[16],
   textAlign: 'center',
   color: colors.palette.neutral250,
 }

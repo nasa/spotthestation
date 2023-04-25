@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
 import Modal from "react-native-modal"
 import { Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
@@ -47,51 +47,51 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }
 
   const $containerStyleOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? 0 : 18,
+    paddingHorizontal: isFullScreen ? 0 : scale(18),
     margin: 0
   }
 
   const $headerStyleOverride: ViewStyle = {
-    top: topInset + 24, 
-    paddingHorizontal: isFullScreen ? 18 : 0, 
-    left: isFullScreen ? 0 : 18
+    top: topInset + scale(24), 
+    paddingHorizontal: isFullScreen ? scale(18) : 0, 
+    left: isFullScreen ? 0 : scale(18)
   }
 
   const $headerStyleForLandscapeOverride: ViewStyle = { 
-    paddingHorizontal: isFullScreen ? 18 : 54,
-    left: isFullScreen ? 0 : 18
+    paddingHorizontal: isFullScreen ? scale(18) : scale(54),
+    left: isFullScreen ? 0 : scale(18)
   }
 
   const $bodyStyleOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : topInset + 80
+    marginTop: isFullScreen ? 0 : topInset + scale(80)
   }
 
   const $bodyStyleForLandscapeOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : 12,
-    marginBottom: isFullScreen ? 0 : 12,
-    marginHorizontal: isFullScreen ? 0 : 36,
+    marginTop: isFullScreen ? 0 : scale(12),
+    marginBottom: isFullScreen ? 0 : scale(12),
+    marginHorizontal: isFullScreen ? 0 : scale(36),
   }
 
   const $control: ViewStyle = {
     position: "absolute",
-    bottom: isFullScreen ? 54 : 18
+    bottom: isFullScreen ? scale(54) : scale(18)
   }
 
   const $modControl: ViewStyle = {
     ...$control,
-    left: 18,
+    left: scale(18),
     padding: 0,
   }
 
   const $zoomControl: ViewStyle = {
     ...$control,
-    right: 18
+    right: scale(18)
   }
 
   const $modButtonsOverload: ViewStyle = {
     flexDirection: 'row',
     height: 'auto',
-    bottom: isFullScreen ? 34 : 18
+    bottom: isFullScreen ? scale(34) : scale(18)
   }
 
   useEffect(() => {
@@ -349,7 +349,7 @@ const $body: ViewStyle = {
   flex: 1,
   position: "relative",
   backgroundColor: colors.backgroundDark,
-  borderRadius: 12,
+  borderRadius: scale(12),
   overflow: "hidden"
 }
 
@@ -359,7 +359,7 @@ const $flatMap: ViewStyle = {
 
 const $textContainer: ViewStyle = {
   flex: 1,
-  paddingHorizontal: 10
+  paddingHorizontal: scale(10)
 }
 
 const $lightIcon: ViewStyle = {
@@ -369,42 +369,42 @@ const $lightIcon: ViewStyle = {
 const $location: TextStyle = {
   width: "100%",
   fontFamily: typography.primary.normal,
-  fontSize: 20,
-  lineHeight: 24,
+  fontSize: fontSizes[20],
+  lineHeight: lineHeights[24],
   color: colors.palette.neutral100,
   textAlign: "center"
 }
 
 const $date: TextStyle = {
   ...$location,
-  fontSize: 13,
-  lineHeight: 16,
+  fontSize: fontSizes[13],
+  lineHeight: lineHeights[16],
   textTransform: "uppercase"
 }
 
 const $zoomButtons: ViewStyle = {
-  height: 90,
+  height: scale(90),
   justifyContent: "space-between",
 }
 
 const $modButtons: ViewStyle = {
-  height: 90,
+  height: scale(90),
   justifyContent: "space-between",
-  padding: 2,
-  borderRadius: 100,
+  padding: scale(2),
+  borderRadius: scale(100),
   overflow: "hidden",
   ...$lightIcon
 }
 
 const $modButton: ViewStyle = {
-  height: 40,
-  width: 40,
+  height: scale(40),
+  width: scale(40),
   backgroundColor: "transparent"
 }
 
 const $modButtonText: TextStyle = {
-  fontSize: 12,
-  lineHeight: 14,
+  fontSize: fontSizes[12],
+  lineHeight: lineHeights[14],
   fontFamily: typography.primary.medium
 }
 

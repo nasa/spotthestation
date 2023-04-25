@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
 
 import { Accessory, Icon, Text, TextField } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -209,52 +209,52 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
 
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: 18,
-  borderTopRightRadius: 18,
+  borderTopLeftRadius: scale(18),
+  borderTopRightRadius: scale(18),
   flex: 1
 }
 
 const $scrollContainer: ViewStyle = { 
   flex: 1, 
-  paddingHorizontal: 36,
-  marginBottom: 24
+  paddingHorizontal: scale(36),
+  marginBottom: scale(24)
 }
 
 const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18,
+  padding: scale(18),
   zIndex: 5
 }
 
 const $title: TextStyle = {
-  marginTop: 10,
-  marginBottom: 24,
+  marginTop: scale(10),
+  marginBottom: scale(24),
   fontFamily: typography.primary?.normal,
-  fontSize: 28,
-  lineHeight: 44,
+  fontSize: fontSizes[28],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
-  paddingHorizontal: 36,
+  paddingHorizontal: scale(36),
 }
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 14,
+  fontSize: fontSizes[14],
 }
 
 const $locations: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: "transparent",
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral550,
   overflow: "hidden",
-  marginHorizontal: 36,
+  marginHorizontal: scale(36),
 }
 
 const $active: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: colors.palette.buttonBlue,
   backgroundColor: colors.palette.overlayBlue,
 }

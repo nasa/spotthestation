@@ -3,7 +3,7 @@ import React from "react"
 import { ViewStyle, View, TextStyle, Pressable, PressableProps } from "react-native"
 import { Text, Icon, IconTypes, Toggle } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography, colors } from "../../../theme"
+import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export interface ListItemProps {
   selected?: boolean
@@ -44,7 +44,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
           {Boolean(ctaTx) && <Pressable
             onPress={onCtaPress}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: scale(10) }}
           >
             <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
           </Pressable>}
@@ -68,7 +68,7 @@ const $container: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "flex-start",
-  paddingTop: 16,
+  paddingTop: scale(16),
 }
 
 const $bodyContainer: ViewStyle = {
@@ -76,10 +76,10 @@ const $bodyContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   borderColor: colors.palette.neutral550,
-  borderBottomWidth: 1,
-  paddingBottom: 16,
+  borderBottomWidth: scale(1),
+  paddingBottom: scale(16),
   alignItems: "flex-start",
-  marginLeft: 10,
+  marginLeft: scale(10),
 }
 
 const $titleContainer: ViewStyle = {
@@ -90,22 +90,22 @@ const $titleContainer: ViewStyle = {
 const $titleText: TextStyle = {
   width: "95%",
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral100
 }
 
 const $subtitleText: TextStyle = {
   ...$titleText,
-  fontSize: 16,
-  lineHeight: 19,
+  fontSize: fontSizes[16],
+  lineHeight: lineHeights[19],
   color: colors.palette.neutral100,
-  paddingTop: 5
+  paddingTop: scale(5)
 }
 
 const $tip: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.light,
-  lineHeight: 22,
+  lineHeight: lineHeights[22],
 }

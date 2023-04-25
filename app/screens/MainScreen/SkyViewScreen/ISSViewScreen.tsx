@@ -14,7 +14,7 @@ import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'
 import Share from 'react-native-share'
 import { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Details } from "./Details"
 import { ARView } from "../components/ARView"
@@ -303,25 +303,25 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const $containerStyleOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? 0 : 18
+    paddingHorizontal: isFullScreen ? 0 : scale(18)
   }
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const $bodyStyleOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : topInset + 80
+    marginTop: isFullScreen ? 0 : topInset + scale(80)
   }
 
   const $bottomContainerStyleOverride: ViewStyle = {
-    bottom: bottomInset + 24
+    bottom: bottomInset + scale(24)
   }
 
   const $button: ViewStyle = {
     ...$iconButton,
-    width: isFullScreen ? 54 : 44,
-    height: isFullScreen ? 54 : 44
+    width: isFullScreen ? scale(54) : scale(44),
+    height: isFullScreen ? scale(54) : scale(44)
   }
 
   useEffect(() => {
@@ -416,7 +416,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityLabel="path line"
                   accessibilityHint="enable/disable path line"
                   icon="line"
-                  buttonStyle={[$button, isPathVisible && $activeButton, isLandscape && { marginRight: 24 }]}
+                  buttonStyle={[$button, isPathVisible && $activeButton, isLandscape && { marginRight: scale(24) }]}
                   onPress={() => setIsPathVisible(!isPathVisible)}
                 />
                 <IconLinkButton
@@ -424,7 +424,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityLabel="compass"
                   accessibilityHint="enable full screen"
                   icon="compass" 
-                  buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: 24 }]}
+                  buttonStyle={[$button, isFullScreen && $activeButton, isLandscape && { marginRight: scale(24) }]}
                   onPress={() => setIsFullScreen(true)}
                 />
               </View>
@@ -444,7 +444,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityLabel="share"
                   accessibilityHint="open share modal"
                   icon="share" 
-                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   onPress={() => onShare(mediaUrl)} 
                 /> 
                 <IconLinkButton 
@@ -452,7 +452,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityLabel="capture"
                   accessibilityHint="take a photo"
                   icon="capture"
-                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   onPress={takeScreenshot}
                 />
                 { isRecording ? (
@@ -465,7 +465,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                         icon="videoOff"
                         onPress={stopRecording}
                         backgroundColor={colors.palette.nasaRed}
-                        buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                        buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                       />
                       <Text style={$stop}>Stop</Text>
                     </View>
@@ -477,7 +477,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityHint="record a video"
                   icon="video"
                   onPress={startRecording}
-                  buttonStyle={[$button, isLandscape && { marginLeft: 24 }]}
+                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   />
                 )}
               </View>
@@ -508,7 +508,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
 const $text: TextStyle = {
   bottom: '25%',
-  fontSize: 24,
+  fontSize: fontSizes[24],
   width: '50%',
   position: 'absolute',
   color: '#fff',
@@ -524,7 +524,7 @@ const $container: ViewStyle = {
 
 const $headerContainer: ViewStyle = {
   position: "absolute",
-  left: 18,
+  left: scale(18),
   zIndex: 9
 }
 
@@ -537,8 +537,8 @@ const $modal: ViewStyle = {
 
 const $header: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250
 }
 
@@ -546,7 +546,7 @@ const $body: ViewStyle = {
   flex: 1,
   position: "relative",
   backgroundColor: colors.backgroundDark,
-  borderRadius: 12,
+  borderRadius: scale(12),
   overflow: "hidden"
 }
 
@@ -554,7 +554,7 @@ const $bottomContainer: ViewStyle = {
   position: "absolute",
   left: 0,
   width: "100%",
-  paddingHorizontal: 24,
+  paddingHorizontal: scale(24),
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "flex-end"
@@ -566,13 +566,13 @@ const $buttonColumn: ViewStyle = {
 
 const $iconButton: ViewStyle = {
   backgroundColor: colors.palette.overlayWhite,
-  marginTop: 24
+  marginTop: scale(24)
 }
 
 const $closeButton: ViewStyle = {
   marginTop: 0,
-  width: 44,
-  height: 44
+  width: scale(44),
+  height: scale(44)
 }
 
 const $activeButton: ViewStyle = {
@@ -585,8 +585,8 @@ const $timeContainer: ViewStyle = {
 
 const $timeHeader: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 13,
-  lineHeight: 16,
+  fontSize: fontSizes[13],
+  lineHeight: lineHeights[16],
   color: colors.palette.neutral250,
   textTransform: "uppercase",
   textAlign: "center"
@@ -594,8 +594,8 @@ const $timeHeader: TextStyle = {
 
 const $time: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 24,
-  lineHeight: 39,
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[39],
   color: colors.palette.neutral100,
   textAlign: "center"
 }
@@ -604,10 +604,10 @@ const $stop: TextStyle = {
   position: 'absolute',
   top: '100%',
   alignSelf: 'center',
-  marginTop: 7,
+  marginTop: scale(7),
   fontFamily: typography.primary.normal,
-  fontSize: 13,
-  lineHeight: 16,
+  fontSize: fontSizes[13],
+  lineHeight: lineHeights[16],
   color: colors.palette.neutral100,
   textTransform: "uppercase",
 }

@@ -4,7 +4,7 @@ import React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { SettingsItem } from "../components/SettingsItem"
 
 export const SettingsScreen = observer(function SettingsScreen() {
@@ -12,7 +12,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
   const topInset = useSafeAreaInsets().top
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const handleNavigate = (screen) => navigation.navigate('SettingsScreens' as never, {screen} as never)
@@ -52,19 +52,19 @@ const $container: ViewStyle = {
 
 const $itemsConteiner: ViewStyle = {
   flex: 1,
-  marginTop: 150,
-  paddingHorizontal: 36
+  marginTop: scale(150),
+  paddingHorizontal: scale(36)
 }
 
 const $headerContainer: ViewStyle = {
   position: "absolute",
-  left: 18,
+  left: scale(18),
   zIndex: 9
 }
 
 const $header: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250
 }

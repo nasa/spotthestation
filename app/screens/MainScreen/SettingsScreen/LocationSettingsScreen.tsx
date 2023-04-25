@@ -6,7 +6,7 @@ import React, { useEffect, useCallback, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
@@ -30,7 +30,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const getLocation = async (currentLocation: LocationType) => {
@@ -91,7 +91,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
-      <View style={{ flex: 1, paddingBottom: 120 }}>
+      <View style={{ flex: 1, paddingBottom: scale(120) }}>
         <ScrollView
           accessible
           accessibilityLabel="Location settings scrollable us area"
@@ -143,7 +143,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       </View>
       <IconLinkButton
         icon="plusCircle" 
-        buttonStyle={[$addButton, { position: 'absolute', bottom: bottomInset + 64 }]} 
+        buttonStyle={[$addButton, { position: 'absolute', bottom: bottomInset + scale(64) }]} 
         viewStyle={$addButton} 
         iconColor={colors.palette.neutral250} 
         iconSize={28} 
@@ -191,12 +191,12 @@ const $modal: ViewStyle = {
 
 const $scrollContentContainerStyle: ViewStyle = { 
   flexGrow: 1,
-  paddingBottom: 60
+  paddingBottom: scale(60)
 }
 
 const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 18,
-  paddingBottom: 10
+  paddingHorizontal: scale(18),
+  paddingBottom: scale(10)
 }
 
 const $backButton: ViewStyle = {
@@ -206,31 +206,31 @@ const $backButton: ViewStyle = {
 }
 
 const $addButton: ViewStyle = {
-  width: 64,
-  height: 64,
+  width: scale(64),
+  height: scale(64),
   backgroundColor: colors.palette.buttonBlue,
   alignSelf: 'center'
 }
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
   textAlign: 'left',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $backButtonText: TextStyle = {
   ...$text,
   color: colors.palette.neutral250,
   paddingBottom: 0,
-  paddingLeft: 5
+  paddingLeft: scale(5)
 }
 
 const $title: TextStyle = {
   ...$text,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
 }

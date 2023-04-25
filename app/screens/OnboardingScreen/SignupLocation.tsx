@@ -5,7 +5,7 @@ import * as Location from "expo-location"
 import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
 import { translate } from "../../i18n"
-import { colors, spacing, typography } from "../../theme"
+import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
 import { ISSSighting } from "../../services/api"
 
@@ -266,39 +266,39 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
 }
 
 const $locations: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: "transparent",
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
 }
 
 const $active: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: colors.palette.buttonBlue,
   backgroundColor: colors.palette.overlayBlue,
 }
 
 const $locationsListContainer: ViewStyle = {
-  borderRadius: 12,
+  borderRadius: scale(12),
   backgroundColor: colors.palette.neutral550,
   overflow: "hidden",
   width: "85%",
   alignSelf: "center",
-  marginTop: 3
+  marginTop: scale(3)
 }
 
 const $dropdownLeftAccessory: ViewStyle = {
-  marginStart: spacing.large,
-  height: 56,
+  marginStart: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 
 const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
+  marginEnd: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
@@ -309,25 +309,24 @@ const $dropdownSelected: TextStyle = {
 
 const $locationsRow: TextStyle = {
   backgroundColor: 'transparent',
-  paddingHorizontal: spacing.large
+  paddingHorizontal: scale(spacing.large)
 }
 
 const $locationsRowText: TextStyle = {
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral250,
-  
 }
 
 const $dropdownText: TextStyle = {
   flex: 1,
-  height: 56,
+  height: scale(56),
   alignSelf: "stretch",
   fontFamily: typography.primary.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
+  marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   borderRadius: 0,
   backgroundColor: "transparent"
@@ -335,42 +334,42 @@ const $dropdownText: TextStyle = {
 
 const $title: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 36,
+  fontSize: fontSizes[36],
   fontFamily: typography.primary.normal,
-  lineHeight: 44,
-  paddingBottom: 24,
+  lineHeight: lineHeights[44],
+  paddingBottom: scale(24),
 }
 
 const $subtitle: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 22,
-  paddingBottom: 36,
+  lineHeight: lineHeights[22],
+  paddingBottom: scale(36),
 }
 
 const $orLabel: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: 19,
+  lineHeight: lineHeights[19],
   textAlign: "center",
-  marginVertical: 12
+  marginVertical: scale(12)
 }
 
 const $button: ViewStyle = {
   width: "100%",
-  height: 56,
+  height: scale(56),
   backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $rowContainer: ViewStyle = {
@@ -381,12 +380,12 @@ const $rowContainer: ViewStyle = {
 
 const $result: TextStyle = {
   flex: 1,
-  paddingHorizontal: 18,
+  paddingHorizontal: scale(18),
   color: colors.palette.neutral250,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 22,
-  paddingBottom: 56,
+  lineHeight: lineHeights[22],
+  paddingBottom: scale(56),
 }
 
 const $loader: ViewStyle = {

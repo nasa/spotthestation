@@ -9,6 +9,7 @@ import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
 import * as storage from "../../utils/storage"
 import { getUserId } from "../../utils/generateUUID"
+import { fontSizes, lineHeights, scale } from "../../theme/spacing"
 
 const background = require("../../../assets/images/bg.png")
 const iss = require("../../../assets/images/iss-with-path.png")
@@ -87,7 +88,7 @@ const $bottomRowContainer: ViewStyle = {
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  paddingHorizontal: 36
+  paddingHorizontal: scale(36)
 }
 
 const $iss: ImageStyle = {
@@ -96,25 +97,25 @@ const $iss: ImageStyle = {
 }
 
 const $title: TextStyle = {
-  width: 220,
-  marginLeft: 36,
-  fontSize: 48,
-  lineHeight: 64,
+  width: scale(220),
+  marginLeft: scale(36),
+  fontSize: fontSizes[48],
+  lineHeight: lineHeights[64],
   fontFamily: typography.primary.bold,
   color: colors.palette.neutral100,
 }
 
 const $subTitle: TextStyle = {
-  width: 270,
-  fontSize: 24,
-  lineHeight: 29,
+  width: '85%',
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[29],
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250
 }
 
 const $buttonSize: TextStyle = {
-  width: 64,
-  height: 64
+  width: scale(64),
+  height: scale(64)
 }
 
 const $imageStyle: ImageStyle = {

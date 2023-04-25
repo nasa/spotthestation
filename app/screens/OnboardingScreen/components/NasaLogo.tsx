@@ -1,5 +1,6 @@
 import React from "react"
 import { Image, ImageStyle } from "react-native"
+import { scale } from "../../../theme"
 
 const nasaLogo = require("../../../../assets/images/nasa-logo.png")
 
@@ -8,8 +9,8 @@ export function NasaLogo() {
 }
 
 const $logo: ImageStyle = {
-  width: 110,
-  height: 110,
-  marginTop: 36,
-  marginLeft: 36
+  width: scale(110),
+  height: scale(110),
+  marginTop: scale(36),
+  marginLeft: scale(36)
 }

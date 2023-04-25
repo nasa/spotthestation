@@ -1,7 +1,7 @@
 import React from "react"
 import { Image, ImageProps, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { translate } from "../i18n"
-import { spacing } from "../theme"
+import { scale, spacing } from "../theme"
 import { Button, ButtonProps } from "./Button"
 import { Text, TextProps } from "./Text"
 
@@ -150,26 +150,26 @@ export function EmptyState(props: EmptyStateProps) {
   const $containerStyles = [$containerStyleOverride]
   const $imageStyles = [
     $image,
-    (isHeadingPresent || isContentPresent || isButtonPresent) && { marginBottom: spacing.micro },
+    (isHeadingPresent || isContentPresent || isButtonPresent) && { marginBottom: scale(spacing.micro) },
     $imageStyleOverride,
     ImageProps?.style,
   ]
   const $headingStyles = [
     $heading,
-    isImagePresent && { marginTop: spacing.micro },
-    (isContentPresent || isButtonPresent) && { marginBottom: spacing.micro },
+    isImagePresent && { marginTop: scale(spacing.micro) },
+    (isContentPresent || isButtonPresent) && { marginBottom: scale(spacing.micro) },
     $headingStyleOverride,
     HeadingTextProps?.style,
   ]
   const $contentStyles = [
     $content,
-    (isImagePresent || isHeadingPresent) && { marginTop: spacing.micro },
-    isButtonPresent && { marginBottom: spacing.micro },
+    (isImagePresent || isHeadingPresent) && { marginTop: scale(spacing.micro) },
+    isButtonPresent && { marginBottom: scale(spacing.micro) },
     $contentStyleOverride,
     ContentTextProps?.style,
   ]
   const $buttonStyles = [
-    (isImagePresent || isHeadingPresent || isContentPresent) && { marginTop: spacing.extraLarge },
+    (isImagePresent || isHeadingPresent || isContentPresent) && { marginTop: scale(spacing.extraLarge) },
     $buttonStyleOverride,
     ButtonProps?.style,
   ]
@@ -215,5 +215,5 @@ export function EmptyState(props: EmptyStateProps) {
 }
 
 const $image: ImageStyle = { alignSelf: "center" }
-const $heading: TextStyle = { textAlign: "center", paddingHorizontal: spacing.large }
-const $content: TextStyle = { textAlign: "center", paddingHorizontal: spacing.large }
+const $heading: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }
+const $content: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }

@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native"
 import { translate } from "../i18n"
-import { colors, spacing } from "../theme"
+import { colors, scale, spacing } from "../theme"
 import { ExtendedEdge, useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 import { Icon, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
@@ -247,7 +247,7 @@ function HeaderAction(props: HeaderActionProps) {
 }
 
 const $wrapper: ViewStyle = {
-  height: 56,
+  height: scale(56),
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
@@ -293,5 +293,5 @@ const $actionIconContainer: ViewStyle = {
 }
 
 const $actionFillerContainer: ViewStyle = {
-  width: 16,
+  width: scale(16),
 }

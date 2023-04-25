@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native"
 import { isRTL, translate } from "../i18n"
-import { colors, spacing, typography } from "../theme"
+import { colors, fontSizes, scale, spacing, typography } from "../theme"
 import { Text, TextProps } from "./Text"
 
 export interface TextFieldProps extends Omit<TextInputProps, "ref"> {
@@ -127,7 +127,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
   const $inputWrapperStyles = [
     $inputWrapperStyle,
     status === "error" && { borderColor: colors.error },
-    TextInputProps.multiline && { minHeight: 112 },
+    TextInputProps.multiline && { minHeight: scale(112) },
     renderLeftAccessory && { paddingStart: 0 },
     renderRightAccessory && { paddingEnd: 0 },
     $inputWrapperStyleOverride,
@@ -205,14 +205,14 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
 })
 
 const $labelStyle: TextStyle = {
-  marginBottom: spacing.extraSmall,
+  marginBottom: scale(spacing.extraSmall),
 }
 
 const $inputWrapperStyle: ViewStyle = {
   flexDirection: "row",
   alignItems: "flex-start",
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
 }
@@ -222,28 +222,28 @@ const $inputStyle: TextStyle = {
   alignSelf: "stretch",
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral250,
-  fontSize: 18,
-  height: 56,
+  fontSize: fontSizes[18],
+  height: scale(56),
   // https://github.com/facebook/react-native/issues/21720#issuecomment-532642093
   paddingVertical: 0,
   paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
+  marginHorizontal: scale(spacing.small),
   textAlignVertical: "center"
 }
 
 const $helperStyle: TextStyle = {
-  marginTop: spacing.extraSmall,
+  marginTop: scale(spacing.extraSmall),
 }
 
 const $rightAccessoryStyle: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
+  marginEnd: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 const $leftAccessoryStyle: ViewStyle = {
-  marginStart: spacing.large,
-  height: 56,
+  marginStart: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }

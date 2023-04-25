@@ -2,7 +2,7 @@ import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Button, Icon, IconTypes, Text } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography } from "../../../theme"
+import { fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 
@@ -78,7 +78,7 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
 
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 16,
+  borderRadius: scale(16),
   alignItems: 'center',
   paddingVertical: 36,
   paddingHorizontal: 30,
@@ -95,33 +95,33 @@ const $buttonsContainer: ViewStyle = {
 const $skipButton: ViewStyle = {
   backgroundColor: 'transparent',
   borderWidth: 0,
-  height: 56,
-  minWidth: 140
+  height: scale(56),
+  minWidth: scale(140)
 }
 
 const $skipButtonText: TextStyle = {
   fontFamily: typography.primary.medium,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral100,
 }
 
 const $nextButton: ViewStyle = {
-  height: 56,
+  height: scale(56),
   backgroundColor: colors.palette.neutral100,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  minWidth: 140
+  minWidth: scale(140)
 }
 
 const $location: ViewStyle = {
   position: "absolute",
-  top: -80,
-  right: -5,
+  top: -scale(80),
+  right: -scale(5),
 }
 const $sightings: ViewStyle = {
   position: "absolute",
-  top: -80,
+  top: -scale(80),
 }
 const $globe: ViewStyle = {
   position: "absolute",
@@ -131,26 +131,26 @@ const $globe: ViewStyle = {
 }
 const $map: ViewStyle = {
   position: "absolute",
-  bottom: -80,
+  bottom: -scale(80),
   transform: [{ rotate: "180deg" }]
 }
 const $navigation: ViewStyle = {
   position: "absolute",
-  bottom: -80,
+  bottom: -scale(80),
   transform: [{ rotate: "180deg" }]
 }
 
 const $nextButtonText: TextStyle = {
   fontFamily: typography.primary.medium,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.buttonBlue,
 }
 
 const $title: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 24,
-  lineHeight: 29,
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[29],
   color: colors.palette.neutral100,
   paddingBottom: 12,
   paddingTop: 18
@@ -158,16 +158,16 @@ const $title: TextStyle = {
 
 const $body: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral100,
   paddingBottom: 36
 }
 
 const $stage: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 16,
-  lineHeight: 20,
+  fontSize: fontSizes[16],
+  lineHeight: lineHeights[20],
   color: colors.palette.neutral100,
   position: "absolute",
   top: 0,

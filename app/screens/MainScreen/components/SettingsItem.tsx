@@ -2,7 +2,7 @@ import React from "react"
 import { ViewStyle, View, TextStyle, Pressable, PressableProps } from "react-native"
 import { Text, Icon, IconTypes } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography, colors } from "../../../theme"
+import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export interface SettingsItemProps {
   title: TxKeyPath
@@ -45,7 +45,7 @@ const $container: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "flex-start",
-  paddingTop: 16,
+  paddingTop: scale(16),
 }
 
 const $bodyContainer: ViewStyle = {
@@ -53,22 +53,22 @@ const $bodyContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   borderColor: colors.palette.neutral550,
-  borderBottomWidth: 1,
-  paddingBottom: 16,
+  borderBottomWidth: scale(1),
+  paddingBottom: scale(16),
   alignItems: "flex-start",
-  marginLeft: 10,
+  marginLeft: scale(10),
 }
 
 const $titleContainer: ViewStyle = {
   flexDirection: "column",
   flex: 1,
-  paddingLeft: 18
+  paddingLeft: scale(18)
 }
 
 const $titleText: TextStyle = {
   width: "95%",
   fontFamily: typography.primary?.normal,
-  fontSize: 24,
-  lineHeight: 29,
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[29],
   color: colors.palette.neutral100
 }

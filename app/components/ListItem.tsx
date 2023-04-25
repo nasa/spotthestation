@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from "react-native"
-import { colors, spacing } from "../theme"
+import { colors, scale, spacing } from "../theme"
 import { Icon, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
 
@@ -131,7 +131,7 @@ export function ListItem(props: ListItemProps) {
     $containerStyleOverride,
   ]
 
-  const $touchableStyles = [$touchableStyle, { minHeight: height }, style]
+  const $touchableStyles = [$touchableStyle, { minHeight: scale(height) }, style]
 
   return (
     <View style={$containerStyles}>
@@ -197,7 +197,7 @@ const $separatorBottom: ViewStyle = {
 }
 
 const $textStyle: TextStyle = {
-  paddingVertical: spacing.extraSmall,
+  paddingVertical: scale(spacing.extraSmall),
   alignSelf: "center",
   flexGrow: 1,
   flexShrink: 1,
@@ -214,9 +214,9 @@ const $iconContainer: ViewStyle = {
   flexGrow: 0,
 }
 const $iconContainerLeft: ViewStyle = {
-  marginEnd: spacing.medium,
+  marginEnd: scale(spacing.medium),
 }
 
 const $iconContainerRight: ViewStyle = {
-  marginStart: spacing.medium,
+  marginStart: scale(spacing.medium),
 }

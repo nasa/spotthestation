@@ -1,7 +1,7 @@
 import React from "react"
 import { TextStyle} from "react-native"
 import { Text } from "../../../components"
-import { typography, colors } from "../../../theme"
+import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export interface TagProps {
   title: string
@@ -22,17 +22,17 @@ export function Tag({ title }: TagProps) {
 }
 
 const $container: TextStyle = {
-  height: 23,
-  borderRadius: 4,
+  height: scale(23),
+  borderRadius: scale(4),
   overflow: 'hidden',
-  paddingHorizontal: 7,
-  paddingVertical: 4,
+  paddingHorizontal: scale(7),
+  paddingVertical: scale(4),
   backgroundColor: colors.palette.neutral250,
   fontFamily: typography.primary?.medium,
-  fontSize: 12,
-  lineHeight: 15,
+  fontSize: fontSizes[12],
+  lineHeight: lineHeights[15],
   color: colors.palette.neutral350,
-  marginRight: 10
+  marginRight: scale(10)
 }
 
 const $launch: TextStyle = {

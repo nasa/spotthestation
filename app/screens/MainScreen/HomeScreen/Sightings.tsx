@@ -2,7 +2,7 @@ import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
 import { Icon, Text, IconTypes, Toggle } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -111,56 +111,56 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
 
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: 18,
-  borderTopRightRadius: 18,
+  borderTopLeftRadius: scale(18),
+  borderTopRightRadius: scale(18),
   flex: 1
 }
 
 const $scrollContainer: ViewStyle = {
-  paddingHorizontal: 36,
+  paddingHorizontal: scale(36),
   flex: 1,
-  paddingBottom: 30
+  paddingBottom: scale(30)
 }
 
 const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18,
+  padding: scale(18),
   zIndex: 5
 }
 
 const $title: TextStyle = {
-  marginTop: 10,
-  marginBottom: 10,
+  marginTop: scale(10),
+  marginBottom: scale(10),
   fontFamily: typography.primary?.normal,
-  fontSize: 28,
-  lineHeight: 44,
+  fontSize: fontSizes[28],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
-  paddingHorizontal: 36,
+  paddingHorizontal: scale(36),
 }
 
 const $selectMessageText: TextStyle = {
   width: "95%",
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral100,
-  paddingHorizontal: 36,
+  paddingHorizontal: scale(36),
 }
 
 const $switchContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   borderBottomColor: colors.palette.neutral350,
-  paddingHorizontal: 36,
-  paddingTop: 15,
+  paddingHorizontal: scale(36),
+  paddingTop: scale(15),
 }
 
 const $label: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
   width: '80%'
 }

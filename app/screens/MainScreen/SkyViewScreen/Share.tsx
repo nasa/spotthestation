@@ -1,7 +1,7 @@
 import React from "react"
 import { ViewStyle, View, Pressable, PressableProps, TextStyle } from "react-native"
 import { Icon, Text } from "../../../components"
-import { typography } from "../../../theme"
+import { fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 
@@ -141,14 +141,14 @@ export function RNShare({ onClose }: ShareProps) {
 
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: 18,
-  borderTopRightRadius: 18,
+  borderTopLeftRadius: scale(18),
+  borderTopRightRadius: scale(18),
 }
 
 const $contentContainer: ViewStyle = {
   width: "100%",
-  paddingHorizontal: 36,
-  paddingBottom: 52
+  paddingHorizontal: scale(36),
+  paddingBottom: scale(52)
 }
 
 const $buttonsContainer: ViewStyle = {
@@ -162,44 +162,43 @@ const $close: ViewStyle = {
   position: "absolute",
   top: 0,
   right: 0,
-  padding: 18,
+  padding: scale(18),
   zIndex: 5
 }
 
 const $title: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 36,
+  fontSize: fontSizes[36],
   fontFamily: typography.primary.normal,
-  lineHeight: 44,
-  paddingBottom: 12,
-  marginTop: 36
+  lineHeight: lineHeights[44],
+  paddingBottom: scale(12),
+  marginTop: scale(36)
 }
 
 const $subtitle: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 22, 
-  marginBottom: 36
+  lineHeight: lineHeights[22], 
+  marginBottom: scale(36)
 }
 
 const $label: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: 19, 
-  marginTop: 16
+  lineHeight: lineHeights[19], 
+  marginTop: scale(16)
 }
 
 const $button: ViewStyle = {
-  width: 64,
-  height: 64,
+  width: scale(64),
+  height: scale(64),
   backgroundColor: colors.palette.neutral550,
 }
 
 const $pressable: ViewStyle = {
-  // flex: 1,
   alignItems: "center",
-  marginBottom: 36,
-  paddingHorizontal: 10
+  marginBottom: scale(36),
+  paddingHorizontal: scale(10)
 }

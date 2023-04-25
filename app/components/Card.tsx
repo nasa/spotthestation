@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from "react-native"
-import { colors, spacing } from "../theme"
+import { colors, scale, spacing } from "../theme"
 import { Text, TextProps } from "./Text"
 
 type Presets = keyof typeof $containerPresets
@@ -160,28 +160,28 @@ export function Card(props: CardProps) {
   const $containerStyle = [$containerPresets[preset], $containerStyleOverride]
   const $headingStyle = [
     $headingPresets[preset],
-    (isFooterPresent || isContentPresent) && { marginBottom: spacing.micro },
+    (isFooterPresent || isContentPresent) && { marginBottom: scale(spacing.micro) },
     $headingStyleOverride,
     HeadingTextProps?.style,
   ]
   const $contentStyle = [
     $contentPresets[preset],
-    isHeadingPresent && { marginTop: spacing.micro },
-    isFooterPresent && { marginBottom: spacing.micro },
+    isHeadingPresent && { marginTop: scale(spacing.micro) },
+    isFooterPresent && { marginBottom: scale(spacing.micro) },
     $contentStyleOverride,
     ContentTextProps?.style,
   ]
   const $footerStyle = [
     $footerPresets[preset],
-    (isHeadingPresent || isContentPresent) && { marginTop: spacing.micro },
+    (isHeadingPresent || isContentPresent) && { marginTop: scale(spacing.micro) },
     $footerStyleOverride,
     FooterTextProps?.style,
   ]
   const $alignmentWrapperStyle = [
     $alignmentWrapper,
     { justifyContent: $alignmentWrapperFlexOptions[verticalAlignment] },
-    LeftComponent && { marginLeft: spacing.medium },
-    RightComponent && { marginRight: spacing.medium },
+    LeftComponent && { marginLeft: scale(spacing.medium) },
+    RightComponent && { marginRight: scale(spacing.medium) },
   ]
 
   return (
@@ -240,15 +240,15 @@ export function Card(props: CardProps) {
 }
 
 const $containerBase: ViewStyle = {
-  borderRadius: spacing.medium,
-  padding: spacing.extraSmall,
+  borderRadius: scale(16),
+  padding: scale(spacing.extraSmall),
   borderWidth: 1,
   shadowColor: colors.palette.neutral800,
-  shadowOffset: { width: 0, height: 12 },
+  shadowOffset: { width: 0, height: scale(12) },
   shadowOpacity: 0.08,
   shadowRadius: 12.81,
   elevation: 16,
-  minHeight: 96,
+  minHeight: scale(96),
   flexDirection: "row",
 }
 

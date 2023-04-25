@@ -7,7 +7,7 @@ import { Dropdown } from "react-native-element-dropdown"
 import email from 'react-native-email'
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Button, Icon, Screen, Text, TextField } from "../../../components"
-import { colors, spacing, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
 import Config from "../../../config"
 
@@ -19,7 +19,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
   const [comments, setComments] = useState('')
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const handleSend = useCallback(() => {
@@ -137,50 +137,50 @@ const $container: ViewStyle = {
 const $backButton: ViewStyle = {
   flexDirection: "row",
   alignItems: 'center',
-  paddingBottom: 11
+  paddingBottom: scale(11)
 }
 
 const $scrollContentContainerStyle: ViewStyle = { 
   flexGrow: 1,
-  paddingBottom: 60
+  paddingBottom: scale(60)
 }
 
 const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 18,
+  paddingHorizontal: scale(18),
 }
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
   textAlign: 'left',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $backButtonText: TextStyle = {
   ...$text,
   color: colors.palette.neutral250,
   paddingBottom: 0,
-  paddingLeft: 5
+  paddingLeft: scale(5)
 }
 
 const $header: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250
 }
 
 const $dropdown: ViewStyle = {
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
 }
 
 const $inputMargin: ViewStyle = {
-  marginTop: 18
+  marginTop: scale(18)
 }
 
 const $inputWithoutPadding: ViewStyle = {
@@ -194,13 +194,13 @@ const $disabled: ViewStyle = {
 const $multiline: TextStyle = {
   height: 'auto',
   textAlignVertical: 'top',
-  paddingVertical: 10
+  paddingVertical: scale(10)
 }
 
 const $dropdownContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
-  borderRadius: 10,
-  marginTop: -40,
+  borderRadius: scale(10),
+  marginTop: -scale(40),
   borderWidth: 0
 }
 
@@ -216,33 +216,33 @@ const $dropdownText: TextStyle = {
   flex: 1,
   // alignSelf: "stretch",
   fontFamily: typography.primary.normal,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   paddingVertical: 0,
   paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
+  marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   color: colors.palette.neutral250
 }
 
 const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
+  marginEnd: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 
 const $button: ViewStyle = {
   width: "100%",
-  height: 64,
+  height: scale(64),
   backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  marginVertical: 24
+  marginVertical: scale(24)
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }

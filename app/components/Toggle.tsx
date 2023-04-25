@@ -13,7 +13,7 @@ import {
   ViewStyle,
 } from "react-native"
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
-import { colors, spacing } from "../theme"
+import { colors, scale, spacing } from "../theme"
 import { iconRegistry, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
 
@@ -551,9 +551,9 @@ const $inputWrapper: ViewStyle = {
 }
 
 const $inputOuterBase: ViewStyle = {
-  height: 24,
-  width: 24,
-  borderWidth: 2,
+  height: scale(24),
+  width: scale(24),
+  borderWidth: scale(2),
   alignItems: "center",
   overflow: "hidden",
   flexGrow: 0,
@@ -563,9 +563,9 @@ const $inputOuterBase: ViewStyle = {
 }
 
 const $inputOuterVariants: Record<Variants, StyleProp<ViewStyle>> = {
-  checkbox: [$inputOuterBase, { borderRadius: 4 }],
-  radio: [$inputOuterBase, { borderRadius: 12 }],
-  switch: [$inputOuterBase, { height: 28, width: 46, borderRadius: 16, borderWidth: 0 }],
+  checkbox: [$inputOuterBase, { borderRadius: scale(4) }],
+  radio: [$inputOuterBase, { borderRadius: scale(12) }],
+  switch: [$inputOuterBase, { height: scale(28), width: scale(46), borderRadius: scale(16), borderWidth: 0 }],
 }
 
 const $checkboxInner: ViewStyle = {
@@ -577,8 +577,8 @@ const $checkboxInner: ViewStyle = {
 }
 
 const $checkboxDetail: ImageStyle = {
-  width: 20,
-  height: 20,
+  width: scale(20),
+  height: scale(20),
   resizeMode: "contain",
 }
 
@@ -591,9 +591,9 @@ const $radioInner: ViewStyle = {
 }
 
 const $radioDetail: ViewStyle = {
-  width: 12,
-  height: 12,
-  borderRadius: 6,
+  width: scale(12),
+  height: scale(12),
+  borderRadius: scale(6),
 }
 
 const $switchInner: ViewStyle = {
@@ -603,19 +603,19 @@ const $switchInner: ViewStyle = {
   borderColor: colors.transparent,
   overflow: "hidden",
   position: "absolute",
-  paddingStart: 4,
-  paddingEnd: 4,
+  paddingStart: scale(4),
+  paddingEnd: scale(4),
 }
 
 const $switchDetail: SwitchToggleProps["inputDetailStyle"] = {
-  borderRadius: 12,
+  borderRadius: scale(12),
   position: "absolute",
-  width: 20,
-  height: 20,
+  width: scale(20),
+  height: scale(20),
 }
 
 const $helper: TextStyle = {
-  marginTop: spacing.extraSmall,
+  marginTop: scale(spacing.extraSmall),
 }
 
 const $label: TextStyle = {
@@ -623,11 +623,11 @@ const $label: TextStyle = {
 }
 
 const $labelRight: TextStyle = {
-  marginLeft: spacing.medium,
+  marginLeft: scale(spacing.medium),
 }
 
 const $labelLeft: TextStyle = {
-  marginRight: spacing.medium,
+  marginRight: scale(spacing.medium),
 }
 
 const $switchAccessibility: TextStyle = {
@@ -637,19 +637,19 @@ const $switchAccessibility: TextStyle = {
 }
 
 const $switchAccessibilityIcon: ImageStyle = {
-  width: 14,
-  height: 14,
+  width: scale(14),
+  height: scale(14),
   resizeMode: "contain",
 }
 
 const $switchAccessibilityLine: ViewStyle = {
-  width: 2,
-  height: 12,
+  width: scale(2),
+  height: scale(12),
 }
 
 const $switchAccessibilityCircle: ViewStyle = {
-  borderWidth: 2,
-  width: 12,
-  height: 12,
-  borderRadius: 6,
+  borderWidth: scale(2),
+  width: scale(12),
+  height: scale(12),
+  borderRadius: scale(6),
 }

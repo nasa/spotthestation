@@ -10,6 +10,7 @@ import {
 import { BlurView } from 'expo-blur'
 import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
+import { fontSizes, lineHeights, scale } from "../../../theme"
 
 
 export interface LinkButtonWithArrowProps extends PressableProps {
@@ -83,15 +84,15 @@ const $viewStyle: ViewStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: 42,
-  height: 42,
+  width: scale(42),
+  height: scale(42),
   backgroundColor: colors.palette.neutral350,
-  borderRadius: 100,
+  borderRadius: scale(100),
   overflow: "hidden"
 }
 
 const $text: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 28,
-  lineHeight: 28
+  fontSize: fontSizes[28],
+  lineHeight: lineHeights[28]
 }

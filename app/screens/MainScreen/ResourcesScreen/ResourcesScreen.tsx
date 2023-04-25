@@ -10,7 +10,7 @@ import { ActivityIndicator, FlatList, ScrollView, TextStyle, View, ViewStyle } f
 import { XMLParser } from 'fast-xml-parser'
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { api } from "../../../services/api"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
@@ -70,7 +70,7 @@ export const Resources = observer(function HomeScreen() {
   const renderFooter = () => {
     if (isLoading) {
       return (
-        <View style={{ paddingVertical: 20 }}>
+        <View style={{ paddingVertical: scale(20) }}>
           <ActivityIndicator size="large" />
         </View>
       )
@@ -116,7 +116,7 @@ export const Resources = observer(function HomeScreen() {
           />}
           numColumns={2}
           columnWrapperStyle={{ justifyContent: 'space-between' }}
-          contentContainerStyle={{ paddingBottom: 200 }}
+          contentContainerStyle={{ paddingBottom: scale(200) }}
         />
       </ExpandContainer>
     } else {
@@ -180,7 +180,7 @@ export const Resources = observer(function HomeScreen() {
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <View style={$headerContainer}>
-        {isSearch ? (<View style={{ flex: 1, marginRight: 18 }}>
+        {isSearch ? (<View style={{ flex: 1, marginRight: scale(18) }}>
           <TextField
             accessible
             accessibilityLabel="search"
@@ -241,7 +241,7 @@ export const Resources = observer(function HomeScreen() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  paddingHorizontal: 18
+  paddingHorizontal: scale(18)
 }
 
 const $headerContainer: ViewStyle = {
@@ -251,9 +251,9 @@ const $headerContainer: ViewStyle = {
 }
 
 const $searchButton: ViewStyle = {
-  width: 42, 
-  height: 42, 
-  borderRadius: 24, 
+  width: scale(42), 
+  height: scale(42), 
+  borderRadius: scale(24),
   backgroundColor: colors.palette.neutral350,
   alignItems: 'center',
   justifyContent: 'center'
@@ -261,9 +261,9 @@ const $searchButton: ViewStyle = {
 
 const $xButton: ViewStyle = {
   ...$searchButton,
-  width: 56, 
-  height: 56, 
-  borderRadius: 36,
+  width: scale(56), 
+  height: scale(56), 
+  borderRadius: scale(36),
   backgroundColor: colors.palette.neutral550,
 }
 
@@ -271,28 +271,28 @@ const $bodyContainer: ViewStyle = {
   justifyContent: "space-between",
   flexDirection: 'row',
   flexWrap: "wrap",
-  paddingBottom: 200
+  paddingBottom: scale(200)
 }
 
 const $suggestionContainer: ViewStyle = {
   flexDirection: 'row',
   alignItems: 'center',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $header: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
 }
 
 const $suggestion: TextStyle = {
   fontFamily: typography.primary.normal,
-  fontSize: 18,
-  lineHeight: 21,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[21],
   color: colors.palette.neutral250,
-  paddingLeft: 12
+  paddingLeft: scale(12)
 }
 
 const $scrollContainer: ViewStyle = { 
@@ -301,28 +301,28 @@ const $scrollContainer: ViewStyle = {
 
 const $horizontalScrollContainer: ViewStyle = { 
   width: '100%',
-  height: 80,
-  marginTop: 10
+  height: scale(80),
+  marginTop: scale(10)
 }
 
 const $searchField: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: "transparent",
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral550,
   overflow: "hidden",
 }
 
 const $button: ViewStyle = {
   width: '40%',
-  height: 46,
-  minHeight: 40,
+  height: scale(46),
+  minHeight: scale(40),
   backgroundColor: 'transparent',
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  marginRight: 24,
-  paddingHorizontal: 20
+  marginRight: scale(24),
+  paddingHorizontal: scale(20)
 }
 
 const $active: ViewStyle = {
@@ -331,8 +331,8 @@ const $active: ViewStyle = {
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 22,
+  lineHeight: lineHeights[22],
   textTransform: 'capitalize'
 }

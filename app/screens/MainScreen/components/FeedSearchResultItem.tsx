@@ -1,7 +1,7 @@
 import React from "react"
 import { ViewStyle, View, TextStyle, Pressable, PressableProps, Image, ImageStyle } from "react-native"
 import { Text } from "../../../components"
-import { typography, colors } from "../../../theme"
+import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 import { Tag } from "./Tag"
 
 export interface FeedSearchResultItemProps {
@@ -65,13 +65,13 @@ const $container: ViewStyle = {
   width: "47%",
   justifyContent: "space-between",
   alignItems: "flex-start",
-  paddingTop: 16,
+  paddingTop: scale(16),
 }
 
 const $tagsContainer: ViewStyle = {
   position: 'absolute',
-  top: 36,
-  left: 18,
+  top: scale(36),
+  left: scale(18),
   flexDirection: 'row',
   zIndex: 2
 }
@@ -79,22 +79,22 @@ const $tagsContainer: ViewStyle = {
 const $imageContainer: ImageStyle = {
   width: "100%",
   aspectRatio: .7,
-  borderRadius: 12,
-  marginBottom: 12
+  borderRadius: scale(12),
+  marginBottom: scale(12)
 }
 
 const $titleText: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 21,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[21],
   color: colors.palette.neutral250,
-  paddingBottom: 5
+  paddingBottom: scale(5)
 }
 
 const $typeText: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 14,
-  lineHeight: 17,
+  fontSize: fontSizes[14],
+  lineHeight: lineHeights[17],
   color: colors.palette.neutral450,
   textTransform: 'uppercase'
 }

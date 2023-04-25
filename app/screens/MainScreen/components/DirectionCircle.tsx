@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useMemo } from "react"
-import { ViewStyle, View, useWindowDimensions, PixelRatio, TextStyle } from "react-native"
+import { ViewStyle, View, useWindowDimensions, PixelRatio } from "react-native"
 import Svg, { Path } from 'react-native-svg'
 import { arc as d3Arc } from 'd3-shape'
 import { degToRad } from "../../../utils/geometry"
+import { scale } from "../../../theme"
 
 const arc = d3Arc()
 
@@ -111,9 +112,9 @@ const $container: ViewStyle = {
 }
 
 const $innerCircle: ViewStyle = {
-  width: 50,
-  height: 50,
-  borderRadius: 50,
+  width: scale(50),
+  height: scale(50),
+  borderRadius: scale(50),
   position: 'absolute',
   alignSelf: 'center',
   backgroundColor: '#fff',
@@ -122,6 +123,6 @@ const $innerCircle: ViewStyle = {
 const $outerCircle: ViewStyle = {
   position: 'absolute',
   alignSelf: 'center',
-  width: 70,
-  height: 70,
+  width: scale(70),
+  height: scale(70),
 }

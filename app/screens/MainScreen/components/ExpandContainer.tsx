@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react"
 import { ViewStyle, View, TextStyle, ImageStyle } from "react-native"
 import { Text, Icon } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography, colors } from "../../../theme"
+import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export interface ExpandContainerProps {
   defaultValue?: boolean
@@ -52,11 +52,11 @@ export function ExpandContainer({ defaultValue = true, title, expandble = true, 
 
 const $container: ViewStyle = {
   width: "100%",
-  marginTop: 36
+  marginTop: scale(36)
 }
 
 const $headContainer: ViewStyle = {
-  marginBottom: 18,
+  marginBottom: scale(18),
   flexDirection: "row",
   justifyContent: "space-between"
 }
@@ -67,8 +67,8 @@ const $titleContainer: ViewStyle = {
 
 const $title: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 13,
-  lineHeight: 16,
+  fontSize: fontSizes[13],
+  lineHeight: lineHeights[16],
   color: colors.palette.neutral450,
   textTransform: "uppercase"
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Text, Toggle } from "../../../../components"
-import { colors, spacing } from "../../../../theme"
+import { colors, fontSizes, scale, spacing } from "../../../../theme"
 import { convertToImperial } from "../../../../utils/convertToImperial"
 import { formatDate } from "../../../../utils/formatDate"
 
@@ -60,7 +60,7 @@ const $container: ViewStyle = {
   width: "100%",
   height: "23%",
   backgroundColor: colors.backgroundDark,
-  padding: spacing.medium
+  padding: scale(spacing.medium)
 }
 
 const $centered: ViewStyle = {
@@ -68,7 +68,7 @@ const $centered: ViewStyle = {
 }
 
 const $margin: ViewStyle = {
-  marginRight: spacing.extraSmall
+  marginRight: scale(spacing.extraSmall)
 }
 
 const $rowContainer: ViewStyle = {
@@ -76,7 +76,7 @@ const $rowContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: spacing.medium
+  marginBottom: scale(spacing.medium)
 }
 
 const $columnContainer: ViewStyle = {
@@ -85,12 +85,12 @@ const $columnContainer: ViewStyle = {
 }
 
 const $text: TextStyle = {
-  fontSize: 18,
+  fontSize: fontSizes[18],
   color: colors.palette.neutral100
 }
 
 const $label: TextStyle = {
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontWeight: "bold",
   color: colors.palette.neutral100
 }

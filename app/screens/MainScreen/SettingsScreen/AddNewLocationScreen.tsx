@@ -8,7 +8,7 @@ import { ViewStyle, TextStyle, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
-import { colors, spacing, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
@@ -36,7 +36,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const [location, setLocation] = useState<LocationType>({...defaultLocation})
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   const handleClear = () => {
@@ -243,7 +243,7 @@ const $topButtonsContainer: ViewStyle = {
   flexDirection: 'row',
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: 36
+  marginBottom: scale(36)
 }
 
 const $buttonsContainer: ViewStyle = {
@@ -253,66 +253,66 @@ const $buttonsContainer: ViewStyle = {
 }
 
 const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 18,
+  paddingHorizontal: scale(18),
 }
 
 const $button: ViewStyle = {
   backgroundColor: colors.palette.neutral550,
-  width: 42,
-  height: 42
+  width: scale(42),
+  height: scale(42)
 }
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
   textAlign: 'left',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $title: TextStyle = {
   ...$text,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
 }
 
 const $locations: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: "transparent",
-  borderRadius: 28,
-  height: 56,
+  borderRadius: scale(28),
+  height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
-  marginBottom: 18
+  marginBottom: scale(18)
 }
 
 const $active: ViewStyle = {
-  borderWidth: 1.5,
+  borderWidth: scale(1.5),
   borderColor: colors.palette.buttonBlue,
   backgroundColor: colors.palette.overlayBlue,
 }
 
 const $locationsListContainer: ViewStyle = {
-  borderRadius: 12,
+  borderRadius: scale(12),
   backgroundColor: colors.palette.neutral550,
   overflow: "hidden",
   width: "85%",
   alignSelf: "center",
-  marginTop: 3
+  marginTop: scale(3)
 }
 
 const $dropdownLeftAccessory: ViewStyle = {
-  marginStart: spacing.large,
-  height: 56,
+  marginStart: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
 
 const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: 56,
+  marginEnd: scale(spacing.large),
+  height: scale(56),
   justifyContent: "center",
   alignItems: "center",
 }
@@ -323,25 +323,25 @@ const $dropdownSelected: TextStyle = {
 
 const $locationsRow: TextStyle = {
   backgroundColor: 'transparent',
-  paddingHorizontal: spacing.large
+  paddingHorizontal: scale(spacing.large)
 }
 
 const $locationsRowText: TextStyle = {
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral250,
   
 }
 
 const $dropdownText: TextStyle = {
   flex: 1,
-  height: 56,
+  height: scale(56),
   alignSelf: "stretch",
   fontFamily: typography.primary.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   paddingHorizontal: 0,
-  marginHorizontal: spacing.small,
+  marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   borderRadius: 0,
   backgroundColor: "transparent"
@@ -349,18 +349,18 @@ const $dropdownText: TextStyle = {
 
 const $save: ViewStyle = {
   width: "100%",
-  height: 56,
+  height: scale(56),
   backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0,
-  marginVertical: 24
+  marginVertical: scale(24)
 }
 
 const $saveText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $modal: ViewStyle = {
@@ -371,8 +371,8 @@ const $modal: ViewStyle = {
 }
 
 const $removeButton: ViewStyle = {
-  width: 56,
-  height: 56,
+  width: scale(56),
+  height: scale(56),
   backgroundColor: colors.palette.nasaRed,
   alignSelf: 'center'
 }

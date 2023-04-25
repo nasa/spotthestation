@@ -9,6 +9,7 @@ import {
   View,
   ViewStyle,
 } from "react-native"
+import { scale } from "../theme"
 
 export type IconTypes = keyof typeof iconRegistry
 
@@ -75,7 +76,7 @@ export function Icon(props: IconProps) {
         style={[
           $imageStyle,
           color && { tintColor: color },
-          size && { width: size, height: size },
+          size && { width: scale(size), height: scale(size) },
           $imageStyleOverride,
         ]}
         source={iconRegistry[icon]}

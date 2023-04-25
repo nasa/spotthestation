@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Icon } from '../../../components'
-import { colors } from '../../../theme'
+import { colors, scale } from '../../../theme'
 import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../utils/geometry"
 import watchHeading from "../../../utils/heading"
 
@@ -37,7 +37,7 @@ export const Compass = ({ issPosition, isFullScreen }) => {
   const issVisible = isInHeadingRange(left, right, issPosition)
 
   return (
-    <View style={[$container, { marginTop: isFullScreen ? topInset + 24 : 0 }]}>
+    <View style={[$container, { marginTop: isFullScreen ? topInset + scale(24) : 0 }]}>
       <Image source={compassLine} style={$line} />
       {issVisible && <Icon icon="iss" size={24} containerStyle={[$issIcon, { marginLeft: (headingOffset(left, issPosition) / 90) * LINE_LENGTH }]} />}
       <View style={$lettersContainer}>
@@ -61,28 +61,28 @@ export const Compass = ({ issPosition, isFullScreen }) => {
 }
 
 const $container: ViewStyle = {
-  height: 20,
+  height: scale(20),
   width: LINE_LENGTH
 }
 
 const $issIcon: ViewStyle = {
-  bottom: -10,
+  bottom: -scale(10),
   position: 'absolute'
 }
 
 const $letter: TextStyle = {
   color: colors.palette.neutral100,
-  marginBottom: 5,
+  marginBottom: scale(5),
   textAlign: 'left'
 }
 
 const $letterContainer: ViewStyle = {
   alignItems: 'center',
-  marginBottom: 2
+  marginBottom: scale(2)
 }
 
 const $lettersContainer: ViewStyle = {
-  bottom: -10,
+  bottom: -scale(10),
   flexDirection: 'row',
   height: 'auto',
   left: 0,
@@ -98,7 +98,7 @@ const $line: ImageStyle = {
 
 const $verticalLine: ViewStyle = {
   borderColor: colors.palette.neutral100,
-  borderWidth: 1,
-  height: 6,
-  width: 1
+  borderWidth: scale(1),
+  height: scale(6),
+  width: scale(1)
 }

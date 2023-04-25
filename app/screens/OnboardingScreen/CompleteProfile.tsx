@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React, { useCallback, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
-import { typography } from "../../theme"
+import { fontSizes, lineHeights, scale, typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
@@ -98,24 +98,24 @@ export const CompleteProfile = observer(function CompleteProfile() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral900,
-  paddingTop: 24
+  paddingTop: scale(24)
 }
 
 const $contentContainer: ViewStyle = {
   flex: 1,
-  paddingHorizontal: 36,
-  paddingBottom: 52
+  paddingHorizontal: scale(36),
+  paddingBottom: scale(52)
 }
 
 const $back: ViewStyle = {
-  marginLeft: 18
+  marginLeft: scale(18)
 }
 
 const $step: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: 22,
-  paddingBottom: 18,
-  paddingTop: 36
+  lineHeight: lineHeights[22],
+  paddingBottom: scale(18),
+  paddingTop: scale(36)
 }

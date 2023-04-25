@@ -1,7 +1,7 @@
 import React from "react"
 import { PressableProps, TextStyle, View, ViewStyle } from "react-native"
 import { Text, Button, Icon, Toggle } from "../../components"
-import { colors, typography } from "../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../theme"
 
 export interface SignupNotificationSettingsProps {
   /**
@@ -68,37 +68,37 @@ export function SignupNotificationSettings({ value, onValueChange, onAction }: S
 
 const $title: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 36,
+  fontSize: fontSizes[36],
   fontFamily: typography.primary.normal,
-  lineHeight: 42,
-  paddingBottom: 36
+  lineHeight: lineHeights[42],
+  paddingBottom: scale(36)
 }
 
 const $button: ViewStyle = {
   width: "100%",
-  height: 56,
+  height: scale(56),
   backgroundColor: colors.palette.buttonBlue,
-  borderRadius: 28,
+  borderRadius: scale(28),
   borderWidth: 0
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
-  fontSize: 18,
+  fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $valueContainer: ViewStyle = {
   flexDirection: "row",
-  marginBottom: 36
+  marginBottom: scale(36)
 }
 
 const $switchContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
-  paddingBottom: 18,
-  borderBottomWidth: 1,
+  paddingBottom: scale(18),
+  borderBottomWidth: scale(1),
   borderBottomColor: colors.palette.neutral350,
   flex: 1
 }
@@ -109,18 +109,18 @@ const $labelContainer: ViewStyle = {
 
 const $label: TextStyle = {
   color: colors.palette.neutral250,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $tip: TextStyle = {
   color: colors.palette.neutral450,
-  fontSize: 16,
+  fontSize: fontSizes[16],
   fontFamily: typography.primary.light,
-  lineHeight: 21,
+  lineHeight: lineHeights[21],
 }
 
 const $icon: ViewStyle = {
-  marginRight: 18
+  marginRight: scale(18)
 }

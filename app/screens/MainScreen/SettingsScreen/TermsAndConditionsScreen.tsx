@@ -4,14 +4,14 @@ import React from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 
 export const TermsAndConditionsScreen = observer(function TermsAndConditionsScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
 
   const $headerStyleOverride: TextStyle = {
-    top: topInset + 24,
+    top: topInset + scale(24),
   }
 
   return (
@@ -86,8 +86,8 @@ const $scrollContainer: ViewStyle = {
 
 const $title: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
   textAlign: 'left',
   paddingBottom: 24
@@ -95,8 +95,8 @@ const $title: TextStyle = {
 
 const $subtitle: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 28,
-  lineHeight: 34,
+  fontSize: fontSizes[28],
+  lineHeight: lineHeights[34],
   color: colors.palette.neutral250,
   textAlign: 'left',
   paddingBottom: 16
@@ -104,8 +104,8 @@ const $subtitle: TextStyle = {
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 22,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
   textAlign: 'left',
   paddingBottom: 24

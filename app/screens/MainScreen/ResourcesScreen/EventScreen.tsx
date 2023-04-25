@@ -7,7 +7,7 @@ import React from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View, Image, ImageStyle } from "react-native"
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { Tag } from "../components/Tag"
 import { WebView } from 'react-native-webview'
 
@@ -165,9 +165,9 @@ const $container: ViewStyle = {
 const $detailsContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   width: '100%',
-  borderRadius: 10,
-  marginBottom: 36,
-  padding: 24
+  borderRadius: scale(10),
+  marginBottom: scale(36),
+  padding: scale(24)
 }
 
 const $backButton: ViewStyle = {
@@ -176,53 +176,53 @@ const $backButton: ViewStyle = {
   zIndex: 999,
   backgroundColor: colors.backgroundDark,
   width: "100%",
-  paddingBottom: 11
+  paddingBottom: scale(11)
 }
 
 const $detailsRow: ViewStyle = {
   flexDirection: "row",
   justifyContent: 'space-between',
-  paddingBottom: 16
+  paddingBottom: scale(16)
 }
 
 const $scrollContainer: ViewStyle = { 
-  paddingHorizontal: 18,
+  paddingHorizontal: scale(18),
   flex: 1
 }
 
 const $title: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 36,
-  lineHeight: 44,
+  fontSize: fontSizes[36],
+  lineHeight: lineHeights[44],
   color: colors.palette.neutral250,
   textAlign: 'left',
-  paddingBottom: 12,
+  paddingBottom: scale(12),
   textTransform: 'capitalize'
 }
 
 const $subtitle: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 24,
-  lineHeight: 29,
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[29],
   color: colors.palette.neutral250,
   textAlign: 'left',
-  paddingBottom: 16,
+  paddingBottom: scale(16),
   textTransform: 'capitalize'
 }
 
 const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 24,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[24],
   color: colors.palette.neutral450,
   textAlign: 'left',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $detailValue: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 21,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[21],
   color: colors.palette.neutral100,
   textAlign: 'right',
   width: '40%'
@@ -230,8 +230,8 @@ const $detailValue: TextStyle = {
 
 const $detailKey: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: 18,
-  lineHeight: 21,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[21],
   color: colors.palette.neutral450,
   textAlign: 'left',
 }
@@ -240,17 +240,17 @@ const $backButtonText: TextStyle = {
   ...$text,
   color: colors.palette.neutral250,
   paddingBottom: 0,
-  paddingLeft: 5
+  paddingLeft: scale(5)
 }
 
 const $tagsContainer: ViewStyle = {
   flexDirection: 'row',
-  paddingBottom: 24
+  paddingBottom: scale(24)
 }
 
 const $imageContainer: ImageStyle = {
   width: "100%",
   aspectRatio: 1,
-  borderRadius: 12,
-  marginBottom: 12
+  borderRadius: scale(12),
+  marginBottom: scale(12)
 }
