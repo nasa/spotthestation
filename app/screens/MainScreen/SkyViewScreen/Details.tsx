@@ -17,7 +17,10 @@ export interface DetailsProps {
 
 export function Details({ onClose, issData, observer }: DetailsProps) {
   const distance = (data: OrbitPoint): number => {
-    return Math.round(calculateDistance(observer[0], observer[1], 0, data.latitude, data.longitude, data.elevation)/1000)
+    if (data) {
+      return Math.round(calculateDistance(observer[0], observer[1], 0, data?.latitude, data?.longitude, data?.elevation)/1000)
+    }
+    return 0
   }
   return (
     <View style={$modalBodyContainer}>

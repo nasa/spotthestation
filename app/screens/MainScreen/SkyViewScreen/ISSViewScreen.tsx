@@ -20,7 +20,6 @@ import { Details } from "./Details"
 import { ARView } from "../components/ARView"
 import { intervalToDuration, formatDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
-import * as storage from "../../../utils/storage"
 import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import { ViroARSceneNavigator } from "@viro-community/react-viro"
@@ -76,7 +75,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const { sightings, issData, getISSSightings, getISSData } = useStores()
+  const { currentLocation, selectedLocation, sightings, issData, getISSSightings, getISSData } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isDetails, setIsDetails] = useState(false)
@@ -163,17 +162,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     autorun(() => updateIssPath())
   }, [])
 
-  const getLocation = async () => {
+  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
     let lat: number
     let lng: number
-    const selected: LocationType = await storage.load('selectedLocation')
-    if (selected) {
-      lat = selected.location.lat
-      lng = selected.location.lng
+    if (selectedLocation) {
+      lat = selectedLocation.location.lat
+      lng = selectedLocation.location.lng
     } else {
-      const current: LocationType = await storage.load('currentLocation')
-      lat = current.location.lat
-      lng = current.location.lng
+      if (currentLocation) {
+        lat = currentLocation.location.lat
+        lng = currentLocation.location.lng
+      }
     }
     if (lat && lng) setLocation([lat, lng])
   }
@@ -188,8 +187,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   useEffect(() => {
-    getLocation().catch(e => console.log(e))
-  }, [])
+    getLocation(selectedLocation, currentLocation)
+  }, [currentLocation, selectedLocation])
 
   useEffect(() => {
     return () => { 
@@ -444,7 +443,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityLabel="share"
                   accessibilityHint="open share modal"
                   icon="share" 
-                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                  disabled={!mediaUrl}
+                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }, !mediaUrl && $disabled]}
                   onPress={() => onShare(mediaUrl)} 
                 /> 
                 <IconLinkButton 
@@ -472,12 +472,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   </>
                 ) : (
                   <IconLinkButton
-                  accessible
-                  accessibilityLabel="video"
-                  accessibilityHint="record a video"
-                  icon="video"
-                  onPress={startRecording}
-                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                    accessible
+                    accessibilityLabel="video"
+                    accessibilityHint="record a video"
+                    icon="video"
+                    onPress={startRecording}
+                    buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   />
                 )}
               </View>
@@ -610,4 +610,8 @@ const $stop: TextStyle = {
   lineHeight: lineHeights[16],
   color: colors.palette.neutral100,
   textTransform: "uppercase",
+}
+
+const $disabled: ViewStyle = {
+  opacity: .25
 }
