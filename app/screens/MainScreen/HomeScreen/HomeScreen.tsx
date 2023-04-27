@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
 import Modal from "react-native-modal"
 import { Screen } from "../../../components"
@@ -37,6 +37,7 @@ export const HomeScreen = observer(function HomeScreen() {
     issData, getISSSightings, getISSData, setISSSightings,
     currentLocation, selectedLocation, setSelectedLocation
   } = useStores()
+  const intervalRef = useRef<NodeJS.Timeout>(null)
   
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(!!route?.showSightings)
@@ -48,31 +49,32 @@ export const HomeScreen = observer(function HomeScreen() {
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
+  
+  const events = useMemo(() => current?.sightings?.filter(item => item.notify) || [], [current?.sightings])
+  const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
 
+  const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000)), [eventsList])
+  
   const timeDiff = useCallback((callback: (diff: string) => void) => {
-    if (current) {
-      const events: ISSSighting[] = current?.sightings?.filter(item => item.notify) || []
-      const eventsList = events?.length ? events : (current.sightings || [])
-      const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
-      
-      if (result.length === 0) return
-      if (result.length > 0) setCurrentSightning(result[0])
-  
-      const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
-      const diff = formatDuration(duration, { delimiter: ',' })
-  
-      callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
+    if (result.length === 0) {
+      setCurrentSightning({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
+      setCountdown("T - 00:00:00:00")
+      return
     }
-  }, [current])
+    setCurrentSightning(result[0])
+    const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
+    const diff = formatDuration(duration, { delimiter: ',' })
+    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
+  }, [result])
 
   const startCountdown = useCallback(() => {
-    timeDiff(setCountdown)
-    setInterval(() => timeDiff(setCountdown), 1000)
-  }, [countdown, current])
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => timeDiff(setCountdown), 1000)
+  }, [current, timeDiff])
 
   useEffect(() => {
     startCountdown()
-  }, [current])
+  }, [current, startCountdown, timeDiff])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
