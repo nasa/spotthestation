@@ -39,7 +39,7 @@ export const Compass = ({ issPosition, isFullScreen }) => {
   return (
     <View style={[$container, { marginTop: isFullScreen ? topInset + scale(24) : 0 }]}>
       <Image source={compassLine} style={$line} />
-      {issVisible && <Icon icon="iss" size={24} containerStyle={[$issIcon, { marginLeft: (headingOffset(left, issPosition) / 90) * LINE_LENGTH }]} />}
+      {issVisible && <Icon icon="iss" size={36} containerStyle={[$issIcon, { marginLeft: (headingOffset(left, issPosition) / 90) * LINE_LENGTH }]} />}
       <View style={$lettersContainer}>
         {letterPositions.map(({ letter, offset }) => {
           const letterPosition = (headingOffset(left, offset) / 90) * LINE_LENGTH
@@ -66,7 +66,7 @@ const $container: ViewStyle = {
 }
 
 const $issIcon: ViewStyle = {
-  bottom: -scale(10),
+  bottom: -scale(16),
   position: 'absolute'
 }
 

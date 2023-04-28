@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import { ViewStyle, View, Image, ImageStyle } from "react-native"
 import { Svg, Polygon, Polyline } from "react-native-svg"
 import { Icon } from "../../../components"
-import { colors } from "../../../theme"
+import { colors, scale } from "../../../theme"
 import { compute, latLonTo2D } from "../../../utils/terminator"
 const map = require('../../../../assets/images/World-Map.jpg')
 
@@ -72,8 +72,8 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition, currentL
           // eslint-disable-next-line react-native/no-inline-styles
           <View style={{
             position: 'absolute',
-            left: issCoords2D[0] * layout.width - 18,
-            top: issCoords2D[1] * layout.height - 18
+            left: issCoords2D[0] * layout.width - scale(18),
+            top: issCoords2D[1] * layout.height - scale(18)
           }}>
             <Icon icon="position" size={36} />
           </View>
@@ -83,7 +83,7 @@ export function FlatMap({ style, issPathCoords = [], issMarkerPosition, currentL
           <View style={{
             position: 'absolute',
             left: currentLocation2D[0] * layout.width,
-            top: currentLocation2D[1] * layout.height - 15
+            top: currentLocation2D[1] * layout.height - scale(15)
           }}>
             <Icon icon="fiMapPin" size={15} />
           </View>

@@ -78,6 +78,7 @@
     "react-native-compass-heading": "^1.4.2",
     "react-native-config": "^1.4.11",
     "react-native-confirmation-code-field": "^7.3.1",
+    "react-native-device-info": "^10.6.0",
     "react-native-element-dropdown": "^2.5.1",
     "react-native-email": "^2.1.0",
     "react-native-gesture-handler": "~2.5.0",

@@ -311,7 +311,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
-      {isSightings && <Modal
+      {isSightings && current && <Modal
         isVisible={isSightings}
         onBackdropPress={() => setIsSightings(!isSightings)}
         onSwipeComplete={() => setIsSightings(!isSightings)}
@@ -327,11 +327,11 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <Sightings 
           onClose={() => setIsSightings(!isSightings)} 
-          sightings={current ? current.sightings : []}
+          sightings={current ? current?.sightings : []}
           onToggle={handleSetSightingNotification}
           onToggleAll={handleSetSightingNotificationToAll}
-          isUS={currentTimeZone.regionFormat === 'US'}
-          isNotifyAll={current && current.sightings.every(item => item.notify)}
+          isUS={currentTimeZone?.regionFormat === 'US'}
+          isNotifyAll={current && current?.sightings.every(item => item.notify)}
         />
       </Modal>}
       {coachVisible && <Modal

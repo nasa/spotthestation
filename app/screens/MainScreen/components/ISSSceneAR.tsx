@@ -166,13 +166,6 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
       { isVisible && (
         <>
-          <ViroImage
-            height={1}
-            width={1}
-            rotation={[issMarkerPosition[1], -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
-            position={worldTransform(issCoords, initialHeading)}
-            source={icon}
-          />
           { settings.isPathVisible && (
             <>
               <ViroImage
@@ -196,6 +189,13 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
               ))}
             </>
           )}
+          <ViroImage
+            height={1.5}
+            width={1.5}
+            rotation={[issMarkerPosition[1], -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
+            position={worldTransform(issCoords, initialHeading)}
+            source={icon}
+          />
         </>
       )}
     </ViroARScene>
