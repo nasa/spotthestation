@@ -8,15 +8,21 @@ import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import DateTimePickerModal from "react-native-modal-datetime-picker"
+import Modal from "react-native-modal"
 import * as storage from "../../../utils/storage"
 import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
-import { formatDate } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
+import { Sightings } from "../HomeScreen/Sightings"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { ISSSighting } from "../../../services/api/api.types"
+import { useStores } from "../../../models"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const navigation = useNavigation()
+  const { selectedLocation, currentLocation, setISSSightings } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const [from, setFrom] = useState(false)
@@ -30,6 +36,10 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     muteFrom: new Date(),
     muteUntil: new Date()
   })
+
+  const [isSightings, setIsSightings] = useState(false)
+  const [current, setCurrent] = useState<LocationType>(null)
+  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -60,6 +70,50 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     })
     await storage.save(field, value)
   }, [settings])
+
+  const handleSetSightingNotification = useCallback((value: ISSSighting) => {
+    const updated = {...current, sightings: current.sightings.map(item => {
+      if (item.date === value.date) {
+        return {...item, notify: !item.notify}
+      }
+      return item
+    })}
+    setISSSightings(updated)
+    setCurrent(updated)
+  }, [current])
+
+  const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
+    const updated = {...current, sightings: current.sightings.map(item => ({...item, notify}))}
+    setISSSightings(updated)
+    setCurrent(updated)
+  }, [current])
+
+  const handleCtaPress = () => {
+    setIsSightings(true)
+  }
+
+  const getTimeZone = async (location: LocationType) => {
+    const { timeZone, regionFormat } = await getCurrentTimeZome(location)
+    setCurrentTimeZone({ timeZone, regionFormat })
+  }
+
+  useEffect(() => {
+    if (!current) return
+    
+    getTimeZone(current).catch(e => console.log(e))
+  }, [current])
+
+  const getCurrentLocation = useCallback(() => {
+    if (selectedLocation) {
+      setCurrent(selectedLocation)
+    } else {
+      setCurrent(currentLocation)
+    }
+  }, [selectedLocation, currentLocation])
+
+  useEffect(() => {
+    getCurrentLocation()
+  }, [getCurrentLocation])
 
   return (
     <Screen
@@ -101,7 +155,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
               <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
               <Pressable
-                onPress={() => navigation.navigate('Home' as never, { showSightings: true } as never)}
+                onPress={handleCtaPress}
                 style={{ marginTop: scale(10) }}
               >
                 <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
@@ -228,6 +282,29 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           />
         </Pressable>
       </ScrollView>
+      {isSightings && <Modal
+        isVisible={isSightings}
+        onBackdropPress={() => setIsSightings(!isSightings)}
+        onSwipeComplete={() => setIsSightings(!isSightings)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <Sightings 
+          onClose={() => setIsSightings(!isSightings)} 
+          sightings={current ? current.sightings : []}
+          onToggle={handleSetSightingNotification}
+          onToggleAll={handleSetSightingNotificationToAll}
+          isUS={currentTimeZone.regionFormat === 'US'}
+          isNotifyAll={current && current.sightings.every(item => item.notify)}
+        />
+      </Modal>}
     </Screen>
   )
 })
@@ -236,6 +313,13 @@ const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
   height: '100%'
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  justifyContent: 'flex-end',
+  left: 0,
+  margin: 0
 }
 
 const $scrollContentContainerStyle: ViewStyle = { 

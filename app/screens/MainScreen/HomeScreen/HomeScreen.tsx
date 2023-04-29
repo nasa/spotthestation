@@ -22,14 +22,13 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { autorun } from "mobx"
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-  const route: HomeScreenRouteProps  = useRoute().params as HomeScreenRouteProps
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
@@ -40,7 +39,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const intervalRef = useRef<NodeJS.Timeout>(null)
   
   const [isLocation, setIsLocation] = useState(false)
-  const [isSightings, setIsSightings] = useState(!!route?.showSightings)
+  const [isSightings, setIsSightings] = useState(false)
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
@@ -311,7 +310,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
-      {isSightings && current && <Modal
+      {isSightings && Boolean(current) && <Modal
         isVisible={isSightings}
         onBackdropPress={() => setIsSightings(!isSightings)}
         onSwipeComplete={() => setIsSightings(!isSightings)}
