@@ -24,7 +24,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
   }
   return (
     <View style={$modalBodyContainer}>
-      <Icon icon="x" 
+      {Boolean(onClose) && <Icon icon="x" 
         accessible
         accessibilityLabel="x button"
         accessibilityHint="close modal"
@@ -33,7 +33,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
         onPress={onClose} 
         containerStyle={$close} 
         size={36}
-      />
+      />}
       <View style={$contentContainer}>
         <Text
           accessible

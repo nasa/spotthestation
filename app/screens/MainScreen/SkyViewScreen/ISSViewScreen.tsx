@@ -500,7 +500,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         <Details issData={issData[issMarkerIndex]} onClose={() => setIsDetails(!isDetails)} observer={location} />
       </Modal>
       { isSpotted && (
-        <Text tx="issView.issCaptured" style={[$text, { textDecorationLine: 'underline' }]} onPress={setIsDetails} />
+        <Text tx="issView.issCaptured" style={[$text, { textDecorationLine: 'underline' }]} onPress={takeScreenshot} />
       )}
     </Screen>
   )

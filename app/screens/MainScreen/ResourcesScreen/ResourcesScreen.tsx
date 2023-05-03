@@ -5,8 +5,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
-import { ActivityIndicator, FlatList, ScrollView, TextStyle, View, ViewStyle } from "react-native"
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import { ActivityIndicator, FlatList, Pressable, ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { XMLParser } from 'fast-xml-parser'
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { api } from "../../../services/api"
@@ -15,6 +15,10 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
+import { useStores } from "../../../models"
+import { autorun } from "mobx"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { Details } from "../SkyViewScreen/Details"
 
 const items = [{
   tags: ['history'],
@@ -41,6 +45,7 @@ export interface ResourcesScreenRouteProps {
 export const Resources = observer(function HomeScreen() {
   const navigation = useNavigation()
   const route: ResourcesScreenRouteProps = useRoute().params as ResourcesScreenRouteProps
+  const { currentLocation, selectedLocation, issData, getISSData } = useStores()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isSearch, setIsSearch] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -49,6 +54,7 @@ export const Resources = observer(function HomeScreen() {
   const [news, setNews] = useState([])
   const [page, setPage] = useState(1)
   const [isFocus, setIsFocus] = useState(false)
+  const [location, setLocation] = useState<[number, number]>(null)
 
   const fetchData = useCallback((paged = 1) => {
     setIsLoading(true)
@@ -66,6 +72,61 @@ export const Resources = observer(function HomeScreen() {
   useEffect(() => {
     fetchData()
   }, [])
+
+  const [issMarkerIndex, setIssMarkerIndex] = useState(0)
+  const updateTimer = useRef<NodeJS.Timer>()
+
+  function updateIssPath() {
+    let currentPositionIdx = 0
+
+    if (issData.length === 0) {
+      clearTimeout(updateTimer.current)
+      return
+    }
+
+    issData.forEach((point, idx) => {
+      if (Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) < Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())) {
+        currentPositionIdx = idx
+      }
+    })
+
+    setIssMarkerIndex(currentPositionIdx)
+
+    clearTimeout(updateTimer.current)
+    updateTimer.current = setTimeout(updateIssPath, 30000)
+  }
+
+  useEffect(() => {
+    autorun(() => updateIssPath())
+  }, [])
+
+  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
+    let lat: number
+    let lng: number
+    if (selectedLocation) {
+      lat = selectedLocation.location.lat
+      lng = selectedLocation.location.lng
+    } else {
+      if (currentLocation) {
+        lat = currentLocation.location.lat
+        lng = currentLocation.location.lng
+      }
+    }
+    if (lat && lng) setLocation([lat, lng])
+  }
+
+  const getData = async () => {
+    await getISSData({ lat: location[0], lon: location[1] })
+  }
+
+  useEffect(() => {
+    getLocation(selectedLocation, currentLocation)
+  }, [currentLocation, selectedLocation])
+
+  useEffect(() => {
+    if (!location) return
+    getData().catch(e => console.log(e))
+  }, [location])
 
   const renderFooter = () => {
     if (isLoading) {
@@ -177,6 +238,29 @@ export const Resources = observer(function HomeScreen() {
     }
   }, [isSearch, renderSearch, news])
 
+  const renderDetails = useCallback(() => {
+      return <ScrollView 
+                accessible
+                accessibilityLabel="recent results"
+                accessibilityHint="recent results"
+                accessibilityRole="scrollbar"
+                style={$scrollContainer}
+              >
+                <Pressable>
+                  <Details issData={issData[issMarkerIndex]} observer={location} />
+                </Pressable>
+              </ScrollView>
+  }, [issData, issMarkerIndex, location])
+
+  const renderTab = (type: string) => {
+    switch (type) {
+      case 'about': return renderStatic()
+      case 'news': return renderBody()
+      case 'details': return renderDetails()
+      default: return renderStatic()
+    }
+  }
+
   return (
     <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
       <View style={$headerContainer}>
@@ -220,7 +304,7 @@ export const Resources = observer(function HomeScreen() {
       </View>
       <View style={$horizontalScrollContainer}>
         <ScrollView horizontal style={$horizontalScrollContainer}>
-          {['about', 'news'].map(item => <Button
+          {['about', 'news', 'details'].map(item => <Button
             key={item}
             accessible
             accessibilityLabel={`${item} button`}
@@ -233,7 +317,7 @@ export const Resources = observer(function HomeScreen() {
           />)}
         </ScrollView>
       </View>
-      {type === 'news' ? renderBody() : renderStatic()}
+      {renderTab(type)}
     </Screen>
   )
 })
@@ -300,7 +384,7 @@ const $scrollContainer: ViewStyle = {
 }
 
 const $horizontalScrollContainer: ViewStyle = { 
-  width: '100%',
+  // width: '100%',
   height: scale(80),
   marginTop: scale(10)
 }
@@ -315,7 +399,7 @@ const $searchField: ViewStyle = {
 }
 
 const $button: ViewStyle = {
-  width: '40%',
+  width: 'auto',
   height: scale(46),
   minHeight: scale(40),
   backgroundColor: 'transparent',
@@ -334,5 +418,6 @@ const $buttonText: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
   lineHeight: lineHeights[22],
-  textTransform: 'capitalize'
+  textTransform: 'capitalize',
+  textAlignVertical: 'center'
 }
