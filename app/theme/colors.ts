@@ -43,6 +43,7 @@ const palette = {
 
   buttonBlue: "#0B3D91",
   green: "#11CE69",
+  yellow: "yellow",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",

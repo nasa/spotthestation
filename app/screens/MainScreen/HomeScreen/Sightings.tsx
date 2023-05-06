@@ -32,12 +32,12 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
     return formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)
   }
 
-  const setStageIcon = (stage): IconTypes => {
+  const setStageIcon = (stage): { icon: IconTypes, color: string} => {
     switch(stage) {
-      case 0: return 'moon'
-      case 1: return 'sunset'
-      case 2: return 'sun'
-      default: return 'sunset'
+      case 0: return { icon: 'moon', color: colors.palette.neutral450 }
+      case 1: return { icon: 'sunset', color: colors.palette.nasaOrange }
+      case 2: return { icon: 'sun', color: colors.palette.yellow }
+      default: return { icon: 'sunset', color: colors.palette.nasaOrange }
     }
   }
 

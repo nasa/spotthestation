@@ -11,7 +11,7 @@ export interface ListItemProps {
   title: string
   subtitle: string
   icon: IconTypes
-  secondIcon?: IconTypes
+  secondIcon?: { icon: IconTypes, color: string}
   ctaTx?: TxKeyPath
   onToggle?: () => void
   onPress?: PressableProps["onPress"]
@@ -30,7 +30,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
     >
       <View>
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
-        {secondIcon && <Icon icon={secondIcon} size={24} color={colors.palette.neutral450} />}
+        {secondIcon && <Icon icon={secondIcon.icon} size={24} color={secondIcon.color} />}
       </View>
       <View style={$bodyContainer}>
         <View 

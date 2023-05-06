@@ -100,6 +100,7 @@ const RootStoreActions = (self) => ({
   setNewSavedLocation: flow(function* setNewSavedLocation(value: LocationType) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
+    self.savedLocations = [...self.savedLocations, valueCopy]
     const {
       data, ok,
     } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })    
@@ -107,7 +108,7 @@ const RootStoreActions = (self) => ({
     if (ok) {
       valueCopy.sightings = [...data]
       
-      self.savedLocations = [...self.savedLocations, valueCopy]
+      self.savedLocations = [...self.savedLocations.filter(item => item.title !== valueCopy.title), valueCopy]
 
       Snackbar.show({
         text: 'Sightings for last saved location loaded!',

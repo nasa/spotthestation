@@ -12,10 +12,10 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React from "react"
+import React, { useEffect } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
-import { RootStoreProvider, useInitialRootStore, RootStoreModel } from "./models"
+import { RootStoreProvider, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
@@ -23,6 +23,8 @@ import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import {enableLatestRenderer} from 'react-native-maps'
+import { Platform } from "react-native"
+import { check, PERMISSIONS, request, RESULTS } from "react-native-permissions"
 
 enableLatestRenderer()
 
@@ -68,6 +70,20 @@ interface AppProps {
   hideSplashScreen: () => Promise<void>
 }
 
+async function checkCameraPermissions() {
+  if (Platform.OS === 'android') {
+    const result = await check(PERMISSIONS.ANDROID.CAMERA)
+    if (result === RESULTS.DENIED) {
+      await request(PERMISSIONS.ANDROID.CAMERA)
+    }
+  } else if (Platform.OS === 'ios') {
+    const result = await check(PERMISSIONS.IOS.CAMERA) 
+    if (result !== RESULTS.GRANTED) {
+      await request(PERMISSIONS.IOS.CAMERA)
+    }
+  }
+}
+
 /**
  * This is the root component of our app.
  */
@@ -89,6 +105,7 @@ function App(props: AppProps) {
     // Note: (vanilla Android) The splash-screen will not appear if you launch your app via the terminal or Android Studio. Kill the app and launch it normally by tapping on the launcher icon. https://stackoverflow.com/a/69831106
     // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
     setTimeout(hideSplashScreen, 500)
+    checkCameraPermissions().catch(e => console.log(e))
   })
 
   // Before we show the app, we have to wait for our state to be ready.
