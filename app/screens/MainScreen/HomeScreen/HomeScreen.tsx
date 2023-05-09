@@ -169,6 +169,7 @@ export const HomeScreen = observer(function HomeScreen() {
       }
     }
     setAddress(subtitle)
+    
     if (lat && lng) setLocation([lat, lng])
   }
 
@@ -199,13 +200,19 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
+    console.log(location)
     setAddress(location.subtitle)
     setCurrent(location)
     setIsLocation(false)
-    setSelectedLocation(location)
+    
+    setSelectedLocation(location).catch((e) => console.log(e))
+    console.log(1)
+    
     await storage.save('selectedLocation', location)
-    getLocation(selectedLocation, currentLocation)
-  }, [selectedLocation, currentLocation])
+    console.log(2)
+    
+    getLocation(location, currentLocation)
+  }, [currentLocation])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
     setISSSightings({...current, sightings: current.sightings.map(item => {

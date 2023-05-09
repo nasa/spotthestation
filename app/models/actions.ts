@@ -89,9 +89,17 @@ const RootStoreActions = (self) => ({
 		self.currentLocation = JSON.parse(JSON.stringify(value))
 	},
   
-  setSelectedLocation: (value: LocationType) => {
-		self.selectedLocation = JSON.parse(JSON.stringify(value))
-	},
+  setSelectedLocation: flow(function* setSelectedLocation(value: LocationType) {
+    const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
+    // const { timeZone } = yield getCurrentTimeZome(valueCopy)
+    self.selectedLocation = valueCopy
+    // const {
+    //   data, ok,
+    // } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
+    // if (ok) {
+		// self.selectedLocation = { ...valueCopy, sightings: data }
+    // }
+  }),
 
   setSavedLocations: (values: LocationType[]) => {
 		self.savedLocations = JSON.parse(JSON.stringify(values))
