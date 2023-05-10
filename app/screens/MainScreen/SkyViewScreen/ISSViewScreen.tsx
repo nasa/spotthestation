@@ -340,10 +340,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
   const onShare = async (url?: string,) => {
-    let shareOptions = {
+    let shareOptions = url ? {
       title: 'Share file',
       failOnCancel: false,
       urls: [url],
+    } : {
+      message: 'Capture this moment',
+      failOnCancel: false,
+      url
     }
 
     if (url.split('.').pop() === 'mp4') shareOptions = {...shareOptions, type: 'video/mp4'}
@@ -442,9 +446,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessible
                   accessibilityLabel="share"
                   accessibilityHint="open share modal"
-                  icon="share" 
-                  disabled={!mediaUrl}
-                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }, !mediaUrl && $disabled]}
+                  icon="share"
+                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   onPress={() => onShare(mediaUrl)} 
                 /> 
                 <IconLinkButton 
@@ -611,8 +614,4 @@ const $stop: TextStyle = {
   lineHeight: lineHeights[16],
   color: colors.palette.neutral100,
   textTransform: "uppercase",
-}
-
-const $disabled: ViewStyle = {
-  opacity: .25
 }

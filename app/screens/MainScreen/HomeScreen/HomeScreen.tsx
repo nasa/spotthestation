@@ -69,11 +69,11 @@ export const HomeScreen = observer(function HomeScreen() {
   const startCountdown = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
     intervalRef.current = setInterval(() => timeDiff(setCountdown), 1000)
-  }, [current, timeDiff])
+  }, [result, timeDiff])
 
   useEffect(() => {
     startCountdown()
-  }, [current, startCountdown, timeDiff])
+  }, [result, startCountdown, timeDiff])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -151,7 +151,7 @@ export const HomeScreen = observer(function HomeScreen() {
     getCoach().catch((e) => console.log(e))
   }, [])
 
-  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
+  const getLocation = useCallback(() => {
     let lat: number
     let lng: number
     let subtitle: string
@@ -171,7 +171,7 @@ export const HomeScreen = observer(function HomeScreen() {
     setAddress(subtitle)
     
     if (lat && lng) setLocation([lat, lng])
-  }
+  }, [selectedLocation, currentLocation])
 
   const getSightings = async (value: [number,number]) => {
     const { timeZone, regionFormat } = await getCurrentTimeZome()
@@ -184,8 +184,8 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   useEffect(() => {
-    getLocation(selectedLocation, currentLocation)
-  }, [selectedLocation, currentLocation])
+    getLocation()
+  }, [selectedLocation, currentLocation, getLocation])
 
   useEffect(() => {
     if (!location) return
@@ -200,19 +200,12 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
-    console.log(location)
     setAddress(location.subtitle)
     setCurrent(location)
     setIsLocation(false)
-    
-    setSelectedLocation(location).catch((e) => console.log(e))
-    console.log(1)
-    
+    setSelectedLocation(location).then(() => getLocation()).catch((e) => console.log(e))
     await storage.save('selectedLocation', location)
-    console.log(2)
-    
-    getLocation(location, currentLocation)
-  }, [currentLocation])
+  }, [getLocation])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
     setISSSightings({...current, sightings: current.sightings.map(item => {
