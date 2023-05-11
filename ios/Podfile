@@ -19,6 +19,7 @@ target 'STSApp' do
       Pod::UI.warn e
     end
   end
+
   config = use_native_modules!
 
   pre_install do |installer|

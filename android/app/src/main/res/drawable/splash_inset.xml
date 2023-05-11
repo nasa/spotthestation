@@ -1,0 +1,7 @@
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+  android:drawable="@drawable/splashscreen_image"
+  android:insetLeft="35dp"
+  android:insetRight="35dp"
+  android:insetTop="35dp"
+  android:insetBottom="35dp"
+/>
