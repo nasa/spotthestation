@@ -3,6 +3,7 @@
 import { Locale, format, parseISO } from "date-fns"
 import I18n from "i18n-js"
 import { getLocales, getCalendars } from 'expo-localization'
+import moment from 'moment-timezone'
 
 import ar from "date-fns/locale/ar-SA"
 import ko from "date-fns/locale/ko"
@@ -49,6 +50,10 @@ const getLocation = async () => {
   const location: LocationType = await storage.load('selectedLocation')
   if (!location) return storage.load('currentLocation')
   return location
+}
+
+export const getShortTZ = (timeZone: string) => {
+  return moment.tz(new Date(), timeZone).format('z')
 }
 
 export const getCurrentTimeZome = async (value?: LocationType) => {

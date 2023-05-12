@@ -15,21 +15,22 @@ export interface SightingsProps {
   sightings: ISSSighting[]
   isUS?: boolean
   isNotifyAll?: boolean
+  timezone?: string
   onClose?: PressableProps["onPress"]
   onToggle?: (values: ISSSighting) => void
   onToggleAll?: (value: boolean) => void
 }
 
-export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isNotifyAll }: SightingsProps) {
+export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isNotifyAll, timezone }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
     
-    if (isToday(new Date(date))) return `Today, ${formatDate(date, timeFormat)}`
-    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, timeFormat)}`
-    return formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)
+    if (isToday(new Date(date))) return `Today, ${formatDate(date, timeFormat)} ${timezone}`
+    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, timeFormat)} ${timezone}`
+    return `${formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)} ${timezone}`
   }
 
   const setStageIcon = (stage): { icon: IconTypes, color: string} => {

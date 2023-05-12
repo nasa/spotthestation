@@ -8,7 +8,7 @@ import Modal from "react-native-modal"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
 import { colors, scale } from "../../../theme"
-import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
@@ -63,7 +63,7 @@ export const HomeScreen = observer(function HomeScreen() {
     setCurrentSightning(result[0])
     const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
-    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
+    callback(formatTimer(diff, new Date(result[0].date).getUTCDate() >= new Date().getUTCDate() ? 'T - ' : 'T + '))
   }, [result])
 
   const startCountdown = useCallback(() => {
@@ -331,6 +331,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone?.regionFormat === 'US'}
           isNotifyAll={current && current?.sightings.every(item => item.notify)}
+          timezone={getShortTZ(currentTimeZone?.timeZone)}
         />
       </Modal>}
       {coachVisible && <Modal
