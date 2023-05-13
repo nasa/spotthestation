@@ -120,6 +120,18 @@ export class Api {
 
     return { kind: "ok", places: response.data }
   }
+
+  async sendMail(subject: string, body: string) {
+    const response: ApiResponse<any> = await this.apisauce.post("/mailer/send-mail", { subject, body }, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
+    
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return response.data
+  }
 }
 
 // Singleton instance of the API for convenience

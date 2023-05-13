@@ -4,13 +4,15 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
-import email from 'react-native-email'
+// import email from 'react-native-email'
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import DeviceInfo from 'react-native-device-info'
+import Snackbar from "react-native-snackbar"
 import { Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
-import Config from "../../../config"
+// import Config from "../../../config"
+import { api } from "../../../services/api"
 
 
 export const ContactUsScreen = observer(function ContactUsScreen() {
@@ -24,11 +26,35 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
   }
 
   const handleSend = useCallback(() => {
-    email(Config.CONTACT_EMAIL, {
-      subject: `Spot the Station Mobile App: ${title}`,
-      body: `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\nThank you.\nSpotTheStation Mobile App`,
-      checkCanOpen: false
-    }).catch(console.error)
+    // email(Config.CONTACT_EMAIL, {
+    //   subject: `Spot the Station Mobile App: ${title}`,
+    //   body: ,
+    //   checkCanOpen: false
+    // }).catch(console.error)
+    api.sendMail(
+      `Spot the Station Mobile App: ${title}`,
+      `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\nThank you.\nSpotTheStation Mobile App`
+      ).then(data => Snackbar.show({
+        text: data,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Ok',
+          textColor: 'green',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })).catch(e => Snackbar.show({
+        text: e,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: 'Ok',
+          textColor: 'red',
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      }))
   }, [title, comments])
 
   return (

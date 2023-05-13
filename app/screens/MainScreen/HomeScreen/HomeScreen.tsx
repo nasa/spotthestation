@@ -159,13 +159,13 @@ export const HomeScreen = observer(function HomeScreen() {
       lat = selectedLocation.location.lat
       lng = selectedLocation.location.lng
       subtitle = selectedLocation.subtitle
-      setCurrent(selectedLocation)
+      setCurrent(JSON.parse(JSON.stringify(selectedLocation)) as LocationType)
     } else {
       if (currentLocation) {
         lat = currentLocation.location.lat
         lng = currentLocation.location.lng
         subtitle = currentLocation.subtitle
-        setCurrent(currentLocation)
+        setCurrent(JSON.parse(JSON.stringify(currentLocation)) as LocationType)
       }
     }
     setAddress(subtitle)
@@ -244,7 +244,7 @@ export const HomeScreen = observer(function HomeScreen() {
         icon="globe"
         title="homeScreen.coachMarks.globeTitle"
         bodyText="homeScreen.coachMarks.globeData"
-        style={{ marginTop: normalizeHeight(.5) }}
+        style={{ marginTop: normalizeHeight(.4) }}
         stage={stage} 
         onPressFinish={handleSetCoachCompleted} 
         onPressNext={() => setStage(stage + 1)} 
@@ -253,7 +253,7 @@ export const HomeScreen = observer(function HomeScreen() {
         icon="map"
         title="homeScreen.coachMarks.mapTitle"
         bodyText="homeScreen.coachMarks.mapData"
-        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.05) : normalizeHeight(.18) }}
+        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.15) : normalizeHeight(.28) }}
         stage={stage} 
         onPressFinish={handleSetCoachCompleted} 
         onPressNext={() => setStage(stage + 1)} 
@@ -262,7 +262,7 @@ export const HomeScreen = observer(function HomeScreen() {
         icon="list"
         title="homeScreen.coachMarks.navigationTitle"
         bodyText="homeScreen.coachMarks.navigationData"
-        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.33) : normalizeHeight(.45) }}
+        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.38) : normalizeHeight(.52) }}
         stage={stage} 
         onPressFinish={handleSetCoachCompleted} 
         onPressNext={() => setStage(stage + 1)} 

@@ -5,7 +5,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -27,7 +27,6 @@ import { autorun } from "mobx"
 import RecordScreen, { RecordingResult } from 'react-native-record-screen'
 import CameraRoll from "@react-native-community/cameraroll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
-import { ISSSighting } from "../../../services/api"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 export interface ISSViewScreenRouteProps {
@@ -75,7 +74,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const { currentLocation, selectedLocation, sightings, issData, getISSSightings, getISSData } = useStores()
+  const { currentLocation, selectedLocation, issData, getISSSightings, getISSData } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isDetails, setIsDetails] = useState(false)
@@ -87,29 +86,34 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
   const [mediaUrl, setMediaUrl] = useState('')
+  const [current, setCurrent] = useState<LocationType>(null)
+
+  const intervalRef = useRef<NodeJS.Timeout>(null)
   const arView = useRef<ViroARSceneNavigator>()
 
-  const timeDiff = useCallback((callback: (diff: string) => void) => {
-    const events: ISSSighting[] = sightings.filter(item => item.notify)
-    const eventsList = events?.length ? events : sightings
-    const result: ISSSighting[] = eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000))
-   
-    if (result.length === 0) return
+  const events = useMemo(() => current?.sightings?.filter(item => item.notify) || [], [current?.sightings])
+  const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
 
+  const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000)), [eventsList])
+  
+  const timeDiff = useCallback((callback: (diff: string) => void) => {
+    if (result.length === 0) {
+      setCountdown("T - 00:00:00:00")
+      return
+    }
     const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
-    
-    callback(formatTimer(diff, new Date(result[0].date).getTime() >= new Date().getTime() ? 'T - ' : 'T + '))
-  }, [sightings])
+    callback(formatTimer(diff, new Date(result[0].date).getUTCDate() >= new Date().getUTCDate() ? 'T - ' : 'T + '))
+  }, [result])
 
   const startCountdown = useCallback(() => {
-    timeDiff(setCountdown)
-    setInterval(() => timeDiff(setCountdown), 1000)
-  }, [countdown, sightings])
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => timeDiff(setCountdown), 1000)
+  }, [result, timeDiff])
 
   useEffect(() => {
     startCountdown()
-  }, [sightings])
+  }, [result, startCountdown, timeDiff])
 
   useEffect(() => {
     checkCameraPermissions((value: boolean) => { setIsCameraAllowed(value); setIsFullScreen(value) })
@@ -162,20 +166,23 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     autorun(() => updateIssPath())
   }, [])
 
-  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
+  const getLocation = useCallback(() => {
     let lat: number
     let lng: number
     if (selectedLocation) {
       lat = selectedLocation.location.lat
       lng = selectedLocation.location.lng
+      setCurrent(JSON.parse(JSON.stringify(selectedLocation)) as LocationType)
     } else {
       if (currentLocation) {
         lat = currentLocation.location.lat
         lng = currentLocation.location.lng
+        setCurrent(JSON.parse(JSON.stringify(currentLocation)) as LocationType)
       }
     }
+    
     if (lat && lng) setLocation([lat, lng])
-  }
+  }, [selectedLocation, currentLocation])
 
   const getSightings = async () => {
     const { timeZone } = await getCurrentTimeZome()
@@ -187,8 +194,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   useEffect(() => {
-    getLocation(selectedLocation, currentLocation)
-  }, [currentLocation, selectedLocation])
+    getLocation()
+  }, [selectedLocation, currentLocation, getLocation])
 
   useEffect(() => {
     return () => { 

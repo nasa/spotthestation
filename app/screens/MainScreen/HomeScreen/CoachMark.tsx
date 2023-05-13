@@ -125,7 +125,7 @@ const $sightings: ViewStyle = {
 }
 const $globe: ViewStyle = {
   position: "absolute",
-  top: -normalizeHeight(.3),
+  top: -normalizeHeight(.2),
   right: 0,
   transform: [{ rotate: "-130deg" }]
 }

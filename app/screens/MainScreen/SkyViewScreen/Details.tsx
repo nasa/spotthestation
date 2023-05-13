@@ -94,22 +94,12 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.altitude" style={$detailTitle} />
             <Text text={issData.elevation.toFixed(2)} style={$detailValue} />
           </View>
-          <View 
-            accessible
-            accessibilityLabel="crew On board"
-            accessibilityHint="crew On board"
-            accessibilityRole="text"
-            style={$detailBox}
-          >
-            <Text tx="issView.details.crewOnboard" style={$detailTitle} />
-            <Text text="7" style={$detailValue} />
-          </View>
         </View>
         <View style={$buttonsContainer}>
           <View 
             accessible
-            accessibilityLabel="launched"
-            accessibilityHint="launched"
+            accessibilityLabel="Assembly Began"
+            accessibilityHint="Assembly Began"
             accessibilityRole="text"
             style={$detailRow}
           >
@@ -118,8 +108,18 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           </View>
           <View 
             accessible
-            accessibilityLabel="mass"
-            accessibilityHint="mass"
+            accessibilityLabel="crew On board"
+            accessibilityHint="crew On board"
+            accessibilityRole="text"
+            style={$detailRow}
+          >
+            <Text tx="issView.details.crewOnboard" style={$detailRowTitle} />
+            <Text text="7" style={$detailRowValue} />
+          </View>
+          <View 
+            accessible
+            accessibilityLabel="Estimated mass"
+            accessibilityHint="Estimated mass"
             accessibilityRole="text"
             style={$detailRow}
           >
@@ -128,8 +128,8 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           </View>
           <View 
             accessible
-            accessibilityLabel="length"
-            accessibilityHint="length"
+            accessibilityLabel="Estimated length"
+            accessibilityHint="Estimated length"
             accessibilityRole="text"
             style={$detailRow}
           >
@@ -158,22 +158,22 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           </View>
           <View 
             accessible
-            accessibilityLabel="launched"
-            accessibilityHint="launched"
+            accessibilityLabel="Orbital Decay"
+            accessibilityHint="Orbital Decay"
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="issView.details.launched" style={$detailRowTitle} />
+            <Text tx="issView.details.orbitalDecay" style={$detailRowTitle} />
             <Text text="2 km / month" style={$detailRowValue} />
           </View>
           <View 
             accessible
-            accessibilityLabel="launched"
-            accessibilityHint="launched"
+            accessibilityLabel="No. of orbits"
+            accessibilityHint="No. of orbits"
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="issView.details.launched" style={$detailRowTitle} />
+            <Text tx="issView.details.noOfOrbits" style={$detailRowTitle} />
             <Text text={`133,312\n(as of June 2022)`} style={$detailRowValue} />
           </View>
         </View>
