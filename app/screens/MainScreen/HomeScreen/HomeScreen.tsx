@@ -21,7 +21,6 @@ import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
-import { autorun } from "mobx"
 import { useNavigation } from "@react-navigation/native"
 
 export interface HomeScreenRouteProps {
@@ -88,7 +87,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [issMarkerPosition, setIssMarkerPosition] = useState(null)
   const updateTimer = useRef<NodeJS.Timer>()
 
-  function updateIssPath() {
+  const updateIssPath = useCallback(() => {
     let currentPositionIdx = 0
 
     if (issData.length === 0) {
@@ -137,11 +136,11 @@ export const HomeScreen = observer(function HomeScreen() {
 
     clearTimeout(updateTimer.current)
     updateTimer.current = setTimeout(updateIssPath, 30000)
-  }
+  }, [issData])
 
   useEffect(() => {
-    autorun(() => updateIssPath())
-  }, [])
+    updateIssPath()
+  }, [updateIssPath])
 
   const getCoach = async () => {
     setCoachVisible(!(await storage.load('coachCompleted')))
@@ -203,6 +202,7 @@ export const HomeScreen = observer(function HomeScreen() {
     setAddress(location.subtitle)
     setCurrent(location)
     setIsLocation(false)
+    setLocation([location.location.lat, location.location.lng])
     setSelectedLocation(location).then(() => getLocation()).catch((e) => console.log(e))
     await storage.save('selectedLocation', location)
   }, [getLocation])
