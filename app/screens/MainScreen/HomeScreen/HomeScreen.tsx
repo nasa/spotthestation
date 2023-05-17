@@ -22,6 +22,7 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
+import { autorun } from "mobx"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -87,7 +88,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [issMarkerPosition, setIssMarkerPosition] = useState(null)
   const updateTimer = useRef<NodeJS.Timer>()
 
-  const updateIssPath = useCallback(() => {
+  function updateIssPath() {
     let currentPositionIdx = 0
 
     if (issData.length === 0) {
@@ -136,11 +137,11 @@ export const HomeScreen = observer(function HomeScreen() {
 
     clearTimeout(updateTimer.current)
     updateTimer.current = setTimeout(updateIssPath, 30000)
-  }, [issData])
+  }
 
   useEffect(() => {
-    updateIssPath()
-  }, [updateIssPath])
+    autorun(() => updateIssPath())
+  }, [])
 
   const getCoach = async () => {
     setCoachVisible(!(await storage.load('coachCompleted')))
@@ -200,7 +201,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
     setAddress(location.subtitle)
-    setCurrent(location)
+    setCurrent(JSON.parse(JSON.stringify(location)) as LocationType)
     setIsLocation(false)
     setLocation([location.location.lat, location.location.lng])
     setSelectedLocation(location).then(() => getLocation()).catch((e) => console.log(e))
