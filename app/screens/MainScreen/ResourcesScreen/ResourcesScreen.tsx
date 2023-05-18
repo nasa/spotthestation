@@ -247,7 +247,10 @@ export const Resources = observer(function HomeScreen() {
                 style={$scrollContainer}
               >
                 <Pressable>
-                  <Details issData={issData[issMarkerIndex]} observer={location} />
+                  <Details 
+                    issData={issData[issMarkerIndex] || { date: new Date().toDateString(), latitude: 0, longitude: 0, azimuth: 0, elevation: 0 } } 
+                    observer={location} 
+                  />
                 </Pressable>
               </ScrollView>
   }, [issData, issMarkerIndex, location])

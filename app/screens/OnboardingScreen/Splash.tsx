@@ -20,7 +20,12 @@ export function Splash() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
-    if ((!await storage.load("userId"))) await storage.save("userId", getUserId())
+    if ((!await storage.load("userId"))) {
+      await storage.save("userId", getUserId())
+      setTimeout(() => {
+        handleNavigate()
+      }, 3000)
+    }
   }
 
   useEffect(() => {

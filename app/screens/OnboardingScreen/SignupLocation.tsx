@@ -146,6 +146,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             container: { flex: 0, }
           }}
           textInputProps={{
+            allowFontScaling: false,
             placeholderTextColor: colors.palette.neutral450,
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
