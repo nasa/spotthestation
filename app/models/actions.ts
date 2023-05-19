@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { detach, flow, getType } from 'mobx-state-tree'
+import { flow } from 'mobx-state-tree'
 import Snackbar from 'react-native-snackbar'
 import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
 import { api } from '../services/api'
@@ -152,7 +152,7 @@ const RootStoreActions = (self) => ({
       } = yield api.getISSData(params)
 
       if (ok) {
-        self.issData = getType(detach(self.issData)).create(data)
+        self.issData = data
       } else {
         Snackbar.show({
           text: data as string,

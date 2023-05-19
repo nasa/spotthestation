@@ -20,21 +20,31 @@ import { autorun } from "mobx"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { Details } from "../SkyViewScreen/Details"
 
-const items = [{
-  tags: ['history'],
-  title: "Expedition 68 Welcomes Crew-6 Members Aboard Station",
-  date: "2023-03-03T00:00:00.000000",
-  image: "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/03/blog_crew_crew_greeting.jpg",
-  type: "event",
-  link: 'https://blogs.nasa.gov/spacestation/2023/03/03/expedition-68-welcomes-crew-6-members-aboard-station/'
-}, {
-  tags: ['history'],
-  title: "International Space Station Facts and Figures",
-  date: "2023-01-04T00:00:00.000000",
-  image: "https://www.nasa.gov/sites/default/files/thumbnails/image/iss-blowout_updated_view-web-version-010323.png",
-  type: "event",
-  link: 'https://www.nasa.gov/feature/facts-and-figures'
-}]
+const items = [
+  {
+    tags: [],
+    title: "ISS Overview",
+    image: "https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/iss_05-12-23b.jpg?itok=JEHUinxe",
+    type: "event",
+    link: 'https://www.nasa.gov/mission_pages/station/overview/index.html'
+  },
+  {
+    tags: ['history'],
+    title: "International Space Station Facts and Figures",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://www.nasa.gov/sites/default/files/thumbnails/image/iss-blowout_updated_view-web-version-010323.png",
+    type: "event",
+    link: 'https://www.nasa.gov/feature/facts-and-figures'
+  },
+  {
+    tags: ['history'],
+    title: "ISS Crews and Expeditions",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://www.nasa.gov/sites/default/files/thumbnails/image/jsc2021e064218_alt.jpg",
+    type: "event",
+    link: 'https://www.nasa.gov/mission_pages/station/expeditions/index.html'
+  }
+]
 
 const suggestions = ['NASA Upcoming Missons', 'Interviews of the Week', 'ARTEMIS II']
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable n/no-callback-literal */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -406,7 +408,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
           <Text tx="issView.cameraPermissionText" style={$time} />
         </Pressable> : <View style={[$body, $bodyStyleOverride]}>
-            { Boolean(issMarkerPosition) && (
+            {Boolean(issMarkerPosition) && (
               <ARView
                 ref={arView}
                 isFullScreen={isFullScreen}

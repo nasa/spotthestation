@@ -104,7 +104,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.launched" style={$detailRowTitle} />
-            <Text text={`20 November 1998 (${(new Date().getFullYear()) - (new Date('1998-11-20').getFullYear())} yrs ago)`} style={$detailRowValue} />
+            <Text text="20 November 1998" style={$detailRowValue} />
           </View>
           <View 
             accessible
@@ -124,7 +124,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.mass" style={$detailRowTitle} />
-            <Text text="444,615 kg" style={$detailRowValue} />
+            <Text text="462,000 kg" style={$detailRowValue} />
           </View>
           <View 
             accessible

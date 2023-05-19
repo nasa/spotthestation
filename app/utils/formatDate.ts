@@ -41,9 +41,11 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
   const endDate = new Date(date)
   endDate.setHours(endHours, endMinutes, endSeconds, 0)
   
-  if (startHours === endHours || startMinutes === endMinutes || startSeconds === endSeconds) return false
+  if (startHours === endHours && startMinutes === endMinutes && startSeconds === endSeconds) return false
+  
+  if (endDate < startDate) endDate.setDate(endDate.getDate() + 1)
 
-  return date >= startDate || date < endDate
+  return date >= startDate && date < endDate
 }
 
 const getLocation = async () => {
