@@ -212,16 +212,20 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [getLocation])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
-    setISSSightings({...current, sightings: current.sightings.map(item => {
+    const updated = {...current, sightings: current.sightings.map(item => {
       if (item.date === value.date) {
         return {...item, notify: !item.notify}
       }
       return item
-    })})
+    })}
+    setISSSightings(updated)
+    setCurrent(updated)
   }, [current])
 
   const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
-    setISSSightings({...current, sightings: current.sightings.map(item => ({...item, notify}))})
+    const updated = {...current, sightings: current.sightings.map(item => ({...item, notify}))}
+    setISSSightings(updated)
+    setCurrent(updated)
   }, [current])
 
   const renderCoachMarks = useCallback(() => {

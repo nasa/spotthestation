@@ -61,6 +61,7 @@ export interface OrbitPoint {
   longitude: number,
   azimuth: number,
   elevation: number,
+  altitude: number,
 }
 
 export interface ISSDataResponse {

@@ -191,7 +191,7 @@ const en = {
       crewOnboard: "Crew onboard",
       launched: "Assembly Began",
       mass: "Estimated Mass",
-      length: "Estimated Length",
+      dimensions: "Estimated Dimensions",
       orbitalPeriod: "Orbital Period",
       orbitsPerDay: "Orbits/Day",
       orbitalDecay: "Orbital Decay",

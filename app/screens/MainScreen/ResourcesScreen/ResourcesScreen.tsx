@@ -258,7 +258,7 @@ export const Resources = observer(function HomeScreen() {
               >
                 <Pressable>
                   <Details 
-                    issData={issData[issMarkerIndex] || { date: new Date().toDateString(), latitude: 0, longitude: 0, azimuth: 0, elevation: 0 } } 
+                    issData={issData[issMarkerIndex] || { date: new Date().toDateString(), latitude: 0, longitude: 0, azimuth: 0, elevation: 0, altitude: 0 } } 
                     observer={location} 
                   />
                 </Pressable>

@@ -92,7 +92,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text text={issData.elevation.toFixed(2)} style={$detailValue} />
+            <Text text={issData.altitude.toFixed(2)} style={$detailValue} />
           </View>
         </View>
         <View style={$buttonsContainer}>
@@ -128,13 +128,13 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           </View>
           <View 
             accessible
-            accessibilityLabel="Estimated length"
-            accessibilityHint="Estimated length"
+            accessibilityLabel="Estimated dimensions"
+            accessibilityHint="Estimated dimensions"
             accessibilityRole="text"
             style={$detailRow}
           >
-            <Text tx="issView.details.length" style={$detailRowTitle} />
-            <Text text="73.0 m" style={$detailRowValue} />
+            <Text tx="issView.details.dimensions" style={$detailRowTitle} />
+            <Text text="109m wide x 73m long x 14m tall" style={$detailRowValue} />
           </View>
           <View 
             accessible

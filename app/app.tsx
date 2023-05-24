@@ -84,6 +84,20 @@ async function checkCameraPermissions() {
   }
 }
 
+async function checkMicrophonePermissions() {
+  if (Platform.OS === 'android') {
+    const result = await check(PERMISSIONS.ANDROID.RECORD_AUDIO)
+    if (result === RESULTS.DENIED) {
+      await request(PERMISSIONS.ANDROID.RECORD_AUDIO)
+    }
+  } else if (Platform.OS === 'ios') {
+    const result = await check(PERMISSIONS.IOS.MICROPHONE) 
+    if (result !== RESULTS.GRANTED) {
+      await request(PERMISSIONS.IOS.MICROPHONE)
+    }
+  }
+}
+
 /**
  * This is the root component of our app.
  */
@@ -106,6 +120,7 @@ function App(props: AppProps) {
     // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
     setTimeout(hideSplashScreen, 500)
     checkCameraPermissions().catch(e => console.log(e))
+    checkMicrophonePermissions().catch(e => console.log(e))
   })
 
   // Before we show the app, we have to wait for our state to be ready.

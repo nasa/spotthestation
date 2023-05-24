@@ -55,6 +55,25 @@ async function checkCameraPermissions(callback: (value: boolean) => void) {
   }
 }
 
+async function checkMicrophonePermissions(callback: (value: boolean) => void) {
+  if (Platform.OS === 'android') {
+    const result = await check(PERMISSIONS.ANDROID.RECORD_AUDIO)
+    if (result === RESULTS.GRANTED) {
+      callback(true)
+    } else if (result === RESULTS.DENIED) {
+      callback(false)
+    }
+  } else if (Platform.OS === 'ios') {
+    const permission = PERMISSIONS.IOS.MICROPHONE
+    const permissionStatus = await check(permission)
+    if (permissionStatus === RESULTS.GRANTED) {
+      callback(true)
+    } else {
+      callback(false)
+    } 
+  }
+}
+
 async function requestCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === 'android') {
     const permissionResult = await request(PERMISSIONS.ANDROID.CAMERA)
@@ -81,6 +100,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isDetails, setIsDetails] = useState(false)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
+  const [isMicrophoneAllowed, setIsMicrophoneAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
   const [isRecording, setIsRecording] = useState(false)
@@ -119,6 +139,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     checkCameraPermissions((value: boolean) => { setIsCameraAllowed(value); setIsFullScreen(value) })
+  }, [])
+  
+  useEffect(() => {
+    checkMicrophonePermissions((value: boolean) => { setIsMicrophoneAllowed(value) })
   }, [])
 
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
@@ -247,9 +271,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
   }
 
-  const startRecording = async () => {
+  const startRecording = useCallback(async () => {
       setIsRecording(true)
-      const res = await RecordScreen.startRecording({ mic: false }).catch((error: any) => {
+      const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch((error: any) => {
         Snackbar.show({
           text: error,
           duration: Snackbar.LENGTH_LONG,
@@ -268,7 +292,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       }
 
       setRecordedSeconds(0)
-  }
+  }, [isMicrophoneAllowed])
 
   async function saveToGallery(path: string, type: "photo" | "video" | "auto") {
     if (Platform.OS === 'android') {
