@@ -92,7 +92,7 @@ export function MapBox({ style, withNightOverlay = true, zoomEnabled=false, zoom
               id="myShapeSourceMarkerPosition"
               style={{
                 iconImage: pinMarker,
-                iconSize: 1,
+                iconSize: .25,
               }}
             />
           </MapboxGL.ShapeSource>

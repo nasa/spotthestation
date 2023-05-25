@@ -36,7 +36,7 @@ export const getCurrentLocation = async (alert?: () => void): Promise<LocationTy
 
     const item = response[0]
 
-    const address = `${item?.streetNumber} ${item?.street}, ${item?.city}, ${item?.district || item?.region} ${item?.postalCode}, ${item?.country}`
+    const address = `${item?.streetNumber} ${item?.street}, ${item?.city}, ${item?.region || item?.subregion || item?.district} ${item?.postalCode}, ${item?.country}`
 
     return { title: item?.name === item?.streetNumber ? address : item?.name, subtitle: address, location: { lat: latitude, lng: longitude }, alert: false }
   }
