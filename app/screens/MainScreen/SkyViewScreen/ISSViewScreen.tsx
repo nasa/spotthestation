@@ -125,7 +125,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
     const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
     const diff = formatDuration(duration, { delimiter: ',' })
-    callback(formatTimer(diff, new Date(result[0].date).getUTCDate() >= new Date().getUTCDate() ? 'T - ' : 'T + '))
+    callback(formatTimer(diff, new Date(result[0].date).toISOString() >= new Date().toISOString() ? 'T - ' : 'T + '))
   }, [result])
 
   const startCountdown = useCallback(() => {

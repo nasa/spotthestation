@@ -91,7 +91,7 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
           >
-            {[...sightings].filter(item => new Date(item.date) > new Date(new Date().getTime() - (24 * 60 * 60 * 1000))).map((sighting: ISSSighting) =>
+            {[...sightings].filter(item => new Date(item.date) > new Date()).map((sighting: ISSSighting) =>
               <ListItem
                 key={sighting.date}
                 icon="clock"

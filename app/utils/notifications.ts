@@ -57,9 +57,9 @@ class Notifications {
               if (notifyBefore) {
                 PushNotification.localNotificationSchedule({
                   channelId: 'default-channel-id',
-                  title: `Spot the ISS in ${notifyBefore || 15} minutes!`,
-                  message: `The ISS is passing above you in ${notifyBefore || 15} minutes at ${location.title}`,
-                  date: new Date(eventDate.getTime() - (notifyBefore || 15) * 60000),
+                  title: `Spot the ISS in ${notifyBefore} minutes!`,
+                  message: `The ISS is passing above you in ${notifyBefore} minutes at ${location.title}`,
+                  date: new Date(eventDate.getTime() - notifyBefore * 60000),
                 })
               }
             }

@@ -57,6 +57,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       muteFrom: start ? new Date(start) : new Date(),
       muteUntil: end ? new Date(end) : new Date()
     })
+    await storage.save('notifyBefore', 15)
   }
 
   useEffect(() => {
