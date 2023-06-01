@@ -126,7 +126,7 @@ export class Api {
     
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return problem
+      if (problem) return {...problem, message: response?.originalError?.message ?? 'Some error occured!'}
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return

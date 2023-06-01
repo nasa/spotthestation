@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
@@ -27,17 +28,34 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     api.sendMail(
       `Spot the Station Mobile App: ${title}`,
       `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\nThank you.\nSpotTheStation Mobile App`
-      ).then(data => Snackbar.show({
-        text: data,
-        duration: Snackbar.LENGTH_LONG,
-        action: {
-          text: 'Ok',
-          textColor: 'green',
-          onPress: () => {
-            Snackbar.dismiss()
-          },
-        },
-      })).catch(e => Snackbar.show({
+      ).then(data => {
+        if (data.kind) {
+          Snackbar.show({
+            text: data.message,
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: 'Ok',
+              textColor: 'red',
+              onPress: () => {
+                Snackbar.dismiss()
+              },
+            },
+          })
+        } else {
+          Snackbar.show({
+            text: data,
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: 'Ok',
+              textColor: 'green',
+              onPress: () => {
+                Snackbar.dismiss()
+              },
+            },
+          })
+        }
+        
+      }).catch(e => Snackbar.show({
         text: e,
         duration: Snackbar.LENGTH_LONG,
         action: {

@@ -72,7 +72,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.longitude" style={$detailTitle} />
-            <Text text={issData.longitude.toFixed(2)} style={$detailValue} />
+            <Text text={issData.longitude ? issData.longitude.toFixed(2) : "0"} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -82,7 +82,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.latitude" style={$detailTitle} />
-            <Text text={issData.latitude.toFixed(2)} style={$detailValue} />
+            <Text text={issData.latitude ? issData.latitude.toFixed(2) : "0"} style={$detailValue} />
           </View>
           <View 
             accessible
@@ -92,7 +92,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text text={issData.altitude.toFixed(2)} style={$detailValue} />
+            <Text text={issData.altitude ? issData.altitude.toFixed(2) : "0"} style={$detailValue} />
           </View>
         </View>
         <View style={$buttonsContainer}>
