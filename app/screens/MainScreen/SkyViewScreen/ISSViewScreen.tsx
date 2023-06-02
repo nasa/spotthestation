@@ -43,6 +43,7 @@ async function checkCameraPermissions(callback: (value: boolean) => void) {
       callback(true)
     } else if (result === RESULTS.DENIED) {
       callback(false)
+      requestCameraPermissions(callback)
     }
   } else if (Platform.OS === 'ios') {
     const permission = PERMISSIONS.IOS.CAMERA
@@ -51,25 +52,7 @@ async function checkCameraPermissions(callback: (value: boolean) => void) {
       callback(true)
     } else {
       callback(false)
-    } 
-  }
-}
-
-async function checkMicrophonePermissions(callback: (value: boolean) => void) {
-  if (Platform.OS === 'android') {
-    const result = await check(PERMISSIONS.ANDROID.RECORD_AUDIO)
-    if (result === RESULTS.GRANTED) {
-      callback(true)
-    } else if (result === RESULTS.DENIED) {
-      callback(false)
-    }
-  } else if (Platform.OS === 'ios') {
-    const permission = PERMISSIONS.IOS.MICROPHONE
-    const permissionStatus = await check(permission)
-    if (permissionStatus === RESULTS.GRANTED) {
-      callback(true)
-    } else {
-      callback(false)
+      requestCameraPermissions(callback)
     } 
   }
 }
@@ -91,6 +74,35 @@ async function requestCameraPermissions(callback: (value: boolean) => void) {
   }
 }
 
+async function checkMicrophonePermissions(): Promise<boolean> {
+  if (Platform.OS === 'android') {
+    const result = await check(PERMISSIONS.ANDROID.RECORD_AUDIO)
+    if (result === RESULTS.GRANTED) {
+      return true
+    } else if (result === RESULTS.DENIED) {
+      return (await requestMicrophonePermissions()) === RESULTS.GRANTED
+    }
+  } else if (Platform.OS === 'ios') {
+    const permission = PERMISSIONS.IOS.MICROPHONE
+    const permissionStatus = await check(permission)
+    if (permissionStatus === RESULTS.GRANTED) {
+      return true
+    } else {
+      return (await requestMicrophonePermissions()) === RESULTS.GRANTED
+    } 
+  }
+  return false
+}
+
+async function requestMicrophonePermissions(): Promise<string> {
+  if (Platform.OS === 'android') {
+    return await request(PERMISSIONS.ANDROID.RECORD_AUDIO)
+  } else if (Platform.OS === 'ios') {
+    return await request(PERMISSIONS.IOS.MICROPHONE)
+  }
+  return ''
+}
+
 export const ISSViewScreen = observer(function ISSNowScreen() {
   const route: ISSViewScreenRouteProps  = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
@@ -100,7 +112,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isDetails, setIsDetails] = useState(false)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
-  const [isMicrophoneAllowed, setIsMicrophoneAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [countdown, setCountdown] = useState("00:00:00")
   const [isRecording, setIsRecording] = useState(false)
@@ -139,10 +150,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     checkCameraPermissions((value: boolean) => { setIsCameraAllowed(value); setIsFullScreen(value) })
-  }, [])
-  
-  useEffect(() => {
-    checkMicrophonePermissions((value: boolean) => { setIsMicrophoneAllowed(value) })
   }, [])
 
   const [pastIssPathCoords, setPastIssPathCoords] = useState([])
@@ -271,28 +278,28 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
   }
 
-  const startRecording = useCallback(async () => {
-      setIsRecording(true)
-      const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch((error: any) => {
-        Snackbar.show({
-          text: error,
-          duration: Snackbar.LENGTH_LONG,
-        })
-        setIsRecording(false)
-        setRecordedSeconds(0)
+  const startRecording = async (isMicrophoneAllowed: boolean) => {
+    setIsRecording(true)
+    const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch((error: any) => {
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
       })
-
-      if (res === RecordingResult.PermissionError) {
-        Snackbar.show({
-          text: res,
-          duration: Snackbar.LENGTH_LONG,
-        })
-        setIsRecording(false)
-        setRecordedSeconds(0)
-      }
-
+      setIsRecording(false)
       setRecordedSeconds(0)
-  }, [isMicrophoneAllowed])
+    })
+
+    if (res === RecordingResult.PermissionError) {
+      Snackbar.show({
+        text: res,
+        duration: Snackbar.LENGTH_LONG,
+      })
+      setIsRecording(false)
+      setRecordedSeconds(0)
+    }
+
+    setRecordedSeconds(0)
+  }
 
   async function saveToGallery(path: string, type: "photo" | "video" | "auto") {
     if (Platform.OS === 'android') {
@@ -432,7 +439,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
           <Text tx="issView.cameraPermissionText" style={$time} />
         </Pressable> : <View style={[$body, $bodyStyleOverride]}>
-            {Boolean(issMarkerPosition) && (
+            {/* { Boolean(issMarkerPosition) && (
               <ARView
                 ref={arView}
                 isFullScreen={isFullScreen}
@@ -444,7 +451,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 issMarkerPosition={issMarkerPosition}
                 setIsSpotted={setIsSpotted}
               />
-            )}
+            )} */}
             <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
               <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
                 <IconLinkButton
@@ -512,7 +519,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                     accessibilityLabel="video"
                     accessibilityHint="record a video"
                     icon="video"
-                    onPress={startRecording}
+                    onPress={() => {
+                      checkMicrophonePermissions()
+                      .then((value) => startRecording(value))
+                    }}
                     buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
                   />
                 )}

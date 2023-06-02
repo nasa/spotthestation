@@ -60,7 +60,7 @@ export const Resources = observer(function HomeScreen() {
   const [isSearch, setIsSearch] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [type, setType] = useState('about')
+  const [type, setType] = useState('news')
   const [news, setNews] = useState([])
   const [page, setPage] = useState(1)
   const [isFocus, setIsFocus] = useState(false)
@@ -138,7 +138,7 @@ export const Resources = observer(function HomeScreen() {
     getData().catch(e => console.log(e))
   }, [location])
 
-  const renderFooter = () => {
+  const renderFooter = useCallback(() => {
     if (isLoading) {
       return (
         <View style={{ paddingVertical: scale(20) }}>
@@ -148,7 +148,7 @@ export const Resources = observer(function HomeScreen() {
     } else {
       return null
     }
-  }
+  }, [isLoading])
 
   const renderStatic = () => {
     return (
@@ -246,7 +246,7 @@ export const Resources = observer(function HomeScreen() {
         />
       )
     }
-  }, [isSearch, renderSearch, news])
+  }, [isSearch, renderSearch, renderFooter, news])
 
   const renderDetails = useCallback(() => {
       return <ScrollView 
@@ -317,7 +317,7 @@ export const Resources = observer(function HomeScreen() {
       </View>
       <View style={$horizontalScrollContainer}>
         <ScrollView horizontal style={$horizontalScrollContainer}>
-          {['about', 'news', 'details'].map(item => <Button
+          {['news', 'about', 'details'].map(item => <Button
             key={item}
             accessible
             accessibilityLabel={`${item} button`}
