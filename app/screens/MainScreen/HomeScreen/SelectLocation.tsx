@@ -42,7 +42,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
 
     if (!location) {
       location = await getCurrentLocation()
-      setCurrentLocation(location)
+      setCurrentLocation(location).catch(e => console.log(e))
     }
     const res = await getNearbyPlaces(location.location, 100)
 

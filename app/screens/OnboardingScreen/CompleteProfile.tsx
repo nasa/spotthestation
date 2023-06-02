@@ -55,7 +55,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
 
   const handleLocationChange = (location: LocationType) => {
     setLocation(location)
-    setCurrentLocation(location)
+    setCurrentLocation(location).catch(e => console.log(e))
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {

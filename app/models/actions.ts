@@ -13,36 +13,37 @@ import notifications from '../utils/notifications'
 const RootStoreActions = (self) => ({
 	getISSSightings: flow(function* getISSSightings(params) {
 		try {
+      const location = self.selectedLocation || self.currentLocation
+      const locationCopy = JSON.parse(JSON.stringify(location))
 			const {
 			  data, ok,
 			} = yield api.getISSSightings(params)    
 
       if (ok) {
-        const selectedLocation = self.selectedLocation || self.currentLocation
-        const isCurrentLocation = selectedLocation.title === self.currentLocation?.title
-        const locationSightings = selectedLocation?.sightings || []
+        const isCurrentLocation = locationCopy.title === self.currentLocation?.title
+        const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
+        const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
         const dataToSave = data.map((item) => {
-          const sighting = locationSightings.find((el) => el.date === item.date)
-          if (sighting) return { ...item, notify: sighting.notify }
-          return item
+          const sighting = locationSightings.find(({ date }) => date === item.date)
+          return sighting ? { ...item, notify: sighting.notify } : item
         })
 
-        const selectedLocationCopy = JSON.parse(JSON.stringify(selectedLocation))
+        locationCopy.sightings = [...dataToSave]
+        if (isSelectedLocation) {
+          self.selectedLocation = locationCopy
+        }
 
-        selectedLocationCopy.sightings = [...dataToSave]
-        
-        self.selectedLocation = selectedLocationCopy
         let savedLocations = []
         if (!isCurrentLocation) {
-          savedLocations = self.savedLocations.filter((location) => location.title !== selectedLocation.title)
-          self.savedLocations = [...savedLocations, selectedLocationCopy]
+          savedLocations = self.savedLocations.filter(({ title }) => title !== locationCopy.title)
+          self.savedLocations = [...savedLocations, locationCopy]
         } else {
-          self.currentLocation = selectedLocationCopy
+          self.currentLocation = locationCopy
         }
 
         const notifyFor = [
-          ...(isCurrentLocation ? self.savedLocations : [...savedLocations, selectedLocationCopy]), 
-          isCurrentLocation ? selectedLocationCopy : self.currentLocation
+          ...(isCurrentLocation ? self.savedLocations : [...savedLocations, locationCopy]), 
+          isCurrentLocation ? locationCopy : self.currentLocation
         ]
         
         notifications.setNotifications(notifyFor)
@@ -93,21 +94,13 @@ const RootStoreActions = (self) => ({
       data, ok,
     } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
     if (ok) {
-		  self.selectedLocation = { ...valueCopy, sightings: data }
+		  self.currentLocation = { ...valueCopy, sightings: data }
     }
 	}),
   
-  setSelectedLocation: flow(function* setSelectedLocation(value: LocationType) {
-    const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
-    const { timeZone } = yield getCurrentTimeZome(valueCopy)
-    self.selectedLocation = valueCopy
-    const {
-      data, ok,
-    } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
-    if (ok) {
-		  self.selectedLocation = { ...valueCopy, sightings: data }
-    }
-  }),
+  setSelectedLocation: (value: LocationType) => {
+    self.selectedLocation = JSON.parse(JSON.stringify(value))
+  },
 
   setSavedLocations: (values: LocationType[]) => {
 		self.savedLocations = JSON.parse(JSON.stringify(values))

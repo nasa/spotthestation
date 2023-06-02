@@ -202,14 +202,14 @@ export const HomeScreen = observer(function HomeScreen() {
     await storage.save('coachCompleted', true)
   }
 
-  const handleChangeLocation = useCallback(async (location: LocationType) => {
+  const handleChangeLocation = async (location: LocationType) => {
     setAddress(location.subtitle)
     setCurrent(JSON.parse(JSON.stringify(location)) as LocationType)
     setIsLocation(false)
-    setLocation([location.location.lat, location.location.lng])
-    setSelectedLocation(location).then(() => getLocation()).catch((e) => console.log(e))
     await storage.save('selectedLocation', location)
-  }, [getLocation])
+    setSelectedLocation(location)
+    setLocation([location.location.lat, location.location.lng])
+  }
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
     const updated = {...current, sightings: current.sightings.map(item => {
