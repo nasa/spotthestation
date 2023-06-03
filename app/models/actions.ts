@@ -9,6 +9,7 @@ import { LocationType } from '../screens/OnboardingScreen/SignupLocation'
 import { api } from '../services/api'
 import { getCurrentTimeZome } from '../utils/formatDate'
 import notifications from '../utils/notifications'
+import { Location } from './Location'
 
 const RootStoreActions = (self) => ({
 	getISSSightings: flow(function* getISSSightings(params) {
@@ -30,7 +31,7 @@ const RootStoreActions = (self) => ({
 
         locationCopy.sightings = [...dataToSave]
         if (isSelectedLocation) {
-          self.selectedLocation = locationCopy
+          self.selectedLocation = Location.create(locationCopy)
         }
 
         let savedLocations = []
@@ -38,7 +39,7 @@ const RootStoreActions = (self) => ({
           savedLocations = self.savedLocations.filter(({ title }) => title !== locationCopy.title)
           self.savedLocations = [...savedLocations, locationCopy]
         } else {
-          self.currentLocation = locationCopy
+          self.currentLocation = Location.create(locationCopy)
         }
 
         const notifyFor = [
@@ -75,7 +76,7 @@ const RootStoreActions = (self) => ({
       savedLocations = self.savedLocations.filter((location) => location.title !== value.title)
       self.savedLocations = [...savedLocations, valueCopy]
     } else {
-      self.currentLocation = valueCopy
+      self.currentLocation = Location.create(valueCopy)
     }
 
     const notifyFor: LocationType[] = [
@@ -89,18 +90,21 @@ const RootStoreActions = (self) => ({
   setCurrentLocation: flow(function* setCurrentLocation(value: LocationType) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
-    self.currentLocation = valueCopy
+    self.currentLocation = Location.create(valueCopy)
+    self.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
+	}),
+  
+  setSelectedLocation: flow(function* setSelectedLocation(value: LocationType) {
+    const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
+    const { timeZone } = yield getCurrentTimeZome(valueCopy)
+    self.selectedLocation = Location.create(valueCopy)
     const {
       data, ok,
     } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
     if (ok) {
-		  self.currentLocation = { ...valueCopy, sightings: data }
+		  self.selectedLocation = Location.create({ ...valueCopy, sightings: data })
     }
-	}),
-  
-  setSelectedLocation: (value: LocationType) => {
-    self.selectedLocation = JSON.parse(JSON.stringify(value))
-  },
+  }),
 
   setSavedLocations: (values: LocationType[]) => {
 		self.savedLocations = JSON.parse(JSON.stringify(values))

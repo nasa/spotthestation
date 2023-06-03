@@ -31,12 +31,24 @@ export interface HomeScreenRouteProps {
   showSightings: boolean
 }
 
+function calcLocation(selectedLocation, currentLocation): [number, number] {
+  if (selectedLocation) return [selectedLocation.location.lat, selectedLocation.location.lng]
+  if (currentLocation) return [currentLocation.location.lat, currentLocation.location.lng]
+  return null
+}
+
+function calcAddress(selectedLocation, currentLocation) {
+  if (selectedLocation) return selectedLocation.subtitle
+  if (currentLocation) return currentLocation.subtitle
+  return null
+}
+
 export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { 
-    issData, getISSSightings, getISSData, setISSSightings,
+    issData, getISSData, setISSSightings,
     currentLocation, selectedLocation, setSelectedLocation
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -51,7 +63,13 @@ export const HomeScreen = observer(function HomeScreen() {
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
-  
+
+  useEffect(() => {
+    setAddress(calcAddress(selectedLocation, currentLocation))
+    setLocation(calcLocation(selectedLocation, currentLocation))
+    setCurrent(selectedLocation || currentLocation)
+  }, [selectedLocation, currentLocation])
+
   const events = useMemo(() => current?.sightings?.filter(item => item.notify) || [], [current?.sightings])
   const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
 
@@ -154,62 +172,34 @@ export const HomeScreen = observer(function HomeScreen() {
     getCoach().catch((e) => console.log(e))
   }, [])
 
-  const getLocation = useCallback(() => {
-    let lat: number
-    let lng: number
-    let subtitle: string
-    if (selectedLocation) {
-      lat = selectedLocation.location.lat
-      lng = selectedLocation.location.lng
-      subtitle = selectedLocation.subtitle
-      setCurrent(JSON.parse(JSON.stringify(selectedLocation)) as LocationType)
-    } else {
-      if (currentLocation) {
-        lat = currentLocation.location.lat
-        lng = currentLocation.location.lng
-        subtitle = currentLocation.subtitle
-        setCurrent(JSON.parse(JSON.stringify(currentLocation)) as LocationType)
-      }
-    }
-    setAddress(subtitle)
-    
-    if (lat && lng) setLocation([lat, lng])
-  }, [selectedLocation, currentLocation])
-
-  const getSightings = async (value: [number,number]) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome()
-    setCurrentTimeZone({ timeZone, regionFormat })
-    await getISSSightings({ zone: timeZone, lat: value[0], lon: value[1] })
-  }
-
   const getData = async () => {
     await getISSData({ lat: location[0], lon: location[1] })
   }
 
   useEffect(() => {
-    getLocation()
-  }, [selectedLocation, currentLocation, getLocation])
+    setSelectedLocation(current).catch(() => null)
+  }, [])
 
   useEffect(() => {
     if (!location) return
-    
-    getSightings(location).catch(e => console.log(e))
+
+    getCurrentTimeZome()
+      .then(({ timeZone, regionFormat }) => setCurrentTimeZone({ timeZone, regionFormat }))
+      .catch(e => console.log(e))
+
     getData().catch(e => console.log(e))
-  }, [location])
+  }, [location?.[0], location?.[1]])
 
   const handleSetCoachCompleted = async () => {
     setCoachVisible(false)
     await storage.save('coachCompleted', true)
   }
 
-  const handleChangeLocation = async (location: LocationType) => {
-    setAddress(location.subtitle)
-    setCurrent(JSON.parse(JSON.stringify(location)) as LocationType)
+  const handleChangeLocation = useCallback(async (location: LocationType) => {
     setIsLocation(false)
+    setSelectedLocation(location).catch((e) => console.log(e))
     await storage.save('selectedLocation', location)
-    setSelectedLocation(location)
-    setLocation([location.location.lat, location.location.lng])
-  }
+  }, [])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
     const updated = {...current, sightings: current.sightings.map(item => {
@@ -219,13 +209,11 @@ export const HomeScreen = observer(function HomeScreen() {
       return item
     })}
     setISSSightings(updated)
-    setCurrent(updated)
   }, [current])
 
   const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
     const updated = {...current, sightings: current.sightings.map(item => ({...item, notify}))}
     setISSSightings(updated)
-    setCurrent(updated)
   }, [current])
 
   const renderCoachMarks = useCallback(() => {
