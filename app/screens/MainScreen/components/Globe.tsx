@@ -151,7 +151,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     return mesh
   }
 
-  const createSphere = async (radius: number, texture, name: string, transparent) => {
+  const createSphere = async (radius: number, texture, name: string, transparent, depthWrite) => {
     const sphere = new Mesh()
     sphere.geometry = new SphereGeometry(radius, GLOBE_SEGMENTS, GLOBE_SEGMENTS)
     const uri = await copyAssetToCacheAsync(texture as string,`${name}.png`)
@@ -163,7 +163,8 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     if (tx) {
       sphere.material = new MeshBasicMaterial({
         map: tx,
-        transparent
+        transparent,
+        depthWrite
       })
     } else {
       sphere.material = new MeshBasicMaterial({ color: 0xffffff, transparent })
@@ -238,8 +239,8 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     renderer.debug.checkShaderErrors = false
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
 
-    const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true)
-    const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "world-map", false)
+    const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true, false)
+    const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "world-map", false, true)
 
     if (marker) {
       const point = await createMarker()
