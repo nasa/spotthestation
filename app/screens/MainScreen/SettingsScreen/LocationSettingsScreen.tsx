@@ -16,7 +16,7 @@ import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
 import { ISSSighting } from "../../../services/api/api.types"
-import { getCurrentTimeZome } from "../../../utils/formatDate"
+import { getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
@@ -170,6 +170,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone.regionFormat === 'US'}
           isNotifyAll={current && current.sightings.every(item => item.notify)}
+          timezone={getShortTZ(currentTimeZone?.timeZone)}
         />
       </Modal>}
     </Screen>

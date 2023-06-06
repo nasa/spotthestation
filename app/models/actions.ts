@@ -98,12 +98,7 @@ const RootStoreActions = (self) => ({
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
     self.selectedLocation = Location.create(valueCopy)
-    const {
-      data, ok,
-    } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
-    if (ok) {
-		  self.selectedLocation = Location.create({ ...valueCopy, sightings: data })
-    }
+    self.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })
   }),
 
   setSavedLocations: (values: LocationType[]) => {
@@ -116,7 +111,7 @@ const RootStoreActions = (self) => ({
 
   setNotifications: () => {
 		const notifyFor: LocationType[] = [
-      ...self.savedLocations, 
+      ...self.savedLocations,
       self.currentLocation
     ]
     
