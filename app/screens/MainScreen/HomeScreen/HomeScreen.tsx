@@ -75,7 +75,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
 
   const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000)), [eventsList])
-  
+
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     if (result.length === 0) {
       setCurrentSightning({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
@@ -168,8 +168,9 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   useEffect(() => {
-    autorun(() => updateIssPath())
-  }, [])
+    updateIssPath()
+    return () => clearTimeout(updateTimer.current)
+  }, [issData])
 
   const getCoach = async () => {
     setCoachVisible(!(await storage.load('coachCompleted')))
