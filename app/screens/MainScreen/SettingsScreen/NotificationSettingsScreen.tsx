@@ -22,7 +22,7 @@ import { useStores } from "../../../models"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const navigation = useNavigation()
-  const { selectedLocation, currentLocation, setISSSightings } = useStores()
+  const { selectedLocation, currentLocation, setISSSightings, setNotifications } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const [from, setFrom] = useState(false)
@@ -70,6 +70,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       [field]: value
     })
     await storage.save(field, value)
+    setNotifications()
   }, [settings])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {

@@ -1,7 +1,6 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import RootStoreActions from "./actions"
 import { Location } from "./Location"
-import { Sighting } from "./Sightings"
 
 /**
  * A RootStore model.
@@ -10,8 +9,8 @@ export const RootStoreModel = types.model("RootStore", {
   savedLocations: types.optional(types.array(Location), []),
   selectedLocation: types.maybeNull(Location),
   currentLocation: types.maybeNull(Location),
-  sightings: types.optional(types.array(Sighting), []),
   issData: types.optional(types.frozen(), []),
+  initLoading: types.optional(types.boolean, false),
 }).props({})
   .actions(RootStoreActions)
 

@@ -15,7 +15,7 @@ import { useStores } from "../../models"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const navigation = useNavigation()
-  const { setCurrentLocation } = useStores()
+  const { setCurrentLocation, setInitLoading } = useStores()
 
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
@@ -55,6 +55,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
 
   const handleLocationChange = (location: LocationType) => {
     setLocation(location)
+    setInitLoading(true)
     setCurrentLocation(location).catch(e => console.log(e))
   }
 

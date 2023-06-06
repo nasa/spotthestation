@@ -26,6 +26,7 @@ import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
 import { autorun } from "mobx"
+import { InitLoader } from "./InitLoader"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -48,7 +49,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { 
-    issData, getISSData, setISSSightings,
+    issData, getISSData, setISSSightings, initLoading, setInitLoading,
     currentLocation, selectedLocation, setSelectedLocation
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -95,6 +96,12 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     startCountdown()
   }, [result, startCountdown, timeDiff])
+
+  useEffect(() => {
+    if (initLoading && current?.sightings?.length && issData.length) {
+      setInitLoading(false)
+    }
+  }, [current, initLoading, issData])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -331,7 +338,7 @@ export const HomeScreen = observer(function HomeScreen() {
         />
       </Modal>}
       {coachVisible && <Modal
-        isVisible={coachVisible}
+        isVisible={coachVisible && !initLoading}
         useNativeDriver
         useNativeDriverForBackdrop
         backdropOpacity={.4}
@@ -339,6 +346,15 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         {renderCoachMarks()}
       </Modal>}
+      <Modal
+        isVisible={initLoading}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={.85}
+        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
+      >
+        <InitLoader />
+      </Modal>
     </Screen>
   )
 })

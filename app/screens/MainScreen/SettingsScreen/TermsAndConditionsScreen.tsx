@@ -1,10 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
+import React, { useMemo } from "react"
+import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import en from "../../../i18n/en"
+import { TxKeyPath, translate } from "../../../i18n"
+import DeviceInfo from "react-native-device-info"
 
 export const TermsAndConditionsScreen = observer(function TermsAndConditionsScreen() {
   const navigation = useNavigation()
@@ -13,6 +19,26 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
   }
+
+  const tnc = useMemo(() => {
+    const platform = en.settings.termsAndConditionsData[Platform.OS]
+    const translationPrefix = `settings.termsAndConditionsData.${Platform.OS}`
+    const body: string[] = Object.keys(platform.body)
+
+    return {
+      title: translate(`${translationPrefix}.title` as TxKeyPath),
+      intro1: translate(`${translationPrefix}.intro1` as TxKeyPath),
+      intro2: translate(`${translationPrefix}.intro2` as TxKeyPath),
+      intro3: translate(`${translationPrefix}.intro3` as TxKeyPath),
+      appData: [
+        `${translate(`${translationPrefix}.appData.line1` as TxKeyPath)} ${DeviceInfo.getApplicationName()}`,
+        `${translate(`${translationPrefix}.appData.line2` as TxKeyPath)} ${DeviceInfo.getVersion()}`,
+        translate(`${translationPrefix}.appData.line3` as TxKeyPath),
+      ],
+      body: body.map(item => translate(`${translationPrefix}.body.${item}` as TxKeyPath)),
+      contactData: Platform.OS === 'ios' ? Object.keys(platform.contactData).map(item => translate(`${translationPrefix}.contactData.${item}` as TxKeyPath)) : null
+    }
+  }, [en])
 
   return (
     <Screen
@@ -48,14 +74,14 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
             accessibilityHint="terms And Conditions"
             accessibilityRole="text"
           >
-            <Text tx="settings.termsAndConditionsData.title" style={$title} />
-            <Text tx="settings.termsAndConditionsData.intro" style={$text} />
-            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-            <Text tx="settings.termsAndConditionsData.text" style={$text} />
-            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-            <Text tx="settings.termsAndConditionsData.text" style={$text} />
-            <Text tx="settings.termsAndConditionsData.subtitle" style={$subtitle} />
-            <Text tx="settings.termsAndConditionsData.text" style={$text} />
+            <Text text={tnc.title} style={$title} />
+            <Text text={tnc.intro1} style={$text} />
+            {tnc.appData.map(item => <Text key={item} text={item} style={[$text, { paddingBottom: 0 }]} />)}
+            <Text text="" style={$text} />
+            {tnc.contactData && tnc.contactData.map(item => <Text key={item} text={item} style={[$text, { paddingBottom: 0 }]} />)}
+            <Text text={tnc.intro2} style={$text} />
+            <Text text={tnc.intro3} style={$text} />
+            {tnc.body.map(item => <Text key={item} text={item} style={$text} />)}
           </View>
         </Pressable>
       </ScrollView>
@@ -93,22 +119,13 @@ const $title: TextStyle = {
   paddingBottom: 24
 }
 
-const $subtitle: TextStyle = {
+const $text: TextStyle = {
   fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[28],
+  fontSize: fontSizes[24],
   lineHeight: lineHeights[34],
   color: colors.palette.neutral250,
   textAlign: 'left',
   paddingBottom: 16
-}
-
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral450,
-  textAlign: 'left',
-  paddingBottom: 24
 }
 
 const $backButtonText: TextStyle = {

@@ -110,6 +110,19 @@ const RootStoreActions = (self) => ({
 		self.savedLocations = JSON.parse(JSON.stringify(values))
 	},
 
+  setInitLoading: (value: boolean) => {
+		self.initLoading = value
+	},
+
+  setNotifications: () => {
+		const notifyFor: LocationType[] = [
+      ...self.savedLocations, 
+      self.currentLocation
+    ]
+    
+    notifications.setNotifications(notifyFor)
+	},
+
   setNewSavedLocation: flow(function* setNewSavedLocation(value: LocationType) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
