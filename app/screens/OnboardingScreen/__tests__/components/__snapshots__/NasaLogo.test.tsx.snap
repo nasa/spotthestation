@@ -15,11 +15,11 @@ exports[`renders correctly 1`] = `
   }
   style={
     Object {
-      "height": 110,
-      "marginLeft": 36,
-      "marginTop": 36,
+      "height": 158,
+      "marginLeft": 52,
+      "marginTop": 52,
       "overflow": "hidden",
-      "width": 110,
+      "width": 158,
     }
   }
 />

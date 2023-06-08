@@ -3,10 +3,13 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Object {
-      "marginTop": 36,
-      "width": "100%",
-    }
+    Array [
+      Object {
+        "marginTop": 52,
+        "width": "100%",
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -14,15 +17,18 @@ exports[`renders correctly 1`] = `
       Object {
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginBottom": 18,
+        "marginBottom": 26,
       }
     }
   >
     <View
       style={
-        Object {
-          "flexDirection": "row",
-        }
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          undefined,
+        ]
       }
     >
       <div />

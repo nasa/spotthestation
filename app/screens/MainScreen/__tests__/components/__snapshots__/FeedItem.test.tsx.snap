@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
       "alignItems": "flex-start",
       "height": "auto",
       "justifyContent": "space-between",
-      "paddingTop": 16,
+      "paddingTop": 23,
       "position": "relative",
       "width": "47%",
     }
@@ -36,9 +36,9 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "flexDirection": "row",
-        "left": 18,
+        "left": 26,
         "position": "absolute",
-        "top": 36,
+        "top": 52,
         "zIndex": 2,
       }
     }
@@ -60,9 +60,9 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "aspectRatio": 0.7,
-        "borderRadius": 12,
+        "borderRadius": 17,
         "height": undefined,
-        "marginBottom": 12,
+        "marginBottom": 17,
         "overflow": "hidden",
         "width": "100%",
       }

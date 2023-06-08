@@ -20,13 +20,13 @@ exports[`renders correctly 1`] = `
       Object {
         "alignItems": "center",
         "backgroundColor": "#1E2022",
-        "borderRadius": 100,
+        "borderRadius": 143,
         "display": "flex",
-        "height": 42,
+        "height": 60,
         "justifyContent": "center",
         "overflow": "hidden",
         "position": "relative",
-        "width": 42,
+        "width": 60,
       },
       undefined,
     ]
@@ -42,13 +42,13 @@ exports[`renders correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
-            "borderRadius": 100,
+            "borderRadius": 143,
             "display": "flex",
-            "height": 42,
+            "height": 60,
             "justifyContent": "center",
             "overflow": "hidden",
             "position": "relative",
-            "width": 42,
+            "width": 60,
           },
           undefined,
           Object {

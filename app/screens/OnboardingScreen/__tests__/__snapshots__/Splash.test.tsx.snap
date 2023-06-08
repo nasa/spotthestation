@@ -49,11 +49,11 @@ exports[`renders correctly 1`] = `
       }
       style={
         Object {
-          "height": 110,
-          "marginLeft": 36,
-          "marginTop": 36,
+          "height": 158,
+          "marginLeft": 52,
+          "marginTop": 52,
           "overflow": "hidden",
-          "width": 110,
+          "width": 158,
         }
       }
     />
@@ -94,7 +94,7 @@ exports[`renders correctly 1`] = `
             "alignItems": "center",
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "paddingHorizontal": 36,
+            "paddingHorizontal": 52,
             "width": "100%",
           }
         }
@@ -121,17 +121,17 @@ exports[`renders correctly 1`] = `
               Object {
                 "alignItems": "center",
                 "backgroundColor": "#1E2022",
-                "borderRadius": 100,
+                "borderRadius": 143,
                 "display": "flex",
-                "height": 42,
+                "height": 60,
                 "justifyContent": "center",
                 "overflow": "hidden",
                 "position": "relative",
-                "width": 42,
+                "width": 60,
               },
               Object {
-                "height": 64,
-                "width": 64,
+                "height": 92,
+                "width": 92,
               },
             ]
           }
@@ -146,13 +146,13 @@ exports[`renders correctly 1`] = `
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "#1E2022",
-                    "borderRadius": 100,
+                    "borderRadius": 143,
                     "display": "flex",
-                    "height": 42,
+                    "height": 60,
                     "justifyContent": "center",
                     "overflow": "hidden",
                     "position": "relative",
-                    "width": 42,
+                    "width": 60,
                   },
                   undefined,
                   undefined,

@@ -26,3 +26,18 @@ jest.mock('react-native-snackbar', () => ({
   dismiss: () => ({}),
   LENGTH_LONG: 'long',
 }))
+jest.mock("expo-localization", () => ({
+  getLocales: () => ([{ regionCode: 'TC' }]), 
+  getCalendars: () => ([{ timeZone: 'Test/test' }])
+}))
+jest.mock("../app/services/api", () => ({
+  api: { 
+    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: { timeZoneId: 'US/Central' } }))
+  },
+}))
+jest.mock("react-native-push-notification", () => ({
+  createChannel: jest.fn(),
+  configure: jest.fn(),
+  cancelAllLocalNotifications: jest.fn(),
+  localNotificationSchedule: jest.fn()
+}))

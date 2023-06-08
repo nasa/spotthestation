@@ -50,13 +50,13 @@ exports[`renders correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
-            "borderRadius": 100,
+            "borderRadius": 143,
             "display": "flex",
-            "height": 42,
+            "height": 60,
             "justifyContent": "center",
             "overflow": "hidden",
             "position": "relative",
-            "width": 42,
+            "width": 60,
           },
           undefined,
         ]
@@ -72,13 +72,13 @@ exports[`renders correctly 1`] = `
               Object {
                 "alignItems": "center",
                 "backgroundColor": "#1E2022",
-                "borderRadius": 100,
+                "borderRadius": 143,
                 "display": "flex",
-                "height": 42,
+                "height": 60,
                 "justifyContent": "center",
                 "overflow": "hidden",
                 "position": "relative",
-                "width": 42,
+                "width": 60,
               },
               undefined,
               undefined,
@@ -134,14 +134,21 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "backgroundColor": "#1E2022",
-          "borderRadius": 10,
-          "padding": 8,
-          "width": "48%",
-        }
+        Array [
+          Object {
+            "backgroundColor": "#1E2022",
+            "borderRadius": 15,
+            "borderWidth": 2,
+            "padding": 8,
+            "width": "48%",
+          },
+          Object {
+            "borderColor": "#0B3D91",
+          },
+        ]
       }
     >
+      <div />
       <div />
       <div />
     </View>
@@ -153,12 +160,14 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "backgroundColor": "#1E2022",
-          "borderRadius": 10,
+          "borderRadius": 15,
+          "borderWidth": 2,
           "padding": 8,
           "width": "48%",
         }
       }
     >
+      <div />
       <div />
       <div />
     </View>

@@ -5,11 +5,11 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#FC3D21",
-      "borderRadius": 4,
-      "marginTop": 20,
-      "paddingBottom": 3,
-      "paddingTop": 5,
-      "width": 80,
+      "borderRadius": 6,
+      "marginTop": 29,
+      "paddingBottom": 5,
+      "paddingTop": 7,
+      "width": 115,
     }
   }
 >
@@ -17,8 +17,8 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "color": "#DEDDDE",
-        "fontSize": 16,
-        "lineHeight": 16,
+        "fontSize": 23,
+        "lineHeight": 23,
         "textAlign": "center",
       }
     }

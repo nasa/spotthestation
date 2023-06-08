@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
       "alignItems": "flex-start",
       "flexDirection": "row",
       "justifyContent": "space-between",
-      "paddingTop": 16,
+      "paddingTop": 23,
       "width": "100%",
     }
   }
@@ -31,13 +31,13 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "alignItems": "flex-start",
-        "borderBottomWidth": 1,
+        "borderBottomWidth": 2,
         "borderColor": "#353739",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginLeft": 10,
-        "paddingBottom": 16,
+        "marginLeft": 15,
+        "paddingBottom": 23,
       }
     }
   >
@@ -47,7 +47,7 @@ exports[`renders correctly 1`] = `
         Object {
           "flex": 1,
           "flexDirection": "column",
-          "paddingLeft": 18,
+          "paddingLeft": 26,
         }
       }
     >
