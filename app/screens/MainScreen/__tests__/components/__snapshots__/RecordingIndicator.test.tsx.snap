@@ -8,8 +8,8 @@ exports[`renders correctly 1`] = `
       "borderRadius": 6,
       "marginTop": 29,
       "paddingBottom": 5,
+      "paddingHorizontal": 7,
       "paddingTop": 7,
-      "width": 115,
     }
   }
 >

@@ -439,7 +439,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
           <Text tx="issView.cameraPermissionText" style={$time} />
         </Pressable> : <View style={[$body, $bodyStyleOverride]}>
-            {/* { Boolean(issMarkerPosition) && (
+            {Boolean(issMarkerPosition) && (
               <ARView
                 ref={arView}
                 isFullScreen={isFullScreen}
@@ -451,7 +451,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 issMarkerPosition={issMarkerPosition}
                 setIsSpotted={setIsSpotted}
               />
-            )} */}
+            )}
             <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
               <View style={[$buttonColumn, isLandscape && { flexDirection: 'row' }]}>
                 <IconLinkButton

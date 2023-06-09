@@ -46,9 +46,10 @@ const RootStoreActions = (self) => ({
           ...(isCurrentLocation ? self.savedLocations : [...savedLocations, locationCopy]), 
           isCurrentLocation ? locationCopy : self.currentLocation
         ]
-        
+        if (self.initLoading) self.sightingsLoaded = true
         notifications.setNotifications(notifyFor)
       } else {
+        if (self.initLoading) self.sightingsLoaded = true
         Snackbar.show({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
@@ -166,6 +167,7 @@ const RootStoreActions = (self) => ({
 
       if (ok) {
         self.issData = data
+        if (self.initLoading) self.issDataLoaded = true
       } else {
         Snackbar.show({
           text: data as string,

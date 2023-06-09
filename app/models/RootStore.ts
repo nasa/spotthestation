@@ -11,6 +11,8 @@ export const RootStoreModel = types.model("RootStore", {
   currentLocation: types.maybeNull(Location),
   issData: types.optional(types.frozen(), []),
   initLoading: types.optional(types.boolean, false),
+  issDataLoaded: types.optional(types.boolean, false),
+  sightingsLoaded: types.optional(types.boolean, false),
 }).props({})
   .actions(RootStoreActions)
 

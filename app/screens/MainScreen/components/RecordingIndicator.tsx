@@ -25,8 +25,8 @@ const $container: ViewStyle = {
   backgroundColor: colors.palette.nasaRed,
   paddingTop: scale(5),
   paddingBottom: scale(3),
+  paddingHorizontal: scale(5),
   borderRadius: scale(4),
-  width: scale(80),
 }
 
 const $text: TextStyle = {

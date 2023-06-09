@@ -25,7 +25,6 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
-import { autorun } from "mobx"
 import { InitLoader } from "./InitLoader"
 
 export interface HomeScreenRouteProps {
@@ -50,7 +49,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { 
     issData, getISSData, setISSSightings, initLoading, setInitLoading,
-    currentLocation, selectedLocation, setSelectedLocation
+    currentLocation, selectedLocation, setSelectedLocation, sightingsLoaded, issDataLoaded
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   
@@ -98,10 +97,10 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [result, startCountdown, timeDiff])
 
   useEffect(() => {
-    if (initLoading && current?.sightings?.length && issData.length) {
+    if (initLoading && sightingsLoaded && issDataLoaded) {
       setInitLoading(false)
     }
-  }, [current, initLoading, issData])
+  }, [issDataLoaded, initLoading, sightingsLoaded])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
