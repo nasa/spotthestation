@@ -47,6 +47,17 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
       style={{backgroundColor: colors.palette.neutral900}} 
       statusBarStyle="light"
     >
+      <Pressable
+        accessible
+        accessibilityLabel="Back button"
+        accessibilityHint="Navigates to the previous screen"
+        accessibilityRole="button"
+        onPress={() => navigation.goBack()} 
+        style={$backButton}
+      >
+        <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
+        <Text tx="settings.termsAndConditionsData.backButton" style={$backButtonText} />
+      </Pressable>
       <ScrollView 
         accessible
         accessibilityLabel="terms And Conditions scrollable us area"
@@ -56,17 +67,6 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
         scrollEnabled 
         contentContainerStyle={$scrollSontentContainerStyle}
       >
-        <Pressable
-          accessible
-          accessibilityLabel="Back button"
-          accessibilityHint="Navigates to the previous screen"
-          accessibilityRole="button"
-          onPress={() => navigation.goBack()} 
-          style={$backButton}
-        >
-          <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
-          <Text tx="settings.termsAndConditionsData.backButton" style={$backButtonText} />
-        </Pressable>
         <Pressable>
           <View
             accessible
@@ -98,7 +98,8 @@ const $container: ViewStyle = {
 const $backButton: ViewStyle = {
   flexDirection: "row",
   alignItems: 'center',
-  paddingBottom: 11
+  paddingBottom: 11,
+  paddingLeft: 16
 }
 
 const $scrollSontentContainerStyle: ViewStyle = { 

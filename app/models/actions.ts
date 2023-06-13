@@ -144,7 +144,6 @@ const RootStoreActions = (self) => ({
         },
       })
     } else {
-      self.savedLocations = [...self.savedLocations, valueCopy]
       Snackbar.show({
         text: data as string,
         duration: Snackbar.LENGTH_LONG,

@@ -73,7 +73,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const events = useMemo(() => current?.sightings?.filter(item => item.notify) || [], [current?.sightings])
   const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
 
-  const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - 1800000)), [eventsList])
+  const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - sighting.visible * 60 * 1000)), [eventsList])
 
   const timeDiff = useCallback((callback: (diff: string) => void) => {
     if (result.length === 0) {

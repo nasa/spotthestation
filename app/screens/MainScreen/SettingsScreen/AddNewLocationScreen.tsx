@@ -94,6 +94,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         },
       },
     })
+    navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
   }, [titleValue, location, savedLocations])
 
   const handleRemove = useCallback(() => {

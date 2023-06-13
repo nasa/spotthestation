@@ -177,7 +177,7 @@ const en = {
   },
   issView: {
     header: "ISS View",
-    timeHeader: "TIME LEFT",
+    timeHeader: "Countdown",
     cameraPermissionText: "You have not allowed use of your phone's camera. Click here to allow.",
     issCaptured: "Capture this moment",
     share: {
