@@ -14,7 +14,7 @@ import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
-import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../../../services/api/api.types"
@@ -305,6 +305,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone.regionFormat === 'US'}
           isNotifyAll={current && current.sightings.every(item => item.notify)}
+          timezone={getShortTZ(currentTimeZone?.timeZone)}
         />
       </Modal>}
     </Screen>
