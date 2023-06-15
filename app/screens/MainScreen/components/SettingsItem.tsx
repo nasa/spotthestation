@@ -7,10 +7,11 @@ import { typography, colors, fontSizes, lineHeights, scale } from "../../../them
 export interface SettingsItemProps {
   title: TxKeyPath
   icon: IconTypes
+  withUnderline?: boolean
   onPress?: PressableProps["onPress"]
 }
 
-export function SettingsItem({ title, icon, onPress }: SettingsItemProps) {
+export function SettingsItem({ title, icon, onPress, withUnderline = true }: SettingsItemProps) {
   return (
     <Pressable 
       accessible
@@ -20,7 +21,7 @@ export function SettingsItem({ title, icon, onPress }: SettingsItemProps) {
       style={$container} 
       onPress={onPress}
     >
-      <View style={$bodyContainer}>
+      <View style={[$bodyContainer, !withUnderline && { borderBottomWidth: 0 }]}>
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
         <View style={$titleContainer}>
           <Text 

@@ -11,6 +11,8 @@ import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/g
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
+import { SettingsItem } from "../components/SettingsItem"
+import { useNavigation } from "@react-navigation/native"
 
 export interface SelectLocationProps {
   /**
@@ -29,6 +31,7 @@ export interface SelectLocationProps {
 
 export function SelectLocation({ onClose, onLocationPress, selectedLocation }: SelectLocationProps) {
   const { savedLocations, currentLocation, setCurrentLocation } = useStores()
+  const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [nearby, setNearby] = useState<LocationType[]>([])
@@ -144,6 +147,17 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
             />
           ))}
         />
+        <View style={{ paddingHorizontal: 16, paddingTop: 10 }}>
+          <SettingsItem 
+            icon="settings" 
+            title="settings.locationSettings" 
+            onPress={() => {
+              navigation.navigate('SettingsScreens' as never, { screen: "LocationSettings" } as never)
+              onClose()
+            }}
+            withUnderline={false}
+          />
+        </View>
         <ScrollView 
           accessible
           accessibilityLabel="search location"
