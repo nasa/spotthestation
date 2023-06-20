@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 18,
+        "paddingTop": 18,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "width": "85%",
+          }
+        }
+      >
+        <div />
+      </View>
+      <View
+        accessibilityHint="open select location modal"
+        accessibilityLabel="pin button"
+        accessibilityRole="imagebutton"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 0,
+                "tint": "default",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <div />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessibilityHint="open sightings modal"
+        accessibilityLabel="next sighting"
+        accessibilityRole="button"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#1E2022",
+              "borderRadius": 15,
+              "borderWidth": 2,
+              "padding": 8,
+              "width": "48%",
+            },
+            Object {
+              "borderColor": "#0B3D91",
+            },
+          ]
+        }
+      >
+        <div />
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="countdown to next sighting"
+        accessibilityLabel="countdown"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "#1E2022",
+            "borderRadius": 15,
+            "borderWidth": 2,
+            "padding": 8,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+        <div />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": 287,
+        "width": "100%",
+      }
+    }
+  >
+    <RCTImageView
+      internal_analyticTag={null}
+      resizeMode="cover"
+      source={
+        Array [
+          Object {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        Object {
+          "height": "100%",
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    />
+    <RNSVGSvgView
+      bbHeight="100%"
+      bbWidth="100%"
+      focusable={false}
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "height": "100%",
+            "width": "100%",
+          },
+          Object {
+            "flex": 0,
+            "height": "100%",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <RNSVGGroup
+        fill={
+          Object {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+      >
+        <RNSVGPath
+          d=""
+          fill={
+            Object {
+              "payload": 4278926737,
+              "type": 0,
+            }
+          }
+          fillOpacity={0.5}
+          propList={
+            Array [
+              "fill",
+              "fillOpacity",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={true}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    onSwipeComplete={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeDirection="down"
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={false}
+  />
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={false}
+  />
+</div>
+`;

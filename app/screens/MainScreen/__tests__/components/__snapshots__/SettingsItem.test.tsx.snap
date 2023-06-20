@@ -29,16 +29,19 @@ exports[`renders correctly 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "flex-start",
-        "borderBottomWidth": 2,
-        "borderColor": "#353739",
-        "flex": 1,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginLeft": 15,
-        "paddingBottom": 23,
-      }
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "borderBottomWidth": 2,
+          "borderColor": "#353739",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 15,
+          "paddingBottom": 23,
+        },
+        false,
+      ]
     }
   >
     <div />

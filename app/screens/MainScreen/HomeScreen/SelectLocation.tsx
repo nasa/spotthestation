@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from "react"
-import { ViewStyle, View, PressableProps, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
+import { ViewStyle, View, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
 
 import { Accessory, Icon, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
@@ -22,7 +22,7 @@ export interface SelectLocationProps {
   /**
    * A function for closing modal.
    */
-  onClose?: PressableProps["onPress"]
+  onClose?: () => void
   /**
    * A function for select new location.
    */

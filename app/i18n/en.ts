@@ -176,7 +176,6 @@ const en = {
     }
   },
   issView: {
-    header: "ISS View",
     timeHeader: "Countdown",
     cameraPermissionText: "You have not allowed use of your phone's camera. Click here to allow.",
     issCaptured: "Capture this moment",
@@ -198,7 +197,6 @@ const en = {
       orbitalPeriod: "Orbital Period",
       orbitsPerDay: "Orbits/Day",
       orbitalDecay: "Orbital Decay",
-      noOfOrbits: "No. of orbits",
     }
   },
   settings: {

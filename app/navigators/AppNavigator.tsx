@@ -14,7 +14,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useColorScheme } from "react-native"
 import * as storage from "../utils/storage"
 import Config from "../config"

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  accessibilityHint="coach mark"
+  accessibilityLabel="coach mark"
+  accessibilityRole="text"
+  accessible={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "center",
+      "backgroundColor": "#0B3D91",
+      "borderRadius": 23,
+      "marginTop": 373.52000000000004,
+      "paddingHorizontal": 30,
+      "paddingVertical": 36,
+      "width": "100%",
+    }
+  }
+>
+  <div />
+</View>
+`;

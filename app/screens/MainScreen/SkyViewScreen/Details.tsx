@@ -166,16 +166,6 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.orbitalDecay" style={$detailRowTitle} />
             <Text text="2 km / month" style={$detailRowValue} />
           </View>
-          <View 
-            accessible
-            accessibilityLabel="No. of orbits"
-            accessibilityHint="No. of orbits"
-            accessibilityRole="text"
-            style={$detailRow}
-          >
-            <Text tx="issView.details.noOfOrbits" style={$detailRowTitle} />
-            <Text text={`133,312\n(as of June 2022)`} style={$detailRowValue} />
-          </View>
         </View>
       </View>
     </View>

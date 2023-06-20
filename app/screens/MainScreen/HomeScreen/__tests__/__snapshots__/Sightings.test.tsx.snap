@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#1E2022",
+        "borderTopLeftRadius": 26,
+        "borderTopRightRadius": 26,
+        "flex": 1,
+      },
+      Object {},
+      Object {},
+    ]
+  }
+>
+  <div />
+  <div />
+  <div />
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#1E2022",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 52,
+        "paddingTop": 22,
+      }
+    }
+  >
+    <div />
+    <div />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingBottom": 43,
+        "paddingHorizontal": 52,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "marginTop": 52,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              Object {
+                "flexDirection": "row-reverse",
+              },
+            ]
+          }
+        >
+          <div />
+        </View>
+      </View>
+      <RCTScrollView
+        accessibilityHint="Sightings scrollable area"
+        accessibilityLabel="Sightings scrollable area"
+        accessibilityRole="scrollbar"
+        accessible={true}
+      >
+        <View />
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

@@ -415,7 +415,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       isPortrait={false}
     >
       <View style={[$headerContainer, $headerStyleOverride]}>
-        {isFullScreen ? 
+        {isFullScreen &&
           <IconLinkButton 
             accessible
             accessibilityLabel="x button"
@@ -424,15 +424,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             onPress={() => setIsFullScreen(false)} 
             buttonStyle={[$button, $closeButton]}
           /> 
-          : 
-          <Text 
-            accessible
-            accessibilityLabel="header"
-            accessibilityHint="header"
-            accessibilityRole="text"
-            tx="issView.header" 
-            style={$header}
-          />
         }
       </View>
       {!isCameraAllowed ?

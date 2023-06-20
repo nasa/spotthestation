@@ -1,0 +1,661 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        Object {
+          "left": 26,
+          "paddingHorizontal": 0,
+          "top": 35,
+        },
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ],
+          ]
+        }
+      >
+        <ViewManagerAdapter_ExpoBlurView
+          proxiedProperties={
+            Object {
+              "intensity": 50,
+              "tint": "default",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <div />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <div />
+      <div />
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ],
+          ]
+        }
+      >
+        <ViewManagerAdapter_ExpoBlurView
+          proxiedProperties={
+            Object {
+              "intensity": 50,
+              "tint": "default",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <div />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        Object {
+          "marginTop": 115,
+        },
+        false,
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 129,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          Object {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "height": 129,
+                "justifyContent": "space-between",
+                "overflow": "hidden",
+                "padding": 3,
+              },
+              false,
+              Object {
+                "bottom": 0,
+              },
+            ],
+          ]
+        }
+      >
+        <ViewManagerAdapter_ExpoBlurView
+          proxiedProperties={
+            Object {
+              "intensity": 50,
+              "tint": "default",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
+              ],
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  undefined,
+                  undefined,
+                ],
+              ]
+            }
+          >
+            <ViewManagerAdapter_ExpoBlurView
+              proxiedProperties={
+                Object {
+                  "intensity": 0,
+                  "tint": "default",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div />
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "height": 58,
+                "width": 58,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  undefined,
+                  undefined,
+                ],
+              ]
+            }
+          >
+            <ViewManagerAdapter_ExpoBlurView
+              proxiedProperties={
+                Object {
+                  "intensity": 0,
+                  "tint": "default",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div />
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          Object {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            Object {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 50,
+                "tint": "default",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <div />
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          Object {
+            "disabled": true,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            Array [
+              Object {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              Object {
+                "opacity": 0.25,
+              },
+            ],
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 50,
+                "tint": "default",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <div />
+        </View>
+      </View>
+    </View>
+  </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={true}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    onSwipeComplete={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeDirection="down"
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={false}
+  />
+</div>
+`;

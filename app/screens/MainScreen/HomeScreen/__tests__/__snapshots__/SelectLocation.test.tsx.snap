@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#1E2022",
+        "borderTopLeftRadius": 26,
+        "borderTopRightRadius": 26,
+        "flex": 1,
+      },
+      Object {},
+      Object {},
+      Object {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 20,
+      },
+    ]
+  }
+>
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <div />
+    <div />
+    <div />
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 16,
+          "paddingTop": 10,
+        }
+      }
+    >
+      <View
+        accessibilityHint="pressable settings item"
+        accessibilityLabel="pressable settings item"
+        accessibilityRole="button"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingTop": 23,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "borderBottomWidth": 2,
+                "borderColor": "#353739",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginLeft": 15,
+                "paddingBottom": 23,
+              },
+              Object {
+                "borderBottomWidth": 0,
+              },
+            ]
+          }
+        >
+          <div />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "paddingLeft": 26,
+              }
+            }
+          >
+            <div />
+          </View>
+          <div />
+        </View>
+      </View>
+    </View>
+    <RCTScrollView
+      accessibilityHint="type for search location"
+      accessibilityLabel="search location"
+      accessibilityRole="scrollbar"
+      accessible={true}
+      style={
+        Object {
+          "flex": 1,
+          "marginBottom": 35,
+          "paddingHorizontal": 52,
+        }
+      }
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
