@@ -497,12 +497,18 @@ PODS:
     - React-RCTImage
   - RNSensors (7.3.6):
     - React-Core
+  - RNSentry (5.6.0):
+    - React-Core
+    - Sentry/HybridSDK (= 8.7.3)
   - RNShare (8.2.1):
     - React-Core
   - RNSnackbar (2.4.0):
     - React-Core
   - RNSVG (13.8.0):
     - React-Core
+  - Sentry/HybridSDK (8.7.3):
+    - SentryPrivate (= 8.7.3)
+  - SentryPrivate (8.7.3)
   - SocketRocket (0.6.0)
   - SSZipArchive (2.2.3)
   - Turf (2.6.1)
@@ -609,6 +615,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSensors (from `../node_modules/react-native-sensors`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNShare (from `../node_modules/react-native-share`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -637,6 +644,8 @@ SPEC REPOS:
     - MapboxMaps
     - MapboxMobileEvents
     - OpenSSL-Universal
+    - Sentry
+    - SentryPrivate
     - SocketRocket
     - SSZipArchive
     - Turf
@@ -781,6 +790,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSensors:
     :path: "../node_modules/react-native-sensors"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNShare:
     :path: "../node_modules/react-native-share"
   RNSnackbar:
@@ -883,9 +894,12 @@ SPEC CHECKSUMS:
   RNReanimated: 2cf7451318bb9cc430abeec8d67693f9cf4e039c
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNSensors: 117ba71c7eeeea0407ea0c0bb79e3495d602049b
+  RNSentry: 9f0447b3ce13806f544903748de423259ead8552
   RNShare: eaee3dd5a06dad397c7d3b14762007035c5de405
   RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
   RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
+  Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
+  SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Turf: 469ce2c3d22e5e8e4818d5a3b254699a5c89efa4

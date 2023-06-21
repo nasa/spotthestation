@@ -16,6 +16,7 @@ import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
+import * as Sentry from "@sentry/react-native"
 import { RootStoreProvider, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
@@ -29,6 +30,10 @@ const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
   installMode: codePush.InstallMode.ON_NEXT_RESUME,
 }
+
+Sentry.init({
+  dsn: Config.SENTRY_DSN,
+})
 
 enableLatestRenderer()
 
@@ -126,5 +131,6 @@ function App(props: AppProps) {
   )
 }
 
+// @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-export default codePush(codePushConfig)(App)
+export default codePush(codePushConfig)(Sentry.wrap(App))
