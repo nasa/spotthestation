@@ -157,7 +157,13 @@ const en = {
       sightings: "Sightings",
       button: "Notify Me",
       selectMessage: "Select events for which you would like to be notified.",
-      switch: "Notify me for all upcoming events at this location."
+      switch: "Notify me for all upcoming events at this location.",
+      coach: {
+        moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
+        sunset: "There will be twilight at the selected location when the ISS is above the horizon.",
+        sun: "There will be daylight at the selected location when the ISS is above the horizon.",
+        button: "OK"
+      }
     },
     coachMarks: {
       skip: 'Skip tour',

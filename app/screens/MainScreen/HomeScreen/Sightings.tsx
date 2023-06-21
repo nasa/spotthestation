@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
-
-import { Icon, Text, IconTypes, Toggle } from "../../../components"
+import Modal from "react-native-modal"
+import { Button, Icon, Text, IconTypes, Toggle } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
@@ -10,6 +10,8 @@ import { isToday, isTomorrow } from "date-fns"
 import { formatDate } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
 import { getCalendars } from 'expo-localization'
+import * as storage from "../../../utils/storage"
+import { normalizeHeight } from "../../../utils/normalizeHeight"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
@@ -24,6 +26,7 @@ export interface SightingsProps {
 export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isNotifyAll, timezone }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
+  const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
 
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
@@ -40,6 +43,19 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
       case 2: return { icon: 'sun', color: colors.palette.yellow }
       default: return { icon: 'sunset', color: colors.palette.nasaOrange }
     }
+  }
+
+  const getCoach = async () => {
+    setSightingsCoachVisible(!(await storage.load('sightingsCoachVisible')))
+  }
+
+  useEffect(() => {
+    getCoach().catch((e) => console.log(e))
+  }, [])
+
+  const handleSetSightingsCoachVisible = async () => {
+    setSightingsCoachVisible(false)
+    await storage.save('sightingsCoachVisible', true)
   }
 
   return (
@@ -106,6 +122,44 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
           </ScrollView>
         </ExpandContainer>
       </View>
+      {sightingsCoachVisible && <Modal
+        isVisible={sightingsCoachVisible}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={.4}
+        style={$modal}
+      >
+        <View 
+          accessible
+          accessibilityLabel="coach mark"
+          accessibilityHint="coach mark"
+          accessibilityRole="text"
+          style={[$coachModalBodyContainer, { marginTop: normalizeHeight(.2) }]}
+        >
+          <View style={$legend}>
+            <Icon icon="sun" size={44} color={colors.palette.yellow} />
+            <Text tx="homeScreen.selectSightings.coach.sun" style={$body} />
+          </View>
+          <View style={$legend}>
+            <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
+            <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
+          </View>
+          <View style={$legend}>
+            <Icon icon="moon" size={44} color={colors.palette.neutral450} />
+            <Text tx="homeScreen.selectSightings.coach.moon" style={$body} />
+          </View>
+          <Button
+            accessible
+            accessibilityLabel="finish button"
+            accessibilityHint="finish coach mark"
+            tx="homeScreen.coachMarks.finish"
+            textStyle={$nextButtonText}
+            style={$nextButton}
+            pressedStyle={$nextButton}
+            onPress={handleSetSightingsCoachVisible}
+          />
+        </View>
+      </Modal>}
     </View>
   )
 }
@@ -115,6 +169,14 @@ const $modalBodyContainer: ViewStyle = {
   borderTopLeftRadius: scale(18),
   borderTopRightRadius: scale(18),
   flex: 1
+}
+
+const $coachModalBodyContainer: ViewStyle = {
+  backgroundColor: colors.palette.buttonBlue,
+  borderRadius: scale(16),
+  paddingVertical: 36,
+  paddingHorizontal: 30,
+  width: '100%',
 }
 
 const $scrollContainer: ViewStyle = {
@@ -164,4 +226,44 @@ const $label: TextStyle = {
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[21],
   width: '80%'
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  left: 0,
+  margin: 0,
+  paddingHorizontal: 18,
+  justifyContent: 'flex-start',
+}
+
+const $legend: ViewStyle = {
+  flexDirection: "row",
+  margin: 0,
+  justifyContent: "space-between"
+}
+
+const $body: TextStyle = {
+  fontFamily: typography.primary.normal,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
+  color: colors.palette.neutral100,
+  paddingBottom: 10,
+  paddingLeft: 5
+}
+
+const $nextButton: ViewStyle = {
+  height: scale(56),
+  backgroundColor: colors.palette.neutral100,
+  borderRadius: scale(28),
+  borderWidth: 0,
+  width: scale(140),
+  alignSelf: 'center',
+  marginTop: 24
+}
+
+const $nextButtonText: TextStyle = {
+  fontFamily: typography.primary.medium,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
+  color: colors.palette.buttonBlue,
 }
