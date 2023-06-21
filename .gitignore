@@ -149,3 +149,5 @@ ios/IPA
 iOS/STSApp.xcarchive
 
 coverage/
+
+ios/tmp.xcconfig

@@ -1,0 +1,2 @@
+#include? "tmp.xcconfig"
+#include? "Pods/Target Support Files/Pods-STSApp/Pods-STSApp.release.xcconfig"

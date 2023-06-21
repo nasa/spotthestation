@@ -14,6 +14,7 @@ import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
 import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
+import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
 import { RootStoreProvider, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
@@ -23,6 +24,11 @@ import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import {enableLatestRenderer} from 'react-native-maps'
+
+const codePushConfig = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  installMode: codePush.InstallMode.ON_NEXT_RESUME,
+}
 
 enableLatestRenderer()
 
@@ -120,4 +126,5 @@ function App(props: AppProps) {
   )
 }
 
-export default App
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+export default codePush(codePushConfig)(App)
