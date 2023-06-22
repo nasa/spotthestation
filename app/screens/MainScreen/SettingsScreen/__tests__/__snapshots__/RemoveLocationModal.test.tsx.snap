@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#1E2022",
+      "borderTopLeftRadius": 26,
+      "borderTopRightRadius": 26,
+    }
+  }
+>
+  <div />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginVertical": 52,
+        "width": "100%",
+      }
+    }
+  >
+    <div />
+  </View>
+  <View
+    style={
+      Object {
+        "paddingBottom": 75,
+        "paddingHorizontal": 52,
+        "width": "100%",
+      }
+    }
+  >
+    <div />
+    <div />
+    <div />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <div />
+      <div />
+    </View>
+  </View>
+</View>
+`;

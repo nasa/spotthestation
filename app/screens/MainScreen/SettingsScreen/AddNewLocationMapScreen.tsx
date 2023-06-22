@@ -55,6 +55,8 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     }
   }, [marker])
 
+  const handleNavigate = () => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+
   const handleSave = useCallback(() => {
     setNewSavedLocation(location).then(() => {
       Snackbar.show({
@@ -68,7 +70,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           },
         },
       })
-      navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+      handleNavigate()
     }).catch((error) => {
       Snackbar.show({
         text: error,
@@ -100,7 +102,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       />
       <View style={[$topContainer, $headerStyleOverride]}>
         <View style={$topButtonsContainer}>
-          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)} />
+          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => handleNavigate()} />
         </View>
         <GooglePlacesAutocomplete
           ref={addressRef}

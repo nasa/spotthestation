@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "paddingBottom": 11,
+        "paddingLeft": 16,
+      }
+    }
+  >
+    <div />
+    <div />
+  </View>
+  <RCTScrollView
+    accessibilityHint="terms And Conditions scrollable us area"
+    accessibilityLabel="terms And Conditions scrollable us area"
+    accessibilityRole="scrollbar"
+    accessible={true}
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "paddingBottom": 60,
+      }
+    }
+    scrollEnabled={true}
+    style={
+      Object {
+        "paddingHorizontal": 18,
+      }
+    }
+  >
+    <View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          accessibilityHint="terms And Conditions"
+          accessibilityLabel="terms And Conditions"
+          accessibilityRole="text"
+          accessible={true}
+        >
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</div>
+`;

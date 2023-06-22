@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    style={
+      Array [
+        Object {
+          "left": 26,
+          "position": "absolute",
+          "zIndex": 9,
+        },
+        Object {
+          "top": 35,
+        },
+      ]
+    }
+  >
+    <div />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "marginTop": 215,
+        "paddingHorizontal": 52,
+      }
+    }
+  >
+    <View
+      accessibilityHint="pressable settings item"
+      accessibilityLabel="pressable settings item"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 23,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            },
+            false,
+          ]
+        }
+      >
+        <div />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "paddingLeft": 26,
+            }
+          }
+        >
+          <div />
+        </View>
+        <div />
+      </View>
+    </View>
+    <View
+      accessibilityHint="pressable settings item"
+      accessibilityLabel="pressable settings item"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 23,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            },
+            false,
+          ]
+        }
+      >
+        <div />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "paddingLeft": 26,
+            }
+          }
+        >
+          <div />
+        </View>
+        <div />
+      </View>
+    </View>
+    <View
+      accessibilityHint="pressable settings item"
+      accessibilityLabel="pressable settings item"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 23,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            },
+            false,
+          ]
+        }
+      >
+        <div />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "paddingLeft": 26,
+            }
+          }
+        >
+          <div />
+        </View>
+        <div />
+      </View>
+    </View>
+    <View
+      accessibilityHint="pressable settings item"
+      accessibilityLabel="pressable settings item"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 23,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            },
+            false,
+          ]
+        }
+      >
+        <div />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "paddingLeft": 26,
+            }
+          }
+        >
+          <div />
+        </View>
+        <div />
+      </View>
+    </View>
+  </View>
+</div>
+`;

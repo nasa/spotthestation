@@ -1,3 +1,4 @@
+/* eslint-disable react-native/split-platform-components */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-floating-promises */
@@ -328,7 +329,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const stopRecording = async () => {
     setIsRecording(false)
-    const res = await RecordScreen.stopRecording().catch((error: any) =>
+    const res: any = await RecordScreen.stopRecording().catch((error: any) =>
       Snackbar.show({
         text: error,
         duration: Snackbar.LENGTH_LONG,
@@ -390,7 +391,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       url
     }
 
-    if (url.split('.').pop() === 'mp4') shareOptions = {...shareOptions, type: 'video/mp4'}
+    if (url.split('.').pop() === 'mp4') shareOptions = {...shareOptions, type: 'video/mp4'} as any
 
     try {
       await Share.open(shareOptions)
@@ -571,13 +572,6 @@ const $modal: ViewStyle = {
   justifyContent: 'flex-end',
   left: 0,
   margin: 0
-}
-
-const $header: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250
 }
 
 const $body: ViewStyle = {

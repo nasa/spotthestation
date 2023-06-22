@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#1E2022",
+      "borderTopLeftRadius": 26,
+      "borderTopRightRadius": 26,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "paddingBottom": 75,
+        "paddingHorizontal": 52,
+        "width": "100%",
+      }
+    }
+  >
+    <div />
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessibilityHint="distance"
+        accessibilityLabel="distance"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 15,
+            "marginBottom": 26,
+            "padding": 12,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="orbital Speed"
+        accessibilityLabel="orbital Speed"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 15,
+            "marginBottom": 26,
+            "padding": 12,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="longitude"
+        accessibilityLabel="longitude"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 15,
+            "marginBottom": 26,
+            "padding": 12,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="latitude"
+        accessibilityLabel="latitude"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 15,
+            "marginBottom": 26,
+            "padding": 12,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="altitude"
+        accessibilityLabel="altitude"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 15,
+            "marginBottom": 26,
+            "padding": 12,
+            "width": "48%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessibilityHint="Assembly Began"
+        accessibilityLabel="Assembly Began"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="crew On board"
+        accessibilityLabel="crew On board"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="Estimated mass"
+        accessibilityLabel="Estimated mass"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="Estimated dimensions"
+        accessibilityLabel="Estimated dimensions"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="orbital Period"
+        accessibilityLabel="orbital Period"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="orbits Per Day"
+        accessibilityLabel="orbits Per Day"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+      <View
+        accessibilityHint="Orbital Decay"
+        accessibilityLabel="Orbital Decay"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 26,
+            "width": "100%",
+          }
+        }
+      >
+        <div />
+        <div />
+      </View>
+    </View>
+  </View>
+</View>
+`;

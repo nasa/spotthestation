@@ -34,6 +34,26 @@ jest.mock("expo-localization", () => ({
   getLocales: () => ([{ regionCode: 'TC' }]), 
   getCalendars: () => ([{ timeZone: 'Test/test' }])
 }))
+jest.mock("react-native-device-info", () => ({
+  getVersion: () => "0.0.1",
+  getApplicationName: () => "Test",
+}))
+jest.mock("react-native-permissions", () => ({
+  check: jest.fn(), 
+  request: jest.fn(), 
+  PERMISSIONS: '', 
+  RESULTS: ''
+}))
+jest.mock("@react-native-community/cameraroll", () => ({
+  Share: jest.fn(),
+}))
+jest.mock("react-native-share", () => ({
+  Share: jest.fn(),
+}))
+jest.mock("react-native-view-shot", () => ({
+  captureScreen: jest.fn(),
+}))
+jest.mock("react-native-modal-datetime-picker", () => "")
 jest.mock("../app/services/api", () => ({
   api: { 
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: { timeZoneId: 'US/Central' } }))

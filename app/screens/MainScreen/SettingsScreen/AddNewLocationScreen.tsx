@@ -26,7 +26,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const navigation = useNavigation()
   const { savedLocations, setSavedLocations, setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
-  const { params: { defaultLocation } } = useRoute()
+  const { params: { defaultLocation } } = useRoute<any>()
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
@@ -44,6 +44,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     setTextValue("")
     setLocation(null)
   }
+
+  const handleNavigate = () => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
     location.title = titleValue
@@ -94,12 +96,12 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         },
       },
     })
-    navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+    handleNavigate()
   }, [titleValue, location, savedLocations])
 
   const handleRemove = useCallback(() => {
     setSavedLocations(savedLocations.filter(item => item.title !== defaultLocation.title))
-    navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+    handleNavigate()
   }, [defaultLocation, savedLocations])
 
   return (
@@ -117,7 +119,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         style={$scrollContainer}
       >
         <View style={$topButtonsContainer}>
-          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)} />
+          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => handleNavigate()} />
           {!defaultLocation && <IconLinkButton icon="map" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('AddNewLocationMap' as never)} />}
         </View>
         <Text tx="settings.locationSettingsData.addNewLocation.generalTitle" style={$title} />

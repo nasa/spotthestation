@@ -110,7 +110,7 @@ export class Api {
     return { kind: "ok", places: response.data }
   }
 
-  async getFeed(page: number) {
+  async getFeed(page: number): Promise<any> {
     const response: ApiResponse<any> = await this.apisauce.get(`https://blogs.nasa.gov/spacestation/feed?paged=${page}`, {}, { baseURL: "" })
     
     if (!response.ok) {

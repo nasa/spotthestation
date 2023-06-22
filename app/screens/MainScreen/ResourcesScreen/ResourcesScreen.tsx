@@ -150,6 +150,8 @@ export const Resources = observer(function HomeScreen() {
     }
   }, [isLoading])
 
+  const link = (item: any) => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.link } as never)
+
   const renderStatic = () => {
     return (
       <ScrollView 
@@ -162,7 +164,7 @@ export const Resources = observer(function HomeScreen() {
         <View style={[$scrollContainer, $bodyContainer]}>
           {items.map(item => <FeedItem
                       key={item.title}
-                      onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.link } as never)}
+                      onPress={() => link(item)}
                       tags={item.tags} 
                       title={item.title}
                       image={item.image}
@@ -180,7 +182,7 @@ export const Resources = observer(function HomeScreen() {
           data={searchRes}
           renderItem={({item}) => <FeedSearchResultItem
             key={item.title}
-            onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)}
+            onPress={() => link(item)}
             title={item.title}
             type={item.type}
             image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}
@@ -230,7 +232,7 @@ export const Resources = observer(function HomeScreen() {
           data={news} 
           renderItem={({item}) => <FeedItem
                       key={item.title}
-                      onPress={() => navigation.navigate('ResourcesScreens' as never, { screen: 'Events', item: item.guid } as never)} 
+                      onPress={() => link(item)} 
                       title={item.title}
                       date={(new Date(item.pubDate)).toISOString()}
                       image={/<img.*?src="([^"]*)"/.exec(item["content:encoded"]) ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1] : ''}

@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingBottom": 172,
+      }
+    }
+  >
+    <RCTScrollView
+      accessibilityHint="Location settings scrollable us area"
+      accessibilityLabel="Location settings scrollable us area"
+      accessibilityRole="scrollbar"
+      accessible={true}
+      contentContainerStyle={
+        Object {
+          "flexGrow": 1,
+          "paddingBottom": 86,
+        }
+      }
+      scrollEnabled={true}
+      style={
+        Object {
+          "paddingBottom": 15,
+          "paddingHorizontal": 26,
+        }
+      }
+    >
+      <View>
+        <View
+          accessibilityHint="Navigates to the previous screen"
+          accessibilityLabel="Back button"
+          accessibilityRole="button"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "paddingBottom": 11,
+            }
+          }
+        >
+          <div />
+          <div />
+        </View>
+        <div />
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    accessibilityRole="imagebutton"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 143,
+          "display": "flex",
+          "height": 60,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 60,
+        },
+        Array [
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#0B3D91",
+            "height": 92,
+            "width": 92,
+          },
+          Object {
+            "bottom": NaN,
+            "position": "absolute",
+          },
+        ],
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#0B3D91",
+              "height": 92,
+              "width": 92,
+            },
+            undefined,
+          ],
+        ]
+      }
+    >
+      <ViewManagerAdapter_ExpoBlurView
+        proxiedProperties={
+          Object {
+            "intensity": 0,
+            "tint": "default",
+          }
+        }
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <div />
+    </View>
+  </View>
+</div>
+`;
