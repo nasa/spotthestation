@@ -1,4 +1,4 @@
-import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN, ISS_TRAJECTORY_DATA_FILE_URL, ISS_TRAJECTORY_DATA_API_URL, CONTACT_EMAIL, SENTRY_DSN } from "@env"
+import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN, SENTRY_DSN, SENTRY_ENVIRONMENT } from "react-native-dotenv"
 
 export interface ConfigBaseProps {
   persistNavigation: "always" | "dev" | "prod" | "never"
@@ -7,10 +7,8 @@ export interface ConfigBaseProps {
   GOOGLE_API_TOKEN: string
   MAPBOX_API_TOKEN: string
   API_URL: string
-  ISS_TRAJECTORY_DATA_FILE_URL: string
-  ISS_TRAJECTORY_DATA_API_URL: string
-  CONTACT_EMAIL: string
   SENTRY_DSN: string
+  SENTRY_ENVIRONMENT: string
 }
 
 export type PersistNavigationConfig = ConfigBaseProps["persistNavigation"]
@@ -32,18 +30,10 @@ const BaseConfig: ConfigBaseProps = {
   exitRoutes: [],
 
   GOOGLE_API_TOKEN,
-  
   MAPBOX_API_TOKEN,
-
   API_URL,
-
-  ISS_TRAJECTORY_DATA_FILE_URL,
-  
-  ISS_TRAJECTORY_DATA_API_URL,
-  
-  CONTACT_EMAIL,
-
-  SENTRY_DSN
+  SENTRY_DSN,
+  SENTRY_ENVIRONMENT
 }
 
 export default BaseConfig

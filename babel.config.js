@@ -8,7 +8,7 @@ const plugins = [
   ["@babel/plugin-proposal-optional-catch-binding"],
   ["module:react-native-dotenv",
     {
-      moduleName: "@env",
+      moduleName: "react-native-dotenv",
       path: ".env",
       verbose: true,
     }

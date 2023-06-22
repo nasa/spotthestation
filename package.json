@@ -1,6 +1,6 @@
 {
-  "name": "nasa-iss-app",
-  "version": "0.0.1",
+  "name": "spot-the-station-app",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-native start",

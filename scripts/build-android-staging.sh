@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Build the app
 echo "[nasa-iss.staging]: Building Android version..."
-# ./scripts/config-env.sh staging
+./scripts/config-env.sh staging
 yarn install
 yarn update-build
 npx jetifier

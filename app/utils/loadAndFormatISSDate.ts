@@ -38,38 +38,16 @@ const textToObject = (text: string): ISSData => {
   const splitLineIndex = lines.findIndex((line) => line.match("COMMENT End sequence of events"))
   const rawEpoches = lines.slice(splitLineIndex)
 
-  return { 
-    id: getValue(lines, "OBJECT_ID", "="), 
-    name: getValue(lines, "OBJECT_NAME", "="), 
-    centerName: getValue(lines, "CENTER_NAME", "="), 
-    mass: parseFloat(getValue(lines, "MASS", "=")), 
-    dragArea: parseFloat(getValue(lines, "DRAG_AREA", "=")), 
-    gragCoefficient: parseFloat(getValue(lines, "DRAG_COEFF", "=")), 
-    solarRadArea: parseFloat(getValue(lines, "SOLAR_RAD_AREA", "=")), 
+  return {
+    id: getValue(lines, "OBJECT_ID", "="),
+    name: getValue(lines, "OBJECT_NAME", "="),
+    centerName: getValue(lines, "CENTER_NAME", "="),
+    mass: parseFloat(getValue(lines, "MASS", "=")),
+    dragArea: parseFloat(getValue(lines, "DRAG_AREA", "=")),
+    gragCoefficient: parseFloat(getValue(lines, "DRAG_COEFF", "=")),
+    solarRadArea: parseFloat(getValue(lines, "SOLAR_RAD_AREA", "=")),
     solarRadCoefficient: parseFloat(getValue(lines, "SOLAR_RAD_COEFF", "=")),
     epoches: rawEpoches.map(epoch => parseEpoch(epoch))
   }
 }
-
-export const downloadISSDate = () => {
-  RNFetchBlob.fetch('GET', Config.ISS_TRAJECTORY_DATA_FILE_URL)
-    .then((res) => {
-      const status = res.info().status
-      
-      if(status === 200) {
-        const text = res.text() as string
-        const issData: ISSData = textToObject(text)
-        
-        storage.save("issData", issData)
-          .then(() => console.log("Saved iss data to storage"))
-          .catch((e) => console.log(e))
-      } else {
-        // handle other status codes
-      }
-    })
-    .catch(({ errorMessage, statusCode }) => {
-      console.log(`Status: ${statusCode as string}\nError: ${errorMessage as string}`)
-    })
-}
-
 

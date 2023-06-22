@@ -74,7 +74,7 @@ export class Api {
   async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
     const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post("/tracking/iss-data", {
       lat, lon
-    }, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
+    }, { baseURL: Config.API_URL })
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
@@ -88,9 +88,9 @@ export class Api {
     const response: ApiResponse<ISSSighting[]> = await this.apisauce.post(
       `/tracking/oem-nasa`,
       { lat, lon, zone },
-      { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL }
+      { baseURL: Config.API_URL }
     )
-    
+
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return { ok: false, data: response.data }
@@ -101,7 +101,7 @@ export class Api {
 
   async getLocationByCoords(url: string): Promise<any> {
     const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
-    
+
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
@@ -112,7 +112,7 @@ export class Api {
 
   async getFeed(page: number): Promise<any> {
     const response: ApiResponse<any> = await this.apisauce.get(`https://blogs.nasa.gov/spacestation/feed?paged=${page}`, {}, { baseURL: "" })
-    
+
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return problem
@@ -122,8 +122,8 @@ export class Api {
   }
 
   async sendMail(subject: string, body: string) {
-    const response: ApiResponse<any> = await this.apisauce.post("/mailer/send-mail", { subject, body }, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
-    
+    const response: ApiResponse<any> = await this.apisauce.post("/mailer/send-mail", { subject, body }, { baseURL: Config.API_URL })
+
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
       if (problem) return {...problem, message: response?.originalError?.message ?? 'Some error occured!'}

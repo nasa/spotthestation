@@ -6,5 +6,5 @@ yarn install
 yarn update-build
 
 # Upload to CodePush. If this release should be marked mandatory, add -m
-appcenter codepush release-react -a <user>/<app> -d Staging -m -p ios/NasaIssApp/Info.plist
-appcenter codepush release-react -a <user>/<app> -d Staging -m
+appcenter codepush release-react -a Ensemble/Spot-the-Station-iOS -d Staging -m -p ios/STSApp-staging-Info.plist
+appcenter codepush release-react -a Ensemble/Spot-the-Station-Android -d Staging -m

@@ -33,6 +33,7 @@ const codePushConfig = {
 
 Sentry.init({
   dsn: Config.SENTRY_DSN,
+  environment: Config.SENTRY_ENVIRONMENT,
 })
 
 enableLatestRenderer()
