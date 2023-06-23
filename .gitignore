@@ -151,3 +151,5 @@ iOS/STSApp.xcarchive
 coverage/
 
 ios/tmp.xcconfig
+android/app/google-services.json
+ios/GoogleService-Info.plist

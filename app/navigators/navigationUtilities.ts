@@ -7,6 +7,7 @@ import {
   NavigationAction,
   createNavigationContainerRef,
 } from "@react-navigation/native"
+import analytics from "@react-native-firebase/analytics"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
@@ -126,6 +127,11 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
       if (__DEV__) {
         console.tron.log(currentRouteName)
       }
+
+      analytics().logScreenView({
+        screen_name: currentRouteName,
+        screen_class: currentRouteName,
+      }).catch(() => null)
     }
 
     // Save the current route name for later comparision

@@ -72,7 +72,7 @@ export class Api {
   }
 
   async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.get("/tracking/iss-data", {
+    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post("/tracking/iss-data", {
       lat, lon
     }, { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL })
 
@@ -85,9 +85,9 @@ export class Api {
   }
 
   async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSightingResponse> {
-    const response: ApiResponse<ISSSighting[]> = await this.apisauce.get(
-      `/tracking/oem-nasa?zone=${zone}&lat=${lat}&lon=${lon}`, 
-      {}, 
+    const response: ApiResponse<ISSSighting[]> = await this.apisauce.post(
+      `/tracking/oem-nasa`,
+      { lat, lon, zone },
       { baseURL: Config.ISS_TRAJECTORY_DATA_API_URL }
     )
     

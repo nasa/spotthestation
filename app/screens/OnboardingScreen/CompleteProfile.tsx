@@ -12,6 +12,7 @@ import * as storage from "../../utils/storage"
 import Snackbar from "react-native-snackbar"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
+import analytics from "@react-native-firebase/analytics"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const navigation = useNavigation()
@@ -38,6 +39,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
   const handleNext = useCallback(() => setStep(step + 1), [step])
 
   const handleDone = () => {
+    analytics().logTutorialComplete().catch(() => null)
     storage.save('isSettingsCompleted', true)
       .then(() => navigation.navigate("Main" as never))
       .catch(err => Snackbar.show({

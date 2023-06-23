@@ -10,6 +10,7 @@ import { NasaLogo } from "./components/NasaLogo"
 import * as storage from "../../utils/storage"
 import { getUserId } from "../../utils/generateUUID"
 import { fontSizes, lineHeights, scale } from "../../theme/spacing"
+import analytics from "@react-native-firebase/analytics"
 
 const background = require("../../../assets/images/bg.png")
 const iss = require("../../../assets/images/iss-with-path.png")
@@ -20,11 +21,17 @@ export function Splash() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
-    if ((!await storage.load("userId"))) {
+    let userId = await storage.load("userId") as string
+    if (!userId) {
+      userId = getUserId()
+      await analytics().setUserId(userId).catch(() => null)
+      await analytics().logTutorialBegin().catch(() => null)
       await storage.save("userId", getUserId())
       setTimeout(() => {
         handleNavigate()
       }, 3000)
+    } else {
+      await analytics().setUserId(userId).catch(() => null)
     }
   }
 

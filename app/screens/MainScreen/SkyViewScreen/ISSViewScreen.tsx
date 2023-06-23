@@ -31,6 +31,7 @@ import RecordScreen, { RecordingResult } from 'react-native-record-screen'
 import CameraRoll from "@react-native-community/cameraroll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import analytics from "@react-native-firebase/analytics"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -120,6 +121,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
   const [mediaUrl, setMediaUrl] = useState('')
+  const [mediaType, setMediaType] = useState('')
   const [current, setCurrent] = useState<LocationType>(null)
 
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -242,7 +244,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
     getSightings().catch(e => console.log(e))
     getData().catch(e => console.log(e))
-  }, [location])
+  }, [location?.[0], location?.[1]])
 
   useEffect(() => {
     if (!isRecording) return undefined
@@ -271,6 +273,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       async (uri) => {
         await saveToGallery(uri, 'photo')
         setMediaUrl(uri)
+        setMediaType('photo')
       },
       (error) => Snackbar.show({
         text: error,
@@ -338,6 +341,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     if (res?.status === 'success') {
       await saveToGallery(res.result.outputURL as string, 'video')
       setMediaUrl(res.result.outputURL as string)
+      setMediaType('video')
       setRecordedSeconds(0)
     }
   }
@@ -395,6 +399,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
     try {
       await Share.open(shareOptions)
+      analytics().logShare({ content_type: mediaType, item_id: 'iss_capture_moment', method: '' }).catch(() => null)
       Snackbar.show({
         text: 'Successfully shared!',
         duration: Snackbar.LENGTH_LONG,
