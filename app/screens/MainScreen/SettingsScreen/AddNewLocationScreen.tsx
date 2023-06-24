@@ -119,10 +119,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         style={$scrollContainer}
       >
         <View style={$topButtonsContainer}>
-          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => handleNavigate()} />
+          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.goBack()} />
           {!defaultLocation && <IconLinkButton icon="map" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('AddNewLocationMap' as never)} />}
         </View>
-        <Text tx="settings.locationSettingsData.addNewLocation.generalTitle" style={$title} />
+        <Text tx={`settings.locationSettingsData.addNewLocation.${defaultLocation ? 'generalTitleEdit' : 'generalTitleAdd'}`} style={$title} />
         <GooglePlacesAutocomplete
           ref={addressRef}
           placeholder={translate("settings.locationSettingsData.addNewLocation.searchInputPlaceholder")}

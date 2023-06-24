@@ -14,7 +14,6 @@ import { Platform } from "react-native"
 import watchHeading from "../../../utils/heading"
 
 const icon = require("../../../../assets/icons/iss.png")
-const label = require("../../../../assets/icons/isslabel.png")
 
 interface ISSSceneProps {
   sceneNavigator: {
@@ -168,13 +167,6 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         <>
           { settings.isPathVisible && (
             <>
-              <ViroImage
-                height={2.5}
-                width={1}
-                rotation={[0, -issMarkerPosition[0], 0]}
-                position={worldTransform([issCoords[0], issCoords[1] + 1.8, issCoords[2]], initialHeading)}
-                source={label}
-              />
               <ViroPolyline
                 position={worldTransform(azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0), initialHeading)}
                 points={pastOrbitCoords}

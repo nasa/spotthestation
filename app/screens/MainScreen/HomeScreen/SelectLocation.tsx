@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable camelcase */
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle, View, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
-
+import Modal from "react-native-modal"
 import { Accessory, Icon, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
@@ -13,6 +14,7 @@ import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 import { SettingsItem } from "../components/SettingsItem"
 import { useNavigation } from "@react-navigation/native"
+import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 
 export interface SelectLocationProps {
   /**
@@ -30,12 +32,14 @@ export interface SelectLocationProps {
 }
 
 export function SelectLocation({ onClose, onLocationPress, selectedLocation }: SelectLocationProps) {
-  const { savedLocations, currentLocation, setCurrentLocation } = useStores()
+  const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations } = useStores()
   const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [nearby, setNearby] = useState<LocationType[]>([])
+  const [toRemove, setToRemove] = useState<LocationType>(null)
   const [searchResult, setSearchResult] = useState<LocationType[]>([])
+  const [isRemove, setIsRemove] = useState(false)
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -88,6 +92,11 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
     
     return false
   }
+
+  const handleRemove = useCallback((location: LocationType) => {
+    setSavedLocations(savedLocations.filter(item => item.title !== location.title))
+    setIsRemove(false)
+  }, [savedLocations])
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom, $text]}>
@@ -183,7 +192,17 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
                   title={location.title} 
                   subtitle={location.subtitle}
                   selected={isSelected(location)} 
+                  editable
+                  ctaTx="homeScreen.selectLocation.cta"
                   onPress={() => onLocationPress(location)}
+                  onDelete={() => {
+                    setIsRemove(true)
+                    setToRemove(location)
+                  }}
+                  onEdit={() =>{ 
+                    navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)
+                    onClose()
+                  }}
                 />)}
               </ExpandContainer>}
               {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
@@ -217,6 +236,22 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
           }
         </ScrollView>
       </KeyboardAvoidingView>
+      <Modal
+          isVisible={isRemove}
+          onBackdropPress={() => setIsRemove(!isRemove)}
+          onSwipeComplete={() => setIsRemove(!isRemove)}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={$modal}
+        >
+          <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={() => handleRemove(toRemove)} location={toRemove} />
+        </Modal>
     </View>
   )
 }
@@ -275,4 +310,11 @@ const $active: ViewStyle = {
 
 const $keyboardAvoidingViewStyle: ViewStyle = {
   flex: 1,
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  justifyContent: 'flex-end',
+  left: 0,
+  margin: 0
 }

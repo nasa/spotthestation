@@ -68,7 +68,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
         marker,
         GLOBE_RADIUS
       )
-      pointRef.current.position.set(x, y + 20, z - 5)
+      pointRef.current.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
     }
   }, [marker])
 
@@ -123,7 +123,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     )
     
     mesh.scale.set(24,24,1)
-    mesh.position.set(x, y + 20, z - 5)
+    mesh.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
 
     return mesh
   }

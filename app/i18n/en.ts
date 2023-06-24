@@ -150,7 +150,8 @@ const en = {
       current: "Current location",
       saved: "Saved locations",
       nearby: "Nearby locations",
-      search: "Search results"
+      search: "Search results",
+      cta: "Customize notifications for this location"
     },
     selectSightings: {
       title: "Upcoming Sightings",
@@ -292,7 +293,8 @@ const en = {
       generalTitle: 'Location Settings',
       cta: 'Customize notifications for this location',
       addNewLocation: {
-        generalTitle: 'Add New Location',
+        generalTitleAdd: 'Add New Location',
+        generalTitleEdit: 'Edit Location',
         confirnModalButton: 'Confirm',
         saveButton: 'Save Location',
         searchInputPlaceholder: 'Enter city, ZIP or address',

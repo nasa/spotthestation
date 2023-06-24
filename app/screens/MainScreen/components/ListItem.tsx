@@ -8,6 +8,7 @@ import { typography, colors, fontSizes, lineHeights, scale } from "../../../them
 export interface ListItemProps {
   selected?: boolean
   withSwitch?: boolean
+  editable?: boolean
   title: string
   subtitle: string
   icon: IconTypes
@@ -16,9 +17,11 @@ export interface ListItemProps {
   onToggle?: () => void
   onPress?: PressableProps["onPress"]
   onCtaPress?: () => void
+  onEdit?: () => void
+  onDelete?: () => void
 }
 
-export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle, onCtaPress }: ListItemProps) {
+export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle, onCtaPress, onEdit, onDelete, editable }: ListItemProps) {
   return (
     <Pressable 
       accessible
@@ -42,22 +45,37 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
         >
           <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
-          {Boolean(ctaTx) && <Pressable
+          {Boolean(ctaTx) && !editable && <Pressable
             onPress={onCtaPress}
             style={{ marginTop: scale(10) }}
           >
             <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
           </Pressable>}
-        </View>
-          {withSwitch ? (<Toggle
+          {editable && (
+            <View
               accessible
-              accessibilityLabel="switch button"
-              accessibilityHint="toggle location alerts"
-              variant="switch" 
-              value={selected}
-              onValueChange={onToggle}
-            />) : (<Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />)
-          }
+              accessibilityLabel="list item body"
+              accessibilityHint="list item body"
+              accessibilityRole="text"
+              style={$titleContainer}
+            >
+              <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue, marginTop: 10 }]} />
+              <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                {onEdit && <Icon icon="edit" size={30} color={colors.palette.yellow} onPress={onEdit} containerStyle={{ marginRight: 10 }} />}
+                {onDelete && <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />}
+              </View>
+            </View>
+          )}
+        </View>
+        {withSwitch ? (<Toggle
+            accessible
+            accessibilityLabel="switch button"
+            accessibilityHint="toggle location alerts"
+            variant="switch" 
+            value={selected}
+            onValueChange={onToggle}
+          />) : (<Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />)
+        }
       </View>
     </Pressable>
   )
