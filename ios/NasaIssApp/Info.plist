@@ -73,6 +73,13 @@
 	<string>$(PRODUCT_NAME) needs access to your microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your photo library.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false />
+		<key>UISceneConfigurations</key>
+		<dict />
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -49,7 +49,7 @@
 		<string>protonmail</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<true />
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -57,7 +57,7 @@
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
+				<true />
 			</dict>
 		</dict>
 	</dict>
@@ -73,6 +73,13 @@
 	<string>$(PRODUCT_NAME) needs access to your microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your photo library.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false />
+		<key>UISceneConfigurations</key>
+		<dict />
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -85,7 +92,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<false/>
+	<false />
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -102,6 +109,6 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<false />
 </dict>
 </plist>

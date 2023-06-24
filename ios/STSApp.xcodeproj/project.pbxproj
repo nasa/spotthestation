@@ -12,6 +12,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		32B9923896C0B12E91111CB8 /* Pods_STSApp_STSAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5C9AB68869B85B1E77ADA9 /* Pods_STSApp_STSAppTests.framework */; };
+		3A365D90220EDB7C49812A3D /* Pods_STSApp_STSApp_staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79E36FD9D90A05E6D5B2C271 /* Pods_STSApp_STSApp_staging.framework */; };
 		496783B02A46665900FCC42E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		496783B12A46665900FCC42E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		496783B22A46665900FCC42E /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E60350F78A4D2BA180AF80 /* noop-file.swift */; };
@@ -22,13 +24,11 @@
 		496783BB2A46665900FCC42E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		496783BC2A46665900FCC42E /* Config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */; };
 		496783BD2A46665900FCC42E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */; };
-		70B441DBA23CA4086D8B5F44 /* Pods_STSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EB378A47846AF348A7724C /* Pods_STSApp.framework */; };
-		7413C2FED57E014340F152A2 /* Pods_STSApp_STSApp_staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE370C4A79E8F570A2EEA5F /* Pods_STSApp_STSApp_staging.framework */; };
+		67201EA4681C46DE04080E17 /* Pods_STSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06B74B9C194DEF9BA28086B /* Pods_STSApp.framework */; };
 		8435AF3F2A43260500F78BFE /* Config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */; };
 		8435AF412A43268100F78BFE /* Config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8435AF402A43268100F78BFE /* Config.release.xcconfig */; };
 		8473A6472A459D56007C1AE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */; };
 		B11695E39903CBBA008A4C3B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */; };
-		C945C71844E22CC5E7B1D7C3 /* Pods_STSApp_STSAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720F0A6AFC1865C3B9562221 /* Pods_STSApp_STSAppTests.framework */; };
 		E2A4288027284282AD0938DE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E60350F78A4D2BA180AF80 /* noop-file.swift */; };
 		EEC033B929B2FB3A2D22EA52 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5C59707BF9623F8CAAEB81 /* ExpoModulesProvider.swift */; };
 		FCDD02A92976AB0F0094E655 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */; };
@@ -51,6 +51,7 @@
 		00E356EE1AD99517003FC87E /* STSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* STSAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSAppTests.m; sourceTree = "<group>"; };
+		0E5C9AB68869B85B1E77ADA9 /* Pods_STSApp_STSAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp_STSAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* STSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = NasaIssApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = NasaIssApp/AppDelegate.mm; sourceTree = "<group>"; };
@@ -63,19 +64,18 @@
 		496783C62A46665900FCC42E /* STSApp-staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STSApp-staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		496783C72A46665900FCC42E /* STSApp-staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "STSApp-staging-Info.plist"; path = "/Users/andrew/nasa-iss-app-mobile/ios/STSApp-staging-Info.plist"; sourceTree = "<absolute>"; };
 		61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp-STSAppTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		720F0A6AFC1865C3B9562221 /* Pods_STSApp_STSAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp_STSAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79E36FD9D90A05E6D5B2C271 /* Pods_STSApp_STSApp_staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp_STSApp_staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C22EE4E44799A548365F961 /* Pods-STSApp-STSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSAppTests.release.xcconfig"; path = "Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		818CF8F7DD00C7A3E1970A31 /* Pods-STSApp-STSApp-staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSApp-staging.release.xcconfig"; path = "Target Support Files/Pods-STSApp-STSApp-staging/Pods-STSApp-STSApp-staging.release.xcconfig"; sourceTree = "<group>"; };
 		8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		8435AF402A43268100F78BFE /* Config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.release.xcconfig; sourceTree = "<group>"; };
 		8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9BE370C4A79E8F570A2EEA5F /* Pods_STSApp_STSApp_staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp_STSApp_staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5C59707BF9623F8CAAEB81 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp-STSApp-staging/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		B17E4F534288BA17CF966093 /* Pods-STSApp-STSAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSAppTests.debug.xcconfig"; path = "Target Support Files/Pods-STSApp-STSAppTests/Pods-STSApp-STSAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D06B74B9C194DEF9BA28086B /* Pods_STSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8F0CBEEADACC87888DBEB /* Pods-STSApp-STSApp-staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSApp-staging.debug.xcconfig"; path = "Target Support Files/Pods-STSApp-STSApp-staging/Pods-STSApp-STSApp-staging.debug.xcconfig"; sourceTree = "<group>"; };
 		EA69DCA74DB00FF35D26E62B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F3EB378A47846AF348A7724C /* Pods_STSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		FCDD02AA297752FC0094E655 /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCE2D66329E5EAB800F5C4D5 /* Mapbox in Frameworks */,
-				C945C71844E22CC5E7B1D7C3 /* Pods_STSApp_STSAppTests.framework in Frameworks */,
+				32B9923896C0B12E91111CB8 /* Pods_STSApp_STSAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCE2D66229E5EAB800F5C4D5 /* Mapbox in Frameworks */,
-				70B441DBA23CA4086D8B5F44 /* Pods_STSApp.framework in Frameworks */,
+				67201EA4681C46DE04080E17 /* Pods_STSApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				496783B52A46665900FCC42E /* Mapbox in Frameworks */,
-				7413C2FED57E014340F152A2 /* Pods_STSApp_STSApp_staging.framework in Frameworks */,
+				3A365D90220EDB7C49812A3D /* Pods_STSApp_STSApp_staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F3EB378A47846AF348A7724C /* Pods_STSApp.framework */,
-				9BE370C4A79E8F570A2EEA5F /* Pods_STSApp_STSApp_staging.framework */,
-				720F0A6AFC1865C3B9562221 /* Pods_STSApp_STSAppTests.framework */,
+				D06B74B9C194DEF9BA28086B /* Pods_STSApp.framework */,
+				79E36FD9D90A05E6D5B2C271 /* Pods_STSApp_STSApp_staging.framework */,
+				0E5C9AB68869B85B1E77ADA9 /* Pods_STSApp_STSAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
