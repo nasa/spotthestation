@@ -77,8 +77,8 @@
     "mobx-react-lite": "3.4.0",
     "mobx-state-tree": "5.1.5",
     "moment-timezone": "^0.5.43",
-    "react": "18.0.0",
-    "react-native": "0.69.7",
+    "react": "18.1.0",
+    "react-native": "0.70.10",
     "react-native-bootsplash": "4.3.2",
     "react-native-code-push": "^7.1.0",
     "react-native-compass-heading": "^1.4.2",
@@ -129,8 +129,8 @@
     "@types/jest": "26.0.19",
     "@types/lodash": "^4.14.192",
     "@types/lodash.throttle": "^4.1.7",
-    "@types/react": "^17",
-    "@types/react-native": "0.67.8",
+    "@types/react": "^18.2.14",
+    "@types/react-native": "0.70.10",
     "@types/three": "^0.146.0",
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
@@ -151,9 +151,9 @@
     "jest-circus": "26",
     "jest-environment-node": "26",
     "jest-expo": "^46.0.1",
-    "metro-config": "0.71.1",
-    "metro-react-native-babel-preset": "0.71.1",
-    "metro-source-map": "0.71.1",
+    "metro-config": "0.72.3",
+    "metro-react-native-babel-preset": "0.72.3",
+    "metro-source-map": "0.72.3",
     "mocha": "6",
     "patch-package": "6.4.7",
     "postinstall-prepare": "1.0.1",
@@ -170,8 +170,6 @@
     "webpack-dev-server": "^3"
   },
   "resolutions": {
-    "@types/react": "^17",
-    "@types/react-dom": "^17",
     "@expo/dev-server": "0.1.120"
   },
   "prettier": {
