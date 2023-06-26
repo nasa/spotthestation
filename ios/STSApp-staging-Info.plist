@@ -61,18 +61,22 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need access to your media library to store recorded images and videos</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need access to your calendar to enable scheduling of notifications for upcoming sightings</string>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your Camera.</string>
+	<string>We need access to your camera to enable Augmented Reality experience</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow $(PRODUCT_NAME) to use your location</string>
+	<string>We use location data to calculate the upcoming sightings in your area</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Allow $(PRODUCT_NAME) to use your location</string>
+	<string>We use location data to calculate the upcoming sightings in your area</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow $(PRODUCT_NAME) to use your location</string>
+	<string>We use location data to calculate the upcoming sightings in your area</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your microphone.</string>
+	<string>We need access to your microphone to enable audio recording in your videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your photo library.</string>
+	<string>We need access to your media library to store recorded images and videos</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
