@@ -31,7 +31,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2023062109</string>
+	<string>2023062619</string>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODE_PUSH_IOS_DEPLOYMENT_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -49,7 +49,7 @@
 		<string>protonmail</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<true />
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -57,7 +57,7 @@
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
+				<true />
 			</dict>
 		</dict>
 	</dict>
@@ -96,7 +96,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<false/>
+	<false />
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -113,6 +113,6 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<false />
 </dict>
 </plist>

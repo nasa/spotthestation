@@ -146,7 +146,7 @@ android {
         applicationId 'com.nasaissapp'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2023062109
+        versionCode 2023062619
         versionName "1.0.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
