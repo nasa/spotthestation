@@ -6,7 +6,7 @@ import { colors, fontSizes, lineHeights, scale, typography } from "../../../them
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
-import { isToday, isTomorrow } from "date-fns"
+import { addDays } from "date-fns"
 import { formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
 import { getCalendars } from 'expo-localization'
@@ -31,8 +31,8 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm A"
     const shortTZ = getShortTZ(timezone)
-    if (isToday(new Date(date))) return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
-    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    if (formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) === formatDateWithTZ(new Date().toISOString(), `YYYY-MM-DD`, { timeZone: timezone })) return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    if (formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) === formatDateWithTZ(addDays(new Date(), 1).toISOString(), `YYYY-MM-DD`, { timeZone: timezone })) return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
     return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, { timeZone: timezone })} ${shortTZ}`
   }
 
