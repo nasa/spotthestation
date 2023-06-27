@@ -54,6 +54,7 @@
     "apisauce": "2.1.5",
     "d3-shape": "^3.2.0",
     "date-fns": "^2.29.2",
+    "date-fns-timezone": "^0.1.4",
     "date-fns-tz": "^2.0.0",
     "expo": "~46.0.17",
     "expo-application": "~4.2.2",

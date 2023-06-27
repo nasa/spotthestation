@@ -109,6 +109,14 @@ const RootStoreActions = (self) => ({
   setInitLoading: (value: boolean) => {
 		self.initLoading = value
 	},
+  
+  setSightingsLoaded: (value: boolean) => {
+		self.sightingsLoaded = value
+	},
+
+  setIssDataLoaded: (value: boolean) => {
+		self.issDataLoaded = value
+	},
 
   setNotifications: () => {
 		const notifyFor: LocationType[] = [
@@ -128,9 +136,7 @@ const RootStoreActions = (self) => ({
     } = yield api.getISSSightings({ zone: timeZone, lat: valueCopy.location.lat, lon: valueCopy.location.lng })    
 
     if (ok) {
-      valueCopy.sightings = [...data]
-      
-      self.savedLocations = [...self.savedLocations.filter(item => item.title !== valueCopy.title), valueCopy]
+      self.savedLocations = [...self.savedLocations.filter(item => item.title !== valueCopy.title), {...valueCopy, sightings: [...data]}]
 
       Snackbar.show({
         text: 'Sightings for last saved location loaded!',

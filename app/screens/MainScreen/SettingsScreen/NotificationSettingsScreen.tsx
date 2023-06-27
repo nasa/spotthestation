@@ -305,7 +305,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone.regionFormat === 'US'}
           isNotifyAll={current && current.sightings.every(item => item.notify)}
-          timezone={getShortTZ(currentTimeZone?.timeZone)}
+          timezone={currentTimeZone?.timeZone}
         />
       </Modal>}
     </Screen>

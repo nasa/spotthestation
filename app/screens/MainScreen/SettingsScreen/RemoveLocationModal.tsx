@@ -24,7 +24,7 @@ export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocat
         size={36}
       />
       <View style={$generalIcon}>
-        <Icon icon="removeLocation" />
+        <Icon icon="removeLocation" size={60} />
       </View>
       <View style={$contentContainer}>
         <Text tx="settings.locationSettingsData.removeLocation.question" style={$title} />

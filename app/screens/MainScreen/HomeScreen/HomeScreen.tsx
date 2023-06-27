@@ -11,7 +11,7 @@ import Modal from "react-native-modal"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
 import { colors, scale } from "../../../theme"
-import { formatDate, getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
+import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
@@ -48,7 +48,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
   const { 
-    issData, getISSData, setISSSightings, initLoading, setInitLoading,
+    issData, getISSData, setISSSightings, initLoading, setInitLoading, setIssDataLoaded, setSightingsLoaded,
     currentLocation, selectedLocation, setSelectedLocation, sightingsLoaded, issDataLoaded
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -96,9 +96,16 @@ export const HomeScreen = observer(function HomeScreen() {
     startCountdown()
   }, [result, startCountdown, timeDiff])
 
+  const getCoach = async () => {
+    setCoachVisible(!(await storage.load('coachCompleted')))
+  }
+
   useEffect(() => {
     if (initLoading && sightingsLoaded && issDataLoaded) {
+      console.log('initialized')
+      
       setInitLoading(false)
+      setTimeout(() => getCoach().catch((e) => console.log(e)), 1000)
     }
   }, [issDataLoaded, initLoading, sightingsLoaded])
 
@@ -171,14 +178,6 @@ export const HomeScreen = observer(function HomeScreen() {
     return () => clearTimeout(updateTimer.current)
   }, [issData])
 
-  const getCoach = async () => {
-    setCoachVisible(!(await storage.load('coachCompleted')))
-  }
-
-  useEffect(() => {
-    getCoach().catch((e) => console.log(e))
-  }, [])
-
   const getData = async () => {
     await getISSData({ lat: location[0], lon: location[1] })
   }
@@ -204,6 +203,11 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
     setIsLocation(false)
+    setTimeout(() => {
+      setInitLoading(true)
+      setIssDataLoaded(false)
+      setSightingsLoaded(false)
+    }, 1000)
     setSelectedLocation(location).catch((e) => console.log(e))
     await storage.save('selectedLocation', location)
   }, [])
@@ -280,7 +284,7 @@ export const HomeScreen = observer(function HomeScreen() {
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
-        sighting={currentSightning.date ? formatDate(currentSightning.date, currentTimeZone.regionFormat === 'US' ? "MMM dd, yyyy" : "dd MMM yyyy") : '-'}
+        sighting={currentSightning.date ? formatDateWithTZ(currentSightning.date, currentTimeZone.regionFormat === 'US' ? "MMM DD, YYYY" : "DD MMM YYYY", { timeZone: currentTimeZone.timeZone }) : '-'}
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
@@ -334,19 +338,11 @@ export const HomeScreen = observer(function HomeScreen() {
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone?.regionFormat === 'US'}
           isNotifyAll={current && current?.sightings.every(item => item.notify)}
-          timezone={getShortTZ(currentTimeZone?.timeZone)}
+          timezone={currentTimeZone?.timeZone}
         />
       </Modal>}
-      {coachVisible && <Modal
-        isVisible={coachVisible && !initLoading}
-        useNativeDriver
-        useNativeDriverForBackdrop
-        backdropOpacity={.4}
-        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
-      >
-        {renderCoachMarks()}
-      </Modal>}
       <Modal
+        key={currentLocation.title}
         isVisible={initLoading}
         useNativeDriver
         useNativeDriverForBackdrop
@@ -355,6 +351,16 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <InitLoader />
       </Modal>
+      {coachVisible && <Modal
+        key={location?.join('-')}
+        isVisible={coachVisible && !initLoading}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={.4}
+        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
+      >
+        {renderCoachMarks()}
+      </Modal>}
     </Screen>
   )
 })

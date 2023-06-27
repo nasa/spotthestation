@@ -6,7 +6,6 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useRef, useState } from "react"
 import { ViewStyle, TextStyle, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import Modal from "react-native-modal"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
@@ -14,7 +13,6 @@ import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton
 import Config from "react-native-config"
 import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
-import { RemoveLocationModal } from "./RemoveLocationModal"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 
@@ -30,7 +28,6 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
-  const [isRemove, setIsRemove] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [titleValue, setTitleValue] = useState(defaultLocation?.title || "")
   const [location, setLocation] = useState<LocationType>({...defaultLocation})
@@ -98,11 +95,6 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     })
     handleNavigate()
   }, [titleValue, location, savedLocations])
-
-  const handleRemove = useCallback(() => {
-    setSavedLocations(savedLocations.filter(item => item.title !== defaultLocation.title))
-    handleNavigate()
-  }, [defaultLocation, savedLocations])
 
   return (
     <Screen
@@ -197,41 +189,17 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           )}
         />
         <View style={$buttonsContainer}>
-          {defaultLocation && <IconLinkButton 
-            icon="trash" 
-            buttonStyle={$removeButton}
-            viewStyle={$removeButton} 
-            iconColor={colors.palette.neutral100} 
-            iconSize={28} 
-            onPress={() => setIsRemove(true)}
-          />}
           <Button
             accessible
             accessibilityLabel="save button"
             accessibilityHint="save location"
             tx="settings.locationSettingsData.addNewLocation.saveButton"
-            style={[$save, defaultLocation && { width: '80%'}]}
+            style={$save}
             textStyle={$saveText}
             pressedStyle={$save}
             onPress={handleSave}
           />
         </View>
-        <Modal
-          isVisible={isRemove}
-          onBackdropPress={() => setIsRemove(!isRemove)}
-          onSwipeComplete={() => setIsRemove(!isRemove)}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={$modal}
-        >
-          <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={handleRemove} location={defaultLocation} />
-        </Modal>
       </View>
     </Screen>
   )
@@ -365,18 +333,4 @@ const $saveText: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
   lineHeight: lineHeights[21],
-}
-
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: 'flex-end',
-  left: 0,
-  margin: 0
-}
-
-const $removeButton: ViewStyle = {
-  width: scale(56),
-  height: scale(56),
-  backgroundColor: colors.palette.nasaRed,
-  alignSelf: 'center'
 }

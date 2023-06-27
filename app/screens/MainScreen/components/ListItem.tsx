@@ -45,7 +45,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
         >
           <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
-          {Boolean(ctaTx) && !editable && <Pressable
+          {Boolean(ctaTx) && <Pressable
             onPress={onCtaPress}
             style={{ marginTop: scale(10) }}
           >
@@ -59,7 +59,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
               accessibilityRole="text"
               style={$titleContainer}
             >
-              <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue, marginTop: 10 }]} />
+              {/* <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue, marginTop: 10 }]} /> */}
               <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
                 {onEdit && <Icon icon="edit" size={30} color={colors.palette.yellow} onPress={onEdit} containerStyle={{ marginRight: 10 }} />}
                 {onDelete && <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />}

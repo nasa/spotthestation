@@ -16,7 +16,9 @@ import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
 import { ISSSighting } from "../../../services/api/api.types"
-import { getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
+import { getCurrentTimeZome } from "../../../utils/formatDate"
+import { RemoveLocationModal } from "./RemoveLocationModal"
+import { toJS } from "mobx"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
@@ -28,6 +30,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [isSightings, setIsSightings] = useState(false)
   const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
+  const [isRemove, setIsRemove] = useState(false)
+  const [toRemove, setToRemove] = useState<LocationType>(null)
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -84,6 +88,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     getTimeZone(current).catch(e => console.log(e))
   }, [current])
 
+  const handleRemove = useCallback((location: LocationType) => {
+    setSavedLocations(savedLocations.filter(item => item.title !== location.title))
+    setIsRemove(false)
+  }, [savedLocations])
+
   return (
     <Screen
       preset="fixed" 
@@ -134,9 +143,17 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
               selected={location.alert}
               onToggle={() => handleToggle(location, 'saved')}
               withSwitch
-              onPress={() => navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)}
+              // onPress={() => navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)}
               ctaTx="settings.locationSettingsData.cta"
               onCtaPress={() => handleCtaPress(location)}
+              editable
+              onDelete={() => {
+                setIsRemove(true)
+                setToRemove(location)
+              }}
+              onEdit={() =>{ 
+                navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)
+              }}
             />)}
           </ExpandContainer>}
         </ScrollView>
@@ -170,9 +187,25 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone.regionFormat === 'US'}
           isNotifyAll={current && current.sightings.every(item => item.notify)}
-          timezone={getShortTZ(currentTimeZone?.timeZone)}
+          timezone={currentTimeZone?.timeZone}
         />
       </Modal>}
+      <Modal
+          isVisible={isRemove}
+          onBackdropPress={() => setIsRemove(!isRemove)}
+          onSwipeComplete={() => setIsRemove(!isRemove)}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={$modal}
+        >
+          <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={() => handleRemove(toRemove)} location={toRemove} />
+        </Modal>
     </Screen>
   )
 })

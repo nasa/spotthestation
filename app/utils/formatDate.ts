@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Locale, format, parseISO } from "date-fns"
+import { formatToTimeZone } from "date-fns-timezone"
 import I18n from "i18n-js"
 import { getLocales, getCalendars } from 'expo-localization'
 import moment from 'moment-timezone'
@@ -13,6 +14,7 @@ import * as storage from "../utils/storage"
 import { getLocationTimeZone } from "./geolocation"
 
 type Options = Parameters<typeof format>[2]
+type OptionsTZ = Parameters<typeof formatToTimeZone>[2]
 
 const getLocale = (): Locale => {
   const locale = I18n.currentLocale().split("-")[0]
@@ -26,6 +28,10 @@ export const formatDate = (date: string, dateFormat?: string, options?: Options)
     locale,
   }
   return format(parseISO(date), dateFormat ?? "MMM dd, yyyy", dateOptions)
+}
+
+export const formatDateWithTZ = (date: string, dateFormat?: string, options?: OptionsTZ) => {
+  return formatToTimeZone(new Date(date), dateFormat ?? "MMM dd, yyyy", options)
 }
 
 export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {

@@ -7,7 +7,7 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { isToday, isTomorrow } from "date-fns"
-import { formatDate } from "../../../utils/formatDate"
+import { formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
 import { getCalendars } from 'expo-localization'
 import * as storage from "../../../utils/storage"
@@ -29,11 +29,11 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
 
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
-    
-    if (isToday(new Date(date))) return `Today, ${formatDate(date, timeFormat)} ${timezone}`
-    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDate(date, timeFormat)} ${timezone}`
-    return `${formatDate(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`)} ${timezone}`
+    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm A"
+    const shortTZ = getShortTZ(timezone)
+    if (isToday(new Date(date))) return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    if (isTomorrow(new Date(date))) return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, { timeZone: timezone })} ${shortTZ}`
   }
 
   const setStageIcon = (stage): { icon: IconTypes, color: string} => {
