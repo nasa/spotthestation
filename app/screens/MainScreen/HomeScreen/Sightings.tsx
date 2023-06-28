@@ -239,7 +239,8 @@ const $modal: ViewStyle = {
 const $legend: ViewStyle = {
   flexDirection: "row",
   margin: 0,
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  width: "80%"
 }
 
 const $body: TextStyle = {

@@ -13,7 +13,7 @@ import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable } f
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from 'react-native-orientation-locker'
-import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'
+import { check, request, PERMISSIONS, RESULTS, openSettings } from 'react-native-permissions'
 import Share from 'react-native-share'
 import { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
@@ -32,6 +32,7 @@ import CameraRoll from "@react-native-community/cameraroll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import analytics from "@react-native-firebase/analytics"
+import { PermissionsModal } from "../components/PermissionsModal"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -59,11 +60,19 @@ async function checkCameraPermissions(callback: (value: boolean) => void) {
   }
 }
 
-async function requestCameraPermissions(callback: (value: boolean) => void) {
+async function requestCameraPermissions(callback: (value: boolean) => void, afterClick?: boolean) {
   if (Platform.OS === 'android') {
     const permissionResult = await request(PERMISSIONS.ANDROID.CAMERA)
     if (permissionResult === RESULTS.GRANTED) {
       callback(true)
+    } else {
+      callback(false)
+      if (afterClick) {
+        openSettings().catch(() => Snackbar.show({
+          text: 'Сannot open settings!',
+          duration: Snackbar.LENGTH_LONG,
+        }))
+      }
     }
   } else if (Platform.OS === 'ios') {
     const permissionResult = await request(PERMISSIONS.IOS.CAMERA)
@@ -72,6 +81,12 @@ async function requestCameraPermissions(callback: (value: boolean) => void) {
       callback(true)
     } else if (permissionResult === RESULTS.BLOCKED) {
       callback(false)
+      if (afterClick) {
+        openSettings().catch(() => Snackbar.show({
+          text: 'Сannot open settings!',
+          duration: Snackbar.LENGTH_LONG,
+        }))
+      }
     }
   }
 }
@@ -115,6 +130,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isDetails, setIsDetails] = useState(false)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
+  const [isPermissionsModal, setIsPermissionsModal] = useState(false)
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
   const [isSpotted, setIsSpotted] = useState(false)
@@ -319,15 +335,15 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         },
       )
       if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+        setIsPermissionsModal(true)
         return
       }
     }
 
-    await CameraRoll.save(path, { type })
-    Snackbar.show({
+    CameraRoll.save(path, { type }).then(() => Snackbar.show({
       text: `${type.charAt(0).toUpperCase() + type.slice(1)} saved to gallery`,
       duration: Snackbar.LENGTH_LONG,
-    })
+    })).catch(() => setIsPermissionsModal(true))
   }
 
   const stopRecording = async () => {
@@ -433,8 +449,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         }
       </View>
       {!isCameraAllowed ?
-        <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)})}>
-          <Text tx="issView.cameraPermissionText" style={$time} />
+        <Pressable style={[$body, $bodyStyleOverride]} onPress={() => requestCameraPermissions((value) => {setIsCameraAllowed(value); setIsFullScreen(value)}, true)}>
+          <Text tx="issView.cameraPermissionText" style={[$time, {
+            borderColor: colors.palette.buttonBlue,
+            borderRadius: 10,
+            borderWidth: 1,
+            padding: 5,
+            textDecorationLine: 'underline'
+          }]} />
         </Pressable> : <View style={[$body, $bodyStyleOverride]}>
             {Boolean(issMarkerPosition) && (
               <ARView
@@ -541,6 +563,32 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         style={$modal}
       >
         <Details issData={issData[issMarkerIndex]} onClose={() => setIsDetails(!isDetails)} observer={location} />
+      </Modal>
+      <Modal
+        isVisible={isPermissionsModal}
+        onBackdropPress={() => setIsPermissionsModal(!isPermissionsModal)}
+        onSwipeComplete={() => setIsPermissionsModal(!isPermissionsModal)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <PermissionsModal 
+          body="To use this feature, you need to grant permission to use the gallery" 
+          onClose={() => setIsPermissionsModal(!isPermissionsModal)}
+          onSuccess={() => {
+            setIsPermissionsModal(!isPermissionsModal)
+            openSettings().catch(() =>  Snackbar.show({
+              text: 'Сannot open settings!',
+              duration: Snackbar.LENGTH_LONG,
+            }))
+          }}
+        />
       </Modal>
       { isSpotted && (
         <Text tx="issView.issCaptured" style={[$text, { textDecorationLine: 'underline' }]} onPress={takeScreenshot} />

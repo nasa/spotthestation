@@ -18,7 +18,6 @@ import Modal from "react-native-modal/dist/modal"
 import { ISSSighting } from "../../../services/api/api.types"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
-import { toJS } from "mobx"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
@@ -38,7 +37,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   }
 
   const getLocation = async (currentLocation: LocationType) => {
-    if (!currentLocation) setCurrentLocation(await getCurrentLocation())
+    if (!currentLocation) setCurrentLocation(await getCurrentLocation(() => {}))
   }
 
   useEffect(() => {

@@ -14,6 +14,10 @@ const en = {
   errors: {
     invalidEmail: "Invalid email address.",
   },
+  permissionsModal: {
+    close: "Close",
+    openSettings: "Open settings"
+  },
   tabNavigator: {
     homeTab: "Home",
     issViewTab: "ISS View",

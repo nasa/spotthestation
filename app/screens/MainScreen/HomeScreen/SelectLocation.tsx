@@ -48,7 +48,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
     let location: LocationType = currentLocation
 
     if (!location) {
-      location = await getCurrentLocation()
+      location = await getCurrentLocation(() => ({}))
       setCurrentLocation(location).catch(e => console.log(e))
     }
     const res = await getNearbyPlaces(location.location, 100)
