@@ -1,4 +1,4 @@
-package com.nasaissapp.newarchitecture;
+package gov.nasa.hq.spotthestation.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.nasaissapp.BuildConfig;
-import com.nasaissapp.newarchitecture.components.MainComponentsRegistry;
-import com.nasaissapp.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import gov.nasa.hq.spotthestation.BuildConfig;
+import gov.nasa.hq.spotthestation.newarchitecture.components.MainComponentsRegistry;
+import gov.nasa.hq.spotthestation.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Build the app
-echo "[nasa-iss.staging]: Building Android version..."
+echo "[spot-the-station-app.staging]: Building Android version..."
 ./scripts/config-env.sh staging
 yarn install
 yarn update-build

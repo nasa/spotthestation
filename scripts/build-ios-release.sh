@@ -12,7 +12,7 @@ switchToSystemRuby() {
 }
 
 # Build the app
-echo "[nasa-iss.staging]: Building iOS version..."
+echo "[spot-the-station-app.production]: Building iOS version..."
 ./scripts/config-env.sh production
 
 switchToSystemRuby

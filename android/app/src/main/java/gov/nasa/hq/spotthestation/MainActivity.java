@@ -1,4 +1,4 @@
-package com.nasaissapp;
+package gov.nasa.hq.spotthestation;
 
 import android.os.Bundle;
 import android.content.Intent;

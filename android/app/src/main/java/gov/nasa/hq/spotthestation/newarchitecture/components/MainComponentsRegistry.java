@@ -1,4 +1,4 @@
-package com.nasaissapp.newarchitecture.components;
+package gov.nasa.hq.spotthestation.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
