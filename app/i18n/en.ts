@@ -296,6 +296,7 @@ const en = {
       backButton: 'Settings',
       generalTitle: 'Location Settings',
       cta: 'Customize notifications for this location',
+      locationPermission: "Grant location permission",
       addNewLocation: {
         generalTitleAdd: 'Add New Location',
         generalTitleEdit: 'Edit Location',

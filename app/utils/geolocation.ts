@@ -1,3 +1,4 @@
+/* eslint-disable n/no-callback-literal */
 import * as Location from "expo-location"
 import { Point } from "react-native-google-places-autocomplete"
 import Config from "../config"
@@ -17,9 +18,9 @@ export interface TimeZoneDataResponse {
   kind: string
 }
 
-export const getCurrentLocation = async (alert?: () => void): Promise<LocationType> => {
+export const getCurrentLocation = async (alert?: () => void, callback?: (value: boolean) => void): Promise<LocationType> => {
   const { status: permission } = await Location.requestForegroundPermissionsAsync()
-
+  if (callback) callback(permission === 'granted')
   if (permission !== 'granted') {
     alert()
   }

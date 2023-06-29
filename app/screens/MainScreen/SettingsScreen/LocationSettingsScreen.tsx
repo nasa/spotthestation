@@ -18,6 +18,8 @@ import Modal from "react-native-modal/dist/modal"
 import { ISSSighting } from "../../../services/api/api.types"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
+import { SettingsItem } from "../components/SettingsItem"
+import { openSettings } from "react-native-permissions"
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
@@ -31,27 +33,28 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
   const [isRemove, setIsRemove] = useState(false)
   const [toRemove, setToRemove] = useState<LocationType>(null)
+  const [locationPermission, setLocationPermission] = useState<boolean>(false)
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
   }
 
-  const getLocation = async (currentLocation: LocationType) => {
-    if (!currentLocation) setCurrentLocation(await getCurrentLocation(() => {}))
+  const getLocation = async () => {
+    setCurrentLocation(await getCurrentLocation(() => ({}), setLocationPermission)).catch(e => console.log(e))
   }
 
   useEffect(() => {
-    getLocation(currentLocation).catch(e => console.log(e))
-  }, [currentLocation, route])
+    getLocation().catch(e => console.log(e))
+  }, [route])
 
   const handleToggle = useCallback((location: LocationType, type: string) => {
     if (type === 'saved') {
       setSavedLocations(savedLocations.map(item => item.title === location.title ? { ...item, alert: !item.alert } : item))
     } else {
-      setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert })
+      setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert }).catch(e => console.log(e))
     }
     
-    getLocation(currentLocation).catch(e => console.log(e))
+    getLocation().catch(e => console.log(e))
   }, [currentLocation, savedLocations])
 
   const handleSetSightingNotification = useCallback((value: ISSSighting) => {
@@ -121,6 +124,16 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             <Text tx="settings.locationSettingsData.backButton" style={$backButtonText} />
           </Pressable>
           <Text tx="settings.locationSettingsData.generalTitle" style={$title} />
+          {
+            !locationPermission && <SettingsItem
+              icon="pin" 
+              title="settings.locationSettingsData.locationPermission" 
+              onPress={() => {
+                openSettings().catch(e => console.log(e))
+              }}
+              withUnderline={false}
+            />
+          }
           {Boolean(currentLocation) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false} actionTitle="Alert">
             <ListItem 
               icon="pin"
