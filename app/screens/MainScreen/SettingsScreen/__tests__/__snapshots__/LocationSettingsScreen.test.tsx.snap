@@ -58,6 +58,66 @@ exports[`renders correctly 1`] = `
           <div />
         </View>
         <div />
+        <View
+          accessibilityHint="pressable settings item"
+          accessibilityLabel="pressable settings item"
+          accessibilityRole="button"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingTop": 23,
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "flex-start",
+                  "borderBottomWidth": 2,
+                  "borderColor": "#353739",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginLeft": 15,
+                  "paddingBottom": 23,
+                },
+                Object {
+                  "borderBottomWidth": 0,
+                },
+              ]
+            }
+          >
+            <div />
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "paddingLeft": 26,
+                }
+              }
+            >
+              <div />
+            </View>
+            <div />
+          </View>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -152,5 +212,35 @@ exports[`renders correctly 1`] = `
       <div />
     </View>
   </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={true}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    onSwipeComplete={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeDirection="down"
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={false}
+  />
 </div>
 `;

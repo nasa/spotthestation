@@ -342,7 +342,7 @@ export const HomeScreen = observer(function HomeScreen() {
         />
       </Modal>}
       <Modal
-        key={currentLocation.title}
+        key={currentLocation?.title}
         isVisible={initLoading}
         useNativeDriver
         useNativeDriverForBackdrop

@@ -174,6 +174,7 @@ const en = {
       skip: 'Skip tour',
       next: 'Next',
       finish: 'Finish',
+      dismiss: 'Dismiss',
       locationTitle: 'Change Location',
       locationData: 'You can select or change your location to a different one directly from here.',
       sightingsTitle: 'Next Sighting & Countdown',
@@ -293,7 +294,8 @@ const en = {
       until: 'Until',
     },
     locationSettingsData: {
-      backButton: 'Settings',
+      backToSettings: 'Settings',
+      goBack: 'Go Back',
       generalTitle: 'Location Settings',
       cta: 'Customize notifications for this location',
       locationPermission: "Grant location permission",

@@ -73,3 +73,4 @@ jest.mock("react-native-orientation-locker", () => ({
 jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))
+jest.mock("@react-native-firebase/analytics", () => ({}))

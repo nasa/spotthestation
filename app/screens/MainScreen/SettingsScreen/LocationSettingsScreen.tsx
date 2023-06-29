@@ -21,9 +21,14 @@ import { RemoveLocationModal } from "./RemoveLocationModal"
 import { SettingsItem } from "../components/SettingsItem"
 import { openSettings } from "react-native-permissions"
 
+export interface LocationSettingsScreenParams {
+  fromHomeScreen?: boolean
+}
+
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
   const navigation = useNavigation()
   const route = useRoute()
+  const routeParams = route.params as LocationSettingsScreenParams
   const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations, setISSSightings } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -121,7 +126,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             style={$backButton}
           >
             <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
-            <Text tx="settings.locationSettingsData.backButton" style={$backButtonText} />
+            <Text tx={`settings.locationSettingsData.${routeParams?.fromHomeScreen ? 'goBack' : 'backToSettings'}`} style={$backButtonText} />
           </Pressable>
           <Text tx="settings.locationSettingsData.generalTitle" style={$title} />
           {

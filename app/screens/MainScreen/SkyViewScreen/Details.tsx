@@ -92,7 +92,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text text={issData.altitude ? issData.altitude.toFixed(2) : "0"} style={$detailValue} />
+            <Text text={issData.altitude ? `${issData.altitude.toFixed(2)} km` : "0 km"} style={$detailValue} />
           </View>
         </View>
         <View style={$buttonsContainer}>

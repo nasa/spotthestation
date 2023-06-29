@@ -14,7 +14,7 @@ import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
-import { formatDate, getCurrentTimeZome, getShortTZ } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../../../services/api/api.types"
@@ -48,16 +48,18 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   const loadSettings = async () => {
     const start = await storage.load('muteFrom')
     const end = await storage.load('muteUntil')
+    const notifyBefore = await storage.load('notifyBefore')
+
     setSettings({
       iisVisible: await storage.load('iisVisible'),
       upcoming: await storage.load('upcoming'),
       inApp: await storage.load('inApp'),
-      notifyBefore: (await storage.load('notifyBefore')) || 15,
+      notifyBefore: notifyBefore || 15,
       privacy: await storage.load('privacy'),
       muteFrom: start ? new Date(start) : new Date(),
       muteUntil: end ? new Date(end) : new Date()
     })
-    await storage.save('notifyBefore', 15)
+    !notifyBefore && await storage.save('notifyBefore', 15)
   }
 
   useEffect(() => {

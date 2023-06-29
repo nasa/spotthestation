@@ -161,7 +161,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
             icon="settings" 
             title="settings.locationSettings" 
             onPress={() => {
-              navigation.navigate('SettingsScreens' as never, { screen: "LocationSettings" } as never)
+              navigation.navigate('SettingsScreens' as never, { screen: "LocationSettings", fromHomeScreen: true } as never)
               onClose()
             }}
             withUnderline={false}
@@ -193,7 +193,6 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
                   subtitle={location.subtitle}
                   selected={isSelected(location)} 
                   editable
-                  ctaTx="homeScreen.selectLocation.cta"
                   onPress={() => onLocationPress(location)}
                   onDelete={() => {
                     setIsRemove(true)

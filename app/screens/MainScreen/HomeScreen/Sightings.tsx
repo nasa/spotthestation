@@ -150,9 +150,9 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
           </View>
           <Button
             accessible
-            accessibilityLabel="finish button"
-            accessibilityHint="finish coach mark"
-            tx="homeScreen.coachMarks.finish"
+            accessibilityLabel="dismiss button"
+            accessibilityHint="dismiss coach mark"
+            tx="homeScreen.coachMarks.dismiss"
             textStyle={$nextButtonText}
             style={$nextButton}
             pressedStyle={$nextButton}

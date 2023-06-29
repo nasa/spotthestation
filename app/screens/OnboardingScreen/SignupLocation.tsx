@@ -23,7 +23,7 @@ enum Statuses {
   result = "result",
 }
 
-const defaultLocation: LocationType = { title: "Washington, D.C., United States", subtitle: "", location: { lat: 38.89511, lng: -77.03637 }}
+const defaultLocation: LocationType = { title: "Washington", subtitle: "Washington, D.C., United States", location: { lat: 38.89511, lng: -77.03637 }}
 
 export interface SignupLocationProps {
   /**

@@ -45,7 +45,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const handleNavigate = () => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
-    location.title = titleValue
+    location.title = titleValue || location.subtitle.split(',')[0]
     let res = [...savedLocations]
     if (res.find(item => item.title === titleValue)) {
       Snackbar.show({
@@ -122,7 +122,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             key: Config.GOOGLE_API_TOKEN,
             language: 'en',
           }}
-          onPress={(data, details = null) => setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location, sightings: [] })}
+          onPress={(data, details = null) => {
+            setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location, sightings: [] })
+            setTitleValue(details.name)
+          }}
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}

@@ -59,8 +59,7 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
               accessibilityRole="text"
               style={$titleContainer}
             >
-              {/* <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue, marginTop: 10 }]} /> */}
-              <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+              <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10}}>
                 {onEdit && <Icon icon="edit" size={30} color={colors.palette.yellow} onPress={onEdit} containerStyle={{ marginRight: 10 }} />}
                 {onDelete && <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />}
               </View>
