@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ActivityIndicator, Alert, PressableProps, TextStyle, View, ViewStyle } from "react-native"
+import { ActivityIndicator, Alert, Platform, PressableProps, TextStyle, View, ViewStyle } from "react-native"
 import { GooglePlacesAutocomplete, Point, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
 import * as Location from "expo-location"
+import Modal from "react-native-modal"
 import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
 import { translate } from "../../i18n"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
 import { ISSSighting } from "../../services/api"
+import * as storage from "../../utils/storage"
+import { PrivacyModal } from "./components/PrivacyModal"
 
 export interface LocationType {
   title: string,
@@ -43,6 +46,7 @@ export interface SignupLocationProps {
 export function SignupLocation({ value, onValueChange, onAction }: SignupLocationProps ) {
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
+  const [privacyModal, setPrivacyModal] = useState(false)
   const [status, setStatus] = useState(Statuses.start)
   const [textValue, setTextValue] = useState("")
 
@@ -104,7 +108,16 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           pressedStyle={$button}
           style={$button}
           textStyle={$buttonText}
-          onPress={handleDetect}
+          onPress={() => {
+            if (Platform.OS === 'ios') {
+              handleDetect().catch(e => console.log(e))
+            } else {
+              storage.load('isPrivacyAgree').then(res => {
+                if (res) handleDetect().catch(e => console.log(e))
+                else setPrivacyModal(true)
+              }).catch(e => console.log(e))
+            }
+          }}
           renderLeftAccessory={({ style }) => (
             <Icon
               icon="currentLocation"
@@ -262,6 +275,27 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         style={$title}
       />
       {renderBody()}
+      {privacyModal && <Modal
+        isVisible={privacyModal}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={.4}
+        style={$modal}
+      >
+        <PrivacyModal 
+          onPressSkip={() => {
+            storage.save('isPrivacyAgree', false).then(() => {
+              setPrivacyModal(false)
+            }).catch(e => console.log(e))
+          }}
+          onPressAgree={() => {
+            storage.save('isPrivacyAgree', true).then(() => {
+              setPrivacyModal(false)
+              handleDetect().catch(e => console.log(e))
+            }).catch(e => console.log(e))
+          }} 
+        />
+      </Modal>}
     </>
   )
 }
@@ -391,4 +425,12 @@ const $result: TextStyle = {
 
 const $loader: ViewStyle = {
   justifyContent: "flex-start"
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  left: 0,
+  margin: 0,
+  paddingHorizontal: 18,
+  justifyContent: 'flex-start',
 }

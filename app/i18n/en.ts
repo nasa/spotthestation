@@ -18,6 +18,13 @@ const en = {
     close: "Close",
     openSettings: "Open settings"
   },
+  privacy: {
+    title: 'Use your location',
+    body: "We use location data to calculate the upcoming sightings in your current location. Please grant location permissions to enable this functionality",
+    agree: 'AGREE',
+    skip: 'SKIP',
+    policy: 'Privacy Policy'
+  },
   tabNavigator: {
     homeTab: "Home",
     issViewTab: "ISS View",
