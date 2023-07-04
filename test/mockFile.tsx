@@ -77,6 +77,7 @@ jest.mock("@react-native-firebase/analytics", () => ({}))
 jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),
+    getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [] })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
   }
 }))
