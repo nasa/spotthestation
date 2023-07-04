@@ -74,3 +74,14 @@ jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))
 jest.mock("@react-native-firebase/analytics", () => ({}))
+jest.mock('../app/services/api', () => ({
+  api: {
+    getPlaces: jest.fn(),
+    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
+  }
+}))
+jest.mock('expo-location', () => ({
+  requestForegroundPermissionsAsync: jest.fn(),
+  getCurrentPositionAsync: jest.fn(),
+  reverseGeocodeAsync: jest.fn(),
+}))

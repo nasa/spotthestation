@@ -1,5 +1,5 @@
 import React from "react"
-import { TextStyle} from "react-native"
+import { TextStyle } from "react-native"
 import { Text } from "../../../components"
 import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 
@@ -10,11 +10,16 @@ export interface TagProps {
 export function Tag({ title }: TagProps) {
   const setTagStyles = (): TextStyle => {
     switch (title.toLowerCase()) {
-      case 'launch': return $launch
-      case 'live': return $live
-      case 'docking': return $docking
-      case 'nasa history': return $history
-      default: return {}
+      case "launch":
+        return $launch
+      case "live":
+        return $live
+      case "docking":
+        return $docking
+      case "nasa history":
+        return $history
+      default:
+        return {}
     }
   }
 
@@ -24,7 +29,7 @@ export function Tag({ title }: TagProps) {
 const $container: TextStyle = {
   height: scale(23),
   borderRadius: scale(4),
-  overflow: 'hidden',
+  overflow: "hidden",
   paddingHorizontal: scale(7),
   paddingVertical: scale(4),
   backgroundColor: colors.palette.neutral250,
@@ -32,7 +37,7 @@ const $container: TextStyle = {
   fontSize: fontSizes[12],
   lineHeight: lineHeights[15],
   color: colors.palette.neutral350,
-  marginRight: scale(10)
+  marginRight: scale(10),
 }
 
 const $launch: TextStyle = {

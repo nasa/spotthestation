@@ -103,9 +103,9 @@ interface EmptyStateProps {
 const EmptyStatePresets = {
   generic: {
     imageSource: sadFace,
-    heading: '',
-    content: '',
-    button: '',
+    heading: "",
+    content: "",
+    button: "",
   },
 } as const
 
@@ -149,7 +149,9 @@ export function EmptyState(props: EmptyStateProps) {
   const $containerStyles = [$containerStyleOverride]
   const $imageStyles = [
     $image,
-    (isHeadingPresent || isContentPresent || isButtonPresent) && { marginBottom: scale(spacing.micro) },
+    (isHeadingPresent || isContentPresent || isButtonPresent) && {
+      marginBottom: scale(spacing.micro),
+    },
     $imageStyleOverride,
     ImageProps?.style,
   ]
@@ -168,7 +170,9 @@ export function EmptyState(props: EmptyStateProps) {
     ContentTextProps?.style,
   ]
   const $buttonStyles = [
-    (isImagePresent || isHeadingPresent || isContentPresent) && { marginTop: scale(spacing.extraLarge) },
+    (isImagePresent || isHeadingPresent || isContentPresent) && {
+      marginTop: scale(spacing.extraLarge),
+    },
     $buttonStyleOverride,
     ButtonProps?.style,
   ]

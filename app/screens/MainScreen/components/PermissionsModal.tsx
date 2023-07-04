@@ -13,21 +13,22 @@ export interface PermissionsModalProps {
 
 export function PermissionsModal({ body, onClose, onSuccess }: PermissionsModalProps) {
   return (
-    <View 
+    <View
       accessible
       accessibilityLabel="coach mark"
       accessibilityHint="coach mark"
       accessibilityRole="text"
       style={$modalBodyContainer}
     >
-      <Icon icon="x" 
+      <Icon
+        icon="x"
         accessible
         accessibilityLabel="x button"
         accessibilityHint="close modal"
         accessibilityRole="button"
-        color={colors.palette.neutral450} 
-        onPress={onClose} 
-        containerStyle={$close} 
+        color={colors.palette.neutral450}
+        onPress={onClose}
+        containerStyle={$close}
         size={36}
       />
       <Text text={body} style={$title} />
@@ -60,12 +61,12 @@ export function PermissionsModal({ body, onClose, onSuccess }: PermissionsModalP
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(16),
-  alignItems: 'center',
+  alignItems: "center",
   paddingVertical: 36,
   paddingHorizontal: 30,
-  width: '100%',
-  alignSelf: 'center',
-  marginTop: normalizeHeight(.28)
+  width: "100%",
+  alignSelf: "center",
+  marginTop: normalizeHeight(0.28),
 }
 
 const $title: TextStyle = {
@@ -74,21 +75,21 @@ const $title: TextStyle = {
   lineHeight: lineHeights[29],
   color: colors.palette.neutral100,
   paddingBottom: 12,
-  paddingTop: 18
+  paddingTop: 18,
 }
 
 const $buttonsContainer: ViewStyle = {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  width: '100%',
-  alignSelf: 'flex-end'
+  flexDirection: "row",
+  justifyContent: "space-between",
+  width: "100%",
+  alignSelf: "flex-end",
 }
 
 const $skipButton: ViewStyle = {
-  backgroundColor: 'transparent',
+  backgroundColor: "transparent",
   borderWidth: 0,
   height: scale(56),
-  minWidth: scale(140)
+  minWidth: scale(140),
 }
 
 const $skipButtonText: TextStyle = {
@@ -103,7 +104,7 @@ const $nextButton: ViewStyle = {
   backgroundColor: colors.palette.neutral100,
   borderRadius: scale(28),
   borderWidth: 0,
-  minWidth: scale(140)
+  minWidth: scale(140),
 }
 
 const $nextButtonText: TextStyle = {
@@ -118,5 +119,5 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }

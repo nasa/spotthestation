@@ -18,21 +18,25 @@ export interface SignupNotificationSettingsProps {
   onAction: PressableProps["onPress"]
 }
 
-export function SignupNotificationSettings({ value, onValueChange, onAction }: SignupNotificationSettingsProps) {
+export function SignupNotificationSettings({
+  value,
+  onValueChange,
+  onAction,
+}: SignupNotificationSettingsProps) {
   return (
     <>
-      <Text 
+      <Text
         accessible
         accessibilityLabel="detecting"
         accessibilityHint="detecting current location"
         accessibilityRole="text"
-        tx="onboarding.completeProfile.notification.tittle" 
+        tx="onboarding.completeProfile.notification.tittle"
         style={$title}
       />
       <View style={$valueContainer}>
         <Icon icon="tv" size={24} containerStyle={$icon} />
         <View style={$switchContainer}>
-          <View 
+          <View
             accessible
             accessibilityLabel="notification"
             accessibilityHint="notification"
@@ -46,8 +50,8 @@ export function SignupNotificationSettings({ value, onValueChange, onAction }: S
             accessible
             accessibilityLabel="switch button"
             accessibilityHint="toggle notifications"
-            variant="switch" 
-            value={value} 
+            variant="switch"
+            value={value}
             onValueChange={onValueChange}
           />
         </View>
@@ -71,7 +75,7 @@ const $title: TextStyle = {
   fontSize: fontSizes[36],
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[42],
-  paddingBottom: scale(36)
+  paddingBottom: scale(36),
 }
 
 const $button: ViewStyle = {
@@ -79,7 +83,7 @@ const $button: ViewStyle = {
   height: scale(56),
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(28),
-  borderWidth: 0
+  borderWidth: 0,
 }
 
 const $buttonText: TextStyle = {
@@ -91,7 +95,7 @@ const $buttonText: TextStyle = {
 
 const $valueContainer: ViewStyle = {
   flexDirection: "row",
-  marginBottom: scale(36)
+  marginBottom: scale(36),
 }
 
 const $switchContainer: ViewStyle = {
@@ -100,11 +104,11 @@ const $switchContainer: ViewStyle = {
   paddingBottom: scale(18),
   borderBottomWidth: scale(1),
   borderBottomColor: colors.palette.neutral350,
-  flex: 1
+  flex: 1,
 }
 
 const $labelContainer: ViewStyle = {
-  width: "70%"
+  width: "70%",
 }
 
 const $label: TextStyle = {
@@ -122,5 +126,5 @@ const $tip: TextStyle = {
 }
 
 const $icon: ViewStyle = {
-  marginRight: scale(18)
+  marginRight: scale(18),
 }

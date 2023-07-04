@@ -9,7 +9,7 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { addDays } from "date-fns"
 import { formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
-import { getCalendars } from 'expo-localization'
+import { getCalendars } from "expo-localization"
 import * as storage from "../../../utils/storage"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 
@@ -23,7 +23,15 @@ export interface SightingsProps {
   onToggleAll?: (value: boolean) => void
 }
 
-export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isNotifyAll, timezone }: SightingsProps) {
+export function Sightings({
+  onClose,
+  sightings,
+  onToggle,
+  onToggleAll,
+  isUS,
+  isNotifyAll,
+  timezone,
+}: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
@@ -31,22 +39,36 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm A"
     const shortTZ = getShortTZ(timezone)
-    if (formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) === formatDateWithTZ(new Date().toISOString(), `YYYY-MM-DD`, { timeZone: timezone })) return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
-    if (formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) === formatDateWithTZ(addDays(new Date(), 1).toISOString(), `YYYY-MM-DD`, { timeZone: timezone })) return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
-    return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, { timeZone: timezone })} ${shortTZ}`
+    if (
+      formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
+      formatDateWithTZ(new Date().toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
+    )
+      return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    if (
+      formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
+      formatDateWithTZ(addDays(new Date(), 1).toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
+    )
+      return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+    return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, {
+      timeZone: timezone,
+    })} ${shortTZ}`
   }
 
-  const setStageIcon = (stage): { icon: IconTypes, color: string} => {
-    switch(stage) {
-      case 0: return { icon: 'moon', color: colors.palette.neutral450 }
-      case 1: return { icon: 'sunset', color: colors.palette.nasaOrange }
-      case 2: return { icon: 'sun', color: colors.palette.yellow }
-      default: return { icon: 'sunset', color: colors.palette.nasaOrange }
+  const setStageIcon = (stage): { icon: IconTypes; color: string } => {
+    switch (stage) {
+      case 0:
+        return { icon: "moon", color: colors.palette.neutral450 }
+      case 1:
+        return { icon: "sunset", color: colors.palette.nasaOrange }
+      case 2:
+        return { icon: "sun", color: colors.palette.yellow }
+      default:
+        return { icon: "sunset", color: colors.palette.nasaOrange }
     }
   }
 
   const getCoach = async () => {
-    setSightingsCoachVisible(!(await storage.load('sightingsCoachVisible')))
+    setSightingsCoachVisible(!(await storage.load("sightingsCoachVisible")))
   }
 
   useEffect(() => {
@@ -55,19 +77,20 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
 
   const handleSetSightingsCoachVisible = async () => {
     setSightingsCoachVisible(false)
-    await storage.save('sightingsCoachVisible', true)
+    await storage.save("sightingsCoachVisible", true)
   }
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Icon icon="x" 
+      <Icon
+        icon="x"
         accessible
         accessibilityLabel="x button"
         accessibilityHint="close modal"
         accessibilityRole="button"
-        color={colors.palette.neutral450} 
-        onPress={onClose} 
-        containerStyle={$close} 
+        color={colors.palette.neutral450}
+        onPress={onClose}
+        containerStyle={$close}
         size={36}
       />
       <Text
@@ -92,74 +115,82 @@ export function Sightings({ onClose, sightings, onToggle, onToggleAll, isUS, isN
           accessible
           accessibilityLabel="switch button"
           accessibilityHint="toggle notifications"
-          variant="switch" 
-          value={isNotifyAll} 
+          variant="switch"
+          value={isNotifyAll}
           onValueChange={() => {
             onToggleAll(!isNotifyAll)
           }}
         />
       </View>
       <View style={$scrollContainer}>
-        <ExpandContainer title="homeScreen.selectSightings.sightings" expandble={false} reverseTitle>
+        <ExpandContainer
+          title="homeScreen.selectSightings.sightings"
+          expandble={false}
+          reverseTitle
+        >
           <ScrollView
             accessible
             accessibilityLabel="Sightings scrollable area"
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
           >
-            {[...sightings].filter(item => new Date(item.date) > new Date()).map((sighting: ISSSighting) =>
-              <ListItem
-                key={sighting.date}
-                icon="clock"
-                secondIcon={setStageIcon(sighting.dayStage)}
-                title={formatedDate(sighting.date)}
-                selected={sighting.notify}
-                subtitle={`Above the horizon ${sighting.visible} min`}
-                withSwitch
-                onToggle={() => onToggle(sighting)}
-              />
-            )}
+            {[...sightings]
+              .filter((item) => new Date(item.date) > new Date())
+              .map((sighting: ISSSighting) => (
+                <ListItem
+                  key={sighting.date}
+                  icon="clock"
+                  secondIcon={setStageIcon(sighting.dayStage)}
+                  title={formatedDate(sighting.date)}
+                  selected={sighting.notify}
+                  subtitle={`Above the horizon ${sighting.visible} min`}
+                  withSwitch
+                  onToggle={() => onToggle(sighting)}
+                />
+              ))}
           </ScrollView>
         </ExpandContainer>
       </View>
-      {sightingsCoachVisible && <Modal
-        isVisible={sightingsCoachVisible}
-        useNativeDriver
-        useNativeDriverForBackdrop
-        backdropOpacity={.4}
-        style={$modal}
-      >
-        <View 
-          accessible
-          accessibilityLabel="coach mark"
-          accessibilityHint="coach mark"
-          accessibilityRole="text"
-          style={[$coachModalBodyContainer, { marginTop: normalizeHeight(.2) }]}
+      {sightingsCoachVisible && (
+        <Modal
+          isVisible={sightingsCoachVisible}
+          useNativeDriver
+          useNativeDriverForBackdrop
+          backdropOpacity={0.4}
+          style={$modal}
         >
-          <View style={$legend}>
-            <Icon icon="sun" size={44} color={colors.palette.yellow} />
-            <Text tx="homeScreen.selectSightings.coach.sun" style={$body} />
-          </View>
-          <View style={$legend}>
-            <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
-            <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
-          </View>
-          <View style={$legend}>
-            <Icon icon="moon" size={44} color={colors.palette.neutral450} />
-            <Text tx="homeScreen.selectSightings.coach.moon" style={$body} />
-          </View>
-          <Button
+          <View
             accessible
-            accessibilityLabel="dismiss button"
-            accessibilityHint="dismiss coach mark"
-            tx="homeScreen.coachMarks.dismiss"
-            textStyle={$nextButtonText}
-            style={$nextButton}
-            pressedStyle={$nextButton}
-            onPress={handleSetSightingsCoachVisible}
-          />
-        </View>
-      </Modal>}
+            accessibilityLabel="coach mark"
+            accessibilityHint="coach mark"
+            accessibilityRole="text"
+            style={[$coachModalBodyContainer, { marginTop: normalizeHeight(0.2) }]}
+          >
+            <View style={$legend}>
+              <Icon icon="sun" size={44} color={colors.palette.yellow} />
+              <Text tx="homeScreen.selectSightings.coach.sun" style={$body} />
+            </View>
+            <View style={$legend}>
+              <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
+              <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
+            </View>
+            <View style={$legend}>
+              <Icon icon="moon" size={44} color={colors.palette.neutral450} />
+              <Text tx="homeScreen.selectSightings.coach.moon" style={$body} />
+            </View>
+            <Button
+              accessible
+              accessibilityLabel="dismiss button"
+              accessibilityHint="dismiss coach mark"
+              tx="homeScreen.coachMarks.dismiss"
+              textStyle={$nextButtonText}
+              style={$nextButton}
+              pressedStyle={$nextButton}
+              onPress={handleSetSightingsCoachVisible}
+            />
+          </View>
+        </Modal>
+      )}
     </View>
   )
 }
@@ -168,7 +199,7 @@ const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   borderTopLeftRadius: scale(18),
   borderTopRightRadius: scale(18),
-  flex: 1
+  flex: 1,
 }
 
 const $coachModalBodyContainer: ViewStyle = {
@@ -176,13 +207,13 @@ const $coachModalBodyContainer: ViewStyle = {
   borderRadius: scale(16),
   paddingVertical: 36,
   paddingHorizontal: 30,
-  width: '100%',
+  width: "100%",
 }
 
 const $scrollContainer: ViewStyle = {
   paddingHorizontal: scale(36),
   flex: 1,
-  paddingBottom: scale(30)
+  paddingBottom: scale(30),
 }
 
 const $close: ViewStyle = {
@@ -190,7 +221,7 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }
 
 const $title: TextStyle = {
@@ -225,7 +256,7 @@ const $label: TextStyle = {
   fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[21],
-  width: '80%'
+  width: "80%",
 }
 
 const $modal: ViewStyle = {
@@ -233,14 +264,14 @@ const $modal: ViewStyle = {
   left: 0,
   margin: 0,
   paddingHorizontal: 18,
-  justifyContent: 'flex-start',
+  justifyContent: "flex-start",
 }
 
 const $legend: ViewStyle = {
   flexDirection: "row",
   margin: 0,
   justifyContent: "space-between",
-  width: "80%"
+  width: "80%",
 }
 
 const $body: TextStyle = {
@@ -249,7 +280,7 @@ const $body: TextStyle = {
   lineHeight: lineHeights[22],
   color: colors.palette.neutral100,
   paddingBottom: 10,
-  paddingLeft: 5
+  paddingLeft: 5,
 }
 
 const $nextButton: ViewStyle = {
@@ -258,8 +289,8 @@ const $nextButton: ViewStyle = {
   borderRadius: scale(28),
   borderWidth: 0,
   width: scale(140),
-  alignSelf: 'center',
-  marginTop: 24
+  alignSelf: "center",
+  marginTop: 24,
 }
 
 const $nextButtonText: TextStyle = {

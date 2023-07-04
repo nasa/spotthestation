@@ -128,10 +128,12 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
         console.tron.log(currentRouteName)
       }
 
-      analytics().logScreenView({
-        screen_name: currentRouteName,
-        screen_class: currentRouteName,
-      }).catch(() => null)
+      analytics()
+        .logScreenView({
+          screen_name: currentRouteName,
+          screen_class: currentRouteName,
+        })
+        .catch(() => null)
     }
 
     // Save the current route name for later comparision

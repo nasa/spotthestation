@@ -139,7 +139,7 @@ export function setupReactotron(customConfig: ReactotronConfig = {}) {
       command: "resetStore",
       handler: () => {
         Reactotron.log("resetting store")
-        clear()
+        clear().catch((e) => console.log(e))
       },
     })
 
@@ -158,7 +158,7 @@ export function setupReactotron(customConfig: ReactotronConfig = {}) {
       handler: (args) => {
         const { route } = args
         if (route) {
-          console.log(`Navigating to: ${route}`)
+          console.log(`Navigating to: ${route as string}`)
           navigate(route)
         } else {
           console.log("Could not navigate. No route provided.")

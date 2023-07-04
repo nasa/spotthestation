@@ -54,7 +54,7 @@ export const useInitialRootStore = (callback: () => void | Promise<void>) => {
 
   // Kick off initial async loading actions, like loading fonts and rehydrating RootStore
   useEffect(() => {
-    let _unsubscribe
+    let _unsubscribe: () => void
     ;(async () => {
       // set up the RootStore (returns the state restored from AsyncStorage)
       const { restoredState, unsubscribe } = await setupRootStore(rootStore)
@@ -67,8 +67,8 @@ export const useInitialRootStore = (callback: () => void | Promise<void>) => {
       setRehydrated(true)
 
       // invoke the callback, if provided
-      if (callback) callback()
-    })()
+      if (callback) await callback()
+    })().catch((e) => console.tron.log(e))
 
     return () => {
       // cleanup

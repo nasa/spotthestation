@@ -11,7 +11,10 @@ import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../.
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
-import { GooglePlacesAutocomplete, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
+import {
+  GooglePlacesAutocomplete,
+  GooglePlacesAutocompleteRef,
+} from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
@@ -24,13 +27,15 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const navigation = useNavigation()
   const { savedLocations, setSavedLocations, setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
-  const { params: { defaultLocation } } = useRoute<any>()
+  const {
+    params: { defaultLocation },
+  } = useRoute<any>()
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [titleValue, setTitleValue] = useState(defaultLocation?.title || "")
-  const [location, setLocation] = useState<LocationType>({...defaultLocation})
+  const [location, setLocation] = useState<LocationType>({ ...defaultLocation })
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -42,18 +47,19 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     setLocation(null)
   }
 
-  const handleNavigate = () => navigation.navigate('LocationSettings' as never, { update: Date.now() } as never)
+  const handleNavigate = () =>
+    navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
-    location.title = titleValue || location.subtitle.split(',')[0]
+    location.title = titleValue || location.subtitle.split(",")[0]
     let res = [...savedLocations]
-    if (res.find(item => item.title === titleValue)) {
+    if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
-        text: 'Location with this title already exist!',
+        text: "Location with this title already exist!",
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: 'Ok',
-          textColor: 'green',
+          text: "Ok",
+          textColor: "green",
           onPress: () => {
             Snackbar.dismiss()
           },
@@ -61,9 +67,9 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
       })
       return
     }
-    
+
     if (defaultLocation) {
-      res = res.filter(item => item.title !== defaultLocation.title)
+      res = res.filter((item) => item.title !== defaultLocation.title)
       res.push(location as any)
       setSavedLocations(res)
     } else {
@@ -72,8 +78,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           text: error,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: 'Ok',
-            textColor: 'green',
+            text: "Ok",
+            textColor: "green",
             onPress: () => {
               Snackbar.dismiss()
             },
@@ -81,13 +87,13 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         })
       })
     }
-    
+
     Snackbar.show({
-      text: 'Location saved',
+      text: "Location saved",
       duration: Snackbar.LENGTH_LONG,
       action: {
-        text: 'Ok',
-        textColor: 'green',
+        text: "Ok",
+        textColor: "green",
         onPress: () => {
           Snackbar.dismiss()
         },
@@ -98,9 +104,9 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   return (
     <Screen
-      preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride]} 
-      style={{backgroundColor: colors.palette.neutral900}} 
+      preset="fixed"
+      contentContainerStyle={[$container, $headerStyleOverride]}
+      style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
       <View
@@ -111,19 +117,45 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         style={$scrollContainer}
       >
         <View style={$topButtonsContainer}>
-          <IconLinkButton icon="x" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.goBack()} />
-          {!defaultLocation && <IconLinkButton icon="map" buttonStyle={$button} iconColor={colors.palette.neutral250} iconSize={20} onPress={() => navigation.navigate('AddNewLocationMap' as never)} />}
+          <IconLinkButton
+            icon="x"
+            buttonStyle={$button}
+            iconColor={colors.palette.neutral250}
+            iconSize={20}
+            onPress={() => navigation.goBack()}
+          />
+          {!defaultLocation && (
+            <IconLinkButton
+              icon="map"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
+              iconSize={20}
+              onPress={() => navigation.navigate("AddNewLocationMap" as never)}
+            />
+          )}
         </View>
-        <Text tx={`settings.locationSettingsData.addNewLocation.${defaultLocation ? 'generalTitleEdit' : 'generalTitleAdd'}`} style={$title} />
+        <Text
+          tx={`settings.locationSettingsData.addNewLocation.${
+            defaultLocation ? "generalTitleEdit" : "generalTitleAdd"
+          }`}
+          style={$title}
+        />
         <GooglePlacesAutocomplete
           ref={addressRef}
-          placeholder={translate("settings.locationSettingsData.addNewLocation.searchInputPlaceholder")}
+          placeholder={translate(
+            "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
+          )}
           query={{
             key: Config.GOOGLE_API_TOKEN,
-            language: 'en',
+            language: "en",
           }}
           onPress={(data, details = null) => {
-            setLocation({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location, sightings: [] })
+            setLocation({
+              title: details.name,
+              subtitle: details.formatted_address,
+              location: details?.geometry?.location,
+              sightings: [],
+            })
             setTitleValue(details.name)
           }}
           onFail={(error) => console.error(error)}
@@ -140,7 +172,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             listView: $locationsListContainer,
             row: $locationsRow,
             separator: { height: 0 },
-            container: { flex: 0, }
+            container: { flex: 0 },
           }}
           textInputProps={{
             allowFontScaling: false,
@@ -149,10 +181,17 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
             onChangeText: (text) => setTextValue(text),
-            clearButtonMode: "never"
+            clearButtonMode: "never",
           }}
           renderRow={({ description }) => {
-            return <Text text={description} style={$locationsRowText} ellipsizeMode='tail' numberOfLines={1} />
+            return (
+              <Text
+                text={description}
+                style={$locationsRowText}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+              />
+            )
           }}
           renderLeftButton={() => (
             <Icon
@@ -162,15 +201,18 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
               containerStyle={$dropdownLeftAccessory}
             />
           )}
-          renderRightButton={() => isFocus && textValue && (
-            <Icon
-              icon="xCircle"
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={$dropdownRightAccessory}
-              onPress={handleClear}
-            />
-          )}
+          renderRightButton={() =>
+            isFocus &&
+            textValue && (
+              <Icon
+                icon="xCircle"
+                size={28}
+                color={colors.palette.neutral450}
+                containerStyle={$dropdownRightAccessory}
+                onPress={handleClear}
+              />
+            )
+          }
         />
         <TextField
           accessible
@@ -184,11 +226,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           onChangeText={setTitleValue}
           inputWrapperStyle={$locations}
           renderLeftAccessory={({ style }) => (
-            <Accessory 
-              icon="save"
-              color={colors.palette.neutral450}
-              style={style}
-            />
+            <Accessory icon="save" color={colors.palette.neutral450} style={style} />
           )}
         />
         <View style={$buttonsContainer}>
@@ -211,30 +249,30 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  height: '100%'
+  height: "100%",
 }
 
 const $topButtonsContainer: ViewStyle = {
-  flexDirection: 'row',
+  flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: scale(36)
+  marginBottom: scale(36),
 }
 
 const $buttonsContainer: ViewStyle = {
-  flexDirection: 'row',
+  flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
 }
 
-const $scrollContainer: ViewStyle = { 
+const $scrollContainer: ViewStyle = {
   paddingHorizontal: scale(18),
 }
 
 const $button: ViewStyle = {
   backgroundColor: colors.palette.neutral550,
   width: scale(42),
-  height: scale(42)
+  height: scale(42),
 }
 
 const $text: TextStyle = {
@@ -242,8 +280,8 @@ const $text: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
-  textAlign: 'left',
-  paddingBottom: scale(24)
+  textAlign: "left",
+  paddingBottom: scale(24),
 }
 
 const $title: TextStyle = {
@@ -260,7 +298,7 @@ const $locations: ViewStyle = {
   height: scale(56),
   backgroundColor: colors.palette.neutral350,
   overflow: "hidden",
-  marginBottom: scale(18)
+  marginBottom: scale(18),
 }
 
 const $active: ViewStyle = {
@@ -275,7 +313,7 @@ const $locationsListContainer: ViewStyle = {
   overflow: "hidden",
   width: "85%",
   alignSelf: "center",
-  marginTop: scale(3)
+  marginTop: scale(3),
 }
 
 const $dropdownLeftAccessory: ViewStyle = {
@@ -297,15 +335,14 @@ const $dropdownSelected: TextStyle = {
 }
 
 const $locationsRow: TextStyle = {
-  backgroundColor: 'transparent',
-  paddingHorizontal: scale(spacing.large)
+  backgroundColor: "transparent",
+  paddingHorizontal: scale(spacing.large),
 }
 
 const $locationsRowText: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.neutral250,
-  
 }
 
 const $dropdownText: TextStyle = {
@@ -319,7 +356,7 @@ const $dropdownText: TextStyle = {
   marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   borderRadius: 0,
-  backgroundColor: "transparent"
+  backgroundColor: "transparent",
 }
 
 const $save: ViewStyle = {
@@ -328,7 +365,7 @@ const $save: ViewStyle = {
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(28),
   borderWidth: 0,
-  marginVertical: scale(24)
+  marginVertical: scale(24),
 }
 
 const $saveText: TextStyle = {

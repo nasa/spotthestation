@@ -229,7 +229,7 @@ const $inputStyle: TextStyle = {
   paddingVertical: 0,
   paddingHorizontal: 0,
   marginHorizontal: scale(spacing.small),
-  textAlignVertical: "center"
+  textAlignVertical: "center",
 }
 
 const $helperStyle: TextStyle = {

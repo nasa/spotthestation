@@ -12,7 +12,7 @@ export interface ListItemProps {
   title: string
   subtitle: string
   icon: IconTypes
-  secondIcon?: { icon: IconTypes, color: string}
+  secondIcon?: { icon: IconTypes; color: string }
   ctaTx?: TxKeyPath
   onToggle?: () => void
   onPress?: PressableProps["onPress"]
@@ -21,14 +21,28 @@ export interface ListItemProps {
   onDelete?: () => void
 }
 
-export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch = false, icon, secondIcon, onPress, onToggle, onCtaPress, onEdit, onDelete, editable }: ListItemProps) {
+export function ListItem({
+  title,
+  ctaTx,
+  subtitle,
+  selected = false,
+  withSwitch = false,
+  icon,
+  secondIcon,
+  onPress,
+  onToggle,
+  onCtaPress,
+  onEdit,
+  onDelete,
+  editable,
+}: ListItemProps) {
   return (
-    <Pressable 
+    <Pressable
       accessible
       accessibilityLabel="pressable list item"
       accessibilityHint="pressable list item"
       accessibilityRole="button"
-      style={$container} 
+      style={$container}
       onPress={onPress}
     >
       <View>
@@ -36,21 +50,20 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
         {secondIcon && <Icon icon={secondIcon.icon} size={24} color={secondIcon.color} />}
       </View>
       <View style={$bodyContainer}>
-        <View 
+        <View
           accessible
           accessibilityLabel="list item body"
           accessibilityHint="list item body"
           accessibilityRole="text"
           style={$titleContainer}
         >
-          <Text text={title} style={$titleText} ellipsizeMode='tail' numberOfLines={1} />
-          <Text text={subtitle} style={$subtitleText} ellipsizeMode='tail' numberOfLines={1} />
-          {Boolean(ctaTx) && <Pressable
-            onPress={onCtaPress}
-            style={{ marginTop: scale(10) }}
-          >
-            <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
-          </Pressable>}
+          <Text text={title} style={$titleText} ellipsizeMode="tail" numberOfLines={1} />
+          <Text text={subtitle} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          {Boolean(ctaTx) && (
+            <Pressable onPress={onCtaPress} style={{ marginTop: scale(10) }}>
+              <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
+            </Pressable>
+          )}
           {editable && (
             <View
               accessible
@@ -59,22 +72,39 @@ export function ListItem({ title, ctaTx, subtitle, selected = false, withSwitch 
               accessibilityRole="text"
               style={$titleContainer}
             >
-              <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10}}>
-                {onEdit && <Icon icon="edit" size={30} color={colors.palette.yellow} onPress={onEdit} containerStyle={{ marginRight: 10 }} />}
-                {onDelete && <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />}
+              <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
+                {onEdit && (
+                  <Icon
+                    icon="edit"
+                    size={30}
+                    color={colors.palette.yellow}
+                    onPress={onEdit}
+                    containerStyle={{ marginRight: 10 }}
+                  />
+                )}
+                {onDelete && (
+                  <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />
+                )}
               </View>
             </View>
           )}
         </View>
-        {withSwitch ? (<Toggle
+        {withSwitch ? (
+          <Toggle
             accessible
             accessibilityLabel="switch button"
             accessibilityHint="toggle location alerts"
-            variant="switch" 
+            variant="switch"
             value={selected}
             onValueChange={onToggle}
-          />) : (<Icon icon="check" size={24} color={selected ? colors.palette.green : colors.palette.neutral550} />)
-        }
+          />
+        ) : (
+          <Icon
+            icon="check"
+            size={24}
+            color={selected ? colors.palette.green : colors.palette.neutral550}
+          />
+        )}
       </View>
     </Pressable>
   )
@@ -101,7 +131,7 @@ const $bodyContainer: ViewStyle = {
 
 const $titleContainer: ViewStyle = {
   flexDirection: "column",
-  flex: 1
+  flex: 1,
 }
 
 const $titleText: TextStyle = {
@@ -109,7 +139,7 @@ const $titleText: TextStyle = {
   fontFamily: typography.primary?.normal,
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
-  color: colors.palette.neutral100
+  color: colors.palette.neutral100,
 }
 
 const $subtitleText: TextStyle = {
@@ -117,7 +147,7 @@ const $subtitleText: TextStyle = {
   fontSize: fontSizes[16],
   lineHeight: lineHeights[19],
   color: colors.palette.neutral100,
-  paddingTop: scale(5)
+  paddingTop: scale(5),
 }
 
 const $tip: TextStyle = {

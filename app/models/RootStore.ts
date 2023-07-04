@@ -5,15 +5,17 @@ import { Location } from "./Location"
 /**
  * A RootStore model.
  */
-export const RootStoreModel = types.model("RootStore", {
-  savedLocations: types.optional(types.array(Location), []),
-  selectedLocation: types.maybeNull(Location),
-  currentLocation: types.maybeNull(Location),
-  issData: types.optional(types.frozen(), []),
-  initLoading: types.optional(types.boolean, false),
-  issDataLoaded: types.optional(types.boolean, false),
-  sightingsLoaded: types.optional(types.boolean, false),
-}).props({})
+export const RootStoreModel = types
+  .model("RootStore", {
+    savedLocations: types.optional(types.array(Location), []),
+    selectedLocation: types.maybeNull(Location),
+    currentLocation: types.maybeNull(Location),
+    issData: types.optional(types.frozen(), []),
+    initLoading: types.optional(types.boolean, false),
+    issDataLoaded: types.optional(types.boolean, false),
+    sightingsLoaded: types.optional(types.boolean, false),
+  })
+  .props({})
   .actions(RootStoreActions)
 
 /**

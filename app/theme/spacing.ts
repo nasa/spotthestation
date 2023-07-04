@@ -1,6 +1,6 @@
-import { Dimensions, PixelRatio } from 'react-native'
+import { Dimensions, PixelRatio } from "react-native"
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 
 // size based on figma design size (430 x 932)
 const BASE_WIDTH = 430

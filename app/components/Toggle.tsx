@@ -196,7 +196,7 @@ export function Toggle(props: ToggleProps) {
 
   function handlePress(e: GestureResponderEvent) {
     if (disabled) return
-    onValueChange?.(!value)
+    Boolean(onValueChange) && onValueChange(!value)
     onPress?.(e)
   }
 
@@ -565,7 +565,10 @@ const $inputOuterBase: ViewStyle = {
 const $inputOuterVariants: Record<Variants, StyleProp<ViewStyle>> = {
   checkbox: [$inputOuterBase, { borderRadius: scale(4) }],
   radio: [$inputOuterBase, { borderRadius: scale(12) }],
-  switch: [$inputOuterBase, { height: scale(28), width: scale(46), borderRadius: scale(16), borderWidth: 0 }],
+  switch: [
+    $inputOuterBase,
+    { height: scale(28), width: scale(46), borderRadius: scale(16), borderWidth: 0 },
+  ],
 }
 
 const $checkboxInner: ViewStyle = {

@@ -17,26 +17,32 @@ const iss = require("../../../assets/images/iss-with-path.png")
 
 export function Splash() {
   const navigation = useNavigation()
-  
+
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
-    let userId = await storage.load("userId") as string
+    let userId = (await storage.load("userId")) as string
     if (!userId) {
       userId = getUserId()
-      await analytics().setUserId(userId).catch(() => null)
-      await analytics().logTutorialBegin().catch(() => null)
+      await analytics()
+        .setUserId(userId)
+        .catch(() => null)
+      await analytics()
+        .logTutorialBegin()
+        .catch(() => null)
       await storage.save("userId", getUserId())
       setTimeout(() => {
         handleNavigate()
       }, 3000)
     } else {
-      await analytics().setUserId(userId).catch(() => null)
+      await analytics()
+        .setUserId(userId)
+        .catch(() => null)
     }
   }
 
   useEffect(() => {
-    generateUser().catch(e => console.log(e))
+    generateUser().catch((e) => console.log(e))
   }, [])
 
   const handleNavigate = () => navigation.navigate("SignupCompleteProfile" as never)
@@ -64,13 +70,13 @@ export function Splash() {
               tx="onboarding.splash.subTitle"
               style={$subTitle}
             />
-            <IconLinkButton 
+            <IconLinkButton
               icon="back"
               accessible
               accessibilityLabel="Arrow right button"
               accessibilityHint="Navigates to the next screen"
-              buttonStyle={$buttonSize} 
-              imageStyle={$imageStyle} 
+              buttonStyle={$buttonSize}
+              imageStyle={$imageStyle}
               onPress={handleNavigate}
             />
           </View>
@@ -87,12 +93,12 @@ const $container: ViewStyle = {
 const $imageBackground: ViewStyle = {
   flex: 1,
   display: "flex",
-  flexDirection: "column"
+  flexDirection: "column",
 }
 
 const $bottomContainer: ViewStyle = {
   position: "absolute",
-  top: "68%"
+  top: "68%",
 }
 
 const $bottomRowContainer: ViewStyle = {
@@ -100,12 +106,12 @@ const $bottomRowContainer: ViewStyle = {
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
-  paddingHorizontal: scale(36)
+  paddingHorizontal: scale(36),
 }
 
 const $iss: ImageStyle = {
   position: "absolute",
-  top: "26%"
+  top: "26%",
 }
 
 const $title: TextStyle = {
@@ -118,18 +124,18 @@ const $title: TextStyle = {
 }
 
 const $subTitle: TextStyle = {
-  width: '85%',
+  width: "85%",
   fontSize: fontSizes[24],
   lineHeight: lineHeights[29],
   fontFamily: typography.primary.normal,
-  color: colors.palette.neutral250
+  color: colors.palette.neutral250,
 }
 
 const $buttonSize: TextStyle = {
   width: scale(64),
-  height: scale(64)
+  height: scale(64),
 }
 
 const $imageStyle: ImageStyle = {
-  transform: [{ rotate: "180deg" }]
+  transform: [{ rotate: "180deg" }],
 }

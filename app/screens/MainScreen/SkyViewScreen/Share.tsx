@@ -15,31 +15,32 @@ export interface ShareProps {
 export function RNShare({ onClose }: ShareProps) {
   return (
     <View style={$modalBodyContainer}>
-      <Icon icon="x" 
+      <Icon
+        icon="x"
         accessible
         accessibilityLabel="x button"
         accessibilityHint="close modal"
         accessibilityRole="button"
-        color={colors.palette.neutral450} 
-        onPress={onClose} 
-        containerStyle={$close} 
+        color={colors.palette.neutral450}
+        onPress={onClose}
+        containerStyle={$close}
         size={36}
       />
       <View style={$contentContainer}>
-        <Text 
+        <Text
           accessible
           accessibilityLabel="title"
           accessibilityHint="title"
           accessibilityRole="text"
-          tx="issView.share.title" 
+          tx="issView.share.title"
           style={$title}
         />
-        <Text 
+        <Text
           accessible
           accessibilityLabel="subtitle"
           accessibilityHint="subtitle"
           accessibilityRole="text"
-          tx="issView.share.subtitle" 
+          tx="issView.share.subtitle"
           style={$subtitle}
         />
         <View style={$buttonsContainer}>
@@ -50,11 +51,11 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="brandFacebook" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
-              iconSize={28} 
+            <IconLinkButton
+              icon="brandFacebook"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
+              iconSize={28}
             />
             <Text text="Facebook" style={$label} />
           </Pressable>
@@ -65,10 +66,10 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="brandTwitter" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
+            <IconLinkButton
+              icon="brandTwitter"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
               iconSize={28}
             />
             <Text text="Twitter" style={$label} />
@@ -80,10 +81,10 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="brandInstagram" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
+            <IconLinkButton
+              icon="brandInstagram"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
               iconSize={28}
             />
             <Text text="Instagram" style={$label} />
@@ -95,10 +96,10 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="brandLinkedin" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
+            <IconLinkButton
+              icon="brandLinkedin"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
               iconSize={28}
             />
             <Text text="Linked In" style={$label} />
@@ -110,10 +111,10 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="brandWhatsapp" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
+            <IconLinkButton
+              icon="brandWhatsapp"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
               iconSize={28}
             />
             <Text text="Whatsapp" style={$label} />
@@ -125,10 +126,10 @@ export function RNShare({ onClose }: ShareProps) {
             accessibilityRole="button"
             style={$pressable}
           >
-            <IconLinkButton 
-              icon="mail" 
-              buttonStyle={$button} 
-              iconColor={colors.palette.neutral250} 
+            <IconLinkButton
+              icon="mail"
+              buttonStyle={$button}
+              iconColor={colors.palette.neutral250}
               iconSize={28}
             />
             <Text text="Mail" style={$label} />
@@ -148,14 +149,14 @@ const $modalBodyContainer: ViewStyle = {
 const $contentContainer: ViewStyle = {
   width: "100%",
   paddingHorizontal: scale(36),
-  paddingBottom: scale(52)
+  paddingBottom: scale(52),
 }
 
 const $buttonsContainer: ViewStyle = {
   width: "100%",
   flexDirection: "row",
   flexWrap: "wrap",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $close: ViewStyle = {
@@ -163,7 +164,7 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }
 
 const $title: TextStyle = {
@@ -172,23 +173,23 @@ const $title: TextStyle = {
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[44],
   paddingBottom: scale(12),
-  marginTop: scale(36)
+  marginTop: scale(36),
 }
 
 const $subtitle: TextStyle = {
   color: colors.palette.neutral450,
   fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[22], 
-  marginBottom: scale(36)
+  lineHeight: lineHeights[22],
+  marginBottom: scale(36),
 }
 
 const $label: TextStyle = {
   color: colors.palette.neutral250,
   fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[19], 
-  marginTop: scale(16)
+  lineHeight: lineHeights[19],
+  marginTop: scale(16),
 }
 
 const $button: ViewStyle = {
@@ -200,5 +201,5 @@ const $button: ViewStyle = {
 const $pressable: ViewStyle = {
   alignItems: "center",
   marginBottom: scale(36),
-  paddingHorizontal: scale(10)
+  paddingHorizontal: scale(10),
 }

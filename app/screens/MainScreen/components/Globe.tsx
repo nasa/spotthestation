@@ -5,10 +5,22 @@ import { Renderer, loadTextureAsync } from "expo-three"
 import * as FileSystem from "expo-file-system"
 import { Asset } from "expo-asset"
 import {
-  Sprite, SpriteMaterial, Texture, AmbientLight, Vector3,
-  Line, LineBasicMaterial, Mesh, MeshBasicMaterial, CatmullRomCurve3,
+  Sprite,
+  SpriteMaterial,
+  Texture,
+  AmbientLight,
+  Vector3,
+  Line,
+  LineBasicMaterial,
+  Mesh,
+  MeshBasicMaterial,
+  CatmullRomCurve3,
   BufferGeometry,
-  PerspectiveCamera, Scene, SphereGeometry, WebGLRenderer, LineDashedMaterial,
+  PerspectiveCamera,
+  Scene,
+  SphereGeometry,
+  WebGLRenderer,
+  LineDashedMaterial,
 } from "three"
 import { colors } from "../../../theme"
 import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
@@ -21,7 +33,7 @@ const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/World-Map.jpg")
 
 async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
-  if (Platform.OS === 'ios') return assetModule
+  if (Platform.OS === "ios") return assetModule
 
   const localUri = `${FileSystem.cacheDirectory}asset_${localFilename}`
   const fileInfo = await FileSystem.getInfoAsync(localUri, { size: false })
@@ -45,29 +57,29 @@ export interface GlobeProps {
   futureIssPathCoords?: [number, number][]
 }
 
-export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoords = [], issMarkerPosition }: GlobeProps ) {
+export function Globe({
+  marker,
+  zoom,
+  pastIssPathCoords = [],
+  futureIssPathCoords = [],
+  issMarkerPosition,
+}: GlobeProps) {
   const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
   const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
   const futurehRef = useRef<Line>(null)
-  
+
   useEffect(() => {
     if (issMarkerRef.current) {
-      const [x, y, z] = coordinatesToPosition(
-        issMarkerPosition,
-        GLOBE_RADIUS + 20
-      )
+      const [x, y, z] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
       issMarkerRef.current.position.set(x, y, z)
     }
   }, [issMarkerPosition])
 
   useEffect(() => {
     if (pointRef.current) {
-      const [x, y, z] = coordinatesToPosition(
-        marker,
-        GLOBE_RADIUS
-      )
+      const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
       pointRef.current.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
     }
   }, [marker])
@@ -76,20 +88,14 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     if (futurehRef.current && pastRef.current) {
       const pastCurve = new CatmullRomCurve3(
         pastIssPathCoords.map((coords) => {
-          return new Vector3(...coordinatesToPosition(
-            coords,
-            GLOBE_RADIUS + 20
-          ))
-        })
+          return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+        }),
       )
-  
+
       const futureCurve = new CatmullRomCurve3(
         futureIssPathCoords.map((coords) => {
-          return new Vector3(...coordinatesToPosition(
-            coords,
-            GLOBE_RADIUS + 20
-          ))
-        })
+          return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+        }),
       )
 
       pastRef.current.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
@@ -107,7 +113,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
   }, [zoom, camera])
 
   const createMarker = async () => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string,'fiMapPin.png')
+    const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
       asset: uri,
@@ -115,21 +121,18 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
-      color: 0xffffff
+      color: 0xffffff,
     })
-    const [x, y, z] = coordinatesToPosition(
-      marker,
-      GLOBE_RADIUS
-    )
-    
-    mesh.scale.set(24,24,1)
+    const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
+
+    mesh.scale.set(24, 24, 1)
     mesh.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
 
     return mesh
   }
 
   const createISSMarker = async (position: [number, number]) => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.position as string,'position.png')
+    const uri = await copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
       asset: uri,
@@ -137,15 +140,12 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
-      color: 0xffffff
+      color: 0xffffff,
     })
 
-    const [x,y,z] = coordinatesToPosition(
-      position,
-      GLOBE_RADIUS + 20
-    )
+    const [x, y, z] = coordinatesToPosition(position, GLOBE_RADIUS + 20)
 
-    mesh.scale.set(32,32,1)
+    mesh.scale.set(32, 32, 1)
     mesh.position.set(x, y, z)
 
     return mesh
@@ -154,7 +154,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
   const createSphere = async (radius: number, texture, name: string, transparent, depthWrite) => {
     const sphere = new Mesh()
     sphere.geometry = new SphereGeometry(radius, GLOBE_SEGMENTS, GLOBE_SEGMENTS)
-    const uri = await copyAssetToCacheAsync(texture as string,`${name}.png`)
+    const uri = await copyAssetToCacheAsync(texture as string, `${name}.png`)
 
     const tx = await loadTextureAsync({
       asset: uri,
@@ -164,12 +164,12 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
       sphere.material = new MeshBasicMaterial({
         map: tx,
         transparent,
-        depthWrite
+        depthWrite,
       })
     } else {
       sphere.material = new MeshBasicMaterial({ color: 0xffffff, transparent })
     }
-    
+
     sphere.name = name
 
     return sphere
@@ -178,20 +178,14 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
   const createOrbit = () => {
     const pastCurve = new CatmullRomCurve3(
       pastIssPathCoords.map((coords) => {
-        return new Vector3(...coordinatesToPosition(
-          coords,
-          GLOBE_RADIUS + 20
-        ))
-      })
+        return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+      }),
     )
 
     const futureCurve = new CatmullRomCurve3(
       futureIssPathCoords.map((coords) => {
-        return new Vector3(...coordinatesToPosition(
-          coords,
-          GLOBE_RADIUS + 20
-        ))
-      })
+        return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+      }),
     )
     //
     // const points = curve.getPoints(100)
@@ -205,11 +199,16 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
 
     const pastLine = new Line()
-    pastLine.material = new LineBasicMaterial( { color: 0x00ff00, linewidth: 6 } )
+    pastLine.material = new LineBasicMaterial({ color: 0x00ff00, linewidth: 6 })
     pastLine.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
 
     const futureLine = new Line()
-    futureLine.material = new LineDashedMaterial( { color: 0xADADAE, linewidth: 6, dashSize: 5, gapSize: 5 } )
+    futureLine.material = new LineDashedMaterial({
+      color: 0xadadae,
+      linewidth: 6,
+      dashSize: 5,
+      gapSize: 5,
+    })
     futureLine.geometry = new BufferGeometry().setFromPoints(futureCurve.getPoints(50))
 
     futureLine.computeLineDistances()
@@ -219,17 +218,17 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
 
     return [pastLine, futureLine]
   }
-  
+
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
     const camera = new PerspectiveCamera(
       75,
       gl.drawingBufferWidth / gl.drawingBufferHeight,
       1,
-      1000
+      1000,
     )
 
-    const ambient = new AmbientLight('white', 666)
+    const ambient = new AmbientLight("white", 666)
 
     camera.position.set(0, 0, 850)
 
@@ -263,7 +262,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
     scene.add(clouds)
 
     function update() {
-      ['x', 'y', 'z'].forEach(axis => {
+      ;["x", "y", "z"].forEach((axis) => {
         clouds.rotation[axis] += Math.random() / 10000
       })
     }
@@ -281,11 +280,7 @@ export function Globe({ marker, zoom, pastIssPathCoords = [], futureIssPathCoord
   return (
     <>
       <ControlsView style={$pan} camera={camera}>
-        <GLView
-          style={$container}
-          onContextCreate={contextRenderer}
-          key="d"
-        />
+        <GLView style={$container} onContextCreate={contextRenderer} key="d" />
       </ControlsView>
     </>
   )

@@ -1,7 +1,8 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-import throttle from 'lodash.throttle'
+import throttle from "lodash.throttle"
 import {
-  ViroARScene, ViroCameraTransform,
+  ViroARScene,
+  ViroCameraTransform,
   ViroImage,
   ViroPolyline,
   ViroSphere,
@@ -35,9 +36,9 @@ type ISSDataCallback = (data: {
 export const emitter = mitt()
 
 const worldTransform = (input: [number, number, number], heading): [number, number, number] => {
-  if (Platform.OS === 'ios') return input
+  if (Platform.OS === "ios") return input
 
-  const angle = (360 - heading) * (Math.PI/180)
+  const angle = (360 - heading) * (Math.PI / 180)
 
   const x = input[0] * Math.cos(angle) - input[2] * Math.sin(angle)
   const z = input[0] * Math.sin(angle) + input[2] * Math.cos(angle)
@@ -45,7 +46,7 @@ const worldTransform = (input: [number, number, number], heading): [number, numb
   return [x, input[1], z]
 }
 
-export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneProps){
+export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [initialHeading, setInitialHeading] = useState(null)
   const [settings, setSettings] = useState({ isPathVisible: false })
@@ -54,11 +55,11 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
   const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number]>([0, 0])
   const headingRef = useRef<number>()
   const trackingStateRef = useRef()
-  
+
   useEffect(() => {
-    emitter.on('settings', setSettings)
+    emitter.on("settings", setSettings)
     return () => {
-      emitter.off('settings', setSettings)
+      emitter.off("settings", setSettings)
     }
   }, [])
 
@@ -70,21 +71,24 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     return () => unsub()
   }, [isVisible, initialHeading])
 
-
   useEffect(() => {
     const handler: ISSDataCallback = (data) => {
       setPastIssPathCoords(data.pastIssPathCoords)
       setFutureIssPathCoords(data.futureIssPathCoords)
       setIssMarkerPosition(data.issMarkerPosition)
     }
-    emitter.on('issData', handler)
+    emitter.on("issData", handler)
     return () => {
-      emitter.off('issData', handler)
+      emitter.off("issData", handler)
     }
   }, [])
 
   function showScene() {
-    if (trackingStateRef.current !== ViroTrackingStateConstants.TRACKING_NORMAL || headingRef.current === null) return
+    if (
+      trackingStateRef.current !== ViroTrackingStateConstants.TRACKING_NORMAL ||
+      headingRef.current === null
+    )
+      return
     if (initialHeading === null) setInitialHeading(headingRef.current)
     setIsVisible(true)
   }
@@ -100,13 +104,16 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
   const issCoords = useMemo(
     () => azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 10),
-    [issMarkerPosition])
+    [issMarkerPosition],
+  )
 
   const pastOrbitCoords = useMemo<[number, number, number][]>(() => {
     if (pastIssPathCoords.length === 0) return []
 
     const curve = new CatmullRomCurve3(
-      pastIssPathCoords.map((p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)))
+      pastIssPathCoords.map(
+        (p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)),
+      ),
     )
 
     const points = curve.getPoints(50)
@@ -118,7 +125,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     if (futureIssPathCoords.length === 0) return []
 
     const curve = new CatmullRomCurve3(
-      futureIssPathCoords.map((p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)))
+      futureIssPathCoords.map(
+        (p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)),
+      ),
     )
 
     const points = curve.getPoints(50)
@@ -129,31 +138,50 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
   const onCamera = useMemo(() => {
     const cb: CameraTransformCallback = ({ cameraTransform }) => {
       const issWorldCoords = worldTransform(issCoords, initialHeading)
-      const totalAngle = new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180 / Math.PI
+      const totalAngle =
+        (new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180) /
+        Math.PI
 
       if (totalAngle < 85) {
-        sceneNavigator.project(issWorldCoords)
-          .then(({ screenPosition })=> {
-            sceneNavigator.viroAppProps?.onScreenPositionChange([screenPosition[0], screenPosition[1]])
-          }).catch((err) => {
-          console.error(err)
-        })
+        sceneNavigator
+          .project(issWorldCoords)
+          .then(({ screenPosition }) => {
+            sceneNavigator.viroAppProps?.onScreenPositionChange([
+              screenPosition[0],
+              screenPosition[1],
+            ])
+          })
+          .catch((err) => {
+            console.error(err)
+          })
       } else {
-        let angleX = new Vector3(...cameraTransform.forward)
-          .projectOnPlane(new Vector3(0, 1, 0))
-          .angleTo(new Vector3(...issWorldCoords).projectOnPlane(new Vector3(0, 1, 0))) * 180 / Math.PI
+        let angleX =
+          (new Vector3(...cameraTransform.forward)
+            .projectOnPlane(new Vector3(0, 1, 0))
+            .angleTo(new Vector3(...issWorldCoords).projectOnPlane(new Vector3(0, 1, 0))) *
+            180) /
+          Math.PI
 
-        let angleY = new Vector3(...cameraTransform.forward)
-          .projectOnPlane(new Vector3(0, 1, 0))
-          .angleTo(new Vector3(...cameraTransform.forward)) * 180 / Math.PI
+        let angleY =
+          (new Vector3(...cameraTransform.forward)
+            .projectOnPlane(new Vector3(0, 1, 0))
+            .angleTo(new Vector3(...cameraTransform.forward)) *
+            180) /
+          Math.PI
 
-        angleY = (cameraTransform.forward[1] > 0 ? angleY: -angleY) - issMarkerPosition[1]
-        angleX = new Vector3(...issWorldCoords).cross(new Vector3(...cameraTransform.forward)).y > 0 ? angleX : -angleX
+        angleY = (cameraTransform.forward[1] > 0 ? angleY : -angleY) - issMarkerPosition[1]
+        angleX =
+          new Vector3(...issWorldCoords).cross(new Vector3(...cameraTransform.forward)).y > 0
+            ? angleX
+            : -angleX
 
         if (Math.abs(angleX) > Math.abs(angleY)) {
           sceneNavigator.viroAppProps?.onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0])
         } else {
-          sceneNavigator.viroAppProps?.onScreenPositionChange([10000, angleY > 0 ? 1000000 : -1000000])
+          sceneNavigator.viroAppProps?.onScreenPositionChange([
+            10000,
+            angleY > 0 ? 1000000 : -1000000,
+          ])
         }
       }
     }
@@ -163,28 +191,31 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
-      { isVisible && (
+      {isVisible && (
         <>
-          { settings.isPathVisible && (
+          {settings.isPathVisible && (
             <>
               <ViroPolyline
-                position={worldTransform(azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0), initialHeading)}
+                position={worldTransform(
+                  azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0),
+                  initialHeading,
+                )}
                 points={pastOrbitCoords}
                 thickness={0.05}
               />
-              { futureOrbitCoords.map((point) => (
-                <ViroSphere
-                  key={point.toString()}
-                  position={point}
-                  radius={0.05}
-                />
+              {futureOrbitCoords.map((point) => (
+                <ViroSphere key={point.toString()} position={point} radius={0.05} />
               ))}
             </>
           )}
           <ViroImage
             height={1.5}
             width={1.5}
-            rotation={[issMarkerPosition[1], -(issMarkerPosition[0] - (Platform.OS === 'android' ? initialHeading : 0)), 0]}
+            rotation={[
+              issMarkerPosition[1],
+              -(issMarkerPosition[0] - (Platform.OS === "android" ? initialHeading : 0)),
+              0,
+            ]}
             position={worldTransform(issCoords, initialHeading)}
             source={icon}
           />

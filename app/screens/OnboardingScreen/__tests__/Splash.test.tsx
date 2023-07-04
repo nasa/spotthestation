@@ -3,12 +3,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { NavigationContainer } from "@react-navigation/native"
 import React from "react"
-import renderer from 'react-test-renderer'
-import { Splash } from '../Splash'
+import renderer from "react-test-renderer"
+import { Splash } from "../Splash"
 
-it('renders correctly', () => {
+it("renders correctly", () => {
   const tree = renderer
-    .create(<NavigationContainer><Splash /></NavigationContainer>)
+    .create(
+      <NavigationContainer>
+        <Splash />
+      </NavigationContainer>,
+    )
     .toJSON()
   expect(tree).toMatchSnapshot()
 })

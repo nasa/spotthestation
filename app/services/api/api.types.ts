@@ -35,13 +35,13 @@ export interface ApiFeedResponse {
 }
 
 export interface GetISSSightingsParams {
-  zone: string,
-  lat: number,
+  zone: string
+  lat: number
   lon: number
 }
 
 export interface GetISSDataParams {
-  lat: number,
+  lat: number
   lon: number
 }
 
@@ -58,10 +58,10 @@ export interface ISSSighting {
 export interface OrbitPoint {
   date: string
   latitude: number
-  longitude: number,
-  azimuth: number,
-  elevation: number,
-  altitude: number,
+  longitude: number
+  azimuth: number
+  elevation: number
+  altitude: number
 }
 
 export interface ISSDataResponse {

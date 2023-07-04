@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { ErrorInfo } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text } from "../../components"
@@ -44,7 +46,7 @@ export function ErrorDetails(props: ErrorDetailsProps) {
 const $contentContainer: ViewStyle = {
   alignItems: "center",
   paddingHorizontal: scale(spacing.large),
-  paddingTop: (spacing.extraLarge),
+  paddingTop: spacing.extraLarge,
   flex: 1,
 }
 

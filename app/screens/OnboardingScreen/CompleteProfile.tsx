@@ -27,8 +27,8 @@ export const CompleteProfile = observer(function CompleteProfile() {
     subtitle: "",
     location: {
       lat: null,
-      lng: null
-    }
+      lng: null,
+    },
   })
 
   const handleBack = useCallback(() => {
@@ -39,49 +39,73 @@ export const CompleteProfile = observer(function CompleteProfile() {
   const handleNext = useCallback(() => setStep(step + 1), [step])
 
   const handleDone = () => {
-    analytics().logTutorialComplete().catch(() => null)
-    storage.save('isSettingsCompleted', true)
+    analytics()
+      .logTutorialComplete()
+      .catch(() => null)
+    storage
+      .save("isSettingsCompleted", true)
       .then(() => navigation.navigate("Main" as never))
-      .catch(err => Snackbar.show({
-        text: err as string,
-        duration: Snackbar.LENGTH_LONG,
-        action: {
-          text: 'Dismiss',
-          textColor: 'red',
-          onPress: () => {
-            Snackbar.dismiss()
+      .catch((err) =>
+        Snackbar.show({
+          text: err as string,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: "Dismiss",
+            textColor: "red",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
           },
-        },
-      }))
+        }),
+      )
   }
 
   const handleLocationChange = (location: LocationType) => {
     setLocation(location)
     setInitLoading(true)
-    setCurrentLocation(location).catch(e => console.log(e))
+    setCurrentLocation(location).catch((e) => console.log(e))
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {
     setNotifications(notifications)
-    await storage.save('upcoming', notifications)
+    await storage.save("upcoming", notifications)
   }
 
   const renderBody = useCallback(() => {
-    switch(step) {
-      case 2: return <SignupLocation value={location} onValueChange={handleLocationChange} onAction={handleDone} />
-      default: return <SignupNotificationSettings value={notifications} onValueChange={handleNotificationsChange} onAction={handleNext} />
+    switch (step) {
+      case 2:
+        return (
+          <SignupLocation
+            value={location}
+            onValueChange={handleLocationChange}
+            onAction={handleDone}
+          />
+        )
+      default:
+        return (
+          <SignupNotificationSettings
+            value={notifications}
+            onValueChange={handleNotificationsChange}
+            onAction={handleNext}
+          />
+        )
     }
   }, [step, notifications, location])
 
   return (
-    <Screen preset="scroll" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <IconLinkButton 
+    <Screen
+      preset="scroll"
+      contentContainerStyle={$container}
+      style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
+      statusBarStyle="light"
+    >
+      <IconLinkButton
         icon="back"
         accessible
         accessibilityLabel="Back button"
         accessibilityHint="Navigates to the previous screen"
-        onPress={handleBack} 
-        buttonStyle={$back} 
+        onPress={handleBack}
+        buttonStyle={$back}
       />
       <View style={$contentContainer}>
         <Text
@@ -89,7 +113,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
           accessibilityLabel="Step counter"
           accessibilityHint="Display current step"
           accessibilityRole="text"
-          text={`${step} of 2`} 
+          text={`${step} of 2`}
           style={$step}
         />
         {renderBody()}
@@ -101,17 +125,17 @@ export const CompleteProfile = observer(function CompleteProfile() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral900,
-  paddingTop: scale(24)
+  paddingTop: scale(24),
 }
 
 const $contentContainer: ViewStyle = {
   flex: 1,
   paddingHorizontal: scale(36),
-  paddingBottom: scale(52)
+  paddingBottom: scale(52),
 }
 
 const $back: ViewStyle = {
-  marginLeft: scale(18)
+  marginLeft: scale(18),
 }
 
 const $step: TextStyle = {
@@ -120,5 +144,5 @@ const $step: TextStyle = {
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[22],
   paddingBottom: scale(18),
-  paddingTop: scale(36)
+  paddingTop: scale(36),
 }

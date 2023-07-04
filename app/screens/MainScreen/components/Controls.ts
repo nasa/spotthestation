@@ -1,6 +1,6 @@
-import { Camera, EventDispatcher, Spherical, TOUCH, Vector2, Vector3, BaseEvent } from 'three'
-import { NativeTouchEvent } from 'react-native'
- 
+import { Camera, EventDispatcher, Spherical, TOUCH, Vector2, Vector3, BaseEvent } from "three"
+import { NativeTouchEvent } from "react-native"
+
 const STATE = {
   NONE: -1,
   TOUCH_ROTATE: 3,
@@ -8,15 +8,15 @@ const STATE = {
 
 export class Controls extends EventDispatcher {
   object: Camera & {
-    fov: number;
-    top: number;
-    right: number;
-    left: number;
-    bottom: number;
-    zoom: number;
-    updateProjectionMatrix: () => void;
-    isOrthographicCamera?: boolean;
-    isPerspectiveCamera?: boolean;
+    fov: number
+    top: number
+    right: number
+    left: number
+    bottom: number
+    zoom: number
+    updateProjectionMatrix: () => void
+    isOrthographicCamera?: boolean
+    isPerspectiveCamera?: boolean
   }
 
   enabled: boolean
@@ -83,7 +83,7 @@ export class Controls extends EventDispatcher {
     this.rotateStart = new Vector2()
     this.rotateEnd = new Vector2()
     this.rotateDelta = new Vector2()
-    
+
     this.saveState = () => {
       this.target0.copy(this.target)
       this.position0.copy(this.object.position)
@@ -101,11 +101,11 @@ export class Controls extends EventDispatcher {
     this.rotateLeft = (angle) => {
       this.sphericalDelta.theta -= angle
     }
-    
+
     this.rotateUp = (angle) => {
       this.sphericalDelta.phi -= angle
     }
-    
+
     this.width = 0
     this.getElementWidth = () => {
       return this.width
@@ -114,12 +114,11 @@ export class Controls extends EventDispatcher {
     this.getElementHeight = () => {
       return this.height
     }
-      
+
     this.handleTouchStartRotate = ({ touches }) => {
       if (touches.length === 1) {
         this.rotateStart.set(touches[0].pageX, touches[0].pageY)
-      }
-      else {
+      } else {
         const x = 0.5 * (touches[0].pageX + touches[1].pageX)
         const y = 0.5 * (touches[0].pageY + touches[1].pageY)
         this.rotateStart.set(x, y)
@@ -129,30 +128,25 @@ export class Controls extends EventDispatcher {
     this.handleTouchMoveRotate = ({ touches }) => {
       if (touches.length === 1) {
         this.rotateEnd.set(touches[0].pageX, touches[0].pageY)
-      }
-      else {
+      } else {
         const x = 0.5 * (touches[0].pageX + touches[1].pageX)
         const y = 0.5 * (touches[0].pageY + touches[1].pageY)
         this.rotateEnd.set(x, y)
       }
-      this.rotateDelta
-        .subVectors(this.rotateEnd, this.rotateStart)
-        .multiplyScalar(this.rotateSpeed)
+      this.rotateDelta.subVectors(this.rotateEnd, this.rotateStart).multiplyScalar(this.rotateSpeed)
       this.rotateLeft((2 * Math.PI * this.rotateDelta.x) / this.getElementHeight())
       this.rotateUp((2 * Math.PI * this.rotateDelta.y) / this.getElementHeight())
       this.rotateStart.copy(this.rotateEnd)
     }
-      
-    this.onTouchStart = event => {
-      if (this.enabled === false)
-        return
-      
+
+    this.onTouchStart = (event) => {
+      if (this.enabled === false) return
+
       switch (event.touches.length) {
         case 1:
           switch (this.touches.ONE) {
             case TOUCH.ROTATE:
-              if (this.enableRotate === false)
-                return
+              if (this.enableRotate === false) return
               this.handleTouchStartRotate(event)
               this.state = STATE.TOUCH_ROTATE
               break
@@ -168,14 +162,12 @@ export class Controls extends EventDispatcher {
       }
     }
 
-    this.onTouchMove = event => {
-      if (this.enabled === false)
-        return
-      
+    this.onTouchMove = (event) => {
+      if (this.enabled === false) return
+
       switch (this.state) {
         case STATE.TOUCH_ROTATE:
-          if (this.enableRotate === false)
-            return
+          if (this.enableRotate === false) return
           this.handleTouchMoveRotate(event)
           this.update()
           break
@@ -185,35 +177,43 @@ export class Controls extends EventDispatcher {
     }
 
     this.onTouchEnd = () => {
-      if (this.enabled === false)
-        return
+      if (this.enabled === false) return
       this.dispatchEvent(this.endEvent)
       this.state = STATE.NONE
     }
 
     this.target0 = this.target.clone()
     this.position0 = this.object.position.clone()
-      
+
     this.update = (() => {
       const offset = new Vector3()
       return () => {
         const position = this.object.position
         offset.copy(position).sub(this.target)
-        
+
         this.spherical.setFromVector3(offset)
 
         this.spherical.theta += this.sphericalDelta.theta
         this.spherical.phi += this.sphericalDelta.phi
-        
-        this.spherical.theta = Math.max(this.minAzimuthAngle, Math.min(this.maxAzimuthAngle, this.spherical.theta))
-        this.spherical.phi = Math.max(this.minPolarAngle, Math.min(this.maxPolarAngle, this.spherical.phi))
+
+        this.spherical.theta = Math.max(
+          this.minAzimuthAngle,
+          Math.min(this.maxAzimuthAngle, this.spherical.theta),
+        )
+        this.spherical.phi = Math.max(
+          this.minPolarAngle,
+          Math.min(this.maxPolarAngle, this.spherical.phi),
+        )
         this.spherical.makeSafe()
         this.spherical.radius *= this.scale
-        this.spherical.radius = Math.max(this.minDistance, Math.min(this.maxDistance, this.spherical.radius))
+        this.spherical.radius = Math.max(
+          this.minDistance,
+          Math.min(this.maxDistance, this.spherical.radius),
+        )
         this.target.add(this.panOffset)
-        
+
         offset.setFromSpherical(this.spherical)
-        
+
         position.copy(this.target).add(offset)
         this.object.lookAt(this.target)
         this.sphericalDelta.set(0, 0, 0)

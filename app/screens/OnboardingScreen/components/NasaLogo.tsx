@@ -12,5 +12,5 @@ const $logo: ImageStyle = {
   width: scale(110),
   height: scale(110),
   marginTop: scale(36),
-  marginLeft: scale(36)
+  marginLeft: scale(36),
 }

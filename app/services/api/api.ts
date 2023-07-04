@@ -13,7 +13,12 @@ import {
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
 import type {
-  ApiConfig, GetISSDataParams, GetISSSightingsParams, ISSSighting, ISSSightingResponse, OrbitPoint,
+  ApiConfig,
+  GetISSDataParams,
+  GetISSSightingsParams,
+  ISSSighting,
+  ISSSightingResponse,
+  OrbitPoint,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { TimeZoneDataResponse } from "../../utils/geolocation"
@@ -49,8 +54,15 @@ export class Api {
     })
   }
 
-  async getPlaces(url: string, key: "results" | "candidates"): Promise<{ kind: "ok"; places: GooglePlaceDetail[] } | GeneralApiProblem> {
-    const response: ApiResponse<Record<typeof key, GooglePlaceDetail[]>> = await this.apisauce.get(url, {}, { baseURL: "" })
+  async getPlaces(
+    url: string,
+    key: "results" | "candidates",
+  ): Promise<{ kind: "ok"; places: GooglePlaceDetail[] } | GeneralApiProblem> {
+    const response: ApiResponse<Record<typeof key, GooglePlaceDetail[]>> = await this.apisauce.get(
+      url,
+      {},
+      { baseURL: "" },
+    )
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
@@ -72,9 +84,14 @@ export class Api {
   }
 
   async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post("/tracking/iss-data", {
-      lat, lon
-    }, { baseURL: Config.API_URL })
+    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post(
+      "/tracking/iss-data",
+      {
+        lat,
+        lon,
+      },
+      { baseURL: Config.API_URL },
+    )
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
@@ -88,7 +105,7 @@ export class Api {
     const response: ApiResponse<ISSSighting[]> = await this.apisauce.post(
       `/tracking/oem-nasa`,
       { lat, lon, zone },
-      { baseURL: Config.API_URL }
+      { baseURL: Config.API_URL },
     )
 
     if (!response.ok) {
@@ -111,7 +128,11 @@ export class Api {
   }
 
   async getFeed(page: number): Promise<any> {
-    const response: ApiResponse<any> = await this.apisauce.get(`https://blogs.nasa.gov/spacestation/feed?paged=${page}`, {}, { baseURL: "" })
+    const response: ApiResponse<any> = await this.apisauce.get(
+      `https://blogs.nasa.gov/spacestation/feed?paged=${page}`,
+      {},
+      { baseURL: "" },
+    )
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
@@ -122,11 +143,16 @@ export class Api {
   }
 
   async sendMail(subject: string, body: string) {
-    const response: ApiResponse<any> = await this.apisauce.post("/mailer/send-mail", { subject, body }, { baseURL: Config.API_URL })
+    const response: ApiResponse<any> = await this.apisauce.post(
+      "/mailer/send-mail",
+      { subject, body },
+      { baseURL: Config.API_URL },
+    )
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return {...problem, message: response?.originalError?.message ?? 'Some error occured!'}
+      if (problem)
+        return { ...problem, message: response?.originalError?.message ?? "Some error occured!" }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return

@@ -47,22 +47,42 @@ export const HomeScreen = observer(function HomeScreen() {
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
-  const { 
-    issData, getISSData, setISSSightings, initLoading, setInitLoading, setIssDataLoaded, setSightingsLoaded,
-    currentLocation, selectedLocation, setSelectedLocation, sightingsLoaded, issDataLoaded
+  const {
+    issData,
+    getISSData,
+    setISSSightings,
+    initLoading,
+    setInitLoading,
+    setIssDataLoaded,
+    setSightingsLoaded,
+    currentLocation,
+    selectedLocation,
+    setSelectedLocation,
+    sightingsLoaded,
+    issDataLoaded,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
-  
+
   const [isLocation, setIsLocation] = useState(false)
   const [isSightings, setIsSightings] = useState(false)
-  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
+  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
+    date: null,
+    visible: 0,
+    maxHeight: 0,
+    appears: "",
+    disappears: "",
+    dayStage: 0,
+  })
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
-  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
+  const [currentTimeZone, setCurrentTimeZone] = useState({
+    timeZone: "US/Central",
+    regionFormat: "US",
+  })
 
   useEffect(() => {
     setAddress(calcAddress(selectedLocation, currentLocation))
@@ -70,22 +90,50 @@ export const HomeScreen = observer(function HomeScreen() {
     setCurrent(selectedLocation || currentLocation)
   }, [selectedLocation, currentLocation])
 
-  const events = useMemo(() => current?.sightings?.filter(item => item.notify) || [], [current?.sightings])
-  const eventsList = useMemo(() => events?.length ? events : (current?.sightings || []), [current?.sightings, events])
+  const events = useMemo(
+    () => current?.sightings?.filter((item) => item.notify) || [],
+    [current?.sightings],
+  )
+  const eventsList = useMemo(
+    () => (events?.length ? events : current?.sightings || []),
+    [current?.sightings, events],
+  )
 
-  const result = useMemo(() => eventsList.filter((sighting) => new Date(sighting.date) > new Date(new Date().getTime() - sighting.visible * 60 * 1000)), [eventsList])
+  const result = useMemo(
+    () =>
+      eventsList.filter(
+        (sighting) =>
+          new Date(sighting.date) > new Date(new Date().getTime() - sighting.visible * 60 * 1000),
+      ),
+    [eventsList],
+  )
 
-  const timeDiff = useCallback((callback: (diff: string) => void) => {
-    if (result.length === 0) {
-      setCurrentSightning({ date: null, visible: 0, maxHeight: 0, appears: '', disappears: '', dayStage: 0 })
-      setCountdown("T - 00:00:00:00")
-      return
-    }
-    setCurrentSightning(result[0])
-    const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
-    const diff = formatDuration(duration, { delimiter: ',' })
-    callback(formatTimer(diff, new Date(result[0].date).toISOString() >= new Date().toISOString() ? 'T - ' : 'T + '))
-  }, [result])
+  const timeDiff = useCallback(
+    (callback: (diff: string) => void) => {
+      if (result.length === 0) {
+        setCurrentSightning({
+          date: null,
+          visible: 0,
+          maxHeight: 0,
+          appears: "",
+          disappears: "",
+          dayStage: 0,
+        })
+        setCountdown("T - 00:00:00:00")
+        return
+      }
+      setCurrentSightning(result[0])
+      const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
+      const diff = formatDuration(duration, { delimiter: "," })
+      callback(
+        formatTimer(
+          diff,
+          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "T - " : "T + ",
+        ),
+      )
+    },
+    [result],
+  )
 
   const startCountdown = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
@@ -97,13 +145,13 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [result, startCountdown, timeDiff])
 
   const getCoach = async () => {
-    setCoachVisible(!(await storage.load('coachCompleted')))
+    setCoachVisible(!(await storage.load("coachCompleted")))
   }
 
   useEffect(() => {
     if (initLoading && sightingsLoaded && issDataLoaded) {
-      console.log('initialized')
-      
+      console.log("initialized")
+
       setInitLoading(false)
       setTimeout(() => getCoach().catch((e) => console.log(e)), 1000)
     }
@@ -131,7 +179,10 @@ export const HomeScreen = observer(function HomeScreen() {
     }
 
     issData.forEach((point, idx) => {
-      if (Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) < Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())) {
+      if (
+        Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) <
+        Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())
+      ) {
         currentPositionIdx = idx
       }
     })
@@ -150,24 +201,31 @@ export const HomeScreen = observer(function HomeScreen() {
       }
     }
 
-    setIssPathCoords(issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]))
-    setPastIssPathCoords(issData
-      .filter((point) => {
-        const diff = new Date().valueOf() - new Date(point.date).valueOf()
-        return diff >= 0 && diff < 60 * 60 * 1000
-      })
-      .map((p) => [p.latitude, p.longitude])
+    setIssPathCoords(
+      issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]),
+    )
+    setPastIssPathCoords(
+      issData
+        .filter((point) => {
+          const diff = new Date().valueOf() - new Date(point.date).valueOf()
+          return diff >= 0 && diff < 60 * 60 * 1000
+        })
+        .map((p) => [p.latitude, p.longitude]),
     )
 
-    setFutureIssPathCoords(issData
-      .filter((point) => {
-        const diff = new Date().valueOf() - new Date(point.date).valueOf()
-        return diff < 0 && diff > -60 * 60 * 1000
-      })
-      .map((p) => [p.latitude, p.longitude])
+    setFutureIssPathCoords(
+      issData
+        .filter((point) => {
+          const diff = new Date().valueOf() - new Date(point.date).valueOf()
+          return diff < 0 && diff > -60 * 60 * 1000
+        })
+        .map((p) => [p.latitude, p.longitude]),
     )
 
-    setIssMarkerPosition([issData[currentPositionIdx].latitude, issData[currentPositionIdx].longitude])
+    setIssMarkerPosition([
+      issData[currentPositionIdx].latitude,
+      issData[currentPositionIdx].longitude,
+    ])
 
     clearTimeout(updateTimer.current)
     updateTimer.current = setTimeout(updateIssPath, 30000)
@@ -191,14 +249,14 @@ export const HomeScreen = observer(function HomeScreen() {
 
     getCurrentTimeZome()
       .then(({ timeZone, regionFormat }) => setCurrentTimeZone({ timeZone, regionFormat }))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
 
-    getData().catch(e => console.log(e))
+    getData().catch((e) => console.log(e))
   }, [location?.[0], location?.[1]])
 
   const handleSetCoachCompleted = async () => {
     setCoachVisible(false)
-    await storage.save('coachCompleted', true)
+    await storage.save("coachCompleted", true)
   }
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
@@ -209,82 +267,127 @@ export const HomeScreen = observer(function HomeScreen() {
       setSightingsLoaded(false)
     }, 1000)
     setSelectedLocation(location).catch((e) => console.log(e))
-    await storage.save('selectedLocation', location)
+    await storage.save("selectedLocation", location)
   }, [])
 
-  const handleSetSightingNotification = useCallback((value: ISSSighting) => {
-    const updated = {...current, sightings: current.sightings.map(item => {
-      if (item.date === value.date) {
-        return {...item, notify: !item.notify}
+  const handleSetSightingNotification = useCallback(
+    (value: ISSSighting) => {
+      const updated = {
+        ...current,
+        sightings: current.sightings.map((item) => {
+          if (item.date === value.date) {
+            return { ...item, notify: !item.notify }
+          }
+          return item
+        }),
       }
-      return item
-    })}
-    setISSSightings(updated)
-  }, [current])
+      setISSSightings(updated)
+    },
+    [current],
+  )
 
-  const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
-    const updated = {...current, sightings: current.sightings.map(item => ({...item, notify}))}
-    setISSSightings(updated)
-  }, [current])
+  const handleSetSightingNotificationToAll = useCallback(
+    (notify: boolean) => {
+      const updated = {
+        ...current,
+        sightings: current.sightings.map((item) => ({ ...item, notify })),
+      }
+      setISSSightings(updated)
+    },
+    [current],
+  )
 
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
-      case 1: return <CoachMark
-        icon="mapPinOutlined"
-        title="homeScreen.coachMarks.locationTitle"
-        bodyText="homeScreen.coachMarks.locationData"
-        style={{ marginTop: normalizeHeight(.18) }}
-        stage={stage} 
-        onPressFinish={handleSetCoachCompleted} 
-        onPressNext={() => setStage(stage + 1)} 
-      />
-      case 2: return <CoachMark
-        icon="clock"
-        title="homeScreen.coachMarks.sightingsTitle"
-        bodyText="homeScreen.coachMarks.sightingsData"
-        style={{ marginTop: normalizeHeight(.28) }}
-        stage={stage} 
-        onPressFinish={handleSetCoachCompleted} 
-        onPressNext={() => setStage(stage + 1)} 
-      />
-      case 3: return <CoachMark
-        icon="globe"
-        title="homeScreen.coachMarks.globeTitle"
-        bodyText="homeScreen.coachMarks.globeData"
-        style={{ marginTop: normalizeHeight(.4) }}
-        stage={stage} 
-        onPressFinish={handleSetCoachCompleted} 
-        onPressNext={() => setStage(stage + 1)} 
-      />
-      case 4: return <CoachMark
-        icon="map"
-        title="homeScreen.coachMarks.mapTitle"
-        bodyText="homeScreen.coachMarks.mapData"
-        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.15) : normalizeHeight(.28) }}
-        stage={stage} 
-        onPressFinish={handleSetCoachCompleted} 
-        onPressNext={() => setStage(stage + 1)} 
-      />
-      case 5: return <CoachMark
-        icon="list"
-        title="homeScreen.coachMarks.navigationTitle"
-        bodyText="homeScreen.coachMarks.navigationData"
-        style={{ marginTop: Platform.OS === 'ios' ? normalizeHeight(.38) : normalizeHeight(.52) }}
-        stage={stage} 
-        onPressFinish={handleSetCoachCompleted} 
-        onPressNext={() => setStage(stage + 1)} 
-      />
-      default: return ''
+      case 1:
+        return (
+          <CoachMark
+            icon="mapPinOutlined"
+            title="homeScreen.coachMarks.locationTitle"
+            bodyText="homeScreen.coachMarks.locationData"
+            style={{ marginTop: normalizeHeight(0.18) }}
+            stage={stage}
+            onPressFinish={handleSetCoachCompleted}
+            onPressNext={() => setStage(stage + 1)}
+          />
+        )
+      case 2:
+        return (
+          <CoachMark
+            icon="clock"
+            title="homeScreen.coachMarks.sightingsTitle"
+            bodyText="homeScreen.coachMarks.sightingsData"
+            style={{ marginTop: normalizeHeight(0.28) }}
+            stage={stage}
+            onPressFinish={handleSetCoachCompleted}
+            onPressNext={() => setStage(stage + 1)}
+          />
+        )
+      case 3:
+        return (
+          <CoachMark
+            icon="globe"
+            title="homeScreen.coachMarks.globeTitle"
+            bodyText="homeScreen.coachMarks.globeData"
+            style={{ marginTop: normalizeHeight(0.4) }}
+            stage={stage}
+            onPressFinish={handleSetCoachCompleted}
+            onPressNext={() => setStage(stage + 1)}
+          />
+        )
+      case 4:
+        return (
+          <CoachMark
+            icon="map"
+            title="homeScreen.coachMarks.mapTitle"
+            bodyText="homeScreen.coachMarks.mapData"
+            style={{
+              marginTop: Platform.OS === "ios" ? normalizeHeight(0.15) : normalizeHeight(0.28),
+            }}
+            stage={stage}
+            onPressFinish={handleSetCoachCompleted}
+            onPressNext={() => setStage(stage + 1)}
+          />
+        )
+      case 5:
+        return (
+          <CoachMark
+            icon="list"
+            title="homeScreen.coachMarks.navigationTitle"
+            bodyText="homeScreen.coachMarks.navigationData"
+            style={{
+              marginTop: Platform.OS === "ios" ? normalizeHeight(0.38) : normalizeHeight(0.52),
+            }}
+            stage={stage}
+            onPressFinish={handleSetCoachCompleted}
+            onPressNext={() => setStage(stage + 1)}
+          />
+        )
+      default:
+        return ""
     }
   }, [stage])
 
   return (
-    <Screen preset="fixed" contentContainerStyle={$container} style={[$topInset, {backgroundColor: colors.palette.neutral900}]} statusBarStyle="light">
-      <HomeHeader 
+    <Screen
+      preset="fixed"
+      contentContainerStyle={$container}
+      style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
+      statusBarStyle="light"
+    >
+      <HomeHeader
         user={{ firstName: "User", address }}
         onLocationPress={() => setIsLocation(true)}
         onSightingsPress={() => setIsSightings(true)}
-        sighting={currentSightning.date ? formatDateWithTZ(currentSightning.date, currentTimeZone.regionFormat === 'US' ? "MMM DD, YYYY" : "DD MMM YYYY", { timeZone: currentTimeZone.timeZone }) : '-'}
+        sighting={
+          currentSightning.date
+            ? formatDateWithTZ(
+                currentSightning.date,
+                currentTimeZone.regionFormat === "US" ? "MMM DD, YYYY" : "DD MMM YYYY",
+                { timeZone: currentTimeZone.timeZone },
+              )
+            : "-"
+        }
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
@@ -294,9 +397,15 @@ export const HomeScreen = observer(function HomeScreen() {
           marker={location}
           pastIssPathCoords={pastIssPathCoords}
           futureIssPathCoords={futureIssPathCoords}
-          issMarkerPosition={issMarkerPosition} />
+          issMarkerPosition={issMarkerPosition}
+        />
       )}
-      <FlatMap style={$flatMap} issPathCoords={issPathCoords} issMarkerPosition={issMarkerPosition} currentLocation={location} />
+      <FlatMap
+        style={$flatMap}
+        issPathCoords={issPathCoords}
+        issMarkerPosition={issMarkerPosition}
+        currentLocation={location}
+      />
       <Modal
         isVisible={isLocation}
         onBackdropPress={() => setIsLocation(!isLocation)}
@@ -311,56 +420,68 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.65}
         style={$modal}
       >
-        <SelectLocation 
+        <SelectLocation
           selectedLocation={current}
           onLocationPress={handleChangeLocation}
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
-      {isSightings && Boolean(current) && <Modal
-        isVisible={isSightings}
-        onBackdropPress={() => setIsSightings(!isSightings)}
-        onSwipeComplete={() => setIsSightings(!isSightings)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={$modal}
-      >
-        <Sightings 
-          onClose={() => setIsSightings(!isSightings)} 
-          sightings={current ? current?.sightings : []}
-          onToggle={handleSetSightingNotification}
-          onToggleAll={handleSetSightingNotificationToAll}
-          isUS={currentTimeZone?.regionFormat === 'US'}
-          isNotifyAll={current && current?.sightings.every(item => item.notify)}
-          timezone={currentTimeZone?.timeZone}
-        />
-      </Modal>}
+      {isSightings && Boolean(current) && (
+        <Modal
+          isVisible={isSightings}
+          onBackdropPress={() => setIsSightings(!isSightings)}
+          onSwipeComplete={() => setIsSightings(!isSightings)}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={$modal}
+        >
+          <Sightings
+            onClose={() => setIsSightings(!isSightings)}
+            sightings={current ? current?.sightings : []}
+            onToggle={handleSetSightingNotification}
+            onToggleAll={handleSetSightingNotificationToAll}
+            isUS={currentTimeZone?.regionFormat === "US"}
+            isNotifyAll={current && current?.sightings.every((item) => item.notify)}
+            timezone={currentTimeZone?.timeZone}
+          />
+        </Modal>
+      )}
       <Modal
         key={currentLocation?.title}
         isVisible={initLoading}
         useNativeDriver
         useNativeDriverForBackdrop
-        backdropOpacity={.85}
-        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
+        backdropOpacity={0.85}
+        style={[
+          $modal,
+          { paddingHorizontal: 18, justifyContent: "flex-start" },
+          Platform.OS === "ios" && $topInsetMargin,
+        ]}
       >
         <InitLoader />
       </Modal>
-      {coachVisible && <Modal
-        key={location?.join('-')}
-        isVisible={coachVisible && !initLoading}
-        useNativeDriver
-        useNativeDriverForBackdrop
-        backdropOpacity={.4}
-        style={[$modal, { paddingHorizontal: 18, justifyContent: 'flex-start' }, Platform.OS === 'ios' && $topInsetMargin]}
-      >
-        {renderCoachMarks()}
-      </Modal>}
+      {coachVisible && (
+        <Modal
+          key={location?.join("-")}
+          isVisible={coachVisible && !initLoading}
+          useNativeDriver
+          useNativeDriverForBackdrop
+          backdropOpacity={0.4}
+          style={[
+            $modal,
+            { paddingHorizontal: 18, justifyContent: "flex-start" },
+            Platform.OS === "ios" && $topInsetMargin,
+          ]}
+        >
+          {renderCoachMarks()}
+        </Modal>
+      )}
     </Screen>
   )
 })
@@ -368,17 +489,17 @@ export const HomeScreen = observer(function HomeScreen() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $modal: ViewStyle = {
   flex: 1,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
   left: 0,
-  margin: 0
+  margin: 0,
 }
 
 const $flatMap: ViewStyle = {
   width: "100%",
-  height: scale(200)
+  height: scale(200),
 }

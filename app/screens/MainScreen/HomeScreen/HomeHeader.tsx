@@ -18,7 +18,14 @@ export interface HomeHeaderProps {
   onSightingsPress: PressableProps["onPress"]
 }
 
-export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting = "", countdown = "", timezone = "" }: HomeHeaderProps) {
+export function HomeHeader({
+  user,
+  onLocationPress,
+  onSightingsPress,
+  sighting = "",
+  countdown = "",
+  timezone = "",
+}: HomeHeaderProps) {
   return (
     <View style={$headerContainer}>
       <View style={$rowContainer}>
@@ -28,7 +35,7 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
             accessibilityLabel="address"
             accessibilityHint="address"
             accessibilityRole="text"
-            text={user?.address?.replace(", ", "\n")} 
+            text={user?.address?.replace(", ", "\n")}
             style={$addressText}
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -38,45 +45,45 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
           accessible
           accessibilityLabel="pin button"
           accessibilityHint="open select location modal"
-          icon="pin" 
+          icon="pin"
           onPress={onLocationPress}
         />
       </View>
       <View style={$rowContainer}>
-        <Pressable 
+        <Pressable
           accessible
           accessibilityLabel="next sighting"
           accessibilityHint="open sightings modal"
           accessibilityRole="button"
-          style={[$timeContainer, $outlined]} 
+          style={[$timeContainer, $outlined]}
           onPress={onSightingsPress}
         >
-          <Text 
+          <Text
             accessible
             accessibilityLabel="sighting header"
             accessibilityHint="sighting header"
             accessibilityRole="text"
-            tx="homeScreen.header.firstTimeHead" 
-            style={$headText} 
+            tx="homeScreen.header.firstTimeHead"
+            style={$headText}
           />
-          <Text 
+          <Text
             accessible
             accessibilityLabel="sighting"
             accessibilityHint="sighting"
             accessibilityRole="text"
-            text={sighting} 
+            text={sighting}
             style={$timeText}
           />
-          <Text 
+          <Text
             accessible
             accessibilityLabel="timezone"
             accessibilityHint="timezone"
             accessibilityRole="text"
-            text={timezone} 
+            text={timezone}
             style={$tipText}
           />
         </Pressable>
-        <View 
+        <View
           accessible
           accessibilityLabel="countdown"
           accessibilityHint="countdown to next sighting"
@@ -95,25 +102,25 @@ export function HomeHeader({ user, onLocationPress, onSightingsPress, sighting =
 const $headerContainer: ViewStyle = {
   width: "100%",
   paddingHorizontal: 18,
-  paddingTop: 18
+  paddingTop: 18,
 }
 
 const $rowContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "flex-start",
   justifyContent: "space-between",
-  paddingBottom: 5
+  paddingBottom: 5,
 }
 
 const $userContainer: ViewStyle = {
-  width: '85%',
+  width: "85%",
 }
 
 const $addressText: TextStyle = {
   fontFamily: typography.primary.normal,
   color: colors.palette.neutral100,
   fontSize: fontSizes[20],
-  lineHeight: lineHeights[26]
+  lineHeight: lineHeights[26],
 }
 
 const $timeContainer: ViewStyle = {
@@ -121,11 +128,11 @@ const $timeContainer: ViewStyle = {
   width: "48%",
   borderRadius: scale(10),
   padding: 8,
-  borderWidth: scale(1.5)
+  borderWidth: scale(1.5),
 }
 
 const $outlined: ViewStyle = {
-  borderColor: colors.palette.buttonBlue
+  borderColor: colors.palette.buttonBlue,
 }
 
 const $headText: TextStyle = {
@@ -146,5 +153,5 @@ const $timeText: TextStyle = {
 
 const $tipText: TextStyle = {
   ...$headText,
-  fontSize: fontSizes[10]
+  fontSize: fontSizes[10],
 }

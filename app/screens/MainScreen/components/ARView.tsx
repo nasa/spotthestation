@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState, forwardRef, useMemo } from "react"
 import { View, ViewStyle } from "react-native"
-import {
-  ViroARSceneNavigator,
-} from "@viro-community/react-viro"
+import { ViroARSceneNavigator } from "@viro-community/react-viro"
 
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
@@ -22,54 +20,68 @@ interface ARViewProps {
   setIsSpotted: (value: boolean) => void
 }
 
-export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(
-  function ARView({ isFullScreen, isPathVisible, isRecording, recordedSeconds, pastIssPathCoords, futureIssPathCoords, issMarkerPosition, setIsSpotted }, ref) {
-    const [position, setPosition] = useState([0, 0])
-    const onScreenPositionChange = useCallback((pos: [number, number]) => {
-      setPosition(pos)
-    }, [])
+export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARView(
+  {
+    isFullScreen,
+    isPathVisible,
+    isRecording,
+    recordedSeconds,
+    pastIssPathCoords,
+    futureIssPathCoords,
+    issMarkerPosition,
+    setIsSpotted,
+  },
+  ref,
+) {
+  const [position, setPosition] = useState([0, 0])
+  const onScreenPositionChange = useCallback((pos: [number, number]) => {
+    setPosition(pos)
+  }, [])
 
-    const viroAppProps = useMemo(() => ({
-      onScreenPositionChange
-    }), [onScreenPositionChange])
+  const viroAppProps = useMemo(
+    () => ({
+      onScreenPositionChange,
+    }),
+    [onScreenPositionChange],
+  )
 
-    const intialScene = useMemo(() => ({
-      scene: ISSSceneAR as any
-    }), [onScreenPositionChange])
+  const intialScene = useMemo(
+    () => ({
+      scene: ISSSceneAR as any,
+    }),
+    [onScreenPositionChange],
+  )
 
-    useEffect(() => {
-      emitter.emit('settings', { isPathVisible })
-    }, [isPathVisible])
+  useEffect(() => {
+    emitter.emit("settings", { isPathVisible })
+  }, [isPathVisible])
 
-    useEffect(() => {
-      emitter.emit('issData', { pastIssPathCoords, futureIssPathCoords, issMarkerPosition })
-    }, [pastIssPathCoords, futureIssPathCoords, issMarkerPosition])
+  useEffect(() => {
+    emitter.emit("issData", { pastIssPathCoords, futureIssPathCoords, issMarkerPosition })
+  }, [pastIssPathCoords, futureIssPathCoords, issMarkerPosition])
 
-    return (
-      <View style={$container}>
-        <ViroARSceneNavigator
-          ref={ref}
-          worldAlignment="GravityAndHeading"
-          autofocus={true}
-          initialScene={intialScene}
-          viroAppProps={viroAppProps}
-          style={$container}
-        />
+  return (
+    <View style={$container}>
+      <ViroARSceneNavigator
+        ref={ref}
+        worldAlignment="GravityAndHeading"
+        autofocus={true}
+        initialScene={intialScene}
+        viroAppProps={viroAppProps}
+        style={$container}
+      />
 
-        { isFullScreen && (
-          <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
-        )}
+      {isFullScreen && (
+        <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
+      )}
 
-        <View style={$hudContainer}>
-          <Compass issPosition={normalizeHeading(issMarkerPosition[0])} isFullScreen={isFullScreen} />
-          { isRecording && (
-            <RecordingIndicator recordedSeconds={recordedSeconds} />
-          )}
-        </View>
+      <View style={$hudContainer}>
+        <Compass issPosition={normalizeHeading(issMarkerPosition[0])} isFullScreen={isFullScreen} />
+        {isRecording && <RecordingIndicator recordedSeconds={recordedSeconds} />}
       </View>
-    )
-  }
-)
+    </View>
+  )
+})
 
 const $container: ViewStyle = {
   flex: 1,
@@ -77,8 +89,8 @@ const $container: ViewStyle = {
 }
 
 const $hudContainer: ViewStyle = {
-  position: 'absolute',
-  alignItems: 'center',
-  width: '100%',
+  position: "absolute",
+  alignItems: "center",
+  width: "100%",
   top: 0,
 }

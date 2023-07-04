@@ -22,10 +22,7 @@ const Stack = createNativeStackNavigator<OnboardingParamList>()
 
 export function OnboardingNavigator() {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Splash"
-    >
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="SignupCompleteProfile" component={CompleteProfile} />
     </Stack.Navigator>

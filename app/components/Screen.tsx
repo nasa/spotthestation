@@ -55,7 +55,7 @@ interface BaseScreenProps {
    * Pass any additional props directly to the KeyboardAvoidingView component.
    */
   KeyboardAvoidingViewProps?: KeyboardAvoidingViewProps
-  
+
   isPortrait?: boolean
 }
 
@@ -200,7 +200,7 @@ export function Screen(props: ScreenProps) {
     safeAreaEdges,
     StatusBarProps,
     statusBarStyle = "dark",
-    isPortrait = true
+    isPortrait = true,
   } = props
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
@@ -214,7 +214,6 @@ export function Screen(props: ScreenProps) {
         <KeyboardAvoidingView
           behavior={isIos ? "padding" : undefined}
           keyboardVerticalOffset={keyboardOffset}
-
           {...KeyboardAvoidingViewProps}
           style={[$keyboardAvoidingViewStyle, KeyboardAvoidingViewProps?.style]}
         >

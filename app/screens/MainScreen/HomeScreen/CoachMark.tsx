@@ -7,29 +7,63 @@ import { colors } from "../../../theme/colors"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 
 export interface CoachMarkProps {
-  icon?: IconTypes,
-  title?: TxKeyPath,
-  bodyText?: TxKeyPath,
-  stage?: number,
-  style?: ViewStyle,
+  icon?: IconTypes
+  title?: TxKeyPath
+  bodyText?: TxKeyPath
+  stage?: number
+  style?: ViewStyle
   onPressNext?: PressableProps["onPress"]
   onPressFinish?: PressableProps["onPress"]
 }
 
-export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, onPressFinish }: CoachMarkProps) {
+export function CoachMark({
+  icon,
+  title,
+  bodyText,
+  stage,
+  style,
+  onPressNext,
+  onPressFinish,
+}: CoachMarkProps) {
   const renderArrow = () => {
     switch (stage) {
-      case 1: return <View style={$location}><Icon icon="bigArrow" size={55} /></View>
-      case 2: return <View style={$sightings}><Icon icon="bigArrow" size={55} /></View>
-      case 3: return <View style={$globe}><Icon icon="bigArrow" size={55} /></View>
-      case 4: return <View style={$map}><Icon icon="bigArrow" size={55} /></View>
-      case 5: return <View style={$navigation}><Icon icon="bigArrow" size={55} /></View>
-      default: return ''
+      case 1:
+        return (
+          <View style={$location}>
+            <Icon icon="bigArrow" size={55} />
+          </View>
+        )
+      case 2:
+        return (
+          <View style={$sightings}>
+            <Icon icon="bigArrow" size={55} />
+          </View>
+        )
+      case 3:
+        return (
+          <View style={$globe}>
+            <Icon icon="bigArrow" size={55} />
+          </View>
+        )
+      case 4:
+        return (
+          <View style={$map}>
+            <Icon icon="bigArrow" size={55} />
+          </View>
+        )
+      case 5:
+        return (
+          <View style={$navigation}>
+            <Icon icon="bigArrow" size={55} />
+          </View>
+        )
+      default:
+        return ""
     }
   }
 
   return (
-    <View 
+    <View
       accessible
       accessibilityLabel="coach mark"
       accessibilityHint="coach mark"
@@ -41,7 +75,8 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
       <Icon icon={icon} size={44} />
       <Text tx={title} style={$title} />
       <Text tx={bodyText} style={$body} />
-      {stage === 5 ? <Button
+      {stage === 5 ? (
+        <Button
           accessible
           accessibilityLabel="finish button"
           accessibilityHint="finish coach mark"
@@ -50,28 +85,31 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
           style={$nextButton}
           pressedStyle={$nextButton}
           onPress={onPressFinish}
-        /> : <View style={$buttonsContainer}>
-        <Button
-          accessible
-          accessibilityLabel="skip button"
-          accessibilityHint="skip coach mark"
-          tx="homeScreen.coachMarks.skip"
-          textStyle={$skipButtonText}
-          style={$skipButton}
-          pressedStyle={$skipButton}
-          onPress={onPressFinish}
         />
-        <Button
-          accessible
-          accessibilityLabel="next button"
-          accessibilityHint="next coach mark"
-          tx="homeScreen.coachMarks.next"
-          textStyle={$nextButtonText}
-          style={$nextButton}
-          pressedStyle={$nextButton}
-          onPress={onPressNext}
-        />
-      </View>}
+      ) : (
+        <View style={$buttonsContainer}>
+          <Button
+            accessible
+            accessibilityLabel="skip button"
+            accessibilityHint="skip coach mark"
+            tx="homeScreen.coachMarks.skip"
+            textStyle={$skipButtonText}
+            style={$skipButton}
+            pressedStyle={$skipButton}
+            onPress={onPressFinish}
+          />
+          <Button
+            accessible
+            accessibilityLabel="next button"
+            accessibilityHint="next coach mark"
+            tx="homeScreen.coachMarks.next"
+            textStyle={$nextButtonText}
+            style={$nextButton}
+            pressedStyle={$nextButton}
+            onPress={onPressNext}
+          />
+        </View>
+      )}
     </View>
   )
 }
@@ -79,24 +117,24 @@ export function CoachMark({ icon, title, bodyText, stage, style, onPressNext, on
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(16),
-  alignItems: 'center',
+  alignItems: "center",
   paddingVertical: 36,
   paddingHorizontal: 30,
-  width: '100%',
+  width: "100%",
 }
 
 const $buttonsContainer: ViewStyle = {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  width: '100%',
-  alignSelf: 'flex-end'
+  flexDirection: "row",
+  justifyContent: "space-between",
+  width: "100%",
+  alignSelf: "flex-end",
 }
 
 const $skipButton: ViewStyle = {
-  backgroundColor: 'transparent',
+  backgroundColor: "transparent",
   borderWidth: 0,
   height: scale(56),
-  minWidth: scale(140)
+  minWidth: scale(140),
 }
 
 const $skipButtonText: TextStyle = {
@@ -111,7 +149,7 @@ const $nextButton: ViewStyle = {
   backgroundColor: colors.palette.neutral100,
   borderRadius: scale(28),
   borderWidth: 0,
-  minWidth: scale(140)
+  minWidth: scale(140),
 }
 
 const $location: ViewStyle = {
@@ -125,19 +163,19 @@ const $sightings: ViewStyle = {
 }
 const $globe: ViewStyle = {
   position: "absolute",
-  top: -normalizeHeight(.2),
+  top: -normalizeHeight(0.2),
   right: 0,
-  transform: [{ rotate: "-130deg" }]
+  transform: [{ rotate: "-130deg" }],
 }
 const $map: ViewStyle = {
   position: "absolute",
   bottom: -scale(80),
-  transform: [{ rotate: "180deg" }]
+  transform: [{ rotate: "180deg" }],
 }
 const $navigation: ViewStyle = {
   position: "absolute",
   bottom: -scale(80),
-  transform: [{ rotate: "180deg" }]
+  transform: [{ rotate: "180deg" }],
 }
 
 const $nextButtonText: TextStyle = {
@@ -153,7 +191,7 @@ const $title: TextStyle = {
   lineHeight: lineHeights[29],
   color: colors.palette.neutral100,
   paddingBottom: 12,
-  paddingTop: 18
+  paddingTop: 18,
 }
 
 const $body: TextStyle = {
@@ -161,7 +199,7 @@ const $body: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.neutral100,
-  paddingBottom: 36
+  paddingBottom: 36,
 }
 
 const $stage: TextStyle = {
@@ -173,5 +211,5 @@ const $stage: TextStyle = {
   top: 0,
   left: 0,
   padding: 24,
-  opacity: 0.5
+  opacity: 0.5,
 }

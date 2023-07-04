@@ -2,24 +2,25 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from 'react-test-renderer'
+import renderer from "react-test-renderer"
 import { NavigationContainer } from "@react-navigation/native"
 import { ISSViewScreen } from "../ISSViewScreen"
-jest.mock('@react-navigation/native', () => ({
-  ...Object.assign({}, jest.requireActual('@react-navigation/native')),
-  useRoute: () => 
-  ({
+jest.mock("@react-navigation/native", () => ({
+  ...Object.assign({}, jest.requireActual("@react-navigation/native")),
+  useRoute: () => ({
     params: {
       id: 1,
       toggleBottomTabs: jest.fn(),
     },
-  })
+  }),
 }))
-it('renders correctly', () => {
+it("renders correctly", () => {
   const tree = renderer
-    .create(<NavigationContainer>
+    .create(
+      <NavigationContainer>
         <ISSViewScreen />
-      </NavigationContainer>)
+      </NavigationContainer>,
+    )
     .toJSON()
   expect(tree).toMatchSnapshot()
 })

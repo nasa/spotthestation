@@ -10,10 +10,10 @@ export interface AccessoryProps {
 
   onPress?: PressableProps["onPress"]
 
-  style: StyleProp<any>,
+  style: StyleProp<any>
 }
 
-export const Accessory = memo(function Accessory({icon, color, style, onPress}: AccessoryProps) {
+export const Accessory = memo(function Accessory({ icon, color, style, onPress }: AccessoryProps) {
   return (
     <Icon
       icon={icon}
@@ -24,4 +24,3 @@ export const Accessory = memo(function Accessory({icon, color, style, onPress}: 
     />
   )
 })
-

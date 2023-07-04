@@ -15,35 +15,53 @@ export interface ExpandContainerProps {
   containerStyle?: ViewStyle
 }
 
-export function ExpandContainer({ defaultValue = true, title, expandble = true, children, itemsCount, actionTitle, reverseTitle, containerStyle }: ExpandContainerProps) {
+export function ExpandContainer({
+  defaultValue = true,
+  title,
+  expandble = true,
+  children,
+  itemsCount,
+  actionTitle,
+  reverseTitle,
+  containerStyle,
+}: ExpandContainerProps) {
   const [expanded, setExpanded] = useState(defaultValue)
 
-  const $titleContainerOverride: ViewStyle = reverseTitle && { flexDirection: 'row-reverse' }
-  const $titleOverride: TextStyle = reverseTitle && { textAlign: 'right', width: '100%' }
+  const $titleContainerOverride: ViewStyle = reverseTitle && { flexDirection: "row-reverse" }
+  const $titleOverride: TextStyle = reverseTitle && { textAlign: "right", width: "100%" }
 
   return (
     <View style={[$container, containerStyle]}>
       <View style={$headContainer}>
         <View style={[$titleContainer, $titleContainerOverride]}>
-          <Text 
+          <Text
             accessible
             accessibilityLabel="title"
             accessibilityHint={title}
             accessibilityRole="text"
-            tx={title} 
-            style={[$title, $titleOverride]} 
+            tx={title}
+            style={[$title, $titleOverride]}
           />
-          {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />} 
+          {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
         </View>
-        {expandble && <Icon icon="chevronDown" size={18} onPress={() => setExpanded(!expanded)} style={expanded && $up} />}
-        {actionTitle && <Text 
+        {expandble && (
+          <Icon
+            icon="chevronDown"
+            size={18}
+            onPress={() => setExpanded(!expanded)}
+            style={expanded && $up}
+          />
+        )}
+        {actionTitle && (
+          <Text
             accessible
             accessibilityLabel="action"
             accessibilityHint="action title"
             accessibilityRole="text"
-            text={actionTitle} 
+            text={actionTitle}
             style={$title}
-          />}
+          />
+        )}
       </View>
       {expanded && children}
     </View>
@@ -52,13 +70,13 @@ export function ExpandContainer({ defaultValue = true, title, expandble = true, 
 
 const $container: ViewStyle = {
   width: "100%",
-  marginTop: scale(36)
+  marginTop: scale(36),
 }
 
 const $headContainer: ViewStyle = {
   marginBottom: scale(18),
   flexDirection: "row",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $titleContainer: ViewStyle = {
@@ -70,9 +88,9 @@ const $title: TextStyle = {
   fontSize: fontSizes[13],
   lineHeight: lineHeights[16],
   color: colors.palette.neutral450,
-  textTransform: "uppercase"
+  textTransform: "uppercase",
 }
 
 const $up: ImageStyle = {
-  transform: [{ rotate: "180deg" }]
+  transform: [{ rotate: "180deg" }],
 }

@@ -1,7 +1,11 @@
 import { Euler, Vector3 } from "three"
 
-export const azAltToCartesian = (az: number, alt: number, distance: number): [number, number, number] => {
-  const euler = new Euler(degToRad(alt), -degToRad(az), 0, 'YXZ')
+export const azAltToCartesian = (
+  az: number,
+  alt: number,
+  distance: number,
+): [number, number, number] => {
+  const euler = new Euler(degToRad(alt), -degToRad(az), 0, "YXZ")
   const vec = new Vector3(0, 0, -distance).applyEuler(euler)
   return [vec.x, vec.y, vec.z]
 }
@@ -22,4 +26,4 @@ export const headingOffset = (h1: number, h2: number) => {
   return h2 - h1
 }
 
-export const degToRad = (deg: number) => deg * (Math.PI/180)
+export const degToRad = (deg: number) => deg * (Math.PI / 180)

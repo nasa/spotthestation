@@ -13,25 +13,25 @@ export interface SettingsItemProps {
 
 export function SettingsItem({ title, icon, onPress, withUnderline = true }: SettingsItemProps) {
   return (
-    <Pressable 
+    <Pressable
       accessible
       accessibilityLabel="pressable settings item"
       accessibilityHint="pressable settings item"
       accessibilityRole="button"
-      style={$container} 
+      style={$container}
       onPress={onPress}
     >
-      <View style={[$bodyContainer, !withUnderline && { borderBottomWidth: 0 }]}>
+      <View style={[$bodyContainer, !withUnderline && $withoutUnderline]}>
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
         <View style={$titleContainer}>
-          <Text 
+          <Text
             accessible
             accessibilityLabel="title"
             accessibilityHint={title}
             accessibilityRole="text"
-            tx={title} 
-            style={$titleText} 
-            ellipsizeMode='tail' 
+            tx={title}
+            style={$titleText}
+            ellipsizeMode="tail"
             numberOfLines={1}
           />
         </View>
@@ -60,10 +60,14 @@ const $bodyContainer: ViewStyle = {
   marginLeft: scale(10),
 }
 
+const $withoutUnderline: ViewStyle = {
+  borderBottomWidth: 0,
+}
+
 const $titleContainer: ViewStyle = {
   flexDirection: "column",
   flex: 1,
-  paddingLeft: scale(18)
+  paddingLeft: scale(18),
 }
 
 const $titleText: TextStyle = {
@@ -71,5 +75,5 @@ const $titleText: TextStyle = {
   fontFamily: typography.primary?.normal,
   fontSize: fontSizes[24],
   lineHeight: lineHeights[29],
-  color: colors.palette.neutral100
+  color: colors.palette.neutral100,
 }

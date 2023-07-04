@@ -1,5 +1,13 @@
 import React from "react"
-import { ViewStyle, View, TextStyle, Pressable, PressableProps, Image, ImageStyle } from "react-native"
+import {
+  ViewStyle,
+  View,
+  TextStyle,
+  Pressable,
+  PressableProps,
+  Image,
+  ImageStyle,
+} from "react-native"
 import { Text } from "../../../components"
 import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
 import { Tag } from "./Tag"
@@ -12,56 +20,64 @@ export interface FeedSearchResultItemProps {
   onPress?: PressableProps["onPress"]
 }
 
-export function FeedSearchResultItem({ title, image, type, tags = [], onPress }: FeedSearchResultItemProps) {
+export function FeedSearchResultItem({
+  title,
+  image,
+  type,
+  tags = [],
+  onPress,
+}: FeedSearchResultItemProps) {
   return (
-    <Pressable 
+    <Pressable
       accessible
       accessibilityLabel="pressable feed item"
       accessibilityHint="pressable feed item"
       accessibilityRole="button"
-      style={$container} 
+      style={$container}
       onPress={onPress}
     >
-      <View 
+      <View
         accessible
         accessibilityLabel="tags"
         accessibilityHint="tags"
         accessibilityRole="text"
         style={$tagsContainer}
       >
-        {tags.map(tag => <Tag key={tag} title={tag} />)}
+        {tags.map((tag) => (
+          <Tag key={tag} title={tag} />
+        ))}
       </View>
       <Image
         accessible
         accessibilityLabel="image"
         accessibilityHint="image"
-        accessibilityRole="image" 
-        source={{ uri: image }} 
-        style={$imageContainer} 
-        resizeMode="cover" 
+        accessibilityRole="image"
+        source={{ uri: image }}
+        style={$imageContainer}
+        resizeMode="cover"
       />
-      <Text 
+      <Text
         accessible
         accessibilityLabel="type"
         accessibilityHint={type}
         accessibilityRole="text"
-        text={type} 
+        text={type}
         style={$typeText}
       />
-      <Text 
+      <Text
         accessible
         accessibilityLabel="title"
         accessibilityHint={title}
         accessibilityRole="text"
-        text={title} 
-        style={$titleText} 
+        text={title}
+        style={$titleText}
       />
     </Pressable>
   )
 }
 
 const $container: ViewStyle = {
-  position: 'relative',
+  position: "relative",
   width: "47%",
   justifyContent: "space-between",
   alignItems: "flex-start",
@@ -69,18 +85,18 @@ const $container: ViewStyle = {
 }
 
 const $tagsContainer: ViewStyle = {
-  position: 'absolute',
+  position: "absolute",
   top: scale(36),
   left: scale(18),
-  flexDirection: 'row',
-  zIndex: 2
+  flexDirection: "row",
+  zIndex: 2,
 }
 
 const $imageContainer: ImageStyle = {
   width: "100%",
-  aspectRatio: .7,
+  aspectRatio: 0.7,
   borderRadius: scale(12),
-  marginBottom: scale(12)
+  marginBottom: scale(12),
 }
 
 const $titleText: TextStyle = {
@@ -88,7 +104,7 @@ const $titleText: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[21],
   color: colors.palette.neutral250,
-  paddingBottom: scale(5)
+  paddingBottom: scale(5),
 }
 
 const $typeText: TextStyle = {
@@ -96,5 +112,5 @@ const $typeText: TextStyle = {
   fontSize: fontSizes[14],
   lineHeight: lineHeights[17],
   color: colors.palette.neutral450,
-  textTransform: 'uppercase'
+  textTransform: "uppercase",
 }

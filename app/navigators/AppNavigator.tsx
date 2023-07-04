@@ -61,30 +61,30 @@ const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
   const navigation = useNavigation()
-  
+
   useEffect(() => {
-    storage.load('isSettingsCompleted')
+    storage
+      .load("isSettingsCompleted")
       .then((res) => {
-        if (res) navigation.navigate('Main' as never)
+        if (res) navigation.navigate("Main" as never)
       })
-      .catch((err) => Snackbar.show({
-        text: err as string,
-        duration: Snackbar.LENGTH_LONG,
-        action: {
-          text: 'Dismiss',
-          textColor: 'red',
-          onPress: () => {
-            Snackbar.dismiss()
+      .catch((err) =>
+        Snackbar.show({
+          text: err as string,
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: "Dismiss",
+            textColor: "red",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
           },
-        },
-      }))
+        }),
+      )
   }, [])
 
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName={"Onboarding"}
-    >
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Onboarding"}>
       <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
       <Stack.Screen name="Main" component={TabNavigator} />
       <Stack.Screen name="SettingsScreens" component={SettingsNavigator} />

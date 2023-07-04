@@ -1,7 +1,7 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react'
-import { View, PanResponder, LayoutRectangle, ViewProps } from 'react-native'
-import { Camera } from 'three'
-import { Controls } from './Controls'
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react"
+import { View, PanResponder, LayoutRectangle, ViewProps } from "react-native"
+import { Camera } from "three"
+import { Controls } from "./Controls"
 
 export interface ControlsViewProps extends ViewProps {
   camera: Camera
@@ -17,11 +17,15 @@ const ControlsView = forwardRef(({ camera, ...props }: ControlsViewProps, ref) =
     return null
   }, [camera])
 
-  useImperativeHandle(ref, () => ({
-    getControls() {
-      return controls
-    },
-  }), [controls])
+  useImperativeHandle(
+    ref,
+    () => ({
+      getControls() {
+        return controls
+      },
+    }),
+    [controls],
+  )
 
   const responder = useMemo(() => {
     return PanResponder.create({
@@ -46,16 +50,16 @@ const ControlsView = forwardRef(({ camera, ...props }: ControlsViewProps, ref) =
 
   useEffect(() => {
     if (!controls || !size) return
-  
+
     controls.width = size.width
     controls.height = size.height
   }, [size, controls])
 
   return (
-    <View 
+    <View
       {...props}
-      {...responder.panHandlers} 
-      onLayout={event => {
+      {...responder.panHandlers}
+      onLayout={(event) => {
         if (props.onLayout) {
           props.onLayout(event)
         }

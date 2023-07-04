@@ -7,7 +7,7 @@ const EXCEPTIONS = [
   // "welcomeScreen.readyForLaunch",
 ]
 
-function iterate(obj, stack, array) {
+function iterate(obj: any, stack: string, array: string[]): string[] {
   for (const property in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, property)) {
       if (typeof obj[property] === "object") {

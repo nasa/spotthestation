@@ -1,6 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ActivityIndicator, Alert, Platform, PressableProps, TextStyle, View, ViewStyle } from "react-native"
-import { GooglePlacesAutocomplete, Point, GooglePlacesAutocompleteRef } from "react-native-google-places-autocomplete"
+import {
+  ActivityIndicator,
+  Alert,
+  Platform,
+  PressableProps,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native"
+import {
+  GooglePlacesAutocomplete,
+  Point,
+  GooglePlacesAutocompleteRef,
+} from "react-native-google-places-autocomplete"
 import * as Location from "expo-location"
 import Modal from "react-native-modal"
 import { Icon, Text, Button } from "../../components"
@@ -13,9 +25,9 @@ import * as storage from "../../utils/storage"
 import { PrivacyModal } from "./components/PrivacyModal"
 
 export interface LocationType {
-  title: string,
-  subtitle: string,
-  location: Point,
+  title: string
+  subtitle: string
+  location: Point
   alert?: boolean
   sightings?: ISSSighting[]
 }
@@ -26,7 +38,11 @@ enum Statuses {
   result = "result",
 }
 
-const defaultLocation: LocationType = { title: "Washington", subtitle: "Washington, D.C., United States", location: { lat: 38.89511, lng: -77.03637 }}
+const defaultLocation: LocationType = {
+  title: "Washington",
+  subtitle: "Washington, D.C., United States",
+  location: { lat: 38.89511, lng: -77.03637 },
+}
 
 export interface SignupLocationProps {
   /**
@@ -43,7 +59,7 @@ export interface SignupLocationProps {
   onAction: PressableProps["onPress"]
 }
 
-export function SignupLocation({ value, onValueChange, onAction }: SignupLocationProps ) {
+export function SignupLocation({ value, onValueChange, onAction }: SignupLocationProps) {
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
   const [privacyModal, setPrivacyModal] = useState(false)
@@ -68,23 +84,33 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         Alert.alert(
           translate("onboarding.completeProfile.location.permissionAlertTitle"),
           translate("onboarding.completeProfile.location.permissionAlertBody"),
-          [{ text: 'OK', onPress: () => {
-            onValueChange(defaultLocation)
-            setStatus(Statuses.result)
-          } }],
-          { cancelable: false }
-        )
+          [
+            {
+              text: "OK",
+              onPress: () => {
+                onValueChange(defaultLocation)
+                setStatus(Statuses.result)
+              },
+            },
+          ],
+          { cancelable: false },
+        ),
       )
       if (location) onValueChange(location)
     } else {
       Alert.alert(
         translate("onboarding.completeProfile.location.serviceAlertTitle"),
         translate("onboarding.completeProfile.location.serviceAlertBody"),
-        [{ text: 'OK', onPress: () => {
-          onValueChange(defaultLocation)
-          setStatus(Statuses.result)
-        } }],
-        { cancelable: false }
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              onValueChange(defaultLocation)
+              setStatus(Statuses.result)
+            },
+          },
+        ],
+        { cancelable: false },
       )
     }
   }
@@ -97,8 +123,8 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           accessibilityLabel="location subtitle"
           accessibilityHint="location subtitle"
           accessibilityRole="text"
-          tx="onboarding.completeProfile.location.subtitle" 
-          style={$subtitle} 
+          tx="onboarding.completeProfile.location.subtitle"
+          style={$subtitle}
         />
         <Button
           accessible
@@ -109,21 +135,20 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           style={$button}
           textStyle={$buttonText}
           onPress={() => {
-            if (Platform.OS === 'ios') {
-              handleDetect().catch(e => console.log(e))
+            if (Platform.OS === "ios") {
+              handleDetect().catch((e) => console.log(e))
             } else {
-              storage.load('isPrivacyAgree').then(res => {
-                if (res) handleDetect().catch(e => console.log(e))
-                else setPrivacyModal(true)
-              }).catch(e => console.log(e))
+              storage
+                .load("isPrivacyAgree")
+                .then((res) => {
+                  if (res) handleDetect().catch((e) => console.log(e))
+                  else setPrivacyModal(true)
+                })
+                .catch((e) => console.log(e))
             }
           }}
           renderLeftAccessory={({ style }) => (
-            <Icon
-              icon="currentLocation"
-              size={24}
-              style={style}
-            />
+            <Icon icon="currentLocation" size={24} style={style} />
           )}
         />
         <Text
@@ -131,7 +156,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           accessibilityLabel="or"
           accessibilityHint="or"
           accessibilityRole="text"
-          tx="onboarding.completeProfile.location.orLabel" 
+          tx="onboarding.completeProfile.location.orLabel"
           style={$orLabel}
         />
         <GooglePlacesAutocomplete
@@ -139,9 +164,15 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           placeholder={translate("onboarding.completeProfile.location.selectLocation")}
           query={{
             key: Config.GOOGLE_API_TOKEN,
-            language: 'en',
+            language: "en",
           }}
-          onPress={(data, details = null) => onValueChange({ title: details.name, subtitle: details.formatted_address, location: details?.geometry?.location })}
+          onPress={(data, details = null) =>
+            onValueChange({
+              title: details.name,
+              subtitle: details.formatted_address,
+              location: details?.geometry?.location,
+            })
+          }
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}
@@ -156,17 +187,24 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             listView: $locationsListContainer,
             row: $locationsRow,
             separator: { height: 0 },
-            container: { flex: 0, }
+            container: { flex: 0 },
           }}
           textInputProps={{
             allowFontScaling: false,
             placeholderTextColor: colors.palette.neutral450,
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
-            onChangeText: (text) => setTextValue(text)
+            onChangeText: (text) => setTextValue(text),
           }}
           renderRow={({ description }) => {
-            return <Text text={description} style={$locationsRowText} ellipsizeMode='tail' numberOfLines={1} />
+            return (
+              <Text
+                text={description}
+                style={$locationsRowText}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+              />
+            )
           }}
           renderLeftButton={() => (
             <Icon
@@ -176,15 +214,18 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
               containerStyle={$dropdownLeftAccessory}
             />
           )}
-          renderRightButton={() => isFocus && textValue && (
-            <Icon
-              icon="xCircle"
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={$dropdownRightAccessory}
-              onPress={handleClear}
-            />
-          )}
+          renderRightButton={() =>
+            isFocus &&
+            textValue && (
+              <Icon
+                icon="xCircle"
+                size={28}
+                color={colors.palette.neutral450}
+                containerStyle={$dropdownRightAccessory}
+                onPress={handleClear}
+              />
+            )
+          }
         />
       </>
     )
@@ -204,12 +245,12 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             color={colors.palette.neutral450}
             style={$loader}
           />
-          <Text 
+          <Text
             accessible
             accessibilityLabel="detecting"
             accessibilityHint="detecting current location"
             accessibilityRole="text"
-            tx="onboarding.completeProfile.location.detecting" 
+            tx="onboarding.completeProfile.location.detecting"
             style={$result}
           />
         </View>
@@ -221,26 +262,24 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     return (
       <>
         <View style={$rowContainer}>
-          <Icon
-            icon="pin"
-            size={28}
-            color={colors.palette.neutral450}
-          />
+          <Icon icon="pin" size={28} color={colors.palette.neutral450} />
           <Text
             accessible
             accessibilityLabel="address"
             accessibilityHint="display current address"
             accessibilityRole="text"
-            text={value.title} 
-            style={$result} 
-            ellipsizeMode='tail' 
-            numberOfLines={1} 
+            text={value.title}
+            style={$result}
+            ellipsizeMode="tail"
+            numberOfLines={1}
           />
           <Icon
             icon="trash"
             size={28}
             color={colors.palette.neutral450}
-            onPress={() => onValueChange({ title: "", subtitle: "", location: { lat: null, lng: null }})}
+            onPress={() =>
+              onValueChange({ title: "", subtitle: "", location: { lat: null, lng: null } })
+            }
           />
         </View>
         <Button
@@ -261,7 +300,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     if (status === Statuses.start) return renderStart()
     if (status === Statuses.detecting) return renderDetecting()
     if (status === Statuses.result) return renderResult()
-    return ''
+    return ""
   }, [status, renderStart, renderDetecting, renderResult])
 
   return (
@@ -275,27 +314,35 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         style={$title}
       />
       {renderBody()}
-      {privacyModal && <Modal
-        isVisible={privacyModal}
-        useNativeDriver
-        useNativeDriverForBackdrop
-        backdropOpacity={.4}
-        style={$modal}
-      >
-        <PrivacyModal 
-          onPressSkip={() => {
-            storage.save('isPrivacyAgree', false).then(() => {
-              setPrivacyModal(false)
-            }).catch(e => console.log(e))
-          }}
-          onPressAgree={() => {
-            storage.save('isPrivacyAgree', true).then(() => {
-              setPrivacyModal(false)
-              handleDetect().catch(e => console.log(e))
-            }).catch(e => console.log(e))
-          }} 
-        />
-      </Modal>}
+      {privacyModal && (
+        <Modal
+          isVisible={privacyModal}
+          useNativeDriver
+          useNativeDriverForBackdrop
+          backdropOpacity={0.4}
+          style={$modal}
+        >
+          <PrivacyModal
+            onPressSkip={() => {
+              storage
+                .save("isPrivacyAgree", false)
+                .then(() => {
+                  setPrivacyModal(false)
+                })
+                .catch((e) => console.log(e))
+            }}
+            onPressAgree={() => {
+              storage
+                .save("isPrivacyAgree", true)
+                .then(() => {
+                  setPrivacyModal(false)
+                  handleDetect().catch((e) => console.log(e))
+                })
+                .catch((e) => console.log(e))
+            }}
+          />
+        </Modal>
+      )}
     </>
   )
 }
@@ -321,7 +368,7 @@ const $locationsListContainer: ViewStyle = {
   overflow: "hidden",
   width: "85%",
   alignSelf: "center",
-  marginTop: scale(3)
+  marginTop: scale(3),
 }
 
 const $dropdownLeftAccessory: ViewStyle = {
@@ -343,8 +390,8 @@ const $dropdownSelected: TextStyle = {
 }
 
 const $locationsRow: TextStyle = {
-  backgroundColor: 'transparent',
-  paddingHorizontal: scale(spacing.large)
+  backgroundColor: "transparent",
+  paddingHorizontal: scale(spacing.large),
 }
 
 const $locationsRowText: TextStyle = {
@@ -364,7 +411,7 @@ const $dropdownText: TextStyle = {
   marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
   borderRadius: 0,
-  backgroundColor: "transparent"
+  backgroundColor: "transparent",
 }
 
 const $title: TextStyle = {
@@ -389,7 +436,7 @@ const $orLabel: TextStyle = {
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[19],
   textAlign: "center",
-  marginVertical: scale(12)
+  marginVertical: scale(12),
 }
 
 const $button: ViewStyle = {
@@ -397,7 +444,7 @@ const $button: ViewStyle = {
   height: scale(56),
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(28),
-  borderWidth: 0
+  borderWidth: 0,
 }
 
 const $buttonText: TextStyle = {
@@ -410,7 +457,7 @@ const $buttonText: TextStyle = {
 const $rowContainer: ViewStyle = {
   width: "100%",
   flexDirection: "row",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $result: TextStyle = {
@@ -424,7 +471,7 @@ const $result: TextStyle = {
 }
 
 const $loader: ViewStyle = {
-  justifyContent: "flex-start"
+  justifyContent: "flex-start",
 }
 
 const $modal: ViewStyle = {
@@ -432,5 +479,5 @@ const $modal: ViewStyle = {
   left: 0,
   margin: 0,
   paddingHorizontal: 18,
-  justifyContent: 'flex-start',
+  justifyContent: "flex-start",
 }

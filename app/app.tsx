@@ -24,7 +24,7 @@ import * as storage from "./utils/storage"
 import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
-import {enableLatestRenderer} from 'react-native-maps'
+import { enableLatestRenderer } from "react-native-maps"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -118,7 +118,7 @@ function App(props: AppProps) {
 
   // otherwise, we're ready to render the app
   return (
-    <RootStoreProvider value={rootStore} >
+    <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <ErrorBoundary catchErrors={Config.catchErrors}>
           <AppNavigator

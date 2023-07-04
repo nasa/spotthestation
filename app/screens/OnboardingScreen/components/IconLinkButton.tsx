@@ -5,13 +5,12 @@ import {
   StyleProp,
   ViewStyle,
   ImageStyle,
-  TextStyle
+  TextStyle,
 } from "react-native"
-import { BlurView } from 'expo-blur'
+import { BlurView } from "expo-blur"
 import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
 import { fontSizes, lineHeights, scale } from "../../../theme"
-
 
 export interface LinkButtonWithArrowProps extends PressableProps {
   /**
@@ -68,12 +67,20 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
 
   return (
     <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="imagebutton" {...rest}>
-      <BlurView intensity={blurIntensity} style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}>
-        {icon ? 
-          <Icon icon={icon} size={iconSize || 20} color={iconColor || colors.palette.neutral100} style={$imageStyle} /> 
-          : 
+      <BlurView
+        intensity={blurIntensity}
+        style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}
+      >
+        {icon ? (
+          <Icon
+            icon={icon}
+            size={iconSize || 20}
+            color={iconColor || colors.palette.neutral100}
+            style={$imageStyle}
+          />
+        ) : (
           <Text text={text} style={[$text, $textStyle]} />
-        }
+        )}
       </BlurView>
     </Pressable>
   )
@@ -88,11 +95,11 @@ const $viewStyle: ViewStyle = {
   height: scale(42),
   backgroundColor: colors.palette.neutral350,
   borderRadius: scale(100),
-  overflow: "hidden"
+  overflow: "hidden",
 }
 
 const $text: TextStyle = {
   color: colors.palette.neutral100,
   fontSize: fontSizes[28],
-  lineHeight: lineHeights[28]
+  lineHeight: lineHeights[28],
 }

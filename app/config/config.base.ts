@@ -1,4 +1,10 @@
-import { API_URL, GOOGLE_API_TOKEN, MAPBOX_API_TOKEN, SENTRY_DSN, SENTRY_ENVIRONMENT } from "react-native-dotenv"
+import {
+  API_URL,
+  GOOGLE_API_TOKEN,
+  MAPBOX_API_TOKEN,
+  SENTRY_DSN,
+  SENTRY_ENVIRONMENT,
+} from "react-native-dotenv"
 
 export interface ConfigBaseProps {
   persistNavigation: "always" | "dev" | "prod" | "never"
@@ -33,7 +39,7 @@ const BaseConfig: ConfigBaseProps = {
   MAPBOX_API_TOKEN,
   API_URL,
   SENTRY_DSN,
-  SENTRY_ENVIRONMENT
+  SENTRY_ENVIRONMENT,
 }
 
 export default BaseConfig

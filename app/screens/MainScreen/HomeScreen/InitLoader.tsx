@@ -7,7 +7,7 @@ import { normalizeHeight } from "../../../utils/normalizeHeight"
 
 export function InitLoader() {
   return (
-    <View 
+    <View
       accessible
       accessibilityLabel="coach mark"
       accessibilityHint="coach mark"
@@ -22,12 +22,12 @@ export function InitLoader() {
 const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.buttonBlue,
   borderRadius: scale(16),
-  alignItems: 'center',
+  alignItems: "center",
   paddingVertical: 36,
   paddingHorizontal: 30,
-  width: '100%',
-  alignSelf: 'center',
-  marginTop: normalizeHeight(.28)
+  width: "100%",
+  alignSelf: "center",
+  marginTop: normalizeHeight(0.28),
 }
 
 const $title: TextStyle = {
@@ -36,5 +36,5 @@ const $title: TextStyle = {
   lineHeight: lineHeights[29],
   color: colors.palette.neutral100,
   paddingBottom: 12,
-  paddingTop: 18
+  paddingTop: 18,
 }

@@ -10,7 +10,7 @@ export interface DetailsProps {
   /**
    * A function for closing modal.
    */
-  onClose?: PressableProps["onPress"],
+  onClose?: PressableProps["onPress"]
   issData: OrbitPoint
   observer: [number, number]
 }
@@ -18,33 +18,45 @@ export interface DetailsProps {
 export function Details({ onClose, issData, observer }: DetailsProps) {
   const distance = (data: OrbitPoint): number => {
     if (data) {
-      return Math.round(calculateDistance(observer[0], observer[1], 0, data?.latitude, data?.longitude, data?.elevation)/1000)
+      return Math.round(
+        calculateDistance(
+          observer[0],
+          observer[1],
+          0,
+          data?.latitude,
+          data?.longitude,
+          data?.elevation,
+        ) / 1000,
+      )
     }
     return 0
   }
   return (
     <View style={$modalBodyContainer}>
-      {Boolean(onClose) && <Icon icon="x" 
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        color={colors.palette.neutral450} 
-        onPress={onClose} 
-        containerStyle={$close} 
-        size={36}
-      />}
+      {Boolean(onClose) && (
+        <Icon
+          icon="x"
+          accessible
+          accessibilityLabel="x button"
+          accessibilityHint="close modal"
+          accessibilityRole="button"
+          color={colors.palette.neutral450}
+          onPress={onClose}
+          containerStyle={$close}
+          size={36}
+        />
+      )}
       <View style={$contentContainer}>
         <Text
           accessible
           accessibilityLabel="modal title"
           accessibilityHint="modal title"
           accessibilityRole="text"
-          tx="issView.details.title" 
+          tx="issView.details.title"
           style={$title}
         />
         <View style={$buttonsContainer}>
-          <View 
+          <View
             accessible
             accessibilityLabel="distance"
             accessibilityHint="distance"
@@ -54,7 +66,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.distance" style={$detailTitle} />
             <Text text={`${distance(issData)} km`} style={$detailValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="orbital Speed"
             accessibilityHint="orbital Speed"
@@ -62,9 +74,16 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-            <Text text={`${calculateOrbitalSpeed(issData.latitude, issData.azimuth, issData.elevation)} M/S`} style={$detailValue} />
+            <Text
+              text={`${calculateOrbitalSpeed(
+                issData.latitude,
+                issData.azimuth,
+                issData.elevation,
+              )} M/S`}
+              style={$detailValue}
+            />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="longitude"
             accessibilityHint="longitude"
@@ -72,9 +91,12 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.longitude" style={$detailTitle} />
-            <Text text={issData.longitude ? issData.longitude.toFixed(2) : "0"} style={$detailValue} />
+            <Text
+              text={issData.longitude ? issData.longitude.toFixed(2) : "0"}
+              style={$detailValue}
+            />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="latitude"
             accessibilityHint="latitude"
@@ -82,9 +104,12 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.latitude" style={$detailTitle} />
-            <Text text={issData.latitude ? issData.latitude.toFixed(2) : "0"} style={$detailValue} />
+            <Text
+              text={issData.latitude ? issData.latitude.toFixed(2) : "0"}
+              style={$detailValue}
+            />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="altitude"
             accessibilityHint="altitude"
@@ -92,11 +117,14 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text text={issData.altitude ? `${issData.altitude.toFixed(2)} km` : "0 km"} style={$detailValue} />
+            <Text
+              text={issData.altitude ? `${issData.altitude.toFixed(2)} km` : "0 km"}
+              style={$detailValue}
+            />
           </View>
         </View>
         <View style={$buttonsContainer}>
-          <View 
+          <View
             accessible
             accessibilityLabel="Assembly Began"
             accessibilityHint="Assembly Began"
@@ -106,7 +134,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.launched" style={$detailRowTitle} />
             <Text text="20 November 1998" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="crew On board"
             accessibilityHint="crew On board"
@@ -116,7 +144,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.crewOnboard" style={$detailRowTitle} />
             <Text text="7" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="Estimated mass"
             accessibilityHint="Estimated mass"
@@ -126,7 +154,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.mass" style={$detailRowTitle} />
             <Text text="462,000 kg" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="Estimated dimensions"
             accessibilityHint="Estimated dimensions"
@@ -136,7 +164,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.dimensions" style={$detailRowTitle} />
             <Text text="109m wide x 73m long x 14m tall" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="orbital Period"
             accessibilityHint="orbital Period"
@@ -146,7 +174,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.orbitalPeriod" style={$detailRowTitle} />
             <Text text="92.9 min" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="orbits Per Day"
             accessibilityHint="orbits Per Day"
@@ -156,7 +184,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.orbitsPerDay" style={$detailRowTitle} />
             <Text text="15.49" style={$detailRowValue} />
           </View>
-          <View 
+          <View
             accessible
             accessibilityLabel="Orbital Decay"
             accessibilityHint="Orbital Decay"
@@ -181,14 +209,14 @@ const $modalBodyContainer: ViewStyle = {
 const $contentContainer: ViewStyle = {
   width: "100%",
   paddingHorizontal: scale(36),
-  paddingBottom: scale(52)
+  paddingBottom: scale(52),
 }
 
 const $buttonsContainer: ViewStyle = {
   width: "100%",
   flexDirection: "row",
   flexWrap: "wrap",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $close: ViewStyle = {
@@ -196,7 +224,7 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }
 
 const $title: TextStyle = {
@@ -206,7 +234,7 @@ const $title: TextStyle = {
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[44],
   paddingBottom: scale(36),
-  marginTop: scale(36)
+  marginTop: scale(36),
 }
 
 const $detailBox: ViewStyle = {
@@ -214,7 +242,7 @@ const $detailBox: ViewStyle = {
   width: "48%",
   borderRadius: scale(10),
   padding: scale(8),
-  marginBottom: scale(18)
+  marginBottom: scale(18),
 }
 
 const $detailTitle: TextStyle = {
@@ -223,7 +251,7 @@ const $detailTitle: TextStyle = {
   fontSize: fontSizes[13],
   lineHeight: lineHeights[16],
   textAlign: "center",
-  textTransform: "uppercase"
+  textTransform: "uppercase",
 }
 
 const $detailValue: TextStyle = {
@@ -238,7 +266,7 @@ const $detailRow: ViewStyle = {
   width: "100%",
   marginBottom: scale(18),
   flexDirection: "row",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $detailRowTitle: TextStyle = {
@@ -255,5 +283,5 @@ const $detailRowValue: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[21],
   textAlign: "right",
-  maxWidth: scale(155)
+  maxWidth: scale(155),
 }

@@ -4,16 +4,13 @@ import { colors, fontSizes, lineHeights, scale } from "../../../theme"
 
 export const RecordingIndicator = ({ recordedSeconds }) => {
   const hours = Math.floor(recordedSeconds / 3600)
-  const minutes = Math.floor( (recordedSeconds - hours * 3600) / 60)
+  const minutes = Math.floor((recordedSeconds - hours * 3600) / 60)
   const seconds = recordedSeconds - hours * 3600 - minutes * 60
 
   return (
     <View style={$container}>
       <Text style={$text}>
-        {hours < 10 ? `0${hours}` : hours}
-        :
-        {minutes < 10 ? `0${minutes}` : minutes}
-        :
+        {hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}:
         {seconds < 10 ? `0${seconds}` : seconds}
       </Text>
     </View>
@@ -32,6 +29,6 @@ const $container: ViewStyle = {
 const $text: TextStyle = {
   fontSize: fontSizes[16],
   lineHeight: lineHeights[16],
-  textAlign: 'center',
+  textAlign: "center",
   color: colors.palette.neutral250,
 }

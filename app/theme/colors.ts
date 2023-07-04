@@ -36,7 +36,7 @@ const palette = {
 
   angry100: "#F2D6CD",
   angry500: "#C03403",
- 
+
   nasaRed: "#FC3D21",
   nasaOrange: "#FD9C1F",
   inputError: "#FC3D2115",

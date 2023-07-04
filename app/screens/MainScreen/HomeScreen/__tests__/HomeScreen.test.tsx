@@ -2,15 +2,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from 'react-test-renderer'
+import renderer from "react-test-renderer"
 import { NavigationContainer } from "@react-navigation/native"
-import { HomeScreen } from '../HomeScreen'
+import { HomeScreen } from "../HomeScreen"
 
-it('renders correctly', () => {
+it("renders correctly", () => {
   const tree = renderer
-    .create(<NavigationContainer>
+    .create(
+      <NavigationContainer>
         <HomeScreen />
-      </NavigationContainer>)
+      </NavigationContainer>,
+    )
     .toJSON()
   expect(tree).toMatchSnapshot()
 })

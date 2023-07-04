@@ -13,14 +13,15 @@ export interface RemoveLocationModalProps {
 export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocationModalProps) {
   return (
     <View style={$modalBodyContainer}>
-      <Icon icon="x" 
+      <Icon
+        icon="x"
         accessible
         accessibilityLabel="x button"
         accessibilityHint="close modal"
         accessibilityRole="button"
-        color={colors.palette.neutral450} 
-        onPress={onClose} 
-        containerStyle={$close} 
+        color={colors.palette.neutral450}
+        onPress={onClose}
+        containerStyle={$close}
         size={36}
       />
       <View style={$generalIcon}>
@@ -30,7 +31,7 @@ export function RemoveLocationModal({ onClose, onRemove, location }: RemoveLocat
         <Text tx="settings.locationSettingsData.removeLocation.question" style={$title} />
         <Text text={location?.title} style={$locationTitle} />
         <Text text={location?.subtitle} style={$locationAddress} />
-        
+
         <View style={$buttonsContainer}>
           <Button
             tx="settings.locationSettingsData.removeLocation.cancelButton"
@@ -59,7 +60,7 @@ const $modalBodyContainer: ViewStyle = {
 }
 
 const $buttonsContainer: ViewStyle = {
-  flexDirection: 'row',
+  flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
 }
@@ -67,7 +68,7 @@ const $buttonsContainer: ViewStyle = {
 const $contentContainer: ViewStyle = {
   width: "100%",
   paddingHorizontal: scale(36),
-  paddingBottom: scale(52)
+  paddingBottom: scale(52),
 }
 
 const $close: ViewStyle = {
@@ -75,13 +76,13 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }
 
 const $generalIcon: ViewStyle = {
   marginVertical: scale(36),
   width: "100%",
-  alignItems: "center"
+  alignItems: "center",
 }
 
 const $locationTitle: TextStyle = {
@@ -90,7 +91,7 @@ const $locationTitle: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
   lineHeight: lineHeights[22],
-  paddingBottom: scale(5)
+  paddingBottom: scale(5),
 }
 
 const $title: TextStyle = {
@@ -99,7 +100,7 @@ const $title: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[22],
-  paddingBottom: scale(24)
+  paddingBottom: scale(24),
 }
 
 const $locationAddress: TextStyle = {
@@ -108,22 +109,22 @@ const $locationAddress: TextStyle = {
   fontSize: fontSizes[16],
   fontFamily: typography.primary.normal,
   lineHeight: lineHeights[19],
-  paddingBottom: scale(36)
+  paddingBottom: scale(36),
 }
 
 const $button: ViewStyle = {
-  width: '40%',
+  width: "40%",
   height: scale(64),
   backgroundColor: colors.palette.neutral550,
   borderRadius: scale(28),
   borderWidth: 0,
   marginTop: scale(24),
-  marginBottom: scale(24)
+  marginBottom: scale(24),
 }
 
 const $buttonText: TextStyle = {
   color: colors.palette.neutral100,
   fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[22]
+  lineHeight: lineHeights[22],
 }

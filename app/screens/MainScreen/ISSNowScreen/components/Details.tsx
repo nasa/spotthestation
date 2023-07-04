@@ -9,7 +9,7 @@ const locationDetails = {
   latitude: 100,
   longitude: 100,
   altitude: 400,
-  speed: 27000
+  speed: 27000,
 }
 
 export function Details() {
@@ -17,9 +17,9 @@ export function Details() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
 
   useEffect(() => {
-    const secTimer = setInterval( () => {
+    const secTimer = setInterval(() => {
       setCurrentDateTime(new Date().toISOString())
-    },1000)
+    }, 1000)
 
     return () => clearInterval(secTimer)
   }, [])
@@ -40,11 +40,25 @@ export function Details() {
         </View>
         <View style={$columnContainer}>
           <Text tx="issNowTab.details.altitude" style={$label} />
-          <Text text={`${isImperial ? `${convertToImperial(locationDetails.altitude, "distance")} mi` : `${locationDetails.altitude} km"`}`} style={$text} />
+          <Text
+            text={`${
+              isImperial
+                ? `${convertToImperial(locationDetails.altitude, "distance")} mi`
+                : `${locationDetails.altitude} km"`
+            }`}
+            style={$text}
+          />
         </View>
         <View style={$columnContainer}>
           <Text tx="issNowTab.details.speed" style={$label} />
-          <Text text={`${isImperial ? `${convertToImperial(locationDetails.speed, "speed")} mi/h` : `${locationDetails.speed} km/h`}`} style={$text} />
+          <Text
+            text={`${
+              isImperial
+                ? `${convertToImperial(locationDetails.speed, "speed")} mi/h`
+                : `${locationDetails.speed} km/h`
+            }`}
+            style={$text}
+          />
         </View>
       </View>
       <View style={[$rowContainer, $centered]}>
@@ -60,15 +74,15 @@ const $container: ViewStyle = {
   width: "100%",
   height: "23%",
   backgroundColor: colors.backgroundDark,
-  padding: scale(spacing.medium)
+  padding: scale(spacing.medium),
 }
 
 const $centered: ViewStyle = {
-  justifyContent: "center"
+  justifyContent: "center",
 }
 
 const $margin: ViewStyle = {
-  marginRight: scale(spacing.extraSmall)
+  marginRight: scale(spacing.extraSmall),
 }
 
 const $rowContainer: ViewStyle = {
@@ -76,7 +90,7 @@ const $rowContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
-  marginBottom: scale(spacing.medium)
+  marginBottom: scale(spacing.medium),
 }
 
 const $columnContainer: ViewStyle = {
@@ -86,11 +100,11 @@ const $columnContainer: ViewStyle = {
 
 const $text: TextStyle = {
   fontSize: fontSizes[18],
-  color: colors.palette.neutral100
+  color: colors.palette.neutral100,
 }
 
 const $label: TextStyle = {
   fontSize: fontSizes[16],
   fontWeight: "bold",
-  color: colors.palette.neutral100
+  color: colors.palette.neutral100,
 }

@@ -34,63 +34,81 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     notifyBefore: 15,
     privacy: false,
     muteFrom: new Date(),
-    muteUntil: new Date()
+    muteUntil: new Date(),
   })
 
   const [isSightings, setIsSightings] = useState(false)
   const [current, setCurrent] = useState<LocationType>(null)
-  const [currentTimeZone, setCurrentTimeZone] = useState({ timeZone: 'US/Central', regionFormat: 'US' })
+  const [currentTimeZone, setCurrentTimeZone] = useState({
+    timeZone: "US/Central",
+    regionFormat: "US",
+  })
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
   }
 
   const loadSettings = async () => {
-    const start = await storage.load('muteFrom')
-    const end = await storage.load('muteUntil')
-    const notifyBefore = await storage.load('notifyBefore')
+    const start = await storage.load("muteFrom")
+    const end = await storage.load("muteUntil")
+    const notifyBefore = await storage.load("notifyBefore")
 
     setSettings({
-      iisVisible: await storage.load('iisVisible'),
-      upcoming: await storage.load('upcoming'),
-      inApp: await storage.load('inApp'),
+      iisVisible: await storage.load("iisVisible"),
+      upcoming: await storage.load("upcoming"),
+      inApp: await storage.load("inApp"),
       notifyBefore: notifyBefore || 15,
-      privacy: await storage.load('privacy'),
+      privacy: await storage.load("privacy"),
       muteFrom: start ? new Date(start) : new Date(),
-      muteUntil: end ? new Date(end) : new Date()
+      muteUntil: end ? new Date(end) : new Date(),
     })
-    !notifyBefore && await storage.save('notifyBefore', 15)
+    !notifyBefore && (await storage.save("notifyBefore", 15))
   }
 
   useEffect(() => {
     loadSettings()
   }, [])
-  
-  const handleChange = useCallback(async (value, field: string) => {
-    setSettings({
-      ...settings,
-      [field]: value
-    })
-    await storage.save(field, value)
-    setNotifications()
-  }, [settings])
 
-  const handleSetSightingNotification = useCallback((value: ISSSighting) => {
-    const updated = {...current, sightings: current.sightings.map(item => {
-      if (item.date === value.date) {
-        return {...item, notify: !item.notify}
+  const handleChange = useCallback(
+    async (value, field: string) => {
+      setSettings({
+        ...settings,
+        [field]: value,
+      })
+      await storage.save(field, value)
+      setNotifications()
+    },
+    [settings],
+  )
+
+  const handleSetSightingNotification = useCallback(
+    (value: ISSSighting) => {
+      const updated = {
+        ...current,
+        sightings: current.sightings.map((item) => {
+          if (item.date === value.date) {
+            return { ...item, notify: !item.notify }
+          }
+          return item
+        }),
       }
-      return item
-    })}
-    setISSSightings(updated)
-    setCurrent(updated)
-  }, [current])
+      setISSSightings(updated)
+      setCurrent(updated)
+    },
+    [current],
+  )
 
-  const handleSetSightingNotificationToAll = useCallback((notify: boolean) => {
-    const updated = {...current, sightings: current.sightings.map(item => ({...item, notify}))}
-    setISSSightings(updated)
-    setCurrent(updated)
-  }, [current])
+  const handleSetSightingNotificationToAll = useCallback(
+    (notify: boolean) => {
+      const updated = {
+        ...current,
+        sightings: current.sightings.map((item) => ({ ...item, notify })),
+      }
+      setISSSightings(updated)
+      setCurrent(updated)
+    },
+    [current],
+  )
 
   const handleCtaPress = () => {
     setIsSightings(true)
@@ -103,8 +121,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
 
   useEffect(() => {
     if (!current) return
-    
-    getTimeZone(current).catch(e => console.log(e))
+
+    getTimeZone(current).catch((e) => console.log(e))
   }, [current])
 
   const getCurrentLocation = useCallback(() => {
@@ -121,9 +139,13 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
 
   return (
     <Screen
-      preset="fixed" 
-      contentContainerStyle={[$container, $headerStyleOverride, { paddingBottom: bottomInset + scale(24) }]} 
-      style={{backgroundColor: colors.palette.neutral900}} 
+      preset="fixed"
+      contentContainerStyle={[
+        $container,
+        $headerStyleOverride,
+        { paddingBottom: bottomInset + scale(24) },
+      ]}
+      style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
       <ScrollView
@@ -131,17 +153,17 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
         accessibilityLabel="Notification settings scrollable us area"
         accessibilityHint="Notification settings scrollable us area"
         accessibilityRole="scrollbar"
-        style={$scrollContainer} 
-        scrollEnabled 
+        style={$scrollContainer}
+        scrollEnabled
         contentContainerStyle={$scrollContentContainerStyle}
       >
         <Pressable>
-          <Pressable 
+          <Pressable
             accessible
             accessibilityLabel="Back button"
             accessibilityHint="Navigates to the previous screen"
             accessibilityRole="button"
-            onPress={() => navigation.goBack()} 
+            onPress={() => navigation.goBack()}
             style={$backButton}
           >
             <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
@@ -149,7 +171,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           </Pressable>
           <Text tx="settings.notificationSettingsData.notificationTitle" style={$title} />
           <View style={$switchContainer}>
-            <View 
+            <View
               accessible
               accessibilityLabel="upcoming events notification"
               accessibilityHint="upcoming events notification switch"
@@ -158,23 +180,31 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             >
               <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
               <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
-              <Pressable
-                onPress={handleCtaPress}
-                style={{ marginTop: scale(10) }}
-              >
-                <Text tx="settings.notificationSettingsData.customizeLabel" style={[$tip, { color: colors.palette.buttonBlue }]} />
+              <Pressable onPress={handleCtaPress} style={{ marginTop: scale(10) }}>
+                <Text
+                  tx="settings.notificationSettingsData.customizeLabel"
+                  style={[$tip, { color: colors.palette.buttonBlue }]}
+                />
               </Pressable>
             </View>
             <Toggle
               accessible
               accessibilityLabel="switch button"
               accessibilityHint="toggle upcoming events notifications"
-              variant="switch" 
+              variant="switch"
               value={settings?.upcoming}
-              onValueChange={(value) => handleChange(value, 'upcoming')}
+              onValueChange={(value) => handleChange(value, "upcoming")}
             />
           </View>
-          <ExpandContainer title="settings.notificationSettingsData.notifyMeBefore" expandble={false} containerStyle={{ marginTop: 10, borderBottomWidth: 1, borderBottomColor: colors.palette.neutral350}}>
+          <ExpandContainer
+            title="settings.notificationSettingsData.notifyMeBefore"
+            expandble={false}
+            containerStyle={{
+              marginTop: 10,
+              borderBottomWidth: 1,
+              borderBottomColor: colors.palette.neutral350,
+            }}
+          >
             <Dropdown
               accessibilityLabel="period select"
               style={[$dropdown, $inputMargin]}
@@ -194,7 +224,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               value={settings?.notifyBefore}
               labelField="label"
               valueField="value"
-              onChange={({ value }) => handleChange(value, 'notifyBefore')}
+              onChange={({ value }) => handleChange(value, "notifyBefore")}
               renderRightIcon={() => (
                 <Icon
                   icon="chevronDown"
@@ -211,12 +241,16 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               accessible
               accessibilityLabel="switch button"
               accessibilityHint="toggle privacy notifications"
-              variant="switch" 
+              variant="switch"
               value={settings?.privacy}
-              onValueChange={(value) => handleChange(value, 'privacy')}
+              onValueChange={(value) => handleChange(value, "privacy")}
             />
           </View>
-          <ExpandContainer title="settings.notificationSettingsData.turnOffNotifications" expandble={false} containerStyle={{ marginTop: 0}}>
+          <ExpandContainer
+            title="settings.notificationSettingsData.turnOffNotifications"
+            expandble={false}
+            containerStyle={{ marginTop: 0 }}
+          >
             <View style={$muteContainer}>
               <View style={$muteButton}>
                 <Text tx="settings.notificationSettingsData.from" style={$muteButtonLabel} />
@@ -270,7 +304,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteFrom}
             onConfirm={(date) => {
               setFrom(false)
-              handleChange(date, 'muteFrom')
+              handleChange(date, "muteFrom")
             }}
             onCancel={() => setFrom(false)}
           />
@@ -280,36 +314,38 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteUntil}
             onConfirm={(date) => {
               setUntil(false)
-              handleChange(date, 'muteUntil')
+              handleChange(date, "muteUntil")
             }}
             onCancel={() => setUntil(false)}
           />
         </Pressable>
       </ScrollView>
-      {isSightings && <Modal
-        isVisible={isSightings}
-        onBackdropPress={() => setIsSightings(!isSightings)}
-        onSwipeComplete={() => setIsSightings(!isSightings)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={$modal}
-      >
-        <Sightings 
-          onClose={() => setIsSightings(!isSightings)} 
-          sightings={current ? current.sightings : []}
-          onToggle={handleSetSightingNotification}
-          onToggleAll={handleSetSightingNotificationToAll}
-          isUS={currentTimeZone.regionFormat === 'US'}
-          isNotifyAll={current && current.sightings.every(item => item.notify)}
-          timezone={currentTimeZone?.timeZone}
-        />
-      </Modal>}
+      {isSightings && (
+        <Modal
+          isVisible={isSightings}
+          onBackdropPress={() => setIsSightings(!isSightings)}
+          onSwipeComplete={() => setIsSightings(!isSightings)}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={$modal}
+        >
+          <Sightings
+            onClose={() => setIsSightings(!isSightings)}
+            sightings={current ? current.sightings : []}
+            onToggle={handleSetSightingNotification}
+            onToggleAll={handleSetSightingNotificationToAll}
+            isUS={currentTimeZone.regionFormat === "US"}
+            isNotifyAll={current && current.sightings.every((item) => item.notify)}
+            timezone={currentTimeZone?.timeZone}
+          />
+        </Modal>
+      )}
     </Screen>
   )
 })
@@ -317,38 +353,38 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  height: '100%'
+  height: "100%",
 }
 
 const $modal: ViewStyle = {
   flex: 1,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
   left: 0,
-  margin: 0
+  margin: 0,
 }
 
-const $scrollContentContainerStyle: ViewStyle = { 
+const $scrollContentContainerStyle: ViewStyle = {
   flexGrow: 1,
-  paddingBottom: scale(60)
+  paddingBottom: scale(60),
 }
 
-const $scrollContainer: ViewStyle = { 
+const $scrollContainer: ViewStyle = {
   paddingHorizontal: scale(36),
 }
 
 const $backButton: ViewStyle = {
   flexDirection: "row",
-  alignItems: 'center',
-  paddingBottom: scale(11)
+  alignItems: "center",
+  paddingBottom: scale(11),
 }
 
 const $muteContainer: ViewStyle = {
   flexDirection: "row",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $muteButton: ViewStyle = {
-  width: '47%'
+  width: "47%",
 }
 
 const $text: TextStyle = {
@@ -356,15 +392,15 @@ const $text: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.neutral450,
-  textAlign: 'left',
-  paddingBottom: scale(24)
+  textAlign: "left",
+  paddingBottom: scale(24),
 }
 
 const $backButtonText: TextStyle = {
   ...$text,
   color: colors.palette.neutral250,
   paddingBottom: 0,
-  paddingLeft: scale(5)
+  paddingLeft: scale(5),
 }
 
 const $title: TextStyle = {
@@ -380,11 +416,11 @@ const $switchContainer: ViewStyle = {
   paddingBottom: scale(18),
   borderBottomWidth: scale(1),
   borderBottomColor: colors.palette.neutral350,
-  marginBottom: scale(18)
+  marginBottom: scale(18),
 }
 
 const $labelContainer: ViewStyle = {
-  width: "70%"
+  width: "70%",
 }
 
 const $label: TextStyle = {
@@ -403,7 +439,7 @@ const $tip: TextStyle = {
 const $muteButtonLabel: TextStyle = {
   ...$tip,
   color: colors.palette.neutral250,
-  marginBottom: scale(10)
+  marginBottom: scale(10),
 }
 
 const $dropdown: ViewStyle = {
@@ -414,14 +450,14 @@ const $dropdown: ViewStyle = {
 }
 
 const $inputMargin: ViewStyle = {
-  marginBottom: scale(18)
+  marginBottom: scale(18),
 }
 
 const $dropdownContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   borderRadius: scale(10),
   marginTop: -scale(40),
-  borderWidth: 0
+  borderWidth: 0,
 }
 
 const $dropdownPlaceholder: TextStyle = {
@@ -441,7 +477,7 @@ const $dropdownText: TextStyle = {
   paddingHorizontal: 0,
   marginHorizontal: scale(spacing.small),
   textAlignVertical: "center",
-  color: colors.palette.neutral250
+  color: colors.palette.neutral250,
 }
 
 const $dropdownRightAccessory: ViewStyle = {
@@ -463,7 +499,7 @@ const $button: ViewStyle = {
   borderRadius: scale(28),
   borderWidth: 0,
   paddingHorizontal: scale(16),
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $buttonText: TextStyle = {
@@ -474,5 +510,5 @@ const $buttonText: TextStyle = {
 }
 
 const $disabled: ViewStyle = {
-  opacity: .5
+  opacity: 0.5,
 }

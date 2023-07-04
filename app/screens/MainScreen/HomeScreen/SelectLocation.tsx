@@ -1,7 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable camelcase */
 import React, { useCallback, useEffect, useState } from "react"
-import { ViewStyle, View, TextStyle, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
+import {
+  ViewStyle,
+  View,
+  TextStyle,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native"
 import Modal from "react-native-modal"
 import { Accessory, Icon, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
@@ -31,7 +38,11 @@ export interface SelectLocationProps {
   onLocationPress?: (value: LocationType) => void
 }
 
-export function SelectLocation({ onClose, onLocationPress, selectedLocation }: SelectLocationProps) {
+export function SelectLocation({
+  onClose,
+  onLocationPress,
+  selectedLocation,
+}: SelectLocationProps) {
   const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations } = useStores()
   const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
@@ -49,7 +60,7 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
 
     if (!location) {
       location = await getCurrentLocation(() => ({}))
-      setCurrentLocation(location).catch(e => console.log(e))
+      setCurrentLocation(location).catch((e) => console.log(e))
     }
     const res = await getNearbyPlaces(location.location, 100)
 
@@ -57,12 +68,18 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
   }
 
   const setPlaces = async (value: string) => {
-    const locations = await getPlaces(value) 
-    
-    setSearchResult(Object.values(locations.map(item => ({...item, alert: true })).reduce((acc, obj) => {
-      acc[obj.title] = obj
-      return acc
-    }, {})))
+    const locations = await getPlaces(value)
+
+    setSearchResult(
+      Object.values(
+        locations
+          .map((item) => ({ ...item, alert: true }))
+          .reduce((acc, obj) => {
+            acc[obj.title] = obj
+            return acc
+          }, {}),
+      ),
+    )
   }
 
   useEffect(() => {
@@ -89,30 +106,34 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
       const { location } = value
       return selected.lat === location.lat && selected.lng === location.lng
     }
-    
+
     return false
   }
 
-  const handleRemove = useCallback((location: LocationType) => {
-    setSavedLocations(savedLocations.filter(item => item.title !== location.title))
-    setIsRemove(false)
-  }, [savedLocations])
+  const handleRemove = useCallback(
+    (location: LocationType) => {
+      setSavedLocations(savedLocations.filter((item) => item.title !== location.title))
+      setIsRemove(false)
+    },
+    [savedLocations],
+  )
 
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom, $text]}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? "padding" : undefined}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
         keyboardVerticalOffset={0}
         style={$keyboardAvoidingViewStyle}
       >
-        <Icon icon="x" 
+        <Icon
+          icon="x"
           accessible
           accessibilityLabel="x button"
           accessibilityHint="close modal"
           accessibilityRole="button"
-          color={colors.palette.neutral450} 
-          onPress={onClose} 
-          containerStyle={$close} 
+          color={colors.palette.neutral450}
+          onPress={onClose}
+          containerStyle={$close}
           size={36}
         />
         <Text
@@ -120,7 +141,8 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
           accessibilityLabel="title"
           accessibilityHint="title"
           accessibilityRole="text"
-          tx="homeScreen.selectLocation.title" style={$title}
+          tx="homeScreen.selectLocation.title"
+          style={$title}
         />
         <TextField
           accessible
@@ -137,120 +159,139 @@ export function SelectLocation({ onClose, onLocationPress, selectedLocation }: S
           style={$text}
           inputWrapperStyle={isFocus ? [$locations, $active] : $locations}
           renderLeftAccessory={({ style }) => (
-            <Accessory 
-              icon="search"
-              color={colors.palette.neutral450}
-              style={style}
-            />
+            <Accessory icon="search" color={colors.palette.neutral450} style={style} />
           )}
-          renderRightAccessory={(({ style }) => isFocus && textValue ? (
-            <Accessory 
-              style={style}
-              icon={"xCircle"}
-              onPress={() => setTextValue("")}
-            />
-          ) : (
-            <Accessory 
-              style={style}
-              icon={"currentLocation"}
-            />
-          ))}
+          renderRightAccessory={({ style }) =>
+            isFocus && textValue ? (
+              <Accessory style={style} icon={"xCircle"} onPress={() => setTextValue("")} />
+            ) : (
+              <Accessory style={style} icon={"currentLocation"} />
+            )
+          }
         />
         <View style={{ paddingHorizontal: 16, paddingTop: 10 }}>
-          <SettingsItem 
-            icon="settings" 
-            title="settings.locationSettings" 
+          <SettingsItem
+            icon="settings"
+            title="settings.locationSettings"
             onPress={() => {
-              navigation.navigate('SettingsScreens' as never, { screen: "LocationSettings", fromHomeScreen: true } as never)
+              navigation.navigate(
+                "SettingsScreens" as never,
+                { screen: "LocationSettings", fromHomeScreen: true } as never,
+              )
               onClose()
             }}
             withUnderline={false}
           />
         </View>
-        <ScrollView 
+        <ScrollView
           accessible
           accessibilityLabel="search location"
           accessibilityHint="type for search location"
           accessibilityRole="scrollbar"
           style={$scrollContainer}
         >
-          {(!isFocus && searchResult.length === 0) && (
+          {!isFocus && searchResult.length === 0 && (
             <>
-              {Boolean(currentLocation) && <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
-                <ListItem 
-                  icon="pin" 
-                  title={currentLocation.title} 
-                  subtitle={currentLocation.subtitle} 
-                  selected={isSelected(currentLocation)} 
-                  onPress={() => onLocationPress(currentLocation)} 
-                />
-              </ExpandContainer>}
-              {Boolean(savedLocations.length) && <ExpandContainer title="homeScreen.selectLocation.saved" itemsCount={savedLocations.length}>
-                {savedLocations.map(location => <ListItem 
-                  key={location.subtitle}
-                  icon="pin"
-                  title={location.title} 
-                  subtitle={location.subtitle}
-                  selected={isSelected(location)} 
-                  editable
-                  onPress={() => onLocationPress(location)}
-                  onDelete={() => {
-                    setIsRemove(true)
-                    setToRemove(location)
-                  }}
-                  onEdit={() =>{ 
-                    navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)
-                    onClose()
-                  }}
-                />)}
-              </ExpandContainer>}
-              {nearby.length > 0 && <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={nearby.length} defaultValue={false}>
-                  {nearby.map((place: LocationType) => 
-                    <ListItem 
-                      key={place.title} 
-                      icon="pin" 
-                      title={place.title} 
-                      subtitle={place.subtitle} 
-                      selected={isSelected(place)} 
-                      onPress={() => onLocationPress(place)} 
-                    />)
-                  }
+              {Boolean(currentLocation) && (
+                <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
+                  <ListItem
+                    icon="pin"
+                    title={currentLocation.title}
+                    subtitle={currentLocation.subtitle}
+                    selected={isSelected(currentLocation)}
+                    onPress={() => onLocationPress(currentLocation)}
+                  />
                 </ExpandContainer>
-              }
+              )}
+              {Boolean(savedLocations.length) && (
+                <ExpandContainer
+                  title="homeScreen.selectLocation.saved"
+                  itemsCount={savedLocations.length}
+                >
+                  {savedLocations.map((location) => (
+                    <ListItem
+                      key={location.subtitle}
+                      icon="pin"
+                      title={location.title}
+                      subtitle={location.subtitle}
+                      selected={isSelected(location)}
+                      editable
+                      onPress={() => onLocationPress(location)}
+                      onDelete={() => {
+                        setIsRemove(true)
+                        setToRemove(location)
+                      }}
+                      onEdit={() => {
+                        navigation.navigate(
+                          "SettingsScreens" as never,
+                          { screen: "AddNewLocation", defaultLocation: location } as never,
+                        )
+                        onClose()
+                      }}
+                    />
+                  ))}
+                </ExpandContainer>
+              )}
+              {nearby.length > 0 && (
+                <ExpandContainer
+                  title="homeScreen.selectLocation.nearby"
+                  itemsCount={nearby.length}
+                  defaultValue={false}
+                >
+                  {nearby.map((place: LocationType) => (
+                    <ListItem
+                      key={place.title}
+                      icon="pin"
+                      title={place.title}
+                      subtitle={place.subtitle}
+                      selected={isSelected(place)}
+                      onPress={() => onLocationPress(place)}
+                    />
+                  ))}
+                </ExpandContainer>
+              )}
             </>
           )}
-          {(isFocus || searchResult.length > 0) && 
-            <ExpandContainer title="homeScreen.selectLocation.search" itemsCount={searchResult.length} expandble={false}>
-              {searchResult.map((place: LocationType) => 
-                <ListItem 
+          {(isFocus || searchResult.length > 0) && (
+            <ExpandContainer
+              title="homeScreen.selectLocation.search"
+              itemsCount={searchResult.length}
+              expandble={false}
+            >
+              {searchResult.map((place: LocationType) => (
+                <ListItem
                   key={place.title}
-                  icon="pin" 
+                  icon="pin"
                   title={place.title}
                   subtitle={place.subtitle}
                   selected={isSelected(place)}
                   onPress={() => onLocationPress(place)}
-                />)
-              }
+                />
+              ))}
             </ExpandContainer>
-          }
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
       <Modal
-          isVisible={isRemove}
-          onBackdropPress={() => setIsRemove(!isRemove)}
-          onSwipeComplete={() => setIsRemove(!isRemove)}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={$modal}
-        >
-          <RemoveLocationModal onClose={() => setIsRemove(!isRemove)} onRemove={() => handleRemove(toRemove)} location={toRemove} />
-        </Modal>
+        isVisible={isRemove}
+        onBackdropPress={() => setIsRemove(!isRemove)}
+        onSwipeComplete={() => setIsRemove(!isRemove)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <RemoveLocationModal
+          onClose={() => setIsRemove(!isRemove)}
+          onRemove={() => handleRemove(toRemove)}
+          location={toRemove}
+        />
+      </Modal>
     </View>
   )
 }
@@ -259,13 +300,13 @@ const $modalBodyContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   borderTopLeftRadius: scale(18),
   borderTopRightRadius: scale(18),
-  flex: 1
+  flex: 1,
 }
 
-const $scrollContainer: ViewStyle = { 
-  flex: 1, 
+const $scrollContainer: ViewStyle = {
+  flex: 1,
   paddingHorizontal: scale(36),
-  marginBottom: scale(24)
+  marginBottom: scale(24),
 }
 
 const $close: ViewStyle = {
@@ -273,7 +314,7 @@ const $close: ViewStyle = {
   top: 0,
   right: 0,
   padding: scale(18),
-  zIndex: 5
+  zIndex: 5,
 }
 
 const $title: TextStyle = {
@@ -313,7 +354,7 @@ const $keyboardAvoidingViewStyle: ViewStyle = {
 
 const $modal: ViewStyle = {
   flex: 1,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
   left: 0,
-  margin: 0
+  margin: 0,
 }

@@ -8,7 +8,7 @@ type HeadingWatcher = (heading: number) => void
 const watchers: HeadingWatcher[] = []
 let accelerometerSubscription: Subscription = null
 let heading: number = null
-let accelerometerData: { x: number, y: number, z: number } = null
+let accelerometerData: { x: number; y: number; z: number } = null
 
 setUpdateIntervalForType(SensorTypes.accelerometer, 60)
 
@@ -16,11 +16,11 @@ function handle() {
   if (heading === null || accelerometerData === null) return
 
   let res = heading
-  if (Platform.OS === 'android' && accelerometerData.z < 0) {
+  if (Platform.OS === "android" && accelerometerData.z < 0) {
     res = normalizeHeading(res - 180)
   }
 
-  if (Platform.OS === 'ios' && accelerometerData.z > Math.cos(45 * Math.PI / 180)) {
+  if (Platform.OS === "ios" && accelerometerData.z > Math.cos((45 * Math.PI) / 180)) {
     res = normalizeHeading(res - 180)
   }
 
@@ -58,7 +58,6 @@ function removeWatcher(watcher: HeadingWatcher) {
     })
   }
 }
-
 
 export default function watchHeading(watcher: HeadingWatcher) {
   addWatcher(watcher)

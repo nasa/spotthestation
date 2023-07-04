@@ -3,8 +3,8 @@
 import { Locale, format, parseISO } from "date-fns"
 import { formatToTimeZone } from "date-fns-timezone"
 import I18n from "i18n-js"
-import { getLocales, getCalendars } from 'expo-localization'
-import moment from 'moment-timezone'
+import { getLocales, getCalendars } from "expo-localization"
+import moment from "moment-timezone"
 
 import ar from "date-fns/locale/ar-SA"
 import ko from "date-fns/locale/ko"
@@ -46,32 +46,33 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
   startDate.setHours(startHours, startMinutes, startSeconds, 0)
   const endDate = new Date(date)
   endDate.setHours(endHours, endMinutes, endSeconds, 0)
-  
-  if (startHours === endHours && startMinutes === endMinutes && startSeconds === endSeconds) return false
-  
+
+  if (startHours === endHours && startMinutes === endMinutes && startSeconds === endSeconds)
+    return false
+
   if (endDate < startDate) endDate.setDate(endDate.getDate() + 1)
 
   return date >= startDate && date < endDate
 }
 
 const getLocation = async () => {
-  const location: LocationType = await storage.load('selectedLocation')
-  if (!location) return storage.load('currentLocation')
+  const location: LocationType = await storage.load("selectedLocation")
+  if (!location) return storage.load("currentLocation")
   return location
 }
 
 export const getShortTZ = (timeZone: string) => {
-  return moment.tz(new Date(), timeZone).format('z')
+  return moment.tz(new Date(), timeZone).format("z")
 }
 
 export const getCurrentTimeZome = async (value?: LocationType) => {
-  const currentLocation: LocationType = value || await getLocation()
+  const currentLocation: LocationType = value || (await getLocation())
   if (currentLocation) {
     const { location } = currentLocation
-    const { kind, zone } = await getLocationTimeZone(location, Date.now()/1000)
-    const timeZone = kind === "ok" ? zone.timeZoneId : 'US/Central'
-    const regionFormat = ['US', 'America'].includes(timeZone.split('/')[0]) ? 'US' : 'other'
-    
+    const { kind, zone } = await getLocationTimeZone(location, Date.now() / 1000)
+    const timeZone = kind === "ok" ? zone.timeZoneId : "US/Central"
+    const regionFormat = ["US", "America"].includes(timeZone.split("/")[0]) ? "US" : "other"
+
     return {
       timeZone,
       regionFormat,

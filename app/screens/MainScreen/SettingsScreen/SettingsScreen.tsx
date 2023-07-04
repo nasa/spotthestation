@@ -15,30 +15,47 @@ export const SettingsScreen = observer(function SettingsScreen() {
     top: topInset + scale(24),
   }
 
-  const handleNavigate = (screen) => navigation.navigate('SettingsScreens' as never, {screen} as never)
+  const handleNavigate = (screen) =>
+    navigation.navigate("SettingsScreens" as never, { screen } as never)
 
   return (
     <Screen
-      preset="fixed" 
-      contentContainerStyle={[$container]} 
-      style={{backgroundColor: colors.palette.neutral900}} 
+      preset="fixed"
+      contentContainerStyle={[$container]}
+      style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
       <View style={[$headerContainer, $headerStyleOverride]}>
-        <Text 
+        <Text
           accessible
           accessibilityLabel="header"
           accessibilityHint="header"
           accessibilityRole="text"
-          tx="settings.header" 
-          style={$header} 
+          tx="settings.header"
+          style={$header}
         />
       </View>
       <View style={$itemsConteiner}>
-        <SettingsItem icon="mapPinOutlined" title="settings.locationSettings" onPress={() => handleNavigate("LocationSettings")} />
-        <SettingsItem icon="bellRing" title="settings.notificationSettings" onPress={() => handleNavigate("NotificationSettings")} />
-        <SettingsItem icon="shield" title="settings.termsAndConditions" onPress={() => handleNavigate("TermsAndConditions")} />
-        <SettingsItem icon="mail" title="settings.contactUs" onPress={() => handleNavigate("ContactUs")} />
+        <SettingsItem
+          icon="mapPinOutlined"
+          title="settings.locationSettings"
+          onPress={() => handleNavigate("LocationSettings")}
+        />
+        <SettingsItem
+          icon="bellRing"
+          title="settings.notificationSettings"
+          onPress={() => handleNavigate("NotificationSettings")}
+        />
+        <SettingsItem
+          icon="shield"
+          title="settings.termsAndConditions"
+          onPress={() => handleNavigate("TermsAndConditions")}
+        />
+        <SettingsItem
+          icon="mail"
+          title="settings.contactUs"
+          onPress={() => handleNavigate("ContactUs")}
+        />
       </View>
     </Screen>
   )
@@ -47,24 +64,24 @@ export const SettingsScreen = observer(function SettingsScreen() {
 const $container: ViewStyle = {
   flex: 1,
   backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }
 
 const $itemsConteiner: ViewStyle = {
   flex: 1,
   marginTop: scale(150),
-  paddingHorizontal: scale(36)
+  paddingHorizontal: scale(36),
 }
 
 const $headerContainer: ViewStyle = {
   position: "absolute",
   left: scale(18),
-  zIndex: 9
+  zIndex: 9,
 }
 
 const $header: TextStyle = {
   fontFamily: typography.primary.normal,
   fontSize: fontSizes[36],
   lineHeight: lineHeights[44],
-  color: colors.palette.neutral250
+  color: colors.palette.neutral250,
 }
