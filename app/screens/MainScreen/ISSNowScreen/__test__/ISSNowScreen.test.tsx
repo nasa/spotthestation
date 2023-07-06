@@ -14,6 +14,7 @@ jest.mock("@react-navigation/native", () => ({
     },
   }),
 }))
+jest.useFakeTimers("modern").setSystemTime(new Date("12-12-2012 10:10:10"))
 it("renders correctly", () => {
   const tree = renderer
     .create(

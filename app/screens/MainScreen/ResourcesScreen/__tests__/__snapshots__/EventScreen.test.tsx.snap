@@ -38,7 +38,19 @@ exports[`renders correctly 1`] = `
     }
   >
     <div />
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 35,
+          "paddingBottom": 0,
+          "paddingLeft": 7,
+          "textAlign": "left",
+        }
+      }
+    />
   </View>
   <View
     style={

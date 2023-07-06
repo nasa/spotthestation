@@ -16,8 +16,31 @@ exports[`renders correctly 1`] = `
   }
 >
   <div />
-  <div />
-  <div />
+  <div
+    style={
+      Object {
+        "color": "#DEDDDE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 40,
+        "lineHeight": 63,
+        "marginBottom": 15,
+        "marginTop": 15,
+        "paddingHorizontal": 52,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 26,
+        "lineHeight": 32,
+        "paddingHorizontal": 52,
+        "width": "95%",
+      }
+    }
+  />
   <View
     style={
       Object {
@@ -29,7 +52,17 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 23,
+          "lineHeight": 30,
+          "width": "80%",
+        }
+      }
+    />
     <div />
   </View>
   <View
@@ -73,7 +106,23 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          <div />
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#ADADAE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 19,
+                  "lineHeight": 23,
+                  "textTransform": "uppercase",
+                },
+                Object {
+                  "textAlign": "right",
+                  "width": "100%",
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <RCTScrollView

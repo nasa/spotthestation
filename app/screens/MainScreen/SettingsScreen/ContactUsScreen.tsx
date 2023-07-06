@@ -3,8 +3,9 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable } from "react-native"
+import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
+import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import DeviceInfo from "react-native-device-info"
 import Snackbar from "react-native-snackbar"
@@ -12,12 +13,14 @@ import { Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
 import { api } from "../../../services/api"
+import { normalizeHeight } from "../../../utils/normalizeHeight"
 
 export const ContactUsScreen = observer(function ContactUsScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
   const [title, setTitle] = useState("")
   const [comments, setComments] = useState("")
+  const [thanksModal, setThanksModal] = useState(false)
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -43,6 +46,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             },
           })
         } else {
+          setThanksModal(true)
           Snackbar.show({
             text: data,
             duration: Snackbar.LENGTH_LONG,
@@ -165,6 +169,33 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           disabled={!title || !comments}
         />
       </ScrollView>
+      <Modal
+        isVisible={thanksModal}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={0.5}
+        style={[$modal, { paddingHorizontal: 18, justifyContent: "flex-start" }]}
+      >
+        <View
+          accessible
+          accessibilityLabel="coach mark"
+          accessibilityHint="coach mark"
+          accessibilityRole="text"
+          style={$modalBodyContainer}
+        >
+          <Text tx="thanksModal.body" style={$modalText} />
+          <Button
+            accessible
+            accessibilityLabel="dismiss button"
+            accessibilityHint="dismiss coach mark"
+            tx="thanksModal.dismiss"
+            textStyle={$nextButtonText}
+            style={$nextButton}
+            pressedStyle={$nextButton}
+            onPress={() => setThanksModal(false)}
+          />
+        </View>
+      </Modal>
     </Screen>
   )
 })
@@ -179,6 +210,13 @@ const $backButton: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   paddingBottom: scale(11),
+}
+
+const $modal: ViewStyle = {
+  flex: 1,
+  justifyContent: "flex-end",
+  left: 0,
+  margin: 0,
 }
 
 const $scrollContentContainerStyle: ViewStyle = {
@@ -286,4 +324,41 @@ const $buttonText: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.medium,
   lineHeight: lineHeights[21],
+}
+
+const $modalBodyContainer: ViewStyle = {
+  backgroundColor: colors.palette.buttonBlue,
+  borderRadius: scale(16),
+  alignItems: "center",
+  paddingVertical: 36,
+  paddingHorizontal: 30,
+  width: "100%",
+  alignSelf: "center",
+  marginTop: normalizeHeight(0.28),
+}
+
+const $modalText: TextStyle = {
+  fontFamily: typography.primary.normal,
+  fontSize: fontSizes[24],
+  lineHeight: lineHeights[29],
+  color: colors.palette.neutral100,
+  paddingBottom: 12,
+  paddingTop: 18,
+}
+
+const $nextButton: ViewStyle = {
+  height: scale(56),
+  backgroundColor: colors.palette.neutral100,
+  borderRadius: scale(28),
+  borderWidth: 0,
+  width: scale(140),
+  alignSelf: "center",
+  marginTop: 24,
+}
+
+const $nextButtonText: TextStyle = {
+  fontFamily: typography.primary.medium,
+  fontSize: fontSizes[18],
+  lineHeight: lineHeights[22],
+  color: colors.palette.buttonBlue,
 }

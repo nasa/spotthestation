@@ -27,7 +27,18 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div />
+      <div
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 29,
+            "lineHeight": 37,
+          }
+        }
+      >
+        Continental
+      </div>
     </View>
     <View
       accessibilityHint="open select location modal"
@@ -148,9 +159,39 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      <div />
-      <div />
-      <div />
+      <div
+        style={
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 20,
+            "lineHeight": 23,
+            "textAlign": "center",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "textAlign": "center",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 15,
+            "lineHeight": 23,
+            "textAlign": "center",
+          }
+        }
+      />
     </View>
     <View
       accessibilityHint="countdown to next sighting"
@@ -167,9 +208,41 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div />
-      <div />
-      <div />
+      <div
+        style={
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 20,
+            "lineHeight": 23,
+            "textAlign": "center",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "textAlign": "center",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 15,
+            "lineHeight": 23,
+            "textAlign": "center",
+          }
+        }
+      >
+        DD:HH:MM:SS
+      </div>
     </View>
   </View>
 </View>

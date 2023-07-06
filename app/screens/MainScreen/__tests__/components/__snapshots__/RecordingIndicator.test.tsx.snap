@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`RecordingIndicator renders correctly 1`] = `
 <View
   style={
     Object {
@@ -23,11 +23,11 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    01
+    00
     :
-    06
+    02
     :
-    41
+    00
   </Text>
 </View>
 `;

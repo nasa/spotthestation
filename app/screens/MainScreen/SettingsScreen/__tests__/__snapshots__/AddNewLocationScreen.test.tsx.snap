@@ -182,7 +182,18 @@ exports[`renders correctly 1`] = `
         </View>
       </View>
     </View>
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 52,
+          "lineHeight": 63,
+          "paddingBottom": 35,
+          "textAlign": "left",
+        }
+      }
+    />
     <View
       pointerEvents="box-none"
       style={

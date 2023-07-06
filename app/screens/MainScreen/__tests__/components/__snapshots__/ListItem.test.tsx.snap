@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`ListItem renders correctly 1`] = `
 <View
   accessibilityHint="pressable list item"
   accessibilityLabel="pressable list item"
@@ -56,8 +56,33 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div />
-      <div />
+      <div
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 32,
+            "width": "95%",
+          }
+        }
+      >
+        Test title
+      </div>
+      <div
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 23,
+            "lineHeight": 27,
+            "paddingTop": 7,
+            "width": "95%",
+          }
+        }
+      >
+        Test subtitle
+      </div>
     </View>
     <div />
   </View>

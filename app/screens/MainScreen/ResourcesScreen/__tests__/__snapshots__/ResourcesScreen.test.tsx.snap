@@ -11,7 +11,16 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 52,
+          "lineHeight": 63,
+        }
+      }
+    />
     <div />
   </View>
   <View

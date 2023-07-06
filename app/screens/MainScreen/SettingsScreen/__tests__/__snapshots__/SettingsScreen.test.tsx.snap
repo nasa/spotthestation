@@ -16,7 +16,16 @@ exports[`renders correctly 1`] = `
       ]
     }
   >
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 52,
+          "lineHeight": 63,
+        }
+      }
+    />
   </View>
   <View
     style={
@@ -80,7 +89,17 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+                "width": "95%",
+              }
+            }
+          />
         </View>
         <div />
       </View>
@@ -138,7 +157,17 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+                "width": "95%",
+              }
+            }
+          />
         </View>
         <div />
       </View>
@@ -196,7 +225,17 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+                "width": "95%",
+              }
+            }
+          />
         </View>
         <div />
       </View>
@@ -254,7 +293,17 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+                "width": "95%",
+              }
+            }
+          />
         </View>
         <div />
       </View>

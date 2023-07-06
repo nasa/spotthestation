@@ -2,7 +2,17 @@
 
 exports[`renders correctly 1`] = `
 Array [
-  <div />,
+  <div
+    style={
+      Object {
+        "color": "#DEDDDE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 52,
+        "lineHeight": 60,
+        "paddingBottom": 52,
+      }
+    }
+  />,
   <View
     style={
       Object {
@@ -35,8 +45,26 @@ Array [
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 23,
+              "lineHeight": 30,
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "HelveticaNeue-Light",
+              "fontSize": 23,
+              "lineHeight": 30,
+            }
+          }
+        />
       </View>
       <div />
     </View>

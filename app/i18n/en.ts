@@ -18,6 +18,10 @@ const en = {
     close: "Close",
     openSettings: "Open settings",
   },
+  thanksModal: {
+    body: "Thank you for contacting us, we have received your message. We will process your request and hope to include a resolution in future releases. Since this application does not collect user data, we cannot respond to all received messages individually.",
+    dismiss: "Dismiss",
+  },
   privacy: {
     title: "Use your location",
     body: "We use location data to calculate the upcoming sightings in your current location. We DO NOT require access to the location data when the app is not in use. Please grant location permissions to enable this functionality",
@@ -122,7 +126,8 @@ const en = {
         serviceAlertTitle: "Location Services disabled",
         serviceAlertBody: "Please enable your location services to continue.",
         permissionAlertTitle: "Permission not granted",
-        permissionAlertBody: "We use location data to calculate the upcoming sightings in your current location. Please grant location permissions to enable this functionality.",
+        permissionAlertBody:
+          "We use location data to calculate the upcoming sightings in your current location. Please grant location permissions to enable this functionality.",
       },
     },
   },

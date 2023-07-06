@@ -60,9 +60,32 @@ exports[`renders correctly 1`] = `
           }
         >
           <div />
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 32,
+                "paddingBottom": 0,
+                "paddingLeft": 7,
+                "textAlign": "left",
+              }
+            }
+          />
         </View>
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+              "textAlign": "left",
+            }
+          }
+        />
         <View
           style={
             Object {
@@ -86,8 +109,26 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <div />
-            <div />
+            <div
+              style={
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 42,
+                }
+              }
+            />
+            <div
+              style={
+                Object {
+                  "color": "#ADADAE",
+                  "fontFamily": "HelveticaNeue-Light",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                }
+              }
+            />
             <View
               accessible={true}
               collapsable={false}
@@ -107,7 +148,21 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div />
+              <div
+                style={
+                  Array [
+                    Object {
+                      "color": "#ADADAE",
+                      "fontFamily": "HelveticaNeue-Light",
+                      "fontSize": 26,
+                      "lineHeight": 32,
+                    },
+                    Object {
+                      "color": "#0B3D91",
+                    },
+                  ]
+                }
+              />
             </View>
           </View>
           <div />
@@ -146,7 +201,20 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              <div />
+              <div
+                style={
+                  Array [
+                    Object {
+                      "color": "#ADADAE",
+                      "fontFamily": "Helvetica Neue",
+                      "fontSize": 19,
+                      "lineHeight": 23,
+                      "textTransform": "uppercase",
+                    },
+                    undefined,
+                  ]
+                }
+              />
             </View>
           </View>
           <View
@@ -232,7 +300,16 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+              }
+            }
+          />
           <div />
         </View>
         <View
@@ -267,7 +344,20 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              <div />
+              <div
+                style={
+                  Array [
+                    Object {
+                      "color": "#ADADAE",
+                      "fontFamily": "Helvetica Neue",
+                      "fontSize": 19,
+                      "lineHeight": 23,
+                      "textTransform": "uppercase",
+                    },
+                    undefined,
+                  ]
+                }
+              />
             </View>
           </View>
           <View
@@ -285,7 +375,17 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div />
+              <div
+                style={
+                  Object {
+                    "color": "#DEDDDE",
+                    "fontFamily": "HelveticaNeue-Light",
+                    "fontSize": 26,
+                    "lineHeight": 32,
+                    "marginBottom": 15,
+                  }
+                }
+              />
               <div />
             </View>
             <View
@@ -295,7 +395,17 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div />
+              <div
+                style={
+                  Object {
+                    "color": "#DEDDDE",
+                    "fontFamily": "HelveticaNeue-Light",
+                    "fontSize": 26,
+                    "lineHeight": 32,
+                    "marginBottom": 15,
+                  }
+                }
+              />
               <div />
             </View>
           </View>

@@ -28,7 +28,19 @@ exports[`renders correctly 1`] = `
     }
   >
     <div />
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 35,
+          "lineHeight": 49,
+          "paddingBottom": 0,
+          "paddingLeft": 5,
+          "textAlign": "left",
+        }
+      }
+    />
   </View>
   <RCTScrollView
     accessibilityHint="terms And Conditions scrollable us area"
@@ -69,32 +81,408 @@ exports[`renders correctly 1`] = `
           accessibilityRole="text"
           accessible={true}
         >
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 52,
+                "lineHeight": 63,
+                "paddingBottom": 24,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.title undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.intro1 undefined
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.appData.line1 undefined Test
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.appData.line2 undefined 0.0.1
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.appData.line3 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          />
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.contactData.line1 undefined
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.contactData.line2 undefined
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.contactData.line3 undefined
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.contactData.line4 undefined
+          </div>
+          <div
+            style={
+              Array [
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 49,
+                  "paddingBottom": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            settings.termsAndConditionsData.ios.contactData.line5 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.intro2 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.intro3 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line1 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line2 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line3 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line4 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line5 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line6 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line7 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line8 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line9 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line10 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line11 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line12 undefined
+          </div>
+          <div
+            style={
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 49,
+                "paddingBottom": 16,
+                "textAlign": "left",
+              }
+            }
+          >
+            settings.termsAndConditionsData.ios.body.line13 undefined
+          </div>
         </View>
       </View>
     </View>

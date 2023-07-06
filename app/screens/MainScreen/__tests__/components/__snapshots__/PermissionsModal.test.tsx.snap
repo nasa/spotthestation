@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`PermissionsModal renders correctly 1`] = `
 <View
   accessibilityHint="coach mark"
   accessibilityLabel="coach mark"
@@ -19,6 +19,7 @@ exports[`renders correctly 1`] = `
     }
   }
 >
+  <div />
   <div
     style={
       Object {
@@ -30,6 +31,21 @@ exports[`renders correctly 1`] = `
         "paddingTop": 18,
       }
     }
-  />
+  >
+    Test body
+  </div>
+  <View
+    style={
+      Object {
+        "alignSelf": "flex-end",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "width": "100%",
+      }
+    }
+  >
+    <div />
+    <div />
+  </View>
 </View>
 `;

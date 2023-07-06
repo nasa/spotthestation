@@ -6,6 +6,6 @@ import renderer from "react-test-renderer"
 import { FeedItem } from "../../components/FeedItem"
 
 it("renders correctly", () => {
-  const tree = renderer.create(<FeedItem title="title" image="" />).toJSON()
+  const tree = renderer.create(<FeedItem title="title" image="" tags={["tag"]} />).toJSON()
   expect(tree).toMatchSnapshot()
 })

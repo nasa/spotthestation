@@ -19,7 +19,19 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 46,
+          "lineHeight": 63,
+          "marginTop": 52,
+          "paddingBottom": 52,
+          "width": "95%",
+        }
+      }
+    />
     <View
       style={
         Object {
@@ -45,8 +57,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          0 km
+        </div>
       </View>
       <View
         accessibilityHint="orbital Speed"
@@ -63,8 +98,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          8374 M/S
+        </div>
       </View>
       <View
         accessibilityHint="longitude"
@@ -81,8 +139,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          0
+        </div>
       </View>
       <View
         accessibilityHint="latitude"
@@ -99,8 +180,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          0
+        </div>
       </View>
       <View
         accessibilityHint="altitude"
@@ -117,8 +221,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 32,
+              "lineHeight": 40,
+              "textAlign": "center",
+            }
+          }
+        >
+          0 km
+        </div>
       </View>
     </View>
     <View
@@ -145,8 +272,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          20 November 1998
+        </div>
       </View>
       <View
         accessibilityHint="crew On board"
@@ -162,8 +312,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          7
+        </div>
       </View>
       <View
         accessibilityHint="Estimated mass"
@@ -179,8 +352,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          462,000 kg
+        </div>
       </View>
       <View
         accessibilityHint="Estimated dimensions"
@@ -196,8 +392,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          109m wide x 73m long x 14m tall
+        </div>
       </View>
       <View
         accessibilityHint="orbital Period"
@@ -213,8 +432,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          92.9 min
+        </div>
       </View>
       <View
         accessibilityHint="orbits Per Day"
@@ -230,8 +472,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          15.49
+        </div>
       </View>
       <View
         accessibilityHint="Orbital Decay"
@@ -247,8 +512,31 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "textAlign": "left",
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 30,
+              "maxWidth": 222,
+              "textAlign": "right",
+            }
+          }
+        >
+          2 km / month
+        </div>
       </View>
     </View>
   </View>

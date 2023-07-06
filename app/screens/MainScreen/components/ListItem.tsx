@@ -136,7 +136,7 @@ const $titleContainer: ViewStyle = {
 
 const $titleText: TextStyle = {
   width: "95%",
-  fontFamily: typography.primary?.normal,
+  fontFamily: typography.primary.normal,
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.neutral100,

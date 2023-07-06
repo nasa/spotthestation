@@ -46,9 +46,30 @@ exports[`renders correctly 1`] = `
         }
       >
         <div />
-        <div />
+        <div
+          style={
+            Object {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 32,
+              "paddingBottom": 0,
+              "paddingLeft": 7,
+              "textAlign": "left",
+            }
+          }
+        />
       </View>
-      <div />
+      <div
+        style={
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 52,
+            "lineHeight": 63,
+          }
+        }
+      />
       <View
         onLayout={[Function]}
         style={
@@ -117,5 +138,33 @@ exports[`renders correctly 1`] = `
       <div />
     </View>
   </RCTScrollView>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={false}
+  />
 </div>
 `;

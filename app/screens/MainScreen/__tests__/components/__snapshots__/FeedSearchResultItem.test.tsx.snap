@@ -67,7 +67,29 @@ exports[`renders correctly 1`] = `
       }
     }
   />
-  <div />
-  <div />
+  <div
+    style={
+      Object {
+        "color": "#ADADAE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 20,
+        "lineHeight": 25,
+        "textTransform": "uppercase",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "color": "#DEDDDE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 26,
+        "lineHeight": 30,
+        "paddingBottom": 7,
+      }
+    }
+  >
+    title
+  </div>
 </View>
 `;

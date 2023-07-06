@@ -33,7 +33,7 @@ const $container: TextStyle = {
   paddingHorizontal: scale(7),
   paddingVertical: scale(4),
   backgroundColor: colors.palette.neutral250,
-  fontFamily: typography.primary?.medium,
+  fontFamily: typography.primary.medium,
   fontSize: fontSizes[12],
   lineHeight: lineHeights[15],
   color: colors.palette.neutral350,

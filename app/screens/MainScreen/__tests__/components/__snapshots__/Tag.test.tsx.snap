@@ -1,3 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `<div />`;
+exports[`Tag component renders correctly 1`] = `
+<div
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#DEDDDE",
+        "borderRadius": 6,
+        "color": "#1E2022",
+        "fontFamily": "HelveticaNeue-Medium",
+        "fontSize": 17,
+        "height": 33,
+        "lineHeight": 22,
+        "marginRight": 15,
+        "overflow": "hidden",
+        "paddingHorizontal": 10,
+        "paddingVertical": 6,
+      },
+      Object {},
+    ]
+  }
+>
+  TAG
+</div>
+`;

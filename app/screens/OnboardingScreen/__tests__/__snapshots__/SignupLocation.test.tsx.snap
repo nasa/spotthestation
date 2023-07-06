@@ -2,10 +2,41 @@
 
 exports[`renders correctly 1`] = `
 Array [
+  <div
+    style={
+      Object {
+        "color": "#DEDDDE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 52,
+        "lineHeight": 63,
+        "paddingBottom": 35,
+      }
+    }
+  />,
+  <div
+    style={
+      Object {
+        "color": "#ADADAE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 26,
+        "lineHeight": 32,
+        "paddingBottom": 52,
+      }
+    }
+  />,
   <div />,
-  <div />,
-  <div />,
-  <div />,
+  <div
+    style={
+      Object {
+        "color": "#ADADAE",
+        "fontFamily": "Helvetica Neue",
+        "fontSize": 23,
+        "lineHeight": 27,
+        "marginVertical": 17,
+        "textAlign": "center",
+      }
+    }
+  />,
   <View
     pointerEvents="box-none"
     style={

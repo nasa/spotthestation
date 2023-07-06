@@ -31,9 +31,42 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
-    <div />
-    <div />
+    <div
+      style={
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 32,
+          "paddingBottom": 35,
+          "textAlign": "center",
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "HelveticaNeue-Medium",
+          "fontSize": 26,
+          "lineHeight": 32,
+          "paddingBottom": 7,
+          "textAlign": "center",
+        }
+      }
+    />
+    <div
+      style={
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 23,
+          "lineHeight": 27,
+          "paddingBottom": 52,
+          "textAlign": "center",
+        }
+      }
+    />
     <View
       style={
         Object {

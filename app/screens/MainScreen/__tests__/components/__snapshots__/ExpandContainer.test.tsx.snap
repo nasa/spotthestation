@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`ExpandContainer renders correctly 1`] = `
 <View
   style={
     Array [
@@ -31,12 +31,27 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      <div />
-      <div />
+      <div
+        style={
+          Array [
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textTransform": "uppercase",
+            },
+            undefined,
+          ]
+        }
+      />
     </View>
     <div />
-    <div />
   </View>
-  <div />
+  <View>
+    <Text>
+      Test content
+    </Text>
+  </View>
 </View>
 `;

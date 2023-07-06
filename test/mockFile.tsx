@@ -11,7 +11,7 @@ export default {
 jest.mock('../app/components', () => ({
   Screen: ({children}) => <div>{children}</div>,
   Icon: ({children}) => <div>{children}</div>,
-  Text: ({children}) => <div>{children}</div>,
+  Text: ({text, style }) => <div style={style}>{text}</div>,
   TextField: ({children}) => <div>{children}</div>,
   Button: ({children}) => <div>{children}</div>,
   Toggle: ({children}) => <div>{children}</div>,
@@ -77,7 +77,16 @@ jest.mock("@react-native-firebase/analytics", () => ({}))
 jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),
-    getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [] })),
+    getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [{ 
+      appears: "10",
+      date: "date",
+      dayStage: 1,
+      disappears: "10",
+      maxHeight: 12,
+      notify: true,
+      visible: 6,
+    }] })),
+    getISSData: () => new Promise((resolve) => resolve({ ok: true, data: ['data'] })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
   }
 }))
