@@ -19,17 +19,37 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <div
+  <Text
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#FFFFFF",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 35,
-        "lineHeight": 42,
-        "paddingBottom": 12,
-        "paddingTop": 18,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 35,
+          "lineHeight": 42,
+          "paddingBottom": 12,
+          "paddingTop": 18,
+        },
+      ]
     }
-  />
+  >
+    homeScreen.initLoader.message undefined
+  </Text>
 </View>
 `;

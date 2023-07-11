@@ -105,7 +105,31 @@ exports[`renders correctly 1`] = `
               }
             }
           />
-          <div />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#DEDDDE",
+                  "width": 29,
+                }
+              }
+              tintColor="#DEDDDE"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -140,7 +164,40 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        <div />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 80,
+              "justifyContent": "center",
+              "marginStart": 24,
+            }
+          }
+        >
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 40,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#ADADAE",
+                "width": 40,
+              }
+            }
+            tintColor="#ADADAE"
+          />
+        </View>
         <TextInput
           allowFontScaling={false}
           clearButtonMode="never"

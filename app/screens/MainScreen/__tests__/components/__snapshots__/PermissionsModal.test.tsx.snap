@@ -19,21 +19,87 @@ exports[`PermissionsModal renders correctly 1`] = `
     }
   }
 >
-  <div />
-  <div
+  <View
+    accessibilityHint="close modal"
+    accessibilityLabel="x button"
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "color": "#FFFFFF",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 35,
-        "lineHeight": 42,
-        "paddingBottom": 12,
-        "paddingTop": 18,
+        "opacity": 1,
+        "padding": 26,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 5,
       }
     }
   >
+    <RCTImageView
+      internal_analyticTag={null}
+      resizeMode="contain"
+      source={
+        Array [
+          Object {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        Object {
+          "height": 52,
+          "overflow": "hidden",
+          "resizeMode": "contain",
+          "tintColor": "#ADADAE",
+          "width": 52,
+        }
+      }
+      tintColor="#ADADAE"
+    />
+  </View>
+  <Text
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 35,
+          "lineHeight": 42,
+          "paddingBottom": 12,
+          "paddingTop": 18,
+        },
+      ]
+    }
+  >
     Test body
-  </div>
+  </Text>
   <View
     style={
       Object {
@@ -44,8 +110,183 @@ exports[`PermissionsModal renders correctly 1`] = `
       }
     }
   >
-    <div />
-    <div />
+    <View
+      accessibilityHint="close coach mark"
+      accessibilityLabel="close button"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "minHeight": 80,
+              "overflow": "hidden",
+              "paddingHorizontal": 17,
+              "paddingVertical": 17,
+            },
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#B6ACA6",
+              "borderWidth": 1,
+            },
+          ],
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+            "height": 80,
+            "minWidth": 201,
+          },
+          false,
+        ]
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 23,
+                "lineHeight": 29,
+                "textAlign": "center",
+                "zIndex": 2,
+              },
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 26,
+                "lineHeight": 32,
+              },
+              false,
+            ],
+          ]
+        }
+      >
+        permissionsModal.close undefined
+      </Text>
+    </View>
+    <View
+      accessibilityHint="open Settings coach mark"
+      accessibilityLabel="open Settings button"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "minHeight": 80,
+              "overflow": "hidden",
+              "paddingHorizontal": 17,
+              "paddingVertical": 17,
+            },
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#B6ACA6",
+              "borderWidth": 1,
+            },
+          ],
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 40,
+            "borderWidth": 0,
+            "height": 80,
+            "minWidth": 201,
+          },
+          false,
+        ]
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 23,
+                "lineHeight": 29,
+                "textAlign": "center",
+                "zIndex": 2,
+              },
+              Object {
+                "color": "#0B3D91",
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 26,
+                "lineHeight": 32,
+              },
+              false,
+            ],
+          ]
+        }
+      >
+        permissionsModal.openSettings undefined
+      </Text>
+    </View>
   </View>
 </View>
 `;

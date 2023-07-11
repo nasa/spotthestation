@@ -59,33 +59,97 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
-          <div
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#DEDDDE",
+                  "width": 35,
+                }
+              }
+              tintColor="#DEDDDE"
+            />
+          </View>
+          <Text
+            allowFontScaling={false}
             style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                  "paddingBottom": 0,
+                  "paddingLeft": 7,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            settings.notificationSettingsData.backButton undefined
+          </Text>
+        </View>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
               Object {
                 "color": "#DEDDDE",
                 "fontFamily": "Helvetica Neue",
-                "fontSize": 26,
-                "lineHeight": 32,
-                "paddingBottom": 0,
-                "paddingLeft": 7,
+                "fontSize": 52,
+                "lineHeight": 63,
+                "paddingBottom": 35,
                 "textAlign": "left",
-              }
-            }
-          />
-        </View>
-        <div
-          style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 52,
-              "lineHeight": 63,
-              "paddingBottom": 35,
-              "textAlign": "left",
-            }
+              },
+            ]
           }
-        />
+        >
+          settings.notificationSettingsData.notificationTitle undefined
+        </Text>
         <View
           style={
             Object {
@@ -109,26 +173,66 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <div
+            <Text
+              allowFontScaling={false}
               style={
-                Object {
-                  "color": "#DEDDDE",
-                  "fontFamily": "Helvetica Neue",
-                  "fontSize": 35,
-                  "lineHeight": 42,
-                }
+                Array [
+                  Object {},
+                  Array [
+                    Object {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    Object {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Object {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 35,
+                    "lineHeight": 42,
+                  },
+                ]
               }
-            />
-            <div
+            >
+              settings.notificationSettingsData.upcomingLabel undefined
+            </Text>
+            <Text
+              allowFontScaling={false}
               style={
-                Object {
-                  "color": "#ADADAE",
-                  "fontFamily": "HelveticaNeue-Light",
-                  "fontSize": 26,
-                  "lineHeight": 32,
-                }
+                Array [
+                  Object {},
+                  Array [
+                    Object {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    Object {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Object {
+                    "color": "#ADADAE",
+                    "fontFamily": "HelveticaNeue-Light",
+                    "fontSize": 26,
+                    "lineHeight": 32,
+                  },
+                ]
               }
-            />
+            >
+              settings.notificationSettingsData.upcomingTip undefined
+            </Text>
             <View
               accessible={true}
               collapsable={false}
@@ -148,24 +252,158 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div
+              <Text
+                allowFontScaling={false}
                 style={
                   Array [
-                    Object {
-                      "color": "#ADADAE",
-                      "fontFamily": "HelveticaNeue-Light",
-                      "fontSize": 26,
-                      "lineHeight": 32,
-                    },
-                    Object {
-                      "color": "#0B3D91",
-                    },
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Array [
+                      Object {
+                        "color": "#ADADAE",
+                        "fontFamily": "HelveticaNeue-Light",
+                        "fontSize": 26,
+                        "lineHeight": 32,
+                      },
+                      Object {
+                        "color": "#0B3D91",
+                      },
+                    ],
                   ]
                 }
-              />
+              >
+                settings.notificationSettingsData.customizeLabel undefined
+              </Text>
             </View>
           </View>
-          <div />
+          <View
+            accessibilityHint="toggle upcoming events notifications"
+            accessibilityLabel="switch button"
+            accessibilityRole="switch"
+            accessibilityState={
+              Object {
+                "checked": false,
+                "disabled": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderWidth": 3,
+                        "flexDirection": "row",
+                        "flexGrow": 0,
+                        "flexShrink": 0,
+                        "height": 35,
+                        "justifyContent": "space-between",
+                        "overflow": "hidden",
+                        "width": 35,
+                      },
+                      Object {
+                        "borderRadius": 23,
+                        "borderWidth": 0,
+                        "height": 40,
+                        "width": 66,
+                      },
+                    ],
+                    Object {
+                      "backgroundColor": "#353739",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  animatedStyle={
+                    Object {
+                      "value": Object {
+                        "opacity": 0,
+                      },
+                    }
+                  }
+                  collapsable={false}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#0B3D91",
+                      "borderColor": "rgba(0, 0, 0, 0)",
+                      "height": "100%",
+                      "opacity": 0,
+                      "overflow": "hidden",
+                      "paddingEnd": 6,
+                      "paddingStart": 6,
+                      "position": "absolute",
+                      "width": "100%",
+                    }
+                  }
+                />
+                <View
+                  animatedStyle={
+                    Object {
+                      "value": Object {
+                        "marginStart": 6,
+                        "start": "0%",
+                      },
+                    }
+                  }
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#F4F2F1",
+                      "borderRadius": 17,
+                      "height": 29,
+                      "marginStart": 6,
+                      "position": "absolute",
+                      "start": "0%",
+                      "width": 29,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
         </View>
         <View
           style={
@@ -201,20 +439,44 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              <div
+              <Text
+                accessibilityHint="settings.notificationSettingsData.notifyMeBefore"
+                accessibilityLabel="title"
+                accessibilityRole="text"
+                accessible={true}
+                allowFontScaling={false}
                 style={
                   Array [
-                    Object {
-                      "color": "#ADADAE",
-                      "fontFamily": "Helvetica Neue",
-                      "fontSize": 19,
-                      "lineHeight": 23,
-                      "textTransform": "uppercase",
-                    },
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
                     undefined,
+                    undefined,
+                    Array [
+                      Object {
+                        "color": "#ADADAE",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 19,
+                        "lineHeight": 23,
+                        "textTransform": "uppercase",
+                      },
+                      undefined,
+                    ],
                   ]
                 }
-              />
+              >
+                settings.notificationSettingsData.notifyMeBefore undefined
+              </Text>
             </View>
           </View>
           <View
@@ -278,7 +540,40 @@ exports[`renders correctly 1`] = `
               >
                 settings.contactUsData.titlePlaceholder undefined
               </Text>
-              <div />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "marginEnd": 35,
+                  }
+                }
+              >
+                <RCTImageView
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    Array [
+                      Object {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#ADADAE",
+                      "width": 40,
+                    }
+                  }
+                  tintColor="#ADADAE"
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -300,17 +595,151 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          <div
+          <Text
+            allowFontScaling={false}
             style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 42,
+                },
+              ]
+            }
+          >
+            settings.notificationSettingsData.privacyTitle undefined
+          </Text>
+          <View
+            accessibilityHint="toggle privacy notifications"
+            accessibilityLabel="switch button"
+            accessibilityRole="switch"
+            accessibilityState={
               Object {
-                "color": "#DEDDDE",
-                "fontFamily": "Helvetica Neue",
-                "fontSize": 35,
-                "lineHeight": 42,
+                "checked": false,
+                "disabled": undefined,
               }
             }
-          />
-          <div />
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderWidth": 3,
+                        "flexDirection": "row",
+                        "flexGrow": 0,
+                        "flexShrink": 0,
+                        "height": 35,
+                        "justifyContent": "space-between",
+                        "overflow": "hidden",
+                        "width": 35,
+                      },
+                      Object {
+                        "borderRadius": 23,
+                        "borderWidth": 0,
+                        "height": 40,
+                        "width": 66,
+                      },
+                    ],
+                    Object {
+                      "backgroundColor": "#353739",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  animatedStyle={
+                    Object {
+                      "value": Object {
+                        "opacity": 0,
+                      },
+                    }
+                  }
+                  collapsable={false}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#0B3D91",
+                      "borderColor": "rgba(0, 0, 0, 0)",
+                      "height": "100%",
+                      "opacity": 0,
+                      "overflow": "hidden",
+                      "paddingEnd": 6,
+                      "paddingStart": 6,
+                      "position": "absolute",
+                      "width": "100%",
+                    }
+                  }
+                />
+                <View
+                  animatedStyle={
+                    Object {
+                      "value": Object {
+                        "marginStart": 6,
+                        "start": "0%",
+                      },
+                    }
+                  }
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#F4F2F1",
+                      "borderRadius": 17,
+                      "height": 29,
+                      "marginStart": 6,
+                      "position": "absolute",
+                      "start": "0%",
+                      "width": 29,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
         </View>
         <View
           style={
@@ -344,20 +773,44 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              <div
+              <Text
+                accessibilityHint="settings.notificationSettingsData.turnOffNotifications"
+                accessibilityLabel="title"
+                accessibilityRole="text"
+                accessible={true}
+                allowFontScaling={false}
                 style={
                   Array [
-                    Object {
-                      "color": "#ADADAE",
-                      "fontFamily": "Helvetica Neue",
-                      "fontSize": 19,
-                      "lineHeight": 23,
-                      "textTransform": "uppercase",
-                    },
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
                     undefined,
+                    undefined,
+                    Array [
+                      Object {
+                        "color": "#ADADAE",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 19,
+                        "lineHeight": 23,
+                        "textTransform": "uppercase",
+                      },
+                      undefined,
+                    ],
                   ]
                 }
-              />
+              >
+                settings.notificationSettingsData.turnOffNotifications undefined
+              </Text>
             </View>
           </View>
           <View
@@ -375,18 +828,171 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div
+              <Text
+                allowFontScaling={false}
                 style={
+                  Array [
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Object {
+                      "color": "#DEDDDE",
+                      "fontFamily": "HelveticaNeue-Light",
+                      "fontSize": 26,
+                      "lineHeight": 32,
+                      "marginBottom": 15,
+                    },
+                  ]
+                }
+              >
+                settings.notificationSettingsData.from undefined
+              </Text>
+              <View
+                accessibilityHint="open time picker"
+                accessibilityLabel="from picker button"
+                accessibilityRole="button"
+                accessibilityState={
                   Object {
-                    "color": "#DEDDDE",
-                    "fontFamily": "HelveticaNeue-Light",
-                    "fontSize": 26,
-                    "lineHeight": 32,
-                    "marginBottom": 15,
+                    "disabled": true,
                   }
                 }
-              />
-              <div />
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 6,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 80,
+                        "overflow": "hidden",
+                        "paddingHorizontal": 17,
+                        "paddingVertical": 17,
+                      },
+                      Object {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#B6ACA6",
+                        "borderWidth": 1,
+                      },
+                    ],
+                    Array [
+                      Object {
+                        "backgroundColor": "#353739",
+                        "borderRadius": 40,
+                        "borderWidth": 0,
+                        "height": 80,
+                        "justifyContent": "space-between",
+                        "paddingHorizontal": 23,
+                        "width": "100%",
+                      },
+                      Object {
+                        "opacity": 0.5,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {},
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        Object {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        Object {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      Array [
+                        Object {
+                          "flexGrow": 0,
+                          "flexShrink": 1,
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 23,
+                          "lineHeight": 29,
+                          "textAlign": "center",
+                          "zIndex": 2,
+                        },
+                        Object {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "lineHeight": 30,
+                        },
+                        false,
+                      ],
+                    ]
+                  }
+                >
+                  10:10 AM
+                </Text>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <RCTImageView
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      Array [
+                        Object {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#DEDDDE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#DEDDDE"
+                  />
+                </View>
+              </View>
             </View>
             <View
               style={
@@ -395,18 +1001,171 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div
+              <Text
+                allowFontScaling={false}
                 style={
+                  Array [
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Object {
+                      "color": "#DEDDDE",
+                      "fontFamily": "HelveticaNeue-Light",
+                      "fontSize": 26,
+                      "lineHeight": 32,
+                      "marginBottom": 15,
+                    },
+                  ]
+                }
+              >
+                settings.notificationSettingsData.until undefined
+              </Text>
+              <View
+                accessibilityHint="open time picker"
+                accessibilityLabel="until picker button"
+                accessibilityRole="button"
+                accessibilityState={
                   Object {
-                    "color": "#DEDDDE",
-                    "fontFamily": "HelveticaNeue-Light",
-                    "fontSize": 26,
-                    "lineHeight": 32,
-                    "marginBottom": 15,
+                    "disabled": true,
                   }
                 }
-              />
-              <div />
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 6,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 80,
+                        "overflow": "hidden",
+                        "paddingHorizontal": 17,
+                        "paddingVertical": 17,
+                      },
+                      Object {
+                        "backgroundColor": "#FFFFFF",
+                        "borderColor": "#B6ACA6",
+                        "borderWidth": 1,
+                      },
+                    ],
+                    Array [
+                      Object {
+                        "backgroundColor": "#353739",
+                        "borderRadius": 40,
+                        "borderWidth": 0,
+                        "height": 80,
+                        "justifyContent": "space-between",
+                        "paddingHorizontal": 23,
+                        "width": "100%",
+                      },
+                      Object {
+                        "opacity": 0.5,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {},
+                      Array [
+                        Object {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        Object {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        Object {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      Array [
+                        Object {
+                          "flexGrow": 0,
+                          "flexShrink": 1,
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 23,
+                          "lineHeight": 29,
+                          "textAlign": "center",
+                          "zIndex": 2,
+                        },
+                        Object {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "lineHeight": 30,
+                        },
+                        false,
+                      ],
+                    ]
+                  }
+                >
+                  10:10 AM
+                </Text>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <RCTImageView
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      Array [
+                        Object {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      Object {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#DEDDDE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#DEDDDE"
+                  />
+                </View>
+              </View>
             </View>
           </View>
         </View>

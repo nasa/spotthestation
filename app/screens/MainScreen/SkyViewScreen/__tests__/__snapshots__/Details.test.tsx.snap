@@ -19,19 +19,43 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div
+    <Text
+      accessibilityHint="modal title"
+      accessibilityLabel="modal title"
+      accessibilityRole="text"
+      accessible={true}
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "#DEDDDE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 46,
-          "lineHeight": 63,
-          "marginTop": 52,
-          "paddingBottom": 52,
-          "width": "95%",
-        }
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 46,
+            "lineHeight": 63,
+            "marginTop": 52,
+            "paddingBottom": 52,
+            "width": "95%",
+          },
+        ]
       }
-    />
+    >
+      issView.details.title undefined
+    </Text>
     <View
       style={
         Object {
@@ -57,31 +81,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.distance undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 32,
-              "lineHeight": 40,
-              "textAlign": "center",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 32,
+                "lineHeight": 40,
+                "textAlign": "center",
+              },
+            ]
           }
         >
           0 km
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="orbital Speed"
@@ -98,31 +160,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.orbitalSpeed undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 32,
-              "lineHeight": 40,
-              "textAlign": "center",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 32,
+                "lineHeight": 40,
+                "textAlign": "center",
+              },
+            ]
           }
         >
           8374 M/S
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="longitude"
@@ -139,31 +239,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.longitude undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 32,
-              "lineHeight": 40,
-              "textAlign": "center",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 32,
+                "lineHeight": 40,
+                "textAlign": "center",
+              },
+            ]
           }
         >
           0
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="latitude"
@@ -180,31 +318,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.latitude undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 32,
-              "lineHeight": 40,
-              "textAlign": "center",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 32,
+                "lineHeight": 40,
+                "textAlign": "center",
+              },
+            ]
           }
         >
           0
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="altitude"
@@ -221,31 +397,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.altitude undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 32,
-              "lineHeight": 40,
-              "textAlign": "center",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 32,
+                "lineHeight": 40,
+                "textAlign": "center",
+              },
+            ]
           }
         >
           0 km
-        </div>
+        </Text>
       </View>
     </View>
     <View
@@ -272,31 +486,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.launched undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           20 November 1998
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="crew On board"
@@ -312,31 +564,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.crewOnboard undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           7
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="Estimated mass"
@@ -352,31 +642,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.mass undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           462,000 kg
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="Estimated dimensions"
@@ -392,31 +720,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.dimensions undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           109m wide x 73m long x 14m tall
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="orbital Period"
@@ -432,31 +798,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.orbitalPeriod undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           92.9 min
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="orbits Per Day"
@@ -472,31 +876,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.orbitsPerDay undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           15.49
-        </div>
+        </Text>
       </View>
       <View
         accessibilityHint="Orbital Decay"
@@ -512,31 +954,69 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "textAlign": "left",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "textAlign": "left",
+              },
+            ]
           }
-        />
-        <div
+        >
+          issView.details.orbitalDecay undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
-              "lineHeight": 30,
-              "maxWidth": 222,
-              "textAlign": "right",
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "lineHeight": 30,
+                "maxWidth": 222,
+                "textAlign": "right",
+              },
+            ]
           }
         >
           2 km / month
-        </div>
+        </Text>
       </View>
     </View>
   </View>

@@ -44,7 +44,7 @@ export function FlatMap({
   const currentLocation2D = currentLocation ? latLonTo2D(currentLocation) : []
 
   return (
-    <View style={style}>
+    <View style={style} testID="flat-map">
       <Image source={map} style={$map} />
       <Svg style={$overlay} onLayout={({ nativeEvent }) => setLayout(nativeEvent.layout)}>
         <Polygon
@@ -57,6 +57,7 @@ export function FlatMap({
 
         {Boolean(issPathCoords2D.length) && (
           <Polyline
+            testID="iss-path-polyline"
             points={issPathCoords2D
               .filter((c) => c[0] < issCoords2D[0])
               .map((c) => [c[0] * layout.width, c[1] * layout.height].toString())
@@ -83,6 +84,7 @@ export function FlatMap({
       {Boolean(issMarkerPosition) && (
         // eslint-disable-next-line react-native/no-inline-styles
         <View
+          testID="iss-marker"
           style={{
             position: "absolute",
             left: issCoords2D[0] * layout.width - scale(18),
@@ -95,6 +97,7 @@ export function FlatMap({
       {Boolean(currentLocation) && (
         // eslint-disable-next-line react-native/no-inline-styles
         <View
+          testID="current-location-marker"
           style={{
             position: "absolute",
             left: currentLocation2D[0] * layout.width,

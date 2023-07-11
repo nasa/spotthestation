@@ -43,28 +43,46 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div
+    <Text
+      allowFontScaling={false}
       style={
         Array [
-          Object {
-            "backgroundColor": "#DEDDDE",
-            "borderRadius": 6,
-            "color": "#1E2022",
-            "fontFamily": "HelveticaNeue-Medium",
-            "fontSize": 17,
-            "height": 33,
-            "lineHeight": 22,
-            "marginRight": 15,
-            "overflow": "hidden",
-            "paddingHorizontal": 10,
-            "paddingVertical": 6,
-          },
           Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "backgroundColor": "#DEDDDE",
+              "borderRadius": 6,
+              "color": "#1E2022",
+              "fontFamily": "HelveticaNeue-Medium",
+              "fontSize": 17,
+              "height": 33,
+              "lineHeight": 22,
+              "marginRight": 15,
+              "overflow": "hidden",
+              "paddingHorizontal": 10,
+              "paddingVertical": 6,
+            },
+            Object {},
+          ],
         ]
       }
     >
       TAG
-    </div>
+    </Text>
   </View>
   <RCTImageView
     accessibilityHint="image"
@@ -91,18 +109,40 @@ exports[`renders correctly 1`] = `
       }
     }
   />
-  <div
+  <Text
+    accessibilityHint="title"
+    accessibilityLabel="title"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#DEDDDE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 26,
-        "lineHeight": 30,
-        "paddingBottom": 7,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 30,
+          "paddingBottom": 7,
+        },
+      ]
     }
   >
     title
-  </div>
+  </Text>
 </View>
 `;

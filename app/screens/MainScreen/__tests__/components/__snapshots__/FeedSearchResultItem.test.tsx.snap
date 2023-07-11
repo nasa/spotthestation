@@ -1,5 +1,143 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FeedSearchResultItem renders correctly 1`] = `
+<View
+  accessibilityHint="pressable feed item"
+  accessibilityLabel="pressable feed item"
+  accessibilityRole="button"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "justifyContent": "space-between",
+      "paddingTop": 23,
+      "position": "relative",
+      "width": "47%",
+    }
+  }
+>
+  <View
+    accessibilityHint="tags"
+    accessibilityLabel="tags"
+    accessibilityRole="text"
+    accessible={true}
+    style={
+      Object {
+        "flexDirection": "row",
+        "left": 26,
+        "position": "absolute",
+        "top": 52,
+        "zIndex": 2,
+      }
+    }
+  />
+  <RCTImageView
+    accessibilityHint="image"
+    accessibilityLabel="image"
+    accessibilityRole="image"
+    accessible={true}
+    internal_analyticTag={null}
+    resizeMode="cover"
+    source={
+      Array [
+        Object {
+          "uri": "",
+        },
+      ]
+    }
+    style={
+      Object {
+        "aspectRatio": 0.7,
+        "borderRadius": 17,
+        "height": undefined,
+        "marginBottom": 17,
+        "overflow": "hidden",
+        "width": "100%",
+      }
+    }
+  />
+  <Text
+    accessibilityHint=""
+    accessibilityLabel="type"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 20,
+          "lineHeight": 25,
+          "textTransform": "uppercase",
+        },
+      ]
+    }
+  />
+  <Text
+    accessibilityHint="title"
+    accessibilityLabel="title"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 30,
+          "paddingBottom": 7,
+        },
+      ]
+    }
+  >
+    title
+  </Text>
+</View>
+`;
+
 exports[`renders correctly 1`] = `
 <View
   accessibilityHint="pressable feed item"
@@ -67,29 +205,73 @@ exports[`renders correctly 1`] = `
       }
     }
   />
-  <div
+  <Text
+    accessibilityHint=""
+    accessibilityLabel="type"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#ADADAE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 20,
-        "lineHeight": 25,
-        "textTransform": "uppercase",
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 20,
+          "lineHeight": 25,
+          "textTransform": "uppercase",
+        },
+      ]
     }
   />
-  <div
+  <Text
+    accessibilityHint="title"
+    accessibilityLabel="title"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#DEDDDE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 26,
-        "lineHeight": 30,
-        "paddingBottom": 7,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 30,
+          "paddingBottom": 7,
+        },
+      ]
     }
   >
     title
-  </div>
+  </Text>
 </View>
 `;

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlatMap renders without issues 1`] = `
+<View
+  testID="flat-map"
+>
+  <RCTImageView
+    internal_analyticTag={null}
+    resizeMode="cover"
+    source={
+      Array [
+        Object {
+          "height": undefined,
+          "uri": undefined,
+          "width": undefined,
+        },
+      ]
+    }
+    style={
+      Object {
+        "height": "100%",
+        "overflow": "hidden",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  />
+  <RNSVGSvgView
+    bbHeight="100%"
+    bbWidth="100%"
+    focusable={false}
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        Object {
+          "flex": 0,
+          "height": "100%",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <RNSVGGroup
+      fill={
+        Object {
+          "payload": 4278190080,
+          "type": 0,
+        }
+      }
+    >
+      <RNSVGPath
+        d=""
+        fill={
+          Object {
+            "payload": 4278926737,
+            "type": 0,
+          }
+        }
+        fillOpacity={0.5}
+        propList={
+          Array [
+            "fill",
+            "fillOpacity",
+          ]
+        }
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+</View>
+`;

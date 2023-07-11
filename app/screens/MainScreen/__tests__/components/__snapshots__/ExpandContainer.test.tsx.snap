@@ -31,22 +31,90 @@ exports[`ExpandContainer renders correctly 1`] = `
         ]
       }
     >
-      <div
+      <Text
+        accessibilityHint="homeScreen.selectLocation.nearby"
+        accessibilityLabel="title"
+        accessibilityRole="text"
+        accessible={true}
+        allowFontScaling={false}
         style={
           Array [
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textTransform": "uppercase",
-            },
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
             undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textTransform": "uppercase",
+              },
+              undefined,
+            ],
           ]
+        }
+      >
+        homeScreen.selectLocation.nearby undefined
+      </Text>
+    </View>
+    <View
+      accessibilityRole="imagebutton"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 26,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "transform": Array [
+              Object {
+                "rotate": "180deg",
+              },
+            ],
+            "width": 26,
+          }
         }
       />
     </View>
-    <div />
   </View>
   <View>
     <Text>

@@ -231,6 +231,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         />
         <View style={$buttonsContainer}>
           <Button
+            testID="saveButton"
             accessible
             accessibilityLabel="save button"
             accessibilityHint="save location"

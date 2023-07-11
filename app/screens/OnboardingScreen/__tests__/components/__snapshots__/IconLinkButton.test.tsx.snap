@@ -75,7 +75,31 @@ exports[`renders correctly 1`] = `
         }
       }
     />
-    <div />
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 29,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#FFFFFF",
+            "width": 29,
+          }
+        }
+        tintColor="#FFFFFF"
+      />
+    </View>
   </View>
 </View>
 `;

@@ -99,7 +99,31 @@ exports[`renders correctly 1`] = `
               }
             }
           />
-          <div />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#DEDDDE",
+                  "width": 29,
+                }
+              }
+              tintColor="#DEDDDE"
+            />
+          </View>
         </View>
       </View>
       <View
@@ -178,22 +202,66 @@ exports[`renders correctly 1`] = `
               }
             }
           />
-          <div />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#DEDDDE",
+                  "width": 29,
+                }
+              }
+              tintColor="#DEDDDE"
+            />
+          </View>
         </View>
       </View>
     </View>
-    <div
+    <Text
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "#DEDDDE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 52,
-          "lineHeight": 63,
-          "paddingBottom": 35,
-          "textAlign": "left",
-        }
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 52,
+            "lineHeight": 63,
+            "paddingBottom": 35,
+            "textAlign": "left",
+          },
+        ]
       }
-    />
+    >
+      settings.locationSettingsData.addNewLocation.generalTitleAdd undefined
+    </Text>
     <View
       pointerEvents="box-none"
       style={
@@ -225,7 +293,40 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        <div />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 80,
+              "justifyContent": "center",
+              "marginStart": 35,
+            }
+          }
+        >
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 40,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#ADADAE",
+                "width": 40,
+              }
+            }
+            tintColor="#ADADAE"
+          />
+        </View>
         <TextInput
           allowFontScaling={false}
           clearButtonMode="never"
@@ -266,7 +367,129 @@ exports[`renders correctly 1`] = `
         />
       </View>
     </View>
-    <div />
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 40,
+              "flexDirection": "row",
+              "height": 80,
+              "overflow": "hidden",
+            },
+            false,
+            undefined,
+            Object {
+              "paddingStart": 0,
+            },
+            undefined,
+            Object {
+              "backgroundColor": "#1E2022",
+              "borderColor": "transparent",
+              "borderRadius": 40,
+              "borderWidth": 2,
+              "height": 80,
+              "marginBottom": 26,
+              "overflow": "hidden",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 80,
+              "justifyContent": "center",
+              "marginStart": 35,
+            }
+          }
+        >
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 40,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#ADADAE",
+                "width": 40,
+              }
+            }
+            tintColor="#ADADAE"
+          />
+        </View>
+        <TextInput
+          accessibilityHint="location title input"
+          accessibilityLabel="location title input"
+          accessibilityRole="text"
+          accessible={true}
+          allowFontScaling={false}
+          autoCapitalize="none"
+          autoCorrect={false}
+          editable={true}
+          onChangeText={[Function]}
+          placeholder="settings.locationSettingsData.addNewLocation.nameInputPlaceholder undefined"
+          placeholderTextColor="#ADADAE"
+          style={
+            Array [
+              Object {
+                "alignSelf": "stretch",
+                "color": "#DEDDDE",
+                "flex": 1,
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 26,
+                "height": 80,
+                "marginHorizontal": 17,
+                "paddingHorizontal": 0,
+                "paddingVertical": 0,
+                "textAlignVertical": "center",
+              },
+              false,
+              undefined,
+              undefined,
+              undefined,
+            ]
+          }
+          textAlignVertical="top"
+          underlineColorAndroid="rgba(0, 0, 0, 0)"
+          value=""
+        />
+      </View>
+    </View>
     <View
       style={
         Object {
@@ -276,7 +499,97 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div />
+      <View
+        accessibilityHint="save location"
+        accessibilityLabel="save button"
+        accessibilityRole="button"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 6,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "minHeight": 80,
+                "overflow": "hidden",
+                "paddingHorizontal": 17,
+                "paddingVertical": 17,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderColor": "#B6ACA6",
+                "borderWidth": 1,
+              },
+            ],
+            Object {
+              "backgroundColor": "#0B3D91",
+              "borderRadius": 40,
+              "borderWidth": 0,
+              "height": 80,
+              "marginVertical": 35,
+              "width": "100%",
+            },
+            false,
+          ]
+        }
+        testID="saveButton"
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Array [
+                Object {
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 23,
+                  "lineHeight": 29,
+                  "textAlign": "center",
+                  "zIndex": 2,
+                },
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                },
+                false,
+              ],
+            ]
+          }
+        >
+          settings.locationSettingsData.addNewLocation.saveButton undefined
+        </Text>
+      </View>
     </View>
   </View>
 </div>

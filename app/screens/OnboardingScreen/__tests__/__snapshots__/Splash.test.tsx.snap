@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Splash renders correctly 1`] = `
 <div>
   <View
     accessibilityIgnoresInvertColors={true}
@@ -87,18 +87,42 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div
+      <Text
+        accessibilityHint="Splash screen title"
+        accessibilityLabel="Splash title"
+        accessibilityRole="text"
+        accessible={true}
+        allowFontScaling={false}
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "HelveticaNeue-Bold",
-            "fontSize": 69,
-            "lineHeight": 92,
-            "marginLeft": 52,
-            "width": 315,
-          }
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "HelveticaNeue-Bold",
+              "fontSize": 69,
+              "lineHeight": 92,
+              "marginLeft": 52,
+              "width": 315,
+            },
+          ]
         }
-      />
+      >
+        onboarding.splash.title undefined
+      </Text>
       <View
         style={
           Object {
@@ -110,97 +134,46 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <div
-          style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 35,
-              "lineHeight": 42,
-              "width": "85%",
-            }
-          }
-        />
-        <View
-          accessibilityHint="Navigates to the next screen"
-          accessibilityLabel="Arrow right button"
-          accessibilityRole="imagebutton"
+        <Text
+          accessibilityHint="Splash screen subtitle"
+          accessibilityLabel="Splash subtitle"
+          accessibilityRole="text"
           accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+          allowFontScaling={false}
           style={
             Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E2022",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              },
-              Object {
-                "height": 92,
-                "width": 92,
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 42,
+                "width": "85%",
               },
             ]
           }
         >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#1E2022",
-                    "borderRadius": 143,
-                    "display": "flex",
-                    "height": 60,
-                    "justifyContent": "center",
-                    "overflow": "hidden",
-                    "position": "relative",
-                    "width": 60,
-                  },
-                  undefined,
-                  undefined,
-                ],
-              ]
-            }
-          >
-            <ViewManagerAdapter_ExpoBlurView
-              proxiedProperties={
-                Object {
-                  "intensity": 0,
-                  "tint": "default",
-                }
-              }
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <div />
-          </View>
-        </View>
+          onboarding.splash.subTitle undefined
+        </Text>
+        <button
+          onClick={[Function]}
+        >
+          back
+        </button>
       </View>
     </View>
   </View>

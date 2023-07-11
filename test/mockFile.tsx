@@ -9,12 +9,8 @@ export default {
 }
 
 jest.mock('../app/components', () => ({
+  ...Object.assign({}, jest.requireActual('../app/components')),
   Screen: ({children}) => <div>{children}</div>,
-  Icon: ({children}) => <div>{children}</div>,
-  Text: ({text, style }) => <div style={style}>{text}</div>,
-  TextField: ({children}) => <div>{children}</div>,
-  Button: ({children}) => <div>{children}</div>,
-  Toggle: ({children}) => <div>{children}</div>,
 }))
 jest.mock('../app/screens/MainScreen/components/Globe', () => ({ Globe: () => <div /> }))
 jest.mock('../app/screens/MainScreen/components/ARView', () => ({ ARView: () => <div /> }))
@@ -77,6 +73,7 @@ jest.mock("@react-native-firebase/analytics", () => ({}))
 jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),
+    sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),
     getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [{ 
       appears: "10",
       date: "date",

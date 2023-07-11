@@ -4,8 +4,39 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import { FeedSearchResultItem } from "../../components/FeedSearchResultItem"
+import { render, fireEvent } from "@testing-library/react-native"
 
 it("renders correctly", () => {
   const tree = renderer.create(<FeedSearchResultItem title="title" image="" type="" />).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+describe("FeedSearchResultItem", () => {
+  const mockOnPress = jest.fn()
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it("renders correctly", () => {
+    const tree = renderer.create(<FeedSearchResultItem title="title" image="" type="" />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it("calls onPress when the item is pressed", () => {
+    const { getByLabelText } = render(
+      <FeedSearchResultItem
+        title="Sample Title"
+        image="https://example.com/sample-image.jpg"
+        type="Sample Type"
+        tags={["Tag1", "Tag2"]}
+        onPress={mockOnPress}
+      />
+    )
+
+    const pressableItem = getByLabelText("pressable feed item")
+    fireEvent.press(pressableItem)
+
+    expect(mockOnPress).toHaveBeenCalledTimes(1)
+  })
 })

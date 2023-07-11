@@ -28,7 +28,31 @@ exports[`ListItem renders correctly 1`] = `
   }
 >
   <View>
-    <div />
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#ADADAE",
+            "width": 35,
+          }
+        }
+        tintColor="#ADADAE"
+      />
+    </View>
   </View>
   <View
     style={
@@ -56,35 +80,99 @@ exports[`ListItem renders correctly 1`] = `
         }
       }
     >
-      <div
+      <Text
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        numberOfLines={1}
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "Helvetica Neue",
-            "fontSize": 26,
-            "lineHeight": 32,
-            "width": "95%",
-          }
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 32,
+              "width": "95%",
+            },
+          ]
         }
       >
         Test title
-      </div>
-      <div
+      </Text>
+      <Text
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        numberOfLines={1}
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "Helvetica Neue",
-            "fontSize": 23,
-            "lineHeight": 27,
-            "paddingTop": 7,
-            "width": "95%",
-          }
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 23,
+              "lineHeight": 27,
+              "paddingTop": 7,
+              "width": "95%",
+            },
+          ]
         }
       >
         Test subtitle
-      </div>
+      </Text>
     </View>
-    <div />
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#353739",
+            "width": 35,
+          }
+        }
+        tintColor="#353739"
+      />
+    </View>
   </View>
 </View>
 `;

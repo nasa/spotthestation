@@ -2,41 +2,226 @@
 
 exports[`renders correctly 1`] = `
 Array [
-  <div
+  <Text
+    accessibilityHint="location title"
+    accessibilityLabel="location title"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#DEDDDE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 52,
-        "lineHeight": 63,
-        "paddingBottom": 35,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 52,
+          "lineHeight": 63,
+          "paddingBottom": 35,
+        },
+      ]
     }
-  />,
-  <div
+  >
+    onboarding.completeProfile.location.tittle undefined
+  </Text>,
+  <Text
+    accessibilityHint="location subtitle"
+    accessibilityLabel="location subtitle"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#ADADAE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 26,
-        "lineHeight": 32,
-        "paddingBottom": 52,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 26,
+          "lineHeight": 32,
+          "paddingBottom": 52,
+        },
+      ]
     }
-  />,
-  <div />,
-  <div
+  >
+    onboarding.completeProfile.location.subtitle undefined
+  </Text>,
+  <View
+    accessibilityHint="detecting current location"
+    accessibilityLabel="detect button"
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
-      Object {
-        "color": "#ADADAE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 23,
-        "lineHeight": 27,
-        "marginVertical": 17,
-        "textAlign": "center",
-      }
+      Array [
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 6,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "minHeight": 80,
+            "overflow": "hidden",
+            "paddingHorizontal": 17,
+            "paddingVertical": 17,
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#B6ACA6",
+            "borderWidth": 1,
+          },
+        ],
+        Object {
+          "backgroundColor": "#0B3D91",
+          "borderRadius": 40,
+          "borderWidth": 0,
+          "height": 80,
+          "width": "100%",
+        },
+        false,
+      ]
     }
-  />,
+  >
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 35,
+            "marginEnd": 12,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "width": 35,
+            "zIndex": 1,
+          }
+        }
+      />
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "flexGrow": 0,
+              "flexShrink": 1,
+              "fontFamily": "HelveticaNeue-Medium",
+              "fontSize": 23,
+              "lineHeight": 29,
+              "textAlign": "center",
+              "zIndex": 2,
+            },
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "HelveticaNeue-Medium",
+              "fontSize": 26,
+              "lineHeight": 30,
+            },
+            false,
+          ],
+        ]
+      }
+    >
+      onboarding.completeProfile.location.detectButton undefined
+    </Text>
+  </View>,
+  <Text
+    accessibilityHint="or"
+    accessibilityLabel="or"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
+    style={
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#ADADAE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 23,
+          "lineHeight": 27,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    onboarding.completeProfile.location.orLabel undefined
+  </Text>,
   <View
     pointerEvents="box-none"
     style={
@@ -67,7 +252,40 @@ Array [
         ]
       }
     >
-      <div />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 80,
+            "justifyContent": "center",
+            "marginStart": 35,
+          }
+        }
+      >
+        <RCTImageView
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            Array [
+              Object {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            Object {
+              "height": 40,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "tintColor": "#ADADAE",
+              "width": 40,
+            }
+          }
+          tintColor="#ADADAE"
+        />
+      </View>
       <TextInput
         allowFontScaling={false}
         clearButtonMode="while-editing"

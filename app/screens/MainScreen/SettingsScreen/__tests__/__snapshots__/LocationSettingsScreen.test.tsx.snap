@@ -54,33 +54,97 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <div />
-          <div
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#DEDDDE",
+                  "width": 35,
+                }
+              }
+              tintColor="#DEDDDE"
+            />
+          </View>
+          <Text
+            allowFontScaling={false}
             style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                  "paddingBottom": 0,
+                  "paddingLeft": 7,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            settings.locationSettingsData.backToSettings undefined
+          </Text>
+        </View>
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
               Object {
                 "color": "#DEDDDE",
                 "fontFamily": "Helvetica Neue",
-                "fontSize": 26,
-                "lineHeight": 32,
-                "paddingBottom": 0,
-                "paddingLeft": 7,
+                "fontSize": 52,
+                "lineHeight": 63,
+                "paddingBottom": 35,
                 "textAlign": "left",
-              }
-            }
-          />
-        </View>
-        <div
-          style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 52,
-              "lineHeight": 63,
-              "paddingBottom": 35,
-              "textAlign": "left",
-            }
+              },
+            ]
           }
-        />
+        >
+          settings.locationSettingsData.generalTitle undefined
+        </Text>
         <View
           accessibilityHint="pressable settings item"
           accessibilityLabel="pressable settings item"
@@ -126,7 +190,31 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            <div />
+            <View>
+              <RCTImageView
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  Array [
+                    Object {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "height": 35,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#ADADAE",
+                    "width": 35,
+                  }
+                }
+                tintColor="#ADADAE"
+              />
+            </View>
             <View
               style={
                 Object {
@@ -136,19 +224,69 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <div
+              <Text
+                accessibilityHint="settings.locationSettingsData.locationPermission"
+                accessibilityLabel="title"
+                accessibilityRole="text"
+                accessible={true}
+                allowFontScaling={false}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Helvetica Neue",
+                      "fontSize": 35,
+                      "lineHeight": 42,
+                      "width": "95%",
+                    },
+                  ]
+                }
+              >
+                settings.locationSettingsData.locationPermission undefined
+              </Text>
+            </View>
+            <View>
+              <RCTImageView
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  Array [
+                    Object {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
                 style={
                   Object {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Helvetica Neue",
-                    "fontSize": 35,
-                    "lineHeight": 42,
-                    "width": "95%",
+                    "height": 35,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#353739",
+                    "width": 35,
                   }
                 }
+                tintColor="#353739"
               />
             </View>
-            <div />
           </View>
         </View>
       </View>
@@ -242,7 +380,31 @@ exports[`renders correctly 1`] = `
           }
         }
       />
-      <div />
+      <View>
+        <RCTImageView
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            Array [
+              Object {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            Object {
+              "height": 40,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "tintColor": "#DEDDDE",
+              "width": 40,
+            }
+          }
+          tintColor="#DEDDDE"
+        />
+      </View>
     </View>
   </View>
   <Modal

@@ -37,20 +37,64 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
-    <div
-      style={
-        Object {
-          "color": "#DEDDDE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 26,
-          "lineHeight": 35,
-          "paddingBottom": 0,
-          "paddingLeft": 7,
-          "textAlign": "left",
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
         }
+        style={
+          Object {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingBottom": 0,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
       }
-    />
+    >
+      resources.header undefined
+    </Text>
   </View>
   <View
     style={

@@ -10,7 +10,45 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <div />
+  <View
+    accessibilityHint="close modal"
+    accessibilityLabel="x button"
+    accessibilityRole="button"
+    accessible={true}
+    style={
+      Object {
+        "padding": 26,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 5,
+      }
+    }
+  >
+    <RCTImageView
+      internal_analyticTag={null}
+      resizeMode="contain"
+      source={
+        Array [
+          Object {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        Object {
+          "height": 52,
+          "overflow": "hidden",
+          "resizeMode": "contain",
+          "tintColor": "#ADADAE",
+          "width": 52,
+        }
+      }
+      tintColor="#ADADAE"
+    />
+  </View>
   <View
     style={
       Object {
@@ -20,7 +58,29 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div />
+    <View>
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 86,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "width": 86,
+          }
+        }
+      />
+    </View>
   </View>
   <View
     style={
@@ -31,40 +91,96 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    <div
+    <Text
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "#ADADAE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 26,
-          "lineHeight": 32,
-          "paddingBottom": 35,
-          "textAlign": "center",
-        }
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 32,
+            "paddingBottom": 35,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      settings.locationSettingsData.removeLocation.question undefined
+    </Text>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#DEDDDE",
+            "fontFamily": "HelveticaNeue-Medium",
+            "fontSize": 26,
+            "lineHeight": 32,
+            "paddingBottom": 7,
+            "textAlign": "center",
+          },
+        ]
       }
     />
-    <div
+    <Text
+      allowFontScaling={false}
       style={
-        Object {
-          "color": "#DEDDDE",
-          "fontFamily": "HelveticaNeue-Medium",
-          "fontSize": 26,
-          "lineHeight": 32,
-          "paddingBottom": 7,
-          "textAlign": "center",
-        }
-      }
-    />
-    <div
-      style={
-        Object {
-          "color": "#ADADAE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 23,
-          "lineHeight": 27,
-          "paddingBottom": 52,
-          "textAlign": "center",
-        }
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Object {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 23,
+            "lineHeight": 27,
+            "paddingBottom": 52,
+            "textAlign": "center",
+          },
+        ]
       }
     />
     <View
@@ -76,8 +192,189 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div />
-      <div />
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 6,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "minHeight": 80,
+                "overflow": "hidden",
+                "paddingHorizontal": 17,
+                "paddingVertical": 17,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderColor": "#B6ACA6",
+                "borderWidth": 1,
+              },
+            ],
+            Object {
+              "backgroundColor": "#353739",
+              "borderRadius": 40,
+              "borderWidth": 0,
+              "height": 92,
+              "marginBottom": 35,
+              "marginTop": 35,
+              "width": "40%",
+            },
+            false,
+          ]
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Array [
+                Object {
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 23,
+                  "lineHeight": 29,
+                  "textAlign": "center",
+                  "zIndex": 2,
+                },
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                },
+                false,
+              ],
+            ]
+          }
+        >
+          settings.locationSettingsData.removeLocation.cancelButton undefined
+        </Text>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 6,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "minHeight": 80,
+                "overflow": "hidden",
+                "paddingHorizontal": 17,
+                "paddingVertical": 17,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderColor": "#B6ACA6",
+                "borderWidth": 1,
+              },
+            ],
+            Array [
+              Object {
+                "backgroundColor": "#353739",
+                "borderRadius": 40,
+                "borderWidth": 0,
+                "height": 92,
+                "marginBottom": 35,
+                "marginTop": 35,
+                "width": "40%",
+              },
+              Object {
+                "backgroundColor": "#FC3D21",
+              },
+            ],
+            false,
+          ]
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Array [
+                Object {
+                  "flexGrow": 0,
+                  "flexShrink": 1,
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 23,
+                  "lineHeight": 29,
+                  "textAlign": "center",
+                  "zIndex": 2,
+                },
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "HelveticaNeue-Medium",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                },
+                false,
+              ],
+            ]
+          }
+        >
+          settings.locationSettingsData.removeLocation.removeButton undefined
+        </Text>
+      </View>
     </View>
   </View>
 </View>

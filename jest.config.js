@@ -13,7 +13,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron"],
   coveragePathIgnorePatterns: [
-    "<rootDir>/node_modules/", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron", "<rootDir>/app/navigators"
+    "<rootDir>/node_modules/", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron", "<rootDir>/app/navigators", "<rootDir>/app/components"
   ],
   testEnvironment: "jsdom",
   setupFiles: ["<rootDir>/test/setup.ts"],

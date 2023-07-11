@@ -2,17 +2,41 @@
 
 exports[`renders correctly 1`] = `
 Array [
-  <div
+  <Text
+    accessibilityHint="detecting current location"
+    accessibilityLabel="detecting"
+    accessibilityRole="text"
+    accessible={true}
+    allowFontScaling={false}
     style={
-      Object {
-        "color": "#DEDDDE",
-        "fontFamily": "Helvetica Neue",
-        "fontSize": 52,
-        "lineHeight": 60,
-        "paddingBottom": 52,
-      }
+      Array [
+        Object {},
+        Array [
+          Object {
+            "fontSize": 23,
+            "lineHeight": 35,
+          },
+          Object {
+            "fontFamily": "Helvetica Neue",
+          },
+          Object {
+            "color": "#191015",
+          },
+        ],
+        undefined,
+        undefined,
+        Object {
+          "color": "#DEDDDE",
+          "fontFamily": "Helvetica Neue",
+          "fontSize": 52,
+          "lineHeight": 60,
+          "paddingBottom": 52,
+        },
+      ]
     }
-  />,
+  >
+    onboarding.completeProfile.notification.tittle undefined
+  </Text>,
   <View
     style={
       Object {
@@ -21,7 +45,35 @@ Array [
       }
     }
   >
-    <div />
+    <View
+      style={
+        Object {
+          "marginRight": 26,
+        }
+      }
+    >
+      <RCTImageView
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          Array [
+            Object {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          Object {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "width": 35,
+          }
+        }
+      />
+    </View>
     <View
       style={
         Object {
@@ -45,30 +97,272 @@ Array [
           }
         }
       >
-        <div
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 23,
-              "lineHeight": 30,
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 23,
+                "lineHeight": 30,
+              },
+            ]
           }
-        />
-        <div
+        >
+          onboarding.completeProfile.notification.label undefined
+        </Text>
+        <Text
+          allowFontScaling={false}
           style={
-            Object {
-              "color": "#ADADAE",
-              "fontFamily": "HelveticaNeue-Light",
-              "fontSize": 23,
-              "lineHeight": 30,
-            }
+            Array [
+              Object {},
+              Array [
+                Object {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                Object {
+                  "fontFamily": "Helvetica Neue",
+                },
+                Object {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              Object {
+                "color": "#ADADAE",
+                "fontFamily": "HelveticaNeue-Light",
+                "fontSize": 23,
+                "lineHeight": 30,
+              },
+            ]
           }
-        />
+        >
+          onboarding.completeProfile.notification.tip undefined
+        </Text>
       </View>
-      <div />
+      <View
+        accessibilityHint="toggle notifications"
+        accessibilityLabel="switch button"
+        accessibilityRole="switch"
+        accessibilityState={
+          Object {
+            "checked": true,
+            "disabled": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderWidth": 3,
+                    "flexDirection": "row",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "height": 35,
+                    "justifyContent": "space-between",
+                    "overflow": "hidden",
+                    "width": 35,
+                  },
+                  Object {
+                    "borderRadius": 23,
+                    "borderWidth": 0,
+                    "height": 40,
+                    "width": 66,
+                  },
+                ],
+                Object {
+                  "backgroundColor": "#353739",
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              animatedStyle={
+                Object {
+                  "value": Object {
+                    "opacity": 1,
+                  },
+                }
+              }
+              collapsable={false}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#0B3D91",
+                  "borderColor": "rgba(0, 0, 0, 0)",
+                  "height": "100%",
+                  "opacity": 1,
+                  "overflow": "hidden",
+                  "paddingEnd": 6,
+                  "paddingStart": 6,
+                  "position": "absolute",
+                  "width": "100%",
+                }
+              }
+            />
+            <View
+              animatedStyle={
+                Object {
+                  "value": Object {
+                    "marginStart": -35,
+                    "start": "100%",
+                  },
+                }
+              }
+              collapsable={false}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 17,
+                  "height": 29,
+                  "marginStart": -35,
+                  "position": "absolute",
+                  "start": "100%",
+                  "width": 29,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
     </View>
   </View>,
-  <div />,
+  <View
+    accessibilityHint="navigate to location detection"
+    accessibilityLabel="next button"
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 6,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "minHeight": 80,
+            "overflow": "hidden",
+            "paddingHorizontal": 17,
+            "paddingVertical": 17,
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#B6ACA6",
+            "borderWidth": 1,
+          },
+        ],
+        Object {
+          "backgroundColor": "#0B3D91",
+          "borderRadius": 40,
+          "borderWidth": 0,
+          "height": 80,
+          "width": "100%",
+        },
+        false,
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {},
+          Array [
+            Object {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            Object {
+              "fontFamily": "Helvetica Neue",
+            },
+            Object {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "flexGrow": 0,
+              "flexShrink": 1,
+              "fontFamily": "HelveticaNeue-Medium",
+              "fontSize": 23,
+              "lineHeight": 29,
+              "textAlign": "center",
+              "zIndex": 2,
+            },
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "HelveticaNeue-Medium",
+              "fontSize": 26,
+              "lineHeight": 30,
+            },
+            false,
+          ],
+        ]
+      }
+    >
+      onboarding.completeProfile.notification.nextButton undefined
+    </Text>
+  </View>,
 ]
 `;

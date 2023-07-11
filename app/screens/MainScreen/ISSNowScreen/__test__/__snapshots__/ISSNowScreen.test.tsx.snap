@@ -96,7 +96,31 @@ exports[`renders correctly 1`] = `
             }
           }
         />
-        <div />
+        <View>
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 29,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#FFFFFF",
+                "width": 29,
+              }
+            }
+            tintColor="#FFFFFF"
+          />
+        </View>
       </View>
     </View>
     <View
@@ -107,33 +131,71 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <div
+      <Text
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        numberOfLines={1}
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "Helvetica Neue",
-            "fontSize": 29,
-            "lineHeight": 35,
-            "textAlign": "center",
-            "width": "100%",
-          }
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
         }
       />
-      <div
+      <Text
+        allowFontScaling={false}
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "Helvetica Neue",
-            "fontSize": 19,
-            "lineHeight": 23,
-            "textAlign": "center",
-            "textTransform": "uppercase",
-            "width": "100%",
-          }
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
         }
       >
         12 Dec 2012 10:10:10
-      </div>
+      </Text>
     </View>
     <View
       accessibilityHint="change location"
@@ -209,7 +271,31 @@ exports[`renders correctly 1`] = `
             }
           }
         />
-        <div />
+        <View>
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 29,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#FFFFFF",
+                "width": 29,
+              }
+            }
+            tintColor="#FFFFFF"
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -375,29 +461,47 @@ exports[`renders correctly 1`] = `
                 }
               }
             />
-            <div
+            <Text
+              allowFontScaling={false}
               style={
                 Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 40,
-                    "lineHeight": 40,
-                  },
+                  Object {},
                   Array [
                     Object {
-                      "fontFamily": "HelveticaNeue-Medium",
-                      "fontSize": 17,
-                      "lineHeight": 20,
+                      "fontSize": 23,
+                      "lineHeight": 35,
                     },
                     Object {
-                      "color": "#0B3D91",
+                      "fontFamily": "Helvetica Neue",
                     },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    Array [
+                      Object {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                      Object {
+                        "color": "#0B3D91",
+                      },
+                    ],
                   ],
                 ]
               }
             >
               2D
-            </div>
+            </Text>
           </View>
         </View>
         <View
@@ -478,24 +582,42 @@ exports[`renders correctly 1`] = `
                 }
               }
             />
-            <div
+            <Text
+              allowFontScaling={false}
               style={
                 Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 40,
-                    "lineHeight": 40,
-                  },
-                  Object {
-                    "fontFamily": "HelveticaNeue-Medium",
-                    "fontSize": 17,
-                    "lineHeight": 20,
-                  },
+                  Object {},
+                  Array [
+                    Object {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    Object {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    Object {
+                      "fontFamily": "HelveticaNeue-Medium",
+                      "fontSize": 17,
+                      "lineHeight": 20,
+                    },
+                  ],
                 ]
               }
             >
               3D
-            </div>
+            </Text>
           </View>
         </View>
       </View>
@@ -597,20 +719,38 @@ exports[`renders correctly 1`] = `
               }
             }
           />
-          <div
+          <Text
+            allowFontScaling={false}
             style={
               Array [
-                Object {
-                  "color": "#FFFFFF",
-                  "fontSize": 40,
-                  "lineHeight": 40,
-                },
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
                 undefined,
+                undefined,
+                Array [
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontSize": 40,
+                    "lineHeight": 40,
+                  },
+                  undefined,
+                ],
               ]
             }
           >
             +
-          </div>
+          </Text>
         </View>
       </View>
       <View
@@ -699,20 +839,38 @@ exports[`renders correctly 1`] = `
               }
             }
           />
-          <div
+          <Text
+            allowFontScaling={false}
             style={
               Array [
-                Object {
-                  "color": "#FFFFFF",
-                  "fontSize": 40,
-                  "lineHeight": 40,
-                },
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
                 undefined,
+                undefined,
+                Array [
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontSize": 40,
+                    "lineHeight": 40,
+                  },
+                  undefined,
+                ],
               ]
             }
           >
             -
-          </div>
+          </Text>
         </View>
       </View>
     </View>
