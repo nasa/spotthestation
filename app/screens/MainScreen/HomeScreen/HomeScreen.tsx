@@ -391,15 +391,13 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
-      {pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
-        <Globe
-          zoom={1.5}
-          marker={location}
-          pastIssPathCoords={pastIssPathCoords}
-          futureIssPathCoords={futureIssPathCoords}
-          issMarkerPosition={issMarkerPosition}
-        />
-      )}
+      <Globe
+        zoom={1.5}
+        marker={location}
+        pastIssPathCoords={pastIssPathCoords}
+        futureIssPathCoords={futureIssPathCoords}
+        issMarkerPosition={issMarkerPosition}
+      />
       <FlatMap
         style={$flatMap}
         issPathCoords={issPathCoords}

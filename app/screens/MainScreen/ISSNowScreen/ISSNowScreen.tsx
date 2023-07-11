@@ -268,7 +268,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         />
       </View>
       <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
-        {isGlobe && pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && (
+        {isGlobe && (
           <Globe
             key={isFullScreen.toString() + isLandscape.toString()}
             pastIssPathCoords={pastIssPathCoords}

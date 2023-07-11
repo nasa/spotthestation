@@ -69,23 +69,59 @@ export function Globe({
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
   const futurehRef = useRef<Line>(null)
+  const sceneRef = useRef<Scene>(null)
 
   useEffect(() => {
-    if (issMarkerRef.current) {
-      const [x, y, z] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
-      issMarkerRef.current.position.set(x, y, z)
+    async function updateMarker() {
+      if (!issMarkerPosition) {
+        if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
+        return
+      }
+
+      if (!issMarkerRef.current) {
+        issMarkerRef.current = await createISSMarker(issMarkerPosition)
+      } else {
+        const [x, y, z] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
+        issMarkerRef.current.position.set(x, y, z)
+      }
+
+      if (!sceneRef.current) return
+      if (!sceneRef.current.getObjectById(issMarkerRef.current.id)) sceneRef.current?.add(issMarkerRef.current)
     }
-  }, [issMarkerPosition])
+
+    updateMarker().catch(() => null)
+  }, [issMarkerPosition, sceneRef.current])
 
   useEffect(() => {
-    if (pointRef.current) {
-      const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
-      pointRef.current.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
+    async function updateMarker() {
+      if (!marker) {
+        if (pointRef.current) sceneRef.current.remove(pointRef.current)
+        return
+      }
+
+      if (!pointRef.current) {
+        pointRef.current = await createMarker()
+      } else {
+        const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
+        pointRef.current.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
+      }
+
+      if (!sceneRef.current) return
+      if (!sceneRef.current.getObjectById(pointRef.current.id)) sceneRef.current?.add(pointRef.current)
     }
-  }, [marker])
+
+    updateMarker().catch(() => null)
+  }, [marker, sceneRef.current])
 
   useEffect(() => {
-    if (futurehRef.current && pastRef.current) {
+    if (pastIssPathCoords.length === 0 || futureIssPathCoords.length === 0) {
+      if (futurehRef.current) sceneRef.current.remove(futurehRef.current)
+      if (pastRef.current) sceneRef.current.remove(pastRef.current)
+      return
+    }
+
+    if (!futurehRef.current || !pastRef.current) createOrbit()
+    else {
       const pastCurve = new CatmullRomCurve3(
         pastIssPathCoords.map((coords) => {
           return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
@@ -103,7 +139,11 @@ export function Globe({
 
       futurehRef.current.computeLineDistances()
     }
-  }, [pastIssPathCoords, futureIssPathCoords])
+
+    if (!sceneRef.current) return
+    if (!sceneRef.current.getObjectById(pastRef.current.id)) sceneRef.current?.add(pastRef.current)
+    if (!sceneRef.current.getObjectById(futurehRef.current.id)) sceneRef.current?.add(futurehRef.current)
+  }, [pastIssPathCoords, futureIssPathCoords, sceneRef.current])
 
   useEffect(() => {
     if (camera) {
@@ -131,7 +171,7 @@ export function Globe({
     return mesh
   }
 
-  const createISSMarker = async (position: [number, number]) => {
+  const createISSMarker = async (position: [number, number] = [0, 0]) => {
     const uri = await copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
@@ -221,6 +261,7 @@ export function Globe({
 
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
+    sceneRef.current = scene
     const camera = new PerspectiveCamera(
       75,
       gl.drawingBufferWidth / gl.drawingBufferHeight,
@@ -240,22 +281,6 @@ export function Globe({
 
     const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true, false)
     const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "world-map", false, true)
-
-    if (marker) {
-      const point = await createMarker()
-      pointRef.current = point
-      scene.add(point)
-    }
-
-    if (pastIssPathCoords.length > 0 && futureIssPathCoords.length > 0 && issMarkerPosition) {
-      scene.add(...createOrbit())
-    }
-
-    if (issMarkerPosition) {
-      const marker = await createISSMarker(issMarkerPosition)
-      issMarkerRef.current = marker
-      scene.add(marker)
-    }
 
     camera.add(ambient)
     scene.add(globe)
