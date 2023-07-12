@@ -1,6 +1,7 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import RootStoreActions from "./actions"
 import { Location } from "./Location"
+import { Modal } from "./Modal"
 
 /**
  * A RootStore model.
@@ -15,6 +16,8 @@ export const RootStoreModel = types
     trajectoryError: types.optional(types.boolean, false),
     issDataLoaded: types.optional(types.boolean, false),
     sightingsLoaded: types.optional(types.boolean, false),
+    currentModal: types.maybeNull(Modal),
+    modalsQueue: types.optional(types.array(types.string), []),
   })
   .props({})
   .actions(RootStoreActions)

@@ -7,7 +7,6 @@ import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
-import Modal from "react-native-modal"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
 import { colors, scale } from "../../../theme"
@@ -27,6 +26,7 @@ import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
 import { InitLoader } from "./InitLoader"
 import { TrajectoryError } from "./TrajectoryError"
+import MyModal from "./MyModal"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -62,12 +62,12 @@ export const HomeScreen = observer(function HomeScreen() {
     sightingsLoaded,
     issDataLoaded,
     trajectoryError,
-    setTrajectoryError
+    setTrajectoryError,
+    requestCloseModal,
+    requestOpenModal,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
 
-  const [isLocation, setIsLocation] = useState(false)
-  const [isSightings, setIsSightings] = useState(false)
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
     date: null,
     visible: 0,
@@ -79,8 +79,6 @@ export const HomeScreen = observer(function HomeScreen() {
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
-  const [coachVisible, setCoachVisible] = useState(false)
-  const [isTrajectoryError, setIsTrajectoryError] = useState(false)
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({
@@ -149,18 +147,28 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [result, startCountdown, timeDiff])
 
   const getCoach = async () => {
-    setCoachVisible(!(await storage.load("coachCompleted")))
+    const coachCompleted = await storage.load("coachCompleted")
+    if (coachCompleted) requestCloseModal("coach")
+    else requestOpenModal("coach")
   }
+
+  useEffect(() => {
+    if (initLoading) requestOpenModal("loader")
+    else requestCloseModal("loader")
+  }, [initLoading])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   useEffect(() => {
     if (initLoading && sightingsLoaded && issDataLoaded) {
       console.log("initialized")
-
       setInitLoading(false)
-      // trajectoryError && setTimeout(() => { setIsTrajectoryError(true)}, 1000)
-      setTimeout(() => getCoach().catch((e) => console.log(e)), 1000)
+      getCoach().catch((e) => console.log(e))
     }
-  }, [issDataLoaded, initLoading, sightingsLoaded, trajectoryError])
+  }, [issDataLoaded, initLoading, sightingsLoaded])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -260,17 +268,15 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [location?.[0], location?.[1]])
 
   const handleSetCoachCompleted = async () => {
-    setCoachVisible(false)
+    requestCloseModal("coach")
     await storage.save("coachCompleted", true)
   }
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
-    setIsLocation(false)
-    setTimeout(() => {
-      setInitLoading(true)
-      setIssDataLoaded(false)
-      setSightingsLoaded(false)
-    }, 1000)
+    requestCloseModal("location")
+    setInitLoading(true)
+    setIssDataLoaded(false)
+    setSightingsLoaded(false)
     setSelectedLocation(location).catch((e) => console.log(e))
     await storage.save("selectedLocation", location)
   }, [])
@@ -382,15 +388,15 @@ export const HomeScreen = observer(function HomeScreen() {
     >
       <HomeHeader
         user={{ firstName: "User", address }}
-        onLocationPress={() => setIsLocation(true)}
-        onSightingsPress={() => setIsSightings(true)}
+        onLocationPress={() => requestOpenModal("location")}
+        onSightingsPress={() => current && requestOpenModal("sightings")}
         sighting={
           currentSightning.date
             ? formatDateWithTZ(
-                currentSightning.date,
-                currentTimeZone.regionFormat === "US" ? "MMM DD, YYYY" : "DD MMM YYYY",
-                { timeZone: currentTimeZone.timeZone },
-              )
+              currentSightning.date,
+              currentTimeZone.regionFormat === "US" ? "MMM DD, YYYY" : "DD MMM YYYY",
+              { timeZone: currentTimeZone.timeZone },
+            )
             : "-"
         }
         countdown={countdown}
@@ -409,10 +415,10 @@ export const HomeScreen = observer(function HomeScreen() {
         issMarkerPosition={issMarkerPosition}
         currentLocation={location}
       />
-      <Modal
-        isVisible={isLocation}
-        onBackdropPress={() => setIsLocation(!isLocation)}
-        onSwipeComplete={() => setIsLocation(!isLocation)}
+      <MyModal
+        name="location"
+        onBackdropPress={() => requestCloseModal("location")}
+        onSwipeComplete={() => requestCloseModal("location")}
         animationIn="slideInUp"
         animationOut="slideOutDown"
         swipeDirection="down"
@@ -426,39 +432,36 @@ export const HomeScreen = observer(function HomeScreen() {
         <SelectLocation
           selectedLocation={current}
           onLocationPress={handleChangeLocation}
-          onClose={() => setIsLocation(!isLocation)}
+          onClose={() => requestCloseModal("location")}
         />
-      </Modal>
-      {isSightings && Boolean(current) && (
-        <Modal
-          isVisible={isSightings}
-          onBackdropPress={() => setIsSightings(!isSightings)}
-          onSwipeComplete={() => setIsSightings(!isSightings)}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={$modal}
-        >
-          <Sightings
-            onClose={() => setIsSightings(!isSightings)}
-            sightings={current ? current?.sightings : []}
-            onToggle={handleSetSightingNotification}
-            onToggleAll={handleSetSightingNotificationToAll}
-            isUS={currentTimeZone?.regionFormat === "US"}
-            isNotifyAll={current && current?.sightings.every((item) => item.notify)}
-            timezone={currentTimeZone?.timeZone}
-          />
-        </Modal>
-      )}
-      <Modal
-        key={`${currentLocation?.title}${sightingsLoaded.toString()}${issDataLoaded.toString()}`}
-        isVisible={initLoading}
+      </MyModal>
+      <MyModal
+        name="sightings"
+        onBackdropPress={() => requestCloseModal("sightings")}
+        onSwipeComplete={() => requestCloseModal("sightings")}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
         useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <Sightings
+          onClose={() => requestCloseModal("sightings")}
+          sightings={current ? current?.sightings : []}
+          onToggle={handleSetSightingNotification}
+          onToggleAll={handleSetSightingNotificationToAll}
+          isUS={currentTimeZone?.regionFormat === "US"}
+          isNotifyAll={current && current?.sightings.every((item) => item.notify)}
+          timezone={currentTimeZone?.timeZone}
+        />
+      </MyModal>
+      <MyModal
+        name="loader"
+        useNativeDriver={false}
         useNativeDriverForBackdrop
         backdropOpacity={0.85}
         style={[
@@ -468,11 +471,10 @@ export const HomeScreen = observer(function HomeScreen() {
         ]}
       >
         <InitLoader />
-      </Modal>
-      <Modal
-        key={`trajectoryError-${trajectoryError.toString()}`}
-        isVisible={isTrajectoryError}
-        useNativeDriver
+      </MyModal>
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
         useNativeDriverForBackdrop
         backdropOpacity={0.85}
         style={[
@@ -481,24 +483,25 @@ export const HomeScreen = observer(function HomeScreen() {
           Platform.OS === "ios" && $topInsetMargin,
         ]}
       >
-        <TrajectoryError onDismiss={() => {setTrajectoryError(false); setIsTrajectoryError(false) }} />
-      </Modal>
-      {coachVisible && !initLoading && !isTrajectoryError && (
-        <Modal
-          key={`${location?.join("-")}${trajectoryError.toString()}`}
-          isVisible={coachVisible && !initLoading && !isTrajectoryError}
-          useNativeDriver
-          useNativeDriverForBackdrop
-          backdropOpacity={0.4}
-          style={[
-            $modal,
-            { paddingHorizontal: 18, justifyContent: "flex-start" },
-            Platform.OS === "ios" && $topInsetMargin,
-          ]}
-        >
-          {renderCoachMarks()}
-        </Modal>
-      )}
+        <TrajectoryError
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
+      <MyModal
+        name="coach"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.4}
+        style={[
+          $modal,
+          { paddingHorizontal: 18, justifyContent: "flex-start" },
+          Platform.OS === "ios" && $topInsetMargin,
+        ]}
+      >
+        {renderCoachMarks()}
+      </MyModal>
     </Screen>
   )
 })

@@ -86,7 +86,8 @@ export function Globe({
       }
 
       if (!sceneRef.current) return
-      if (!sceneRef.current.getObjectById(issMarkerRef.current.id)) sceneRef.current?.add(issMarkerRef.current)
+      if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
+        sceneRef.current?.add(issMarkerRef.current)
     }
 
     updateMarker().catch(() => null)
@@ -107,7 +108,8 @@ export function Globe({
       }
 
       if (!sceneRef.current) return
-      if (!sceneRef.current.getObjectById(pointRef.current.id)) sceneRef.current?.add(pointRef.current)
+      if (!sceneRef.current.getObjectById(pointRef.current.id))
+        sceneRef.current?.add(pointRef.current)
     }
 
     updateMarker().catch(() => null)
@@ -142,7 +144,8 @@ export function Globe({
 
     if (!sceneRef.current) return
     if (!sceneRef.current.getObjectById(pastRef.current.id)) sceneRef.current?.add(pastRef.current)
-    if (!sceneRef.current.getObjectById(futurehRef.current.id)) sceneRef.current?.add(futurehRef.current)
+    if (!sceneRef.current.getObjectById(futurehRef.current.id))
+      sceneRef.current?.add(futurehRef.current)
   }, [pastIssPathCoords, futureIssPathCoords, sceneRef.current])
 
   useEffect(() => {

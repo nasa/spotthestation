@@ -96,7 +96,7 @@ export class Api {
     if (!response.ok || !response.data.length) {
       const problem = getGeneralApiProblem(response)
       if (problem) return { ok: false, data: response.data }
-      if (!response.data.length) return { ok: false, data: 'Data is empty!' }
+      if (!response.data.length) return { ok: false, data: "Data is empty!" }
     }
 
     return { ok: true, data: response.data }
@@ -110,7 +110,8 @@ export class Api {
     )
     if (!response.ok || !response.data.length) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return { ok: false, data: Array.isArray(response.data) ? 'Data is empty!' : response.data }
+      if (problem)
+        return { ok: false, data: Array.isArray(response.data) ? "Data is empty!" : response.data }
     }
 
     return { ok: true, data: response.data }

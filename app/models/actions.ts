@@ -10,6 +10,7 @@ import { api } from "../services/api"
 import { getCurrentTimeZome } from "../utils/formatDate"
 import notifications from "../utils/notifications"
 import { Location } from "./Location"
+import { Modal } from "./Modal"
 
 const RootStoreActions = (self) => ({
   getISSSightings: flow(function* getISSSightings(params) {
@@ -116,7 +117,7 @@ const RootStoreActions = (self) => ({
   setInitLoading: (value: boolean) => {
     self.initLoading = value
   },
-  
+
   setTrajectoryError: (value: boolean) => {
     self.trajectoryError = value
   },
@@ -203,6 +204,33 @@ const RootStoreActions = (self) => ({
       console.error(e)
     }
   }),
+
+  requestOpenModal: (name: string) => {
+    if (self.currentModal && self.currentModal.name === name && self.currentModal.state === "open")
+      return
+
+    if (self.currentModal) {
+      if (!self.modalsQueue.includes(name)) self.modalsQueue = [...self.modalsQueue, name]
+    } else {
+      self.currentModal = Modal.create({ name, state: "open" })
+    }
+  },
+
+  requestCloseModal: (name: string) => {
+    if (self.currentModal && self.currentModal.name === name) {
+      self.currentModal = Modal.create({ name, state: "closing" })
+    } else {
+      self.modalsQueue = self.modalsQueue.filter((m) => m !== name)
+    }
+  },
+
+  closeModal: () => {
+    self.currentModal = null
+    if (self.modalsQueue.length > 0) {
+      self.currentModal = Modal.create({ name: self.modalsQueue[0], state: "open" })
+      self.modalsQueue = self.modalsQueue.slice(1)
+    }
+  },
 })
 
 export default RootStoreActions
