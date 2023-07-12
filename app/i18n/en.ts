@@ -20,7 +20,7 @@ const en = {
   },
   privacy: {
     title: "Use your location",
-    body: "We use location data to calculate the upcoming sightings in your current location. Please grant location permissions to enable this functionality",
+    body: "We use location data to calculate the upcoming sightings in your current location. We DO NOT require access to the location data when the app is not in use. Please grant location permissions to enable this functionality",
     agree: "AGREE",
     skip: "SKIP",
     policy: "Privacy Policy",

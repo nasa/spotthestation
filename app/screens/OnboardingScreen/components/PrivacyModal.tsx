@@ -58,7 +58,7 @@ export function PrivacyModal({ onPressSkip, onPressAgree }: PrivacyModalProps) {
       </View>
       <Pressable
         onPress={() =>
-          Linking.openURL("https://www.nasa.gov/about/highlights/HP_Privacy.html#privacy")
+          Linking.openURL("https://www.spotthestation.org")
         }
         style={{ marginTop: scale(10), alignSelf: "center" }}
       >
