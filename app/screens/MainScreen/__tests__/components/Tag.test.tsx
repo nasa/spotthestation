@@ -5,7 +5,6 @@ import React from "react"
 import renderer from "react-test-renderer"
 import { Tag } from "../../components/Tag"
 import { render } from "@testing-library/react-native"
-import { scale, colors, typography, fontSizes, lineHeights } from "../../../../theme"
 
 describe("Tag component", () => {
   it("renders correctly", () => {

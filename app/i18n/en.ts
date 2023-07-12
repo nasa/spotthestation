@@ -143,6 +143,7 @@ const en = {
   homeScreen: {
     initLoader: {
       message: "ISS data is loading… This may take a moment to complete.",
+      trajectoryError: "The ISS trajectory data is currently unavailable due to server maintenance. Please check back again later.",
     },
     verify: {
       title: "Verify Email",

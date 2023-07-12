@@ -26,6 +26,7 @@ import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
 import { InitLoader } from "./InitLoader"
+import { TrajectoryError } from "./TrajectoryError"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -60,6 +61,8 @@ export const HomeScreen = observer(function HomeScreen() {
     setSelectedLocation,
     sightingsLoaded,
     issDataLoaded,
+    trajectoryError,
+    setTrajectoryError
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
 
@@ -77,6 +80,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [coachVisible, setCoachVisible] = useState(false)
+  const [isTrajectoryError, setIsTrajectoryError] = useState(false)
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
   const [currentTimeZone, setCurrentTimeZone] = useState({
@@ -153,9 +157,10 @@ export const HomeScreen = observer(function HomeScreen() {
       console.log("initialized")
 
       setInitLoading(false)
+      // trajectoryError && setTimeout(() => { setIsTrajectoryError(true)}, 1000)
       setTimeout(() => getCoach().catch((e) => console.log(e)), 1000)
     }
-  }, [issDataLoaded, initLoading, sightingsLoaded])
+  }, [issDataLoaded, initLoading, sightingsLoaded, trajectoryError])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -451,7 +456,7 @@ export const HomeScreen = observer(function HomeScreen() {
         </Modal>
       )}
       <Modal
-        key={currentLocation?.title}
+        key={`${currentLocation?.title}${sightingsLoaded.toString()}${issDataLoaded.toString()}`}
         isVisible={initLoading}
         useNativeDriver
         useNativeDriverForBackdrop
@@ -464,10 +469,24 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <InitLoader />
       </Modal>
-      {coachVisible && (
+      <Modal
+        key={`trajectoryError-${trajectoryError.toString()}`}
+        isVisible={isTrajectoryError}
+        useNativeDriver
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[
+          $modal,
+          { paddingHorizontal: 18, justifyContent: "flex-start" },
+          Platform.OS === "ios" && $topInsetMargin,
+        ]}
+      >
+        <TrajectoryError onDismiss={() => {setTrajectoryError(false); setIsTrajectoryError(false) }} />
+      </Modal>
+      {coachVisible && !initLoading && !isTrajectoryError && (
         <Modal
-          key={location?.join("-")}
-          isVisible={coachVisible && !initLoading}
+          key={`${location?.join("-")}${trajectoryError.toString()}`}
+          isVisible={coachVisible && !initLoading && !isTrajectoryError}
           useNativeDriver
           useNativeDriverForBackdrop
           backdropOpacity={0.4}

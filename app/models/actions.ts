@@ -47,6 +47,7 @@ const RootStoreActions = (self) => ({
         if (self.initLoading) self.sightingsLoaded = true
         notifications.setNotifications(notifyFor)
       } else {
+        self.trajectoryError = true
         if (self.initLoading) self.sightingsLoaded = true
         Snackbar.show({
           text: data as string,
@@ -115,6 +116,10 @@ const RootStoreActions = (self) => ({
   setInitLoading: (value: boolean) => {
     self.initLoading = value
   },
+  
+  setTrajectoryError: (value: boolean) => {
+    self.trajectoryError = value
+  },
 
   setSightingsLoaded: (value: boolean) => {
     self.sightingsLoaded = value
@@ -180,6 +185,8 @@ const RootStoreActions = (self) => ({
         self.issData = data
         if (self.initLoading) self.issDataLoaded = true
       } else {
+        self.trajectoryError = true
+        if (self.initLoading) self.issDataLoaded = true
         Snackbar.show({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
