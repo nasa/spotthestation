@@ -18,6 +18,7 @@ export const RootStoreModel = types
     sightingsLoaded: types.optional(types.boolean, false),
     currentModal: types.maybeNull(Modal),
     modalsQueue: types.optional(types.array(types.string), []),
+    isCurrentLocationUpdating: types.optional(types.boolean, false),
   })
   .props({})
   .actions(RootStoreActions)

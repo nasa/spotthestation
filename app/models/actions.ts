@@ -13,9 +13,9 @@ import { Location } from "./Location"
 import { Modal } from "./Modal"
 
 const RootStoreActions = (self) => ({
-  getISSSightings: flow(function* getISSSightings(params) {
+  getISSSightings: flow(function* getISSSightings(params, isCurrent?: boolean) {
     try {
-      const location = self.selectedLocation || self.currentLocation
+      const location = isCurrent ? self.currentLocation : self.selectedLocation || self.currentLocation
       const locationCopy = JSON.parse(JSON.stringify(location))
       const { data, ok } = yield api.getISSSightings(params)
 
@@ -47,9 +47,11 @@ const RootStoreActions = (self) => ({
         ]
         if (self.initLoading) self.sightingsLoaded = true
         notifications.setNotifications(notifyFor)
+        self.setIsCurrentLocationUpdating(false)
       } else {
         self.trajectoryError = true
         if (self.initLoading) self.sightingsLoaded = true
+        self.setIsCurrentLocationUpdating(false)
         Snackbar.show({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
@@ -88,15 +90,19 @@ const RootStoreActions = (self) => ({
     notifications.setNotifications(notifyFor)
   },
 
-  setCurrentLocation: flow(function* setCurrentLocation(value: LocationType) {
+  setCurrentLocation: flow(function* setCurrentLocation(value: LocationType, updateSettingsOnly?: boolean) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
-    const { timeZone } = yield getCurrentTimeZome(valueCopy)
-    self.currentLocation = Location.create(valueCopy)
-    self.getISSSightings({
-      zone: timeZone,
-      lat: valueCopy.location.lat,
-      lon: valueCopy.location.lng,
-    })
+    if (updateSettingsOnly) {
+      self.currentLocation = Location.create(valueCopy)
+    } else {
+      const { timeZone } = yield getCurrentTimeZome(valueCopy)
+      self.currentLocation = Location.create(valueCopy)
+      self.getISSSightings({
+        zone: timeZone,
+        lat: valueCopy.location.lat,
+        lon: valueCopy.location.lng,
+      }, true)
+    }
   }),
 
   setSelectedLocation: flow(function* setSelectedLocation(value: LocationType) {
@@ -128,6 +134,10 @@ const RootStoreActions = (self) => ({
 
   setIssDataLoaded: (value: boolean) => {
     self.issDataLoaded = value
+  },
+
+  setIsCurrentLocationUpdating: (value: boolean) => {
+    self.isCurrentLocationUpdating = value
   },
 
   setNotifications: () => {

@@ -60,7 +60,7 @@ export function MapBox({
       logoEnabled={false}
       styleURL={
         Platform.OS === "android"
-          ? "mapbox://styles/mapbox/satellite-streets-v12"
+          ? "mapbox://styles/mapbox/satellite-streets-v11"
           : "mapbox://styles/mapbox/satellite-streets-v11"
       }
       attributionEnabled={false}

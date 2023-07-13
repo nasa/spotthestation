@@ -34,7 +34,9 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const {
     savedLocations,
     currentLocation,
+    isCurrentLocationUpdating,
     setCurrentLocation,
+    setIsCurrentLocationUpdating,
     setSavedLocations,
     setISSSightings,
   } = useStores()
@@ -56,11 +58,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     top: topInset + scale(24),
   }
 
-  const getLocation = async () => {
-    setCurrentLocation(await getCurrentLocation(() => ({}), setLocationPermission)).catch((e) =>
-      console.log(e),
-    )
-  }
+  const getLocation = useCallback(async () => {
+    setIsCurrentLocationUpdating(true)
+    setCurrentLocation({...(await getCurrentLocation(() => ({}), setLocationPermission)), alert: currentLocation.alert })
+    .catch((e) => console.log(e))
+  }, [currentLocation])
 
   useEffect(() => {
     if (Platform.OS === "ios") {
@@ -85,7 +87,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           ),
         )
       } else {
-        setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert }).catch((e) =>
+        setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert }, true).catch((e) =>
           console.log(e),
         )
       }
@@ -207,6 +209,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
                 withSwitch
                 ctaTx="settings.locationSettingsData.cta"
                 onCtaPress={() => handleCtaPress(currentLocation)}
+                disabled={isCurrentLocationUpdating}
               />
             </ExpandContainer>
           )}

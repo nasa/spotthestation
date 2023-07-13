@@ -76,6 +76,7 @@ export const HomeScreen = observer(function HomeScreen() {
     disappears: "",
     dayStage: 0,
   })
+  const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
@@ -122,9 +123,11 @@ export const HomeScreen = observer(function HomeScreen() {
           dayStage: 0,
         })
         setCountdown("T - 00:00:00:00")
+        setIsCurrentSightingLoaded(true)
         return
       }
       setCurrentSightning(result[0])
+      setTimeout(() => setIsCurrentSightingLoaded(true), 1000)
       const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
       const diff = formatDuration(duration, { delimiter: "," })
       callback(
@@ -163,12 +166,12 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [trajectoryError])
 
   useEffect(() => {
-    if (initLoading && sightingsLoaded && issDataLoaded) {
+    if (initLoading && sightingsLoaded && issDataLoaded && isCurrentSightingLoaded) {
       console.log("initialized")
       setInitLoading(false)
       getCoach().catch((e) => console.log(e))
     }
-  }, [issDataLoaded, initLoading, sightingsLoaded])
+  }, [issDataLoaded, initLoading, sightingsLoaded, isCurrentSightingLoaded])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -275,6 +278,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const handleChangeLocation = useCallback(async (location: LocationType) => {
     requestCloseModal("location")
     setInitLoading(true)
+    setIsCurrentSightingLoaded(false)
     setIssDataLoaded(false)
     setSightingsLoaded(false)
     setSelectedLocation(location).catch((e) => console.log(e))

@@ -9,6 +9,7 @@ export interface ListItemProps {
   selected?: boolean
   withSwitch?: boolean
   editable?: boolean
+  disabled?: boolean
   title: string
   subtitle: string
   icon: IconTypes
@@ -35,6 +36,7 @@ export function ListItem({
   onEdit,
   onDelete,
   editable,
+  disabled
 }: ListItemProps) {
   return (
     <Pressable
@@ -97,6 +99,7 @@ export function ListItem({
             variant="switch"
             value={selected}
             onValueChange={onToggle}
+            disabled={disabled}
           />
         ) : (
           <Icon
