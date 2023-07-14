@@ -117,10 +117,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           selectedTextStyle={[$dropdownText, $dropdownSelected]}
           placeholder={translate("settings.contactUsData.titlePlaceholder")}
           data={[
-            { label: "Report an Issue", value: "Report an Issue" },
-            { label: "Improvement Ideas", value: "Improvement Ideas" },
-            { label: "General Questions", value: "General Questions" },
-            { label: "Comments", value: "Comments" },
+            { label: translate("settings.contactUsData.contactUsOptions.reportAnIssue"), value: "Report an Issue" },
+            { label: translate("settings.contactUsData.contactUsOptions.improvementIdeas"), value: "Improvement Ideas" },
+            { label: translate("settings.contactUsData.contactUsOptions.generalQuestions"), value: "General Questions" },
+            { label: translate("settings.contactUsData.contactUsOptions.comments"), value: "Comments" },
           ]}
           itemContainerStyle={{
             backgroundColor: colors.palette.neutral350,

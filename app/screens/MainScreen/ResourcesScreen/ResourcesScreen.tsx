@@ -392,7 +392,7 @@ export const Resources = observer(function HomeScreen() {
               accessible
               accessibilityLabel={`${item} button`}
               accessibilityHint={`show ${item} view`}
-              text={item}
+              tx={`resources.tabs.${item as 'news' || 'about' || 'details'}`}
               style={[$button, item === type && $active]}
               textStyle={$buttonText}
               pressedStyle={$button}

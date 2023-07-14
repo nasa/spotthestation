@@ -29,6 +29,13 @@ const en = {
     skip: "SKIP",
     policy: "Privacy Policy",
   },
+  units: {
+    minute: 'min',
+    kilometer: 'km',
+    kilogram: 'kg',
+    month: 'month',
+    metersPerSecond: 'M/S'
+  },
   tabNavigator: {
     homeTab: "Home",
     issViewTab: "ISS View",
@@ -178,6 +185,9 @@ const en = {
       button: "Notify Me",
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
+      aboveHorizon: "Above the horizon",
+      today: "Today",
+      tomorrow: "Tomorrow",
       coach: {
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
         sunset:
@@ -224,11 +234,13 @@ const en = {
       altitude: "altitude",
       crewOnboard: "Crew onboard",
       launched: "Assembly Began",
+      launchedValue: "20 November 1998",
       mass: "Estimated Mass",
       dimensions: "Estimated Dimensions",
       orbitalPeriod: "Orbital Period",
       orbitsPerDay: "Orbits/Day",
       orbitalDecay: "Orbital Decay",
+      dimentionsValue: "109m wide x 73m long x 14m tall",
     },
   },
   settings: {
@@ -327,6 +339,12 @@ const en = {
       titlePlaceholder: "Choose title",
       commentsPlaceholder: "Input comments",
       sendButton: "Send",
+      contactUsOptions: {
+        reportAnIssue: 'Report an Issue',
+        improvementIdeas: 'Improvement Ideas',
+        generalQuestions: 'General Questions',
+        comments: 'Comments',
+      },
     },
     notificationSettingsData: {
       backButton: "Settings",
@@ -367,6 +385,11 @@ const en = {
     recentSearches: "RECENT SEARCHES",
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",
+    tabs: {
+      news: 'News',
+      about: 'About',
+      details: 'Details',
+    }
   },
 }
 

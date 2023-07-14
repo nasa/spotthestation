@@ -1,5 +1,6 @@
 import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
+import { translate } from "../../../i18n"
 import { Icon, Text } from "../../../components"
 import { OrbitPoint } from "../../../services/api/api.types"
 import { fontSizes, lineHeights, scale, typography } from "../../../theme"
@@ -64,7 +65,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.distance" style={$detailTitle} />
-            <Text text={`${distance(issData)} km`} style={$detailValue} />
+            <Text text={`${distance(issData)} ${translate('units.kilometer')}`} style={$detailValue} />
           </View>
           <View
             accessible
@@ -79,7 +80,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
                 issData.latitude,
                 issData.azimuth,
                 issData.elevation,
-              )} M/S`}
+              )} ${translate('units.metersPerSecond')}`}
               style={$detailValue}
             />
           </View>
@@ -118,7 +119,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
             <Text
-              text={issData.altitude ? `${issData.altitude.toFixed(2)} km` : "0 km"}
+              text={issData.altitude ? `${issData.altitude.toFixed(2)} ${translate('units.kilometer')}` : `"0 ${translate('units.kilometer')}"`}
               style={$detailValue}
             />
           </View>
@@ -132,7 +133,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.launched" style={$detailRowTitle} />
-            <Text text="20 November 1998" style={$detailRowValue} />
+            <Text tx="issView.details.launchedValue" style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -152,7 +153,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.mass" style={$detailRowTitle} />
-            <Text text="462,000 kg" style={$detailRowValue} />
+            <Text text={`462,000 ${translate('units.kilogram')}`} style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -162,7 +163,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.dimensions" style={$detailRowTitle} />
-            <Text text="109m wide x 73m long x 14m tall" style={$detailRowValue} />
+            <Text tx="issView.details.dimentionsValue" style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -172,7 +173,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.orbitalPeriod" style={$detailRowTitle} />
-            <Text text="92.9 min" style={$detailRowValue} />
+            <Text text={`92.9 ${translate('units.minute')}`} style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -192,7 +193,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.orbitalDecay" style={$detailRowTitle} />
-            <Text text="2 km / month" style={$detailRowValue} />
+            <Text text={`2 ${translate('units.kilometer')} / ${translate('units.month')}`} style={$detailRowValue} />
           </View>
         </View>
       </View>

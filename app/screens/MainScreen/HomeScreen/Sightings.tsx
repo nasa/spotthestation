@@ -12,6 +12,7 @@ import { ISSSighting } from "../../../services/api"
 import { getCalendars } from "expo-localization"
 import * as storage from "../../../utils/storage"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
+import { translate } from "../../../i18n"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
@@ -43,12 +44,12 @@ export function Sightings({
       formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
       formatDateWithTZ(new Date().toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
     )
-      return `Today, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
     if (
       formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
       formatDateWithTZ(addDays(new Date(), 1).toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
     )
-      return `Tomorrow, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
     return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, {
       timeZone: timezone,
     })} ${shortTZ}`
@@ -143,7 +144,7 @@ export function Sightings({
                   secondIcon={setStageIcon(sighting.dayStage)}
                   title={formatedDate(sighting.date)}
                   selected={sighting.notify}
-                  subtitle={`Above the horizon ${sighting.visible} min`}
+                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate("units.minute")}`}
                   withSwitch
                   onToggle={() => onToggle(sighting)}
                 />

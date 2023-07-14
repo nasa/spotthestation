@@ -206,7 +206,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            news
+            resources.tabs.news undefined
           </Text>
         </View>
         <View
@@ -303,7 +303,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            about
+            resources.tabs.about undefined
           </Text>
         </View>
         <View
@@ -400,7 +400,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            details
+            resources.tabs.details undefined
           </Text>
         </View>
       </View>

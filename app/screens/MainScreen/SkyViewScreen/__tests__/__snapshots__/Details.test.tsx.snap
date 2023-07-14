@@ -142,7 +142,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          0 km
+          0 units.kilometer undefined
         </Text>
       </View>
       <View
@@ -221,7 +221,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          8374 M/S
+          8374 units.metersPerSecond undefined
         </Text>
       </View>
       <View
@@ -458,7 +458,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          0 km
+          "0 units.kilometer undefined"
         </Text>
       </View>
     </View>
@@ -547,7 +547,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          20 November 1998
+          issView.details.launchedValue undefined
         </Text>
       </View>
       <View
@@ -703,7 +703,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          462,000 kg
+          462,000 units.kilogram undefined
         </Text>
       </View>
       <View
@@ -781,7 +781,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          109m wide x 73m long x 14m tall
+          issView.details.dimentionsValue undefined
         </Text>
       </View>
       <View
@@ -859,7 +859,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          92.9 min
+          92.9 units.minute undefined
         </Text>
       </View>
       <View
@@ -1015,7 +1015,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          2 km / month
+          2 units.kilometer undefined / units.month undefined
         </Text>
       </View>
     </View>
