@@ -36,23 +36,21 @@ export function Sightings({
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
-
+  
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm A"
+    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
     const shortTZ = getShortTZ(timezone)
     if (
-      formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
-      formatDateWithTZ(new Date().toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
+      formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
+      formatDateWithTZ(new Date().toISOString(), `yyyy-MM-dd`, timezone)
     )
-      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(date, timeFormat, timezone)} ${shortTZ}`
     if (
-      formatDateWithTZ(date, `YYYY-MM-DD`, { timeZone: timezone }) ===
-      formatDateWithTZ(addDays(new Date(), 1).toISOString(), `YYYY-MM-DD`, { timeZone: timezone })
+      formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
+      formatDateWithTZ(addDays(new Date(), 1).toISOString(), `yyyy-MM-dd`, timezone)
     )
-      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(date, timeFormat, { timeZone: timezone })} ${shortTZ}`
-    return `${formatDateWithTZ(date, `${isUS ? "MMM DD, YYYY" : "DD MMM YYYY"}, ${timeFormat}`, {
-      timeZone: timezone,
-    })} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(date, timeFormat, timezone)} ${shortTZ}`
+    return `${formatDateWithTZ(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`, timezone)} ${shortTZ}`
   }
 
   const setStageIcon = (stage): { icon: IconTypes; color: string } => {

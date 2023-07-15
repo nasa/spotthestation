@@ -7,6 +7,7 @@ import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../services/api"
 import * as storage from "../utils/storage"
 import { isDateBetweenHours } from "./formatDate"
+import { translate } from "../i18n"
 
 class Notifications {
   constructor() {
@@ -51,15 +52,15 @@ class Notifications {
             if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
               PushNotification.localNotificationSchedule({
                 channelId: "default-channel-id",
-                title: "Spot the ISS now!",
-                message: `The ISS is passing above you at ${location.title}`,
+                title: translate("notifications.push.title"),
+                message: `${translate("notifications.push.subTitle")} ${location.title}`,
                 date: eventDate,
               })
               if (notifyBefore) {
                 PushNotification.localNotificationSchedule({
                   channelId: "default-channel-id",
-                  title: `Spot the ISS in ${notifyBefore} minutes!`,
-                  message: `The ISS is passing above you in ${notifyBefore} minutes at ${location.title}`,
+                  title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate("notifications.before.titleTwo")}`,
+                  message: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${location.title}`,
                   date: new Date(eventDate.getTime() - notifyBefore * 60000),
                 })
               }

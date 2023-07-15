@@ -29,6 +29,18 @@ const en = {
     skip: "SKIP",
     policy: "Privacy Policy",
   },
+  notifications: {
+    push: {
+      title: 'Spot the ISS now!',
+      subTitle: 'The ISS is passing above you at'
+    },
+    before: {
+      titleOne: 'Spot the ISS in',
+      titleTwo: 'minutes!',
+      subTitleOne: 'The ISS is passing above you in',
+      subTitleTwo: 'minutes at'
+    }
+  },
   units: {
     minute: 'min',
     kilometer: 'km',

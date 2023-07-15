@@ -398,8 +398,8 @@ export const HomeScreen = observer(function HomeScreen() {
           currentSightning.date
             ? formatDateWithTZ(
               currentSightning.date,
-              currentTimeZone.regionFormat === "US" ? "MMM DD, YYYY" : "DD MMM YYYY",
-              { timeZone: currentTimeZone.timeZone },
+              currentTimeZone.regionFormat === "US" ? "MMM dd, yyyy" : "dd MMM yyyy",
+              currentTimeZone.timeZone,
             )
             : "-"
         }

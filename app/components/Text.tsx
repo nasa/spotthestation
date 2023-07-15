@@ -73,13 +73,13 @@ export function Text(props: TextProps) {
 }
 
 const $sizeStyles = {
-  xxl: { fontSize: scale(36), lineHeight: lineHeights[44] } as TextStyle,
-  xl: { fontSize: scale(24), lineHeight: scale(34) } as TextStyle,
-  lg: { fontSize: scale(20), lineHeight: scale(32) } as TextStyle,
-  md: { fontSize: scale(18), lineHeight: scale(26) } as TextStyle,
-  sm: { fontSize: scale(16), lineHeight: scale(24) } as TextStyle,
-  xs: { fontSize: scale(14), lineHeight: lineHeights[21] } as TextStyle,
-  xxs: { fontSize: scale(12), lineHeight: scale(18) } as TextStyle,
+  xxl: { fontSize: scale(36, true), lineHeight: lineHeights[44] } as TextStyle,
+  xl: { fontSize: scale(24, true), lineHeight: scale(34) } as TextStyle,
+  lg: { fontSize: scale(20, true), lineHeight: scale(32) } as TextStyle,
+  md: { fontSize: scale(18, true), lineHeight: scale(26) } as TextStyle,
+  sm: { fontSize: scale(16, true), lineHeight: scale(24) } as TextStyle,
+  xs: { fontSize: scale(14, true), lineHeight: lineHeights[21] } as TextStyle,
+  xxs: { fontSize: scale(12, true), lineHeight: scale(18) } as TextStyle,
 }
 
 const $fontWeightStyles = Object.entries(typography.primary).reduce((acc, [weight, fontFamily]) => {

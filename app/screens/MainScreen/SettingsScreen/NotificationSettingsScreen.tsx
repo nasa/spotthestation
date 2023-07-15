@@ -212,8 +212,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               selectedTextStyle={[$dropdownText, $dropdownSelected]}
               placeholder={translate("settings.contactUsData.titlePlaceholder")}
               data={[
-                { label: "15 min", value: 15 },
-                { label: "30 min", value: 30 },
+                { label: `15 ${translate("units.minute")}`, value: 15 },
+                { label: `30 ${translate("units.minute")}`, value: 30 },
               ]}
               itemContainerStyle={{
                 backgroundColor: colors.palette.neutral350,

@@ -28,7 +28,8 @@ jest.mock('react-native-snackbar', () => ({
 }))
 jest.mock("expo-localization", () => ({
   getLocales: () => ([{ regionCode: 'TC' }]), 
-  getCalendars: () => ([{ timeZone: 'Test/test' }])
+  getCalendars: () => ([{ timeZone: 'Test/test' }]),
+  locale: 'en-US'
 }))
 jest.mock("react-native-device-info", () => ({
   getVersion: () => "0.0.1",
