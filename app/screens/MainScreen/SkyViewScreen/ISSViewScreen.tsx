@@ -9,7 +9,7 @@
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable } from "react-native"
+import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable, BackHandler } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
@@ -473,6 +473,20 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       })
     }
   }
+
+  useEffect(() => {
+    const backAction = () => {
+      route.toggleBottomTabs(true)
+      return false
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    )
+
+    return () => backHandler.remove()
+  }, [])
 
   return (
     <Screen

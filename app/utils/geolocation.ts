@@ -40,9 +40,9 @@ export const getCurrentLocation = async (
 
       const item = response[0]
 
-      const address = `${item?.streetNumber} ${item?.street}, ${item?.city}, ${
-        item?.region || item?.subregion || item?.district
-      } ${item?.postalCode}, ${item?.country}`
+      const address = `${item?.streetNumber ?? ''} ${item?.street ?? ''}, ${item?.city ?? ''}, ${
+        item?.region || item?.subregion || item?.district || ''
+      } ${item?.postalCode ?? ''}, ${item?.country ?? ''}`
 
       return {
         title: item?.name === item?.streetNumber ? address : item?.name,

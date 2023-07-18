@@ -8,7 +8,7 @@ import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { TextStyle, View, ViewStyle } from "react-native"
+import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import Modal from "react-native-modal"
@@ -216,6 +216,20 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
+
+  useEffect(() => {
+    const backAction = () => {
+      route.toggleBottomTabs(true)
+      return false
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    )
+
+    return () => backHandler.remove()
+  }, [isFullScreen])
 
   const handleChangeLocation = useCallback(
     async (location: LocationType) => {

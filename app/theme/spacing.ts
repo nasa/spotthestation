@@ -12,7 +12,7 @@ enum LanguageScaling {
   fr = 0.8,
   uk = 1,
   ja = 1,
-  es = 1,
+  es = 0.8,
   it = 1,
   nl = 1,
   ru = 1,

@@ -6,7 +6,7 @@
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { Platform, ViewStyle } from "react-native"
+import { AppState, BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
 import { ISSSighting } from "../../../services/api"
 import { colors, scale } from "../../../theme"
@@ -67,6 +67,7 @@ export const HomeScreen = observer(function HomeScreen() {
     requestOpenModal,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
+  const appState = useRef(AppState.currentState)
 
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
     date: null,
@@ -92,6 +93,29 @@ export const HomeScreen = observer(function HomeScreen() {
     setLocation(calcLocation(selectedLocation, currentLocation))
     setCurrent(selectedLocation || currentLocation)
   }, [selectedLocation, currentLocation])
+
+  useEffect(() => {
+    const backAction = () => {
+      return true
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    )
+
+    return () => backHandler.remove()
+  }, [])
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      appState.current = nextAppState
+    })
+
+    return () => {
+      subscription.remove()
+    }
+  }, [])
 
   const events = useMemo(
     () => current?.sightings?.filter((item) => item.notify) || [],
@@ -406,13 +430,13 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
-      <Globe
+      {appState.current === 'active' && <Globe
         zoom={1.5}
         marker={location}
         pastIssPathCoords={pastIssPathCoords}
         futureIssPathCoords={futureIssPathCoords}
         issMarkerPosition={issMarkerPosition}
-      />
+      />}
       <FlatMap
         style={$flatMap}
         issPathCoords={issPathCoords}

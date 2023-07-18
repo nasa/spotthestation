@@ -3,7 +3,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useEffect, useState } from "react"
-import { Platform, ViewStyle } from "react-native"
+import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL from "@rnmapbox/maps"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
@@ -12,14 +12,6 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
-
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN)
-MapboxGL.setTelemetryEnabled(false)
-if (Platform.OS === "android") {
-  MapboxGL.setConnected(true)
-  MapboxGL.setWellKnownTileServer("Mapbox")
-}
 
 interface MapBoxProps {
   style?: ViewStyle
@@ -43,6 +35,16 @@ export function MapBox({
   markers = [],
 }: MapBoxProps) {
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
+  const [loading, setLoading] = useState<any>(true)
+
+  useEffect(() => {
+    if (Platform.OS === "android") MapboxGL.setWellKnownTileServer("Mapbox")
+    MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN).then(() => {
+      MapboxGL.setTelemetryEnabled(false)
+      if (Platform.OS === "android") MapboxGL.setConnected(true)
+      setLoading(false)
+    }).catch(e => console.log(e))
+  }, [])
 
   useEffect(() => {
     const update = () => setTerminatorCoords(toGeoJSON(computeOld(new Date())))
@@ -54,13 +56,13 @@ export function MapBox({
     }
   }, [])
 
-  return (
+  return !loading ? (
     <MapboxGL.MapView
       style={style}
       logoEnabled={false}
       styleURL={
         Platform.OS === "android"
-          ? "mapbox://styles/mapbox/satellite-streets-v11"
+          ? "mapbox://styles/mapbox/satellite-streets-v12"
           : "mapbox://styles/mapbox/satellite-streets-v11"
       }
       attributionEnabled={false}
@@ -149,5 +151,5 @@ export function MapBox({
           </MapboxGL.ShapeSource>
         ))}
     </MapboxGL.MapView>
-  )
+  ) : <View />
 }
