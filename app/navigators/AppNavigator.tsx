@@ -24,6 +24,7 @@ import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { SettingsNavigator, SettingsParamList } from "./SettingsNavigation"
 import { ResourcesNavigator, ResourcesParamList } from "./ResourcesNavigator"
 import Snackbar from "react-native-snackbar"
+import { translate } from "../i18n"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -73,7 +74,7 @@ const AppStack = observer(function AppStack() {
           text: err as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Dismiss",
+            text: translate('snackBar.dismiss'),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

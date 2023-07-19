@@ -14,9 +14,28 @@ const en = {
   errors: {
     invalidEmail: "Invalid email address.",
   },
+  snackBar: {
+    ok: "OK",
+    dismiss: "Dismiss",
+    sightingsSaved: "Sightings for last saved location loaded!",
+    defaultError: "Some error occured",
+    locationSaved: "Location saved",
+    locationExist: "Location with this title already exist!",
+    openSettingsError: "Сannot open settings!",
+    shared: "Successfully shared!",
+    savedToGallery: "saved to gallery",
+  },
   permissionsModal: {
     close: "Close",
     openSettings: "Open settings",
+    body: "To use this feature, you need to grant permission to use the gallery",
+  },
+  permissionsAndroid: {
+    title: "Permission to save video",
+    message: "This app needs permission to save videos to your device",
+    buttonNeutral: "Ask Me Later",
+    buttonNegative: "Cancel",
+    buttonPositive: "OK",
   },
   thanksModal: {
     body: "Thank you for contacting us, we have received your message. We will process your request and hope to include a resolution in future releases. Since this application does not collect user data, we cannot respond to all received messages individually.",
@@ -190,6 +209,7 @@ const en = {
       nearby: "Nearby locations",
       search: "Search results",
       cta: "Customize notifications for this location",
+      actionTitle: 'Alert'
     },
     selectSightings: {
       title: "Upcoming Sightings",
@@ -201,6 +221,7 @@ const en = {
       today: "Today",
       tomorrow: "Tomorrow",
       coach: {
+        title: "Icons Description",
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
         sunset:
           "There will be twilight at the selected location when the ISS is above the horizon.",

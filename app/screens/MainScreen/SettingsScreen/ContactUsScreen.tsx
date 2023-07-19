@@ -38,7 +38,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             text: data.message,
             duration: Snackbar.LENGTH_LONG,
             action: {
-              text: "Ok",
+              text: translate('snackBar.ok'),
               textColor: "red",
               onPress: () => {
                 Snackbar.dismiss()
@@ -51,7 +51,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             text: data,
             duration: Snackbar.LENGTH_LONG,
             action: {
-              text: "Ok",
+              text: translate('snackBar.ok'),
               textColor: "green",
               onPress: () => {
                 Snackbar.dismiss()
@@ -65,7 +65,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           text: e,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Ok",
+            text: translate('snackBar.ok'),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

@@ -13,6 +13,7 @@ import Snackbar from "react-native-snackbar"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
 import analytics from "@react-native-firebase/analytics"
+import { translate } from "../../i18n"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const navigation = useNavigation()
@@ -50,7 +51,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
           text: err as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Dismiss",
+            text: translate('snackBar.dismiss'),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

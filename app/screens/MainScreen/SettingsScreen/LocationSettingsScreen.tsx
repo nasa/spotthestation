@@ -61,7 +61,10 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const getLocation = useCallback(async () => {
     setIsCurrentLocationUpdating(true)
     setCurrentLocation({...(await getCurrentLocation(() => ({}), setLocationPermission)), alert: currentLocation.alert })
-    .catch((e) => console.log(e))
+    .catch((e) => {
+      setIsCurrentLocationUpdating(true)
+      console.log(e)
+    })
   }, [currentLocation])
 
   useEffect(() => {
@@ -198,7 +201,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             <ExpandContainer
               title="homeScreen.selectLocation.current"
               expandble={false}
-              actionTitle="Alert"
+              actionTitle="homeScreen.selectLocation.actionTitle"
             >
               <ListItem
                 icon="pin"
@@ -217,7 +220,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             <ExpandContainer
               title="homeScreen.selectLocation.saved"
               expandble={false}
-              actionTitle="Alert"
+              actionTitle="homeScreen.selectLocation.actionTitle"
             >
               {savedLocations.map((location) => (
                 <ListItem

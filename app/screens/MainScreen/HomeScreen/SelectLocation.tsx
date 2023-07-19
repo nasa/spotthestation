@@ -22,6 +22,7 @@ import { useStores } from "../../../models"
 import { SettingsItem } from "../components/SettingsItem"
 import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
+import { translate } from "../../../i18n"
 
 export interface SelectLocationProps {
   /**
@@ -85,7 +86,7 @@ export function SelectLocation({
   useEffect(() => {
     getLocation().catch((e: Error) => {
       Snackbar.show({
-        text: e.message || "Some error occured",
+        text: e.message || translate('snackBar.defaultError'),
         duration: Snackbar.LENGTH_SHORT,
       })
     })
@@ -94,7 +95,7 @@ export function SelectLocation({
   useEffect(() => {
     setPlaces(textValue).catch((e: Error) => {
       Snackbar.show({
-        text: e.message || "Some error occured",
+        text: e.message || translate('snackBar.defaultError'),
         duration: Snackbar.LENGTH_SHORT,
       })
     })

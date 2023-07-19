@@ -33,6 +33,7 @@ import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
+import { translate } from "../../../i18n"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -70,7 +71,7 @@ async function requestCameraPermissions(callback: (value: boolean) => void, afte
       if (afterClick) {
         openSettings().catch(() =>
           Snackbar.show({
-            text: "Сannot open settings!",
+            text: translate('snackBar.openSettingsError'),
             duration: Snackbar.LENGTH_LONG,
           }),
         )
@@ -86,7 +87,7 @@ async function requestCameraPermissions(callback: (value: boolean) => void, afte
       if (afterClick) {
         openSettings().catch(() =>
           Snackbar.show({
-            text: "Сannot open settings!",
+            text: translate('snackBar.openSettingsError'),
             duration: Snackbar.LENGTH_LONG,
           }),
         )
@@ -365,11 +366,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
         {
-          title: "Permission to save video",
-          message: "This app needs permission to save videos to your device",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK",
+          title: translate("permissionsAndroid.title"),
+          message: translate("permissionsAndroid.message"),
+          buttonNeutral: translate("permissionsAndroid.buttonNeutral"),
+          buttonNegative: translate("permissionsAndroid.buttonNegative"),
+          buttonPositive: translate("permissionsAndroid.buttonPositive"),
         },
       )
       if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
@@ -381,7 +382,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     CameraRoll.save(path, { type })
       .then(() =>
         Snackbar.show({
-          text: `${type.charAt(0).toUpperCase() + type.slice(1)} saved to gallery`,
+          text: `${type.charAt(0).toUpperCase() + type.slice(1)} ${translate('snackBar.savedToGallery')}`,
           duration: Snackbar.LENGTH_LONG,
         }),
       )
@@ -463,7 +464,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         .logShare({ content_type: mediaType, item_id: "iss_capture_moment", method: "" })
         .catch(() => null)
       Snackbar.show({
-        text: "Successfully shared!",
+        text: translate('snackBar.shared'),
         duration: Snackbar.LENGTH_LONG,
       })
     } catch (error) {
@@ -667,13 +668,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         style={$modal}
       >
         <PermissionsModal
-          body="To use this feature, you need to grant permission to use the gallery"
+          body={translate('permissionsModal.body')}
           onClose={() => setIsPermissionsModal(!isPermissionsModal)}
           onSuccess={() => {
             setIsPermissionsModal(!isPermissionsModal)
             openSettings().catch(() =>
               Snackbar.show({
-                text: "Сannot open settings!",
+                text: translate('snackBar.openSettingsError'),
                 duration: Snackbar.LENGTH_LONG,
               }),
             )

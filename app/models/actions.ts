@@ -11,6 +11,7 @@ import { getCurrentTimeZome } from "../utils/formatDate"
 import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
+import { translate } from "../i18n"
 
 const RootStoreActions = (self) => ({
   getISSSightings: flow(function* getISSSightings(params, isCurrent?: boolean) {
@@ -56,7 +57,7 @@ const RootStoreActions = (self) => ({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Dismiss",
+            text: translate('snackBar.dismiss'),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()
@@ -65,6 +66,7 @@ const RootStoreActions = (self) => ({
         })
       }
     } catch (e) {
+      self.setIsCurrentLocationUpdating(false)
       console.error(e)
     }
   }),
@@ -163,10 +165,10 @@ const RootStoreActions = (self) => ({
       ]
 
       Snackbar.show({
-        text: "Sightings for last saved location loaded!",
+        text: translate('snackBar.sightingsSaved'),
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: "Dismiss",
+          text: translate('snackBar.dismiss'),
           textColor: "green",
           onPress: () => {
             Snackbar.dismiss()
@@ -178,7 +180,7 @@ const RootStoreActions = (self) => ({
         text: data as string,
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: "Dismiss",
+          text: translate('snackBar.dismiss'),
           textColor: "red",
           onPress: () => {
             Snackbar.dismiss()
@@ -202,7 +204,7 @@ const RootStoreActions = (self) => ({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Dismiss",
+            text: translate('snackBar.dismiss'),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

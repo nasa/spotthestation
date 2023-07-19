@@ -11,7 +11,7 @@ export interface ExpandContainerProps {
   expandble?: boolean
   reverseTitle?: boolean
   children?: ReactNode
-  actionTitle?: string
+  actionTitle?: TxKeyPath
   containerStyle?: ViewStyle
 }
 
@@ -58,7 +58,7 @@ export function ExpandContainer({
             accessibilityLabel="action"
             accessibilityHint="action title"
             accessibilityRole="text"
-            text={actionTitle}
+            tx={actionTitle}
             style={$title}
           />
         )}

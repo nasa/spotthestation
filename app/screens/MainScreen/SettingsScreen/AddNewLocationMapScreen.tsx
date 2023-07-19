@@ -72,10 +72,10 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     setNewSavedLocation(location)
       .then(() => {
         Snackbar.show({
-          text: "Location saved",
+          text: translate('snackBar.locationSaved'),
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Ok",
+            text: translate('snackBar.ok'),
             textColor: "green",
             onPress: () => {
               Snackbar.dismiss()
@@ -89,7 +89,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           text: error,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Ok",
+            text: translate('snackBar.ok'),
             textColor: "green",
             onPress: () => {
               Snackbar.dismiss()

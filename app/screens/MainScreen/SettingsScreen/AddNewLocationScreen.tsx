@@ -55,10 +55,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     let res = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
-        text: "Location with this title already exist!",
+        text: translate('snackBar.locationExist'),
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: "Ok",
+          text: translate('snackBar.ok'),
           textColor: "green",
           onPress: () => {
             Snackbar.dismiss()
@@ -78,7 +78,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           text: error,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: "Ok",
+            text: translate('snackBar.ok'),
             textColor: "green",
             onPress: () => {
               Snackbar.dismiss()
@@ -89,10 +89,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     }
 
     Snackbar.show({
-      text: "Location saved",
+      text: translate('snackBar.locationSaved'),
       duration: Snackbar.LENGTH_LONG,
       action: {
-        text: "Ok",
+        text: translate('snackBar.ok'),
         textColor: "green",
         onPress: () => {
           Snackbar.dismiss()

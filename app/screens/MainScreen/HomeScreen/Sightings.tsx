@@ -150,7 +150,7 @@ export function Sightings({
           </ScrollView>
         </ExpandContainer>
       </View>
-      {sightingsCoachVisible && (
+    {sightingsCoachVisible && (
         <Modal
           isVisible={sightingsCoachVisible}
           useNativeDriver
@@ -165,6 +165,7 @@ export function Sightings({
             accessibilityRole="text"
             style={[$coachModalBodyContainer, { marginTop: normalizeHeight(0.2) }]}
           >
+            <Text tx="homeScreen.selectSightings.coach.title" style={$modalTitle} />
             <View style={$legend}>
               <Icon icon="sun" size={44} color={colors.palette.yellow} />
               <Text tx="homeScreen.selectSightings.coach.sun" style={$body} />
@@ -229,6 +230,15 @@ const $title: TextStyle = {
   fontFamily: typography.primary?.normal,
   fontSize: fontSizes[28],
   lineHeight: lineHeights[44],
+  color: colors.palette.neutral250,
+  paddingHorizontal: scale(36),
+}
+
+const $modalTitle: TextStyle = {
+  marginBottom: scale(20),
+  fontFamily: typography.primary?.normal,
+  fontSize: fontSizes[28],
+  lineHeight: lineHeights[30],
   color: colors.palette.neutral250,
   paddingHorizontal: scale(36),
 }
