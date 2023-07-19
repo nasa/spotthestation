@@ -163,7 +163,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.dimensions" style={$detailRowTitle} />
-            <Text tx="issView.details.dimentionsValue" style={$detailRowValue} />
+            <Text tx="issView.details.dimensionsValue" style={$detailRowValue} />
           </View>
           <View
             accessible

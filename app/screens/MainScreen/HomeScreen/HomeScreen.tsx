@@ -68,6 +68,7 @@ export const HomeScreen = observer(function HomeScreen() {
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const appState = useRef(AppState.currentState)
+  const [globeVisible, setGlobeVisible] = useState(false);
 
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
     date: null,
@@ -196,6 +197,10 @@ export const HomeScreen = observer(function HomeScreen() {
       getCoach().catch((e) => console.log(e))
     }
   }, [issDataLoaded, initLoading, sightingsLoaded, isCurrentSightingLoaded])
+
+  useEffect(() => {
+    setTimeout(() => setGlobeVisible(true), 500)
+  }, [])
 
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
@@ -430,7 +435,7 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
-      {appState.current === 'active' && <Globe
+      {appState.current === 'active' && globeVisible && <Globe
         zoom={1.5}
         marker={location}
         pastIssPathCoords={pastIssPathCoords}

@@ -35,7 +35,7 @@ Array [
       ]
     }
   >
-    onboarding.completeProfile.notification.tittle undefined
+    onboarding.completeProfile.notification.title undefined
   </Text>,
   <View
     style={

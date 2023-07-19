@@ -183,7 +183,7 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      onboarding.completeProfile.notification.tittle undefined
+      onboarding.completeProfile.notification.title undefined
     </Text>
     <View
       style={

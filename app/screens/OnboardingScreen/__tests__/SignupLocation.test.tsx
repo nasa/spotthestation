@@ -38,7 +38,7 @@ describe("SignupLocation", () => {
       <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />
     )
 
-    expect(getByText("onboarding.completeProfile.location.tittle undefined")).toBeTruthy()
+    expect(getByText("onboarding.completeProfile.location.title undefined")).toBeTruthy()
   })
 
   // test("renders detecting state correctly", () => {

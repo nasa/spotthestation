@@ -30,7 +30,7 @@ export function SignupNotificationSettings({
         accessibilityLabel="detecting"
         accessibilityHint="detecting current location"
         accessibilityRole="text"
-        tx="onboarding.completeProfile.notification.tittle"
+        tx="onboarding.completeProfile.notification.title"
         style={$title}
       />
       <View style={$valueContainer}>

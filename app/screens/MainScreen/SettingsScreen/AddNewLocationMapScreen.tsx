@@ -221,7 +221,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       >
         <View style={$modalBodyContainer}>
           <Pressable style={$close} onPress={() => setIsSave(!isSave)}>
-            <Icon icon="x" color={colors.palette.neutral450} />
+            <Icon icon="x" size={20} color={colors.palette.neutral450} />
           </Pressable>
           <View style={$contentContainer}>
             <Text text={location?.subtitle} style={$title} />

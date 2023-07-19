@@ -35,7 +35,7 @@ Array [
       ]
     }
   >
-    onboarding.completeProfile.location.tittle undefined
+    onboarding.completeProfile.location.title undefined
   </Text>,
   <Text
     accessibilityHint="location subtitle"

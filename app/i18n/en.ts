@@ -1,44 +1,34 @@
 const en = {
-  common: {
-    ok: "OK!",
-    cancel: "Cancel",
-    back: "Back",
-  },
   errorScreen: {
     title: "Something went wrong!",
-    friendlySubtitle:
-      "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
+    friendlySubtitle: "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
     reset: "RESET APP",
-    traceTitle: "Error from %{name} stack",
-  },
-  errors: {
-    invalidEmail: "Invalid email address.",
   },
   snackBar: {
     ok: "OK",
     dismiss: "Dismiss",
-    sightingsSaved: "Sightings for last saved location loaded!",
-    defaultError: "Some error occured",
+    sightingsSaved: "Sightings for the last saved location loaded!",
+    defaultError: "Some error occurred",
     locationSaved: "Location saved",
-    locationExist: "Location with this title already exist!",
-    openSettingsError: "Сannot open settings!",
+    locationExist: "Location with this title already exists!",
+    openSettingsError: "Cannot open settings!",
     shared: "Successfully shared!",
-    savedToGallery: "saved to gallery",
+    savedToGallery: "Saved to gallery",
   },
   permissionsModal: {
     close: "Close",
     openSettings: "Open settings",
-    body: "To use this feature, you need to grant permission to use the gallery",
+    body: "To use this feature, you need to grant permission to access the gallery.",
   },
   permissionsAndroid: {
-    title: "Permission to save video",
-    message: "This app needs permission to save videos to your device",
+    title: "Permission to save videos",
+    message: "This app needs permission to save videos to your device.",
     buttonNeutral: "Ask Me Later",
     buttonNegative: "Cancel",
     buttonPositive: "OK",
   },
   thanksModal: {
-    body: "Thank you for contacting us, we have received your message. We will process your request and hope to include a resolution in future releases. Since this application does not collect user data, we cannot respond to all received messages individually.",
+    body: "Thank you for contacting us. We have received your message and will process your request. We hope to include a resolution in future releases. Please note that this application does not collect user data, so we cannot respond to all messages individually.",
     dismiss: "Dismiss",
   },
   privacy: {
@@ -79,81 +69,15 @@ const en = {
       title: "Spot the Station",
       subTitle: "Gaze up into the sky and view the International Space Station (ISS)",
     },
-    login: {
-      title: "Login to\nyour account",
-      loginError: "Try again!\nIncorrect Credentials",
-      placeholder: {
-        email: "Email Address",
-        password: "Password",
-      },
-      forgotPassword: "Forgot Password?",
-      loginButton: "Login",
-      loginWith: "or login with",
-      haveAccountQuestion: "Don’t have an account?",
-      signUpLink: "Sign Up",
-    },
-    forgotPassword: {
-      title: "Forgot Password?",
-      titleMailed: "Check Your Inbox",
-      subtitle: "No worries, we’ll send you reset instructions",
-      subtitleMailed: "We sent a password reset link to",
-      resetButton: "Reset password",
-      openEmailAppButton: "Open Email App",
-      rememberQuestion: "Remember your password?",
-      loginLink: "Login",
-      doNotReceiveQuestion: "Don’t receive the email?",
-      resend: "Resend",
-    },
-    resetPassword: {
-      title: "Set New Password",
-      subtitle: "Your new password must be different from previously used passwords.",
-      resetButton: "Change password",
-      password: "Password",
-      confirmPassword: "Confirm Password",
-      success: {
-        title: "Password Changed",
-        subtitle: "You have successuffly changed your passsword. Please go back to login screen.",
-        button: "Back To Login",
-      },
-    },
-    signUp: {
-      title: "Sign Up",
-      email: "Email Address",
-      phone: "Mobile Number",
-      password: "Confirm Password",
-      button: "Sign Up",
-      privacy: {
-        first: "I agree to the",
-        tos: "Terms of Services",
-        second: "and",
-        pp: "Privacy Policy",
-      },
-    },
-    otp: {
-      title: "Enter OTP",
-      subtitle: "Please enter the OTP code sent to your mobile number",
-      question: "Don’t receive any code?",
-      resend: "Resend",
-    },
     completeProfile: {
-      profile: {
-        tittle: "Complete Your Profile",
-        firstName: "First Name",
-        lastName: "Last Name",
-        country: "Country",
-        state: "State",
-        city: "City",
-        skipButton: "Skip",
-        nextButton: "Next",
-      },
       notification: {
-        tittle: "Notification Settings",
+        title: "Notification Settings",
         label: "Get Push Notification Alerts",
         tip: "Get alerts when the space station is approaching your location.",
         nextButton: "Next",
       },
       location: {
-        tittle: "Your Location",
+        title: "Your Location",
         subtitle:
           "Please allow the app to detect your location automatically, or provide your location manually.",
         detectButton: "Detect My Location",
@@ -169,33 +93,11 @@ const en = {
       },
     },
   },
-  issNowTab: {
-    details: {
-      latitude: "Lat.",
-      longitude: "Long.",
-      altitude: "Altitude",
-      speed: "Speed",
-      switchLabel: "Metric/Imperial",
-    },
-  },
   homeScreen: {
     initLoader: {
       message: "ISS data is loading… This may take a moment to complete.",
       trajectoryError:
         "The ISS trajectory data is currently unavailable due to server maintenance. Please check back again later.",
-    },
-    verify: {
-      title: "Verify Email",
-      subtitle: "Please verify your email address",
-      remindButton: "Remind me later",
-      generalButton: "Verify now",
-    },
-    verified: {
-      title: "Email Verified!",
-      subtitle: "Your email address",
-      subtitle2: "has been",
-      subtitle3: "verified successfully",
-      generalButton: "Okay",
     },
     header: {
       firstTimeHead: "NEXT SIGHTING",
@@ -214,7 +116,6 @@ const en = {
     selectSightings: {
       title: "Upcoming Sightings",
       sightings: "Sightings",
-      button: "Notify Me",
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
       aboveHorizon: "Above the horizon",
@@ -226,7 +127,6 @@ const en = {
         sunset:
           "There will be twilight at the selected location when the ISS is above the horizon.",
         sun: "There will be daylight at the selected location when the ISS is above the horizon.",
-        button: "OK",
       },
     },
     coachMarks: {
@@ -252,19 +152,15 @@ const en = {
   },
   issView: {
     timeHeader: "Countdown",
-    cameraPermissionText: "You have not allowed use of your phone's camera. Click here to allow.",
+    cameraPermissionText: "You have not allowed the use of your phone's camera. Click here to allow.",
     issCaptured: "Capture this moment",
-    share: {
-      title: "Share",
-      subtitle: "these great moments to your\nfriends and family",
-    },
     details: {
       title: "International Space Station - Details",
       distance: "Distance",
       orbitalSpeed: "Orbital speed",
-      longitude: "longitude",
-      latitude: "latitude",
-      altitude: "altitude",
+      longitude: "Longitude",
+      latitude: "Latitude",
+      altitude: "Altitude",
       crewOnboard: "Crew onboard",
       launched: "Assembly Began",
       launchedValue: "20 November 1998",
@@ -273,7 +169,7 @@ const en = {
       orbitalPeriod: "Orbital Period",
       orbitsPerDay: "Orbits/Day",
       orbitalDecay: "Orbital Decay",
-      dimentionsValue: "109m wide x 73m long x 14m tall",
+      dimensionsValue: "109m wide x 73m long x 14m tall",
     },
   },
   settings: {
@@ -415,7 +311,6 @@ const en = {
   resources: {
     header: "Resources",
     searchPlaceholder: "Search articles, events, etc...",
-    recentSearches: "RECENT SEARCHES",
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",
     tabs: {

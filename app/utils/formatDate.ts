@@ -24,7 +24,7 @@ import * as storage from "../utils/storage"
 import { getLocationTimeZone } from "./geolocation"
 import { Platform } from "react-native"
 
-if (global.HermesInternal) {
+if ((global as any).HermesInternal) {
   if (Platform.OS === 'ios') {
     // Polyfills required to use Intl with Hermes engine
     require('@formatjs/intl-getcanonicallocales/polyfill').default

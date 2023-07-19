@@ -310,7 +310,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         accessibilityLabel="location title"
         accessibilityHint="location title"
         accessibilityRole="text"
-        tx="onboarding.completeProfile.location.tittle"
+        tx="onboarding.completeProfile.location.title"
         style={$title}
       />
       {renderBody()}

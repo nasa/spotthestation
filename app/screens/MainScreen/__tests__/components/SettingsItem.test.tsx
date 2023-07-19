@@ -6,6 +6,6 @@ import renderer from "react-test-renderer"
 import { SettingsItem } from "../../components/SettingsItem"
 
 it("renders correctly", () => {
-  const tree = renderer.create(<SettingsItem title="common.ok" icon="book" />).toJSON()
+  const tree = renderer.create(<SettingsItem title="settings.locationSettings" icon="book" />).toJSON()
   expect(tree).toMatchSnapshot()
 })

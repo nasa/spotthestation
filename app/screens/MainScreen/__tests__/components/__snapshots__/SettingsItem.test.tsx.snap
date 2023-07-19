@@ -79,7 +79,7 @@ exports[`renders correctly 1`] = `
       }
     >
       <Text
-        accessibilityHint="common.ok"
+        accessibilityHint="settings.locationSettings"
         accessibilityLabel="title"
         accessibilityRole="text"
         accessible={true}
@@ -113,7 +113,7 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        common.ok undefined
+        settings.locationSettings undefined
       </Text>
     </View>
     <View>
