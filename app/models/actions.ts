@@ -25,7 +25,7 @@ const RootStoreActions = (self) => ({
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
         const dataToSave = data.map((item) => {
-          const sighting = locationSightings.find(({ date }) => date === item.date)
+          const sighting = locationSightings.find(({ date }) => (date as string).substring(0, 17) === (item.date as string).substring(0, 17))
           return sighting ? { ...item, notify: sighting.notify } : item
         })
 
