@@ -20,6 +20,7 @@ export interface ListItemProps {
   onCtaPress?: () => void
   onEdit?: () => void
   onDelete?: () => void
+  borderless: boolean
 }
 
 export function ListItem({
@@ -36,7 +37,8 @@ export function ListItem({
   onEdit,
   onDelete,
   editable,
-  disabled
+  disabled,
+  borderless,
 }: ListItemProps) {
   return (
     <Pressable
@@ -51,7 +53,7 @@ export function ListItem({
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
         {secondIcon && <Icon icon={secondIcon.icon} size={24} color={secondIcon.color} />}
       </View>
-      <View style={$bodyContainer}>
+      <View style={[$bodyContainer, borderless && { borderBottomWidth: 0 }]}>
         <View
           accessible
           accessibilityLabel="list item body"

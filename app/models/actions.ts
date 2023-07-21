@@ -5,6 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { flow } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
+import { sub, add } from "date-fns"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { api } from "../services/api"
 import { getCurrentTimeZome } from "../utils/formatDate"
@@ -12,19 +13,27 @@ import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
+import { getSatPath, getSightings } from "../utils/astro"
 
 const RootStoreActions = (self) => ({
   getISSSightings: flow(function* getISSSightings(params, isCurrent?: boolean) {
     try {
-      const location = isCurrent ? self.currentLocation : self.selectedLocation || self.currentLocation
+      const location = isCurrent
+        ? self.currentLocation
+        : self.selectedLocation || self.currentLocation
       const locationCopy = JSON.parse(JSON.stringify(location))
-      const { data, ok } = yield api.getISSSightings(params)
+      const { data, ok } = self.isLocalCalculations
+        ? yield api.getRawISSData()
+        : yield api.getISSSightings(params)
 
       if (ok) {
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
-        const dataToSave = data.map((item) => {
+        const sightings = self.isLocalCalculations
+          ? getSightings(data, params.lat, params.lon)
+          : data
+        const dataToSave = sightings.map((item) => {
           const sighting = locationSightings.find(({ date }) => (date as string).substring(0, 17) === (item.date as string).substring(0, 17))
           return sighting ? { ...item, notify: sighting.notify } : item
         })
@@ -57,7 +66,7 @@ const RootStoreActions = (self) => ({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.dismiss'),
+            text: translate("snackBar.dismiss"),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()
@@ -92,18 +101,24 @@ const RootStoreActions = (self) => ({
     notifications.setNotifications(notifyFor)
   },
 
-  setCurrentLocation: flow(function* setCurrentLocation(value: LocationType, updateSettingsOnly?: boolean) {
+  setCurrentLocation: flow(function* setCurrentLocation(
+    value: LocationType,
+    updateSettingsOnly?: boolean,
+  ) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     if (updateSettingsOnly) {
       self.currentLocation = Location.create(valueCopy)
     } else {
       const { timeZone } = yield getCurrentTimeZome(valueCopy)
       self.currentLocation = Location.create(valueCopy)
-      self.getISSSightings({
-        zone: timeZone,
-        lat: valueCopy.location.lat,
-        lon: valueCopy.location.lng,
-      }, true)
+      self.getISSSightings(
+        {
+          zone: timeZone,
+          lat: valueCopy.location.lat,
+          lon: valueCopy.location.lng,
+        },
+        true,
+      )
     }
   }),
 
@@ -152,23 +167,28 @@ const RootStoreActions = (self) => ({
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
     self.savedLocations = [...self.savedLocations, valueCopy]
-    const { data, ok } = yield api.getISSSightings({
-      zone: timeZone,
-      lat: valueCopy.location.lat,
-      lon: valueCopy.location.lng,
-    })
+    const { data, ok } = self.isLocalCalculations
+      ? yield api.getRawISSData()
+      : yield api.getISSSightings({
+        zone: timeZone,
+        lat: valueCopy.location.lat,
+        lon: valueCopy.location.lng,
+      })
 
     if (ok) {
+      const sightings = self.isLocalCalculations
+        ? getSightings(data, valueCopy.location.lat, valueCopy.location.lng)
+        : data
       self.savedLocations = [
         ...self.savedLocations.filter((item) => item.title !== valueCopy.title),
-        { ...valueCopy, sightings: [...data] },
+        { ...valueCopy, sightings: [...sightings] },
       ]
 
       Snackbar.show({
-        text: translate('snackBar.sightingsSaved'),
+        text: translate("snackBar.sightingsSaved"),
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: translate('snackBar.dismiss'),
+          text: translate("snackBar.dismiss"),
           textColor: "green",
           onPress: () => {
             Snackbar.dismiss()
@@ -180,7 +200,7 @@ const RootStoreActions = (self) => ({
         text: data as string,
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: translate('snackBar.dismiss'),
+          text: translate("snackBar.dismiss"),
           textColor: "red",
           onPress: () => {
             Snackbar.dismiss()
@@ -192,10 +212,15 @@ const RootStoreActions = (self) => ({
 
   getISSData: flow(function* getISSData(params) {
     try {
-      const { data, ok } = yield api.getISSData(params)
+      const { data, ok } = self.isLocalCalculations
+        ? yield api.getRawISSData({
+          from: sub(new Date(), { minutes: 100 }).toISOString(),
+          to: add(new Date(), { minutes: 100 }).toISOString(),
+        })
+        : yield api.getISSData(params)
 
       if (ok) {
-        self.issData = data
+        self.issData = self.isLocalCalculations ? getSatPath(data, params.lat, params.lon) : data
         if (self.initLoading) self.issDataLoaded = true
       } else {
         self.trajectoryError = true
@@ -204,7 +229,7 @@ const RootStoreActions = (self) => ({
           text: data as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.dismiss'),
+            text: translate("snackBar.dismiss"),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()
@@ -243,6 +268,19 @@ const RootStoreActions = (self) => ({
       self.modalsQueue = self.modalsQueue.slice(1)
     }
   },
+
+  setLocalCalculations: flow(function* setLocalCalculations(value) {
+    self.isLocalCalculations = value
+    self.setInitLoading(true)
+
+    const location = self.selectedLocation || self.currentLocation
+    const { timeZone } = yield getCurrentTimeZome(location)
+    self.getISSSightings({
+      zone: timeZone,
+      lat: location.location.lat,
+      lon: location.location.lng,
+    })
+  }),
 })
 
 export default RootStoreActions

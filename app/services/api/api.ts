@@ -16,13 +16,15 @@ import type {
   ApiConfig,
   GetISSDataParams,
   GetISSSightingsParams,
+  GetRawISSDataParams,
   ISSSighting,
   ISSSightingResponse,
   OrbitPoint,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { TimeZoneDataResponse } from "../../utils/geolocation"
-import { ISSDataResponse } from "./api.types"
+import { ISSDataResponse, RawISSDataResponse } from "./api.types"
+import { SatData } from "../../utils/astro"
 
 /**
  * Configuring the apisauce instance.
@@ -81,6 +83,24 @@ export class Api {
     }
 
     return { kind: "ok", zone: response.data }
+  }
+
+  async getRawISSData(
+    params?: GetRawISSDataParams,
+  ): Promise<RawISSDataResponse | GeneralApiProblem> {
+    const response: ApiResponse<SatData[]> = await this.apisauce.post(
+      "/tracking/iss-data-raw",
+      params || {},
+      { baseURL: Config.API_URL },
+    )
+
+    if (!response.ok || !response.data.length) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: response.data }
+      if (!response.data.length) return { ok: false, data: "Data is empty!" }
+    }
+
+    return { ok: true, data: response.data }
   }
 
   async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {

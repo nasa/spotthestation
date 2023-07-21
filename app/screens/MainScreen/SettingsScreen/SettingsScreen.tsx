@@ -6,10 +6,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Screen, Text } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { SettingsItem } from "../components/SettingsItem"
+import { ListItem } from "../components/ListItem"
+import { useStores } from "../../../models"
 
 export const SettingsScreen = observer(function SettingsScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
+  const { isLocalCalculations, setLocalCalculations } = useStores()
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -55,6 +58,17 @@ export const SettingsScreen = observer(function SettingsScreen() {
           icon="mail"
           title="settings.contactUs"
           onPress={() => handleNavigate("ContactUs")}
+        />
+        {/* eslint-disable-next-line react-native/no-inline-styles */}
+        <View style={{ flex: 1 }} />
+        <ListItem
+          icon="iss"
+          title="Local calculations"
+          subtitle=""
+          selected={isLocalCalculations}
+          onToggle={() => setLocalCalculations(!isLocalCalculations)}
+          withSwitch
+          borderless
         />
       </View>
     </Screen>

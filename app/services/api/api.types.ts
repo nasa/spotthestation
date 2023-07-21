@@ -1,3 +1,5 @@
+import { SatData } from "../../utils/astro"
+
 /**
  * These types indicate the shape of the data you expect to receive from your
  * API endpoint, assuming it's a JSON object like we have.
@@ -45,6 +47,11 @@ export interface GetISSDataParams {
   lon: number
 }
 
+export interface GetRawISSDataParams {
+  from: string
+  to: string
+}
+
 export interface ISSSighting {
   date: string
   maxHeight: number
@@ -67,6 +74,11 @@ export interface OrbitPoint {
 export interface ISSDataResponse {
   ok: boolean
   data: OrbitPoint[] | string
+}
+
+export interface RawISSDataResponse {
+  ok: boolean
+  data: SatData[] | string
 }
 
 export interface ISSSightingResponse {

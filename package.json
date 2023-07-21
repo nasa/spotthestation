@@ -56,6 +56,7 @@
     "@testing-library/react-native": "^12.1.2",
     "@types/react-native-push-notification": "^8.1.1",
     "@types/rn-fetch-blob": "^1.2.3",
+    "@types/suncalc": "^1.9.0",
     "@types/uuid": "^9.0.0",
     "@viro-community/react-viro": "https://github.com/adrach/viro",
     "@webgeodatavore/geojson.terminator": "^1.0.2",
@@ -119,6 +120,7 @@
     "reactotron-react-js": "^3.3.7",
     "reactotron-react-native": "5.0.3",
     "rn-fetch-blob": "^0.12.0",
+    "suncalc": "^1.9.0",
     "three": "^0.147.0",
     "uuid": "^9.0.0"
   },
