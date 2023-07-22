@@ -139,7 +139,7 @@ const en = {
       sightingsTitle: "Next Sighting & Countdown",
       sightingsData:
         "This section shows you the date and a countdown timer for the next upcoming ISS sighting near your selected location. You can tap on the Next Sighting box to see a complete list of the upcoming sightings.",
-      globeTitle: "Intreractive Earth",
+      globeTitle: "Interactive Earth",
       globeData:
         "You can view the real-time position of the ISS by swiping on the screen. This allows you to interact with the Earth and track the location of the ISS in real-time.",
       mapTitle: "2D Map View",

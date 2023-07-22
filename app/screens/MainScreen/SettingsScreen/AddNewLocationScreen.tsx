@@ -51,7 +51,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
-    location.title = titleValue || location.subtitle.split(",")[0]
+    location.title = titleValue || (location?.subtitle ?? '').split(",")[0]
+    if (!location.title) return
     let res = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({

@@ -10,10 +10,10 @@ const BASE_HEIGHT = 932
 enum LanguageScaling {
   en = 1,
   fr = 0.8,
-  uk = 1,
+  uk = 0.7,
   ja = 1,
   es = 0.8,
-  it = 1,
+  it = 0.9,
   nl = 1,
   ru = 1,
   sv = 1,
