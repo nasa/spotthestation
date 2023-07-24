@@ -1,4 +1,7 @@
 import SunCalc from "suncalc"
+import { InteractionManager } from "react-native"
+
+const runAfterInteractions = InteractionManager.runAfterInteractions.bind(InteractionManager) as (value: unknown) => any
 
 export type SatData = {
   altitude: number
@@ -262,4 +265,39 @@ export function getSatPath(data: SatData[], lat: number, lon: number) {
       altitude: d.altitude,
     }
   })
+}
+
+
+export async function linearInterpolation(data: SatData[], parts) {
+  let interpolatedData: SatData[] = []
+  for (let i = 0; i < data.length - 1; i++) {
+    const startDate = new Date(data[i].date).valueOf()
+    const endDate = new Date(data[i + 1].date).valueOf()
+    const deltaTime = (endDate - startDate) / parts
+
+    for (let j = 1; j < parts; j++) {
+      const intermediateLocation = data[i].location.map((coord, k) => {
+        return coord + j * (data[i + 1].location[k] - coord) / parts
+      }) as [number, number, number]
+
+      const intermediateVelocity = data[i].velocity.map((vel, k) => {
+        return vel + j * (data[i + 1].velocity[k] - vel) / parts
+      }) as [number, number, number]
+
+      const intermediateAltitude = data[i].altitude + j * (data[i + 1].altitude - data[i].altitude) / parts
+
+      const intermediateData = {
+        date: new Date(startDate + j * deltaTime).toISOString(),
+        location: intermediateLocation,
+        velocity: intermediateVelocity,
+        altitude: intermediateAltitude,
+      }
+      interpolatedData.push(intermediateData)
+    }
+
+    if (i % 10 === 0) await new Promise(runAfterInteractions)
+  }
+
+  interpolatedData = [data[0], ...interpolatedData, data[data.length - 1]]
+  return interpolatedData
 }

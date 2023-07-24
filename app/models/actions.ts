@@ -13,9 +13,21 @@ import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
-import { getSatPath, getSightings } from "../utils/astro"
+import { getSatPath, getSightings, linearInterpolation } from "../utils/astro"
 
 const RootStoreActions = (self) => ({
+  calculateSightings: flow(function* calculateSightings(params) {
+    const { data, ok } = yield api.getRawISSData({
+      from: new Date().toISOString(),
+    })
+
+    if (!ok) return { ok: false }
+    const interpolated = yield linearInterpolation(data, 15)
+    const sightings = getSightings(interpolated, params.lat, params.lon)
+
+    return { ok: true, data: sightings }
+  }),
+
   getISSSightings: flow(function* getISSSightings(params, isCurrent?: boolean) {
     try {
       const location = isCurrent
@@ -23,17 +35,14 @@ const RootStoreActions = (self) => ({
         : self.selectedLocation || self.currentLocation
       const locationCopy = JSON.parse(JSON.stringify(location))
       const { data, ok } = self.isLocalCalculations
-        ? yield api.getRawISSData()
+        ? yield self.calculateSightings(params)
         : yield api.getISSSightings(params)
 
       if (ok) {
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
-        const sightings = self.isLocalCalculations
-          ? getSightings(data, params.lat, params.lon)
-          : data
-        const dataToSave = sightings.map((item) => {
+        const dataToSave = data.map((item) => {
           const sighting = locationSightings.find(({ date }) => (date as string).substring(0, 17) === (item.date as string).substring(0, 17))
           return sighting ? { ...item, notify: sighting.notify } : item
         })
@@ -168,7 +177,10 @@ const RootStoreActions = (self) => ({
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
     self.savedLocations = [...self.savedLocations, valueCopy]
     const { data, ok } = self.isLocalCalculations
-      ? yield api.getRawISSData()
+      ? yield self.calculateSightings({
+        lat: valueCopy.location.lat,
+        lon: valueCopy.location.lng,
+      })
       : yield api.getISSSightings({
         zone: timeZone,
         lat: valueCopy.location.lat,
@@ -176,12 +188,9 @@ const RootStoreActions = (self) => ({
       })
 
     if (ok) {
-      const sightings = self.isLocalCalculations
-        ? getSightings(data, valueCopy.location.lat, valueCopy.location.lng)
-        : data
       self.savedLocations = [
         ...self.savedLocations.filter((item) => item.title !== valueCopy.title),
-        { ...valueCopy, sightings: [...sightings] },
+        { ...valueCopy, sightings: [...data] },
       ]
 
       Snackbar.show({
@@ -220,7 +229,7 @@ const RootStoreActions = (self) => ({
         : yield api.getISSData(params)
 
       if (ok) {
-        self.issData = self.isLocalCalculations ? getSatPath(data, params.lat, params.lon) : data
+        self.issData = self.isLocalCalculations ? getSatPath(yield linearInterpolation(data, 60), params.lat, params.lon) : data
         if (self.initLoading) self.issDataLoaded = true
       } else {
         self.trajectoryError = true

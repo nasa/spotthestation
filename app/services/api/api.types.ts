@@ -48,8 +48,8 @@ export interface GetISSDataParams {
 }
 
 export interface GetRawISSDataParams {
-  from: string
-  to: string
+  from?: string
+  to?: string
 }
 
 export interface ISSSighting {
