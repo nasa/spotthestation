@@ -23,6 +23,7 @@ import { SettingsItem } from "../components/SettingsItem"
 import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
+import * as storage from "../../../utils/storage"
 
 export interface SelectLocationProps {
   /**
@@ -62,6 +63,7 @@ export function SelectLocation({
     if (!location) {
       location = await getCurrentLocation(() => ({}))
       setCurrentLocation(location).catch((e) => console.log(e))
+      await storage.save("currentLocation", location)
     }
     const res = await getNearbyPlaces(location.location, 100)
 

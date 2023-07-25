@@ -20,7 +20,7 @@ export interface ListItemProps {
   onCtaPress?: () => void
   onEdit?: () => void
   onDelete?: () => void
-  borderless: boolean
+  borderless?: boolean
 }
 
 export function ListItem({

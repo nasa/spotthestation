@@ -65,6 +65,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       setIsCurrentLocationUpdating(true)
       console.log(e)
     })
+    await storage.save("currentLocation", location)
   }, [currentLocation])
 
   useEffect(() => {

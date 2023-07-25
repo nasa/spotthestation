@@ -68,7 +68,7 @@ export const HomeScreen = observer(function HomeScreen() {
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const appState = useRef(AppState.currentState)
-  const [globeVisible, setGlobeVisible] = useState(false);
+  const [globeVisible, setGlobeVisible] = useState(false)
 
   const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
     date: null,

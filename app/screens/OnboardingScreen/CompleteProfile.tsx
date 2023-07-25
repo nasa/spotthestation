@@ -61,10 +61,11 @@ export const CompleteProfile = observer(function CompleteProfile() {
       )
   }
 
-  const handleLocationChange = (location: LocationType) => {
+  const handleLocationChange = async (location: LocationType) => {
     setLocation(location)
     setInitLoading(true)
     setCurrentLocation(location).catch((e) => console.log(e))
+    await storage.save("currentLocation", location)
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {
