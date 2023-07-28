@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from "react"
-import { ViewStyle, View, TextStyle, Pressable, PressableProps } from "react-native"
+import { ViewStyle, View, TextStyle, Pressable, PressableProps, ActivityIndicator } from "react-native"
 import { Text, Icon, IconTypes, Toggle } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
 import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
@@ -93,7 +93,7 @@ export function ListItem({
             </View>
           )}
         </View>
-        {withSwitch ? (
+        {withSwitch && !disabled && (
           <Toggle
             accessible
             accessibilityLabel="switch button"
@@ -103,7 +103,13 @@ export function ListItem({
             onValueChange={onToggle}
             disabled={disabled}
           />
-        ) : (
+        )}
+        {withSwitch && disabled && (
+          <View style={$spinner}>
+            <ActivityIndicator />
+          </View>
+        )}
+        { !withSwitch && (
           <Icon
             icon="check"
             size={24}
@@ -160,4 +166,10 @@ const $tip: TextStyle = {
   fontSize: fontSizes[18],
   fontFamily: typography.primary.light,
   lineHeight: lineHeights[22],
+}
+
+const $spinner: ViewStyle = {
+  width: scale(46),
+  justifyContent: "center",
+  alignItems: "center"
 }

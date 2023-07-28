@@ -84,6 +84,8 @@ const RootStoreActions = (self) => ({
         })
       }
     } catch (e) {
+      self.trajectoryError = true
+      if (self.initLoading) self.sightingsLoaded = true
       self.setIsCurrentLocationUpdating(false)
       console.error(e)
     }
@@ -92,7 +94,7 @@ const RootStoreActions = (self) => ({
   setISSSightings: (value: LocationType) => {
     const isCurrentLocation = value.title === self.currentLocation?.title
     const valueCopy = JSON.parse(JSON.stringify(value))
-    self.selectedLocation = valueCopy
+    self.selectedLocation = Location.create(valueCopy)
 
     let savedLocations = []
     if (!isCurrentLocation) {
@@ -247,6 +249,8 @@ const RootStoreActions = (self) => ({
         })
       }
     } catch (e) {
+      self.trajectoryError = true
+      if (self.initLoading) self.issDataLoaded = true
       console.error(e)
     }
   }),

@@ -306,13 +306,15 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const handleChangeLocation = useCallback(async (location: LocationType) => {
     requestCloseModal("location")
+    if (current && current.location.lat === location.location.lat && current.location.lng === location.location.lng) return
+
     setInitLoading(true)
     setIsCurrentSightingLoaded(false)
     setIssDataLoaded(false)
     setSightingsLoaded(false)
     setSelectedLocation(location).catch((e) => console.log(e))
     await storage.save("selectedLocation", location)
-  }, [])
+  }, [current])
 
   const handleSetSightingNotification = useCallback(
     (value: ISSSighting) => {

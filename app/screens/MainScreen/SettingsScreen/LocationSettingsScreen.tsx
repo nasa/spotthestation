@@ -60,11 +60,13 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
   const getLocation = useCallback(async () => {
     setIsCurrentLocationUpdating(true)
-    setCurrentLocation({...(await getCurrentLocation(() => ({}), setLocationPermission)), alert: currentLocation.alert })
-    .catch((e) => {
-      setIsCurrentLocationUpdating(true)
+    try {
+      const location = await getCurrentLocation(() => ({}), setLocationPermission)
+      await setCurrentLocation({ ...location, alert: currentLocation.alert })
+    } catch (e) {
+      setIsCurrentLocationUpdating(false)
       console.log(e)
-    })
+    }
     await storage.save("currentLocation", location)
   }, [currentLocation])
 
