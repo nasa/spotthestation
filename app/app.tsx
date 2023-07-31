@@ -12,7 +12,7 @@
 import "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React from "react"
+import React, { useEffect } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
@@ -102,6 +102,11 @@ function App(props: AppProps) {
     // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
     setTimeout(hideSplashScreen, 500)
   })
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
+  }, [])
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background

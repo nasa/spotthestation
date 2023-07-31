@@ -24,6 +24,7 @@ import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
 import * as storage from "../../../utils/storage"
+import { RefreshButton } from "./RefreshButton"
 
 export interface SelectLocationProps {
   /**
@@ -45,7 +46,7 @@ export function SelectLocation({
   onLocationPress,
   selectedLocation,
 }: SelectLocationProps) {
-  const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations } = useStores()
+  const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations, setIsCurrentLocationUpdating, isCurrentLocationUpdating } = useStores()
   const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
@@ -84,6 +85,19 @@ export function SelectLocation({
       ),
     )
   }
+
+  const updateCurrentLocation = useCallback(async () => {
+    setIsCurrentLocationUpdating(true)
+    try {
+      const location = await getCurrentLocation(() => ({}))
+      await setCurrentLocation({ ...location, alert: currentLocation.alert })
+      await storage.save("currentLocation", location)
+      setNearby(await getNearbyPlaces(location.location, 100))
+    } catch (e) {
+      setIsCurrentLocationUpdating(false)
+      console.log(e)
+    }
+  }, [currentLocation])
 
   useEffect(() => {
     getLocation().catch((e: Error) => {
@@ -196,7 +210,17 @@ export function SelectLocation({
           {!isFocus && searchResult.length === 0 && (
             <>
               {Boolean(currentLocation) && (
-                <ExpandContainer title="homeScreen.selectLocation.current" expandble={false}>
+                <ExpandContainer
+                  button={(
+                    <RefreshButton
+                      inProgress={isCurrentLocationUpdating}
+                      containerStyle={{ marginLeft: 5 }}
+                      onPress={updateCurrentLocation}
+                    />
+                  )}
+                  title="homeScreen.selectLocation.current"
+                  expandble={false}
+                >
                   <ListItem
                     icon="pin"
                     title={currentLocation.title}

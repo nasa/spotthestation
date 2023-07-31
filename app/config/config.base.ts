@@ -4,6 +4,7 @@ import {
   MAPBOX_API_TOKEN,
   SENTRY_DSN,
   SENTRY_ENVIRONMENT,
+  DISABLE_YELLOWBOX,
 } from "react-native-dotenv"
 
 export interface ConfigBaseProps {
@@ -15,6 +16,7 @@ export interface ConfigBaseProps {
   API_URL: string
   SENTRY_DSN: string
   SENTRY_ENVIRONMENT: string
+  DISABLE_YELLOWBOX: string
 }
 
 export type PersistNavigationConfig = ConfigBaseProps["persistNavigation"]
@@ -40,6 +42,7 @@ const BaseConfig: ConfigBaseProps = {
   API_URL,
   SENTRY_DSN,
   SENTRY_ENVIRONMENT,
+  DISABLE_YELLOWBOX,
 }
 
 export default BaseConfig

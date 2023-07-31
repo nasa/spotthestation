@@ -63,11 +63,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     try {
       const location = await getCurrentLocation(() => ({}), setLocationPermission)
       await setCurrentLocation({ ...location, alert: currentLocation.alert })
+      await storage.save("currentLocation", location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
       console.log(e)
     }
-    await storage.save("currentLocation", location)
   }, [currentLocation])
 
   useEffect(() => {

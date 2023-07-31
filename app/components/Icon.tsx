@@ -150,6 +150,7 @@ export const iconRegistry = {
   sunset: require("../../assets/icons/sunset.png"),
   moon: require("../../assets/icons/moon.png"),
   edit: require("../../assets/icons/edit.png"),
+  refresh: require("../../assets/icons/refresh.png"),
 }
 
 const $imageStyle: ImageStyle = {

@@ -127,7 +127,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     } else {
       setCurrent(currentLocation)
     }
-  }, [])
+  }, [selectedLocation, currentLocation])
 
   useEffect(() => {
     getCurrentLocation()

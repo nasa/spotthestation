@@ -12,7 +12,8 @@ export interface ExpandContainerProps {
   reverseTitle?: boolean
   children?: ReactNode
   actionTitle?: TxKeyPath
-  containerStyle?: ViewStyle
+  containerStyle?: ViewStyle,
+  button?: ReactNode,
 }
 
 export function ExpandContainer({
@@ -24,6 +25,7 @@ export function ExpandContainer({
   actionTitle,
   reverseTitle,
   containerStyle,
+  button,
 }: ExpandContainerProps) {
   const [expanded, setExpanded] = useState(defaultValue)
 
@@ -43,6 +45,7 @@ export function ExpandContainer({
             style={[$title, $titleOverride]}
           />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
+          { button }
         </View>
         {expandble && (
           <Icon
@@ -81,6 +84,7 @@ const $headContainer: ViewStyle = {
 
 const $titleContainer: ViewStyle = {
   flexDirection: "row",
+  alignItems: "center",
 }
 
 const $title: TextStyle = {

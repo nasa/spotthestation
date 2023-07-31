@@ -14,6 +14,7 @@ import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
 import { getSatPath, getSightings, linearInterpolation } from "../utils/astro"
+import * as storage from "../utils/storage"
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params) {
@@ -117,11 +118,18 @@ const RootStoreActions = (self) => ({
     updateSettingsOnly?: boolean,
   ) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
-    if (updateSettingsOnly) {
-      self.currentLocation = Location.create(valueCopy)
-    } else {
+    const isSelectedLocation = self.selectedLocation
+      && self.currentLocation
+      && self.currentLocation.title === self.selectedLocation.title
+
+    self.currentLocation = Location.create(valueCopy)
+    if (!updateSettingsOnly) {
+      if (isSelectedLocation) {
+        yield storage.remove("selectedLocation")
+        self.selectedLocation = null
+      }
+
       const { timeZone } = yield getCurrentTimeZome(valueCopy)
-      self.currentLocation = Location.create(valueCopy)
       self.getISSSightings(
         {
           zone: timeZone,
