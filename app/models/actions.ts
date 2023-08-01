@@ -44,7 +44,10 @@ const RootStoreActions = (self) => ({
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
         const dataToSave = data.map((item) => {
-          const sighting = locationSightings.find(({ date }) => (date as string).substring(0, 17) === (item.date as string).substring(0, 17))
+          const sighting = locationSightings.find(
+            ({ date }) =>
+              (date as string).substring(0, 17) === (item.date as string).substring(0, 17),
+          )
           return sighting ? { ...item, notify: sighting.notify } : item
         })
 
@@ -118,9 +121,10 @@ const RootStoreActions = (self) => ({
     updateSettingsOnly?: boolean,
   ) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
-    const isSelectedLocation = self.selectedLocation
-      && self.currentLocation
-      && self.currentLocation.title === self.selectedLocation.title
+    const isSelectedLocation =
+      self.selectedLocation &&
+      self.currentLocation &&
+      self.currentLocation.title === self.selectedLocation.title
 
     self.currentLocation = Location.create(valueCopy)
     if (!updateSettingsOnly) {
@@ -188,14 +192,14 @@ const RootStoreActions = (self) => ({
     self.savedLocations = [...self.savedLocations, valueCopy]
     const { data, ok } = self.isLocalCalculations
       ? yield self.calculateSightings({
-        lat: valueCopy.location.lat,
-        lon: valueCopy.location.lng,
-      })
+          lat: valueCopy.location.lat,
+          lon: valueCopy.location.lng,
+        })
       : yield api.getISSSightings({
-        zone: timeZone,
-        lat: valueCopy.location.lat,
-        lon: valueCopy.location.lng,
-      })
+          zone: timeZone,
+          lat: valueCopy.location.lat,
+          lon: valueCopy.location.lng,
+        })
 
     if (ok) {
       self.savedLocations = [
@@ -233,13 +237,13 @@ const RootStoreActions = (self) => ({
     try {
       const { data, ok } = self.isLocalCalculations
         ? yield api.getRawISSData({
-          from: sub(new Date(), { minutes: 100 }).toISOString(),
-          to: add(new Date(), { minutes: 100 }).toISOString(),
-        })
-        : yield api.getISSData(params)
+            from: sub(new Date(), { minutes: 100 }).toISOString(),
+            to: add(new Date(), { minutes: 100 }).toISOString(),
+          })
+        : yield api.getISSData({ ...params, withoutInterpolation: true })
 
       if (ok) {
-        self.issData = self.isLocalCalculations ? getSatPath(yield linearInterpolation(data, 60), params.lat, params.lon) : data
+        self.issData = self.isLocalCalculations ? getSatPath(data, params.lat, params.lon) : data
         if (self.initLoading) self.issDataLoaded = true
       } else {
         self.trajectoryError = true

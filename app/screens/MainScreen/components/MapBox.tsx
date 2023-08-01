@@ -2,13 +2,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL from "@rnmapbox/maps"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
 import { colors } from "../../../theme"
 import { computeOld, toGeoJSON } from "../../../utils/terminator"
+import { Vector3 } from "three"
+import { useISSPathCurve } from "../../../utils/useISSPathCurve"
+import { OrbitPoint } from "../../../services/api"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
@@ -18,8 +21,7 @@ interface MapBoxProps {
   withNightOverlay?: boolean
   zoom?: number
   zoomEnabled?: boolean
-  issPathCoords?: [number, number][]
-  issMarkerPosition?: [number, number]
+  issPath?: OrbitPoint[]
   onPress?: (params: any) => void
   markers?: LatLng[]
 }
@@ -29,21 +31,50 @@ export function MapBox({
   withNightOverlay = true,
   zoomEnabled = false,
   zoom = 0,
-  issPathCoords = [],
-  issMarkerPosition,
+  issPath = [],
   onPress,
   markers = [],
 }: MapBoxProps) {
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
+  const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
+
+  const mapper = useCallback((p: [number, number]) => {
+    return new Vector3(p[0], p[1], 0)
+  }, [])
+
+  const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
+
+  useEffect(() => {
+    if (!curve) {
+      setIssCoords2D(null)
+      return undefined
+    }
+    const update = () => {
+      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      if (t > 1) return updateCurve()
+
+      const point = curve.getPoint(t)
+      if (point.x > 180) return updateCurve()
+      setIssCoords2D([point.x, point.y])
+    }
+    update()
+
+    const timeout = setInterval(update, 10000)
+    return () => {
+      clearInterval(timeout)
+    }
+  }, [curve])
 
   useEffect(() => {
     if (Platform.OS === "android") MapboxGL.setWellKnownTileServer("Mapbox")
-    MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN).then(() => {
-      MapboxGL.setTelemetryEnabled(false)
-      if (Platform.OS === "android") MapboxGL.setConnected(true)
-      setLoading(false)
-    }).catch(e => console.log(e))
+    MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN)
+      .then(() => {
+        MapboxGL.setTelemetryEnabled(false)
+        if (Platform.OS === "android") MapboxGL.setConnected(true)
+        setLoading(false)
+      })
+      .catch((e) => console.log(e))
   }, [])
 
   useEffect(() => {
@@ -55,6 +86,11 @@ export function MapBox({
       clearInterval(timeout)
     }
   }, [])
+
+  const issPathCoords2D = useMemo(
+    () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),
+    [curve],
+  )
 
   return !loading ? (
     <MapboxGL.MapView
@@ -88,14 +124,14 @@ export function MapBox({
           markers.length && { centerCoordinate: [markers[0].longitude, markers[0].latitude] }
         }
       />
-      {Boolean(issPathCoords?.length) && (
+      {Boolean(issPathCoords2D?.length) && (
         <>
           <MapboxGL.ShapeSource
             id="myShapeSource"
             shape={{
               type: "LineString",
-              coordinates: issPathCoords
-                .filter((item) => item[1] < issMarkerPosition[1])
+              coordinates: issPathCoords2D
+                .filter((item) => item[1] < issCoords2D[1])
                 .map((item) => [...item].reverse()),
             }}
           >
@@ -108,8 +144,8 @@ export function MapBox({
             id="myShapeSourceDashed"
             shape={{
               type: "LineString",
-              coordinates: issPathCoords
-                .filter((item) => item[1] > issMarkerPosition[1])
+              coordinates: issPathCoords2D
+                .filter((item) => item[1] > issCoords2D[1])
                 .map((item) => [...item].reverse()),
             }}
           >
@@ -120,10 +156,10 @@ export function MapBox({
           </MapboxGL.ShapeSource>
         </>
       )}
-      {Boolean(issMarkerPosition) && (
+      {Boolean(issCoords2D) && (
         <MapboxGL.ShapeSource
           id="myShapeSourceMarker"
-          shape={{ type: "Point", coordinates: [...issMarkerPosition].reverse() }}
+          shape={{ type: "Point", coordinates: [...issCoords2D].reverse() }}
         >
           <MapboxGL.SymbolLayer
             id="myShapeSourceMarker"
@@ -151,5 +187,7 @@ export function MapBox({
           </MapboxGL.ShapeSource>
         ))}
     </MapboxGL.MapView>
-  ) : <View />
+  ) : (
+    <View />
+  )
 }

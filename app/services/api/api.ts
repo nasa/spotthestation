@@ -103,12 +103,17 @@ export class Api {
     return { ok: true, data: response.data }
   }
 
-  async getISSData({ lat, lon }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
+  async getISSData({
+    lat,
+    lon,
+    withoutInterpolation,
+  }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
     const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post(
       "/tracking/iss-data",
       {
         lat,
         lon,
+        without_interpolation: withoutInterpolation ? "1" : "",
       },
       { baseURL: Config.API_URL },
     )

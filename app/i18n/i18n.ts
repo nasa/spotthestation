@@ -14,7 +14,7 @@ i18n.fallbacks = true
  */
 i18n.translations = { en, "en-US": en, uk }
 
-i18n.locale = Localization.locale.split('-')[0]
+i18n.locale = Localization.locale.split("-")[0]
 
 // handle RTL languages
 export const isRTL = Localization.isRTL

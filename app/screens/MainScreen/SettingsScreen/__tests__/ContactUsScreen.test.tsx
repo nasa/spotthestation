@@ -32,7 +32,7 @@ describe("ContactUsScreen", () => {
   }
 
   beforeEach(() => {
-    (useNavigation as any).mockReturnValue(mockNavigation)
+    ;(useNavigation as any).mockReturnValue(mockNavigation)
   })
 
   afterEach(() => {

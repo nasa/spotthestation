@@ -38,7 +38,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             text: data.message,
             duration: Snackbar.LENGTH_LONG,
             action: {
-              text: translate('snackBar.ok'),
+              text: translate("snackBar.ok"),
               textColor: "red",
               onPress: () => {
                 Snackbar.dismiss()
@@ -51,7 +51,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             text: data,
             duration: Snackbar.LENGTH_LONG,
             action: {
-              text: translate('snackBar.ok'),
+              text: translate("snackBar.ok"),
               textColor: "green",
               onPress: () => {
                 Snackbar.dismiss()
@@ -65,7 +65,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           text: e,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.ok'),
+            text: translate("snackBar.ok"),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()
@@ -117,10 +117,22 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           selectedTextStyle={[$dropdownText, $dropdownSelected]}
           placeholder={translate("settings.contactUsData.titlePlaceholder")}
           data={[
-            { label: translate("settings.contactUsData.contactUsOptions.reportAnIssue"), value: "Report an Issue" },
-            { label: translate("settings.contactUsData.contactUsOptions.improvementIdeas"), value: "Improvement Ideas" },
-            { label: translate("settings.contactUsData.contactUsOptions.generalQuestions"), value: "General Questions" },
-            { label: translate("settings.contactUsData.contactUsOptions.comments"), value: "Comments" },
+            {
+              label: translate("settings.contactUsData.contactUsOptions.reportAnIssue"),
+              value: "Report an Issue",
+            },
+            {
+              label: translate("settings.contactUsData.contactUsOptions.improvementIdeas"),
+              value: "Improvement Ideas",
+            },
+            {
+              label: translate("settings.contactUsData.contactUsOptions.generalQuestions"),
+              value: "General Questions",
+            },
+            {
+              label: translate("settings.contactUsData.contactUsOptions.comments"),
+              value: "Comments",
+            },
           ]}
           itemContainerStyle={{
             backgroundColor: colors.palette.neutral350,

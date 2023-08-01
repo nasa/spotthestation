@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { translate } from "../../../i18n"
 import { Icon, Text } from "../../../components"
@@ -12,11 +12,82 @@ export interface DetailsProps {
    * A function for closing modal.
    */
   onClose?: PressableProps["onPress"]
-  issData: OrbitPoint
+  issData: OrbitPoint[]
   observer: [number, number]
 }
 
 export function Details({ onClose, issData, observer }: DetailsProps) {
+  const [currentPosition, setCurrentPosition] = useState<OrbitPoint>(null)
+
+  useEffect(() => {
+    if (!issData) {
+      setCurrentPosition(null)
+      return undefined
+    }
+
+    const interpolate = (t: number, p1: number, p2: number) => (p2 - p1) * t + p1
+    const interpolateLongitude = (t: number, p1: number, p2: number) => {
+      if (p1 > 90 && p1 <= 180 && p2 >= -180 && p2 < -90) {
+        const res = interpolate(t, p1, p2 + 360)
+        return res > 180 ? res - 360 : res
+      }
+
+      if (p2 > 90 && p2 <= 180 && p1 >= -180 && p1 < -90) {
+        const res = interpolate(t, p1 + 360, p2)
+        return res > 180 ? res - 360 : res
+      }
+
+      return interpolate(t, p1, p2)
+    }
+
+    const interpolateAzimuth = (t: number, p1: number, p2: number) => {
+      if (p1 > 270 && p1 <= 360 && p2 >= 0 && p2 < 90) {
+        const res = interpolate(t, p1 - 360, p2)
+        return res < 0 ? 360 + res : res
+      }
+
+      if (p2 > 270 && p2 <= 360 && p1 >= 0 && p1 < 90) {
+        const res = interpolate(t, p1, p2 - 360)
+        return res < 0 ? 360 + res : res
+      }
+
+      return interpolate(t, p1, p2)
+    }
+
+    const update = () => {
+      if (!issData.length) return
+
+      const idx = issData.findIndex((point) => {
+        return new Date().valueOf() < new Date(point.date).valueOf()
+      })
+
+      if (idx < 1) return
+
+      const pt1 = issData[idx - 1]
+      const pt2 = issData[idx]
+      const t =
+        (Date.now() - new Date(pt1.date).valueOf()) /
+        (new Date(pt2.date).valueOf() - new Date(pt1.date).valueOf())
+
+      setCurrentPosition({
+        altitude: interpolate(t, pt1.altitude, pt2.altitude),
+        latitude: interpolate(t, pt1.latitude, pt2.latitude),
+        longitude: interpolateLongitude(t, pt1.longitude, pt2.longitude),
+        elevation: interpolate(t, pt1.elevation, pt2.elevation),
+        azimuth: interpolateAzimuth(t, pt1.azimuth, pt2.azimuth),
+        date: new Date().toDateString(),
+      })
+    }
+    update()
+
+    const timeout = setInterval(update, 10000)
+    return () => {
+      clearInterval(timeout)
+    }
+  }, [issData])
+
+  console.log(currentPosition)
+
   const distance = (data: OrbitPoint): number => {
     if (data) {
       return Math.round(
@@ -32,6 +103,9 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
     }
     return 0
   }
+
+  if (!currentPosition) return null
+
   return (
     <View style={$modalBodyContainer}>
       {Boolean(onClose) && (
@@ -65,7 +139,10 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailBox}
           >
             <Text tx="issView.details.distance" style={$detailTitle} />
-            <Text text={`${distance(issData)} ${translate('units.kilometer')}`} style={$detailValue} />
+            <Text
+              text={`${distance(currentPosition)} ${translate("units.kilometer")}`}
+              style={$detailValue}
+            />
           </View>
           <View
             accessible
@@ -77,10 +154,10 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
             <Text
               text={`${calculateOrbitalSpeed(
-                issData.latitude,
-                issData.azimuth,
-                issData.elevation,
-              )} ${translate('units.metersPerSecond')}`}
+                currentPosition.latitude,
+                currentPosition.azimuth,
+                currentPosition.elevation,
+              )} ${translate("units.metersPerSecond")}`}
               style={$detailValue}
             />
           </View>
@@ -93,7 +170,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           >
             <Text tx="issView.details.longitude" style={$detailTitle} />
             <Text
-              text={issData.longitude ? issData.longitude.toFixed(2) : "0"}
+              text={currentPosition.longitude ? currentPosition.longitude.toFixed(2) : "0"}
               style={$detailValue}
             />
           </View>
@@ -106,7 +183,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           >
             <Text tx="issView.details.latitude" style={$detailTitle} />
             <Text
-              text={issData.latitude ? issData.latitude.toFixed(2) : "0"}
+              text={currentPosition.latitude ? currentPosition.latitude.toFixed(2) : "0"}
               style={$detailValue}
             />
           </View>
@@ -119,7 +196,11 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
             <Text
-              text={issData.altitude ? `${issData.altitude.toFixed(2)} ${translate('units.kilometer')}` : `"0 ${translate('units.kilometer')}"`}
+              text={
+                currentPosition.altitude
+                  ? `${currentPosition.altitude.toFixed(2)} ${translate("units.kilometer")}`
+                  : `"0 ${translate("units.kilometer")}"`
+              }
               style={$detailValue}
             />
           </View>
@@ -153,7 +234,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.mass" style={$detailRowTitle} />
-            <Text text={`462,000 ${translate('units.kilogram')}`} style={$detailRowValue} />
+            <Text text={`462,000 ${translate("units.kilogram")}`} style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -173,7 +254,7 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.orbitalPeriod" style={$detailRowTitle} />
-            <Text text={`92.9 ${translate('units.minute')}`} style={$detailRowValue} />
+            <Text text={`92.9 ${translate("units.minute")}`} style={$detailRowValue} />
           </View>
           <View
             accessible
@@ -193,7 +274,10 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
             style={$detailRow}
           >
             <Text tx="issView.details.orbitalDecay" style={$detailRowTitle} />
-            <Text text={`2 ${translate('units.kilometer')} / ${translate('units.month')}`} style={$detailRowValue} />
+            <Text
+              text={`2 ${translate("units.kilometer")} / ${translate("units.month")}`}
+              style={$detailRowValue}
+            />
           </View>
         </View>
       </View>

@@ -8,7 +8,7 @@ import {
   ViroSphere,
   ViroTrackingStateConstants,
 } from "@viro-community/react-viro"
-import { azAltToCartesian, normalizeHeading } from "../../../utils/geometry"
+import { cartesianToAzAlt } from "../../../utils/geometry"
 import { CatmullRomCurve3, Vector3 } from "three"
 import mitt from "mitt"
 import { Platform } from "react-native"
@@ -28,9 +28,9 @@ interface ISSSceneProps {
 type CameraTransformCallback = (cameraTransform: ViroCameraTransform) => void
 
 type ISSDataCallback = (data: {
-  pastIssPathCoords: [number, number][]
-  futureIssPathCoords: [number, number][]
-  issMarkerPosition: [number, number]
+  curve: CatmullRomCurve3
+  curveStartsAt: number
+  curveEndsAt: number
 }) => void
 
 export const emitter = mitt()
@@ -49,10 +49,15 @@ const worldTransform = (input: [number, number, number], heading): [number, numb
 export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [initialHeading, setInitialHeading] = useState(null)
+  const [curve, setCurve] = useState<CatmullRomCurve3>()
+  const [curveStartsAt, setCurveStartsAt] = useState(0)
+  const [curveEndsAt, setCurveEndsAt] = useState(0)
+
   const [settings, setSettings] = useState({ isPathVisible: false })
-  const [pastIssPathCoords, setPastIssPathCoords] = useState<[number, number][]>([])
-  const [futureIssPathCoords, setFutureIssPathCoords] = useState<[number, number][]>([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number]>([0, 0])
+  const [pastIssPathCoords, setPastIssPathCoords] = useState<[number, number, number][]>([])
+  const [futureIssPathCoords, setFutureIssPathCoords] = useState<[number, number, number][]>([])
+  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number, number]>([0, 0, 0])
+  const [issAzAlt, setIssAzAlt] = useState<[number, number]>([0, 0])
   const headingRef = useRef<number>()
   const trackingStateRef = useRef()
 
@@ -73,9 +78,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
   useEffect(() => {
     const handler: ISSDataCallback = (data) => {
-      setPastIssPathCoords(data.pastIssPathCoords)
-      setFutureIssPathCoords(data.futureIssPathCoords)
-      setIssMarkerPosition(data.issMarkerPosition)
+      setCurve(data.curve)
+      setCurveStartsAt(data.curveStartsAt)
+      setCurveEndsAt(data.curveEndsAt)
     }
     emitter.on("issData", handler)
     return () => {
@@ -102,42 +107,50 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     }
   }
 
-  const issCoords = useMemo(
-    () => azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 10),
-    [issMarkerPosition],
-  )
+  useEffect(() => {
+    if (!curve) return undefined
+
+    const update = () => {
+      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      const current = curve.getPoint(t)
+
+      const pastPoints = []
+      for (let i = 0; i <= 50; ++i) {
+        const pt = curve.getPoint((i * t) / 50)
+        pastPoints.push([pt.x, pt.y, pt.z])
+      }
+
+      const futurePoints = []
+      for (let i = 0; i <= 50; ++i) {
+        const pt = curve.getPoint(t + (i * (1 - t)) / 50)
+        futurePoints.push([pt.x, pt.y, pt.z])
+      }
+
+      setPastIssPathCoords(pastPoints)
+      setFutureIssPathCoords(futurePoints)
+      setIssMarkerPosition([current.x, current.y, current.z])
+      setIssAzAlt(cartesianToAzAlt([current.x, current.y, current.z]))
+    }
+
+    update()
+
+    const timeout = setInterval(update, 10000)
+    return () => {
+      clearInterval(timeout)
+    }
+  }, [curve])
 
   const pastOrbitCoords = useMemo<[number, number, number][]>(() => {
-    if (pastIssPathCoords.length === 0) return []
-
-    const curve = new CatmullRomCurve3(
-      pastIssPathCoords.map(
-        (p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)),
-      ),
-    )
-
-    const points = curve.getPoints(50)
-
-    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], initialHeading))
+    return pastIssPathCoords.map((pt) => worldTransform(pt, initialHeading))
   }, [pastIssPathCoords, initialHeading])
 
   const futureOrbitCoords = useMemo<[number, number, number][]>(() => {
-    if (futureIssPathCoords.length === 0) return []
-
-    const curve = new CatmullRomCurve3(
-      futureIssPathCoords.map(
-        (p) => new Vector3(...azAltToCartesian(normalizeHeading(p[0]), p[1], 10)),
-      ),
-    )
-
-    const points = curve.getPoints(50)
-
-    return points.map((pt) => worldTransform([pt.x, pt.y, pt.z], initialHeading))
+    return futureIssPathCoords.map((pt) => worldTransform(pt, initialHeading))
   }, [futureIssPathCoords, initialHeading])
 
   const onCamera = useMemo(() => {
     const cb: CameraTransformCallback = ({ cameraTransform }) => {
-      const issWorldCoords = worldTransform(issCoords, initialHeading)
+      const issWorldCoords = worldTransform(issMarkerPosition, initialHeading)
       const totalAngle =
         (new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180) /
         Math.PI
@@ -169,7 +182,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
             180) /
           Math.PI
 
-        angleY = (cameraTransform.forward[1] > 0 ? angleY : -angleY) - issMarkerPosition[1]
+        angleY = (cameraTransform.forward[1] > 0 ? angleY : -angleY) - issAzAlt[1]
         angleX =
           new Vector3(...issWorldCoords).cross(new Vector3(...cameraTransform.forward)).y > 0
             ? angleX
@@ -187,7 +200,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     }
 
     return throttle(cb, 50)
-  }, [sceneNavigator, issCoords, initialHeading])
+  }, [sceneNavigator, issMarkerPosition, initialHeading])
 
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
@@ -196,10 +209,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
           {settings.isPathVisible && (
             <>
               <ViroPolyline
-                position={worldTransform(
-                  azAltToCartesian(issMarkerPosition[0], issMarkerPosition[1], 0),
-                  initialHeading,
-                )}
+                position={worldTransform(issMarkerPosition, initialHeading)}
                 points={pastOrbitCoords}
                 thickness={0.05}
               />
@@ -212,11 +222,11 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
             height={1.5}
             width={1.5}
             rotation={[
-              issMarkerPosition[1],
-              -(issMarkerPosition[0] - (Platform.OS === "android" ? initialHeading : 0)),
+              issAzAlt[1],
+              -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)),
               0,
             ]}
-            position={worldTransform(issCoords, initialHeading)}
+            position={worldTransform(issMarkerPosition, initialHeading)}
             source={icon}
           />
         </>

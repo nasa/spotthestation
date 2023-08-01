@@ -31,7 +31,7 @@ describe("FeedSearchResultItem", () => {
         type="Sample Type"
         tags={["Tag1", "Tag2"]}
         onPress={mockOnPress}
-      />
+      />,
     )
 
     const pressableItem = getByLabelText("pressable feed item")

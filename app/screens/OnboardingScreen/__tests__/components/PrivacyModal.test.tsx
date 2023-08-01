@@ -14,9 +14,9 @@ describe("PrivacyModal", () => {
   it("calls onPressSkip when skip button is pressed", () => {
     const onPressSkipMock = jest.fn()
     const { getByText } = render(<PrivacyModal onPressSkip={onPressSkipMock} />)
-    const skipButton = getByText("privacy.skip undefined");
+    const skipButton = getByText("privacy.skip undefined")
 
-    (fireEvent as any).click(skipButton)
+    ;(fireEvent as any).click(skipButton)
 
     expect(onPressSkipMock).toHaveBeenCalledTimes(1)
   })
@@ -24,9 +24,9 @@ describe("PrivacyModal", () => {
   it("calls onPressAgree when agree button is pressed", () => {
     const onPressAgreeMock = jest.fn()
     const { getByText } = render(<PrivacyModal onPressAgree={onPressAgreeMock} />)
-    const agreeButton = getByText("privacy.agree undefined");
+    const agreeButton = getByText("privacy.agree undefined")
 
-    (fireEvent as any).click(agreeButton)
+    ;(fireEvent as any).click(agreeButton)
 
     expect(onPressAgreeMock).toHaveBeenCalledTimes(1)
   })
@@ -35,10 +35,11 @@ describe("PrivacyModal", () => {
     const { getByText } = render(<PrivacyModal />)
     const privacyPolicyText = getByText("privacy.policy undefined")
 
-    jest.spyOn(Linking, "openURL");
+    jest.spyOn(Linking, "openURL")
+    ;(fireEvent as any).click(privacyPolicyText)
 
-    (fireEvent as any).click(privacyPolicyText)
-
-    expect((Linking as any).openURL).toHaveBeenCalledWith("https://www.nasa.gov/about/highlights/HP_Privacy.html#privacy")
+    expect((Linking as any).openURL).toHaveBeenCalledWith(
+      "https://www.nasa.gov/about/highlights/HP_Privacy.html#privacy",
+    )
   })
 })

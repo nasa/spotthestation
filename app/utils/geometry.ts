@@ -10,6 +10,19 @@ export const azAltToCartesian = (
   return [vec.x, vec.y, vec.z]
 }
 
+export const cartesianToAzAlt = (coords: [number, number, number]): [number, number] => {
+  const [x, y, z] = coords
+  const r = Math.sqrt(x * x + y * y + z * z)
+  const theta = Math.acos(y / r)
+  const phi = Math.atan2(x, -z)
+
+  // Convert angles to degrees if needed
+  const thetaDegrees = theta * (180 / Math.PI)
+  const phiDegrees = phi * (180 / Math.PI)
+
+  return [normalizeHeading(phiDegrees), 90 - thetaDegrees]
+}
+
 export const normalizeHeading = (heading: number) => {
   if (heading < 0) return 360 + heading
   if (heading > 360) return heading - 360

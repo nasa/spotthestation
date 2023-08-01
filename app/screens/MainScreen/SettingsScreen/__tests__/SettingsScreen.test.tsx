@@ -20,14 +20,13 @@ jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 20 }),
 }))
 
-
 describe("SettingsScreen", () => {
   const mockNavigation = {
     navigate: jest.fn(),
   }
 
   beforeEach(() => {
-    (useNavigation as any).mockReturnValue(mockNavigation)
+    ;(useNavigation as any).mockReturnValue(mockNavigation)
   })
 
   afterEach(() => {
@@ -35,9 +34,7 @@ describe("SettingsScreen", () => {
   })
 
   test("renders correctly", () => {
-    const tree = renderer
-      .create(<SettingsScreen />)
-      .toJSON()
+    const tree = renderer.create(<SettingsScreen />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -49,8 +46,8 @@ describe("SettingsScreen", () => {
 
   test("navigates to LocationSettings screen when location settings item is pressed", () => {
     const { getByText } = render(<SettingsScreen />)
-    const locationSettingsItem = getByText("settings.locationSettings undefined");
-    (fireEvent as any).click(locationSettingsItem)
+    const locationSettingsItem = getByText("settings.locationSettings undefined")
+    ;(fireEvent as any).click(locationSettingsItem)
     expect(mockNavigation.navigate).toHaveBeenCalledWith("SettingsScreens", {
       screen: "LocationSettings",
     })

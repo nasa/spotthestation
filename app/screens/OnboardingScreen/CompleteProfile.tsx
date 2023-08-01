@@ -51,7 +51,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
           text: err as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.dismiss'),
+            text: translate("snackBar.dismiss"),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

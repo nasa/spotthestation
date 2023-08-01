@@ -28,18 +28,22 @@ it("renders correctly", () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('clears the text input and sets location value after selecting a place from the list', async () => {
-  const { getByPlaceholderText } = render(<NavigationContainer>
-    <AddNewLocationScreen />
-  </NavigationContainer>)
-  const textInput = getByPlaceholderText("settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined")
+test("clears the text input and sets location value after selecting a place from the list", async () => {
+  const { getByPlaceholderText } = render(
+    <NavigationContainer>
+      <AddNewLocationScreen />
+    </NavigationContainer>,
+  )
+  const textInput = getByPlaceholderText(
+    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
+  )
 
   await waitFor(() => {
-    expect(textInput.props.value).toBe('')
+    expect(textInput.props.value).toBe("")
   })
 })
 
-jest.mock('../../../../models', () => ({
+jest.mock("../../../../models", () => ({
   useStores: jest.fn(() => ({
     savedLocations: [],
     setSavedLocations: jest.fn(),
@@ -48,14 +52,18 @@ jest.mock('../../../../models', () => ({
   })),
 }))
 
-test('calls handleSave when Save button is clicked', async () => {
-  const { getByPlaceholderText } = render(<NavigationContainer>
-    <AddNewLocationScreen />
-  </NavigationContainer>)
+test("calls handleSave when Save button is clicked", async () => {
+  const { getByPlaceholderText } = render(
+    <NavigationContainer>
+      <AddNewLocationScreen />
+    </NavigationContainer>,
+  )
   const { handleSave }: any = useStores()
 
-  const textInput = getByPlaceholderText("settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined")
-  fireEvent.changeText(textInput, 'Some location')
+  const textInput = getByPlaceholderText(
+    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
+  )
+  fireEvent.changeText(textInput, "Some location")
 
   await waitFor(() => {
     expect(handleSave).toHaveBeenCalledTimes(0)

@@ -5,7 +5,11 @@ import { render } from "@testing-library/react-native"
 import { FlatMap } from "../../components/FlatMap"
 
 describe("FlatMap", () => {
-  const mockIssPathCoords: [number, number][] = [[0, 0], [1, 1], [2, 2]]
+  const mockIssPathCoords: [number, number][] = [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+  ]
   const mockIssMarkerPosition: [number, number] = [1, 1]
   const mockCurrentLocation: [number, number] = [2, 2]
 

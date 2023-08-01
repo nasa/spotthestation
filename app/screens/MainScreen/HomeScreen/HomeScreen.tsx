@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { AppState, BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
-import { ISSSighting } from "../../../services/api"
+import { ISSSighting, OrbitPoint } from "../../../services/api"
 import { colors, scale } from "../../../theme"
 import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -100,16 +100,13 @@ export const HomeScreen = observer(function HomeScreen() {
       return true
     }
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    )
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction)
 
     return () => backHandler.remove()
   }, [])
 
   useEffect(() => {
-    const subscription = AppState.addEventListener('change', nextAppState => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
       appState.current = nextAppState
     })
 
@@ -135,6 +132,27 @@ export const HomeScreen = observer(function HomeScreen() {
       ),
     [eventsList],
   )
+
+  useEffect(() => {
+    if (!location || !issData?.length) return undefined
+
+    const lastOrbitPoint = issData.find((point: OrbitPoint, idx: number) => {
+      return (
+        new Date().valueOf() < new Date(point.date).valueOf() &&
+        idx < issData.length - 1 &&
+        point.longitude > 0 &&
+        issData[idx + 1].longitude < 0
+      )
+    })
+
+    if (!lastOrbitPoint) return undefined
+
+    const tmr = setTimeout(() => {
+      getData().catch((e) => console.log(e))
+    }, new Date(lastOrbitPoint.date).valueOf() - Date.now())
+
+    return () => clearTimeout(tmr)
+  }, [issData])
 
   const timeDiff = useCallback(
     (callback: (diff: string) => void) => {
@@ -209,78 +227,6 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }, [navigation])
 
-  const [issPathCoords, setIssPathCoords] = useState([])
-  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
-  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
-  const updateTimer = useRef<NodeJS.Timer>()
-
-  function updateIssPath() {
-    let currentPositionIdx = 0
-
-    if (issData.length === 0) {
-      clearTimeout(updateTimer.current)
-      return
-    }
-
-    issData.forEach((point, idx) => {
-      if (
-        Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) <
-        Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())
-      ) {
-        currentPositionIdx = idx
-      }
-    })
-
-    let startPositionIdx = currentPositionIdx
-    for (; startPositionIdx > 0; startPositionIdx -= 1) {
-      if (issData[startPositionIdx].longitude < issData[startPositionIdx - 1].longitude) {
-        break
-      }
-    }
-
-    let endPositionIdx = currentPositionIdx
-    for (; endPositionIdx < issData.length - 1; endPositionIdx += 1) {
-      if (issData[endPositionIdx].longitude > issData[endPositionIdx + 1].longitude) {
-        break
-      }
-    }
-
-    setIssPathCoords(
-      issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]),
-    )
-    setPastIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff >= 0 && diff < 60 * 60 * 1000
-        })
-        .map((p) => [p.latitude, p.longitude]),
-    )
-
-    setFutureIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff < 0 && diff > -60 * 60 * 1000
-        })
-        .map((p) => [p.latitude, p.longitude]),
-    )
-
-    setIssMarkerPosition([
-      issData[currentPositionIdx].latitude,
-      issData[currentPositionIdx].longitude,
-    ])
-
-    clearTimeout(updateTimer.current)
-    updateTimer.current = setTimeout(updateIssPath, 30000)
-  }
-
-  useEffect(() => {
-    updateIssPath()
-    return () => clearTimeout(updateTimer.current)
-  }, [issData])
-
   const getData = async () => {
     await getISSData({ lat: location[0], lon: location[1] })
   }
@@ -304,17 +250,25 @@ export const HomeScreen = observer(function HomeScreen() {
     await storage.save("coachCompleted", true)
   }
 
-  const handleChangeLocation = useCallback(async (location: LocationType) => {
-    requestCloseModal("location")
-    if (current && current.location.lat === location.location.lat && current.location.lng === location.location.lng) return
+  const handleChangeLocation = useCallback(
+    async (location: LocationType) => {
+      requestCloseModal("location")
+      if (
+        current &&
+        current.location.lat === location.location.lat &&
+        current.location.lng === location.location.lng
+      )
+        return
 
-    setInitLoading(true)
-    setIsCurrentSightingLoaded(false)
-    setIssDataLoaded(false)
-    setSightingsLoaded(false)
-    setSelectedLocation(location).catch((e) => console.log(e))
-    await storage.save("selectedLocation", location)
-  }, [current])
+      setInitLoading(true)
+      setIsCurrentSightingLoaded(false)
+      setIssDataLoaded(false)
+      setSightingsLoaded(false)
+      setSelectedLocation(location).catch((e) => console.log(e))
+      await storage.save("selectedLocation", location)
+    },
+    [current],
+  )
 
   const handleSetSightingNotification = useCallback(
     (value: ISSSighting) => {
@@ -428,28 +382,19 @@ export const HomeScreen = observer(function HomeScreen() {
         sighting={
           currentSightning.date
             ? formatDateWithTZ(
-              currentSightning.date,
-              currentTimeZone.regionFormat === "US" ? "MMM dd, yyyy" : "dd MMM yyyy",
-              currentTimeZone.timeZone,
-            )
+                currentSightning.date,
+                currentTimeZone.regionFormat === "US" ? "MMM dd, yyyy" : "dd MMM yyyy",
+                currentTimeZone.timeZone,
+              )
             : "-"
         }
         countdown={countdown}
         timezone={currentTimeZone?.timeZone}
       />
-      {appState.current === 'active' && globeVisible && <Globe
-        zoom={1.5}
-        marker={location}
-        pastIssPathCoords={pastIssPathCoords}
-        futureIssPathCoords={futureIssPathCoords}
-        issMarkerPosition={issMarkerPosition}
-      />}
-      <FlatMap
-        style={$flatMap}
-        issPathCoords={issPathCoords}
-        issMarkerPosition={issMarkerPosition}
-        currentLocation={location}
-      />
+      {appState.current === "active" && globeVisible && (
+        <Globe zoom={1.5} marker={location} issPath={issData} />
+      )}
+      <FlatMap style={$flatMap} issPath={issData} currentLocation={location} />
       <MyModal
         name="location"
         onBackdropPress={() => requestCloseModal("location")}

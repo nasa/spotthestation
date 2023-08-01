@@ -12,8 +12,8 @@ export interface ExpandContainerProps {
   reverseTitle?: boolean
   children?: ReactNode
   actionTitle?: TxKeyPath
-  containerStyle?: ViewStyle,
-  button?: ReactNode,
+  containerStyle?: ViewStyle
+  button?: ReactNode
 }
 
 export function ExpandContainer({
@@ -45,7 +45,7 @@ export function ExpandContainer({
             style={[$title, $titleOverride]}
           />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
-          { button }
+          {button}
         </View>
         {expandble && (
           <Icon

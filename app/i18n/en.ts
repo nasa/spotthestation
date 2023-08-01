@@ -1,7 +1,8 @@
 const en = {
   errorScreen: {
     title: "Something went wrong!",
-    friendlySubtitle: "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
+    friendlySubtitle:
+      "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
     reset: "RESET APP",
   },
   snackBar: {
@@ -40,22 +41,22 @@ const en = {
   },
   notifications: {
     push: {
-      title: 'Spot the ISS now!',
-      subTitle: 'The ISS is passing above you at'
+      title: "Spot the ISS now!",
+      subTitle: "The ISS is passing above you at",
     },
     before: {
-      titleOne: 'Spot the ISS in',
-      titleTwo: 'minutes!',
-      subTitleOne: 'The ISS is passing above you in',
-      subTitleTwo: 'minutes at'
-    }
+      titleOne: "Spot the ISS in",
+      titleTwo: "minutes!",
+      subTitleOne: "The ISS is passing above you in",
+      subTitleTwo: "minutes at",
+    },
   },
   units: {
-    minute: 'min',
-    kilometer: 'km',
-    kilogram: 'kg',
-    month: 'month',
-    metersPerSecond: 'M/S'
+    minute: "min",
+    kilometer: "km",
+    kilogram: "kg",
+    month: "month",
+    metersPerSecond: "M/S",
   },
   tabNavigator: {
     homeTab: "Home",
@@ -111,7 +112,7 @@ const en = {
       nearby: "Nearby locations",
       search: "Search results",
       cta: "Customize notifications for this location",
-      actionTitle: 'Alert'
+      actionTitle: "Alert",
     },
     selectSightings: {
       title: "Upcoming Sightings",
@@ -152,7 +153,8 @@ const en = {
   },
   issView: {
     timeHeader: "Countdown",
-    cameraPermissionText: "You have not allowed the use of your phone's camera. Click here to allow.",
+    cameraPermissionText:
+      "You have not allowed the use of your phone's camera. Click here to allow.",
     issCaptured: "Capture this moment",
     details: {
       title: "International Space Station - Details",
@@ -269,10 +271,10 @@ const en = {
       commentsPlaceholder: "Input comments",
       sendButton: "Send",
       contactUsOptions: {
-        reportAnIssue: 'Report an Issue',
-        improvementIdeas: 'Improvement Ideas',
-        generalQuestions: 'General Questions',
-        comments: 'Comments',
+        reportAnIssue: "Report an Issue",
+        improvementIdeas: "Improvement Ideas",
+        generalQuestions: "General Questions",
+        comments: "Comments",
       },
     },
     notificationSettingsData: {
@@ -314,10 +316,10 @@ const en = {
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",
     tabs: {
-      news: 'News',
-      about: 'About',
-      details: 'Details',
-    }
+      news: "News",
+      about: "About",
+      details: "Details",
+    },
   },
 }
 

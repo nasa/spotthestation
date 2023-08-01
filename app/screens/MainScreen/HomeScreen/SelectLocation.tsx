@@ -8,6 +8,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from "react-native"
 import Modal from "react-native-modal"
 import { Accessory, Icon, Text, TextField } from "../../../components"
@@ -46,7 +47,14 @@ export function SelectLocation({
   onLocationPress,
   selectedLocation,
 }: SelectLocationProps) {
-  const { savedLocations, currentLocation, setCurrentLocation, setSavedLocations, setIsCurrentLocationUpdating, isCurrentLocationUpdating } = useStores()
+  const {
+    savedLocations,
+    currentLocation,
+    setCurrentLocation,
+    setSavedLocations,
+    setIsCurrentLocationUpdating,
+    isCurrentLocationUpdating,
+  } = useStores()
   const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
@@ -54,6 +62,7 @@ export function SelectLocation({
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [searchResult, setSearchResult] = useState<LocationType[]>([])
   const [isRemove, setIsRemove] = useState(false)
+  const [upd, setUpd] = useState(false)
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -69,6 +78,13 @@ export function SelectLocation({
     const res = await getNearbyPlaces(location.location, 100)
 
     setNearby(res)
+  }
+
+  const sada = async () => {
+    setUpd(true)
+    const loc = await getCurrentLocation(() => ({}))
+    setTextValue(loc.subtitle)
+    setUpd(false)
   }
 
   const setPlaces = async (value: string) => {
@@ -102,7 +118,7 @@ export function SelectLocation({
   useEffect(() => {
     getLocation().catch((e: Error) => {
       Snackbar.show({
-        text: e.message || translate('snackBar.defaultError'),
+        text: e.message || translate("snackBar.defaultError"),
         duration: Snackbar.LENGTH_SHORT,
       })
     })
@@ -111,7 +127,7 @@ export function SelectLocation({
   useEffect(() => {
     setPlaces(textValue).catch((e: Error) => {
       Snackbar.show({
-        text: e.message || translate('snackBar.defaultError'),
+        text: e.message || translate("snackBar.defaultError"),
         duration: Snackbar.LENGTH_SHORT,
       })
     })
@@ -181,8 +197,10 @@ export function SelectLocation({
           renderRightAccessory={({ style }) =>
             isFocus && textValue ? (
               <Accessory style={style} icon={"xCircle"} onPress={() => setTextValue("")} />
+            ) : upd ? (
+              <ActivityIndicator />
             ) : (
-              <Accessory style={style} icon={"currentLocation"} />
+              <Accessory style={style} icon={"currentLocation"} onPress={sada} />
             )
           }
         />
@@ -211,13 +229,13 @@ export function SelectLocation({
             <>
               {Boolean(currentLocation) && (
                 <ExpandContainer
-                  button={(
+                  button={
                     <RefreshButton
                       inProgress={isCurrentLocationUpdating}
                       containerStyle={{ marginLeft: 5 }}
                       onPress={updateCurrentLocation}
                     />
-                  )}
+                  }
                   title="homeScreen.selectLocation.current"
                   expandble={false}
                 >

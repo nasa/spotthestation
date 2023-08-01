@@ -45,6 +45,7 @@ export interface GetISSSightingsParams {
 export interface GetISSDataParams {
   lat: number
   lon: number
+  withoutInterpolation: boolean
 }
 
 export interface GetRawISSDataParams {

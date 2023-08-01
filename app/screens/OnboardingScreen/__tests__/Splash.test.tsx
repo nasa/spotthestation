@@ -9,23 +9,21 @@ import { Splash } from "../Splash"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({
-    navigate: jest.fn()
-  })
+    navigate: jest.fn(),
+  }),
 }))
 
 jest.mock("../../../utils/storage", () => ({
   load: jest.fn(() => Promise.resolve(null)),
-  save: jest.fn(() => Promise.resolve())
+  save: jest.fn(() => Promise.resolve()),
 }))
 jest.mock("../components/IconLinkButton", () => ({
-  IconLinkButton: ({ icon, onPress }) => <button onClick={onPress}>{icon}</button>
+  IconLinkButton: ({ icon, onPress }) => <button onClick={onPress}>{icon}</button>,
 }))
 
 describe("Splash", () => {
   it("renders correctly", () => {
-    const tree = renderer
-      .create(<Splash />)
-      .toJSON()
+    const tree = renderer.create(<Splash />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

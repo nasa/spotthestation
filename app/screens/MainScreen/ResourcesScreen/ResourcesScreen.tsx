@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
@@ -24,7 +24,6 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 import { useStores } from "../../../models"
-import { autorun } from "mobx"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { Details } from "../SkyViewScreen/Details"
 
@@ -99,36 +98,6 @@ export const Resources = observer(function HomeScreen() {
     fetchData()
   }, [])
 
-  const [issMarkerIndex, setIssMarkerIndex] = useState(0)
-  const updateTimer = useRef<NodeJS.Timer>()
-
-  function updateIssPath() {
-    let currentPositionIdx = 0
-
-    if (issData.length === 0) {
-      clearTimeout(updateTimer.current)
-      return
-    }
-
-    issData.forEach((point, idx) => {
-      if (
-        Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) <
-        Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())
-      ) {
-        currentPositionIdx = idx
-      }
-    })
-
-    setIssMarkerIndex(currentPositionIdx)
-
-    clearTimeout(updateTimer.current)
-    updateTimer.current = setTimeout(updateIssPath, 30000)
-  }
-
-  useEffect(() => {
-    autorun(() => updateIssPath())
-  }, [])
-
   const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
     let lat: number
     let lng: number
@@ -147,6 +116,21 @@ export const Resources = observer(function HomeScreen() {
   const getData = async () => {
     await getISSData({ lat: location[0], lon: location[1] })
   }
+
+  useEffect(() => {
+    if (!location || !issData?.length) return undefined
+
+    const lastOrbitPoint = issData[issData.length - 1]
+    if (!lastOrbitPoint) return undefined
+    const diff = new Date(lastOrbitPoint.date).valueOf() - Date.now()
+    if (diff <= 0) return undefined
+
+    const tmr = setTimeout(() => {
+      getData().catch((e) => console.log(e))
+    }, diff)
+
+    return () => clearTimeout(tmr)
+  }, [issData])
 
   useEffect(() => {
     getLocation(selectedLocation, currentLocation)
@@ -304,23 +288,11 @@ export const Resources = observer(function HomeScreen() {
         style={$scrollContainer}
       >
         <Pressable>
-          <Details
-            issData={
-              issData[issMarkerIndex] || {
-                date: new Date().toDateString(),
-                latitude: 0,
-                longitude: 0,
-                azimuth: 0,
-                elevation: 0,
-                altitude: 0,
-              }
-            }
-            observer={location}
-          />
+          <Details issData={issData} observer={location} />
         </Pressable>
       </ScrollView>
     )
-  }, [issData, issMarkerIndex, location])
+  }, [issData, location])
 
   const renderTab = (type: string) => {
     switch (type) {
@@ -392,7 +364,7 @@ export const Resources = observer(function HomeScreen() {
               accessible
               accessibilityLabel={`${item} button`}
               accessibilityHint={`show ${item} view`}
-              tx={`resources.tabs.${item as 'news' || 'about' || 'details'}`}
+              tx={`resources.tabs.${(item as "news") || "about" || "details"}`}
               style={[$button, item === type && $active]}
               textStyle={$buttonText}
               pressedStyle={$button}

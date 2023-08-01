@@ -51,15 +51,15 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
-    location.title = titleValue || (location?.subtitle ?? '').split(",")[0]
+    location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
     if (!location.title) return
     let res = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
-        text: translate('snackBar.locationExist'),
+        text: translate("snackBar.locationExist"),
         duration: Snackbar.LENGTH_LONG,
         action: {
-          text: translate('snackBar.ok'),
+          text: translate("snackBar.ok"),
           textColor: "green",
           onPress: () => {
             Snackbar.dismiss()
@@ -79,7 +79,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           text: error,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.ok'),
+            text: translate("snackBar.ok"),
             textColor: "green",
             onPress: () => {
               Snackbar.dismiss()
@@ -90,10 +90,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     }
 
     Snackbar.show({
-      text: translate('snackBar.locationSaved'),
+      text: translate("snackBar.locationSaved"),
       duration: Snackbar.LENGTH_LONG,
       action: {
-        text: translate('snackBar.ok'),
+        text: translate("snackBar.ok"),
         textColor: "green",
         onPress: () => {
           Snackbar.dismiss()

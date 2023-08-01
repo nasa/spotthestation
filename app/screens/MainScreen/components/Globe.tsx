@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
@@ -14,7 +14,6 @@ import {
   LineBasicMaterial,
   Mesh,
   MeshBasicMaterial,
-  CatmullRomCurve3,
   BufferGeometry,
   PerspectiveCamera,
   Scene,
@@ -28,6 +27,8 @@ import { coordinatesToPosition } from "./helpers"
 import { iconRegistry } from "../../../components/Icon"
 
 import ControlsView from "./ControlsView"
+import { OrbitPoint } from "../../../services/api"
+import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/World-Map.jpg")
@@ -55,34 +56,35 @@ export interface GlobeProps {
   issMarkerPosition?: [number, number]
   pastIssPathCoords?: [number, number][]
   futureIssPathCoords?: [number, number][]
+  issPath: OrbitPoint[]
 }
 
-export function Globe({
-  marker,
-  zoom,
-  pastIssPathCoords = [],
-  futureIssPathCoords = [],
-  issMarkerPosition,
-}: GlobeProps) {
+export function Globe({ marker, zoom, issPath }: GlobeProps) {
+  const mapper = useCallback((p) => {
+    return new Vector3(...coordinatesToPosition([p[0], p[1]], GLOBE_RADIUS + 20))
+  }, [])
+
+  const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
+
   const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
   const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
   const futurehRef = useRef<Line>(null)
   const sceneRef = useRef<Scene>(null)
+  const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
 
   useEffect(() => {
     async function updateMarker() {
-      if (!issMarkerPosition) {
+      if (!issCoords3D || !sceneRef.current) {
         if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
         return
       }
 
       if (!issMarkerRef.current) {
-        issMarkerRef.current = await createISSMarker(issMarkerPosition)
+        issMarkerRef.current = await createISSMarker(issCoords3D)
       } else {
-        const [x, y, z] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
-        issMarkerRef.current.position.set(x, y, z)
+        issMarkerRef.current.position.set(...issCoords3D)
       }
 
       if (!sceneRef.current) return
@@ -91,11 +93,11 @@ export function Globe({
     }
 
     updateMarker().catch(() => null)
-  }, [issMarkerPosition, sceneRef.current])
+  }, [issCoords3D, sceneRef.current])
 
   useEffect(() => {
     async function updateMarker() {
-      if (!marker) {
+      if (!marker || !sceneRef.current) {
         if (pointRef.current) sceneRef.current.remove(pointRef.current)
         return
       }
@@ -115,8 +117,8 @@ export function Globe({
     updateMarker().catch(() => null)
   }, [marker, sceneRef.current])
 
-  useEffect(() => {
-    if (pastIssPathCoords.length === 0 || futureIssPathCoords.length === 0) {
+  const updateCurveGeometry = useCallback(() => {
+    if (!curve || !sceneRef.current) {
       if (futurehRef.current) sceneRef.current.remove(futurehRef.current)
       if (pastRef.current) sceneRef.current.remove(pastRef.current)
       return
@@ -124,20 +126,20 @@ export function Globe({
 
     if (!futurehRef.current || !pastRef.current) createOrbit()
     else {
-      const pastCurve = new CatmullRomCurve3(
-        pastIssPathCoords.map((coords) => {
-          return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-        }),
-      )
+      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
 
-      const futureCurve = new CatmullRomCurve3(
-        futureIssPathCoords.map((coords) => {
-          return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-        }),
-      )
+      const pastPoints = []
+      for (let i = 0; i <= 100; ++i) {
+        pastPoints.push(curve.getPoint((i * t) / 100))
+      }
 
-      pastRef.current.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
-      futurehRef.current.geometry = new BufferGeometry().setFromPoints(futureCurve.getPoints(50))
+      const futurePoints = []
+      for (let i = 0; i <= 100; ++i) {
+        futurePoints.push(curve.getPoint(t + (i * (1 - t)) / 100))
+      }
+
+      pastRef.current.geometry = new BufferGeometry().setFromPoints(pastPoints)
+      futurehRef.current.geometry = new BufferGeometry().setFromPoints(futurePoints)
 
       futurehRef.current.computeLineDistances()
     }
@@ -146,7 +148,11 @@ export function Globe({
     if (!sceneRef.current.getObjectById(pastRef.current.id)) sceneRef.current?.add(pastRef.current)
     if (!sceneRef.current.getObjectById(futurehRef.current.id))
       sceneRef.current?.add(futurehRef.current)
-  }, [pastIssPathCoords, futureIssPathCoords, sceneRef.current])
+  }, [curve, sceneRef.current])
+
+  useEffect(() => {
+    updateCurveGeometry()
+  }, [curve, curveStartsAt, curveEndsAt, sceneRef.current])
 
   useEffect(() => {
     if (camera) {
@@ -154,6 +160,28 @@ export function Globe({
       camera.updateProjectionMatrix()
     }
   }, [zoom, camera])
+
+  useEffect(() => {
+    if (!curve) {
+      setIssCoords3D(null)
+      return undefined
+    }
+    const update = () => {
+      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      if (t > 1) return updateCurve()
+
+      const point = curve.getPoint(t)
+      setIssCoords3D([point.x, point.y, point.z])
+      updateCurveGeometry()
+    }
+
+    update()
+
+    const timeout = setInterval(update, 10000)
+    return () => {
+      clearInterval(timeout)
+    }
+  }, [curve])
 
   const createMarker = async () => {
     const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
@@ -174,7 +202,7 @@ export function Globe({
     return mesh
   }
 
-  const createISSMarker = async (position: [number, number] = [0, 0]) => {
+  const createISSMarker = async (position: [number, number, number] = [0, 0, 0]) => {
     const uri = await copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
     const mesh = new Sprite()
     const texture: Texture = await loadTextureAsync({
@@ -186,10 +214,8 @@ export function Globe({
       color: 0xffffff,
     })
 
-    const [x, y, z] = coordinatesToPosition(position, GLOBE_RADIUS + 20)
-
     mesh.scale.set(32, 32, 1)
-    mesh.position.set(x, y, z)
+    mesh.position.set(...position)
 
     return mesh
   }
@@ -219,17 +245,17 @@ export function Globe({
   }
 
   const createOrbit = () => {
-    const pastCurve = new CatmullRomCurve3(
-      pastIssPathCoords.map((coords) => {
-        return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-      }),
-    )
-
-    const futureCurve = new CatmullRomCurve3(
-      futureIssPathCoords.map((coords) => {
-        return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-      }),
-    )
+    // const pastCurve = new CatmullRomCurve3(
+    //   pastIssPathCoords.map((coords) => {
+    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+    //   }),
+    // )
+    //
+    // const futureCurve = new CatmullRomCurve3(
+    //   futureIssPathCoords.map((coords) => {
+    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
+    //   }),
+    // )
     //
     // const points = curve.getPoints(100)
     // const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
@@ -243,7 +269,13 @@ export function Globe({
 
     const pastLine = new Line()
     pastLine.material = new LineBasicMaterial({ color: 0x00ff00, linewidth: 6 })
-    pastLine.geometry = new BufferGeometry().setFromPoints(pastCurve.getPoints(50))
+    const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+
+    const pastPoints = []
+    for (let i = 0; i <= 100; ++i) {
+      pastPoints.push(curve.getPoint((i * t) / 100))
+    }
+    pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
 
     const futureLine = new Line()
     futureLine.material = new LineDashedMaterial({
@@ -252,7 +284,12 @@ export function Globe({
       dashSize: 5,
       gapSize: 5,
     })
-    futureLine.geometry = new BufferGeometry().setFromPoints(futureCurve.getPoints(50))
+
+    const futurePoints = []
+    for (let i = 0; i <= 100; ++i) {
+      futurePoints.push(curve.getPoint(t + (i * (1 - t)) / 100))
+    }
+    futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
 
     futureLine.computeLineDistances()
 

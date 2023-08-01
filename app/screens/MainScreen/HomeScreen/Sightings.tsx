@@ -36,7 +36,7 @@ export function Sightings({
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
-  
+
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
     const shortTZ = getShortTZ(timezone)
@@ -44,13 +44,25 @@ export function Sightings({
       formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
       formatDateWithTZ(new Date().toISOString(), `yyyy-MM-dd`, timezone)
     )
-      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(date, timeFormat, timezone)} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(
+        date,
+        timeFormat,
+        timezone,
+      )} ${shortTZ}`
     if (
       formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
       formatDateWithTZ(addDays(new Date(), 1).toISOString(), `yyyy-MM-dd`, timezone)
     )
-      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(date, timeFormat, timezone)} ${shortTZ}`
-    return `${formatDateWithTZ(date, `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`, timezone)} ${shortTZ}`
+      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(
+        date,
+        timeFormat,
+        timezone,
+      )} ${shortTZ}`
+    return `${formatDateWithTZ(
+      date,
+      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`,
+      timezone,
+    )} ${shortTZ}`
   }
 
   const setStageIcon = (stage): { icon: IconTypes; color: string } => {
@@ -142,7 +154,9 @@ export function Sightings({
                   secondIcon={setStageIcon(sighting.dayStage)}
                   title={formatedDate(sighting.date)}
                   selected={sighting.notify}
-                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate("units.minute")}`}
+                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
+                    sighting.visible
+                  } ${translate("units.minute")}`}
                   withSwitch
                   onToggle={() => onToggle(sighting)}
                 />
@@ -150,7 +164,7 @@ export function Sightings({
           </ScrollView>
         </ExpandContainer>
       </View>
-    {sightingsCoachVisible && (
+      {sightingsCoachVisible && (
         <Modal
           isVisible={sightingsCoachVisible}
           useNativeDriver

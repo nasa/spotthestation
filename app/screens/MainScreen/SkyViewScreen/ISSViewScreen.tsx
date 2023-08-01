@@ -9,7 +9,15 @@
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { View, ViewStyle, TextStyle, PermissionsAndroid, Platform, Pressable, BackHandler } from "react-native"
+import {
+  View,
+  ViewStyle,
+  TextStyle,
+  PermissionsAndroid,
+  Platform,
+  Pressable,
+  BackHandler,
+} from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
@@ -19,14 +27,12 @@ import { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import { Details } from "./Details"
 import { ARView } from "../components/ARView"
 import { intervalToDuration, formatDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import { ViroARSceneNavigator } from "@viro-community/react-viro"
-import { autorun } from "mobx"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import CameraRoll from "@react-native-community/cameraroll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
@@ -34,6 +40,7 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
+import { OrbitPoint } from "../../../services/api"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -71,7 +78,7 @@ async function requestCameraPermissions(callback: (value: boolean) => void, afte
       if (afterClick) {
         openSettings().catch(() =>
           Snackbar.show({
-            text: translate('snackBar.openSettingsError'),
+            text: translate("snackBar.openSettingsError"),
             duration: Snackbar.LENGTH_LONG,
           }),
         )
@@ -87,7 +94,7 @@ async function requestCameraPermissions(callback: (value: boolean) => void, afte
       if (afterClick) {
         openSettings().catch(() =>
           Snackbar.show({
-            text: translate('snackBar.openSettingsError'),
+            text: translate("snackBar.openSettingsError"),
             duration: Snackbar.LENGTH_LONG,
           }),
         )
@@ -132,7 +139,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const { currentLocation, selectedLocation, issData, getISSSightings, getISSData } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
-  const [isDetails, setIsDetails] = useState(false)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
@@ -197,61 +203,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       setIsCameraAllowed(value)
       setIsFullScreen(value)
     })
-  }, [])
-
-  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
-  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
-  const [issMarkerIndex, setIssMarkerIndex] = useState(0)
-  const updateTimer = useRef<NodeJS.Timer>()
-
-  function updateIssPath() {
-    let currentPositionIdx = 0
-
-    if (issData.length === 0) {
-      clearTimeout(updateTimer.current)
-      return
-    }
-
-    issData.forEach((point, idx) => {
-      if (
-        Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) <
-        Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())
-      ) {
-        currentPositionIdx = idx
-      }
-    })
-
-    setPastIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff >= 0 && diff < 60 * 60 * 1000
-        })
-        .map((p) => [p.azimuth, p.elevation]),
-    )
-
-    setFutureIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff < 0 && diff > -60 * 60 * 1000
-        })
-        .map((p) => [p.azimuth, p.elevation]),
-    )
-
-    setIssMarkerPosition([
-      issData[currentPositionIdx].azimuth,
-      issData[currentPositionIdx].elevation,
-    ])
-    setIssMarkerIndex(currentPositionIdx)
-
-    clearTimeout(updateTimer.current)
-    updateTimer.current = setTimeout(updateIssPath, 30000)
-  }
-
-  useEffect(() => {
-    autorun(() => updateIssPath())
   }, [])
 
   const getLocation = useCallback(() => {
@@ -382,7 +333,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     CameraRoll.save(path, { type })
       .then(() =>
         Snackbar.show({
-          text: `${type.charAt(0).toUpperCase() + type.slice(1)} ${translate('snackBar.savedToGallery')}`,
+          text: `${type.charAt(0).toUpperCase() + type.slice(1)} ${translate(
+            "snackBar.savedToGallery",
+          )}`,
           duration: Snackbar.LENGTH_LONG,
         }),
       )
@@ -464,7 +417,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         .logShare({ content_type: mediaType, item_id: "iss_capture_moment", method: "" })
         .catch(() => null)
       Snackbar.show({
-        text: translate('snackBar.shared'),
+        text: translate("snackBar.shared"),
         duration: Snackbar.LENGTH_LONG,
       })
     } catch (error) {
@@ -481,10 +434,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       return false
     }
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    )
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction)
 
     return () => backHandler.remove()
   }, [])
@@ -535,16 +485,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         </Pressable>
       ) : (
         <View style={[$body, $bodyStyleOverride]}>
-          {Boolean(issMarkerPosition) && (
+          {issData?.length > 0 && (
             <ARView
               ref={arView}
               isFullScreen={isFullScreen}
               isPathVisible={isPathVisible}
               isRecording={isRecording}
               recordedSeconds={recordedSeconds}
-              pastIssPathCoords={pastIssPathCoords}
-              futureIssPathCoords={futureIssPathCoords}
-              issMarkerPosition={issMarkerPosition}
+              issPath={issData.filter((point: OrbitPoint) => {
+                const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
+                return diff < 60 * 60 * 1000
+              })}
               setIsSpotted={setIsSpotted}
             />
           )}
@@ -634,26 +585,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         </View>
       )}
       <Modal
-        isVisible={isDetails}
-        onBackdropPress={() => setIsDetails(!isDetails)}
-        onSwipeComplete={() => setIsDetails(!isDetails)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={$modal}
-      >
-        <Details
-          issData={issData[issMarkerIndex]}
-          onClose={() => setIsDetails(!isDetails)}
-          observer={location}
-        />
-      </Modal>
-      <Modal
         isVisible={isPermissionsModal}
         onBackdropPress={() => setIsPermissionsModal(!isPermissionsModal)}
         onSwipeComplete={() => setIsPermissionsModal(!isPermissionsModal)}
@@ -668,13 +599,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         style={$modal}
       >
         <PermissionsModal
-          body={translate('permissionsModal.body')}
+          body={translate("permissionsModal.body")}
           onClose={() => setIsPermissionsModal(!isPermissionsModal)}
           onSuccess={() => {
             setIsPermissionsModal(!isPermissionsModal)
             openSettings().catch(() =>
               Snackbar.show({
-                text: translate('snackBar.openSettingsError'),
+                text: translate("snackBar.openSettingsError"),
                 duration: Snackbar.LENGTH_LONG,
               }),
             )

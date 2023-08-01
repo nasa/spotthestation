@@ -59,8 +59,14 @@ class Notifications {
               if (notifyBefore) {
                 PushNotification.localNotificationSchedule({
                   channelId: "default-channel-id",
-                  title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate("notifications.before.titleTwo")}`,
-                  message: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${location.title}`,
+                  title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
+                    "notifications.before.titleTwo",
+                  )}`,
+                  message: `${translate(
+                    "notifications.before.subTitleOne",
+                  )} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${
+                    location.title
+                  }`,
                   date: new Date(eventDate.getTime() - notifyBefore * 60000),
                 })
               }

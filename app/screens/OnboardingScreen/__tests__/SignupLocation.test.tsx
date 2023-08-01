@@ -35,7 +35,7 @@ describe("SignupLocation", () => {
 
   test("renders start state correctly", () => {
     const { getByText } = render(
-      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />
+      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />,
     )
 
     expect(getByText("onboarding.completeProfile.location.title undefined")).toBeTruthy()
@@ -55,7 +55,7 @@ describe("SignupLocation", () => {
 
   test("renders result state correctly", () => {
     const { getByLabelText, getByRole, getByText } = render(
-      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />
+      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />,
     )
 
     expect(getByLabelText("address")).toBeTruthy()
@@ -88,7 +88,7 @@ describe("SignupLocation", () => {
   test("calls onAction when Done button is pressed", () => {
     const mockOnAction = jest.fn()
     const { getByText } = render(
-      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={mockOnAction} />
+      <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={mockOnAction} />,
     )
 
     const doneButton = getByText("onboarding.completeProfile.location.doneButton undefined")
@@ -99,4 +99,3 @@ describe("SignupLocation", () => {
 
   // Add more test cases as needed
 })
-

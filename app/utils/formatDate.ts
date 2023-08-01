@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Locale, format, parseISO } from "date-fns"
-import { formatInTimeZone } from 'date-fns-tz'
+import { formatInTimeZone } from "date-fns-tz"
 import I18n from "i18n-js"
 import { getLocales, getCalendars } from "expo-localization"
 import moment from "moment-timezone"
@@ -25,23 +25,23 @@ import { getLocationTimeZone } from "./geolocation"
 import { Platform } from "react-native"
 
 if ((global as any).HermesInternal) {
-  if (Platform.OS === 'ios') {
+  if (Platform.OS === "ios") {
     // Polyfills required to use Intl with Hermes engine
-    require('@formatjs/intl-getcanonicallocales/polyfill').default
-    require('@formatjs/intl-locale/polyfill').default
-    require('@formatjs/intl-pluralrules/polyfill').default
-    require('@formatjs/intl-pluralrules/locale-data/en').default
-    require('@formatjs/intl-numberformat/polyfill').default
-    require('@formatjs/intl-numberformat/locale-data/en').default
-    require('@formatjs/intl-datetimeformat/polyfill').default
-    require('@formatjs/intl-datetimeformat/locale-data/en').default
-    require('@formatjs/intl-datetimeformat/add-all-tz').default
+    require("@formatjs/intl-getcanonicallocales/polyfill").default
+    require("@formatjs/intl-locale/polyfill").default
+    require("@formatjs/intl-pluralrules/polyfill").default
+    require("@formatjs/intl-pluralrules/locale-data/en").default
+    require("@formatjs/intl-numberformat/polyfill").default
+    require("@formatjs/intl-numberformat/locale-data/en").default
+    require("@formatjs/intl-datetimeformat/polyfill").default
+    require("@formatjs/intl-datetimeformat/locale-data/en").default
+    require("@formatjs/intl-datetimeformat/add-all-tz").default
   } else {
-    require('@formatjs/intl-getcanonicallocales/polyfill')
-    require('@formatjs/intl-locale/polyfill')
-    require('@formatjs/intl-datetimeformat/polyfill')
-    require('@formatjs/intl-datetimeformat/locale-data/en')
-    require('@formatjs/intl-datetimeformat/add-all-tz')
+    require("@formatjs/intl-getcanonicallocales/polyfill")
+    require("@formatjs/intl-locale/polyfill")
+    require("@formatjs/intl-datetimeformat/polyfill")
+    require("@formatjs/intl-datetimeformat/locale-data/en")
+    require("@formatjs/intl-datetimeformat/add-all-tz")
   }
 }
 
@@ -49,18 +49,30 @@ type Options = Parameters<typeof format>[2]
 
 const getLocale = (): Locale => {
   switch (I18n.locale) {
-    case 'fr': return fr
-    case 'uk': return uk
-    case 'ja': return ja
-    case 'es': return es
-    case 'it': return it
-    case 'nl': return nl
-    case 'ru': return ru
-    case 'sv': return sv
-    case 'hi': return hi
-    case 'de': return de
-    case 'nb': return nb
-    default: return en
+    case "fr":
+      return fr
+    case "uk":
+      return uk
+    case "ja":
+      return ja
+    case "es":
+      return es
+    case "it":
+      return it
+    case "nl":
+      return nl
+    case "ru":
+      return ru
+    case "sv":
+      return sv
+    case "hi":
+      return hi
+    case "de":
+      return de
+    case "nb":
+      return nb
+    default:
+      return en
   }
 }
 

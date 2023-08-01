@@ -74,7 +74,7 @@ const AppStack = observer(function AppStack() {
           text: err as string,
           duration: Snackbar.LENGTH_LONG,
           action: {
-            text: translate('snackBar.dismiss'),
+            text: translate("snackBar.dismiss"),
             textColor: "red",
             onPress: () => {
               Snackbar.dismiss()

@@ -7,7 +7,7 @@
 import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
@@ -21,8 +21,8 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
-import { autorun } from "mobx"
 import { useStores } from "../../../models"
+import { OrbitPoint } from "../../../services/api"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -133,80 +133,30 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     getCurrentLocation()
   }, [selectedLocation, currentLocation])
 
-  const [issPathCoords, setIssPathCoords] = useState([])
-  const [pastIssPathCoords, setPastIssPathCoords] = useState([])
-  const [futureIssPathCoords, setFutureIssPathCoords] = useState([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState(null)
-  const updateTimer = useRef<NodeJS.Timer>()
-
-  function updateIssPath() {
-    let currentPositionIdx = 0
-
-    if (issData.length === 0) {
-      clearTimeout(updateTimer.current)
-      return
-    }
-
-    issData.forEach((point, idx) => {
-      if (
-        Math.abs(new Date(point.date).valueOf() - new Date().valueOf()) <
-        Math.abs(new Date(issData[currentPositionIdx].date).valueOf() - new Date().valueOf())
-      ) {
-        currentPositionIdx = idx
-      }
-    })
-
-    let startPositionIdx = currentPositionIdx
-    for (; startPositionIdx > 0; startPositionIdx -= 1) {
-      if (issData[startPositionIdx].longitude < issData[startPositionIdx - 1].longitude) {
-        break
-      }
-    }
-
-    let endPositionIdx = currentPositionIdx
-    for (; endPositionIdx < issData.length - 1; endPositionIdx += 1) {
-      if (issData[endPositionIdx].longitude > issData[endPositionIdx + 1].longitude) {
-        break
-      }
-    }
-
-    setIssPathCoords(
-      issData.slice(startPositionIdx, endPositionIdx + 1).map((p) => [p.latitude, p.longitude]),
-    )
-    setPastIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff >= 0 && diff < 60 * 60 * 1000
-        })
-        .map((p) => [p.latitude, p.longitude]),
-    )
-
-    setFutureIssPathCoords(
-      issData
-        .filter((point) => {
-          const diff = new Date().valueOf() - new Date(point.date).valueOf()
-          return diff < 0 && diff > -60 * 60 * 1000
-        })
-        .map((p) => [p.latitude, p.longitude]),
-    )
-
-    setIssMarkerPosition([
-      issData[currentPositionIdx].latitude,
-      issData[currentPositionIdx].longitude,
-    ])
-
-    clearTimeout(updateTimer.current)
-    updateTimer.current = setTimeout(updateIssPath, 30000)
-  }
-
-  useEffect(() => {
-    autorun(() => updateIssPath())
-  }, [])
-
   const getData = async () => {
     await getISSData({ lat: current?.location.lat, lon: current?.location.lng })
   }
+
+  useEffect(() => {
+    if (!current || !issData?.length) return undefined
+
+    const lastOrbitPoint = issData.find((point: OrbitPoint, idx: number) => {
+      return (
+        new Date().valueOf() < new Date(point.date).valueOf() &&
+        idx < issData.length - 1 &&
+        point.longitude > 0 &&
+        issData[idx + 1].longitude < 0
+      )
+    })
+
+    if (!lastOrbitPoint) return undefined
+
+    const tmr = setTimeout(() => {
+      getData().catch((e) => console.log(e))
+    }, new Date(lastOrbitPoint.date).valueOf() - Date.now())
+
+    return () => clearTimeout(tmr)
+  }, [issData])
 
   useEffect(() => {
     if (!current) return
@@ -223,10 +173,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       return false
     }
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    )
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction)
 
     return () => backHandler.remove()
   }, [isFullScreen])
@@ -285,17 +232,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         {isGlobe && (
           <Globe
             key={isFullScreen.toString() + isLandscape.toString()}
-            pastIssPathCoords={pastIssPathCoords}
-            futureIssPathCoords={futureIssPathCoords}
-            issMarkerPosition={issMarkerPosition}
+            issPath={issData}
             zoom={zoomLevel + 1}
             marker={current && [current?.location?.lat, current?.location?.lng]}
           />
         )}
         {!isGlobe && (
           <MapBox
-            issPathCoords={issPathCoords}
-            issMarkerPosition={issMarkerPosition}
+            issPath={issData}
             style={$flatMap}
             zoom={zoomLevel}
             markers={
