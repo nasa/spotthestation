@@ -45,6 +45,7 @@ export function ExpandContainer({
             style={[$title, $titleOverride]}
           />
           {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
+          <View style={$fill} />
           {button}
         </View>
         {expandble && (
@@ -85,6 +86,7 @@ const $headContainer: ViewStyle = {
 const $titleContainer: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
+  flex: 1,
 }
 
 const $title: TextStyle = {
@@ -97,4 +99,8 @@ const $title: TextStyle = {
 
 const $up: ImageStyle = {
   transform: [{ rotate: "180deg" }],
+}
+
+const $fill: ViewStyle = {
+  flex: 1,
 }

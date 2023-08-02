@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { PressableProps, Animated, Easing, StyleProp, ViewStyle } from "react-native"
-import { Icon } from "../../../components"
-import { colors } from "../../../theme"
+import {
+  PressableProps,
+  Animated,
+  Easing,
+  StyleProp,
+  ViewStyle,
+  TouchableOpacity,
+} from "react-native"
+import { Icon, Text } from "../../../components"
+import { colors, fontSizes, typography } from "../../../theme"
 
 export interface RefreshButtonProps {
   onPress: PressableProps["onPress"]
@@ -35,15 +42,27 @@ export function RefreshButton({ onPress, inProgress, containerStyle }: RefreshBu
   })
 
   return (
-    <Animated.View style={[containerStyle, { transform: [{ rotate: spin }] }]}>
-      <Icon
-        icon="refresh"
-        size={24}
-        color={colors.palette.neutral450}
-        disabled={inProgress}
-        onPress={onPress}
-        hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
-      />
-    </Animated.View>
+    <TouchableOpacity
+      disabled={inProgress}
+      onPress={onPress}
+      hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
+      style={[$container, containerStyle]}
+    >
+      <Animated.View style={{ transform: [{ rotate: spin }] }}>
+        <Icon icon="refresh" size={24} color={colors.palette.neutral450} />
+      </Animated.View>
+      <Text style={$text} tx="homeScreen.selectLocation.refresh" />
+    </TouchableOpacity>
   )
+}
+
+const $container: ViewStyle = {
+  flexDirection: "row",
+}
+
+const $text = {
+  fontFamily: typography.primary.normal,
+  fontSize: fontSizes[12],
+  color: colors.palette.neutral450,
+  marginLeft: 3,
 }

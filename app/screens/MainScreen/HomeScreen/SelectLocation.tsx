@@ -62,7 +62,7 @@ export function SelectLocation({
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [searchResult, setSearchResult] = useState<LocationType[]>([])
   const [isRemove, setIsRemove] = useState(false)
-  const [upd, setUpd] = useState(false)
+  const [isSearchCurrentLocationUpdating, setIsSearchCurrentLocationUpdating] = useState(false)
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -80,11 +80,16 @@ export function SelectLocation({
     setNearby(res)
   }
 
-  const sada = async () => {
-    setUpd(true)
-    const loc = await getCurrentLocation(() => ({}))
-    setTextValue(loc.subtitle)
-    setUpd(false)
+  const setSearchToCurrentLocation = async () => {
+    setIsSearchCurrentLocationUpdating(true)
+    try {
+      const loc = await getCurrentLocation(() => ({}))
+      setTextValue(loc.subtitle)
+    } catch (e) {
+      console.error(e)
+    }
+
+    setIsSearchCurrentLocationUpdating(false)
   }
 
   const setPlaces = async (value: string) => {
@@ -151,6 +156,14 @@ export function SelectLocation({
     [savedLocations],
   )
 
+  const renderLocationAccessory = (style) => {
+    return isSearchCurrentLocationUpdating ? (
+      <ActivityIndicator style={style} />
+    ) : (
+      <Accessory style={style} icon={"currentLocation"} onPress={setSearchToCurrentLocation} />
+    )
+  }
+
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom, $text]}>
       <KeyboardAvoidingView
@@ -197,10 +210,8 @@ export function SelectLocation({
           renderRightAccessory={({ style }) =>
             isFocus && textValue ? (
               <Accessory style={style} icon={"xCircle"} onPress={() => setTextValue("")} />
-            ) : upd ? (
-              <ActivityIndicator />
             ) : (
-              <Accessory style={style} icon={"currentLocation"} onPress={sada} />
+              renderLocationAccessory(style)
             )
           }
         />

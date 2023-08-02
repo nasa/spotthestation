@@ -113,6 +113,7 @@ const en = {
       search: "Search results",
       cta: "Customize notifications for this location",
       actionTitle: "Alert",
+      refresh: "Refresh",
     },
     selectSightings: {
       title: "Upcoming Sightings",
