@@ -9,14 +9,16 @@ it("renders correctly", () => {
   const tree = renderer
     .create(
       <Details
-        issData={{
-          date: "12-12-2012",
-          latitude: 0,
-          longitude: 0,
-          azimuth: 0,
-          elevation: 0,
-          altitude: 0,
-        }}
+        issData={[
+          {
+            date: "12-12-2012",
+            latitude: 0,
+            longitude: 0,
+            azimuth: 0,
+            elevation: 0,
+            altitude: 0,
+          },
+        ]}
         observer={[0, 0]}
       />,
     )

@@ -247,12 +247,24 @@ exports[`renders correctly 1`] = `
           value=""
         />
         <View
+          accessibilityRole="imagebutton"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             Object {
               "alignItems": "center",
               "height": 80,
               "justifyContent": "center",
               "marginEnd": 35,
+              "opacity": 1,
             }
           }
         >

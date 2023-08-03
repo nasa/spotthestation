@@ -25,6 +25,8 @@ exports[`ExpandContainer renders correctly 1`] = `
       style={
         Array [
           Object {
+            "alignItems": "center",
+            "flex": 1,
             "flexDirection": "row",
           },
           undefined,
@@ -69,6 +71,13 @@ exports[`ExpandContainer renders correctly 1`] = `
       >
         homeScreen.selectLocation.nearby undefined
       </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
     </View>
     <View
       accessibilityRole="imagebutton"

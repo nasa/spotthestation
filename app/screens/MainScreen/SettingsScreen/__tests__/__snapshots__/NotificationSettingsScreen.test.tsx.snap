@@ -433,6 +433,8 @@ exports[`renders correctly 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "flex": 1,
                     "flexDirection": "row",
                   },
                   undefined,
@@ -477,6 +479,13 @@ exports[`renders correctly 1`] = `
               >
                 settings.notificationSettingsData.notifyMeBefore undefined
               </Text>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
             </View>
           </View>
           <View
@@ -767,6 +776,8 @@ exports[`renders correctly 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
+                    "flex": 1,
                     "flexDirection": "row",
                   },
                   undefined,
@@ -811,6 +822,13 @@ exports[`renders correctly 1`] = `
               >
                 settings.notificationSettingsData.turnOffNotifications undefined
               </Text>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
             </View>
           </View>
           <View

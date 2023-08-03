@@ -32,7 +32,11 @@ describe("ExpandContainer", () => {
 
   it("applies the correct styles", () => {
     const component = renderer.create(
-      <ExpandContainer title="homeScreen.selectLocation.nearby" itemsCount={3} actionTitle="Action">
+      <ExpandContainer
+        title="homeScreen.selectLocation.nearby"
+        itemsCount={3}
+        actionTitle="homeScreen.selectLocation.actionTitle"
+      >
         <View>
           <Text>Test content</Text>
         </View>

@@ -17,6 +17,7 @@ test("getISSSightings should update the store incorrectly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockParams = { zone: "testZone", lat: 0, lon: 0 }
@@ -42,6 +43,7 @@ test("getISSSightings should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockParams = { zone: "testZone", lat: 0, lon: 0 }
@@ -94,6 +96,7 @@ test("setCurrentLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -129,6 +132,7 @@ test("setISSSightings should update the store correctly", () => {
     savedLocations: [],
     issData: [],
     initLoading: false,
+    isLocalCalculations: false,
     sightingsLoaded: false,
   })
 
@@ -159,6 +163,7 @@ test("setISSSightings should update the store incorrectly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -192,6 +197,7 @@ test("setSelectedLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -228,6 +234,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -266,6 +273,7 @@ test("setSavedLocations should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -289,6 +297,7 @@ test("setInitLoading should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   rootStore.setInitLoading(false)
@@ -304,6 +313,7 @@ test("setSightingsLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   rootStore.setSightingsLoaded(true)
@@ -319,6 +329,7 @@ test("setIssDataLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   rootStore.setNotifications()
@@ -334,6 +345,7 @@ test("setIssDataLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   rootStore.setIssDataLoaded(true)
@@ -349,6 +361,7 @@ test("setIssDataLoaded should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
+    isLocalCalculations: false,
   })
 
   const mockValue = {

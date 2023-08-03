@@ -10,6 +10,7 @@ import { fireEvent, render } from "@testing-library/react"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
+  createNavigationContainerRef: jest.fn(),
 }))
 
 jest.mock("mobx-react-lite", () => ({
