@@ -18,6 +18,15 @@ export interface TimeZoneDataResponse {
   kind: string
 }
 
+const getCurrentLocationWithTimeout = (timeout: number) => {
+  return new Promise<Location.LocationObject>((resolve, reject) => {
+    setTimeout(() => {
+      resolve(null)
+    }, timeout)
+    Location.getCurrentPositionAsync().then(resolve).catch(reject)
+  })
+}
+
 export const getCurrentLocation = async (
   alert?: () => void,
   callback?: (value: boolean) => void,
@@ -28,7 +37,12 @@ export const getCurrentLocation = async (
     alert && alert()
     return null
   } else {
-    const { coords } = await Location.getCurrentPositionAsync()
+    let res = await getCurrentLocationWithTimeout(10000)
+    if (!res) res = await getCurrentLocationWithTimeout(5000)
+    if (!res) res = await Location.getLastKnownPositionAsync()
+    if (!res) throw Error("Unable to get current location")
+
+    const { coords } = res
 
     if (coords) {
       const { latitude, longitude } = coords

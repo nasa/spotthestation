@@ -5,7 +5,7 @@ import { Icon, Text } from "../../../components"
 import { OrbitPoint } from "../../../services/api/api.types"
 import { fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
-import { calculateDistance, calculateOrbitalSpeed } from "../components/helpers"
+import { calculateOrbitalSpeed } from "../components/helpers"
 
 export interface DetailsProps {
   /**
@@ -16,7 +16,7 @@ export interface DetailsProps {
   observer: [number, number]
 }
 
-export function Details({ onClose, issData, observer }: DetailsProps) {
+export function Details({ onClose, issData }: DetailsProps) {
   const [currentPosition, setCurrentPosition] = useState<OrbitPoint>(null)
 
   useEffect(() => {
@@ -86,24 +86,6 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
     }
   }, [issData])
 
-  console.log(currentPosition)
-
-  const distance = (data: OrbitPoint): number => {
-    if (data) {
-      return Math.round(
-        calculateDistance(
-          observer[0],
-          observer[1],
-          0,
-          data?.latitude,
-          data?.longitude,
-          data?.elevation,
-        ) / 1000,
-      )
-    }
-    return 0
-  }
-
   if (!currentPosition) return null
 
   return (
@@ -133,31 +115,14 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
         <View style={$buttonsContainer}>
           <View
             accessible
-            accessibilityLabel="distance"
-            accessibilityHint="distance"
+            accessibilityLabel="latitude"
+            accessibilityHint="latitude"
             accessibilityRole="text"
             style={$detailBox}
           >
-            <Text tx="issView.details.distance" style={$detailTitle} />
+            <Text tx="issView.details.latitude" style={$detailTitle} />
             <Text
-              text={`${distance(currentPosition)} ${translate("units.kilometer")}`}
-              style={$detailValue}
-            />
-          </View>
-          <View
-            accessible
-            accessibilityLabel="orbital Speed"
-            accessibilityHint="orbital Speed"
-            accessibilityRole="text"
-            style={$detailBox}
-          >
-            <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-            <Text
-              text={`${calculateOrbitalSpeed(
-                currentPosition.latitude,
-                currentPosition.azimuth,
-                currentPosition.elevation,
-              )} ${translate("units.metersPerSecond")}`}
+              text={currentPosition.latitude ? currentPosition.latitude.toFixed(2) : "0"}
               style={$detailValue}
             />
           </View>
@@ -176,19 +141,6 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           </View>
           <View
             accessible
-            accessibilityLabel="latitude"
-            accessibilityHint="latitude"
-            accessibilityRole="text"
-            style={$detailBox}
-          >
-            <Text tx="issView.details.latitude" style={$detailTitle} />
-            <Text
-              text={currentPosition.latitude ? currentPosition.latitude.toFixed(2) : "0"}
-              style={$detailValue}
-            />
-          </View>
-          <View
-            accessible
             accessibilityLabel="altitude"
             accessibilityHint="altitude"
             accessibilityRole="text"
@@ -201,6 +153,23 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
                   ? `${currentPosition.altitude.toFixed(2)} ${translate("units.kilometer")}`
                   : `"0 ${translate("units.kilometer")}"`
               }
+              style={$detailValue}
+            />
+          </View>
+          <View
+            accessible
+            accessibilityLabel="orbital Speed"
+            accessibilityHint="orbital Speed"
+            accessibilityRole="text"
+            style={$detailBox}
+          >
+            <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
+            <Text
+              text={`${calculateOrbitalSpeed(
+                currentPosition.latitude,
+                currentPosition.azimuth,
+                currentPosition.elevation,
+              )} ${translate("units.metersPerSecond")}`}
               style={$detailValue}
             />
           </View>
@@ -265,19 +234,6 @@ export function Details({ onClose, issData, observer }: DetailsProps) {
           >
             <Text tx="issView.details.orbitsPerDay" style={$detailRowTitle} />
             <Text text="15.49" style={$detailRowValue} />
-          </View>
-          <View
-            accessible
-            accessibilityLabel="Orbital Decay"
-            accessibilityHint="Orbital Decay"
-            accessibilityRole="text"
-            style={$detailRow}
-          >
-            <Text tx="issView.details.orbitalDecay" style={$detailRowTitle} />
-            <Text
-              text={`2 ${translate("units.kilometer")} / ${translate("units.month")}`}
-              style={$detailRowValue}
-            />
           </View>
         </View>
       </View>

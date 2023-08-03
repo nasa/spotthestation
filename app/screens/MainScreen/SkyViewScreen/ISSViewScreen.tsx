@@ -268,8 +268,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const takeScreenshot = () => {
-    if (!arView.current) return
-    captureScreen({
+    if (!arView.current) return null
+    return captureScreen({
       format: "jpg",
       quality: 1,
     }).then(
@@ -277,12 +277,15 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         await saveToGallery(uri, "photo")
         setMediaUrl(uri)
         setMediaType("photo")
+        return uri
       },
-      (error) =>
+      (error) => {
         Snackbar.show({
           text: error,
           duration: Snackbar.LENGTH_LONG,
-        }),
+        })
+        return null
+      },
     )
   }
 
@@ -396,30 +399,36 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
 
-  const onShare = async (url?: string) => {
-    let shareOptions = url
-      ? {
-          title: "Share file",
-          failOnCancel: false,
-          urls: [url],
-        }
-      : {
-          message: "Capture this moment",
-          failOnCancel: false,
-          url,
-        }
-
-    if (url.split(".").pop() === "mp4") shareOptions = { ...shareOptions, type: "video/mp4" } as any
-
+  const onShare = async () => {
     try {
-      await Share.open(shareOptions)
-      analytics()
-        .logShare({ content_type: mediaType, item_id: "iss_capture_moment", method: "" })
-        .catch(() => null)
-      Snackbar.show({
-        text: translate("snackBar.shared"),
-        duration: Snackbar.LENGTH_LONG,
-      })
+      let url = mediaUrl
+      if (!url)
+        url = await captureScreen({
+          format: "jpg",
+          quality: 1,
+        })
+      if (!url) return
+
+      let shareOptions = {
+        title: "Share file",
+        failOnCancel: false,
+        urls: [url],
+      }
+
+      if (url.split(".").pop() === "mp4")
+        shareOptions = { ...shareOptions, type: "video/mp4" } as any
+
+      const { success } = await Share.open(shareOptions)
+      if (success) {
+        analytics()
+          .logShare({ content_type: mediaType, item_id: "iss_capture_moment", method: "" })
+          .catch(() => null)
+
+        Snackbar.show({
+          text: translate("snackBar.shared"),
+          duration: Snackbar.LENGTH_LONG,
+        })
+      }
     } catch (error) {
       Snackbar.show({
         text: error,
@@ -543,7 +552,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityHint="open share modal"
                 icon="share"
                 buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
-                onPress={() => onShare(mediaUrl)}
+                onPress={onShare}
               />
               <IconLinkButton
                 accessible
