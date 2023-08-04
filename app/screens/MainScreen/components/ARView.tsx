@@ -81,7 +81,15 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
       const t =
         (Date.now() - new Date(issPath[0].date).valueOf()) /
         (new Date(issPath[issPath.length - 1].date).valueOf() - new Date(issPath[0].date).valueOf())
-      const point = curve.getPoint(t)
+
+      let point: Vector3
+      try {
+        point = curve.getPoint(t)
+      } catch (e) {
+        console.error(e)
+        return
+      }
+
       setIssPosition(cartesianToAzAlt([point.x, point.y, point.z]))
     }
     update()

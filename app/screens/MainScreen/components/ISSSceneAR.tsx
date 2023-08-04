@@ -112,7 +112,13 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
     const update = () => {
       const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-      const current = curve.getPoint(t)
+      let current: Vector3
+      try {
+        current = curve.getPoint(t)
+      } catch (e) {
+        console.error(e)
+        return
+      }
 
       const pastPoints = []
       for (let i = 0; i <= 50; ++i) {

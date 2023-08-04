@@ -46,10 +46,18 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
       return undefined
     }
     const update = () => {
+      if (!issPath?.length || new Date(issPath[issPath.length - 1].date) < new Date()) return
       const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
       if (t > 1) return updateCurve()
 
-      const point = curve.getPoint(t)
+      let point: Vector3
+      try {
+        point = curve.getPoint(t)
+      } catch (e) {
+        console.error(e)
+        return
+      }
+
       if (point.x > 1) return updateCurve()
       setIssCoords2D([point.x, point.y])
     }
