@@ -56,8 +56,10 @@ export interface GetRawISSDataParams {
 export interface ISSSighting {
   date: string
   maxHeight: number
-  appears: string
-  disappears: string
+  minAzimuth: number
+  maxAzimuth: number
+  minAltitude: number
+  maxAltitude: number
   visible: number
   dayStage: number
   notify?: boolean

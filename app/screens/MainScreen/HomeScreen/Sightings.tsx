@@ -13,6 +13,7 @@ import { getCalendars } from "expo-localization"
 import * as storage from "../../../utils/storage"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { translate } from "../../../i18n"
+import { degToCompass } from "../../../utils/astro"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
@@ -157,6 +158,11 @@ export function Sightings({
                   subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
                     sighting.visible
                   } ${translate("units.minute")}`}
+                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
+                    sighting.minAzimuth,
+                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
+                    sighting.maxAzimuth,
+                  )}`}
                   withSwitch
                   onToggle={() => onToggle(sighting)}
                 />

@@ -76,7 +76,10 @@ jest.mock('../app/services/api', () => ({
     getPlaces: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),
     getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [{ 
-      appears: "10",
+      maxAltitude: 10,
+      maxAzimuth: 0,
+      minAltitude: 10,
+      minAzimuth: 120,
       date: "date",
       dayStage: 1,
       disappears: "10",

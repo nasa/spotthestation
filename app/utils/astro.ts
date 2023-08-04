@@ -26,8 +26,10 @@ type Period = {
 type Sighting = {
   date: string
   maxHeight: number
-  appears: string
-  disappears: string
+  minAzimuth: number
+  maxAzimuth: number
+  minAltitude: number
+  maxAltitude: number
   visible: number
   dayStage: number
 }
@@ -171,13 +173,9 @@ function findEvents(sat: SatData[], topos: [number, number, number], threshold =
           currentPeriod.maxElevation = d.elevation
           currentPeriod.maxElevationTime = d.time
         }
-        if (d.azimuth < currentPeriod.minAzimuth) {
-          currentPeriod.minAzimuth = d.azimuth
-          currentPeriod.minAltitude = d.elevation
-        } else if (d.azimuth > currentPeriod.maxAzimuth) {
-          currentPeriod.maxAzimuth = d.azimuth
-          currentPeriod.maxAltitude = d.elevation
-        }
+
+        currentPeriod.maxAzimuth = d.azimuth
+        currentPeriod.maxAltitude = d.elevation
       }
     } else if (currentPeriod !== null) {
       currentPeriod.endTime = d.time
@@ -206,7 +204,7 @@ function calculateDayStage(twinlites: SunCalc.GetTimesResult, eventTime: Date) {
   return null
 }
 
-function degToCompass(d: number) {
+export function degToCompass(d: number) {
   return [
     "N",
     "NNE",
@@ -241,8 +239,10 @@ export function getSightings(data: SatData[], lat: number, lon: number) {
       const item = {
         date: ti0.toISOString(),
         maxHeight: Math.round(event.maxElevation),
-        appears: Math.round(event.minAltitude).toString() + " " + degToCompass(event.minAzimuth),
-        disappears: Math.round(event.maxAltitude).toString() + " " + degToCompass(event.maxAzimuth),
+        minAltitude: Math.round(event.minAltitude),
+        maxAltitude: Math.round(event.maxAltitude),
+        minAzimuth: event.minAzimuth,
+        maxAzimuth: event.maxAzimuth,
         visible: Math.ceil((ti2.valueOf() - ti0.valueOf()) / 60000.0),
         dayStage,
       }

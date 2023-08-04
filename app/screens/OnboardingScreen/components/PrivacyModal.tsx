@@ -57,9 +57,7 @@ export function PrivacyModal({ onPressSkip, onPressAgree }: PrivacyModalProps) {
         />
       </View>
       <Pressable
-        onPress={() =>
-          Linking.openURL("https://www.spotthestation.org")
-        }
+        onPress={() => Linking.openURL("https://www.spotthestation.org")}
         style={{ marginTop: scale(10), alignSelf: "center" }}
       >
         <Text tx="privacy.policy" style={[$tip, { color: colors.palette.neutral100 }]} />

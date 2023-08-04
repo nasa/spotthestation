@@ -56,10 +56,12 @@ test("getISSSightings should update the store correctly", async () => {
     location: { lat: 0, lng: 0 },
     sightings: [
       {
-        appears: "10",
+        maxAltitude: 10,
+        maxAzimuth: 0,
+        minAltitude: 10,
+        minAzimuth: 120,
         date: "date",
         dayStage: 1,
-        disappears: "10",
         maxHeight: 12,
         notify: true,
         visible: 6,
@@ -74,10 +76,12 @@ test("getISSSightings should update the store correctly", async () => {
       location: { lat: 0, lng: 0 },
       sightings: [
         {
-          appears: "10",
+          maxAltitude: 10,
+          maxAzimuth: 0,
+          minAltitude: 10,
+          minAzimuth: 120,
           date: "date",
           dayStage: 1,
-          disappears: "10",
           maxHeight: 12,
           notify: true,
           visible: 6,
@@ -113,10 +117,12 @@ test("setCurrentLocation should update the store correctly", async () => {
     ...mockValue,
     sightings: [
       {
-        appears: "10",
+        maxAltitude: 10,
+        maxAzimuth: 0,
+        minAltitude: 10,
+        minAzimuth: 120,
         date: "date",
         dayStage: 1,
-        disappears: "10",
         maxHeight: 12,
         notify: true,
         visible: 6,
@@ -172,10 +178,12 @@ test("setISSSightings should update the store incorrectly", () => {
     alert: true,
     sightings: [
       {
-        appears: "10",
+        maxAltitude: 10,
+        maxAzimuth: 0,
+        minAltitude: 10,
+        minAzimuth: 120,
         date: "date",
         dayStage: 1,
-        disappears: "10",
         maxHeight: 12,
         notify: true,
         visible: 6,
@@ -214,10 +222,12 @@ test("setSelectedLocation should update the store correctly", async () => {
     ...mockValue,
     sightings: [
       {
-        appears: "10",
+        maxAltitude: 10,
+        maxAzimuth: 0,
+        minAltitude: 10,
+        minAzimuth: 120,
         date: "date",
         dayStage: 1,
-        disappears: "10",
         maxHeight: 12,
         notify: true,
         visible: 6,
@@ -252,10 +262,12 @@ test("setNewSavedLocation should update the store correctly", async () => {
       ...mockValue,
       sightings: [
         {
-          appears: "10",
+          maxAltitude: 10,
+          maxAzimuth: 0,
+          minAltitude: 10,
+          minAzimuth: 120,
           date: "date",
           dayStage: 1,
-          disappears: "10",
           maxHeight: 12,
           notify: true,
           visible: 6,

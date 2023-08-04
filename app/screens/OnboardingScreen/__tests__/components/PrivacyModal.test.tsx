@@ -38,8 +38,6 @@ describe("PrivacyModal", () => {
     jest.spyOn(Linking, "openURL")
     ;(fireEvent as any).click(privacyPolicyText)
 
-    expect((Linking as any).openURL).toHaveBeenCalledWith(
-      "https://www.nasa.gov/about/highlights/HP_Privacy.html#privacy",
-    )
+    expect((Linking as any).openURL).toHaveBeenCalledWith("https://www.spotthestation.org")
   })
 })

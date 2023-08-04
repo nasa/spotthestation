@@ -19,6 +19,8 @@ export interface ListItemProps {
   disabled?: boolean
   title: string
   subtitle: string
+  subtitle2?: string
+  subtitle3?: string
   icon: IconTypes
   secondIcon?: { icon: IconTypes; color: string }
   ctaTx?: TxKeyPath
@@ -34,6 +36,7 @@ export function ListItem({
   title,
   ctaTx,
   subtitle,
+  subtitle2,
   selected = false,
   withSwitch = false,
   icon,
@@ -70,6 +73,9 @@ export function ListItem({
         >
           <Text text={title} style={$titleText} ellipsizeMode="tail" numberOfLines={1} />
           <Text text={subtitle} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          {Boolean(subtitle2) && (
+            <Text text={subtitle2} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
           {Boolean(ctaTx) && (
             <Pressable onPress={onCtaPress} style={{ marginTop: scale(10) }}>
               <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />

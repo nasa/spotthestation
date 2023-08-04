@@ -123,6 +123,8 @@ const en = {
       aboveHorizon: "Above the horizon",
       today: "Today",
       tomorrow: "Tomorrow",
+      appears: "Appears",
+      disappears: "Disappears",
       coach: {
         title: "Icons Description",
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
