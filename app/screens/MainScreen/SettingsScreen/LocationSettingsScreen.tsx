@@ -3,7 +3,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useCallback, useState } from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
+import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
@@ -20,8 +20,8 @@ import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
 import { SettingsItem } from "../components/SettingsItem"
 import { openSettings } from "react-native-permissions"
-import { PrivacyModal } from "../../OnboardingScreen/components/PrivacyModal"
 import * as storage from "../../../utils/storage"
+import { RefreshButton } from "../HomeScreen/RefreshButton"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -52,7 +52,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [isRemove, setIsRemove] = useState(false)
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [locationPermission, setLocationPermission] = useState<boolean>(false)
-  const [privacyModal, setPrivacyModal] = useState(false)
 
   const $headerStyleOverride: TextStyle = {
     top: topInset + scale(24),
@@ -62,6 +61,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setIsCurrentLocationUpdating(true)
     try {
       const location = await getCurrentLocation(() => ({}), setLocationPermission)
+      if (!location) return setIsCurrentLocationUpdating(false)
       await setCurrentLocation({ ...location, alert: currentLocation.alert })
       await storage.save("currentLocation", location)
     } catch (e) {
@@ -69,20 +69,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       console.log(e)
     }
   }, [currentLocation])
-
-  useEffect(() => {
-    if (Platform.OS === "ios") {
-      getLocation().catch((e) => console.log(e))
-    } else {
-      storage
-        .load("isPrivacyAgree")
-        .then((res) => {
-          if (res) getLocation().catch((e) => console.log(e))
-          else setPrivacyModal(true)
-        })
-        .catch((e) => console.log(e))
-    }
-  }, [route])
 
   const handleToggle = useCallback(
     (location: LocationType, type: string) => {
@@ -205,6 +191,13 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
               title="homeScreen.selectLocation.current"
               expandble={false}
               actionTitle="homeScreen.selectLocation.actionTitle"
+              button={
+                <RefreshButton
+                  inProgress={isCurrentLocationUpdating}
+                  containerStyle={{ marginLeft: 5 }}
+                  onPress={getLocation}
+                />
+              }
             >
               <ListItem
                 icon="pin"
@@ -310,34 +303,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           location={toRemove}
         />
       </Modal>
-      {privacyModal && (
-        <Modal
-          isVisible={privacyModal}
-          useNativeDriver
-          useNativeDriverForBackdrop
-          backdropOpacity={0.4}
-          style={$modal}
-        >
-          <PrivacyModal
-            onPressSkip={() => {
-              storage
-                .save("isPrivacyAgree", false)
-                .then(() => {
-                  setPrivacyModal(false)
-                })
-                .catch((e) => console.log(e))
-            }}
-            onPressAgree={() => {
-              storage
-                .save("isPrivacyAgree", true)
-                .then(() => {
-                  setPrivacyModal(false)
-                })
-                .catch((e) => console.log(e))
-            }}
-          />
-        </Modal>
-      )}
     </Screen>
   )
 })

@@ -13,7 +13,7 @@ import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
-import { getSatPath, getSightings, linearInterpolation } from "../utils/astro"
+import { getSatPath, getSightings } from "../utils/astro"
 import * as storage from "../utils/storage"
 
 const RootStoreActions = (self) => ({
@@ -23,8 +23,7 @@ const RootStoreActions = (self) => ({
     })
 
     if (!ok) return { ok: false }
-    const interpolated = yield linearInterpolation(data, 15)
-    const sightings = getSightings(interpolated, params.lat, params.lon)
+    const sightings = yield getSightings(data, params.lat, params.lon)
 
     return { ok: true, data: sightings }
   }),

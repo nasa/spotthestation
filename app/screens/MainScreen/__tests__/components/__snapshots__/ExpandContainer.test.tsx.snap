@@ -71,13 +71,6 @@ exports[`ExpandContainer renders correctly 1`] = `
       >
         homeScreen.selectLocation.nearby undefined
       </Text>
-      <View
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
     </View>
     <View
       accessibilityRole="imagebutton"

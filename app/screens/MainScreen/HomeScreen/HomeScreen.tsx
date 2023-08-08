@@ -74,8 +74,10 @@ export const HomeScreen = observer(function HomeScreen() {
     date: null,
     visible: 0,
     maxHeight: 0,
-    appears: "",
-    disappears: "",
+    minAzimuth: 0,
+    maxAzimuth: 0,
+    minAltitude: 0,
+    maxAltitude: 0,
     dayStage: 0,
   })
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
@@ -161,8 +163,10 @@ export const HomeScreen = observer(function HomeScreen() {
           date: null,
           visible: 0,
           maxHeight: 0,
-          appears: "",
-          disappears: "",
+          minAzimuth: 0,
+          maxAzimuth: 0,
+          minAltitude: 0,
+          maxAltitude: 0,
           dayStage: 0,
         })
         setCountdown("T - 00:00:00:00")

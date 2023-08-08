@@ -369,13 +369,6 @@ exports[`renders correctly 1`] = `
           >
             homeScreen.selectSightings.sightings undefined
           </Text>
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          />
         </View>
       </View>
       <RCTScrollView

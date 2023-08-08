@@ -1,5 +1,6 @@
 import SunCalc from "suncalc"
 import { InteractionManager } from "react-native"
+import { CatmullRomCurve3, Vector3 } from "three"
 
 const runAfterInteractions = InteractionManager.runAfterInteractions.bind(InteractionManager) as (
   value: unknown,
@@ -138,7 +139,10 @@ function ECEFToLookAngles(
   return topocentricToLookAngles(topS, topE, topZ)
 }
 
-function altaz(sat: SatData[], topos: [number, number, number]) {
+function altaz(
+  sat: { location: [number, number, number]; date: string }[],
+  topos: [number, number, number],
+) {
   return sat.map((position) => {
     const r = position.location
     const { elevation, azimuth } = ECEFToLookAngles(topos[0], topos[1], topos[2], r[0], r[1], r[2])
@@ -150,7 +154,11 @@ function altaz(sat: SatData[], topos: [number, number, number]) {
   })
 }
 
-function findEvents(sat: SatData[], topos: [number, number, number], threshold = 0.0) {
+function findEvents(
+  sat: { location: [number, number, number]; date: string }[],
+  topos: [number, number, number],
+  threshold = 0.0,
+) {
   const data = altaz(sat, topos)
 
   const periods: Period[] = []
@@ -188,20 +196,17 @@ function findEvents(sat: SatData[], topos: [number, number, number], threshold =
 }
 
 function calculateDayStage(twinlites: SunCalc.GetTimesResult, eventTime: Date) {
-  if (twinlites.nightEnd > eventTime || eventTime > twinlites.night) {
+  if (twinlites.nightEnd >= eventTime || eventTime >= twinlites.night) {
     return 0
   }
   if (
-    (twinlites.nightEnd < eventTime && eventTime < twinlites.sunrise) ||
+    (twinlites.nightEnd < eventTime && eventTime < twinlites.dawn) ||
     (twinlites.dusk < eventTime && eventTime < twinlites.night)
   ) {
     return 1
   }
-  if (twinlites.sunrise < eventTime && eventTime < twinlites.dusk) {
-    return 2
-  }
 
-  return null
+  return 2
 }
 
 export function degToCompass(d: number) {
@@ -225,8 +230,31 @@ export function degToCompass(d: number) {
   ][Math.floor(((d + 360 / 16 / 2) % 360) / (360 / 16))]
 }
 
-export function getSightings(data: SatData[], lat: number, lon: number) {
-  const events = findEvents(data, [lat, lon, 0], 10)
+export async function getSightings(data: SatData[], lat: number, lon: number) {
+  const curve = new CatmullRomCurve3(data.map((pt) => new Vector3(...pt.location)))
+
+  const points: { location: [number, number, number]; date: string }[] = []
+  for (let i = 0; i < data.length - 1; ++i) {
+    const start = new Date(data[i].date).valueOf()
+    const end = new Date(data[i + 1].date).valueOf()
+
+    const steps = Math.floor((end - start) / 15000)
+    for (let j = 0; j < steps; ++j) {
+      const ts = i / (data.length - 1)
+      const te = (i + 1) / (data.length - 1)
+      const t = ts + (te - ts) * (j / steps)
+      const pt = curve.getPoint(t)
+
+      points.push({
+        date: new Date(start + j * 15000).toISOString(),
+        location: [pt.x, pt.y, pt.z],
+      })
+    }
+
+    if (i % 10 === 0) await new Promise(runAfterInteractions)
+  }
+
+  const events = findEvents(points, [lat, lon, 0], 10)
   const res: Sighting[] = []
   events.forEach((event) => {
     const ti0 = new Date(event.startTime)
@@ -235,7 +263,7 @@ export function getSightings(data: SatData[], lat: number, lon: number) {
 
     const twinlites = SunCalc.getTimes(ti1, lat, lon)
     const dayStage = calculateDayStage(twinlites, ti1)
-    if (ti1 < twinlites.dawn || twinlites.sunset < ti1) {
+    if (dayStage === 0 || dayStage === 1) {
       const item = {
         date: ti0.toISOString(),
         maxHeight: Math.round(event.maxElevation),
@@ -243,7 +271,7 @@ export function getSightings(data: SatData[], lat: number, lon: number) {
         maxAltitude: Math.round(event.maxAltitude),
         minAzimuth: event.minAzimuth,
         maxAzimuth: event.maxAzimuth,
-        visible: Math.ceil((ti2.valueOf() - ti0.valueOf()) / 60000.0),
+        visible: Math.round((ti2.valueOf() - ti0.valueOf()) / 60000.0),
         dayStage,
       }
       res.push(item)

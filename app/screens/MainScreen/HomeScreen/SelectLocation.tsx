@@ -72,6 +72,7 @@ export function SelectLocation({
 
     if (!location) {
       location = await getCurrentLocation(() => ({}))
+      if (!location) return
       setCurrentLocation(location).catch((e) => console.log(e))
       await storage.save("currentLocation", location)
     }
@@ -84,6 +85,7 @@ export function SelectLocation({
     setIsSearchCurrentLocationUpdating(true)
     try {
       const loc = await getCurrentLocation(() => ({}))
+      if (!loc) return setIsSearchCurrentLocationUpdating(false)
       setTextValue(loc.subtitle)
     } catch (e) {
       console.error(e)
@@ -111,6 +113,7 @@ export function SelectLocation({
     setIsCurrentLocationUpdating(true)
     try {
       const location = await getCurrentLocation(() => ({}))
+      if (!location) return setIsCurrentLocationUpdating(false)
       await setCurrentLocation({ ...location, alert: currentLocation.alert })
       await storage.save("currentLocation", location)
       setNearby(await getNearbyPlaces(location.location, 100))
