@@ -42,7 +42,7 @@ const RootStoreActions = (self) => ({
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
-        const dataToSave = data.map((item) => {
+        const dataToSave = data.sightings.map((item) => {
           const sighting = locationSightings.find(
             ({ date }) =>
               (date as string).substring(0, 17) === (item.date as string).substring(0, 17),
@@ -51,6 +51,7 @@ const RootStoreActions = (self) => ({
         })
 
         locationCopy.sightings = [...dataToSave]
+        locationCopy.lastSightingOrbitPointAt = data.lastSightingOrbitPointAt
         if (isSelectedLocation) {
           self.selectedLocation = Location.create(locationCopy)
         }
@@ -203,7 +204,11 @@ const RootStoreActions = (self) => ({
     if (ok) {
       self.savedLocations = [
         ...self.savedLocations.filter((item) => item.title !== valueCopy.title),
-        { ...valueCopy, sightings: [...data] },
+        {
+          ...valueCopy,
+          sightings: [...data.sightings],
+          lastSightingOrbitPointAt: data.lastSightingOrbitPointAt,
+        },
       ]
 
       Snackbar.show({

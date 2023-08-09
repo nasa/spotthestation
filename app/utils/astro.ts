@@ -278,7 +278,10 @@ export async function getSightings(data: SatData[], lat: number, lon: number) {
     }
   })
 
-  return res
+  return {
+    sightings: res,
+    lastSightingOrbitPointAt: new Date(data[data.length - 1].date).toISOString(),
+  }
 }
 
 export function getSatPath(data: SatData[], lat: number, lon: number) {

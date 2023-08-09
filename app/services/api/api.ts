@@ -25,6 +25,7 @@ import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import { TimeZoneDataResponse } from "../../utils/geolocation"
 import { ISSDataResponse, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
+import { addDays } from "date-fns"
 
 /**
  * Configuring the apisauce instance.
@@ -128,18 +129,27 @@ export class Api {
   }
 
   async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSightingResponse> {
-    const response: ApiResponse<ISSSighting[]> = await this.apisauce.post(
+    const response: ApiResponse<
+      { sightings: ISSSighting[]; lastSightingOrbitPointAt: string } | ISSSighting[]
+    > = await this.apisauce.post(
       `/tracking/oem-nasa`,
-      { lat, lon, zone },
+      { lat, lon, zone, v: "2" },
       { baseURL: Config.API_URL },
     )
-    if (!response.ok || !response.data.length) {
+
+    const sightings = Array.isArray(response.data) ? response.data : response.data?.sightings
+    const lastSightingOrbitPointAt = Array.isArray(response.data)
+      ? addDays(new Date(), 11).toISOString()
+      : new Date(response.data?.lastSightingOrbitPointAt).toISOString()
+
+    const data = { sightings, lastSightingOrbitPointAt }
+
+    if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem)
-        return { ok: false, data: Array.isArray(response.data) ? "Data is empty!" : response.data }
+      return { ok: false, data: problem ? problem.kind : "" }
     }
 
-    return { ok: true, data: response.data }
+    return { ok: true, data }
   }
 
   async getLocationByCoords(url: string): Promise<any> {

@@ -441,6 +441,7 @@ export const HomeScreen = observer(function HomeScreen() {
           isUS={currentTimeZone?.regionFormat === "US"}
           isNotifyAll={current && current?.sightings.every((item) => item.notify)}
           timezone={currentTimeZone?.timeZone}
+          lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
         />
       </MyModal>
       <MyModal

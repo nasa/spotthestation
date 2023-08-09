@@ -75,18 +75,21 @@ jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),
-    getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: [{ 
-      maxAltitude: 10,
-      maxAzimuth: 0,
-      minAltitude: 10,
-      minAzimuth: 120,
-      date: "date",
-      dayStage: 1,
-      disappears: "10",
-      maxHeight: 12,
-      notify: true,
-      visible: 6,
-    }] })),
+    getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: {
+      lastSightingOrbitPointAt: '2023-12-12',
+       sightings: [{
+          maxAltitude: 10,
+          maxAzimuth: 0,
+          minAltitude: 10,
+          minAzimuth: 120,
+          date: "date",
+          dayStage: 1,
+          disappears: "10",
+          maxHeight: 12,
+          notify: true,
+          visible: 6,
+        }]
+      }})),
     getISSData: () => new Promise((resolve) => resolve({ ok: true, data: ['data'] })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
   }

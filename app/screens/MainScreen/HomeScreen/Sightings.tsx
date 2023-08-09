@@ -7,7 +7,7 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { addDays } from "date-fns"
-import { formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
+import { formatDate, formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
 import { ISSSighting } from "../../../services/api"
 import { getCalendars } from "expo-localization"
 import * as storage from "../../../utils/storage"
@@ -23,6 +23,7 @@ export interface SightingsProps {
   onClose?: PressableProps["onPress"]
   onToggle?: (values: ISSSighting) => void
   onToggleAll?: (value: boolean) => void
+  lastSightingOrbitPointAt?: string
 }
 
 export function Sightings({
@@ -33,6 +34,7 @@ export function Sightings({
   isUS,
   isNotifyAll,
   timezone,
+  lastSightingOrbitPointAt,
 }: SightingsProps) {
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -146,27 +148,40 @@ export function Sightings({
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
           >
-            {[...sightings]
-              .filter((item) => new Date(item.date) > new Date())
-              .map((sighting: ISSSighting) => (
-                <ListItem
-                  key={sighting.date}
-                  icon="clock"
-                  secondIcon={setStageIcon(sighting.dayStage)}
-                  title={formatedDate(sighting.date)}
-                  selected={sighting.notify}
-                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
-                    sighting.visible
-                  } ${translate("units.minute")}`}
-                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
-                    sighting.minAzimuth,
-                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
-                    sighting.maxAzimuth,
-                  )}`}
-                  withSwitch
-                  onToggle={() => onToggle(sighting)}
-                />
-              ))}
+            {sightings.length === 0 ? (
+              <Text
+                style={$emptyText}
+                tx="homeScreen.selectSightings.empty"
+                txOptions={{
+                  start: formatDate(new Date().toISOString()),
+                  end: lastSightingOrbitPointAt
+                    ? formatDate(new Date(lastSightingOrbitPointAt).toISOString())
+                    : "-",
+                }}
+              />
+            ) : (
+              [...sightings]
+                .filter((item) => new Date(item.date) > new Date())
+                .map((sighting: ISSSighting) => (
+                  <ListItem
+                    key={sighting.date}
+                    icon="clock"
+                    secondIcon={setStageIcon(sighting.dayStage)}
+                    title={formatedDate(sighting.date)}
+                    selected={sighting.notify}
+                    subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
+                      sighting.visible
+                    } ${translate("units.minute")}`}
+                    subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
+                      sighting.minAzimuth,
+                    )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
+                      sighting.maxAzimuth,
+                    )}`}
+                    withSwitch
+                    onToggle={() => onToggle(sighting)}
+                  />
+                ))
+            )}
           </ScrollView>
         </ExpandContainer>
       </View>
@@ -327,4 +342,13 @@ const $nextButtonText: TextStyle = {
   fontSize: fontSizes[18],
   lineHeight: lineHeights[22],
   color: colors.palette.buttonBlue,
+}
+
+const $emptyText: TextStyle = {
+  marginTop: 24,
+  color: colors.palette.neutral250,
+  fontSize: fontSizes[18],
+  fontFamily: typography.primary.normal,
+  lineHeight: lineHeights[24],
+  textAlign: "center",
 }

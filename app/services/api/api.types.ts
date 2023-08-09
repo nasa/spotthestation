@@ -86,7 +86,7 @@ export interface RawISSDataResponse {
 
 export interface ISSSightingResponse {
   ok: boolean
-  data: ISSSighting[] | string
+  data: string | { sightings: ISSSighting[]; lastSightingOrbitPointAt: string }
 }
 
 /**

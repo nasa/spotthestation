@@ -60,7 +60,7 @@ const uk = {
   },
   tabNavigator: {
     homeTab: "Головна",
-    issViewTab: "Поглянути на МКС",
+    issViewTab: "Погляд на МКС",
     issNowTab: "МКС зараз",
     resourcesTab: "Ресурси",
     settingsTab: "Налаштування",
@@ -125,6 +125,7 @@ const uk = {
       tomorrow: "Завтра",
       appears: "Зʼявляється",
       disappears: "Зникає",
+      empty: "Немає потенційних спостережень МКС для цієї локації з {{start}} по {{end}}.",
       coach: {
         title: "Пояснення до іконок",
         moon: "Коли МКС буде над горизонтом у обраній локації, там буде ніч.",
@@ -309,6 +310,7 @@ const uk = {
         removeButton: "Видалити",
       },
     },
+    localCalculations: "Локальні обчислення",
   },
   resources: {
     header: "Ресурси",

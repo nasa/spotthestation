@@ -67,6 +67,7 @@ test("getISSSightings should update the store correctly", async () => {
         visible: 6,
       },
     ],
+    lastSightingOrbitPointAt: "2023-12-12",
     alert: false,
   })
   expect(rootStore.savedLocations).toEqual([
@@ -88,6 +89,7 @@ test("getISSSightings should update the store correctly", async () => {
         },
       ],
       alert: false,
+      lastSightingOrbitPointAt: "2023-12-12",
     },
   ])
 })
@@ -109,6 +111,7 @@ test("setCurrentLocation should update the store correctly", async () => {
     alert: true,
     sightings: [],
     subtitle: "sub",
+    lastSightingOrbitPointAt: "2023-12-12",
   } as LocationType
 
   await rootStore.setCurrentLocation(mockValue)
@@ -146,6 +149,7 @@ test("setISSSightings should update the store correctly", () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
   } as LocationType
@@ -162,6 +166,7 @@ test("setISSSightings should update the store incorrectly", () => {
       title: "New Location",
       location: { lat: 0, lng: 0 },
       alert: true,
+      lastSightingOrbitPointAt: "2023-12-12",
       sightings: [],
       subtitle: "sub",
     },
@@ -176,6 +181,7 @@ test("setISSSightings should update the store incorrectly", () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [
       {
         maxAltitude: 10,
@@ -212,6 +218,7 @@ test("setSelectedLocation should update the store correctly", async () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
   } as LocationType
@@ -251,6 +258,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
   } as LocationType
@@ -292,6 +300,7 @@ test("setSavedLocations should update the store correctly", () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
   } as LocationType
@@ -380,6 +389,7 @@ test("setIssDataLoaded should update the store correctly", async () => {
     title: "New Location",
     location: { lat: 0, lng: 0 },
     alert: true,
+    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
   } as LocationType

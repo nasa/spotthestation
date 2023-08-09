@@ -12,4 +12,5 @@ export const Location = types.model("Location", {
   location: types.optional(Point, {}),
   alert: types.maybeNull(types.boolean),
   sightings: types.optional(types.array(Sighting), []),
+  lastSightingOrbitPointAt: types.maybeNull(types.string),
 })

@@ -750,7 +750,7 @@ exports[`SettingsScreen renders correctly 1`] = `
               ]
             }
           >
-            Local calculations
+            settings.localCalculations undefined
           </Text>
           <Text
             allowFontScaling={false}

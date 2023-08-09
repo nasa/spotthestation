@@ -125,6 +125,8 @@ const en = {
       tomorrow: "Tomorrow",
       appears: "Appears",
       disappears: "Disappears",
+      empty:
+        "There are no potential ISS sightings for this location from {{start}} through {{end}}.",
       coach: {
         title: "Icons Description",
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
@@ -310,6 +312,7 @@ const en = {
         removeButton: "Delete",
       },
     },
+    localCalculations: "Local calculations",
   },
   resources: {
     header: "Resources",

@@ -30,6 +30,7 @@ export interface LocationType {
   location: Point
   alert?: boolean
   sightings?: ISSSighting[]
+  lastSightingOrbitPointAt?: string
 }
 
 enum Statuses {

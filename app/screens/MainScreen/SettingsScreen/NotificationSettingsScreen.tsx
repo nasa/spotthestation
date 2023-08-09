@@ -343,6 +343,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             isUS={currentTimeZone.regionFormat === "US"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
             timezone={currentTimeZone?.timeZone}
+            lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
           />
         </Modal>
       )}

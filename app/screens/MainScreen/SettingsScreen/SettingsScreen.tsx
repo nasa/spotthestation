@@ -8,6 +8,7 @@ import { colors, fontSizes, lineHeights, scale, typography } from "../../../them
 import { SettingsItem } from "../components/SettingsItem"
 import { ListItem } from "../components/ListItem"
 import { useStores } from "../../../models"
+import { translate } from "../../../i18n"
 
 export const SettingsScreen = observer(function SettingsScreen() {
   const navigation = useNavigation()
@@ -63,7 +64,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
         <View style={{ flex: 1 }} />
         <ListItem
           icon="iss"
-          title="Local calculations"
+          title={translate("settings.localCalculations")}
           subtitle=""
           selected={isLocalCalculations}
           onToggle={() => setLocalCalculations(!isLocalCalculations)}
