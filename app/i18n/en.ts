@@ -29,7 +29,7 @@ const en = {
     buttonPositive: "OK",
   },
   thanksModal: {
-    body: "Thank you for contacting us. We have received your message and will process your request. We hope to include a resolution in future releases. Please note that this application does not collect user data, so we cannot respond to all messages individually.",
+    body: "Thank you for contacting us. We have received your message and will process your request. Please note that this application does not collect user data, so we cannot respond to all messages individually.",
     dismiss: "Dismiss",
   },
   privacy: {
@@ -101,8 +101,9 @@ const en = {
         "The ISS trajectory data is currently unavailable due to server maintenance. Please check back again later.",
     },
     header: {
-      firstTimeHead: "NEXT SIGHTING",
+      firstTimeHead: "NEXT SIGHTING(S) LIST",
       secondTimeHead: "COUNTDOWN",
+      timezone: "Time Zone:",
     },
     selectLocation: {
       title: "Select Location",

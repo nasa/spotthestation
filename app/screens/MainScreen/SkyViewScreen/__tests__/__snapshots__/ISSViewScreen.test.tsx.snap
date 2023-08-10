@@ -32,100 +32,95 @@ exports[`renders correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          },
-          Array [
-            Object {
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "height": 78,
-              "marginTop": 35,
-              "width": 78,
-            },
-            Object {
-              "height": 63,
-              "marginTop": 0,
-              "width": 63,
-            },
-          ],
-        ]
-      }
     >
       <View
+        animatedStyle={
+          Object {
+            "value": Object {},
+          }
+        }
+        collapsable={false}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E2022",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              },
-              undefined,
-              undefined,
-            ],
-          ]
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 63,
+            "justifyContent": "center",
+            "marginTop": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 63,
+          }
         }
       >
-        <ViewManagerAdapter_ExpoBlurView
-          proxiedProperties={
-            Object {
-              "intensity": 0,
-              "tint": "default",
-            }
-          }
+        <View
           style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        />
-        <View>
-          <RCTImageView
-            internal_analyticTag={null}
-            resizeMode="contain"
-            source={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
               Array [
                 Object {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
                 },
-              ]
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 0,
+                "tint": "default",
+              }
             }
             style={
               Object {
-                "height": 29,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#FFFFFF",
-                "width": 29,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
-            tintColor="#FFFFFF"
           />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
         </View>
       </View>
     </View>

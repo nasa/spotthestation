@@ -38,8 +38,15 @@ exports[`renders correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      style={
-        Array [
+    >
+      <View
+        animatedStyle={
+          Object {
+            "value": Object {},
+          }
+        }
+        collapsable={false}
+        style={
           Object {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
@@ -50,76 +57,75 @@ exports[`renders correctly 1`] = `
             "overflow": "hidden",
             "position": "relative",
             "width": 60,
-          },
-          false,
-        ]
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E2022",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              },
-              undefined,
-              undefined,
-            ],
-          ]
+          }
         }
       >
-        <ViewManagerAdapter_ExpoBlurView
-          proxiedProperties={
-            Object {
-              "intensity": 50,
-              "tint": "default",
-            }
-          }
+        <View
           style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        />
-        <View>
-          <RCTImageView
-            internal_analyticTag={null}
-            resizeMode="contain"
-            source={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
               Array [
                 Object {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
                 },
-              ]
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 50,
+                "tint": "default",
+              }
             }
             style={
               Object {
-                "height": 29,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#FFFFFF",
-                "width": 29,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
-            tintColor="#FFFFFF"
           />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -213,8 +219,15 @@ exports[`renders correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      style={
-        Array [
+    >
+      <View
+        animatedStyle={
+          Object {
+            "value": Object {},
+          }
+        }
+        collapsable={false}
+        style={
           Object {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
@@ -225,76 +238,75 @@ exports[`renders correctly 1`] = `
             "overflow": "hidden",
             "position": "relative",
             "width": 60,
-          },
-          false,
-        ]
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E2022",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              },
-              undefined,
-              undefined,
-            ],
-          ]
+          }
         }
       >
-        <ViewManagerAdapter_ExpoBlurView
-          proxiedProperties={
-            Object {
-              "intensity": 50,
-              "tint": "default",
-            }
-          }
+        <View
           style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        />
-        <View>
-          <RCTImageView
-            internal_analyticTag={null}
-            resizeMode="contain"
-            source={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
               Array [
                 Object {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
                 },
-              ]
+                undefined,
+                undefined,
+              ],
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoBlurView
+            proxiedProperties={
+              Object {
+                "intensity": 50,
+                "tint": "default",
+              }
             }
             style={
               Object {
-                "height": 29,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#FFFFFF",
-                "width": 29,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
-            tintColor="#FFFFFF"
           />
+          <View>
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -394,114 +406,111 @@ exports[`renders correctly 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
-          style={
-            Array [
+        >
+          <View
+            animatedStyle={
+              Object {
+                "value": Object {},
+              }
+            }
+            collapsable={false}
+            style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#1E2022",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 143,
                 "display": "flex",
-                "height": 60,
+                "height": 58,
                 "justifyContent": "center",
                 "overflow": "hidden",
                 "position": "relative",
-                "width": 60,
-              },
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": 58,
-                  "width": 58,
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
-                },
-              ],
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#1E2022",
-                    "borderRadius": 143,
-                    "display": "flex",
-                    "height": 60,
-                    "justifyContent": "center",
-                    "overflow": "hidden",
-                    "position": "relative",
-                    "width": 60,
-                  },
-                  undefined,
-                  undefined,
-                ],
-              ]
+                "width": 58,
+              }
             }
           >
-            <ViewManagerAdapter_ExpoBlurView
-              proxiedProperties={
-                Object {
-                  "intensity": 0,
-                  "tint": "default",
-                }
-              }
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <Text
-              allowFontScaling={false}
+            <View
               style={
                 Array [
-                  Object {},
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
                   Array [
                     Object {
-                      "fontSize": 23,
-                      "lineHeight": 35,
+                      "alignItems": "center",
+                      "backgroundColor": "#1E2022",
+                      "borderRadius": 143,
+                      "display": "flex",
+                      "height": 60,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "position": "relative",
+                      "width": 60,
                     },
-                    Object {
-                      "fontFamily": "Helvetica Neue",
-                    },
-                    Object {
-                      "color": "#191015",
-                    },
-                  ],
-                  undefined,
-                  undefined,
-                  Array [
-                    Object {
-                      "color": "#FFFFFF",
-                      "fontSize": 40,
-                      "lineHeight": 40,
-                    },
-                    Array [
-                      Object {
-                        "fontFamily": "HelveticaNeue-Medium",
-                        "fontSize": 17,
-                        "lineHeight": 20,
-                      },
-                      Object {
-                        "color": "#0B3D91",
-                      },
-                    ],
+                    undefined,
+                    undefined,
                   ],
                 ]
               }
             >
-              2D
-            </Text>
+              <ViewManagerAdapter_ExpoBlurView
+                proxiedProperties={
+                  Object {
+                    "intensity": 0,
+                    "tint": "default",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Array [
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      Array [
+                        Object {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        Object {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </View>
           </View>
         </View>
         <View
@@ -520,104 +529,106 @@ exports[`renders correctly 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
-          style={
-            Array [
+        >
+          <View
+            animatedStyle={
+              Object {
+                "value": Object {},
+              }
+            }
+            collapsable={false}
+            style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#1E2022",
+                "backgroundColor": "transparent",
                 "borderRadius": 143,
                 "display": "flex",
-                "height": 60,
+                "height": 58,
                 "justifyContent": "center",
                 "overflow": "hidden",
                 "position": "relative",
-                "width": 60,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "height": 58,
                 "width": 58,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#1E2022",
-                    "borderRadius": 143,
-                    "display": "flex",
-                    "height": 60,
-                    "justifyContent": "center",
-                    "overflow": "hidden",
-                    "position": "relative",
-                    "width": 60,
-                  },
-                  undefined,
-                  undefined,
-                ],
-              ]
+              }
             }
           >
-            <ViewManagerAdapter_ExpoBlurView
-              proxiedProperties={
-                Object {
-                  "intensity": 0,
-                  "tint": "default",
-                }
-              }
-              style={
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                }
-              }
-            />
-            <Text
-              allowFontScaling={false}
+            <View
               style={
                 Array [
-                  Object {},
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
                   Array [
                     Object {
-                      "fontSize": 23,
-                      "lineHeight": 35,
+                      "alignItems": "center",
+                      "backgroundColor": "#1E2022",
+                      "borderRadius": 143,
+                      "display": "flex",
+                      "height": 60,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "position": "relative",
+                      "width": 60,
                     },
-                    Object {
-                      "fontFamily": "Helvetica Neue",
-                    },
-                    Object {
-                      "color": "#191015",
-                    },
-                  ],
-                  undefined,
-                  undefined,
-                  Array [
-                    Object {
-                      "color": "#FFFFFF",
-                      "fontSize": 40,
-                      "lineHeight": 40,
-                    },
-                    Object {
-                      "fontFamily": "HelveticaNeue-Medium",
-                      "fontSize": 17,
-                      "lineHeight": 20,
-                    },
+                    undefined,
+                    undefined,
                   ],
                 ]
               }
             >
-              3D
-            </Text>
+              <ViewManagerAdapter_ExpoBlurView
+                proxiedProperties={
+                  Object {
+                    "intensity": 0,
+                    "tint": "default",
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {},
+                    Array [
+                      Object {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      Object {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      Object {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    Array [
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      Object {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -659,11 +670,18 @@ exports[`renders correctly 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
+      >
+        <View
+          animatedStyle={
+            Object {
+              "value": Object {},
+            }
+          }
+          collapsable={false}
+          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#1E2022",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
               "borderRadius": 143,
               "display": "flex",
               "height": 60,
@@ -671,86 +689,83 @@ exports[`renders correctly 1`] = `
               "overflow": "hidden",
               "position": "relative",
               "width": 60,
-            },
-            Object {
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#1E2022",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 60,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 60,
-                },
-                undefined,
-                undefined,
-              ],
-            ]
+            }
           }
         >
-          <ViewManagerAdapter_ExpoBlurView
-            proxiedProperties={
-              Object {
-                "intensity": 50,
-                "tint": "default",
-              }
-            }
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          />
-          <Text
-            allowFontScaling={false}
+          <View
             style={
               Array [
-                Object {},
+                Object {
+                  "backgroundColor": "transparent",
+                },
                 Array [
                   Object {
-                    "fontSize": 23,
-                    "lineHeight": 35,
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
                   },
-                  Object {
-                    "fontFamily": "Helvetica Neue",
-                  },
-                  Object {
-                    "color": "#191015",
-                  },
-                ],
-                undefined,
-                undefined,
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 40,
-                    "lineHeight": 40,
-                  },
+                  undefined,
                   undefined,
                 ],
               ]
             }
           >
-            +
-          </Text>
+            <ViewManagerAdapter_ExpoBlurView
+              proxiedProperties={
+                Object {
+                  "intensity": 50,
+                  "tint": "default",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {},
+                  Array [
+                    Object {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    Object {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -774,103 +789,103 @@ exports[`renders correctly 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
+      >
+        <View
+          animatedStyle={
+            Object {
+              "value": Object {},
+            }
+          }
+          collapsable={false}
+          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#1E2022",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
               "borderRadius": 143,
               "display": "flex",
               "height": 60,
               "justifyContent": "center",
+              "opacity": 0.25,
               "overflow": "hidden",
               "position": "relative",
               "width": 60,
-            },
-            Array [
-              Object {
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              },
-              Object {
-                "opacity": 0.25,
-              },
-            ],
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#1E2022",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 60,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 60,
-                },
-                undefined,
-                undefined,
-              ],
-            ]
+            }
           }
         >
-          <ViewManagerAdapter_ExpoBlurView
-            proxiedProperties={
-              Object {
-                "intensity": 50,
-                "tint": "default",
-              }
-            }
-            style={
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          />
-          <Text
-            allowFontScaling={false}
+          <View
             style={
               Array [
-                Object {},
+                Object {
+                  "backgroundColor": "transparent",
+                },
                 Array [
                   Object {
-                    "fontSize": 23,
-                    "lineHeight": 35,
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
                   },
-                  Object {
-                    "fontFamily": "Helvetica Neue",
-                  },
-                  Object {
-                    "color": "#191015",
-                  },
-                ],
-                undefined,
-                undefined,
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 40,
-                    "lineHeight": 40,
-                  },
+                  undefined,
                   undefined,
                 ],
               ]
             }
           >
-            -
-          </Text>
+            <ViewManagerAdapter_ExpoBlurView
+              proxiedProperties={
+                Object {
+                  "intensity": 50,
+                  "tint": "default",
+                }
+              }
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {},
+                  Array [
+                    Object {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    Object {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    Object {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </View>
         </View>
       </View>
     </View>

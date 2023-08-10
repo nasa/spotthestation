@@ -8,6 +8,7 @@ import {
   TextStyle,
 } from "react-native"
 import { BlurView } from "expo-blur"
+import Animated from "react-native-reanimated"
 import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
 import { fontSizes, lineHeights, scale } from "../../../theme"
@@ -66,22 +67,24 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
   } = props
 
   return (
-    <Pressable style={[$viewStyle, $buttonStyle]} accessibilityRole="imagebutton" {...rest}>
-      <BlurView
-        intensity={blurIntensity}
-        style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}
-      >
-        {icon ? (
-          <Icon
-            icon={icon}
-            size={iconSize || 20}
-            color={iconColor || colors.palette.neutral100}
-            style={$imageStyle}
-          />
-        ) : (
-          <Text text={text} style={[$text, $textStyle]} />
-        )}
-      </BlurView>
+    <Pressable accessibilityRole="imagebutton" {...rest}>
+      <Animated.View style={[$viewStyle, $buttonStyle]}>
+        <BlurView
+          intensity={blurIntensity}
+          style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}
+        >
+          {icon ? (
+            <Icon
+              icon={icon}
+              size={iconSize || 20}
+              color={iconColor || colors.palette.neutral100}
+              style={$imageStyle}
+            />
+          ) : (
+            <Text text={text} style={[$text, $textStyle]} />
+          )}
+        </BlurView>
+      </Animated.View>
     </Pressable>
   )
 }

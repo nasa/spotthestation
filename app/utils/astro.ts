@@ -238,7 +238,7 @@ export async function getSightings(data: SatData[], lat: number, lon: number) {
     const start = new Date(data[i].date).valueOf()
     const end = new Date(data[i + 1].date).valueOf()
 
-    const steps = Math.floor((end - start) / 15000)
+    const steps = Math.max(1, Math.floor((end - start) / 15000))
     for (let j = 0; j < steps; ++j) {
       const ts = i / (data.length - 1)
       const te = (i + 1) / (data.length - 1)

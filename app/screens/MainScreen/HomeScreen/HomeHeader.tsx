@@ -3,6 +3,7 @@ import { ViewStyle, View, TextStyle, PressableProps, Pressable } from "react-nat
 import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
 import { Text } from "../../../components"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
+import { translate } from "../../../i18n"
 
 interface User {
   firstName: string
@@ -79,7 +80,7 @@ export function HomeHeader({
             accessibilityLabel="timezone"
             accessibilityHint="timezone"
             accessibilityRole="text"
-            text={timezone}
+            text={`${translate("homeScreen.header.timezone")}: ${timezone}`}
             style={$tipText}
           />
         </Pressable>
@@ -127,7 +128,7 @@ const $timeContainer: ViewStyle = {
   backgroundColor: colors.palette.neutral350,
   width: "48%",
   borderRadius: scale(10),
-  padding: 8,
+  paddingVertical: 8,
   borderWidth: scale(1.5),
 }
 

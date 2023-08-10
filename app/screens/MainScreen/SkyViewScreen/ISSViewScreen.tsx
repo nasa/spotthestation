@@ -17,6 +17,7 @@ import {
   Platform,
   Pressable,
   BackHandler,
+  AppState,
 } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -41,6 +42,13 @@ import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
 import { OrbitPoint } from "../../../services/api"
+import {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from "react-native-reanimated"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -150,6 +158,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [mediaUrl, setMediaUrl] = useState("")
   const [mediaType, setMediaType] = useState("")
   const [current, setCurrent] = useState<LocationType>(null)
+  const whiteness = useSharedValue(0)
 
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const arView = useRef<ViroARSceneNavigator>()
@@ -267,8 +276,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
   }
 
+  const flashCameraIcon = () => {
+    whiteness.value = withSequence(
+      withTiming(1, { duration: 300 }),
+      withTiming(0, { duration: 300 }),
+    )
+  }
+
   const takeScreenshot = () => {
     if (!arView.current) return null
+
+    flashCameraIcon()
     return captureScreen({
       format: "jpg",
       quality: 1,
@@ -402,11 +420,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const onShare = async () => {
     try {
       let url = mediaUrl
-      if (!url)
+      if (!url) {
+        flashCameraIcon()
         url = await captureScreen({
           format: "jpg",
           quality: 1,
         })
+      }
       if (!url) return
 
       let shareOptions = {
@@ -447,6 +467,26 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
     return () => backHandler.remove()
   }, [])
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (nextAppState !== "active" && isRecording) {
+        stopRecording()
+      }
+    })
+
+    return () => {
+      subscription.remove()
+    }
+  }, [isRecording])
+
+  const animatedCameraButtonStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      whiteness.value,
+      [0, 1],
+      [colors.palette.overlayWhite, "white"],
+    ),
+  }))
 
   return (
     <Screen
@@ -559,7 +599,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityLabel="capture"
                 accessibilityHint="take a photo"
                 icon="capture"
-                buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                buttonStyle={[
+                  $button,
+                  animatedCameraButtonStyle,
+                  isLandscape && { marginLeft: scale(24) },
+                ]}
                 onPress={takeScreenshot}
               />
               {isRecording ? (
