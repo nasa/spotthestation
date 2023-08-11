@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { AppState, BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
 import { ISSSighting, OrbitPoint } from "../../../services/api"
-import { colors, scale } from "../../../theme"
+import { colors } from "../../../theme"
 import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
@@ -27,6 +27,7 @@ import { useNavigation } from "@react-navigation/native"
 import { InitLoader } from "./InitLoader"
 import { TrajectoryError } from "./TrajectoryError"
 import MyModal from "./MyModal"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -45,6 +46,7 @@ function calcAddress(selectedLocation, currentLocation) {
 }
 
 export const HomeScreen = observer(function HomeScreen() {
+  const { $container, $modal, $flatMap } = useStyles(styles)
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
@@ -491,20 +493,24 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between",
-}
+const styles: StyleFn = ({ scale }) => {
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    justifyContent: "space-between",
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $flatMap: ViewStyle = {
-  width: "100%",
-  height: scale(200),
+  const $flatMap: ViewStyle = {
+    width: "100%",
+    height: scale(200),
+  }
+
+  return { $container, $modal, $flatMap }
 }

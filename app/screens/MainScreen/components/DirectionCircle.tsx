@@ -1,14 +1,16 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useMemo } from "react"
 import { ViewStyle, View, useWindowDimensions, PixelRatio } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { arc as d3Arc } from "d3-shape"
 import { degToRad } from "../../../utils/geometry"
-import { scale } from "../../../theme"
 
 const arc = d3Arc()
 
 export const DirectionCircle = ({ screenX, screenY, setIsSpotted }) => {
+  const { $container, $innerCircle, $outerCircle } = useStyles(styles)
+
   const dimensions = useWindowDimensions()
   const width = useMemo(() => dimensions.width * PixelRatio.get(), [dimensions])
   const height = useMemo(() => dimensions.height * PixelRatio.get(), [dimensions])
@@ -83,26 +85,30 @@ export const DirectionCircle = ({ screenX, screenY, setIsSpotted }) => {
   )
 }
 
-const $container: ViewStyle = {
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  alignItems: "center",
-  justifyContent: "center",
-}
+const styles: StyleFn = ({ scale }) => {
+  const $container: ViewStyle = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  }
 
-const $innerCircle: ViewStyle = {
-  width: scale(50),
-  height: scale(50),
-  borderRadius: scale(50),
-  position: "absolute",
-  alignSelf: "center",
-  backgroundColor: "#fff",
-}
+  const $innerCircle: ViewStyle = {
+    width: scale(50),
+    height: scale(50),
+    borderRadius: scale(50),
+    position: "absolute",
+    alignSelf: "center",
+    backgroundColor: "#fff",
+  }
 
-const $outerCircle: ViewStyle = {
-  position: "absolute",
-  alignSelf: "center",
-  width: scale(70),
-  height: scale(70),
+  const $outerCircle: ViewStyle = {
+    position: "absolute",
+    alignSelf: "center",
+    width: scale(70),
+    height: scale(70),
+  }
+
+  return { $container, $innerCircle, $outerCircle }
 }

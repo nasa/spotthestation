@@ -1,4 +1,5 @@
 const sv = {
+  name: "Svenska",
   errorScreen: {
     title: "Något gick fel!",
     friendlySubtitle:

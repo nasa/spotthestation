@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React from "react"
 import {
   ViewStyle,
@@ -9,7 +10,7 @@ import {
   ImageStyle,
 } from "react-native"
 import { Text } from "../../../components"
-import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
+import { typography, colors } from "../../../theme"
 import { Tag } from "./Tag"
 
 export interface FeedSearchResultItemProps {
@@ -27,6 +28,8 @@ export function FeedSearchResultItem({
   tags = [],
   onPress,
 }: FeedSearchResultItemProps) {
+  const { $container, $tagsContainer, $imageContainer, $titleText, $typeText } = useStyles(styles)
+
   return (
     <Pressable
       accessible
@@ -53,7 +56,7 @@ export function FeedSearchResultItem({
         accessibilityHint="image"
         accessibilityRole="image"
         source={{ uri: image }}
-        style={$imageContainer}
+        style={$imageContainer as ImageStyle}
         resizeMode="cover"
       />
       <Text
@@ -76,41 +79,45 @@ export function FeedSearchResultItem({
   )
 }
 
-const $container: ViewStyle = {
-  position: "relative",
-  width: "47%",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  paddingTop: scale(16),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    position: "relative",
+    width: "47%",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    paddingTop: scale(16),
+  }
 
-const $tagsContainer: ViewStyle = {
-  position: "absolute",
-  top: scale(36),
-  left: scale(18),
-  flexDirection: "row",
-  zIndex: 2,
-}
+  const $tagsContainer: ViewStyle = {
+    position: "absolute",
+    top: scale(36),
+    left: scale(18),
+    flexDirection: "row",
+    zIndex: 2,
+  }
 
-const $imageContainer: ImageStyle = {
-  width: "100%",
-  aspectRatio: 0.7,
-  borderRadius: scale(12),
-  marginBottom: scale(12),
-}
+  const $imageContainer: ImageStyle = {
+    width: "100%",
+    aspectRatio: 0.7,
+    borderRadius: scale(12),
+    marginBottom: scale(12),
+  }
 
-const $titleText: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[21],
-  color: colors.palette.neutral250,
-  paddingBottom: scale(5),
-}
+  const $titleText: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[21],
+    color: colors.palette.neutral250,
+    paddingBottom: scale(5),
+  }
 
-const $typeText: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[14],
-  lineHeight: lineHeights[17],
-  color: colors.palette.neutral450,
-  textTransform: "uppercase",
+  const $typeText: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[14],
+    lineHeight: lineHeights[17],
+    color: colors.palette.neutral450,
+    textTransform: "uppercase",
+  }
+
+  return { $container, $tagsContainer, $imageContainer, $titleText, $typeText }
 }

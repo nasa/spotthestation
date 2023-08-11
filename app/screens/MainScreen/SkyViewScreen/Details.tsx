@@ -1,9 +1,10 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { translate } from "../../../i18n"
 import { Icon, Text } from "../../../components"
 import { OrbitPoint } from "../../../services/api/api.types"
-import { fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { calculateOrbitalSpeed } from "../components/helpers"
 
@@ -17,6 +18,20 @@ export interface DetailsProps {
 }
 
 export function Details({ onClose, issData }: DetailsProps) {
+  const {
+    $modalBodyContainer,
+    $contentContainer,
+    $buttonsContainer,
+    $close,
+    $title,
+    $detailBox,
+    $detailTitle,
+    $detailValue,
+    $detailRow,
+    $detailRowTitle,
+    $detailRowValue,
+  } = useStyles(styles)
+
   const [currentPosition, setCurrentPosition] = useState<OrbitPoint>(null)
 
   useEffect(() => {
@@ -241,88 +256,104 @@ export function Details({ onClose, issData }: DetailsProps) {
   )
 }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: scale(18),
-  borderTopRightRadius: scale(18),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderTopLeftRadius: scale(18),
+    borderTopRightRadius: scale(18),
+  }
 
-const $contentContainer: ViewStyle = {
-  width: "100%",
-  paddingHorizontal: scale(36),
-  paddingBottom: scale(52),
-}
+  const $contentContainer: ViewStyle = {
+    width: "100%",
+    paddingHorizontal: scale(36),
+    paddingBottom: scale(52),
+  }
 
-const $buttonsContainer: ViewStyle = {
-  width: "100%",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-}
+  const $buttonsContainer: ViewStyle = {
+    width: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  }
 
-const $close: ViewStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  padding: scale(18),
-  zIndex: 5,
-}
+  const $close: ViewStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    padding: scale(18),
+    zIndex: 5,
+  }
 
-const $title: TextStyle = {
-  color: colors.palette.neutral250,
-  width: "95%",
-  fontSize: fontSizes[32],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[44],
-  paddingBottom: scale(36),
-  marginTop: scale(36),
-}
+  const $title: TextStyle = {
+    color: colors.palette.neutral250,
+    width: "95%",
+    fontSize: fontSizes[32],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[44],
+    paddingBottom: scale(36),
+    marginTop: scale(36),
+  }
 
-const $detailBox: ViewStyle = {
-  backgroundColor: colors.palette.overlayWhite,
-  width: "48%",
-  borderRadius: scale(10),
-  padding: scale(8),
-  marginBottom: scale(18),
-}
+  const $detailBox: ViewStyle = {
+    backgroundColor: colors.palette.overlayWhite,
+    width: "48%",
+    borderRadius: scale(10),
+    padding: scale(8),
+    marginBottom: scale(18),
+  }
 
-const $detailTitle: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[13],
-  lineHeight: lineHeights[16],
-  textAlign: "center",
-  textTransform: "uppercase",
-}
+  const $detailTitle: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    textAlign: "center",
+    textTransform: "uppercase",
+  }
 
-const $detailValue: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[22],
-  lineHeight: lineHeights[28],
-  textAlign: "center",
-}
+  const $detailValue: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[22],
+    lineHeight: lineHeights[28],
+    textAlign: "center",
+  }
 
-const $detailRow: ViewStyle = {
-  width: "100%",
-  marginBottom: scale(18),
-  flexDirection: "row",
-  justifyContent: "space-between",
-}
+  const $detailRow: ViewStyle = {
+    width: "100%",
+    marginBottom: scale(18),
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
 
-const $detailRowTitle: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[21],
-  textAlign: "left",
-}
+  const $detailRowTitle: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[21],
+    textAlign: "left",
+  }
 
-const $detailRowValue: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[21],
-  textAlign: "right",
-  maxWidth: scale(155),
+  const $detailRowValue: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[21],
+    textAlign: "right",
+    maxWidth: scale(155),
+  }
+
+  return {
+    $modalBodyContainer,
+    $contentContainer,
+    $buttonsContainer,
+    $close,
+    $title,
+    $detailBox,
+    $detailTitle,
+    $detailValue,
+    $detailRow,
+    $detailRowTitle,
+    $detailRowValue,
+  }
 }

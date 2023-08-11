@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import React from "react"
 import { Image, ImageProps, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { scale, spacing } from "../theme"
@@ -115,6 +116,8 @@ const EmptyStatePresets = {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-EmptyState.md)
  */
 export function EmptyState(props: EmptyStateProps) {
+  const { $image, $heading, $content } = useStyles(styles)
+
   const preset = EmptyStatePresets[props.preset] ? EmptyStatePresets[props.preset] : undefined
 
   const {
@@ -148,7 +151,7 @@ export function EmptyState(props: EmptyStateProps) {
 
   const $containerStyles = [$containerStyleOverride]
   const $imageStyles = [
-    $image,
+    $image as StyleProp<ImageStyle>,
     (isHeadingPresent || isContentPresent || isButtonPresent) && {
       marginBottom: scale(spacing.micro),
     },
@@ -217,6 +220,12 @@ export function EmptyState(props: EmptyStateProps) {
   )
 }
 
-const $image: ImageStyle = { alignSelf: "center" }
-const $heading: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }
-const $content: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }
+const styles: StyleFn = ({ scale }) => {
+  const $image: ImageStyle = { alignSelf: "center" }
+
+  const $heading: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }
+
+  const $content: TextStyle = { textAlign: "center", paddingHorizontal: scale(spacing.large) }
+
+  return { $image, $heading, $content }
+}

@@ -1,9 +1,10 @@
+import { StyleFn, useStyles } from "../../utils/useStyles"
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { ErrorInfo } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text } from "../../components"
-import { colors, scale, spacing } from "../../theme"
+import { colors, spacing } from "../../theme"
 
 export interface ErrorDetailsProps {
   error: Error
@@ -12,6 +13,17 @@ export interface ErrorDetailsProps {
 }
 
 export function ErrorDetails(props: ErrorDetailsProps) {
+  const {
+    $contentContainer,
+    $topSection,
+    $heading,
+    $errorSection,
+    $errorSectionContentContainer,
+    $errorContent,
+    $errorBacktrace,
+    $resetButton,
+  } = useStyles(styles)
+
   return (
     <Screen
       preset="fixed"
@@ -43,44 +55,57 @@ export function ErrorDetails(props: ErrorDetailsProps) {
   )
 }
 
-const $contentContainer: ViewStyle = {
-  alignItems: "center",
-  paddingHorizontal: scale(spacing.large),
-  paddingTop: spacing.extraLarge,
-  flex: 1,
-}
+const styles: StyleFn = ({ scale }) => {
+  const $contentContainer: ViewStyle = {
+    alignItems: "center",
+    paddingHorizontal: scale(spacing.large),
+    paddingTop: spacing.extraLarge,
+    flex: 1,
+  }
 
-const $topSection: ViewStyle = {
-  flex: 1,
-  alignItems: "center",
-}
+  const $topSection: ViewStyle = {
+    flex: 1,
+    alignItems: "center",
+  }
 
-const $heading: TextStyle = {
-  color: colors.error,
-  marginBottom: scale(spacing.medium),
-}
+  const $heading: TextStyle = {
+    color: colors.error,
+    marginBottom: scale(spacing.medium),
+  }
 
-const $errorSection: ViewStyle = {
-  flex: 2,
-  backgroundColor: colors.separator,
-  marginVertical: scale(spacing.medium),
-  borderRadius: scale(6),
-}
+  const $errorSection: ViewStyle = {
+    flex: 2,
+    backgroundColor: colors.separator,
+    marginVertical: scale(spacing.medium),
+    borderRadius: scale(6),
+  }
 
-const $errorSectionContentContainer: ViewStyle = {
-  padding: scale(spacing.medium),
-}
+  const $errorSectionContentContainer: ViewStyle = {
+    padding: scale(spacing.medium),
+  }
 
-const $errorContent: TextStyle = {
-  color: colors.error,
-}
+  const $errorContent: TextStyle = {
+    color: colors.error,
+  }
 
-const $errorBacktrace: TextStyle = {
-  marginTop: scale(spacing.medium),
-  color: colors.textDim,
-}
+  const $errorBacktrace: TextStyle = {
+    marginTop: scale(spacing.medium),
+    color: colors.textDim,
+  }
 
-const $resetButton: ViewStyle = {
-  backgroundColor: colors.error,
-  paddingHorizontal: scale(spacing.huge),
+  const $resetButton: ViewStyle = {
+    backgroundColor: colors.error,
+    paddingHorizontal: scale(spacing.huge),
+  }
+
+  return {
+    $contentContainer,
+    $topSection,
+    $heading,
+    $errorSection,
+    $errorSectionContentContainer,
+    $errorContent,
+    $errorBacktrace,
+    $resetButton,
+  }
 }

@@ -209,25 +209,18 @@ exports[`renders correctly 1`] = `
         <View
           style={
             Array [
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "borderWidth": 3,
-                  "flexDirection": "row",
-                  "flexGrow": 0,
-                  "flexShrink": 0,
-                  "height": 35,
-                  "justifyContent": "space-between",
-                  "overflow": "hidden",
-                  "width": 35,
-                },
-                Object {
-                  "borderRadius": 23,
-                  "borderWidth": 0,
-                  "height": 40,
-                  "width": 66,
-                },
-              ],
+              Object {
+                "alignItems": "center",
+                "borderRadius": 23,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "height": 40,
+                "justifyContent": "space-between",
+                "overflow": "hidden",
+                "width": 66,
+              },
               Object {
                 "backgroundColor": "#353739",
               },

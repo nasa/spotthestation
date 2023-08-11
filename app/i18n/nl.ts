@@ -1,4 +1,5 @@
 const nl = {
+  name: "Nederlands",
   errorScreen: {
     title: "Er is iets fout gegaan!",
     friendlySubtitle:

@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import {
   ActivityIndicator,
@@ -18,7 +19,7 @@ import Modal from "react-native-modal"
 import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
 import { translate } from "../../i18n"
-import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../theme"
+import { colors, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
 import { ISSSighting } from "../../services/api"
 import * as storage from "../../utils/storage"
@@ -61,6 +62,27 @@ export interface SignupLocationProps {
 }
 
 export function SignupLocation({ value, onValueChange, onAction }: SignupLocationProps) {
+  const {
+    $locations,
+    $active,
+    $locationsListContainer,
+    $dropdownLeftAccessory,
+    $dropdownRightAccessory,
+    $dropdownSelected,
+    $locationsRow,
+    $locationsRowText,
+    $dropdownText,
+    $title,
+    $subtitle,
+    $orLabel,
+    $button,
+    $buttonText,
+    $rowContainer,
+    $result,
+    $loader,
+    $modal,
+  } = useStyles(styles)
+
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
   const [privacyModal, setPrivacyModal] = useState(false)
@@ -348,137 +370,160 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
   )
 }
 
-const $locations: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: "transparent",
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral350,
-  overflow: "hidden",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $locations: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: "transparent",
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral350,
+    overflow: "hidden",
+  }
 
-const $active: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: colors.palette.buttonBlue,
-  backgroundColor: colors.palette.overlayBlue,
-}
+  const $active: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: colors.palette.buttonBlue,
+    backgroundColor: colors.palette.overlayBlue,
+  }
 
-const $locationsListContainer: ViewStyle = {
-  borderRadius: scale(12),
-  backgroundColor: colors.palette.neutral550,
-  overflow: "hidden",
-  width: "85%",
-  alignSelf: "center",
-  marginTop: scale(3),
-}
+  const $locationsListContainer: ViewStyle = {
+    borderRadius: scale(12),
+    backgroundColor: colors.palette.neutral550,
+    overflow: "hidden",
+    width: "85%",
+    alignSelf: "center",
+    marginTop: scale(3),
+  }
 
-const $dropdownLeftAccessory: ViewStyle = {
-  marginStart: scale(spacing.large),
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $dropdownLeftAccessory: ViewStyle = {
+    marginStart: scale(spacing.large),
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: scale(spacing.large),
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $dropdownRightAccessory: ViewStyle = {
+    marginEnd: scale(spacing.large),
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $dropdownSelected: TextStyle = {
-  color: colors.palette.neutral250,
-}
+  const $dropdownSelected: TextStyle = {
+    color: colors.palette.neutral250,
+  }
 
-const $locationsRow: TextStyle = {
-  backgroundColor: "transparent",
-  paddingHorizontal: scale(spacing.large),
-}
+  const $locationsRow: TextStyle = {
+    backgroundColor: "transparent",
+    paddingHorizontal: scale(spacing.large),
+  }
 
-const $locationsRowText: TextStyle = {
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral250,
-}
+  const $locationsRowText: TextStyle = {
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral250,
+  }
 
-const $dropdownText: TextStyle = {
-  flex: 1,
-  height: scale(56),
-  alignSelf: "stretch",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  paddingHorizontal: 0,
-  marginHorizontal: scale(spacing.small),
-  textAlignVertical: "center",
-  borderRadius: 0,
-  backgroundColor: "transparent",
-}
+  const $dropdownText: TextStyle = {
+    flex: 1,
+    height: scale(56),
+    alignSelf: "stretch",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    paddingHorizontal: 0,
+    marginHorizontal: scale(spacing.small),
+    textAlignVertical: "center",
+    borderRadius: 0,
+    backgroundColor: "transparent",
+  }
 
-const $title: TextStyle = {
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[36],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[44],
-  paddingBottom: scale(24),
-}
+  const $title: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[36],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[44],
+    paddingBottom: scale(24),
+  }
 
-const $subtitle: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[22],
-  paddingBottom: scale(36),
-}
+  const $subtitle: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[22],
+    paddingBottom: scale(36),
+  }
 
-const $orLabel: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[16],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[19],
-  textAlign: "center",
-  marginVertical: scale(12),
-}
+  const $orLabel: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[16],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[19],
+    textAlign: "center",
+    marginVertical: scale(12),
+  }
 
-const $button: ViewStyle = {
-  width: "100%",
-  height: scale(56),
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(28),
-  borderWidth: 0,
-}
+  const $button: ViewStyle = {
+    width: "100%",
+    height: scale(56),
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(28),
+    borderWidth: 0,
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[21],
-}
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.medium,
+    lineHeight: lineHeights[21],
+  }
 
-const $rowContainer: ViewStyle = {
-  width: "100%",
-  flexDirection: "row",
-  justifyContent: "space-between",
-}
+  const $rowContainer: ViewStyle = {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
 
-const $result: TextStyle = {
-  flex: 1,
-  paddingHorizontal: scale(18),
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[22],
-  paddingBottom: scale(56),
-}
+  const $result: TextStyle = {
+    flex: 1,
+    paddingHorizontal: scale(18),
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[22],
+    paddingBottom: scale(56),
+  }
 
-const $loader: ViewStyle = {
-  justifyContent: "flex-start",
-}
+  const $loader: ViewStyle = {
+    justifyContent: "flex-start",
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  left: 0,
-  margin: 0,
-  paddingHorizontal: 18,
-  justifyContent: "flex-start",
+  const $modal: ViewStyle = {
+    flex: 1,
+    left: 0,
+    margin: 0,
+    paddingHorizontal: 18,
+    justifyContent: "flex-start",
+  }
+
+  return {
+    $locations,
+    $active,
+    $locationsListContainer,
+    $dropdownLeftAccessory,
+    $dropdownRightAccessory,
+    $dropdownSelected,
+    $locationsRow,
+    $locationsRowText,
+    $dropdownText,
+    $title,
+    $subtitle,
+    $orLabel,
+    $button,
+    $buttonText,
+    $rowContainer,
+    $result,
+    $loader,
+    $modal,
+  }
 }

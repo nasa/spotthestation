@@ -24,6 +24,23 @@ i18n.translations = { en, "en-US": en, de, es, fr, hi, it, ja, nl, sv, uk }
 
 i18n.locale = Localization.locale.split("-")[0]
 
+type LocaleListener = (locale: string) => void
+
+const localeListeners: LocaleListener[] = []
+
+export const addLocaleListener = (listener: LocaleListener) => {
+  localeListeners.push(listener)
+}
+export const removeLocaleListener = (listener: LocaleListener) => {
+  const idx = localeListeners.indexOf(listener)
+  if (idx >= 0) localeListeners.splice(idx, 1)
+}
+
+export const setLocale = (locale: string) => {
+  i18n.locale = locale
+  localeListeners.forEach((listener) => listener(locale))
+}
+
 // handle RTL languages
 export const isRTL = Localization.isRTL
 I18nManager.allowRTL(isRTL)

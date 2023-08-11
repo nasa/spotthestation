@@ -9,10 +9,10 @@
  * The app navigation resides in ./app/navigators, so head over there
  * if you're interested in adding screens and navigators.
  */
-import "./i18n"
+import { setLocale } from "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
@@ -92,6 +92,7 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
+  const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
 
   const { rootStore, rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.
@@ -108,13 +109,23 @@ function App(props: AppProps) {
     if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
   }, [])
 
+  useEffect(() => {
+    storage
+      .load("locale")
+      .then((locale) => {
+        if (locale) setLocale(locale as string)
+        setIsLocaleLoaded(true)
+      })
+      .catch(() => setIsLocaleLoaded(true))
+  }, [])
+
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
   // color set in native by rootView's background color.
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded) return null
+  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded || !isLocaleLoaded) return null
 
   const linking = {
     prefixes: [prefix],

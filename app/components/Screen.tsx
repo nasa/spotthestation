@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import { useScrollToTop } from "@react-navigation/native"
 import { StatusBar, StatusBarProps } from "expo-status-bar"
 import React, { useRef, useState } from "react"
@@ -143,6 +144,7 @@ function useAutoPreset(props: AutoScreenProps) {
 }
 
 function ScreenWithoutScrolling(props: ScreenProps) {
+  const { $outerStyle, $innerStyle } = useStyles(styles)
   const { style, contentContainerStyle, children } = props
   return (
     <View style={[$outerStyle, style]}>
@@ -159,6 +161,7 @@ function ScreenWithScrolling(props: ScreenProps) {
     ScrollViewProps,
     style,
   } = props as ScrollScreenProps
+  const { $outerStyle, $innerStyle } = useStyles(styles)
 
   const ref = useRef<ScrollView>()
 
@@ -193,6 +196,8 @@ function ScreenWithScrolling(props: ScreenProps) {
 }
 
 export function Screen(props: ScreenProps) {
+  const { $containerStyle, $keyboardAvoidingViewStyle } = useStyles(styles)
+
   const {
     backgroundColor = colors.background,
     KeyboardAvoidingViewProps,
@@ -228,23 +233,27 @@ export function Screen(props: ScreenProps) {
   )
 }
 
-const $containerStyle: ViewStyle = {
-  flex: 1,
-  height: "100%",
-  width: "100%",
-}
+const styles: StyleFn = () => {
+  const $containerStyle: ViewStyle = {
+    flex: 1,
+    height: "100%",
+    width: "100%",
+  }
 
-const $keyboardAvoidingViewStyle: ViewStyle = {
-  flex: 1,
-}
+  const $keyboardAvoidingViewStyle: ViewStyle = {
+    flex: 1,
+  }
 
-const $outerStyle: ViewStyle = {
-  flex: 1,
-  height: "100%",
-  width: "100%",
-}
+  const $outerStyle: ViewStyle = {
+    flex: 1,
+    height: "100%",
+    width: "100%",
+  }
 
-const $innerStyle: ViewStyle = {
-  justifyContent: "flex-start",
-  alignItems: "stretch",
+  const $innerStyle: ViewStyle = {
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+  }
+
+  return { $containerStyle, $keyboardAvoidingViewStyle, $outerStyle, $innerStyle }
 }

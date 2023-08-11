@@ -1,8 +1,9 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { ReactNode, useState } from "react"
 import { ViewStyle, View, TextStyle, ImageStyle } from "react-native"
 import { Text, Icon } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
+import { typography, colors } from "../../../theme"
 
 export interface ExpandContainerProps {
   defaultValue?: boolean
@@ -27,6 +28,8 @@ export function ExpandContainer({
   containerStyle,
   button,
 }: ExpandContainerProps) {
+  const { $container, $headContainer, $titleContainer, $title, $up } = useStyles(styles)
+
   const [expanded, setExpanded] = useState(defaultValue)
 
   const $titleContainerOverride: ViewStyle = reverseTitle && { flexDirection: "row-reverse" }
@@ -52,7 +55,7 @@ export function ExpandContainer({
             icon="chevronDown"
             size={18}
             onPress={() => setExpanded(!expanded)}
-            style={expanded && $up}
+            style={expanded && ($up as ImageStyle)}
           />
         )}
         {actionTitle && (
@@ -71,31 +74,35 @@ export function ExpandContainer({
   )
 }
 
-const $container: ViewStyle = {
-  width: "100%",
-  marginTop: scale(36),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    width: "100%",
+    marginTop: scale(36),
+  }
 
-const $headContainer: ViewStyle = {
-  marginBottom: scale(18),
-  flexDirection: "row",
-  justifyContent: "space-between",
-}
+  const $headContainer: ViewStyle = {
+    marginBottom: scale(18),
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
 
-const $titleContainer: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  flex: 1,
-}
+  const $titleContainer: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+  }
 
-const $title: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[13],
-  lineHeight: lineHeights[16],
-  color: colors.palette.neutral450,
-  textTransform: "uppercase",
-}
+  const $title: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    color: colors.palette.neutral450,
+    textTransform: "uppercase",
+  }
 
-const $up: ImageStyle = {
-  transform: [{ rotate: "180deg" }],
+  const $up: ImageStyle = {
+    transform: [{ rotate: "180deg" }],
+  }
+
+  return { $container, $headContainer, $titleContainer, $title, $up }
 }

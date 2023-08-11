@@ -1,7 +1,8 @@
+import { StyleFn, useStyles } from "../../utils/useStyles"
 import React from "react"
 import { PressableProps, TextStyle, View, ViewStyle } from "react-native"
 import { Text, Button, Icon, Toggle } from "../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../theme"
+import { colors, typography } from "../../theme"
 
 export interface SignupNotificationSettingsProps {
   /**
@@ -23,6 +24,18 @@ export function SignupNotificationSettings({
   onValueChange,
   onAction,
 }: SignupNotificationSettingsProps) {
+  const {
+    $title,
+    $button,
+    $buttonText,
+    $valueContainer,
+    $switchContainer,
+    $labelContainer,
+    $label,
+    $tip,
+    $icon,
+  } = useStyles(styles)
+
   return (
     <>
       <Text
@@ -70,61 +83,75 @@ export function SignupNotificationSettings({
   )
 }
 
-const $title: TextStyle = {
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[36],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[42],
-  paddingBottom: scale(36),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $title: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[36],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[42],
+    paddingBottom: scale(36),
+  }
 
-const $button: ViewStyle = {
-  width: "100%",
-  height: scale(56),
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(28),
-  borderWidth: 0,
-}
+  const $button: ViewStyle = {
+    width: "100%",
+    height: scale(56),
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(28),
+    borderWidth: 0,
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[21],
-}
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.medium,
+    lineHeight: lineHeights[21],
+  }
 
-const $valueContainer: ViewStyle = {
-  flexDirection: "row",
-  marginBottom: scale(36),
-}
+  const $valueContainer: ViewStyle = {
+    flexDirection: "row",
+    marginBottom: scale(36),
+  }
 
-const $switchContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  paddingBottom: scale(18),
-  borderBottomWidth: scale(1),
-  borderBottomColor: colors.palette.neutral350,
-  flex: 1,
-}
+  const $switchContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingBottom: scale(18),
+    borderBottomWidth: scale(1),
+    borderBottomColor: colors.palette.neutral350,
+    flex: 1,
+  }
 
-const $labelContainer: ViewStyle = {
-  width: "70%",
-}
+  const $labelContainer: ViewStyle = {
+    width: "70%",
+  }
 
-const $label: TextStyle = {
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[16],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[21],
-}
+  const $label: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[16],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[21],
+  }
 
-const $tip: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[16],
-  fontFamily: typography.primary.light,
-  lineHeight: lineHeights[21],
-}
+  const $tip: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[16],
+    fontFamily: typography.primary.light,
+    lineHeight: lineHeights[21],
+  }
 
-const $icon: ViewStyle = {
-  marginRight: scale(18),
+  const $icon: ViewStyle = {
+    marginRight: scale(18),
+  }
+
+  return {
+    $title,
+    $button,
+    $buttonText,
+    $valueContainer,
+    $switchContainer,
+    $labelContainer,
+    $label,
+    $tip,
+    $icon,
+  }
 }

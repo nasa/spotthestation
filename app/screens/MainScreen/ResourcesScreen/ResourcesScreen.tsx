@@ -18,7 +18,7 @@ import {
 import { XMLParser } from "fast-xml-parser"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { api } from "../../../services/api"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
@@ -26,6 +26,7 @@ import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 import { useStores } from "../../../models"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { Details } from "../SkyViewScreen/Details"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 const items = [
   {
@@ -62,6 +63,26 @@ export interface ResourcesScreenRouteProps {
 }
 
 export const Resources = observer(function HomeScreen() {
+  const {
+    $container,
+    $headerContainer,
+    $searchButton,
+    $xButton,
+    $bodyContainer,
+    $suggestionContainer,
+    $header,
+    $suggestion,
+    $scrollContainer,
+    $horizontalScrollContainer,
+    $searchField,
+    $button,
+    $active,
+    $buttonText,
+    $footer,
+    $searchResultsContainer,
+    $searchFieldContainer,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
   const route: ResourcesScreenRouteProps = useRoute().params as ResourcesScreenRouteProps
   const { currentLocation, selectedLocation, issData, getISSData } = useStores()
@@ -144,7 +165,7 @@ export const Resources = observer(function HomeScreen() {
   const renderFooter = useCallback(() => {
     if (isLoading) {
       return (
-        <View style={{ paddingVertical: scale(20) }}>
+        <View style={$footer}>
           <ActivityIndicator size="large" />
         </View>
       )
@@ -208,7 +229,7 @@ export const Resources = observer(function HomeScreen() {
             )}
             numColumns={2}
             columnWrapperStyle={{ justifyContent: "space-between" }}
-            contentContainerStyle={{ paddingBottom: scale(200) }}
+            contentContainerStyle={$searchResultsContainer}
           />
         </ExpandContainer>
       )
@@ -316,7 +337,7 @@ export const Resources = observer(function HomeScreen() {
     >
       <View style={$headerContainer}>
         {isSearch ? (
-          <View style={{ flex: 1, marginRight: scale(18) }}>
+          <View style={$searchFieldContainer}>
             <TextField
               accessible
               accessibilityLabel="search"
@@ -378,102 +399,130 @@ export const Resources = observer(function HomeScreen() {
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  paddingHorizontal: scale(18),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    paddingHorizontal: scale(18),
+  }
 
-const $headerContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-}
+  const $headerContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }
 
-const $searchButton: ViewStyle = {
-  width: scale(42),
-  height: scale(42),
-  borderRadius: scale(24),
-  backgroundColor: colors.palette.neutral350,
-  alignItems: "center",
-  justifyContent: "center",
-}
+  const $searchButton: ViewStyle = {
+    width: scale(42),
+    height: scale(42),
+    borderRadius: scale(24),
+    backgroundColor: colors.palette.neutral350,
+    alignItems: "center",
+    justifyContent: "center",
+  }
 
-const $xButton: ViewStyle = {
-  ...$searchButton,
-  width: scale(56),
-  height: scale(56),
-  borderRadius: scale(36),
-  backgroundColor: colors.palette.neutral550,
-}
+  const $xButton: ViewStyle = {
+    ...$searchButton,
+    width: scale(56),
+    height: scale(56),
+    borderRadius: scale(36),
+    backgroundColor: colors.palette.neutral550,
+  }
 
-const $bodyContainer: ViewStyle = {
-  justifyContent: "space-between",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  paddingBottom: scale(200),
-}
+  const $bodyContainer: ViewStyle = {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    paddingBottom: scale(200),
+  }
 
-const $suggestionContainer: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingBottom: scale(24),
-}
+  const $suggestionContainer: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: scale(24),
+  }
 
-const $header: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-}
+  const $header: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[36],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+  }
 
-const $suggestion: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[21],
-  color: colors.palette.neutral250,
-  paddingLeft: scale(12),
-}
+  const $suggestion: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[21],
+    color: colors.palette.neutral250,
+    paddingLeft: scale(12),
+  }
 
-const $scrollContainer: ViewStyle = {
-  flex: 1,
-}
+  const $scrollContainer: ViewStyle = {
+    flex: 1,
+  }
 
-const $horizontalScrollContainer: ViewStyle = {
-  // width: '100%',
-  height: scale(80),
-  marginTop: scale(10),
-}
+  const $horizontalScrollContainer: ViewStyle = {
+    // width: '100%',
+    height: scale(80),
+    marginTop: scale(10),
+  }
 
-const $searchField: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: "transparent",
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral550,
-  overflow: "hidden",
-}
+  const $searchField: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: "transparent",
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral550,
+    overflow: "hidden",
+  }
 
-const $button: ViewStyle = {
-  width: "auto",
-  height: scale(46),
-  minHeight: scale(40),
-  backgroundColor: "transparent",
-  borderRadius: scale(28),
-  borderWidth: 0,
-  marginRight: scale(24),
-  paddingHorizontal: scale(20),
-}
+  const $button: ViewStyle = {
+    width: "auto",
+    height: scale(46),
+    minHeight: scale(40),
+    backgroundColor: "transparent",
+    borderRadius: scale(28),
+    borderWidth: 0,
+    marginRight: scale(24),
+    paddingHorizontal: scale(20),
+  }
 
-const $active: ViewStyle = {
-  backgroundColor: colors.palette.neutral550,
-}
+  const $active: ViewStyle = {
+    backgroundColor: colors.palette.neutral550,
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[22],
-  textTransform: "capitalize",
-  textAlignVertical: "center",
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.medium,
+    lineHeight: lineHeights[22],
+    textTransform: "capitalize",
+    textAlignVertical: "center",
+  }
+
+  const $footer: ViewStyle = { paddingVertical: scale(20) }
+
+  const $searchResultsContainer = { paddingBottom: scale(200) }
+
+  const $searchFieldContainer = { flex: 1, marginRight: scale(18) }
+
+  return {
+    $container,
+    $headerContainer,
+    $searchButton,
+    $xButton,
+    $bodyContainer,
+    $suggestionContainer,
+    $header,
+    $suggestion,
+    $scrollContainer,
+    $horizontalScrollContainer,
+    $searchField,
+    $button,
+    $active,
+    $buttonText,
+    $footer,
+    $searchResultsContainer,
+    $searchFieldContainer,
+  }
 }

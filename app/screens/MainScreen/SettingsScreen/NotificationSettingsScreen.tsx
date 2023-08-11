@@ -12,15 +12,47 @@ import Modal from "react-native-modal"
 import * as storage from "../../../utils/storage"
 import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
-import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
+import { colors, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../../../services/api/api.types"
 import { useStores } from "../../../models"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
+  const {
+    $headerStyleOverride,
+    $container,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $backButton,
+    $muteContainer,
+    $muteButton,
+    $backButtonText,
+    $title,
+    $switchContainer,
+    $labelContainer,
+    $label,
+    $tip,
+    $muteButtonLabel,
+    $dropdown,
+    $inputMargin,
+    $dropdownContainer,
+    $dropdownPlaceholder,
+    $dropdownSelected,
+    $dropdownText,
+    $dropdownRightAccessory,
+    $timeButtonRightAccessory,
+    $button,
+    $buttonText,
+    $disabled,
+    $cta,
+    $privacyContainer,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
   const { selectedLocation, currentLocation, setISSSightings, setNotifications } = useStores()
   const topInset = useSafeAreaInsets().top
@@ -43,10 +75,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     timeZone: "US/Central",
     regionFormat: "US",
   })
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(24),
-  }
 
   const loadSettings = async () => {
     const start = await storage.load("muteFrom")
@@ -137,14 +165,14 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     getCurrentLocation()
   }, [getCurrentLocation])
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+  headerStyle.paddingBottom = Number(headerStyle.paddingBottom) + bottomInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[
-        $container,
-        $headerStyleOverride,
-        { paddingBottom: bottomInset + scale(24) },
-      ]}
+      contentContainerStyle={[$container, headerStyle]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
@@ -180,7 +208,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             >
               <Text tx="settings.notificationSettingsData.upcomingLabel" style={$label} />
               <Text tx="settings.notificationSettingsData.upcomingTip" style={$tip} />
-              <Pressable onPress={handleCtaPress} style={{ marginTop: scale(10) }}>
+              <Pressable onPress={handleCtaPress} style={$cta}>
                 <Text
                   tx="settings.notificationSettingsData.customizeLabel"
                   style={[$tip, { color: colors.palette.buttonBlue }]}
@@ -235,7 +263,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               )}
             />
           </ExpandContainer>
-          <View style={[$switchContainer, { marginTop: scale(15), borderBottomWidth: 0 }]}>
+          <View style={[$switchContainer, $privacyContainer]}>
             <Text tx="settings.notificationSettingsData.privacyTitle" style={$label} />
             <Toggle
               accessible
@@ -351,165 +379,210 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  height: "100%",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $headerStyleOverride: TextStyle = {
+    top: scale(24),
+    paddingBottom: scale(24),
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    height: "100%",
+  }
 
-const $scrollContentContainerStyle: ViewStyle = {
-  flexGrow: 1,
-  paddingBottom: scale(60),
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $scrollContainer: ViewStyle = {
-  paddingHorizontal: scale(36),
-}
+  const $scrollContentContainerStyle: ViewStyle = {
+    flexGrow: 1,
+    paddingBottom: scale(60),
+  }
 
-const $backButton: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingBottom: scale(11),
-}
+  const $scrollContainer: ViewStyle = {
+    paddingHorizontal: scale(36),
+  }
 
-const $muteContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-}
+  const $backButton: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: scale(11),
+  }
 
-const $muteButton: ViewStyle = {
-  width: "47%",
-}
+  const $muteContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
 
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral450,
-  textAlign: "left",
-  paddingBottom: scale(24),
-}
+  const $muteButton: ViewStyle = {
+    width: "47%",
+  }
 
-const $backButtonText: TextStyle = {
-  ...$text,
-  color: colors.palette.neutral250,
-  paddingBottom: 0,
-  paddingLeft: scale(5),
-}
+  const $text: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral450,
+    textAlign: "left",
+    paddingBottom: scale(24),
+  }
 
-const $title: TextStyle = {
-  ...$text,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-}
+  const $backButtonText: TextStyle = {
+    ...$text,
+    color: colors.palette.neutral250,
+    paddingBottom: 0,
+    paddingLeft: scale(5),
+  }
 
-const $switchContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  paddingBottom: scale(18),
-  borderBottomWidth: scale(1),
-  borderBottomColor: colors.palette.neutral350,
-  marginBottom: scale(18),
-}
+  const $title: TextStyle = {
+    ...$text,
+    fontSize: fontSizes[36],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+  }
 
-const $labelContainer: ViewStyle = {
-  width: "70%",
-}
+  const $switchContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingBottom: scale(18),
+    borderBottomWidth: scale(1),
+    borderBottomColor: colors.palette.neutral350,
+    marginBottom: scale(18),
+  }
 
-const $label: TextStyle = {
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[24],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[29],
-}
+  const $labelContainer: ViewStyle = {
+    width: "70%",
+  }
 
-const $tip: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.light,
-  lineHeight: lineHeights[22],
-}
-const $muteButtonLabel: TextStyle = {
-  ...$tip,
-  color: colors.palette.neutral250,
-  marginBottom: scale(10),
-}
+  const $label: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[24],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[29],
+  }
 
-const $dropdown: ViewStyle = {
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral350,
-  overflow: "hidden",
-}
+  const $tip: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.light,
+    lineHeight: lineHeights[22],
+  }
 
-const $inputMargin: ViewStyle = {
-  marginBottom: scale(18),
-}
+  const $muteButtonLabel: TextStyle = {
+    ...$tip,
+    color: colors.palette.neutral250,
+    marginBottom: scale(10),
+  }
 
-const $dropdownContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderRadius: scale(10),
-  marginTop: -scale(40),
-  borderWidth: 0,
-}
+  const $dropdown: ViewStyle = {
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral350,
+    overflow: "hidden",
+  }
 
-const $dropdownPlaceholder: TextStyle = {
-  color: colors.palette.neutral450,
-}
+  const $inputMargin: ViewStyle = {
+    marginBottom: scale(18),
+  }
 
-const $dropdownSelected: TextStyle = {
-  color: colors.palette.neutral250,
-}
+  const $dropdownContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderRadius: scale(10),
+    marginTop: -scale(40),
+    borderWidth: 0,
+  }
 
-const $dropdownText: TextStyle = {
-  flex: 1,
-  // alignSelf: "stretch",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  paddingVertical: 0,
-  paddingHorizontal: 0,
-  marginHorizontal: scale(spacing.small),
-  textAlignVertical: "center",
-  color: colors.palette.neutral250,
-}
+  const $dropdownPlaceholder: TextStyle = {
+    color: colors.palette.neutral450,
+  }
 
-const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: scale(spacing.large),
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
-const $timeButtonRightAccessory: ViewStyle = {
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $dropdownSelected: TextStyle = {
+    color: colors.palette.neutral250,
+  }
 
-const $button: ViewStyle = {
-  width: "100%",
-  height: scale(56),
-  backgroundColor: colors.palette.neutral550,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  paddingHorizontal: scale(16),
-  justifyContent: "space-between",
-}
+  const $dropdownText: TextStyle = {
+    flex: 1,
+    // alignSelf: "stretch",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    marginHorizontal: scale(spacing.small),
+    textAlignVertical: "center",
+    color: colors.palette.neutral250,
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[21],
-}
+  const $dropdownRightAccessory: ViewStyle = {
+    marginEnd: scale(spacing.large),
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $disabled: ViewStyle = {
-  opacity: 0.5,
+  const $timeButtonRightAccessory: ViewStyle = {
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
+
+  const $button: ViewStyle = {
+    width: "100%",
+    height: scale(56),
+    backgroundColor: colors.palette.neutral550,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    paddingHorizontal: scale(16),
+    justifyContent: "space-between",
+  }
+
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[21],
+  }
+
+  const $disabled: ViewStyle = {
+    opacity: 0.5,
+  }
+
+  const $cta = { marginTop: scale(10) }
+
+  const $privacyContainer = { marginTop: scale(15), borderBottomWidth: 0 }
+
+  return {
+    $headerStyleOverride,
+    $container,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $backButton,
+    $muteContainer,
+    $muteButton,
+    $text,
+    $backButtonText,
+    $title,
+    $switchContainer,
+    $labelContainer,
+    $label,
+    $tip,
+    $muteButtonLabel,
+    $dropdown,
+    $inputMargin,
+    $dropdownContainer,
+    $dropdownPlaceholder,
+    $dropdownSelected,
+    $dropdownText,
+    $dropdownRightAccessory,
+    $timeButtonRightAccessory,
+    $button,
+    $buttonText,
+    $disabled,
+    $cta,
+    $privacyContainer,
+  }
 }

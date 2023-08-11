@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React from "react"
 import {
   Pressable,
@@ -11,7 +12,6 @@ import { BlurView } from "expo-blur"
 import Animated from "react-native-reanimated"
 import { Icon, IconTypes, Text } from "../../../components"
 import { colors } from "../../../theme/colors"
-import { fontSizes, lineHeights, scale } from "../../../theme"
 
 export interface LinkButtonWithArrowProps extends PressableProps {
   /**
@@ -52,6 +52,8 @@ export interface LinkButtonWithArrowProps extends PressableProps {
 }
 
 export function IconLinkButton(props: LinkButtonWithArrowProps) {
+  const { $viewStyle, $text } = useStyles(styles)
+
   const {
     buttonStyle: $buttonStyle,
     viewStyle: $viewStyleOverride,
@@ -89,20 +91,24 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
   )
 }
 
-const $viewStyle: ViewStyle = {
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: scale(42),
-  height: scale(42),
-  backgroundColor: colors.palette.neutral350,
-  borderRadius: scale(100),
-  overflow: "hidden",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $viewStyle: ViewStyle = {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: scale(42),
+    height: scale(42),
+    backgroundColor: colors.palette.neutral350,
+    borderRadius: scale(100),
+    overflow: "hidden",
+  }
 
-const $text: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[28],
-  lineHeight: lineHeights[28],
+  const $text: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[28],
+    lineHeight: lineHeights[28],
+  }
+
+  return { $viewStyle, $text }
 }

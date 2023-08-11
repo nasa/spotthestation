@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 /* eslint-disable react-native/no-inline-styles */
 import React from "react"
 import {
@@ -10,7 +11,7 @@ import {
 } from "react-native"
 import { Text, Icon, IconTypes, Toggle } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
-import { typography, colors, fontSizes, lineHeights, scale } from "../../../theme"
+import { typography, colors } from "../../../theme"
 
 export interface ListItemProps {
   selected?: boolean
@@ -50,6 +51,17 @@ export function ListItem({
   disabled,
   borderless,
 }: ListItemProps) {
+  const {
+    $container,
+    $bodyContainer,
+    $titleContainer,
+    $titleText,
+    $subtitleText,
+    $tip,
+    $spinner,
+    $cta,
+  } = useStyles(styles)
+
   return (
     <Pressable
       accessible
@@ -77,7 +89,7 @@ export function ListItem({
             <Text text={subtitle2} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
           )}
           {Boolean(ctaTx) && (
-            <Pressable onPress={onCtaPress} style={{ marginTop: scale(10) }}>
+            <Pressable onPress={onCtaPress} style={$cta}>
               <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
             </Pressable>
           )}
@@ -134,55 +146,70 @@ export function ListItem({
   )
 }
 
-const $container: ViewStyle = {
-  width: "100%",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  paddingTop: scale(16),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    paddingTop: scale(16),
+  }
 
-const $bodyContainer: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-  justifyContent: "space-between",
-  borderColor: colors.palette.neutral550,
-  borderBottomWidth: scale(1),
-  paddingBottom: scale(16),
-  alignItems: "flex-start",
-  marginLeft: scale(10),
-}
+  const $bodyContainer: ViewStyle = {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderColor: colors.palette.neutral550,
+    borderBottomWidth: scale(1),
+    paddingBottom: scale(16),
+    alignItems: "flex-start",
+    marginLeft: scale(10),
+  }
 
-const $titleContainer: ViewStyle = {
-  flexDirection: "column",
-  flex: 1,
-}
+  const $titleContainer: ViewStyle = {
+    flexDirection: "column",
+    flex: 1,
+  }
 
-const $titleText: TextStyle = {
-  width: "95%",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral100,
-}
+  const $titleText: TextStyle = {
+    width: "95%",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral100,
+  }
 
-const $subtitleText: TextStyle = {
-  ...$titleText,
-  fontSize: fontSizes[16],
-  lineHeight: lineHeights[19],
-  color: colors.palette.neutral100,
-  paddingTop: scale(5),
-}
+  const $subtitleText: TextStyle = {
+    ...$titleText,
+    fontSize: fontSizes[16],
+    lineHeight: lineHeights[19],
+    color: colors.palette.neutral100,
+    paddingTop: scale(5),
+  }
 
-const $tip: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.light,
-  lineHeight: lineHeights[22],
-}
+  const $tip: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.light,
+    lineHeight: lineHeights[22],
+  }
 
-const $spinner: ViewStyle = {
-  width: scale(46),
-  justifyContent: "center",
-  alignItems: "center",
+  const $spinner: ViewStyle = {
+    width: scale(46),
+    justifyContent: "center",
+    alignItems: "center",
+  }
+
+  const $cta: ViewStyle = { marginTop: scale(10) }
+
+  return {
+    $container,
+    $bodyContainer,
+    $titleContainer,
+    $titleText,
+    $subtitleText,
+    $tip,
+    $spinner,
+    $cta,
+  }
 }

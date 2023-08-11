@@ -1,8 +1,9 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 import Modal from "react-native-modal"
 import { Button, Icon, Text, IconTypes, Toggle } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -36,6 +37,24 @@ export function Sightings({
   timezone,
   lastSightingOrbitPointAt,
 }: SightingsProps) {
+  const {
+    $modalBodyContainer,
+    $coachModalBodyContainer,
+    $scrollContainer,
+    $close,
+    $title,
+    $modalTitle,
+    $selectMessageText,
+    $switchContainer,
+    $label,
+    $modal,
+    $legend,
+    $body,
+    $nextButton,
+    $nextButtonText,
+    $emptyText,
+  } = useStyles(styles)
+
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
@@ -230,125 +249,145 @@ export function Sightings({
   )
 }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: scale(18),
-  borderTopRightRadius: scale(18),
-  flex: 1,
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderTopLeftRadius: scale(18),
+    borderTopRightRadius: scale(18),
+    flex: 1,
+  }
 
-const $coachModalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(16),
-  paddingVertical: 36,
-  paddingHorizontal: 30,
-  width: "100%",
-}
+  const $coachModalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(16),
+    paddingVertical: 36,
+    paddingHorizontal: 30,
+    width: "100%",
+  }
 
-const $scrollContainer: ViewStyle = {
-  paddingHorizontal: scale(36),
-  flex: 1,
-  paddingBottom: scale(30),
-}
+  const $scrollContainer: ViewStyle = {
+    paddingHorizontal: scale(36),
+    flex: 1,
+    paddingBottom: scale(30),
+  }
 
-const $close: ViewStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  padding: scale(18),
-  zIndex: 5,
-}
+  const $close: ViewStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    padding: scale(18),
+    zIndex: 5,
+  }
 
-const $title: TextStyle = {
-  marginTop: scale(10),
-  marginBottom: scale(10),
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[28],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-  paddingHorizontal: scale(36),
-}
+  const $title: TextStyle = {
+    marginTop: scale(10),
+    marginBottom: scale(10),
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[28],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+    paddingHorizontal: scale(36),
+  }
 
-const $modalTitle: TextStyle = {
-  marginBottom: scale(20),
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[28],
-  lineHeight: lineHeights[30],
-  color: colors.palette.neutral250,
-  paddingHorizontal: scale(36),
-}
+  const $modalTitle: TextStyle = {
+    marginBottom: scale(20),
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[28],
+    lineHeight: lineHeights[30],
+    color: colors.palette.neutral250,
+    paddingHorizontal: scale(36),
+  }
 
-const $selectMessageText: TextStyle = {
-  width: "95%",
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral100,
-  paddingHorizontal: scale(36),
-}
+  const $selectMessageText: TextStyle = {
+    width: "95%",
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral100,
+    paddingHorizontal: scale(36),
+  }
 
-const $switchContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  borderBottomColor: colors.palette.neutral350,
-  paddingHorizontal: scale(36),
-  paddingTop: scale(15),
-}
+  const $switchContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomColor: colors.palette.neutral350,
+    paddingHorizontal: scale(36),
+    paddingTop: scale(15),
+  }
 
-const $label: TextStyle = {
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[16],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[21],
-  width: "80%",
-}
+  const $label: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[16],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[21],
+    width: "80%",
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  left: 0,
-  margin: 0,
-  paddingHorizontal: 18,
-  justifyContent: "flex-start",
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    left: 0,
+    margin: 0,
+    paddingHorizontal: 18,
+    justifyContent: "flex-start",
+  }
 
-const $legend: ViewStyle = {
-  flexDirection: "row",
-  margin: 0,
-  justifyContent: "space-between",
-  width: "80%",
-}
+  const $legend: ViewStyle = {
+    flexDirection: "row",
+    margin: 0,
+    justifyContent: "space-between",
+    width: "80%",
+  }
 
-const $body: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral100,
-  paddingBottom: 10,
-  paddingLeft: 5,
-}
+  const $body: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral100,
+    paddingBottom: 10,
+    paddingLeft: 5,
+  }
 
-const $nextButton: ViewStyle = {
-  height: scale(56),
-  backgroundColor: colors.palette.neutral100,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  width: scale(140),
-  alignSelf: "center",
-  marginTop: 24,
-}
+  const $nextButton: ViewStyle = {
+    height: scale(56),
+    backgroundColor: colors.palette.neutral100,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    width: scale(140),
+    alignSelf: "center",
+    marginTop: 24,
+  }
 
-const $nextButtonText: TextStyle = {
-  fontFamily: typography.primary.medium,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.buttonBlue,
-}
+  const $nextButtonText: TextStyle = {
+    fontFamily: typography.primary.medium,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.buttonBlue,
+  }
 
-const $emptyText: TextStyle = {
-  marginTop: 24,
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[24],
-  textAlign: "center",
+  const $emptyText: TextStyle = {
+    marginTop: 24,
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[24],
+    textAlign: "center",
+  }
+
+  return {
+    $modalBodyContainer,
+    $coachModalBodyContainer,
+    $scrollContainer,
+    $close,
+    $title,
+    $modalTitle,
+    $selectMessageText,
+    $switchContainer,
+    $label,
+    $modal,
+    $legend,
+    $body,
+    $nextButton,
+    $nextButtonText,
+    $emptyText,
+  }
 }

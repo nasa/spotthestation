@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import Modal from "react-native-modal"
 import { Screen, Text } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
@@ -23,6 +23,7 @@ import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { OrbitPoint } from "../../../services/api"
+import { useStyles } from "../../../utils/useStyles"
 
 export interface ISSNowScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -30,6 +31,39 @@ export interface ISSNowScreenRouteProps {
 }
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
+  const {
+    $containerStyleOverride,
+    $containerStyleOverrideFs,
+    $headerStyleOverride,
+    $headerStyleOverrideFs,
+    $headerStyleForLandscapeOverride,
+    $headerStyleForLandscapeOverrideFs,
+    $bodyStyleOverride,
+    $bodyStyleOverrideFs,
+    $bodyStyleForLandscapeOverride,
+    $bodyStyleForLandscapeOverrideFs,
+    $modControl,
+    $zoomControl,
+    $modButtonsOverload,
+    $modButtonsOverloadFs,
+    $container,
+    $header,
+    $body,
+    $flatMap,
+    $textContainer,
+    $lightIcon,
+    $location,
+    $date,
+    $zoomButtons,
+    $modButtons,
+    $modButton,
+    $modButtonText,
+    $modButtonTextActive,
+    $active,
+    $disabled,
+    $modal,
+  } = useStyles(styles)
+
   const route: ISSNowScreenRouteProps = useRoute().params as ISSNowScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const { currentLocation, selectedLocation, issData, getISSData, setSelectedLocation } =
@@ -48,54 +82,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     } else {
       setIsLandscape(false)
     }
-  }
-
-  const $containerStyleOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? 0 : scale(18),
-    margin: 0,
-  }
-
-  const $headerStyleOverride: ViewStyle = {
-    top: topInset + scale(24),
-    paddingHorizontal: isFullScreen ? scale(18) : 0,
-    left: isFullScreen ? 0 : scale(18),
-  }
-
-  const $headerStyleForLandscapeOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? scale(18) : scale(54),
-    left: isFullScreen ? 0 : scale(18),
-  }
-
-  const $bodyStyleOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : topInset + scale(80),
-  }
-
-  const $bodyStyleForLandscapeOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : scale(12),
-    marginBottom: isFullScreen ? 0 : scale(12),
-    marginHorizontal: isFullScreen ? 0 : scale(36),
-  }
-
-  const $control: ViewStyle = {
-    position: "absolute",
-    bottom: isFullScreen ? scale(54) : scale(18),
-  }
-
-  const $modControl: ViewStyle = {
-    ...$control,
-    left: scale(18),
-    padding: 0,
-  }
-
-  const $zoomControl: ViewStyle = {
-    ...$control,
-    right: scale(18),
-  }
-
-  const $modButtonsOverload: ViewStyle = {
-    flexDirection: "row",
-    height: "auto",
-    bottom: isFullScreen ? scale(34) : scale(18),
   }
 
   useEffect(() => {
@@ -189,16 +175,30 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     [selectedLocation, currentLocation],
   )
 
+  const headerStyle = { ...(isFullScreen ? $headerStyleOverrideFs : $headerStyleOverride) }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
+  const bodyStyle = { ...(isFullScreen ? $bodyStyleOverrideFs : $bodyStyleOverride) }
+  if (!isFullScreen) bodyStyle.marginTop = Number(bodyStyle.marginTop) + topInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container, $containerStyleOverride]}
+      contentContainerStyle={[
+        $container,
+        isFullScreen ? $containerStyleOverrideFs : $containerStyleOverride,
+      ]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
       isPortrait={false}
     >
       <View
-        style={[$header, $headerStyleOverride, isLandscape && $headerStyleForLandscapeOverride]}
+        style={[
+          $header,
+          headerStyle,
+          isLandscape &&
+            (isFullScreen ? $headerStyleForLandscapeOverrideFs : $headerStyleForLandscapeOverride),
+        ]}
       >
         <IconLinkButton
           accessible
@@ -228,7 +228,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           onPress={() => setIsLocation(true)}
         />
       </View>
-      <View style={[$body, $bodyStyleOverride, isLandscape && $bodyStyleForLandscapeOverride]}>
+      <View
+        style={[
+          $body,
+          bodyStyle,
+          isLandscape &&
+            (isFullScreen ? $bodyStyleForLandscapeOverrideFs : $bodyStyleForLandscapeOverride),
+        ]}
+      >
         {isGlobe && (
           <Globe
             key={isFullScreen.toString() + isLandscape.toString()}
@@ -249,8 +256,20 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             }
           />
         )}
-        <View style={[$modButtons, $modControl, isLandscape && $modButtonsOverload]}>
-          <BlurView style={[$modButtons, isLandscape && $modButtonsOverload, { bottom: 0 }]}>
+        <View
+          style={[
+            $modButtons,
+            $modControl,
+            isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
+          ]}
+        >
+          <BlurView
+            style={[
+              $modButtons,
+              isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
+              { bottom: 0 },
+            ]}
+          >
             <IconLinkButton
               accessible
               accessibilityLabel="2D button"
@@ -271,7 +290,13 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             />
           </BlurView>
         </View>
-        <View style={[$zoomButtons, $zoomControl, isLandscape && $modButtonsOverload]}>
+        <View
+          style={[
+            $zoomButtons,
+            $zoomControl,
+            isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
+          ]}
+        >
           <IconLinkButton
             accessible
             accessibilityLabel="+ button"
@@ -318,99 +343,220 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between",
-}
+const styles = ({ scale, fontSizes, lineHeights }) => {
+  const $containerStyleOverride: ViewStyle = {
+    paddingHorizontal: scale(18),
+    margin: 0,
+  }
 
-const $header: ViewStyle = {
-  position: "absolute",
-  width: "100%",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  zIndex: 10,
-}
+  const $containerStyleOverrideFs: ViewStyle = {
+    ...$containerStyleOverride,
+    paddingHorizontal: 0,
+  }
 
-const $body: ViewStyle = {
-  flex: 1,
-  position: "relative",
-  backgroundColor: colors.backgroundDark,
-  borderRadius: scale(12),
-  overflow: "hidden",
-}
+  const $headerStyleOverride: ViewStyle = {
+    top: scale(24),
+    paddingHorizontal: 0,
+    left: scale(18),
+  }
 
-const $flatMap: ViewStyle = {
-  flex: 1,
-}
+  const $headerStyleOverrideFs: ViewStyle = {
+    ...$headerStyleOverride,
+    paddingHorizontal: scale(18),
+    left: 0,
+  }
 
-const $textContainer: ViewStyle = {
-  flex: 1,
-  paddingHorizontal: scale(10),
-}
+  const $headerStyleForLandscapeOverride: ViewStyle = {
+    paddingHorizontal: scale(54),
+    left: scale(18),
+  }
 
-const $lightIcon: ViewStyle = {
-  backgroundColor: colors.palette.overlayWhite,
-}
+  const $headerStyleForLandscapeOverrideFs: ViewStyle = {
+    paddingHorizontal: scale(18),
+    left: 0,
+  }
 
-const $location: TextStyle = {
-  width: "100%",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[20],
-  lineHeight: lineHeights[24],
-  color: colors.palette.neutral100,
-  textAlign: "center",
-}
+  const $bodyStyleOverride: ViewStyle = {
+    marginTop: scale(80),
+  }
 
-const $date: TextStyle = {
-  ...$location,
-  fontSize: fontSizes[13],
-  lineHeight: lineHeights[16],
-  textTransform: "uppercase",
-}
+  const $bodyStyleOverrideFs: ViewStyle = {
+    marginTop: 0,
+  }
 
-const $zoomButtons: ViewStyle = {
-  height: scale(90),
-  justifyContent: "space-between",
-}
+  const $bodyStyleForLandscapeOverride: ViewStyle = {
+    marginTop: scale(12),
+    marginBottom: scale(12),
+    marginHorizontal: scale(36),
+  }
 
-const $modButtons: ViewStyle = {
-  height: scale(90),
-  justifyContent: "space-between",
-  padding: scale(2),
-  borderRadius: scale(100),
-  overflow: "hidden",
-  ...$lightIcon,
-}
+  const $bodyStyleForLandscapeOverrideFs: ViewStyle = {
+    marginTop: 0,
+    marginBottom: 0,
+    marginHorizontal: 0,
+  }
 
-const $modButton: ViewStyle = {
-  height: scale(40),
-  width: scale(40),
-  backgroundColor: "transparent",
-}
+  const $control: ViewStyle = {
+    position: "absolute",
+    bottom: scale(18),
+  }
 
-const $modButtonText: TextStyle = {
-  fontSize: fontSizes[12],
-  lineHeight: lineHeights[14],
-  fontFamily: typography.primary.medium,
-}
+  const $controlFs: ViewStyle = {
+    ...$control,
+    bottom: scale(54),
+  }
 
-const $modButtonTextActive: TextStyle = {
-  color: colors.palette.buttonBlue,
-}
+  const $modControl: ViewStyle = {
+    ...$control,
+    left: scale(18),
+    padding: 0,
+  }
 
-const $active: ViewStyle = {
-  backgroundColor: colors.palette.neutral100,
-}
+  const $zoomControl: ViewStyle = {
+    ...$control,
+    right: scale(18),
+  }
 
-const $disabled: ViewStyle = {
-  opacity: 0.25,
-}
+  const $modButtonsOverload: ViewStyle = {
+    flexDirection: "row",
+    height: "auto",
+    bottom: scale(18),
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
+  const $modButtonsOverloadFs: ViewStyle = {
+    ...$modButtonsOverload,
+    bottom: scale(34),
+  }
+
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    justifyContent: "space-between",
+  }
+
+  const $header: ViewStyle = {
+    position: "absolute",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    zIndex: 10,
+  }
+
+  const $body: ViewStyle = {
+    flex: 1,
+    position: "relative",
+    backgroundColor: colors.backgroundDark,
+    borderRadius: scale(12),
+    overflow: "hidden",
+  }
+
+  const $flatMap: ViewStyle = {
+    flex: 1,
+  }
+
+  const $textContainer: ViewStyle = {
+    flex: 1,
+    paddingHorizontal: scale(10),
+  }
+
+  const $lightIcon: ViewStyle = {
+    backgroundColor: colors.palette.overlayWhite,
+  }
+
+  const $location: TextStyle = {
+    width: "100%",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[20],
+    lineHeight: lineHeights[24],
+    color: colors.palette.neutral100,
+    textAlign: "center",
+  }
+
+  const $date: TextStyle = {
+    ...$location,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    textTransform: "uppercase",
+  }
+
+  const $zoomButtons: ViewStyle = {
+    height: scale(90),
+    justifyContent: "space-between",
+  }
+
+  const $modButtons: ViewStyle = {
+    height: scale(90),
+    justifyContent: "space-between",
+    padding: scale(2),
+    borderRadius: scale(100),
+    overflow: "hidden",
+    ...$lightIcon,
+  }
+
+  const $modButton: ViewStyle = {
+    height: scale(40),
+    width: scale(40),
+    backgroundColor: "transparent",
+  }
+
+  const $modButtonText: TextStyle = {
+    fontSize: fontSizes[12],
+    lineHeight: lineHeights[14],
+    fontFamily: typography.primary.medium,
+  }
+
+  const $modButtonTextActive: TextStyle = {
+    color: colors.palette.buttonBlue,
+  }
+
+  const $active: ViewStyle = {
+    backgroundColor: colors.palette.neutral100,
+  }
+
+  const $disabled: ViewStyle = {
+    opacity: 0.25,
+  }
+
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
+
+  return {
+    $containerStyleOverride,
+    $containerStyleOverrideFs,
+    $headerStyleOverride,
+    $headerStyleOverrideFs,
+    $headerStyleForLandscapeOverride,
+    $headerStyleForLandscapeOverrideFs,
+    $bodyStyleOverride,
+    $bodyStyleOverrideFs,
+    $bodyStyleForLandscapeOverride,
+    $bodyStyleForLandscapeOverrideFs,
+    $control,
+    $controlFs,
+    $modControl,
+    $zoomControl,
+    $modButtonsOverload,
+    $modButtonsOverloadFs,
+    $container,
+    $header,
+    $body,
+    $flatMap,
+    $textContainer,
+    $lightIcon,
+    $location,
+    $date,
+    $zoomButtons,
+    $modButtons,
+    $modButton,
+    $modButtonText,
+    $modButtonTextActive,
+    $active,
+    $disabled,
+    $modal,
+  }
 }

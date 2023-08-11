@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React, { useCallback, useState } from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
-import { fontSizes, lineHeights, scale, typography } from "../../theme"
+import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
@@ -14,8 +14,10 @@ import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
 import analytics from "@react-native-firebase/analytics"
 import { translate } from "../../i18n"
+import { StyleFn, useStyles } from "../../utils/useStyles"
 
 export const CompleteProfile = observer(function CompleteProfile() {
+  const { $container, $contentContainer, $back, $step } = useStyles(styles)
   const navigation = useNavigation()
   const { setCurrentLocation, setInitLoading } = useStores()
 
@@ -124,27 +126,31 @@ export const CompleteProfile = observer(function CompleteProfile() {
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.palette.neutral900,
-  paddingTop: scale(24),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.palette.neutral900,
+    paddingTop: scale(24),
+  }
 
-const $contentContainer: ViewStyle = {
-  flex: 1,
-  paddingHorizontal: scale(36),
-  paddingBottom: scale(52),
-}
+  const $contentContainer: ViewStyle = {
+    flex: 1,
+    paddingHorizontal: scale(36),
+    paddingBottom: scale(52),
+  }
 
-const $back: ViewStyle = {
-  marginLeft: scale(18),
-}
+  const $back: ViewStyle = {
+    marginLeft: scale(18),
+  }
 
-const $step: TextStyle = {
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[22],
-  paddingBottom: scale(18),
-  paddingTop: scale(36),
+  const $step: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[22],
+    paddingBottom: scale(18),
+    paddingTop: scale(36),
+  }
+
+  return { $container, $contentContainer, $back, $step }
 }

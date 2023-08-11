@@ -6,9 +6,10 @@ import React, { useState, useEffect } from "react"
 import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../../../components"
-import { colors, scale } from "../../../theme"
+import { colors } from "../../../theme"
 import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../utils/geometry"
 import watchHeading from "../../../utils/heading"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 const compassLine = require("../../../../assets/icons/compass-line.png")
 
@@ -21,6 +22,16 @@ type CompassProps = {
 }
 
 export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
+  const {
+    $container,
+    $containerFs,
+    $issIcon,
+    $letter,
+    $letterContainer,
+    $lettersContainer,
+    $line,
+    $verticalLine,
+  } = useStyles(styles)
   const topInset = useSafeAreaInsets().top
   const [heading, setHeading] = useState<number>(null)
 
@@ -40,10 +51,12 @@ export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
   }, [])
 
   const issVisible = isInHeadingRange(left, right, issPosition)
+  const container = { ...(isFullScreen ? $containerFs : $container) }
+  if (isFullScreen) container.marginTop = Number(container.marginTop) + topInset
 
   return (
-    <View style={[$container, { marginTop: isFullScreen ? topInset + scale(24) : 0 }]}>
-      <Image source={compassLine} style={$line} />
+    <View style={container}>
+      <Image source={compassLine} style={$line as ImageStyle} />
       {issVisible && (
         <Icon
           icon="iss"
@@ -71,45 +84,63 @@ export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
   )
 }
 
-const $container: ViewStyle = {
-  height: scale(20),
-  width: LINE_LENGTH,
-}
+const styles: StyleFn = ({ scale }) => {
+  const $container: ViewStyle = {
+    height: scale(20),
+    width: LINE_LENGTH,
+  }
 
-const $issIcon: ViewStyle = {
-  bottom: -scale(16),
-  position: "absolute",
-}
+  const $containerFs: ViewStyle = {
+    ...$container,
+    marginTop: scale(24),
+  }
 
-const $letter: TextStyle = {
-  color: colors.palette.neutral100,
-  marginBottom: scale(5),
-  textAlign: "left",
-}
+  const $issIcon: ViewStyle = {
+    bottom: -scale(16),
+    position: "absolute",
+  }
 
-const $letterContainer: ViewStyle = {
-  alignItems: "center",
-  marginBottom: scale(2),
-}
+  const $letter: TextStyle = {
+    color: colors.palette.neutral100,
+    marginBottom: scale(5),
+    textAlign: "left",
+  }
 
-const $lettersContainer: ViewStyle = {
-  bottom: -scale(10),
-  flexDirection: "row",
-  height: "auto",
-  left: 0,
-  marginTop: -LETTER_OFFSET,
-}
+  const $letterContainer: ViewStyle = {
+    alignItems: "center",
+    marginBottom: scale(2),
+  }
 
-const $line: ImageStyle = {
-  bottom: 0,
-  left: 0,
-  position: "absolute",
-  width: LINE_LENGTH,
-}
+  const $lettersContainer: ViewStyle = {
+    bottom: -scale(10),
+    flexDirection: "row",
+    height: "auto",
+    left: 0,
+    marginTop: -LETTER_OFFSET,
+  }
 
-const $verticalLine: ViewStyle = {
-  borderColor: colors.palette.neutral100,
-  borderWidth: scale(1),
-  height: scale(6),
-  width: scale(1),
+  const $line: ImageStyle = {
+    bottom: 0,
+    left: 0,
+    position: "absolute",
+    width: LINE_LENGTH,
+  }
+
+  const $verticalLine: ViewStyle = {
+    borderColor: colors.palette.neutral100,
+    borderWidth: scale(1),
+    height: scale(6),
+    width: scale(1),
+  }
+
+  return {
+    $container,
+    $containerFs,
+    $issIcon,
+    $letter,
+    $letterContainer,
+    $lettersContainer,
+    $line,
+    $verticalLine,
+  }
 }

@@ -9,7 +9,7 @@ import { ViewStyle, TextStyle, View, Pressable } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
 import { Icon, Screen, Text, Button } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
+import { colors, spacing, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
@@ -23,8 +23,33 @@ import { LatLng } from "react-native-maps"
 import { api } from "../../../services/api"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
+import { useStyles } from "../../../utils/useStyles"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
+  const {
+    $headerStyleOverride,
+    $container,
+    $topButtonsContainer,
+    $topContainer,
+    $button,
+    $locations,
+    $active,
+    $locationsListContainer,
+    $dropdownLeftAccessory,
+    $dropdownRightAccessory,
+    $dropdownSelected,
+    $locationsRow,
+    $locationsRowText,
+    $dropdownText,
+    $modal,
+    $buttonText,
+    $modalBodyContainer,
+    $contentContainer,
+    $close,
+    $title,
+    $modalButton,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
   const { setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
@@ -35,10 +60,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   const [textValue, setTextValue] = useState("")
   const [location, setLocation] = useState<LocationType>(null)
   const [marker, setMarker] = useState<LatLng>(null)
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(18),
-  }
 
   const handleClear = () => {
     addressRef.current?.clear()
@@ -99,6 +120,9 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       })
   }, [location])
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
   return (
     <Screen
       preset="fixed"
@@ -115,7 +139,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         markers={marker ? [marker] : []}
         zoomEnabled
       />
-      <View style={[$topContainer, $headerStyleOverride]}>
+      <View style={[$topContainer, headerStyle]}>
         <View style={$topButtonsContainer}>
           <IconLinkButton
             icon="x"
@@ -239,151 +263,181 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  height: "100%",
-}
+const styles = ({ scale, fontSizes, lineHeights }) => {
+  const $headerStyleOverride: TextStyle = {
+    top: scale(18),
+  }
 
-const $topButtonsContainer: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: scale(36),
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    height: "100%",
+  }
 
-const $topContainer: ViewStyle = {
-  position: "absolute",
-  left: 0,
-  top: 0,
-  width: "100%",
-  paddingHorizontal: scale(36),
-}
+  const $topButtonsContainer: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: scale(36),
+  }
 
-const $button: ViewStyle = {
-  backgroundColor: colors.palette.neutral550,
-  width: scale(42),
-  height: scale(42),
-}
+  const $topContainer: ViewStyle = {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: "100%",
+    paddingHorizontal: scale(36),
+  }
 
-const $locations: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: "transparent",
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral350,
-  overflow: "hidden",
-  marginBottom: scale(18),
-}
+  const $button: ViewStyle = {
+    backgroundColor: colors.palette.neutral550,
+    width: scale(42),
+    height: scale(42),
+  }
 
-const $active: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: colors.palette.buttonBlue,
-  backgroundColor: colors.palette.neutral350,
-}
+  const $locations: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: "transparent",
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral350,
+    overflow: "hidden",
+    marginBottom: scale(18),
+  }
 
-const $locationsListContainer: ViewStyle = {
-  borderRadius: scale(12),
-  backgroundColor: colors.palette.neutral550,
-  overflow: "hidden",
-  width: "85%",
-  alignSelf: "center",
-  marginTop: scale(3),
-}
+  const $active: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: colors.palette.buttonBlue,
+    backgroundColor: colors.palette.neutral350,
+  }
 
-const $dropdownLeftAccessory: ViewStyle = {
-  marginStart: spacing.large,
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $locationsListContainer: ViewStyle = {
+    borderRadius: scale(12),
+    backgroundColor: colors.palette.neutral550,
+    overflow: "hidden",
+    width: "85%",
+    alignSelf: "center",
+    marginTop: scale(3),
+  }
 
-const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: spacing.large,
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $dropdownLeftAccessory: ViewStyle = {
+    marginStart: spacing.large,
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $dropdownSelected: TextStyle = {
-  color: colors.palette.neutral250,
-}
+  const $dropdownRightAccessory: ViewStyle = {
+    marginEnd: spacing.large,
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $locationsRow: TextStyle = {
-  backgroundColor: "transparent",
-  paddingHorizontal: scale(spacing.large),
-}
+  const $dropdownSelected: TextStyle = {
+    color: colors.palette.neutral250,
+  }
 
-const $locationsRowText: TextStyle = {
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral250,
-}
+  const $locationsRow: TextStyle = {
+    backgroundColor: "transparent",
+    paddingHorizontal: scale(spacing.large),
+  }
 
-const $dropdownText: TextStyle = {
-  flex: 1,
-  height: scale(56),
-  alignSelf: "stretch",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  paddingHorizontal: 0,
-  marginHorizontal: scale(spacing.small),
-  textAlignVertical: "center",
-  borderRadius: 0,
-  backgroundColor: "transparent",
-}
+  const $locationsRowText: TextStyle = {
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral250,
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $dropdownText: TextStyle = {
+    flex: 1,
+    height: scale(56),
+    alignSelf: "stretch",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    paddingHorizontal: 0,
+    marginHorizontal: scale(spacing.small),
+    textAlignVertical: "center",
+    borderRadius: 0,
+    backgroundColor: "transparent",
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[22],
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: scale(18),
-  borderTopRightRadius: scale(18),
-}
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.medium,
+    lineHeight: lineHeights[22],
+  }
 
-const $contentContainer: ViewStyle = {
-  width: "100%",
-  paddingHorizontal: scale(36),
-  paddingBottom: scale(18),
-  alignItems: "center",
-  marginTop: scale(56),
-}
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderTopLeftRadius: scale(18),
+    borderTopRightRadius: scale(18),
+  }
 
-const $close: ViewStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  padding: scale(18),
-}
+  const $contentContainer: ViewStyle = {
+    width: "100%",
+    paddingHorizontal: scale(36),
+    paddingBottom: scale(18),
+    alignItems: "center",
+    marginTop: scale(56),
+  }
 
-const $title: TextStyle = {
-  textAlign: "center",
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.normal,
-  lineHeight: lineHeights[22],
-  paddingBottom: scale(24),
-}
+  const $close: ViewStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    padding: scale(18),
+  }
 
-const $modalButton: ViewStyle = {
-  width: "40%",
-  height: scale(56),
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  marginTop: scale(24),
-  marginBottom: scale(24),
+  const $title: TextStyle = {
+    textAlign: "center",
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.normal,
+    lineHeight: lineHeights[22],
+    paddingBottom: scale(24),
+  }
+
+  const $modalButton: ViewStyle = {
+    width: "40%",
+    height: scale(56),
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    marginTop: scale(24),
+    marginBottom: scale(24),
+  }
+
+  return {
+    $headerStyleOverride,
+    $container,
+    $topButtonsContainer,
+    $topContainer,
+    $button,
+    $locations,
+    $active,
+    $locationsListContainer,
+    $dropdownLeftAccessory,
+    $dropdownRightAccessory,
+    $dropdownSelected,
+    $locationsRow,
+    $locationsRowText,
+    $dropdownText,
+    $modal,
+    $buttonText,
+    $modalBodyContainer,
+    $contentContainer,
+    $close,
+    $title,
+    $modalButton,
+  }
 }

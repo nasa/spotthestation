@@ -10,21 +10,45 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import DeviceInfo from "react-native-device-info"
 import Snackbar from "react-native-snackbar"
 import { Button, Icon, Screen, Text, TextField } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, spacing, typography } from "../../../theme"
+import { colors, spacing, typography } from "../../../theme"
 import { translate } from "../../../i18n"
 import { api } from "../../../services/api"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export const ContactUsScreen = observer(function ContactUsScreen() {
+  const {
+    $headerStyleOverride,
+    $container,
+    $backButton,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $backButtonText,
+    $header,
+    $dropdown,
+    $inputMargin,
+    $inputWithoutPadding,
+    $disabled,
+    $multiline,
+    $dropdownContainer,
+    $dropdownPlaceholder,
+    $dropdownSelected,
+    $dropdownText,
+    $dropdownRightAccessory,
+    $button,
+    $buttonText,
+    $modalBodyContainer,
+    $modalText,
+    $nextButton,
+    $nextButtonText,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
   const [title, setTitle] = useState("")
   const [comments, setComments] = useState("")
   const [thanksModal, setThanksModal] = useState(false)
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(24),
-  }
 
   const handleSend = useCallback(() => {
     api
@@ -75,10 +99,13 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
       )
   }, [title, comments])
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container, $headerStyleOverride]}
+      contentContainerStyle={[$container, headerStyle]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
@@ -212,165 +239,199 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  height: "100%",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $headerStyleOverride: TextStyle = {
+    top: scale(24),
+  }
 
-const $backButton: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingBottom: scale(11),
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    height: "100%",
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $backButton: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: scale(11),
+  }
 
-const $scrollContentContainerStyle: ViewStyle = {
-  flexGrow: 1,
-  paddingBottom: scale(60),
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $scrollContainer: ViewStyle = {
-  paddingHorizontal: scale(18),
-}
+  const $scrollContentContainerStyle: ViewStyle = {
+    flexGrow: 1,
+    paddingBottom: scale(60),
+  }
 
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral450,
-  textAlign: "left",
-  paddingBottom: scale(24),
-}
+  const $scrollContainer: ViewStyle = {
+    paddingHorizontal: scale(18),
+  }
 
-const $backButtonText: TextStyle = {
-  ...$text,
-  color: colors.palette.neutral250,
-  paddingBottom: 0,
-  paddingLeft: scale(5),
-}
+  const $text: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral450,
+    textAlign: "left",
+    paddingBottom: scale(24),
+  }
 
-const $header: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-}
+  const $backButtonText: TextStyle = {
+    ...$text,
+    color: colors.palette.neutral250,
+    paddingBottom: 0,
+    paddingLeft: scale(5),
+  }
 
-const $dropdown: ViewStyle = {
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral350,
-  overflow: "hidden",
-}
+  const $header: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[36],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+  }
 
-const $inputMargin: ViewStyle = {
-  marginTop: scale(18),
-}
+  const $dropdown: ViewStyle = {
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral350,
+    overflow: "hidden",
+  }
 
-const $inputWithoutPadding: ViewStyle = {
-  paddingTop: 0,
-}
+  const $inputMargin: ViewStyle = {
+    marginTop: scale(18),
+  }
 
-const $disabled: ViewStyle = {
-  opacity: 0.5,
-}
+  const $inputWithoutPadding: ViewStyle = {
+    paddingTop: 0,
+  }
 
-const $multiline: TextStyle = {
-  height: "auto",
-  textAlignVertical: "top",
-  paddingVertical: scale(10),
-}
+  const $disabled: ViewStyle = {
+    opacity: 0.5,
+  }
 
-const $dropdownContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderRadius: scale(10),
-  marginTop: -scale(40),
-  borderWidth: 0,
-}
+  const $multiline: TextStyle = {
+    height: "auto",
+    textAlignVertical: "top",
+    paddingVertical: scale(10),
+  }
 
-const $dropdownPlaceholder: TextStyle = {
-  color: colors.palette.neutral450,
-}
+  const $dropdownContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderRadius: scale(10),
+    marginTop: -scale(40),
+    borderWidth: 0,
+  }
 
-const $dropdownSelected: TextStyle = {
-  color: colors.palette.neutral250,
-}
+  const $dropdownPlaceholder: TextStyle = {
+    color: colors.palette.neutral450,
+  }
 
-const $dropdownText: TextStyle = {
-  flex: 1,
-  // alignSelf: "stretch",
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[18],
-  paddingVertical: 0,
-  paddingHorizontal: 0,
-  marginHorizontal: scale(spacing.small),
-  textAlignVertical: "center",
-  color: colors.palette.neutral250,
-}
+  const $dropdownSelected: TextStyle = {
+    color: colors.palette.neutral250,
+  }
 
-const $dropdownRightAccessory: ViewStyle = {
-  marginEnd: scale(spacing.large),
-  height: scale(56),
-  justifyContent: "center",
-  alignItems: "center",
-}
+  const $dropdownText: TextStyle = {
+    flex: 1,
+    // alignSelf: "stretch",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    marginHorizontal: scale(spacing.small),
+    textAlignVertical: "center",
+    color: colors.palette.neutral250,
+  }
 
-const $button: ViewStyle = {
-  width: "100%",
-  height: scale(64),
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  marginVertical: scale(24),
-}
+  const $dropdownRightAccessory: ViewStyle = {
+    marginEnd: scale(spacing.large),
+    height: scale(56),
+    justifyContent: "center",
+    alignItems: "center",
+  }
 
-const $buttonText: TextStyle = {
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[18],
-  fontFamily: typography.primary.medium,
-  lineHeight: lineHeights[21],
-}
+  const $button: ViewStyle = {
+    width: "100%",
+    height: scale(64),
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    marginVertical: scale(24),
+  }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(16),
-  alignItems: "center",
-  paddingVertical: 36,
-  paddingHorizontal: 30,
-  width: "100%",
-  alignSelf: "center",
-  marginTop: normalizeHeight(0.28),
-}
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.medium,
+    lineHeight: lineHeights[21],
+  }
 
-const $modalText: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[24],
-  lineHeight: lineHeights[29],
-  color: colors.palette.neutral100,
-  paddingBottom: 12,
-  paddingTop: 18,
-}
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(16),
+    alignItems: "center",
+    paddingVertical: 36,
+    paddingHorizontal: 30,
+    width: "100%",
+    alignSelf: "center",
+    marginTop: normalizeHeight(0.28),
+  }
 
-const $nextButton: ViewStyle = {
-  height: scale(56),
-  backgroundColor: colors.palette.neutral100,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  width: scale(140),
-  alignSelf: "center",
-  marginTop: 24,
-}
+  const $modalText: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[24],
+    lineHeight: lineHeights[29],
+    color: colors.palette.neutral100,
+    paddingBottom: 12,
+    paddingTop: 18,
+  }
 
-const $nextButtonText: TextStyle = {
-  fontFamily: typography.primary.medium,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.buttonBlue,
+  const $nextButton: ViewStyle = {
+    height: scale(56),
+    backgroundColor: colors.palette.neutral100,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    width: scale(140),
+    alignSelf: "center",
+    marginTop: 24,
+  }
+
+  const $nextButtonText: TextStyle = {
+    fontFamily: typography.primary.medium,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.buttonBlue,
+  }
+
+  return {
+    $headerStyleOverride,
+    $container,
+    $backButton,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $text,
+    $backButtonText,
+    $header,
+    $dropdown,
+    $inputMargin,
+    $inputWithoutPadding,
+    $disabled,
+    $multiline,
+    $dropdownContainer,
+    $dropdownPlaceholder,
+    $dropdownSelected,
+    $dropdownText,
+    $dropdownRightAccessory,
+    $button,
+    $buttonText,
+    $modalBodyContainer,
+    $modalText,
+    $nextButton,
+    $nextButtonText,
+  }
 }

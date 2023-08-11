@@ -1,4 +1,5 @@
 const fr = {
+  name: "Français",
   errorScreen: {
     title: "Quelque chose s'est mal passé!",
     friendlySubtitle:

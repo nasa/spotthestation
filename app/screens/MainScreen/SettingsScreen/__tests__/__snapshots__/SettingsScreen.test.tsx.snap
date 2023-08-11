@@ -629,6 +629,218 @@ exports[`SettingsScreen renders correctly 1`] = `
       </View>
     </View>
     <View
+      accessibilityHint="pressable settings item"
+      accessibilityLabel="pressable settings item"
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingTop": 23,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            },
+            false,
+          ]
+        }
+      >
+        <View>
+          <RCTImageView
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              Array [
+                Object {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              Object {
+                "height": 35,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#ADADAE",
+                "width": 35,
+              }
+            }
+            tintColor="#ADADAE"
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "paddingLeft": 26,
+            }
+          }
+        >
+          <Text
+            accessibilityHint="settings.language"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            allowFontScaling={false}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 35,
+                  "lineHeight": 42,
+                  "width": "95%",
+                },
+              ]
+            }
+          >
+            settings.language undefined
+          </Text>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Object {
+              "flex": 1,
+              "height": 43,
+              "justifyContent": "center",
+              "overflow": "hidden",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="language select"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 35,
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#DEDDDE",
+                      "flex": 1,
+                      "fontFamily": "Helvetica Neue",
+                      "fontSize": 26,
+                      "marginHorizontal": 17,
+                      "paddingHorizontal": 0,
+                      "paddingVertical": 0,
+                      "textAlign": "right",
+                      "textAlignVertical": "center",
+                    },
+                    Object {
+                      "color": "#ADADAE",
+                    },
+                  ],
+                  Object {},
+                ]
+              }
+            >
+              Select item
+            </Text>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <RCTImageView
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  Array [
+                    Object {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "height": 40,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#ADADAE",
+                    "width": 40,
+                  }
+                }
+                tintColor="#ADADAE"
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
       style={
         Object {
           "flex": 1,
@@ -825,25 +1037,18 @@ exports[`SettingsScreen renders correctly 1`] = `
             <View
               style={
                 Array [
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderWidth": 3,
-                      "flexDirection": "row",
-                      "flexGrow": 0,
-                      "flexShrink": 0,
-                      "height": 35,
-                      "justifyContent": "space-between",
-                      "overflow": "hidden",
-                      "width": 35,
-                    },
-                    Object {
-                      "borderRadius": 23,
-                      "borderWidth": 0,
-                      "height": 40,
-                      "width": 66,
-                    },
-                  ],
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 23,
+                    "borderWidth": 0,
+                    "flexDirection": "row",
+                    "flexGrow": 0,
+                    "flexShrink": 0,
+                    "height": 40,
+                    "justifyContent": "space-between",
+                    "overflow": "hidden",
+                    "width": 66,
+                  },
                   Object {
                     "backgroundColor": "#353739",
                   },

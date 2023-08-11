@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useCallback, useEffect, useMemo, useState } from "react"
@@ -18,6 +19,8 @@ interface FlatMapProps {
 }
 
 export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) {
+  const { $map, $overlay } = useStyles(styles)
+
   const [layout, setLayout] = useState({ width: 0, height: 0 })
   const [terminatorCoords2D, setTerminatorCoords2D] = useState<[number, number][]>([])
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
@@ -78,7 +81,7 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
 
   return (
     <View style={style} testID="flat-map">
-      <Image source={map} style={$map} />
+      <Image source={map} style={$map as ImageStyle} />
       <Svg style={$overlay} onLayout={({ nativeEvent }) => setLayout(nativeEvent.layout)}>
         <Polygon
           fillOpacity={0.5}
@@ -144,13 +147,17 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
   )
 }
 
-const $map: ImageStyle = {
-  width: "100%",
-  height: "100%",
-  position: "absolute",
-}
+const styles: StyleFn = () => {
+  const $map: ImageStyle = {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+  }
 
-const $overlay: ViewStyle = {
-  width: "100%",
-  height: "100%",
+  const $overlay: ViewStyle = {
+    width: "100%",
+    height: "100%",
+  }
+
+  return { $map, $overlay }
 }

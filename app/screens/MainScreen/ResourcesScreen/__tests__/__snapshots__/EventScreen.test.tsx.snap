@@ -3,11 +3,15 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "rgba(0, 0, 0, 1)",
-      "flex": 1,
-      "paddingTop": 0,
-    }
+    Array [
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flex": 1,
+      },
+      Object {
+        "paddingTop": 0,
+      },
+    ]
   }
 >
   <View

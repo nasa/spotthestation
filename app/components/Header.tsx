@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { ReactElement } from "react"
 import {
   StyleProp,
@@ -8,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native"
 import { translate } from "../i18n"
-import { colors, scale, spacing } from "../theme"
+import { colors, spacing } from "../theme"
 import { ExtendedEdge, useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 import { Icon, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
@@ -139,6 +140,8 @@ interface HeaderActionProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Header.md)
  */
 export function Header(props: HeaderProps) {
+  const { $wrapper, $container, $centerTitle, $flexTitle } = useStyles(styles)
+
   const {
     backgroundColor = colors.background,
     LeftActionComponent,
@@ -212,6 +215,9 @@ export function Header(props: HeaderProps) {
 }
 
 function HeaderAction(props: HeaderActionProps) {
+  const { $actionTextContainer, $actionText, $actionIconContainer, $actionFillerContainer } =
+    useStyles(styles)
+
   const { backgroundColor, icon, text, tx, txOptions, onPress, ActionComponent, iconColor } = props
 
   const content = tx ? translate(tx, txOptions) : text
@@ -246,52 +252,65 @@ function HeaderAction(props: HeaderActionProps) {
   return <View style={[$actionFillerContainer, { backgroundColor }]} />
 }
 
-const $wrapper: ViewStyle = {
-  height: scale(56),
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-}
+const styles: StyleFn = ({ scale }) => {
+  const $wrapper: ViewStyle = {
+    height: scale(56),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  }
 
-const $container: ViewStyle = {
-  width: "100%",
-}
+  const $container: ViewStyle = {
+    width: "100%",
+  }
 
-const $centerTitle: TextStyle = {
-  position: "absolute",
-  width: "100%",
-  textAlign: "center",
-  paddingHorizontal: spacing.huge,
-  zIndex: 1,
-}
+  const $centerTitle: TextStyle = {
+    position: "absolute",
+    width: "100%",
+    textAlign: "center",
+    paddingHorizontal: spacing.huge,
+    zIndex: 1,
+  }
 
-const $flexTitle: TextStyle = {
-  flex: 1,
-  textAlign: "center",
-}
+  const $flexTitle: TextStyle = {
+    flex: 1,
+    textAlign: "center",
+  }
 
-const $actionTextContainer: ViewStyle = {
-  flexGrow: 0,
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100%",
-  paddingHorizontal: spacing.medium,
-  zIndex: 2,
-}
+  const $actionTextContainer: ViewStyle = {
+    flexGrow: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    paddingHorizontal: spacing.medium,
+    zIndex: 2,
+  }
 
-const $actionText: TextStyle = {
-  color: colors.tint,
-}
+  const $actionText: TextStyle = {
+    color: colors.tint,
+  }
 
-const $actionIconContainer: ViewStyle = {
-  flexGrow: 0,
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100%",
-  paddingHorizontal: spacing.medium,
-  zIndex: 2,
-}
+  const $actionIconContainer: ViewStyle = {
+    flexGrow: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    paddingHorizontal: spacing.medium,
+    zIndex: 2,
+  }
 
-const $actionFillerContainer: ViewStyle = {
-  width: scale(16),
+  const $actionFillerContainer: ViewStyle = {
+    width: scale(16),
+  }
+
+  return {
+    $wrapper,
+    $container,
+    $centerTitle,
+    $flexTitle,
+    $actionTextContainer,
+    $actionText,
+    $actionIconContainer,
+    $actionFillerContainer,
+  }
 }

@@ -1,4 +1,5 @@
 const es = {
+  name: "Español",
   errorScreen: {
     title: "¡Algo salió mal!",
     friendlySubtitle:

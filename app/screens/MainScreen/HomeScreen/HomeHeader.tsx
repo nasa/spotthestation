@@ -1,6 +1,7 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React from "react"
 import { ViewStyle, View, TextStyle, PressableProps, Pressable } from "react-native"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { Text } from "../../../components"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { translate } from "../../../i18n"
@@ -27,6 +28,18 @@ export function HomeHeader({
   countdown = "",
   timezone = "",
 }: HomeHeaderProps) {
+  const {
+    $headerContainer,
+    $rowContainer,
+    $userContainer,
+    $addressText,
+    $timeContainer,
+    $outlined,
+    $headText,
+    $timeText,
+    $tipText,
+  } = useStyles(styles)
+
   return (
     <View style={$headerContainer}>
       <View style={$rowContainer}>
@@ -100,59 +113,73 @@ export function HomeHeader({
   )
 }
 
-const $headerContainer: ViewStyle = {
-  width: "100%",
-  paddingHorizontal: 18,
-  paddingTop: 18,
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $headerContainer: ViewStyle = {
+    width: "100%",
+    paddingHorizontal: 18,
+    paddingTop: 18,
+  }
 
-const $rowContainer: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "flex-start",
-  justifyContent: "space-between",
-  paddingBottom: 5,
-}
+  const $rowContainer: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    paddingBottom: 5,
+  }
 
-const $userContainer: ViewStyle = {
-  width: "85%",
-}
+  const $userContainer: ViewStyle = {
+    width: "85%",
+  }
 
-const $addressText: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral100,
-  fontSize: fontSizes[20],
-  lineHeight: lineHeights[26],
-}
+  const $addressText: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[20],
+    lineHeight: lineHeights[26],
+  }
 
-const $timeContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  width: "48%",
-  borderRadius: scale(10),
-  paddingVertical: 8,
-  borderWidth: scale(1.5),
-}
+  const $timeContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    width: "48%",
+    borderRadius: scale(10),
+    paddingVertical: 8,
+    borderWidth: scale(1.5),
+  }
 
-const $outlined: ViewStyle = {
-  borderColor: colors.palette.buttonBlue,
-}
+  const $outlined: ViewStyle = {
+    borderColor: colors.palette.buttonBlue,
+  }
 
-const $headText: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral450,
-  fontSize: fontSizes[14],
-  lineHeight: lineHeights[16],
-  textAlign: "center",
-}
+  const $headText: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[14],
+    lineHeight: lineHeights[16],
+    textAlign: "center",
+  }
 
-const $timeText: TextStyle = {
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral250,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[24],
-  textAlign: "center",
-}
+  const $timeText: TextStyle = {
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[24],
+    textAlign: "center",
+  }
 
-const $tipText: TextStyle = {
-  ...$headText,
-  fontSize: fontSizes[10],
+  const $tipText: TextStyle = {
+    ...$headText,
+    fontSize: fontSizes[10],
+  }
+
+  return {
+    $headerContainer,
+    $rowContainer,
+    $userContainer,
+    $addressText,
+    $timeContainer,
+    $outlined,
+    $headText,
+    $timeText,
+    $tipText,
+  }
 }

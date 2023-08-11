@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { ComponentType, Fragment, ReactElement } from "react"
 import {
   StyleProp,
@@ -10,7 +11,7 @@ import {
 import { colors, scale, spacing } from "../theme"
 import { Text, TextProps } from "./Text"
 
-type Presets = keyof typeof $containerPresets
+type Presets = "default" | "reversed"
 
 interface CardProps extends TouchableOpacityProps {
   /**
@@ -122,6 +123,45 @@ interface CardProps extends TouchableOpacityProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Card.md)
  */
 export function Card(props: CardProps) {
+  const { $containerBase, $alignmentWrapper } = useStyles(styles)
+
+  const $alignmentWrapperFlexOptions = {
+    top: "flex-start",
+    center: "center",
+    "space-between": "space-between",
+    "force-footer-bottom": "space-between",
+  } as const
+
+  const $containerPresets = {
+    default: [
+      $containerBase,
+      {
+        backgroundColor: colors.palette.neutral100,
+        borderColor: colors.palette.neutral300,
+      },
+    ] as StyleProp<ViewStyle>,
+
+    reversed: [
+      $containerBase,
+      { backgroundColor: colors.palette.neutral800, borderColor: colors.palette.neutral500 },
+    ] as StyleProp<ViewStyle>,
+  }
+
+  const $headingPresets: Record<Presets, TextStyle> = {
+    default: {},
+    reversed: { color: colors.palette.neutral100 },
+  }
+
+  const $contentPresets: Record<Presets, TextStyle> = {
+    default: {},
+    reversed: { color: colors.palette.neutral100 },
+  }
+
+  const $footerPresets: Record<Presets, TextStyle> = {
+    default: {},
+    reversed: { color: colors.palette.neutral100 },
+  }
+
   const {
     content,
     contentTx,
@@ -239,57 +279,27 @@ export function Card(props: CardProps) {
   )
 }
 
-const $containerBase: ViewStyle = {
-  borderRadius: scale(16),
-  padding: scale(spacing.extraSmall),
-  borderWidth: 1,
-  shadowColor: colors.palette.neutral800,
-  shadowOffset: { width: 0, height: scale(12) },
-  shadowOpacity: 0.08,
-  shadowRadius: 12.81,
-  elevation: 16,
-  minHeight: scale(96),
-  flexDirection: "row",
-}
+const styles: StyleFn = ({ scale }) => {
+  const $containerBase: ViewStyle = {
+    borderRadius: scale(16),
+    padding: scale(spacing.extraSmall),
+    borderWidth: 1,
+    shadowColor: colors.palette.neutral800,
+    shadowOffset: { width: 0, height: scale(12) },
+    shadowOpacity: 0.08,
+    shadowRadius: 12.81,
+    elevation: 16,
+    minHeight: scale(96),
+    flexDirection: "row",
+  }
 
-const $alignmentWrapper: ViewStyle = {
-  flex: 1,
-  alignSelf: "stretch",
-}
+  const $alignmentWrapper: ViewStyle = {
+    flex: 1,
+    alignSelf: "stretch",
+  }
 
-const $alignmentWrapperFlexOptions = {
-  top: "flex-start",
-  center: "center",
-  "space-between": "space-between",
-  "force-footer-bottom": "space-between",
-} as const
-
-const $containerPresets = {
-  default: [
+  return {
     $containerBase,
-    {
-      backgroundColor: colors.palette.neutral100,
-      borderColor: colors.palette.neutral300,
-    },
-  ] as StyleProp<ViewStyle>,
-
-  reversed: [
-    $containerBase,
-    { backgroundColor: colors.palette.neutral800, borderColor: colors.palette.neutral500 },
-  ] as StyleProp<ViewStyle>,
-}
-
-const $headingPresets: Record<Presets, TextStyle> = {
-  default: {},
-  reversed: { color: colors.palette.neutral100 },
-}
-
-const $contentPresets: Record<Presets, TextStyle> = {
-  default: {},
-  reversed: { color: colors.palette.neutral100 },
-}
-
-const $footerPresets: Record<Presets, TextStyle> = {
-  default: {},
-  reversed: { color: colors.palette.neutral100 },
+    $alignmentWrapper,
+  }
 }

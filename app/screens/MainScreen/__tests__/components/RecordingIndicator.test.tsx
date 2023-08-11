@@ -3,7 +3,7 @@ import React from "react"
 import renderer from "react-test-renderer"
 import { View, Text } from "react-native"
 import { RecordingIndicator } from "../../components/RecordingIndicator"
-import { colors, fontSizes, lineHeights, scale } from "../../../../theme"
+import { colors, scale } from "../../../../theme"
 
 describe("RecordingIndicator", () => {
   it("renders correctly", () => {
@@ -39,8 +39,8 @@ describe("RecordingIndicator", () => {
     })
 
     expect(textComponent.props.style).toEqual({
-      fontSize: fontSizes[16],
-      lineHeight: lineHeights[16],
+      fontSize: scale(16, true),
+      lineHeight: scale(16),
       textAlign: "center",
       color: colors.palette.neutral250,
     })

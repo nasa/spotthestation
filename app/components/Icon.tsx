@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import * as React from "react"
 import { ComponentType } from "react"
 import {
@@ -52,6 +53,8 @@ interface IconProps extends TouchableOpacityProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Icon.md)
  */
 export function Icon(props: IconProps) {
+  const { $imageStyle } = useStyles(styles)
+
   const {
     icon,
     color,
@@ -74,7 +77,7 @@ export function Icon(props: IconProps) {
     >
       <Image
         style={[
-          $imageStyle,
+          $imageStyle as StyleProp<ImageStyle>,
           color && { tintColor: color },
           size && { width: scale(size), height: scale(size) },
           $imageStyleOverride,
@@ -153,6 +156,10 @@ export const iconRegistry = {
   refresh: require("../../assets/icons/refresh.png"),
 }
 
-const $imageStyle: ImageStyle = {
-  resizeMode: "contain",
+const styles: StyleFn = () => {
+  const $imageStyle: ImageStyle = {
+    resizeMode: "contain",
+  }
+
+  return { $imageStyle }
 }

@@ -7,18 +7,25 @@ import React, { useMemo } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import en from "../../../i18n/en"
 import { TxKeyPath, translate } from "../../../i18n"
 import DeviceInfo from "react-native-device-info"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export const TermsAndConditionsScreen = observer(function TermsAndConditionsScreen() {
+  const {
+    $headerStyleOverride,
+    $container,
+    $backButton,
+    $scrollSontentContainerStyle,
+    $scrollContainer,
+    $title,
+    $text,
+    $backButtonText,
+  } = useStyles(styles)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(24),
-  }
 
   const tnc = useMemo(() => {
     const platform = en.settings.termsAndConditionsData[Platform.OS]
@@ -49,10 +56,13 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
     }
   }, [en])
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container, $headerStyleOverride]}
+      contentContainerStyle={[$container, headerStyle]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
@@ -105,49 +115,66 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  height: "100%",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $headerStyleOverride: TextStyle = {
+    top: scale(24),
+  }
 
-const $backButton: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingBottom: 11,
-  paddingLeft: 16,
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    height: "100%",
+  }
 
-const $scrollSontentContainerStyle: ViewStyle = {
-  flexGrow: 1,
-  paddingBottom: 60,
-}
+  const $backButton: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: 11,
+    paddingLeft: 16,
+  }
 
-const $scrollContainer: ViewStyle = {
-  paddingHorizontal: 18,
-}
+  const $scrollSontentContainerStyle: ViewStyle = {
+    flexGrow: 1,
+    paddingBottom: 60,
+  }
 
-const $title: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-  textAlign: "left",
-  paddingBottom: 24,
-}
+  const $scrollContainer: ViewStyle = {
+    paddingHorizontal: 18,
+  }
 
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[24],
-  lineHeight: lineHeights[34],
-  color: colors.palette.neutral250,
-  textAlign: "left",
-  paddingBottom: 16,
-}
+  const $title: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[36],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+    textAlign: "left",
+    paddingBottom: 24,
+  }
 
-const $backButtonText: TextStyle = {
-  ...$text,
-  color: colors.palette.neutral250,
-  paddingBottom: 0,
-  paddingLeft: 5,
+  const $text: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[24],
+    lineHeight: lineHeights[34],
+    color: colors.palette.neutral250,
+    textAlign: "left",
+    paddingBottom: 16,
+  }
+
+  const $backButtonText: TextStyle = {
+    ...$text,
+    color: colors.palette.neutral250,
+    paddingBottom: 0,
+    paddingLeft: 5,
+  }
+
+  return {
+    $headerStyleOverride,
+    $container,
+    $backButton,
+    $scrollSontentContainerStyle,
+    $scrollContainer,
+    $title,
+    $text,
+    $backButtonText,
+  }
 }

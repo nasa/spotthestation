@@ -1,4 +1,5 @@
 const hi = {
+  name: "हिन्दी",
   errorScreen: {
     title: "कुछ गलत हो गया!",
     friendlySubtitle:

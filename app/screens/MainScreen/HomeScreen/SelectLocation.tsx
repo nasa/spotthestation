@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable camelcase */
 import React, { useCallback, useEffect, useState } from "react"
@@ -12,7 +13,7 @@ import {
 } from "react-native"
 import Modal from "react-native-modal"
 import { Accessory, Icon, Text, TextField } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -47,6 +48,18 @@ export function SelectLocation({
   onLocationPress,
   selectedLocation,
 }: SelectLocationProps) {
+  const {
+    $modalBodyContainer,
+    $scrollContainer,
+    $close,
+    $title,
+    $text,
+    $locations,
+    $active,
+    $keyboardAvoidingViewStyle,
+    $modal,
+  } = useStyles(styles)
+
   const {
     savedLocations,
     currentLocation,
@@ -355,65 +368,79 @@ export function SelectLocation({
   )
 }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.neutral350,
-  borderTopLeftRadius: scale(18),
-  borderTopRightRadius: scale(18),
-  flex: 1,
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderTopLeftRadius: scale(18),
+    borderTopRightRadius: scale(18),
+    flex: 1,
+  }
 
-const $scrollContainer: ViewStyle = {
-  flex: 1,
-  paddingHorizontal: scale(36),
-  marginBottom: scale(24),
-}
+  const $scrollContainer: ViewStyle = {
+    flex: 1,
+    paddingHorizontal: scale(36),
+    marginBottom: scale(24),
+  }
 
-const $close: ViewStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  padding: scale(18),
-  zIndex: 5,
-}
+  const $close: ViewStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    padding: scale(18),
+    zIndex: 5,
+  }
 
-const $title: TextStyle = {
-  marginTop: scale(10),
-  marginBottom: scale(24),
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[28],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
-  paddingHorizontal: scale(36),
-}
+  const $title: TextStyle = {
+    marginTop: scale(10),
+    marginBottom: scale(24),
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[28],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+    paddingHorizontal: scale(36),
+  }
 
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[14],
-}
+  const $text: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[14],
+  }
 
-const $locations: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: "transparent",
-  borderRadius: scale(28),
-  height: scale(56),
-  backgroundColor: colors.palette.neutral550,
-  overflow: "hidden",
-  marginHorizontal: scale(36),
-}
+  const $locations: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: "transparent",
+    borderRadius: scale(28),
+    height: scale(56),
+    backgroundColor: colors.palette.neutral550,
+    overflow: "hidden",
+    marginHorizontal: scale(36),
+  }
 
-const $active: ViewStyle = {
-  borderWidth: scale(1.5),
-  borderColor: colors.palette.buttonBlue,
-  backgroundColor: colors.palette.overlayBlue,
-}
+  const $active: ViewStyle = {
+    borderWidth: scale(1.5),
+    borderColor: colors.palette.buttonBlue,
+    backgroundColor: colors.palette.overlayBlue,
+  }
 
-const $keyboardAvoidingViewStyle: ViewStyle = {
-  flex: 1,
-}
+  const $keyboardAvoidingViewStyle: ViewStyle = {
+    flex: 1,
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
+
+  return {
+    $modalBodyContainer,
+    $scrollContainer,
+    $close,
+    $title,
+    $text,
+    $locations,
+    $active,
+    $keyboardAvoidingViewStyle,
+    $modal,
+  }
 }

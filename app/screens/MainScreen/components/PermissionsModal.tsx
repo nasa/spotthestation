@@ -1,7 +1,8 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React from "react"
 import { ViewStyle, View, TextStyle, PressableProps } from "react-native"
 import { Icon, Text, Button } from "../../../components"
-import { fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 
@@ -12,6 +13,17 @@ export interface PermissionsModalProps {
 }
 
 export function PermissionsModal({ body, onClose, onSuccess }: PermissionsModalProps) {
+  const {
+    $modalBodyContainer,
+    $title,
+    $buttonsContainer,
+    $skipButton,
+    $skipButtonText,
+    $nextButton,
+    $nextButtonText,
+    $close,
+  } = useStyles(styles)
+
   return (
     <View
       accessible
@@ -58,66 +70,79 @@ export function PermissionsModal({ body, onClose, onSuccess }: PermissionsModalP
   )
 }
 
-const $modalBodyContainer: ViewStyle = {
-  backgroundColor: colors.palette.buttonBlue,
-  borderRadius: scale(16),
-  alignItems: "center",
-  paddingVertical: 36,
-  paddingHorizontal: 30,
-  width: "100%",
-  alignSelf: "center",
-  marginTop: normalizeHeight(0.28),
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $modalBodyContainer: ViewStyle = {
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(16),
+    alignItems: "center",
+    paddingVertical: 36,
+    paddingHorizontal: 30,
+    width: "100%",
+    alignSelf: "center",
+    marginTop: normalizeHeight(0.28),
+  }
 
-const $title: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[24],
-  lineHeight: lineHeights[29],
-  color: colors.palette.neutral100,
-  paddingBottom: 12,
-  paddingTop: 18,
-}
+  const $title: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[24],
+    lineHeight: lineHeights[29],
+    color: colors.palette.neutral100,
+    paddingBottom: 12,
+    paddingTop: 18,
+  }
 
-const $buttonsContainer: ViewStyle = {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  width: "100%",
-  alignSelf: "flex-end",
-}
+  const $buttonsContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    alignSelf: "flex-end",
+  }
 
-const $skipButton: ViewStyle = {
-  backgroundColor: "transparent",
-  borderWidth: 0,
-  height: scale(56),
-  minWidth: scale(140),
-}
+  const $skipButton: ViewStyle = {
+    backgroundColor: "transparent",
+    borderWidth: 0,
+    height: scale(56),
+    minWidth: scale(140),
+  }
 
-const $skipButtonText: TextStyle = {
-  fontFamily: typography.primary.medium,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral100,
-}
+  const $skipButtonText: TextStyle = {
+    fontFamily: typography.primary.medium,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral100,
+  }
 
-const $nextButton: ViewStyle = {
-  height: scale(56),
-  backgroundColor: colors.palette.neutral100,
-  borderRadius: scale(28),
-  borderWidth: 0,
-  minWidth: scale(140),
-}
+  const $nextButton: ViewStyle = {
+    height: scale(56),
+    backgroundColor: colors.palette.neutral100,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    minWidth: scale(140),
+  }
 
-const $nextButtonText: TextStyle = {
-  fontFamily: typography.primary.medium,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.buttonBlue,
-}
+  const $nextButtonText: TextStyle = {
+    fontFamily: typography.primary.medium,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.buttonBlue,
+  }
 
-const $close: ViewStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  padding: scale(18),
-  zIndex: 5,
+  const $close: ViewStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    padding: scale(18),
+    zIndex: 5,
+  }
+
+  return {
+    $modalBodyContainer,
+    $title,
+    $buttonsContainer,
+    $skipButton,
+    $skipButtonText,
+    $nextButton,
+    $nextButtonText,
+    $close,
+  }
 }

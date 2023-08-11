@@ -1,4 +1,5 @@
 const uk = {
+  name: "Українська",
   errorScreen: {
     title: "Щось пішло не так!",
     friendlySubtitle:
@@ -182,6 +183,7 @@ const uk = {
     notificationSettings: "Налаштування сповіщень",
     termsAndConditions: "Умови та положення",
     contactUs: "Зв'яжіться з нами",
+    language: "Мова",
     termsAndConditionsData: {
       backButton: "Налаштування",
       ios: {

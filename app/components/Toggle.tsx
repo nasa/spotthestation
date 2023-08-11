@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { ComponentType, FC, useMemo } from "react"
 import {
   GestureResponderEvent,
@@ -13,7 +14,7 @@ import {
   ViewStyle,
 } from "react-native"
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
-import { colors, scale, spacing } from "../theme"
+import { colors, spacing } from "../theme"
 import { iconRegistry, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
 
@@ -158,6 +159,8 @@ interface ToggleInputProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Toggle.md)
  */
 export function Toggle(props: ToggleProps) {
+  const { $inputWrapper, $helper } = useStyles(styles)
+
   const {
     variant = "checkbox",
     editable = true,
@@ -247,6 +250,8 @@ const ToggleInputs: Record<Variants, FC<ToggleInputProps>> = {
 }
 
 function Checkbox(props: ToggleInputProps) {
+  const { $checkboxInner, $checkboxDetail, $checkbox } = useStyles(styles)
+
   const {
     on,
     status,
@@ -285,7 +290,7 @@ function Checkbox(props: ToggleInputProps) {
   return (
     <View
       style={[
-        $inputOuterVariants.checkbox,
+        $checkbox,
         { backgroundColor: offBackgroundColor, borderColor: outerBorderColor },
         $outerStyleOverride,
       ]}
@@ -300,7 +305,11 @@ function Checkbox(props: ToggleInputProps) {
       >
         <Image
           source={iconRegistry[checkboxIcon] || iconRegistry.check}
-          style={[$checkboxDetail, { tintColor: iconTintColor }, $detailStyleOverride]}
+          style={[
+            $checkboxDetail as ImageStyle,
+            { tintColor: iconTintColor },
+            $detailStyleOverride,
+          ]}
         />
       </Animated.View>
     </View>
@@ -308,6 +317,8 @@ function Checkbox(props: ToggleInputProps) {
 }
 
 function Radio(props: ToggleInputProps) {
+  const { $radioInner, $radioDetail, $radio } = useStyles(styles)
+
   const {
     on,
     status,
@@ -345,7 +356,7 @@ function Radio(props: ToggleInputProps) {
   return (
     <View
       style={[
-        $inputOuterVariants.radio,
+        $radio,
         { backgroundColor: offBackgroundColor, borderColor: outerBorderColor },
         $outerStyleOverride,
       ]}
@@ -367,6 +378,8 @@ function Radio(props: ToggleInputProps) {
 }
 
 function Switch(props: ToggleInputProps) {
+  const { $switchInner, $switchDetail, $switch } = useStyles(styles)
+
   const {
     on,
     status,
@@ -436,13 +449,7 @@ function Switch(props: ToggleInputProps) {
   }, [on, knobWidth])
 
   return (
-    <View
-      style={[
-        $inputOuterVariants.switch,
-        { backgroundColor: offBackgroundColor },
-        $outerStyleOverride,
-      ]}
-    >
+    <View style={[$switch, { backgroundColor: offBackgroundColor }, $outerStyleOverride]}>
       <Animated.View
         style={[
           $switchInner,
@@ -469,6 +476,13 @@ function Switch(props: ToggleInputProps) {
 }
 
 function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off" }) {
+  const {
+    $switchAccessibility,
+    $switchAccessibilityLine,
+    $switchAccessibilityCircle,
+    $switchAccessibilityIcon,
+  } = useStyles(styles)
+
   const { on, disabled, status, switchAccessibilityMode, role, innerStyle, detailStyle } = props
 
   if (!switchAccessibilityMode) return null
@@ -503,7 +517,7 @@ function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off"
 
       {switchAccessibilityMode === "icon" && shouldLabelBeVisible && (
         <Image
-          style={[$switchAccessibilityIcon, { tintColor: color }]}
+          style={[$switchAccessibilityIcon as ImageStyle, { tintColor: color }]}
           source={role === "off" ? iconRegistry.hidden : iconRegistry.view}
         />
       )}
@@ -512,6 +526,8 @@ function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off"
 }
 
 function FieldLabel(props: BaseToggleProps) {
+  const { $label, $labelRight, $labelLeft } = useStyles(styles)
+
   const {
     status,
     label,
@@ -545,114 +561,139 @@ function FieldLabel(props: BaseToggleProps) {
   )
 }
 
-const $inputWrapper: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-}
+const styles: StyleFn = ({ scale }) => {
+  const $inputWrapper: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+  }
 
-const $inputOuterBase: ViewStyle = {
-  height: scale(24),
-  width: scale(24),
-  borderWidth: scale(2),
-  alignItems: "center",
-  overflow: "hidden",
-  flexGrow: 0,
-  flexShrink: 0,
-  justifyContent: "space-between",
-  flexDirection: "row",
-}
+  const $inputOuterBase: ViewStyle = {
+    height: scale(24),
+    width: scale(24),
+    borderWidth: scale(2),
+    alignItems: "center",
+    overflow: "hidden",
+    flexGrow: 0,
+    flexShrink: 0,
+    justifyContent: "space-between",
+    flexDirection: "row",
+  }
 
-const $inputOuterVariants: Record<Variants, StyleProp<ViewStyle>> = {
-  checkbox: [$inputOuterBase, { borderRadius: scale(4) }],
-  radio: [$inputOuterBase, { borderRadius: scale(12) }],
-  switch: [
+  const $checkboxInner: ViewStyle = {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  }
+
+  const $checkboxDetail: ImageStyle = {
+    width: scale(20),
+    height: scale(20),
+    resizeMode: "contain",
+  }
+
+  const $radioInner: ViewStyle = {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  }
+
+  const $radioDetail: ViewStyle = {
+    width: scale(12),
+    height: scale(12),
+    borderRadius: scale(6),
+  }
+
+  const $switchInner: ViewStyle = {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    borderColor: colors.transparent,
+    overflow: "hidden",
+    position: "absolute",
+    paddingStart: scale(4),
+    paddingEnd: scale(4),
+  }
+
+  const $helper: TextStyle = {
+    marginTop: scale(spacing.extraSmall),
+  }
+
+  const $label: TextStyle = {
+    flex: 1,
+  }
+
+  const $labelRight: TextStyle = {
+    marginLeft: scale(spacing.medium),
+  }
+
+  const $labelLeft: TextStyle = {
+    marginRight: scale(spacing.medium),
+  }
+
+  const $switchAccessibility: TextStyle = {
+    width: "40%",
+    justifyContent: "center",
+    alignItems: "center",
+  }
+
+  const $switchAccessibilityIcon: ImageStyle = {
+    width: scale(14),
+    height: scale(14),
+    resizeMode: "contain",
+  }
+
+  const $switchAccessibilityLine: ViewStyle = {
+    width: scale(2),
+    height: scale(12),
+  }
+
+  const $switchAccessibilityCircle: ViewStyle = {
+    borderWidth: scale(2),
+    width: scale(12),
+    height: scale(12),
+    borderRadius: scale(6),
+  }
+
+  const $switchDetail: SwitchToggleProps["inputDetailStyle"] = {
+    borderRadius: scale(12),
+    position: "absolute",
+    width: scale(20),
+    height: scale(20),
+  }
+
+  const $checkbox = { ...$inputOuterBase, borderRadius: scale(4) }
+  const $radio = { ...$inputOuterBase, borderRadius: scale(12) }
+  const $switch = {
+    ...$inputOuterBase,
+    height: scale(28),
+    width: scale(46),
+    borderRadius: scale(16),
+    borderWidth: 0,
+  }
+
+  return {
+    $inputWrapper,
     $inputOuterBase,
-    { height: scale(28), width: scale(46), borderRadius: scale(16), borderWidth: 0 },
-  ],
-}
-
-const $checkboxInner: ViewStyle = {
-  width: "100%",
-  height: "100%",
-  alignItems: "center",
-  justifyContent: "center",
-  overflow: "hidden",
-}
-
-const $checkboxDetail: ImageStyle = {
-  width: scale(20),
-  height: scale(20),
-  resizeMode: "contain",
-}
-
-const $radioInner: ViewStyle = {
-  width: "100%",
-  height: "100%",
-  alignItems: "center",
-  justifyContent: "center",
-  overflow: "hidden",
-}
-
-const $radioDetail: ViewStyle = {
-  width: scale(12),
-  height: scale(12),
-  borderRadius: scale(6),
-}
-
-const $switchInner: ViewStyle = {
-  width: "100%",
-  height: "100%",
-  alignItems: "center",
-  borderColor: colors.transparent,
-  overflow: "hidden",
-  position: "absolute",
-  paddingStart: scale(4),
-  paddingEnd: scale(4),
-}
-
-const $switchDetail: SwitchToggleProps["inputDetailStyle"] = {
-  borderRadius: scale(12),
-  position: "absolute",
-  width: scale(20),
-  height: scale(20),
-}
-
-const $helper: TextStyle = {
-  marginTop: scale(spacing.extraSmall),
-}
-
-const $label: TextStyle = {
-  flex: 1,
-}
-
-const $labelRight: TextStyle = {
-  marginLeft: scale(spacing.medium),
-}
-
-const $labelLeft: TextStyle = {
-  marginRight: scale(spacing.medium),
-}
-
-const $switchAccessibility: TextStyle = {
-  width: "40%",
-  justifyContent: "center",
-  alignItems: "center",
-}
-
-const $switchAccessibilityIcon: ImageStyle = {
-  width: scale(14),
-  height: scale(14),
-  resizeMode: "contain",
-}
-
-const $switchAccessibilityLine: ViewStyle = {
-  width: scale(2),
-  height: scale(12),
-}
-
-const $switchAccessibilityCircle: ViewStyle = {
-  borderWidth: scale(2),
-  width: scale(12),
-  height: scale(12),
-  borderRadius: scale(6),
+    $checkboxInner,
+    $checkboxDetail,
+    $radioInner,
+    $radioDetail,
+    $switchInner,
+    $helper,
+    $label,
+    $labelRight,
+    $labelLeft,
+    $switchAccessibility,
+    $switchAccessibilityIcon,
+    $switchAccessibilityLine,
+    $switchAccessibilityCircle,
+    $switchDetail,
+    $checkbox,
+    $radio,
+    $switch,
+  }
 }

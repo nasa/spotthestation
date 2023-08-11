@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { ReactElement } from "react"
 import {
   StyleProp,
@@ -102,6 +103,8 @@ interface ListItemActionProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-ListItem.md)
  */
 export function ListItem(props: ListItemProps) {
+  const { $separatorTop, $separatorBottom, $textStyle, $touchableStyle } = useStyles(styles)
+
   const {
     bottomSeparator,
     children,
@@ -161,6 +164,8 @@ export function ListItem(props: ListItemProps) {
 }
 
 function ListItemAction(props: ListItemActionProps) {
+  const { $iconContainer, $iconContainerLeft, $iconContainerRight } = useStyles(styles)
+
   const { icon, Component, iconColor, size, side } = props
 
   const $iconContainerStyles = [$iconContainer]
@@ -186,37 +191,50 @@ function ListItemAction(props: ListItemActionProps) {
   return null
 }
 
-const $separatorTop: ViewStyle = {
-  borderTopWidth: 1,
-  borderTopColor: colors.separator,
-}
+const styles: StyleFn = ({ scale }) => {
+  const $separatorTop: ViewStyle = {
+    borderTopWidth: 1,
+    borderTopColor: colors.separator,
+  }
 
-const $separatorBottom: ViewStyle = {
-  borderBottomWidth: 1,
-  borderBottomColor: colors.separator,
-}
+  const $separatorBottom: ViewStyle = {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.separator,
+  }
 
-const $textStyle: TextStyle = {
-  paddingVertical: scale(spacing.extraSmall),
-  alignSelf: "center",
-  flexGrow: 1,
-  flexShrink: 1,
-}
+  const $textStyle: TextStyle = {
+    paddingVertical: scale(spacing.extraSmall),
+    alignSelf: "center",
+    flexGrow: 1,
+    flexShrink: 1,
+  }
 
-const $touchableStyle: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "flex-start",
-}
+  const $touchableStyle: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  }
 
-const $iconContainer: ViewStyle = {
-  justifyContent: "center",
-  alignItems: "center",
-  flexGrow: 0,
-}
-const $iconContainerLeft: ViewStyle = {
-  marginEnd: scale(spacing.medium),
-}
+  const $iconContainer: ViewStyle = {
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: 0,
+  }
 
-const $iconContainerRight: ViewStyle = {
-  marginStart: scale(spacing.medium),
+  const $iconContainerLeft: ViewStyle = {
+    marginEnd: scale(spacing.medium),
+  }
+
+  const $iconContainerRight: ViewStyle = {
+    marginStart: scale(spacing.medium),
+  }
+
+  return {
+    $separatorTop,
+    $separatorBottom,
+    $textStyle,
+    $touchableStyle,
+    $iconContainer,
+    $iconContainerLeft,
+    $iconContainerRight,
+  }
 }

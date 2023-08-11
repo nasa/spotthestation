@@ -1,4 +1,5 @@
 const en = {
+  name: "English",
   errorScreen: {
     title: "Something went wrong!",
     friendlySubtitle:
@@ -184,6 +185,7 @@ const en = {
     notificationSettings: "Notification Settings",
     termsAndConditions: "Terms and Conditions",
     contactUs: "Contact Us",
+    language: "Language",
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

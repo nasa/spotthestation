@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Platform, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
@@ -60,6 +61,8 @@ export interface GlobeProps {
 }
 
 export function Globe({ marker, zoom, issPath }: GlobeProps) {
+  const { $container, $pan } = useStyles(styles)
+
   const mapper = useCallback((p) => {
     return new Vector3(...coordinatesToPosition([p[0], p[1]], GLOBE_RADIUS + 20))
   }, [])
@@ -359,11 +362,15 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
   )
 }
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-}
+const styles: StyleFn = () => {
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+  }
 
-const $pan: ViewStyle = {
-  flex: 1,
+  const $pan: ViewStyle = {
+    flex: 1,
+  }
+
+  return { $container, $pan }
 }

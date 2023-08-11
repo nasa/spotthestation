@@ -1,3 +1,4 @@
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useEffect, useState } from "react"
 import {
   PressableProps,
@@ -8,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { Icon, Text } from "../../../components"
-import { colors, fontSizes, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 
 export interface RefreshButtonProps {
   onPress: PressableProps["onPress"]
@@ -17,6 +18,8 @@ export interface RefreshButtonProps {
 }
 
 export function RefreshButton({ onPress, inProgress, containerStyle }: RefreshButtonProps) {
+  const { $container, $text } = useStyles(styles)
+
   const [spinValue] = useState(new Animated.Value(0))
   const [loop] = useState(
     Animated.loop(
@@ -56,13 +59,17 @@ export function RefreshButton({ onPress, inProgress, containerStyle }: RefreshBu
   )
 }
 
-const $container: ViewStyle = {
-  flexDirection: "row",
-}
+const styles: StyleFn = ({ fontSizes }) => {
+  const $container: ViewStyle = {
+    flexDirection: "row",
+  }
 
-const $text = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[12],
-  color: colors.palette.neutral450,
-  marginLeft: 3,
+  const $text = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[12],
+    color: colors.palette.neutral450,
+    marginLeft: 3,
+  }
+
+  return { $container, $text }
 }

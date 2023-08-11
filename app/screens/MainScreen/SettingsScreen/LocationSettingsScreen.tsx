@@ -6,7 +6,7 @@ import React, { useEffect, useCallback, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
@@ -22,12 +22,27 @@ import { SettingsItem } from "../components/SettingsItem"
 import { openSettings } from "react-native-permissions"
 import * as storage from "../../../utils/storage"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
 }
 
 export const LocationSettingsScreen = observer(function LocationSettingsScreen() {
+  const {
+    $headerStyleOverride,
+    $container,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $backButton,
+    $addButton,
+    $backButtonText,
+    $title,
+    $scrollWrapper,
+    $addButtonContainer,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
   const route = useRoute()
   const routeParams = route.params as LocationSettingsScreenParams
@@ -52,10 +67,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [isRemove, setIsRemove] = useState(false)
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [locationPermission, setLocationPermission] = useState<boolean>(false)
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(24),
-  }
 
   const getLocation = useCallback(async () => {
     setIsCurrentLocationUpdating(true)
@@ -142,14 +153,20 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     [savedLocations],
   )
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
+  const addButtonContainer = { ...$addButtonContainer }
+  addButtonContainer.bottom = Number(addButtonContainer.bottom) + bottomInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container, $headerStyleOverride]}
+      contentContainerStyle={[$container, headerStyle]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
     >
-      <View style={{ flex: 1, paddingBottom: scale(120) }}>
+      <View style={$scrollWrapper}>
         <ScrollView
           accessible
           accessibilityLabel="Location settings scrollable us area"
@@ -203,7 +220,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
                 icon="pin"
                 title={currentLocation.title}
                 subtitle={currentLocation.subtitle}
-                selected={currentLocation.alert}
+                selected={currentLocation.sightings.every((item) => item.notify)}
                 onToggle={() => handleToggle(currentLocation, "current")}
                 withSwitch
                 ctaTx="settings.locationSettingsData.cta"
@@ -249,7 +266,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       </View>
       <IconLinkButton
         icon="plusCircle"
-        buttonStyle={[$addButton, { position: "absolute", bottom: bottomInset + scale(64) }]}
+        style={addButtonContainer}
+        buttonStyle={$addButton}
         viewStyle={$addButton}
         iconColor={colors.palette.neutral250}
         iconSize={28}
@@ -308,61 +326,89 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  height: "100%",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $headerStyleOverride: TextStyle = {
+    top: scale(24),
+  }
 
-const $modal: ViewStyle = {
-  flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    height: "100%",
+  }
 
-const $scrollContentContainerStyle: ViewStyle = {
-  flexGrow: 1,
-  paddingBottom: scale(60),
-}
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $scrollContainer: ViewStyle = {
-  paddingHorizontal: scale(18),
-  paddingBottom: scale(10),
-}
+  const $scrollContentContainerStyle: ViewStyle = {
+    flexGrow: 1,
+    paddingBottom: scale(60),
+  }
 
-const $backButton: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  paddingBottom: 11,
-}
+  const $scrollContainer: ViewStyle = {
+    paddingHorizontal: scale(18),
+    paddingBottom: scale(10),
+  }
 
-const $addButton: ViewStyle = {
-  width: scale(64),
-  height: scale(64),
-  backgroundColor: colors.palette.buttonBlue,
-  alignSelf: "center",
-}
+  const $backButton: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: 11,
+  }
 
-const $text: TextStyle = {
-  fontFamily: typography.primary?.normal,
-  fontSize: fontSizes[18],
-  lineHeight: lineHeights[22],
-  color: colors.palette.neutral450,
-  textAlign: "left",
-  paddingBottom: scale(24),
-}
+  const $addButton: ViewStyle = {
+    width: scale(64),
+    height: scale(64),
+    backgroundColor: colors.palette.buttonBlue,
+  }
 
-const $backButtonText: TextStyle = {
-  ...$text,
-  color: colors.palette.neutral250,
-  paddingBottom: 0,
-  paddingLeft: scale(5),
-}
+  const $addButtonContainer: ViewStyle = {
+    position: "absolute",
+    alignSelf: "center",
+    bottom: scale(64),
+  }
 
-const $title: TextStyle = {
-  ...$text,
-  fontSize: fontSizes[36],
-  lineHeight: lineHeights[44],
-  color: colors.palette.neutral250,
+  const $text: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral450,
+    textAlign: "left",
+    paddingBottom: scale(24),
+  }
+
+  const $backButtonText: TextStyle = {
+    ...$text,
+    color: colors.palette.neutral250,
+    paddingBottom: 0,
+    paddingLeft: scale(5),
+  }
+
+  const $title: TextStyle = {
+    ...$text,
+    fontSize: fontSizes[36],
+    lineHeight: lineHeights[44],
+    color: colors.palette.neutral250,
+  }
+
+  const $scrollWrapper = { flex: 1, paddingBottom: scale(120) }
+
+  return {
+    $headerStyleOverride,
+    $container,
+    $modal,
+    $scrollContentContainerStyle,
+    $scrollContainer,
+    $backButton,
+    $addButton,
+    $text,
+    $backButtonText,
+    $title,
+    $scrollWrapper,
+    $addButtonContainer,
+  }
 }

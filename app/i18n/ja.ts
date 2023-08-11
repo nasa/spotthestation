@@ -1,4 +1,5 @@
 const ja = {
+  name: "日本語",
   errorScreen: {
     title: "正常に動作しませんでした！",
     friendlySubtitle:

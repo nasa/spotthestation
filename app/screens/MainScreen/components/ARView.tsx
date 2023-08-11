@@ -10,6 +10,7 @@ import { ISSSceneAR, emitter } from "./ISSSceneAR"
 import { azAltToCartesian, cartesianToAzAlt, normalizeHeading } from "../../../utils/geometry"
 import { OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 interface ARViewProps {
   isFullScreen: boolean
@@ -24,6 +25,8 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
   { isFullScreen, isPathVisible, isRecording, recordedSeconds, issPath, setIsSpotted },
   ref,
 ) {
+  const { $container, $hudContainer } = useStyles(styles)
+
   const [issPosition, setIssPosition] = useState<[number, number]>(null)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
@@ -125,14 +128,18 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-}
+const styles: StyleFn = () => {
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+  }
 
-const $hudContainer: ViewStyle = {
-  position: "absolute",
-  alignItems: "center",
-  width: "100%",
-  top: 0,
+  const $hudContainer: ViewStyle = {
+    position: "absolute",
+    alignItems: "center",
+    width: "100%",
+    top: 0,
+  }
+
+  return { $container, $hudContainer }
 }

@@ -9,13 +9,25 @@ import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
 import * as storage from "../../utils/storage"
 import { getUserId } from "../../utils/generateUUID"
-import { fontSizes, lineHeights, scale } from "../../theme/spacing"
 import analytics from "@react-native-firebase/analytics"
+import { StyleFn, useStyles } from "../../utils/useStyles"
 
 const background = require("../../../assets/images/bg.png")
 const iss = require("../../../assets/images/iss-with-path.png")
 
 export function Splash() {
+  const {
+    $container,
+    $imageBackground,
+    $bottomContainer,
+    $bottomRowContainer,
+    $iss,
+    $title,
+    $subTitle,
+    $buttonSize,
+    $imageStyle,
+  } = useStyles(styles)
+
   const navigation = useNavigation()
 
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
@@ -51,7 +63,7 @@ export function Splash() {
     <Screen preset="fixed" contentContainerStyle={$container} statusBarStyle="light">
       <ImageBackground source={background} resizeMode="cover" style={[$imageBackground, $topInset]}>
         <NasaLogo />
-        <Image source={iss} style={$iss} />
+        <Image source={iss} style={$iss as ImageStyle} />
         <View style={$bottomContainer}>
           <Text
             accessible
@@ -76,7 +88,7 @@ export function Splash() {
               accessibilityLabel="Arrow right button"
               accessibilityHint="Navigates to the next screen"
               buttonStyle={$buttonSize}
-              imageStyle={$imageStyle}
+              imageStyle={$imageStyle as ImageStyle}
               onPress={handleNavigate}
             />
           </View>
@@ -86,56 +98,70 @@ export function Splash() {
   )
 }
 
-const $container: ViewStyle = {
-  flex: 1,
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    flex: 1,
+  }
 
-const $imageBackground: ViewStyle = {
-  flex: 1,
-  display: "flex",
-  flexDirection: "column",
-}
+  const $imageBackground: ViewStyle = {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+  }
 
-const $bottomContainer: ViewStyle = {
-  position: "absolute",
-  top: "68%",
-}
+  const $bottomContainer: ViewStyle = {
+    position: "absolute",
+    top: "68%",
+  }
 
-const $bottomRowContainer: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "100%",
-  paddingHorizontal: scale(36),
-}
+  const $bottomRowContainer: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: scale(36),
+  }
 
-const $iss: ImageStyle = {
-  position: "absolute",
-  top: "26%",
-}
+  const $iss: ImageStyle = {
+    position: "absolute",
+    top: "26%",
+  }
 
-const $title: TextStyle = {
-  width: scale(220),
-  marginLeft: scale(36),
-  fontSize: fontSizes[48],
-  lineHeight: lineHeights[64],
-  fontFamily: typography.primary.bold,
-  color: colors.palette.neutral100,
-}
+  const $title: TextStyle = {
+    width: scale(220),
+    marginLeft: scale(36),
+    fontSize: fontSizes[48],
+    lineHeight: lineHeights[64],
+    fontFamily: typography.primary.bold,
+    color: colors.palette.neutral100,
+  }
 
-const $subTitle: TextStyle = {
-  width: "85%",
-  fontSize: fontSizes[24],
-  lineHeight: lineHeights[29],
-  fontFamily: typography.primary.normal,
-  color: colors.palette.neutral250,
-}
+  const $subTitle: TextStyle = {
+    width: "85%",
+    fontSize: fontSizes[24],
+    lineHeight: lineHeights[29],
+    fontFamily: typography.primary.normal,
+    color: colors.palette.neutral250,
+  }
 
-const $buttonSize: TextStyle = {
-  width: scale(64),
-  height: scale(64),
-}
+  const $buttonSize: TextStyle = {
+    width: scale(64),
+    height: scale(64),
+  }
 
-const $imageStyle: ImageStyle = {
-  transform: [{ rotate: "180deg" }],
+  const $imageStyle: ImageStyle = {
+    transform: [{ rotate: "180deg" }],
+  }
+
+  return {
+    $container,
+    $imageBackground,
+    $bottomContainer,
+    $bottomRowContainer,
+    $iss,
+    $title,
+    $subTitle,
+    $buttonSize,
+    $imageStyle,
+  }
 }

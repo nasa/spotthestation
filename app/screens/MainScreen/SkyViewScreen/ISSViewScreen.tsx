@@ -26,7 +26,7 @@ import { check, request, PERMISSIONS, RESULTS, openSettings } from "react-native
 import Share from "react-native-share"
 import { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
-import { colors, fontSizes, lineHeights, scale, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { ARView } from "../components/ARView"
 import { intervalToDuration, formatDuration } from "date-fns"
@@ -49,6 +49,7 @@ import {
   withSequence,
   withTiming,
 } from "react-native-reanimated"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -141,6 +142,32 @@ async function requestMicrophonePermissions(): Promise<string> {
 }
 
 export const ISSViewScreen = observer(function ISSNowScreen() {
+  const {
+    $containerStyleOverride,
+    $containerStyleOverrideFs,
+    $headerStyleOverride,
+    $bodyStyleOverride,
+    $bodyStyleOverrideFs,
+    $bottomContainerStyleOverride,
+    $button,
+    $buttonFs,
+    $text,
+    $container,
+    $headerContainer,
+    $modal,
+    $body,
+    $bottomContainer,
+    $buttonColumn,
+    $closeButton,
+    $activeButton,
+    $timeContainer,
+    $timeHeader,
+    $time,
+    $stop,
+    $ml24,
+    $mr24,
+  } = useStyles(styles)
+
   const route: ISSViewScreenRouteProps = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -379,28 +406,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
   }
 
-  const $containerStyleOverride: ViewStyle = {
-    paddingHorizontal: isFullScreen ? 0 : scale(18),
-  }
-
-  const $headerStyleOverride: TextStyle = {
-    top: topInset + scale(24),
-  }
-
-  const $bodyStyleOverride: ViewStyle = {
-    marginTop: isFullScreen ? 0 : topInset + scale(80),
-  }
-
-  const $bottomContainerStyleOverride: ViewStyle = {
-    bottom: bottomInset + scale(24),
-  }
-
-  const $button: ViewStyle = {
-    ...$iconButton,
-    width: isFullScreen ? scale(54) : scale(44),
-    height: isFullScreen ? scale(54) : scale(44),
-  }
-
   useEffect(() => {
     const initial = Orientation.getInitialOrientation()
 
@@ -488,15 +493,27 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     ),
   }))
 
+  const headerStyle = { ...$headerStyleOverride }
+  headerStyle.top = Number(headerStyle.top) + topInset
+
+  const bodyStyle = { ...(isFullScreen ? $bodyStyleOverrideFs : $bodyStyleOverride) }
+  if (!isFullScreen) bodyStyle.marginTop = Number(bodyStyle.marginTop) + topInset
+
+  const bottomContainerStyle = { ...$bottomContainerStyleOverride }
+  bottomContainerStyle.bottom = Number(bottomContainerStyle.bottom) + bottomInset
+
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container, $containerStyleOverride]}
+      contentContainerStyle={[
+        $container,
+        isFullScreen ? $containerStyleOverrideFs : $containerStyleOverride,
+      ]}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
       isPortrait={false}
     >
-      <View style={[$headerContainer, $headerStyleOverride]}>
+      <View style={[$headerContainer, headerStyle]}>
         {isFullScreen && (
           <IconLinkButton
             accessible
@@ -504,13 +521,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             accessibilityHint="disable full screen mode"
             icon="x"
             onPress={() => setIsFullScreen(false)}
-            buttonStyle={[$button, $closeButton]}
+            buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
           />
         )}
       </View>
       {!isCameraAllowed ? (
         <Pressable
-          style={[$body, $bodyStyleOverride]}
+          style={[$body, bodyStyle]}
           onPress={() =>
             requestCameraPermissions((value) => {
               setIsCameraAllowed(value)
@@ -533,7 +550,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           />
         </Pressable>
       ) : (
-        <View style={[$body, $bodyStyleOverride]}>
+        <View style={[$body, bodyStyle]}>
           {issData?.length > 0 && (
             <ARView
               ref={arView}
@@ -548,7 +565,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               setIsSpotted={setIsSpotted}
             />
           )}
-          <View style={[$bottomContainer, $bottomContainerStyleOverride]}>
+          <View style={[$bottomContainer, bottomContainerStyle]}>
             <View style={[$buttonColumn, isLandscape && { flexDirection: "row" }]}>
               <IconLinkButton
                 accessible
@@ -556,9 +573,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityHint="enable/disable path line"
                 icon="line"
                 buttonStyle={[
-                  $button,
+                  isFullScreen ? $buttonFs : $button,
                   isPathVisible && $activeButton,
-                  isLandscape && { marginRight: scale(24) },
+                  isLandscape && $mr24,
                 ]}
                 onPress={() => setIsPathVisible(!isPathVisible)}
               />
@@ -568,9 +585,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityHint="enable full screen"
                 icon="compass"
                 buttonStyle={[
-                  $button,
+                  isFullScreen ? $buttonFs : $button,
                   isFullScreen && $activeButton,
-                  isLandscape && { marginRight: scale(24) },
+                  isLandscape && $mr24,
                 ]}
                 onPress={() => setIsFullScreen(true)}
               />
@@ -591,7 +608,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityLabel="share"
                 accessibilityHint="open share modal"
                 icon="share"
-                buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                 onPress={onShare}
               />
               <IconLinkButton
@@ -600,9 +617,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 accessibilityHint="take a photo"
                 icon="capture"
                 buttonStyle={[
-                  $button,
+                  isFullScreen ? $buttonFs : $button,
                   animatedCameraButtonStyle,
-                  isLandscape && { marginLeft: scale(24) },
+                  isLandscape && $ml24,
                 ]}
                 onPress={takeScreenshot}
               />
@@ -616,7 +633,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                       icon="videoOff"
                       onPress={stopRecording}
                       backgroundColor={colors.palette.nasaRed}
-                      buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                      buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                     />
                     <Text style={$stop}>Stop</Text>
                   </View>
@@ -630,7 +647,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   onPress={() => {
                     checkMicrophonePermissions().then((value) => startRecording(value))
                   }}
-                  buttonStyle={[$button, isLandscape && { marginLeft: scale(24) }]}
+                  buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                 />
               )}
             </View>
@@ -676,102 +693,170 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   )
 })
 
-const $text: TextStyle = {
-  bottom: "40%",
-  fontSize: fontSizes[24],
-  textAlign: "center",
-  width: "50%",
-  position: "absolute",
-  color: "#fff",
-  zIndex: 9,
-  alignSelf: "center",
-}
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $containerStyleOverride: ViewStyle = {
+    paddingHorizontal: scale(18),
+  }
 
-const $container: ViewStyle = {
-  flex: 1,
-  backgroundColor: colors.backgroundDark,
-  justifyContent: "space-between",
-}
+  const $iconButton: ViewStyle = {
+    backgroundColor: colors.palette.overlayWhite,
+    marginTop: scale(24),
+  }
 
-const $headerContainer: ViewStyle = {
-  position: "absolute",
-  left: scale(18),
-  zIndex: 9,
-}
+  const $containerStyleOverrideFs: ViewStyle = {
+    paddingHorizontal: 0,
+  }
 
-const $modal: ViewStyle = {
-  // flex: 1,
-  justifyContent: "flex-end",
-  left: 0,
-  margin: 0,
-}
+  const $headerStyleOverride: TextStyle = {
+    top: scale(24),
+  }
 
-const $body: ViewStyle = {
-  flex: 1,
-  position: "relative",
-  backgroundColor: colors.backgroundDark,
-  borderRadius: scale(12),
-  overflow: "hidden",
-}
+  const $bodyStyleOverride: ViewStyle = {
+    marginTop: scale(80),
+  }
 
-const $bottomContainer: ViewStyle = {
-  position: "absolute",
-  left: 0,
-  width: "100%",
-  paddingHorizontal: scale(24),
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "flex-end",
-}
+  const $bodyStyleOverrideFs: ViewStyle = {
+    marginTop: 0,
+  }
 
-const $buttonColumn: ViewStyle = {
-  justifyContent: "flex-end",
-}
+  const $bottomContainerStyleOverride: ViewStyle = {
+    bottom: scale(24),
+  }
 
-const $iconButton: ViewStyle = {
-  backgroundColor: colors.palette.overlayWhite,
-  marginTop: scale(24),
-}
+  const $button: ViewStyle = {
+    ...$iconButton,
+    width: scale(44),
+    height: scale(44),
+  }
 
-const $closeButton: ViewStyle = {
-  marginTop: 0,
-  width: scale(44),
-  height: scale(44),
-}
+  const $buttonFs: ViewStyle = {
+    ...$iconButton,
+    width: scale(54),
+    height: scale(54),
+  }
 
-const $activeButton: ViewStyle = {
-  backgroundColor: colors.palette.buttonBlue,
-}
+  const $text: TextStyle = {
+    bottom: "40%",
+    fontSize: fontSizes[24],
+    textAlign: "center",
+    width: "50%",
+    position: "absolute",
+    color: "#fff",
+    zIndex: 9,
+    alignSelf: "center",
+  }
 
-const $timeContainer: ViewStyle = {
-  flex: 1,
-}
+  const $container: ViewStyle = {
+    flex: 1,
+    backgroundColor: colors.backgroundDark,
+    justifyContent: "space-between",
+  }
 
-const $timeHeader: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[13],
-  lineHeight: lineHeights[16],
-  color: colors.palette.neutral250,
-  textTransform: "uppercase",
-  textAlign: "center",
-}
+  const $headerContainer: ViewStyle = {
+    position: "absolute",
+    left: scale(18),
+    zIndex: 9,
+  }
 
-const $time: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[24],
-  lineHeight: lineHeights[39],
-  color: colors.palette.neutral100,
-  textAlign: "center",
-}
+  const $modal: ViewStyle = {
+    // flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
 
-const $stop: TextStyle = {
-  position: "absolute",
-  top: "100%",
-  alignSelf: "center",
-  marginTop: scale(7),
-  fontFamily: typography.primary.normal,
-  fontSize: fontSizes[13],
-  lineHeight: lineHeights[16],
-  color: colors.palette.neutral100,
-  textTransform: "uppercase",
+  const $body: ViewStyle = {
+    flex: 1,
+    position: "relative",
+    backgroundColor: colors.backgroundDark,
+    borderRadius: scale(12),
+    overflow: "hidden",
+  }
+
+  const $bottomContainer: ViewStyle = {
+    position: "absolute",
+    left: 0,
+    width: "100%",
+    paddingHorizontal: scale(24),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  }
+
+  const $buttonColumn: ViewStyle = {
+    justifyContent: "flex-end",
+  }
+
+  const $closeButton: ViewStyle = {
+    marginTop: 0,
+    width: scale(44),
+    height: scale(44),
+  }
+
+  const $activeButton: ViewStyle = {
+    backgroundColor: colors.palette.buttonBlue,
+  }
+
+  const $timeContainer: ViewStyle = {
+    flex: 1,
+  }
+
+  const $timeHeader: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    color: colors.palette.neutral250,
+    textTransform: "uppercase",
+    textAlign: "center",
+  }
+
+  const $time: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[24],
+    lineHeight: lineHeights[39],
+    color: colors.palette.neutral100,
+    textAlign: "center",
+  }
+
+  const $stop: TextStyle = {
+    position: "absolute",
+    top: "100%",
+    alignSelf: "center",
+    marginTop: scale(7),
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    color: colors.palette.neutral100,
+    textTransform: "uppercase",
+  }
+
+  const $ml24 = { marginLeft: scale(24) }
+  const $mr24 = { marginRight: scale(24) }
+
+  return {
+    $containerStyleOverride,
+    $containerStyleOverrideFs,
+    $headerStyleOverride,
+    $bodyStyleOverride,
+    $bodyStyleOverrideFs,
+    $bottomContainerStyleOverride,
+    $button,
+    $buttonFs,
+    $text,
+    $container,
+    $headerContainer,
+    $modal,
+    $body,
+    $bottomContainer,
+    $buttonColumn,
+    $iconButton,
+    $closeButton,
+    $activeButton,
+    $timeContainer,
+    $timeHeader,
+    $time,
+    $stop,
+    $ml24,
+    $mr24,
+  }
 }

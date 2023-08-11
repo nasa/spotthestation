@@ -3,7 +3,7 @@
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps, useRoute } from "@react-navigation/native"
 import React, { useState } from "react"
-import { ViewStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
 import {
@@ -17,8 +17,9 @@ import {
   SettingsScreen,
 } from "../screens"
 import { ResourcesScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/ResourcesScreen"
-import { colors, fontSizes, scale } from "../theme"
+import { colors } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
+import { StyleFn, useStyles } from "../utils/useStyles"
 
 export type TabParamList = {
   Home: HomeScreenRouteProps
@@ -41,10 +42,14 @@ export type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
 const Tab = createBottomTabNavigator<TabParamList>()
 
 export function TabNavigator() {
+  const { $tabBar, $tabBarItem, $tabBarPortrait, $tabBarLandscape, $tab } = useStyles(styles)
   const { params } = useRoute()
   const { bottom } = useSafeAreaInsets()
   const [isTabsVisible, setIsTabsVisible] = useState(true)
   const [isLandscape, setIsLandscape] = useState(false)
+
+  const tabBar = { ...(isLandscape ? $tabBarLandscape : $tabBarPortrait) }
+  if (!isLandscape) tabBar.height = Number(tabBar.height) + bottom
 
   return (
     <Tab.Navigator
@@ -54,8 +59,8 @@ export function TabNavigator() {
         tabBarActiveTintColor: colors.palette.neutral100,
         tabBarStyle: [
           $tabBar,
+          tabBar,
           {
-            height: isLandscape ? scale(80) : bottom + scale(70),
             display: isTabsVisible ? "flex" : "none",
           },
         ],
@@ -70,12 +75,7 @@ export function TabNavigator() {
           tabBarLabel: ({ focused, color }) => (
             <Text
               tx="tabNavigator.homeTab"
-              style={{
-                textTransform: "uppercase",
-                fontSize: fontSizes[12],
-                color: focused ? color : "transparent",
-                marginTop: -scale(20),
-              }}
+              style={[$tab, { color: focused ? color : "transparent" }]}
             />
           ),
           tabBarIcon: ({ color, size }) => <Icon icon="home" color={color} size={size} />,
@@ -94,12 +94,7 @@ export function TabNavigator() {
           tabBarLabel: ({ focused, color }) => (
             <Text
               tx="tabNavigator.issViewTab"
-              style={{
-                textTransform: "uppercase",
-                fontSize: fontSizes[12],
-                color: focused ? color : "transparent",
-                marginTop: -scale(20),
-              }}
+              style={[$tab, { color: focused ? color : "transparent" }]}
             />
           ),
           tabBarIcon: ({ color, size }) => <Icon icon="globe" color={color} size={size} />,
@@ -118,12 +113,7 @@ export function TabNavigator() {
           tabBarLabel: ({ focused, color }) => (
             <Text
               tx="tabNavigator.issNowTab"
-              style={{
-                textTransform: "uppercase",
-                fontSize: fontSizes[12],
-                color: focused ? color : "transparent",
-                marginTop: -scale(20),
-              }}
+              style={[$tab, { color: focused ? color : "transparent" }]}
             />
           ),
           tabBarIcon: ({ color, size }) => <Icon icon="tv" color={color} size={size} />,
@@ -141,12 +131,7 @@ export function TabNavigator() {
           tabBarLabel: ({ focused, color }) => (
             <Text
               tx="tabNavigator.resourcesTab"
-              style={{
-                textTransform: "uppercase",
-                fontSize: fontSizes[12],
-                color: focused ? color : "transparent",
-                marginTop: -scale(20),
-              }}
+              style={[$tab, { color: focused ? color : "transparent" }]}
             />
           ),
           tabBarIcon: ({ color, size }) => <Icon icon="book" color={color} size={size} />,
@@ -161,12 +146,7 @@ export function TabNavigator() {
           tabBarLabel: ({ focused, color }) => (
             <Text
               tx="tabNavigator.settingsTab"
-              style={{
-                textTransform: "uppercase",
-                fontSize: fontSizes[12],
-                color: focused ? color : "transparent",
-                marginTop: -scale(20),
-              }}
+              style={[$tab, { color: focused ? color : "transparent" }]}
             />
           ),
           tabBarIcon: ({ color, size }) => <Icon icon="settings" color={color} size={size} />,
@@ -177,13 +157,31 @@ export function TabNavigator() {
   )
 }
 
-const $tabBar: ViewStyle = {
-  backgroundColor: colors.backgroundDark,
-  borderTopColor: colors.transparent,
-}
+const styles: StyleFn = ({ scale, fontSizes }) => {
+  const $tabBar: ViewStyle = {
+    backgroundColor: colors.backgroundDark,
+    borderTopColor: colors.transparent,
+  }
 
-const $tabBarItem: ViewStyle = {
-  padding: 0,
-  margin: 0,
-  flexDirection: "column",
+  const $tabBarPortrait: ViewStyle = {
+    height: scale(70),
+  }
+
+  const $tabBarLandscape: ViewStyle = {
+    height: scale(80),
+  }
+
+  const $tabBarItem: ViewStyle = {
+    padding: 0,
+    margin: 0,
+    flexDirection: "column",
+  }
+
+  const $tab: TextStyle = {
+    textTransform: "uppercase",
+    fontSize: fontSizes[12],
+    marginTop: -scale(20),
+  }
+
+  return { $tabBar, $tabBarItem, $tabBarPortrait, $tabBarLandscape, $tab }
 }

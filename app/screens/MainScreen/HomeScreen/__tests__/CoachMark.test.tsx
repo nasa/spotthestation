@@ -4,7 +4,6 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import { CoachMark } from "../CoachMark"
-import { ViewStyle } from "react-native"
 
 it("renders correctly", () => {
   const tree = renderer
@@ -23,6 +22,6 @@ it("renders correctly", () => {
   expect(tree).toMatchSnapshot()
 })
 
-const $style: ViewStyle = {
+const $style = {
   marginTop: 18,
 }
