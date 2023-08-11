@@ -130,6 +130,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
     if (!futurehRef.current || !pastRef.current) createOrbit()
     else {
       const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      if (t > 1) return
 
       const pastPoints = []
       for (let i = 0; i <= 100; ++i) {
@@ -138,7 +139,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
 
       const futurePoints = []
       for (let i = 0; i <= 100; ++i) {
-        futurePoints.push(curve.getPoint(t + (i * (1 - t)) / 100))
+        futurePoints.push(curve.getPoint(Math.min(1, t + (i * (1 - t)) / 100)))
       }
 
       pastRef.current.geometry = new BufferGeometry().setFromPoints(pastPoints)
