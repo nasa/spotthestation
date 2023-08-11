@@ -295,7 +295,7 @@ exports[`renders correctly 1`] = `
             accessibilityRole="switch"
             accessibilityState={
               Object {
-                "checked": false,
+                "checked": undefined,
                 "disabled": undefined,
               }
             }

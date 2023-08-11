@@ -36,7 +36,6 @@ test("getISSSightings should update the store correctly", async () => {
       subtitle: "",
       location: { lat: 0, lng: 0 },
       sightings: [],
-      alert: false,
     },
     currentLocation: {},
     savedLocations: [],
@@ -68,7 +67,6 @@ test("getISSSightings should update the store correctly", async () => {
       },
     ],
     lastSightingOrbitPointAt: "2023-12-12",
-    alert: false,
   })
   expect(rootStore.savedLocations).toEqual([
     {
@@ -88,7 +86,6 @@ test("getISSSightings should update the store correctly", async () => {
           visible: 6,
         },
       ],
-      alert: false,
       lastSightingOrbitPointAt: "2023-12-12",
     },
   ])
@@ -108,7 +105,6 @@ test("setCurrentLocation should update the store correctly", async () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     sightings: [],
     subtitle: "sub",
     lastSightingOrbitPointAt: "2023-12-12",
@@ -148,7 +144,6 @@ test("setISSSightings should update the store correctly", () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
@@ -165,7 +160,6 @@ test("setISSSightings should update the store incorrectly", () => {
     currentLocation: {
       title: "New Location",
       location: { lat: 0, lng: 0 },
-      alert: true,
       lastSightingOrbitPointAt: "2023-12-12",
       sightings: [],
       subtitle: "sub",
@@ -180,7 +174,6 @@ test("setISSSightings should update the store incorrectly", () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [
       {
@@ -217,7 +210,6 @@ test("setSelectedLocation should update the store correctly", async () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
@@ -257,7 +249,6 @@ test("setNewSavedLocation should update the store correctly", async () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
@@ -299,7 +290,6 @@ test("setSavedLocations should update the store correctly", () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
@@ -388,7 +378,6 @@ test("setIssDataLoaded should update the store correctly", async () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    alert: true,
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",

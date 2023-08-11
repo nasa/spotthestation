@@ -34,46 +34,40 @@ class Notifications {
   setNotifications = async (locations: LocationType[]) => {
     const start = new Date((await storage.load("muteFrom")) as string)
     const end = new Date((await storage.load("muteUntil")) as string)
-    const upcoming = await storage.load("upcoming")
     const privacy = await storage.load("privacy")
     const notifyBefore = await storage.load("notifyBefore")
-    if (upcoming) {
-      PushNotification.cancelAllLocalNotifications()
-      for await (const location of locations) {
-        const events = location?.sightings || []
-        const eventsForNotify: ISSSighting[] = events.filter((item) => item.notify)
-        const eventsList = eventsForNotify?.length ? eventsForNotify : events
+    PushNotification.cancelAllLocalNotifications()
+    for await (const location of locations) {
+      const events = location?.sightings || []
+      const eventsForNotify: ISSSighting[] = events.filter((item) => item.notify)
 
-        if (location?.alert) {
-          eventsList.forEach(({ date }) => {
-            const eventDate = new Date(date)
-            const muted = isDateBetweenHours(eventDate, start, end)
+      eventsForNotify.forEach(({ date }) => {
+        const eventDate = new Date(date)
+        const muted = isDateBetweenHours(eventDate, start, end)
 
-            if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
-              PushNotification.localNotificationSchedule({
-                channelId: "default-channel-id",
-                title: translate("notifications.push.title"),
-                message: `${translate("notifications.push.subTitle")} ${location.title}`,
-                date: eventDate,
-              })
-              if (notifyBefore) {
-                PushNotification.localNotificationSchedule({
-                  channelId: "default-channel-id",
-                  title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
-                    "notifications.before.titleTwo",
-                  )}`,
-                  message: `${translate(
-                    "notifications.before.subTitleOne",
-                  )} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${
-                    location.title
-                  }`,
-                  date: new Date(eventDate.getTime() - notifyBefore * 60000),
-                })
-              }
-            }
+        if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
+          PushNotification.localNotificationSchedule({
+            channelId: "default-channel-id",
+            title: translate("notifications.push.title"),
+            message: `${translate("notifications.push.subTitle")} ${location.title}`,
+            date: eventDate,
           })
+          if (notifyBefore) {
+            PushNotification.localNotificationSchedule({
+              channelId: "default-channel-id",
+              title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
+                "notifications.before.titleTwo",
+              )}`,
+              message: `${translate(
+                "notifications.before.subTitleOne",
+              )} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${
+                location.title
+              }`,
+              date: new Date(eventDate.getTime() - notifyBefore * 60000),
+            })
+          }
         }
-      }
+      })
     }
   }
 }

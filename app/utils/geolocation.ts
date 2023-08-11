@@ -62,7 +62,6 @@ export const getCurrentLocation = async (
         title: item?.name === item?.streetNumber ? address : item?.name,
         subtitle: address,
         location: { lat: latitude, lng: longitude },
-        alert: false,
       }
     }
 
@@ -86,7 +85,6 @@ export const getNearbyPlaces = async (
         location: googlePlace.geometry.location,
         title: googlePlace.name,
         subtitle: googlePlace.vicinity,
-        alert: true,
       })
     }
   }
@@ -112,7 +110,6 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
         location: googlePlace.geometry.location,
         title: googlePlace.name,
         subtitle: googlePlace.formatted_address,
-        alert: true,
         sightings: [],
       })
     }

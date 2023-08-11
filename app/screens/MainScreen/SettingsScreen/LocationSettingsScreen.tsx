@@ -54,6 +54,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setIsCurrentLocationUpdating,
     setSavedLocations,
     setISSSightings,
+    setNotifications,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -73,7 +74,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     try {
       const location = await getCurrentLocation(() => ({}), setLocationPermission)
       if (!location) return setIsCurrentLocationUpdating(false)
-      await setCurrentLocation({ ...location, alert: currentLocation.alert })
+      await setCurrentLocation(location)
       await storage.save("currentLocation", location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
@@ -83,19 +84,29 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
   const handleToggle = useCallback(
     (location: LocationType, type: string) => {
+      const isNotifyAll = location.sightings.every((item) => item.notify)
       if (type === "saved") {
         setSavedLocations(
           savedLocations.map((item) =>
-            item.title === location.title ? { ...item, alert: !item.alert } : item,
+            item.title === location.title
+              ? {
+                  ...item,
+                  sightings: item.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+                }
+              : item,
           ),
         )
       } else {
-        setCurrentLocation({ ...currentLocation, alert: !currentLocation.alert }, true).catch((e) =>
-          console.log(e),
-        )
+        setCurrentLocation(
+          {
+            ...currentLocation,
+            sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+          },
+          true,
+        ).catch((e) => console.log(e))
       }
 
-      // getLocation().catch(e => console.log(e))
+      setNotifications()
     },
     [currentLocation, savedLocations],
   )
@@ -241,7 +252,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
                   icon="pin"
                   title={location.title}
                   subtitle={location.subtitle}
-                  selected={location.alert}
+                  selected={location.sightings.every((item) => item.notify)}
                   onToggle={() => handleToggle(location, "saved")}
                   withSwitch
                   // onPress={() => navigation.navigate('SettingsScreens' as never, { screen: 'AddNewLocation', defaultLocation: location } as never)}

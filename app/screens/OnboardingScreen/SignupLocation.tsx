@@ -29,7 +29,6 @@ export interface LocationType {
   title: string
   subtitle: string
   location: Point
-  alert?: boolean
   sightings?: ISSSighting[]
   lastSightingOrbitPointAt?: string
 }

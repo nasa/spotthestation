@@ -112,12 +112,10 @@ export function SelectLocation({
 
     setSearchResult(
       Object.values(
-        locations
-          .map((item) => ({ ...item, alert: true }))
-          .reduce((acc, obj) => {
-            acc[obj.title] = obj
-            return acc
-          }, {}),
+        locations.reduce((acc, obj) => {
+          acc[obj.title] = obj
+          return acc
+        }, {}),
       ),
     )
   }
@@ -127,7 +125,7 @@ export function SelectLocation({
     try {
       const location = await getCurrentLocation(() => ({}))
       if (!location) return setIsCurrentLocationUpdating(false)
-      await setCurrentLocation({ ...location, alert: currentLocation.alert })
+      await setCurrentLocation(location)
       await storage.save("currentLocation", location)
       setNearby(await getNearbyPlaces(location.location, 100))
     } catch (e) {

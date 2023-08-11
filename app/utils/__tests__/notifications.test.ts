@@ -22,7 +22,6 @@ it("call getCurrentTimeZome with selectedLocation", async () => {
           date: "12-12-2012 12:12:12",
         },
       ],
-      alert: true,
     },
   ] as LocationType[])
 

@@ -50,7 +50,6 @@ describe("getNearbyPlaces", () => {
         },
         title: "Place 1",
         subtitle: "Address 1",
-        alert: true,
       },
       {
         location: {
@@ -59,7 +58,6 @@ describe("getNearbyPlaces", () => {
         },
         title: "Place 2",
         subtitle: "Address 2",
-        alert: true,
       },
     ]
 
@@ -127,7 +125,6 @@ describe("getPlaces", () => {
         },
         title: "New York",
         subtitle: "New York, NY, USA",
-        alert: true,
         sightings: [],
       },
     ]
@@ -202,7 +199,6 @@ describe("getCurrentLocation", () => {
       title: "New York",
       subtitle: "123 Main Street, New York City, New York 12345, USA",
       location: { lat: 40.712776, lng: -74.005974 },
-      alert: false,
     }
 
     const location = await getCurrentLocation()

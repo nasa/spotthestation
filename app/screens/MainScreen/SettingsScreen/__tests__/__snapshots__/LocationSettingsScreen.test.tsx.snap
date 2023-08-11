@@ -306,6 +306,13 @@ exports[`renders correctly 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "bottom": NaN,
+        "position": "absolute",
+      }
+    }
   >
     <View
       animatedStyle={
@@ -317,15 +324,13 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "alignSelf": "center",
           "backgroundColor": "#0B3D91",
           "borderRadius": 143,
-          "bottom": NaN,
           "display": "flex",
           "height": 92,
           "justifyContent": "center",
           "overflow": "hidden",
-          "position": "absolute",
+          "position": "relative",
           "width": 92,
         }
       }
@@ -349,7 +354,6 @@ exports[`renders correctly 1`] = `
                 "width": 60,
               },
               Object {
-                "alignSelf": "center",
                 "backgroundColor": "#0B3D91",
                 "height": 92,
                 "width": 92,

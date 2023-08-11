@@ -3,7 +3,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -54,7 +54,15 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   } = useStyles(styles)
 
   const navigation = useNavigation()
-  const { selectedLocation, currentLocation, setISSSightings, setNotifications } = useStores()
+  const {
+    selectedLocation,
+    currentLocation,
+    savedLocations,
+    setISSSightings,
+    setNotifications,
+    setCurrentLocation,
+    setSavedLocations,
+  } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const [from, setFrom] = useState(false)
@@ -76,6 +84,13 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     regionFormat: "US",
   })
 
+  const isNotifyAll = useMemo(() => {
+    return (
+      currentLocation?.sightings.every((item) => item.notify) &&
+      savedLocations?.every((location) => location.sightings.every((item) => item.notify))
+    )
+  }, [currentLocation, savedLocations])
+
   const loadSettings = async () => {
     const start = await storage.load("muteFrom")
     const end = await storage.load("muteUntil")
@@ -96,6 +111,25 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   useEffect(() => {
     loadSettings()
   }, [])
+
+  const handleToggleNotifications = useCallback(() => {
+    setCurrentLocation(
+      {
+        ...currentLocation,
+        sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+      },
+      true,
+    ).catch((e) => console.log(e))
+
+    setSavedLocations(
+      savedLocations.map((item) => ({
+        ...item,
+        sightings: item.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+      })),
+    )
+
+    setNotifications()
+  }, [currentLocation, savedLocations, isNotifyAll])
 
   const handleChange = useCallback(
     async (value, field: string) => {
@@ -220,8 +254,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               accessibilityLabel="switch button"
               accessibilityHint="toggle upcoming events notifications"
               variant="switch"
-              value={settings?.upcoming}
-              onValueChange={(value) => handleChange(value, "upcoming")}
+              value={isNotifyAll}
+              onValueChange={handleToggleNotifications}
             />
           </View>
           <ExpandContainer
