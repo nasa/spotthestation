@@ -42,12 +42,13 @@ const RootStoreActions = (self) => ({
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
+        const isNotifyAll = Boolean(yield storage.load("upcoming"))
         const dataToSave = data.sightings.map((item) => {
           const sighting = locationSightings.find(
             ({ date }) =>
               (date as string).substring(0, 17) === (item.date as string).substring(0, 17),
           )
-          return sighting ? { ...item, notify: sighting.notify } : item
+          return { ...item, notify: sighting ? sighting.notify : isNotifyAll }
         })
 
         locationCopy.sightings = [...dataToSave]
@@ -145,15 +146,21 @@ const RootStoreActions = (self) => ({
     }
   }),
 
-  setSelectedLocation: flow(function* setSelectedLocation(value: LocationType) {
+  setSelectedLocation: flow(function* setSelectedLocation(
+    value: LocationType,
+    updateSettingsOnly?: boolean,
+  ) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
     const { timeZone } = yield getCurrentTimeZome(valueCopy)
     self.selectedLocation = Location.create(valueCopy)
-    self.getISSSightings({
-      zone: timeZone,
-      lat: valueCopy.location.lat,
-      lon: valueCopy.location.lng,
-    })
+
+    if (!updateSettingsOnly) {
+      self.getISSSightings({
+        zone: timeZone,
+        lat: valueCopy.location.lat,
+        lon: valueCopy.location.lng,
+      })
+    }
   }),
 
   setSavedLocations: (values: LocationType[]) => {
@@ -202,14 +209,25 @@ const RootStoreActions = (self) => ({
         })
 
     if (ok) {
+      const isNotifyAll = Boolean(yield storage.load("upcoming"))
+      const locationSightings = valueCopy.sightings ? [...valueCopy.sightings] : []
+      const dataToSave = data.sightings.map((item) => {
+        const sighting = locationSightings.find(
+          ({ date }) => date.substring(0, 17) === (item.date as string).substring(0, 17),
+        )
+        return { ...item, notify: sighting ? sighting.notify : isNotifyAll }
+      })
+
       self.savedLocations = [
         ...self.savedLocations.filter((item) => item.title !== valueCopy.title),
         {
           ...valueCopy,
-          sightings: [...data.sightings],
+          sightings: dataToSave,
           lastSightingOrbitPointAt: data.lastSightingOrbitPointAt,
         },
       ]
+
+      self.setNotifications()
 
       Snackbar.show({
         text: translate("snackBar.sightingsSaved"),

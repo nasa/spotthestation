@@ -48,9 +48,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const routeParams = route.params as LocationSettingsScreenParams
   const {
     savedLocations,
+    selectedLocation,
     currentLocation,
     isCurrentLocationUpdating,
     setCurrentLocation,
+    setSelectedLocation,
     setIsCurrentLocationUpdating,
     setSavedLocations,
     setISSSightings,
@@ -96,6 +98,16 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
               : item,
           ),
         )
+
+        if (selectedLocation) {
+          setSelectedLocation(
+            {
+              ...selectedLocation,
+              sightings: selectedLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+            },
+            true,
+          ).catch((e) => console.log(e))
+        }
       } else {
         setCurrentLocation(
           {

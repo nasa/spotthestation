@@ -61,6 +61,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setISSSightings,
     setNotifications,
     setCurrentLocation,
+    setSelectedLocation,
     setSavedLocations,
   } = useStores()
   const topInset = useSafeAreaInsets().top
@@ -121,12 +122,29 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       true,
     ).catch((e) => console.log(e))
 
+    if (selectedLocation) {
+      setSelectedLocation(
+        {
+          ...selectedLocation,
+          sightings: selectedLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+        },
+        true,
+      ).catch((e) => console.log(e))
+    }
+
     setSavedLocations(
       savedLocations.map((item) => ({
         ...item,
         sightings: item.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
       })),
     )
+
+    setSettings({
+      ...settings,
+      upcoming: !isNotifyAll,
+    })
+
+    storage.save("upcoming", !isNotifyAll)
 
     setNotifications()
   }, [currentLocation, savedLocations, isNotifyAll])
