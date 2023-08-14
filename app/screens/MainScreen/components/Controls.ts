@@ -93,7 +93,6 @@ export class Controls extends EventDispatcher {
       this.target.copy(this.target0)
       this.object.position.copy(this.position0)
       this.object.updateProjectionMatrix()
-      this.dispatchEvent(this.changeEvent)
       this.update()
       this.state = STATE.NONE
     }
@@ -219,6 +218,8 @@ export class Controls extends EventDispatcher {
         this.sphericalDelta.set(0, 0, 0)
         this.panOffset.set(0, 0, 0)
         this.scale = 1
+
+        this.dispatchEvent(this.changeEvent)
 
         return false
       }

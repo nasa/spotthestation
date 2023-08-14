@@ -190,6 +190,7 @@ export function MapBox({
               style={{
                 iconImage: pinMarker,
                 iconSize: 0.25,
+                iconAnchor: "bottom",
               }}
             />
           </MapboxGL.ShapeSource>

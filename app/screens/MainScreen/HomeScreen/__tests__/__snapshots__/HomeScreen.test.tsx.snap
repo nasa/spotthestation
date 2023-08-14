@@ -431,10 +431,14 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Object {
-        "height": 287,
-        "width": "100%",
-      }
+      Array [
+        Object {
+          "width": "100%",
+        },
+        Object {
+          "aspectRatio": 2.25,
+        },
+      ]
     }
     testID="flat-map"
   >

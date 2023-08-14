@@ -18,6 +18,11 @@ interface FlatMapProps {
   currentLocation?: [number, number]
 }
 
+const ORIGINAL_ASPECT_RATIO = 2
+const LATITUDE_CLAMP = 80
+const Y_DIFF = latLonTo2D([LATITUDE_CLAMP, 0])[1]
+const CLAMPED_ASPECT_RATIO = ORIGINAL_ASPECT_RATIO / (1 - Y_DIFF * 2)
+
 export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) {
   const { $map, $overlay } = useStyles(styles)
 
@@ -72,22 +77,24 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
     }
   }, [curve])
 
-  const issPathCoords2D = useMemo(
+  const issPathCoords2D: [number, number][] = useMemo(
     () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),
     [curve],
   )
 
-  const currentLocation2D = currentLocation ? latLonTo2D(currentLocation) : []
+  const toScreenCoords = (c: [number, number]) => {
+    return [c[0] * layout.width, (c[1] - Y_DIFF) * (layout.width / ORIGINAL_ASPECT_RATIO)]
+  }
+
+  const currentLocation2D: [number, number] = currentLocation ? latLonTo2D(currentLocation) : [0, 0]
 
   return (
-    <View style={style} testID="flat-map">
+    <View style={[style, { aspectRatio: CLAMPED_ASPECT_RATIO }]} testID="flat-map">
       <Image source={map} style={$map as ImageStyle} />
       <Svg style={$overlay} onLayout={({ nativeEvent }) => setLayout(nativeEvent.layout)}>
         <Polygon
           fillOpacity={0.5}
-          points={terminatorCoords2D
-            .map((c) => [c[0] * layout.width, c[1] * layout.height].toString())
-            .join(" ")}
+          points={terminatorCoords2D.map((c) => toScreenCoords(c).toString()).join(" ")}
           fill={colors.palette.buttonBlue}
         />
 
@@ -96,7 +103,7 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
             testID="iss-path-polyline"
             points={issPathCoords2D
               .filter((c) => c[0] < issCoords2D[0])
-              .map((c) => [c[0] * layout.width, c[1] * layout.height].toString())
+              .map((c) => toScreenCoords(c).toString())
               .join(" ")}
             stroke={colors.palette.green}
             fill="transparent"
@@ -108,7 +115,7 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
           <Polyline
             points={issPathCoords2D
               .filter((c) => c[0] >= issCoords2D[0])
-              .map((c) => [c[0] * layout.width, c[1] * layout.height].toString())
+              .map((c) => toScreenCoords(c).toString())
               .join(" ")}
             stroke={colors.palette.neutral450}
             fill="transparent"
@@ -123,8 +130,8 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
           testID="iss-marker"
           style={{
             position: "absolute",
-            left: issCoords2D[0] * layout.width - scale(18),
-            top: issCoords2D[1] * layout.height - scale(18),
+            left: toScreenCoords(issCoords2D)[0] - scale(18),
+            top: toScreenCoords(issCoords2D)[1] - scale(18),
           }}
         >
           <Icon icon="position" size={36} />
@@ -136,8 +143,8 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
           testID="current-location-marker"
           style={{
             position: "absolute",
-            left: currentLocation2D[0] * layout.width,
-            top: currentLocation2D[1] * layout.height - scale(15),
+            left: toScreenCoords(currentLocation2D)[0] - scale(7),
+            top: toScreenCoords(currentLocation2D)[1] - scale(15),
           }}
         >
           <Icon icon="fiMapPin" size={15} />

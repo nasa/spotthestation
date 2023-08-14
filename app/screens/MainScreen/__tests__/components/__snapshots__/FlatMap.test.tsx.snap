@@ -2,6 +2,14 @@
 
 exports[`FlatMap renders without issues 1`] = `
 <View
+  style={
+    Array [
+      undefined,
+      Object {
+        "aspectRatio": 2.25,
+      },
+    ]
+  }
   testID="flat-map"
 >
   <RCTImageView

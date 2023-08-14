@@ -21,6 +21,7 @@ import {
   SphereGeometry,
   WebGLRenderer,
   LineDashedMaterial,
+  Vector2,
 } from "three"
 import { colors } from "../../../theme"
 import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
@@ -75,6 +76,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
   const pastRef = useRef<Line>(null)
   const futurehRef = useRef<Line>(null)
   const sceneRef = useRef<Scene>(null)
+  const globeRef = useRef<Mesh>(null)
   const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
 
   useEffect(() => {
@@ -109,7 +111,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
         pointRef.current = await createMarker()
       } else {
         const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
-        pointRef.current.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
+        pointRef.current.position.set(x, y, z)
       }
 
       if (!sceneRef.current) return
@@ -206,10 +208,14 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
       map: texture,
       color: 0xffffff,
     })
+    mesh.material.depthTest = false
+
     const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
 
+    mesh.center = new Vector2(0.5, 0)
     mesh.scale.set(24, 24, 1)
-    mesh.position.set(x, y + (y > 0 ? 20 : -20), z - 5)
+    mesh.position.set(x, y, z)
+    mesh.visible = false
 
     return mesh
   }
@@ -311,6 +317,19 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
     return [pastLine, futureLine]
   }
 
+  const checkMarkerVisibility = useCallback(() => {
+    if (!globeRef.current || !pointRef.current || !camera) return
+
+    const cameraToEarth = globeRef.current.position.clone().sub(camera.position)
+    const L = Math.sqrt(Math.pow(cameraToEarth.length(), 2) - Math.pow(GLOBE_RADIUS, 2))
+    const cameraToPin = pointRef.current.position.clone().sub(camera.position)
+    pointRef.current.visible = cameraToPin.length() < L
+  }, [globeRef.current, pointRef.current, camera])
+
+  useEffect(() => {
+    checkMarkerVisibility()
+  }, [globeRef.current, pointRef.current, camera, marker])
+
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
     sceneRef.current = scene
@@ -333,6 +352,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
 
     const clouds = await createSphere(GLOBE_RADIUS + 10, CloudsTexture, "clouds", true, false)
     const globe = await createSphere(GLOBE_RADIUS, GlobeTexturesNight, "world-map", false, true)
+    globeRef.current = globe
 
     camera.add(ambient)
     scene.add(globe)
@@ -356,7 +376,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
 
   return (
     <>
-      <ControlsView style={$pan} camera={camera}>
+      <ControlsView style={$pan} camera={camera} onPositionChange={checkMarkerVisibility}>
         <GLView style={$container} onContextCreate={contextRenderer} key="d" />
       </ControlsView>
     </>

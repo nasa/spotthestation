@@ -493,7 +493,7 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 })
 
-const styles: StyleFn = ({ scale }) => {
+const styles: StyleFn = () => {
   const $container: ViewStyle = {
     flex: 1,
     backgroundColor: colors.backgroundDark,
@@ -509,7 +509,6 @@ const styles: StyleFn = ({ scale }) => {
 
   const $flatMap: ViewStyle = {
     width: "100%",
-    height: scale(200),
   }
 
   return { $container, $modal, $flatMap }

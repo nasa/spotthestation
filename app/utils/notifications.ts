@@ -47,6 +47,7 @@ class Notifications {
 
         if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
           PushNotification.localNotificationSchedule({
+            smallIcon: "ic_notification",
             channelId: "default-channel-id",
             title: translate("notifications.push.title"),
             message: `${translate("notifications.push.subTitle")} ${location.title}`,
@@ -54,6 +55,7 @@ class Notifications {
           })
           if (notifyBefore) {
             PushNotification.localNotificationSchedule({
+              smallIcon: "ic_notification",
               channelId: "default-channel-id",
               title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
                 "notifications.before.titleTwo",

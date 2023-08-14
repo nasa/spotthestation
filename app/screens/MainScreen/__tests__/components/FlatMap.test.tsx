@@ -44,7 +44,7 @@ describe("FlatMap", () => {
     const customStyle = { backgroundColor: "red" }
     const { getByTestId } = render(<FlatMap style={customStyle} />)
     const flatMapComponent = getByTestId("flat-map")
-    expect(flatMapComponent.props.style).toEqual(customStyle)
+    expect(flatMapComponent.props.style).toEqual([customStyle, { aspectRatio: 2.25 }])
   })
 
   test("renders the current location marker when currentLocation is provided", () => {
