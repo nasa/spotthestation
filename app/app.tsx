@@ -119,6 +119,12 @@ function App(props: AppProps) {
       .catch(() => setIsLocaleLoaded(true))
   }, [])
 
+  useEffect(() => {
+    if (!rehydrated || !isLocaleLoaded || !rootStore) return
+
+    rootStore.setNotifications()
+  }, [rootStore, rehydrated, isLocaleLoaded])
+
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
   // color set in native by rootView's background color.

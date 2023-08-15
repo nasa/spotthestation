@@ -30,7 +30,7 @@ const hi = {
     buttonPositive: "ठीक",
   },
   thanksModal: {
-    body: "हमसे संपर्क करने के लिए धन्यवाद।हमें आपका संदेश मिला है और आपके अनुरोध को संसाधित करेगा।हम भविष्य की रिलीज़ में एक संकल्प को शामिल करने की उम्मीद करते हैं।कृपया ध्यान दें कि यह एप्लिकेशन उपयोगकर्ता डेटा एकत्र नहीं करता है, इसलिए हम सभी संदेशों का व्यक्तिगत रूप से जवाब नहीं दे सकते।",
+    body: "हमसे संपर्क करने के लिए धन्यवाद। हमें आपका संदेश प्राप्त हो गया है और हम आपके अनुरोध पर कार्रवाई करेंगे। कृपया ध्यान दें कि यह एप्लिकेशन उपयोगकर्ता डेटा एकत्र नहीं करता है, इसलिए हम सभी संदेशों का व्यक्तिगत रूप से जवाब नहीं दे सकते हैं।",
     dismiss: "नकार देना",
   },
   privacy: {
@@ -102,8 +102,9 @@ const hi = {
         "आईएसएस प्रक्षेपवक्र डेटा वर्तमान में सर्वर रखरखाव के कारण अनुपलब्ध है।कृपया कुछ देर बाद फिर से जांच करें।",
     },
     header: {
-      firstTimeHead: "अगली दृष्टि",
+      firstTimeHead: "अगली नजर(ओं) की सूची",
       secondTimeHead: "उल्टी गिनती",
+      timezone: "समय क्षेत्र",
     },
     selectLocation: {
       title: "स्थान चुनें",
@@ -114,6 +115,7 @@ const hi = {
       search: "खोज के परिणाम",
       cta: "इस स्थान के लिए सूचनाएं अनुकूलित करें",
       actionTitle: "चेतावनी",
+      refresh: "ताज़ा करना",
     },
     selectSightings: {
       title: "आगामी दृष्टि",
@@ -123,6 +125,9 @@ const hi = {
       aboveHorizon: "क्षितिज के ऊपर",
       today: "आज",
       tomorrow: "आने वाला कल",
+      appears: "प्रकट होता है",
+      disappears: "गायब",
+      empty: "इस स्थान पर {{start}} से {{end}} तक आईएसएस देखे जाने की कोई संभावना नहीं है।",
       coach: {
         title: "प्रतीक विवरण",
         moon: "यह चयनित स्थान पर रात का समय होगा जब आईएसएस क्षितिज से ऊपर होगा।",
@@ -158,19 +163,17 @@ const hi = {
     issCaptured: "इस पल को पकड़ो",
     details: {
       title: "अंतर्राष्ट्रीय अंतरिक्ष स्टेशन - विवरण",
-      distance: "दूरी",
       orbitalSpeed: "परिक्रमा",
       longitude: "देशान्तर",
       latitude: "अक्षांश",
       altitude: "ऊंचाई",
-      crewOnboard: "चालक दल",
+      crewOnboard: "जहाज पर चालक दल की विशिष्ट संख्या",
       launched: "विधानसभा शुरू हुई",
       launchedValue: "20 नवंबर 1998",
       mass: "अनुमानित द्रव्यमान",
       dimensions: "अनुमानित आयाम",
       orbitalPeriod: "कक्षीय अवधि",
       orbitsPerDay: "कक्षाओं/दिन",
-      orbitalDecay: "परिक्रमा",
       dimensionsValue: "109 मीटर चौड़ा x 73 मीटर लंबा x 14 मीटर ऊँचा",
     },
   },
@@ -180,87 +183,88 @@ const hi = {
     notificationSettings: "अधिसूचना सेटिंग्स",
     termsAndConditions: "नियम और शर्तें",
     contactUs: "संपर्क करें",
+    language: "भाषा",
     termsAndConditionsData: {
-      backButton: "समायोजन",
+      backButton: "Settings",
       ios: {
-        title: "लाइसेंस -अनुप्रयोग उपयोग समझौता",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "अंत-उपयोगकर्ता संयुक्त राज्य अमेरिका सरकार द्वारा विकसित निम्नलिखित लाइसेंस प्राप्त आवेदन का उपयोग करना चाहता है, जैसा कि 300 ई स्ट्रीट एसडब्ल्यू, वाशिंगटन, डी.सी. (इसके बाद नासा) में स्थित राष्ट्रीय एरोनॉटिक्स एंड स्पेस एडमिनिस्ट्रेशन द्वारा प्रतिनिधित्व किया गया है:",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "लाइसेंस प्राप्त आवेदन:",
-          line2: "संस्करण:",
-          line3: "नासा प्रौद्योगिकी संख्या: MSC-27535-1 (इसके बाद लाइसेंस प्राप्त आवेदन)",
+          line1: "Licensed Application:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "संपर्क का नासा बिंदु:",
-          line2: "जैकब कीटन",
-          line3: "नासा मुख्यालय",
-          line4: "300 ई स्ट्रीट एसडब्ल्यू",
-          line5: "ई-मेल: spotthestation@hq.nasa.gov",
+          line1: "NASA Point of Contact:",
+          line2: "Jacob Keaton",
+          line3: "NASA Headquarters",
+          line4: "300 E Street SW",
+          line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
         intro2:
-          "लाइसेंस प्राप्त आवेदन जारी करने के लिए नासा के लिए प्राधिकरण नासा नीति निर्देश (एनपीडी) 2820.1सी है",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
-          "अब इसलिए, नासा को ध्यान में रखते हुए, लाइसेंस प्राप्त एप्लिकेशन को एंड-यूज़र को जारी करने और एंड-यूज़र को गैर-ट्रांसफ़ेबल अधिकार प्रदान करने के लिए लाइसेंस प्राप्त एप्लिकेशन का उपयोग करने के लिए किसी भी iPhone या iPod टच पर निर्दिष्ट किया गया है, जिसका एंड-यूज़र मालिक है या नियंत्रण करता है और जैसा कि APP स्टोर नियमों और शर्तों के लिए निर्धारित उपयोग नियमों और शर्तों के रूप में है।",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. नासा और एंड-यूज़र ने स्वीकार किया कि यह समझौता केवल नासा और एंड-यूज़र के बीच संपन्न हुआ है, और एप्पल के साथ नहीं, यह समझौता गैर-हस्तांतरणीय है, और नासा, न कि एप्पल, केवल लाइसेंस प्राप्त आवेदन और सामग्री के लिए जिम्मेदार है।",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. नासा और एंड-यूज़र स्वीकार करते हैं और सहमत होते हैं कि एप्पल, और एप्पल की सहायक कंपनियां, इस समझौते के तीसरे पक्ष के लाभार्थी हैं, और यह कि इस समझौते के नियमों और शर्तों के अंत-उपयोगकर्ता की स्वीकृति पर, एप्पल के पास इस समझौते को लागू करने के लिए अधिकार स्वीकार करने का अधिकार होगा (और इस समझौते के तीसरे पक्ष के लाभार्थी को लागू करने का अधिकार स्वीकार किया जाएगा।",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3. लाइसेंस प्राप्त आवेदन नासा की संपत्ति है।अंत-उपयोगकर्ता स्वीकार करता है कि यह इस समझौते के तहत लाइसेंस प्राप्त आवेदन में कोई स्वामित्व ब्याज प्राप्त नहीं करता है।लाइसेंस प्राप्त आवेदन सार्वजनिक डोमेन में नहीं है और इस समझौते में कुछ भी नहीं किया जाएगा क्योंकि लाइसेंस प्राप्त आवेदन को प्रतिबंध के बिना जनता के लिए उपलब्ध कराया जाएगा।",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4. एंड-यूज़र द्वारा लाइसेंस प्राप्त आवेदन का कोई रिलीज, वितरण या प्रकाशन नहीं होगा।",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. नासा न तो उत्तरदायी होगा और न ही किसी भी रखरखाव या प्रदान किए गए लाइसेंस प्राप्त आवेदन के अद्यतन के लिए, न ही लाइसेंस प्राप्त आवेदन में किसी भी त्रुटि के सुधार के लिए जिम्मेदार होगा।नासा और एंड-यूज़र स्वीकार करते हैं कि एप्पल के पास लाइसेंस प्राप्त आवेदन के संबंध में किसी भी रखरखाव और समर्थन सेवाओं को प्रस्तुत करने के लिए कोई दायित्व नहीं है।",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            '6. एंड-यूज़र प्रतिनिधित्व करता है और वारंट करता है कि (i) वह/वह एक ऐसे देश में स्थित नहीं है जो अमेरिकी सरकार के अवलोकन के अधीन है, या जिसे अमेरिकी सरकार द्वारा "आतंकवादी सहायक" देश के रूप में नामित किया गया है;और (ii) वह किसी भी अमेरिकी सरकार की निषिद्ध या प्रतिबंधित पार्टियों की सूची में सूचीबद्ध नहीं है।',
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            '7. लाइसेंस प्राप्त एप्लिकेशन को किसी भी तरह की वारंटी के बिना "जैसा है" प्रदान किया जाता है, या तो व्यक्त किया गया, निहित, या वैधानिक, सहित, लेकिन किसी भी वारंटी तक सीमित नहीं है, जो लाइसेंस प्राप्त एप्लिकेशन विनिर्देशों के अनुरूप होगा, किसी विशेष उद्देश्य के लिए मर्चेंटेबिलिटी के किसी भी निहित वारंटियों, और उल्लंघन से स्वतंत्रता, या किसी भी वारंटी से मुक्त हो जाएगा।किसी भी घटना में नासा किसी भी नुकसान के लिए उत्तरदायी नहीं होगा, जिसमें शामिल है, लेकिन सीमित नहीं है, प्रत्यक्ष, अप्रत्यक्ष, विशेष या परिणामी नुकसान, जिसके परिणामस्वरूप, या किसी भी तरह से लाइसेंस प्राप्त एप्लिकेशन से जुड़ा हुआ है, चाहे वारंटी, अनुबंध, यातना के आधार पर, या अन्यथा, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं।अंत-उपयोगकर्ता अमेरिकी सरकार, उसके ठेकेदारों और उनके उपमहाद्वीपों के खिलाफ किसी भी और सभी दावों को माफ करने के लिए सहमत है, और अमेरिकी सरकार, उसके ठेकेदारों और उनके उपठेकेदारों को किसी भी नुकसान के लिए हानिरहित और धारण करेगा, जो कि एंड-यूज़र लाइसेंस प्राप्त आवेदन के एंड-यूज़र के उपयोग से, या उसके परिणामस्वरूप, लाइसेंस प्राप्त आवेदन से प्राप्त कर सकता है।',
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line8:
-            "8. कानून द्वारा लागू किए गए किसी भी वारंटी के अनुरूप लाइसेंस प्राप्त आवेदन की किसी भी विफलता की स्थिति में, एंड-यूज़र एप्पल को सूचित कर सकता है, और एप्पल एंड-यूज़र के लिए लाइसेंस प्राप्त आवेदन के लिए खरीद मूल्य (यदि कोई हो) वापस कर देगा।लागू कानून द्वारा अनुमत अधिकतम सीमा तक, एप्पल के पास किसी भी वारंटी के अनुरूप लाइसेंस प्राप्त आवेदन की किसी भी विफलता के कारण कोई अन्य नुकसान, देनदारियां, नुकसान, लागत या खर्च नहीं होगा।",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. नासा और एंड-यूज़र ने स्वीकार किया कि, किसी भी तीसरे पक्ष की स्थिति में यह दावा किया गया है कि लाइसेंस प्राप्त आवेदन या एंड-यूज़र के कब्जे और लाइसेंस प्राप्त आवेदन का उपयोग बौद्धिक संपदा अधिकारों का उल्लंघन करता है, नासा, न कि एप्पल, इस तरह के किसी भी बौद्धिक संपदा उल्लंघन के दावे की जांच, रक्षा, निपटान और निर्वहन के लिए पूरी तरह से जिम्मेदार होगा।",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10. नासा और एंड-यूज़र स्वीकार करते हैं कि नासा, न कि एप्पल लाइसेंस प्राप्त आवेदन या एंड-यूज़र के कब्जे और /या लाइसेंस प्राप्त एप्लिकेशन के उपयोग से संबंधित अंतिम-उपयोगकर्ता या तीसरे पक्ष के किसी भी दावे को संबोधित करने के लिए जिम्मेदार है, जिसमें शामिल हैं, लेकिन सीमित नहीं: (i) उत्पाद देयता दावों;(ii) कोई भी दावा कि लाइसेंस प्राप्त आवेदन किसी भी लागू कानूनी या नियामक आवश्यकता के अनुरूप होने में विफल रहता है, जिसमें कानून द्वारा लागू किसी भी वारंटी शामिल हैं;और (iii) उपभोक्ता संरक्षण या इसी तरह के कानून के तहत उत्पन्न होने वाले दावे।",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11. इस समझौते को लागू किया जाएगा, और सभी उद्देश्यों के लिए संयुक्त राज्य अमेरिका के संघीय कानून के अनुसार, पार्टियों के बीच कानूनी संबंध निर्धारित किए जाएंगे।",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12. यह समझौता नासा और एंड-यूज़र के बीच लाइसेंस प्राप्त आवेदन जारी करने से संबंधित संपूर्ण समझ और समझौते का गठन करता है और इसे संशोधित, संशोधित या संशोधित नहीं किया जा सकता है।",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13. इस समझौते के तहत लाइसेंस प्राप्त आवेदन को स्वीकार और उपयोग करके, अंत-उपयोगकर्ता इसके द्वारा सभी नियमों और शर्तों से सहमत है।",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "लाइसेंस -अनुप्रयोग उपयोग समझौता",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "अंत-उपयोगकर्ता संयुक्त राज्य अमेरिका सरकार द्वारा विकसित निम्नलिखित उत्पाद का उपयोग करना चाहता है, जैसा कि नेशनल एरोनॉटिक्स एंड स्पेस एडमिनिस्ट्रेशन, एम्स रिसर्च सेंटर, मोफेट फील्ड, सीए 94035 (इसके बाद नासा) में स्थित एम्स रिसर्च सेंटर द्वारा दर्शाया गया है:",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
-          line1: "सॉफ़्टवेयर:",
-          line2: "संस्करण:",
-          line3: "नासा प्रौद्योगिकी संख्या: MSC-27535-1",
+          line1: "Software:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "लाइसेंस प्राप्त आवेदन जारी करने के लिए नासा के लिए प्राधिकरण नासा पॉलिसी डायरेक्टिव (NPD) 2820.1C है।",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          'अब इसलिए, नासा के बारे में विचार में, व्यक्तिगत, गैर-वाणिज्यिक उपयोग के लिए लाइसेंस प्राप्त एप्लिकेशन का उपयोग करने के लिए एंड-यूज़र को गैर-हस्तांतरणीय अधिकार के लिए एंड-यूज़र को लाइसेंस प्राप्त एप्लिकेशन को जारी करना और किसी भी एंड्रॉइड-पावर्ड मोबाइल डिवाइस ("डिवाइस") पर सेवा के एंड्रॉइड मार्केट शर्तों के लिए अनुमति दी गई है,  जिसका एंड-यूज़र मालिक है या नियंत्रण करता है, एंड-यूजर्स द्वारा अनुमत है।',
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1. लाइसेंस प्राप्त आवेदन नासा की संपत्ति है।अंत-उपयोगकर्ता स्वीकार करता है कि यह इस समझौते के तहत लाइसेंस प्राप्त आवेदन में कोई स्वामित्व ब्याज प्राप्त नहीं करता है।लाइसेंस प्राप्त आवेदन सार्वजनिक डोमेन में नहीं है और इस समझौते में कुछ भी नहीं किया जाएगा क्योंकि लाइसेंस प्राप्त आवेदन को प्रतिबंध के बिना जनता के लिए उपलब्ध कराया जाएगा।",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2. एंड-यूज़र द्वारा लाइसेंस प्राप्त आवेदन का कोई रिलीज, वितरण या प्रकाशन नहीं होगा।",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. नासा न तो उत्तरदायी होगा और न ही किसी भी रखरखाव या प्रदान किए गए लाइसेंस प्राप्त आवेदन के अद्यतन के लिए, न ही लाइसेंस प्राप्त आवेदन में किसी भी त्रुटि के सुधार के लिए।",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            '4. एंड-यूज़र प्रतिनिधित्व करता है और वारंट करता है कि (i) वह/वह एक ऐसे देश में स्थित नहीं है जो अमेरिकी सरकार के अवलोकन के अधीन है, या जिसे अमेरिकी सरकार द्वारा "आतंकवादी सहायक" देश के रूप में नामित किया गया है;और (ii) वह किसी भी अमेरिकी सरकार की निषिद्ध या प्रतिबंधित पार्टियों की सूची में सूचीबद्ध नहीं है।',
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            '5. लाइसेंस प्राप्त एप्लिकेशन को किसी भी तरह की वारंटी के बिना "जैसा है" प्रदान किया जाता है, या तो व्यक्त किया गया, निहित, या वैधानिक, सहित, लेकिन किसी भी वारंटी तक सीमित नहीं है, जो लाइसेंस प्राप्त एप्लिकेशन विनिर्देशों के अनुरूप होगा, किसी विशेष उद्देश्य के लिए मर्चेंटेबिलिटी के किसी भी निहित वारंटियों, और उल्लंघन से स्वतंत्रता, या किसी भी वारंटी से मुक्त हो जाएगा।किसी भी घटना में नासा किसी भी नुकसान के लिए उत्तरदायी नहीं होगा, जिसमें शामिल है, लेकिन सीमित नहीं है, प्रत्यक्ष, अप्रत्यक्ष, विशेष या परिणामी नुकसान, जिसके परिणामस्वरूप, या किसी भी तरह से लाइसेंस प्राप्त एप्लिकेशन से जुड़ा हुआ है, चाहे वारंटी, अनुबंध, यातना के आधार पर, या अन्यथा, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं, या नहीं।एंड-यूज़र अमेरिकी सरकार, उसके ठेकेदारों और उनके उपमहाद्वीपों के खिलाफ किसी भी और सभी दावों को माफ करने के लिए सहमत है, और किसी भी क्षति के लिए अमेरिकी सरकार, उसके ठेकेदारों और उनके उपठेकेदारों को हानिरहित और निंदा करेगा, जो एंड-यूज़र लाइसेंस प्राप्त आवेदन के एंड-यूज़र के उपयोग से प्राप्त कर सकता है, या लाइसेंस प्राप्त एप्लिकेशन से किसी भी क्षति को शामिल कर सकता है।',
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6. इस समझौते को लागू किया जाएगा, और सभी उद्देश्यों के लिए संयुक्त राज्य अमेरिका के संघीय कानून के अनुसार, पार्टियों के बीच कानूनी संबंध निर्धारित किए जाएंगे।",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7. यह समझौता नासा और अंतिम-उपयोगकर्ता के बीच संपूर्ण समझ और समझौते का गठन करता है जो लाइसेंस प्राप्त आवेदन को जारी करने से संबंधित है और इसे संशोधित, संशोधित या संशोधित नहीं किया जा सकता है।",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8. इस समझौते के तहत लाइसेंस प्राप्त आवेदन को स्वीकार और उपयोग करके, अंत-उपयोगकर्ता इसके द्वारा सभी नियमों और शर्तों से सहमत है।",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },
@@ -309,6 +313,7 @@ const hi = {
         removeButton: "मिटाना",
       },
     },
+    localCalculations: "स्थानीय गणना",
   },
   resources: {
     header: "संसाधन",

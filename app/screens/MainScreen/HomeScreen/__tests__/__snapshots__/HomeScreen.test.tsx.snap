@@ -238,7 +238,7 @@ exports[`renders correctly 1`] = `
               Object {
                 "color": "#ADADAE",
                 "fontFamily": "Helvetica Neue",
-                "fontSize": 20,
+                "fontSize": 17,
                 "lineHeight": 23,
                 "textAlign": "center",
               },

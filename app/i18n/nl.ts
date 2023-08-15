@@ -30,7 +30,7 @@ const nl = {
     buttonPositive: "OK",
   },
   thanksModal: {
-    body: "Bedankt dat u contact met ons heeft opgenomen. We hebben uw bericht ontvangen en zullen uw verzoek verwerken. We hopen een resolutie op te nemen in een toekomstige versie. Omdat deze applicatie geen gebruikersgegevens verzameld kunnen we op berichten helaas niet individueel reageren. beantwoorden. Houd er rekening mee dat sinds deze applicatie geen gebruikersgegevens verzamelt wij niet individueel op berichten kunnen reageren.",
+    body: "Bedankt dat u contact met ons opneemt. We hebben uw bericht ontvangen en zullen uw verzoek verwerken. Houd er rekening mee dat deze applicatie geen gebruikersgegevens verzamelt, dus we kunnen niet op alle berichten afzonderlijk reageren.",
     dismiss: "Sluiten",
   },
   privacy: {
@@ -102,8 +102,9 @@ const nl = {
         "De ISS-trajectgegevens zijn momenteel niet beschikbaar vanwege serveronderhoud. Kom later terug.",
     },
     header: {
-      firstTimeHead: "Volgende waarneming",
+      firstTimeHead: "VOLGENDE WAARNEMING(EN) LIJST",
       secondTimeHead: "Aftellen",
+      timezone: "Tijdzone",
     },
     selectLocation: {
       title: "Selecteer een locatie",
@@ -114,6 +115,7 @@ const nl = {
       search: "Zoekresultaten",
       cta: "Meldingen aanpassen voor deze locatie",
       actionTitle: "Waarschuwing",
+      refresh: "Vernieuwen",
     },
     selectSightings: {
       title: "Eerstvolgende waarnemingen",
@@ -123,6 +125,10 @@ const nl = {
       aboveHorizon: "Boven de horizon",
       today: "Vandaag",
       tomorrow: "Morgen",
+      appears: "Komt naar voren",
+      disappears: "Verdwijnt",
+      empty:
+        "Er zijn geen potentiële ISS-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
       coach: {
         title: "Beschrijving van pictogrammen",
         moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
@@ -160,19 +166,17 @@ const nl = {
     issCaptured: "Leg dit moment vast",
     details: {
       title: "International Space Station - Details",
-      distance: "Afstand",
       orbitalSpeed: "Orbitale snelheid",
       longitude: "Lengtegraad",
       latitude: "Breedtegraad",
       altitude: "Hoogte",
-      crewOnboard: "Bemanning aan boord",
+      crewOnboard: "Typisch aantal bemanningsleden aan boord",
       launched: "Montage begon",
       launchedValue: "20 november 1998",
       mass: "Geschatte massa",
       dimensions: "Geschatte afmetingen",
       orbitalPeriod: "Omlooptijd",
       orbitsPerDay: "Banen/dag",
-      orbitalDecay: "Orbitaal verval",
       dimensionsValue: "109m breed x 73m lang x 14m hoog",
     },
   },
@@ -182,87 +186,88 @@ const nl = {
     notificationSettings: "Notificatie instellingen",
     termsAndConditions: "Voorwaarden",
     contactUs: "Neem contact met ons op",
+    language: "Taal",
     termsAndConditionsData: {
-      backButton: "Instellingen",
+      backButton: "Settings",
       ios: {
-        title: "GEBRUIKSOVEREENKOMST VOOR DE GELICENSEERDE APPLICATIE",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "EINDGEBRUIKER wenst de volgende GELICENSEERDE APPLICATIE te gebruiken die is ontwikkeld door de regering van de Verenigde Staten, vertegenwoordigd door de National Aeronautics and Space Administration, gevestigd op 300 E Street SW, Washington, D.C. (hierna NASA genoemd):",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "GELICENSEERDE toepassing:",
-          line2: "Versie:",
-          line3: "NASA-technologienummer: MSC-27535-1 (hierna GELICENSEERDE TOEPASSING)",
+          line1: "Licensed Application:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "NASA contactpunt:",
+          line1: "NASA Point of Contact:",
           line2: "Jacob Keaton",
-          line3: "NASA hoofdkwartier",
+          line3: "NASA Headquarters",
           line4: "300 E Street SW",
           line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
         intro2:
-          "De autoriteit voor NASA om de GELICENSEERDE APPLICATIE vrij te geven is NASA Policy Directive (NPD) 2820.1C",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
-          "NU DAAROM, met inachtneming van het feit dat NASA de GELICENSEERDE APPLICATIE vrijgeeft aan EINDGEBRUIKER en EINDGEBRUIKER het niet-overdraagbare recht verleent om de GELICENSEERDE APPLICATIE te gebruiken zoals hierin gespecificeerd op elke iPhone of iPod touch die EINDGEBRUIKER bezit of beheert en zoals alleen toegestaan volgens de Gebruiksregels uiteengezet in de App Store Voorwaarden en Bepalingen voor niet-commerciële doeleinden, gaat de EINDGEBRUIKER akkoord met het volgende:",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. NASA en EINDGEBRUIKER erkennen dat deze Overeenkomst uitsluitend is gesloten tussen NASA en EINDGEBRUIKER, en niet met Apple, dat deze Overeenkomst niet-overdraagbaar is en dat NASA, niet Apple, als enige verantwoordelijk is voor de GELICENSEERDE APPLICATIE en de inhoud daarvan.",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. NASA en EINDGEBRUIKER erkennen en gaan ermee akkoord dat Apple, en de dochterondernemingen van Apple, derde begunstigden zijn van deze Overeenkomst, en dat na aanvaarding van de voorwaarden van deze Overeenkomst door de EINDGEBRUIKER, Apple het recht heeft (en geacht zal worden het recht te hebben aanvaard) om deze Overeenkomst tegen EINDGEBRUIKER af te dwingen als derde begunstigde van deze Overeenkomst.",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3. De GELICENSEERDE APPLICATIE blijft eigendom van NASA. EINDGEBRUIKER erkent dat het geen eigendomsbelang verwerft in de GELICENSEERDE APPLICATIE onder deze Overeenkomst. De GELICENSEERDE APPLICATIE bevindt zich niet in het publieke domein en niets in deze Overeenkomst zal worden opgevat als het zonder beperkingen beschikbaar stellen van de GELICENSEERDE APPLICATIE aan het publiek.",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4. Er zal geen vrijgave, distributie of publicatie van de GELICENSEERDE APPLICATIE zijn door de EINDGEBRUIKER.",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. NASA is niet aansprakelijk of verantwoordelijk voor enig onderhoud of bijwerken van de verstrekte GELICENSEERDE APPLICATIE, noch voor het corrigeren van eventuele fouten in de GELICENSEERDE APPLICATIE. NASA en EINDGEBRUIKER erkennen dat Apple geen enkele verplichting heeft om enige onderhouds- en ondersteuningsdiensten te leveren met betrekking tot de GELICENSEERDE APPLICATIE.",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            "6. EINDGEBRUIKER verklaart en garandeert dat (i) hij/zij zich niet bevindt in een land dat onderworpen is aan een embargo van de Amerikaanse regering, of dat door de Amerikaanse regering is aangewezen als een 'terrorisme steunend' land; en (ii) hij/zij niet vermeld staat op een Amerikaanse overheidslijst van verboden of beperkte partijen.",
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            "DE GELICENSEERDE APPLICATIE WORDT GELEVERD 'ZOALS DIE IS' ZONDER ENIGE GARANTIE VAN WELKE AARD DAN OOK, UITDRUKKELIJK, IMPLICIET OF WETTELIJK, INCLUSIEF, MAAR NIET BEPERKT TOT, ENIGE GARANTIE DAT DE GELICENSEERDE APPLICATIE VOLDOET AAN SPECIFICATIES, ALLE IMPLICIETE GARANTIES VAN VERKOOPBAARHEID, GESCHIKTHEID VOOR EEN BEPAALD DOEL EN VRIJHEID VAN INBREUK, OF ENIGE GARANTIE DAT DE GELICENSEERDE APPLICATIE FOUTVRIJ ZAL ZIJN. IN GEEN GEVAL ZAL NASA AANSPRAKELIJK ZIJN VOOR ENIGE SCHADE, INCLUSIEF, MAAR NIET BEPERKT TOT, DIRECTE, INDIRECTE, SPECIALE OF GEVOLGSCHADE, DIE VOORTVLOEIT UIT, RESULTAAT VAN, OF OP ENIGE MANIER VERBONDEN IS MET DE GELICENSEERDE APPLICATIE, OF HET NU GEBASEERD IS OP GARANTIE, CONTRACT, ONRECHTMATIGE DAAD OF ANDERSZINS, OF ER NU LETSELSCHADE IS GELEDEN DOOR PERSONEN OF EIGENDOMMEN OF ANDERSZINS, EN OF ER NU VERLIES IS GELEDEN VAN, OF VOORTGEVLOEID UIT HET GEBRUIK VAN DE GELICENSEERDE APPLICATIE. EINDGEBRUIKER GAAT ERMEE AKKOORD OM AF TE ZIEN VAN ALLE CLAIMS TEGEN DE REGERING VAN DE VERENIGDE STATEN, HAAR AANNEMERS EN HUN ONDERAANNEMERS, EN ZAL DE REGERING VAN DE VERENIGDE STATEN, HAAR AANNEMERS EN HUN ONDERAANNEMERS VRIJWAREN EN SCHADELOOS STELLEN VOOR ENIGE SCHADE DIE EINDGEBRUIKER MOGELIJK OPLOOPT DOOR HET GEBRUIK VAN DE GELICENSEERDE APPLICATIE, INCLUSIEF EVENTUELE SCHADE VAN PRODUCTEN DIE GEBASEERD ZIJN OP, OF VOORTVLOEIEN UIT, DE GELICENSEERDE APPLICATIE.",
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION. ",
           line8:
-            "8. In het geval dat de GELICENSEERDE APPLICATIE niet voldoet aan enige garantie die wettelijk van toepassing is, kan de EINDGEBRUIKER Apple hiervan op de hoogte stellen en zal Apple de aankoopprijs (indien van toepassing) voor de GELICENSEERDE APPLICATIE aan de EINDGEBRUIKER terugbetalen. Voor zover maximaal toegestaan onder de toepasselijke wetgeving, zal Apple geen andere verliezen, aansprakelijkheden, schade, kosten of uitgaven hebben die toe te schrijven zijn aan enig falen van de GELICENSEERDE APPLICATIE om aan enige garantie te voldoen.",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. NASA en EINDGEBRUIKER erkennen dat, in het geval van een claim van een derde partij dat de GELICENSEERDE APPLICATIE of het bezit en gebruik van de GELICENSEERDE APPLICATIE door EINDGEBRUIKER inbreuk maakt op intellectuele eigendomsrechten, alleen NASA, en niet Apple, uitsluitend verantwoordelijk zal zijn voor het onderzoek, de verdediging, de schikking en de afhandeling van een dergelijke claim op inbreuk van intellectuele eigendom, onder voorbehoud van de wet.",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10. NASA en EINDGEBRUIKER erkennen dat NASA, en niet Apple, verantwoordelijk is voor het afhandelen van claims van EINDGEBRUIKERS of derden met betrekking tot de GELICENSEERDE APPLICATIE of het bezit en/of gebruik van de GELICENSEERDE APPLICATIE door EINDGEBRUIKER, inclusief maar niet beperkt tot: (i) productaansprakelijkheidsclaims; (ii) enige claim dat de GELICENSEERDE APPLICATIE niet voldoet aan enige toepasselijke wettelijke of regelgevende eisen, inclusief eventuele garanties die door de wet van toepassing zijn gemaakt; en (iii) claims die voortvloeien uit consumentenbescherming of soortgelijke wetgeving.",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11. Deze overeenkomst zal worden geïnterpreteerd en de juridische relaties tussen de partijen hierbij zullen worden bepaald in overeenstemming met de federale wetgeving van de Verenigde Staten voor alle doeleinden.",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12. Deze overeenkomst vormt het volledige begrip en overeenkomst tussen NASA en EINDGEBRUIKER met betrekking tot de vrijgave van de GELICENSEERDE APPLICATIE en mag niet worden vervangen, gewijzigd of aangepast.",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13. Door de GELICENSEERDE APPLICATIE onder deze Overeenkomst te accepteren en te gebruiken, stemt de EINDGEBRUIKER hierbij in met alle hierin vermelde voorwaarden.",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "OVEREENKOMST VOOR HET GEBRUIK VAN DE GELICENSEERDE APPLICATIE",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "EINDGEBRUIKER wenst het volgende PRODUCT te gebruiken dat is ontwikkeld door de regering van de Verenigde Staten, vertegenwoordigd door de National Aeronautics and Space Administration, Ames Research Center, gevestigd in Moffett Field, CA 94035 (hierna NASA):",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
           line1: "Software:",
-          line2: "Versie:",
-          line3: "NASA-technologienummer: MSC-27535-1",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "De bevoegdheid voor NASA om de GELICENSEERDE APPLICATIE vrij te geven, is NASA Policy Directive (NPD) 2820.1C.",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          "DAAROM, in overweging van NASA die de GELICENSEERDE APPLICATIE vrijgeeft aan EINDGEBRUIKER en EINDGEBRUIKER het niet-overdraagbare recht verleent om de GELICENSEERDE APPLICATIE te gebruiken voor persoonlijk, niet-commercieel gebruik en zoals hierin gespecificeerd en zoals toegestaan door de Android Market Servicevoorwaarden op elk Android-aangedreven mobiel apparaat (“Apparaat”) dat EINDGEBRUIKER bezit of beheert, stemt EINDGEBRUIKER als volgt in:",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1. De GELICENSEERDE APPLICATIE blijft eigendom van NASA. EINDGEBRUIKER erkent dat het geen eigendomsbelang verwerft in de GELICENSEERDE APPLICATIE onder deze Overeenkomst. De GELICENSEERDE APPLICATIE is niet in het publieke domein en niets in deze Overeenkomst zal worden opgevat als het zonder beperking beschikbaar stellen van de GELICENSEERDE APPLICATIE aan het algemeen.",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2. Er zal geen vrijgave, distributie of publicatie van de GELICENSEERDE APPLICATIE door de EINDGEBRUIKER zijn.",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. NASA is noch aansprakelijk noch verantwoordelijk voor enig onderhoud of bijwerking van de verstrekte GELICENSEERDE APPLICATIE, noch voor correctie van eventuele fouten in de GELICENSEERDE APPLICATIE.",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            "4. EINDGEBRUIKER verklaart en garandeert dat (i) hij/zij niet is gevestigd in een land dat onderworpen is aan een embargo van de Amerikaanse overheid, of dat door de Amerikaanse overheid is aangewezen als een “terrorisme steunend” land; en (ii) hij/zij niet op een Amerikaanse overheidslijst van verboden of beperkte partijen staat.",
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            "5. DE GELICENSEERDE APPLICATIE WORDT GELEVERD “ZOALS DEZE IS” ZONDER ENIGE GARANTIE VAN WELKE AARD DAN OOK, HETZIJ UITDRUKKELIJK, IMPLICIET OF WETTELIJK, MET INBEGRIP VAN, MAAR NIET BEPERKT TOT, ENIGE GARANTIE DAT DE GELICENSEERDE APPLICATIE ZAL VOLDOEN AAN SPECIFICATIES, EVENTUELE IMPLICIETE GARANTIES VAN VERKOOPBAARHEID, GESCHIKTHEID VOOR EEN BEPAALD DOEL EN VRIJHEID VAN INBREUK, OF ENIGE GARANTIE DAT DE GELICENSEERDE APPLICATIE FOUTVRIJ ZAL ZIJN. IN GEEN GEVAL ZAL NASA AANSPRAKELIJK ZIJN VOOR ENIGE SCHADE, INCLUSIEF, MAAR NIET BEPERKT TOT, DIRECTE, INDIRECTE, SPECIALE OF GEVOLGSCHADE, DIE VOORTVLOEIT UIT, RESULTEERT UIT, OF OP ENIGE WIJZE VERBONDEN IS MET DE GELICENSEERDE APPLICATIE, AL DAN NIET GEBASEERD OP GARANTIE, CONTRACT, ONRECHTMATIGE DAAD OF ANDERSZINS, OF ER NU LETSEL IS TOEGEBRACHT AAN PERSONEN OF EIGENDOMMEN OF ANDERSZINS, EN OF ER NU VERLIES IS GELEDEN VAN, OF ONTSTAAN UIT, HET GEBRUIK VAN DE GELICENSEERDE APPLICATIE. EINDGEBRUIKER STEMT ERMEE IN OM ALLE CLAIMS TEGEN DE AMERIKAANSE REGERING, HAAR AANNEMERS EN HUN ONDERAANNEMERS, TE ZIEN AF EN ZAL DE AMERIKAANSE REGERING, HAAR AANNEMERS EN HUN ONDERAANNEMERS VRIJWAREN EN SCHADELOOS STELLEN VOOR ENIGE SCHADE DIE EINDGEBRUIKER MAG OPLOPEN DOOR HET GEBRUIK VAN DE GELICENSEERDE APPLICATIE, INCLUSIEF EVENTUELE SCHADE VAN GELICENSEERDE APPLICATIES OP BASIS VAN, OF RESULTEREND UIT, DE GELICENSEERDE APPLICATIE.",
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6. Deze overeenkomst zal worden opgevat, en de juridische betrekkingen tussen de partijen zullen hierbij worden bepaald in overeenstemming met de federale wetgeving van de Verenigde Staten voor alle doeleinden.",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7. Deze Overeenkomst vormt het volledige begrip en de volledige overeenkomst tussen NASA en EINDGEBRUIKER met betrekking tot de vrijgave van de GELICENSEERDE APPLICATIE en kan niet worden vervangen, gewijzigd of aangepast.",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8. Door de GELICENSEERDE APPLICATIE te accepteren en te gebruiken onder deze Overeenkomst, stemt EINDGEBRUIKER hierbij in met alle hierin opgenomen voorwaarden en bepalingen.",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },
@@ -311,6 +316,7 @@ const nl = {
         removeButton: "Verwijderen",
       },
     },
+    localCalculations: "Lokale berekeningen",
   },
   resources: {
     header: "Bronnen",

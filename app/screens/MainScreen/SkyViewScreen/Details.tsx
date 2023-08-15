@@ -331,6 +331,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     color: colors.palette.neutral450,
     fontSize: fontSizes[18],
     lineHeight: lineHeights[21],
+    maxWidth: "80%",
     textAlign: "left",
   }
 

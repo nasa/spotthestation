@@ -31,7 +31,7 @@ const fr = {
     buttonPositive: "D'accord",
   },
   thanksModal: {
-    body: "Merci de nous contacter.Nous avons reçu votre message et traiterons votre demande. Nous espérons inclure une résolution dans les versions futures. Veuillez noter que cette application ne collecte pas les données des utilisateurs, nous ne pouvons donc pas répondre à tous les messages individuellement.",
+    body: "Merci de nous contacter. Nous avons bien reçu votre message et traiterons votre demande. Veuillez noter que cette application ne collecte pas de données utilisateur, nous ne pouvons donc pas répondre à tous les messages individuellement.",
     dismiss: "Rejeter",
   },
   privacy: {
@@ -104,8 +104,9 @@ const fr = {
         "Les données de trajectoire ISS sont actuellement indisponibles en raison de la maintenance du serveur. S'il vous plaît, veuillez reessayer plus tard.",
     },
     header: {
-      firstTimeHead: "PROCHAINE OBSERVATION",
+      firstTimeHead: "LISTE DES PROCHAINES OBSERVATIONS",
       secondTimeHead: "COMPTE À REBOURS",
+      timezone: "Fuseau horaire",
     },
     selectLocation: {
       title: "Sélectionnez la localisation",
@@ -116,6 +117,7 @@ const fr = {
       search: "Résultats de recherche",
       cta: "Personnaliser les notifications pour cette localisation",
       actionTitle: "Alerte",
+      refresh: "Rafraîchir",
     },
     selectSightings: {
       title: "Observations à venir",
@@ -125,6 +127,10 @@ const fr = {
       aboveHorizon: "Au-dessus de l'horizon",
       today: "Aujourd'hui",
       tomorrow: "Demain",
+      appears: "Apparaît",
+      disappears: "Disparaît",
+      empty:
+        "Il n'y a aucune observation potentielle de l'ISS pour cet emplacement de {{start}} à {{end}}.",
       coach: {
         title: "Description des icônes",
         moon: "Ce sera la nuit à la localisation sélectionnée lorsque l'ISS sera au-dessus de l'horizon.",
@@ -162,19 +168,17 @@ const fr = {
     issCaptured: "Capturez ce moment",
     details: {
       title: "International Space Station - Details",
-      distance: "Distance",
       orbitalSpeed: "Vitesse orbitale",
       longitude: "Longitude",
       latitude: "Latitude",
       altitude: "Altitude",
-      crewOnboard: "Équipage à bord",
+      crewOnboard: "Nombre typique d'équipage à bord",
       launched: "L'assemblage a commencé",
       launchedValue: "20 novembre 1998",
       mass: "Masse estimée",
       dimensions: "Dimensions estimées",
       orbitalPeriod: "Période orbitale",
       orbitsPerDay: "Orbites / jour",
-      orbitalDecay: "Désintégration orbitale",
       dimensionsValue: "109 m de large x 73 m de long x 14 m de haut",
     },
   },
@@ -184,88 +188,88 @@ const fr = {
     notificationSettings: "Paramètres de notification",
     termsAndConditions: "Termes et conditions",
     contactUs: "Contactez-nous",
+    language: "Langue",
     termsAndConditionsData: {
-      backButton: "Paramètres",
+      backButton: "Settings",
       ios: {
-        title: "Contrat d'utilisation de l'application agréée",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "L'utilisateur final souhaite utiliser l'application agréée suivante développée par le gouvernement américain représenté par la National Aeronautics and Space Administration, située au 300 E Street SW, Washington, D.C. (ci-après NASA):",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "Application agréée:",
+          line1: "Licensed Application:",
           line2: "Version:",
-          line3:
-            "Numéro de technologie de la NASA: MSC-27535-1 (ci-après application sous licence)",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "Point de contact de la NASA:",
+          line1: "NASA Point of Contact:",
           line2: "Jacob Keaton",
-          line3: "Quartier général de la NASA",
+          line3: "NASA Headquarters",
           line4: "300 E Street SW",
-          line5: "E-mail: spothestation@hq.nasa.gov",
+          line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
         intro2:
-          "L'autorité de la NASA de publier l'application agréée est la directive de politique de la NASA (NPD) 2820.1C",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
-          "En conséquent, en considération de la NASA, publiant l'application agréée à l'utilisateur final et accordant à l'utilisateur final le droit non transférable d'utiliser l'application agréée, comme spécifié ici sur tout iPhone ou iPod Touch que les utilisateurs finaux possèdent ou les contrôles et, comme le permet les règles d'utilisation énoncées dans les termes et les conditions de magasin de l'App.",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. La NASA et l'utilisateur final reconnaissent que le présent accord est conclu entre la NASA et l'utilisateur final uniquement, et non avec Apple, le présent accord n'est pas transférable, et la NASA, et non Apple, est uniquement responsable de l'application agréée et de celle-ci.",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. La NASA et l'utilisateur final reconnaissent et conviennent qu'Apple, et les filiales d'Apple, sont des bénéficiaires de tiers du présent accord, et que lors de l'acceptation par l'utilisateur final des termes et conditions du présent accord, Apple aura le droit (et sera considéré comme un droit de droit) pour appliquer le présent accord contre la fin de l'utilisateur en tant que bénéficiaire de tiers de l'accord.",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3. L'application agréée reste la propriété de la NASA. L'utilisateur final reconnaît qu'il n'acquiert aucune participation dans l'application agréée en vertu du présent accord. L'application agréée n'est pas dans le domaine public et rien dans le présent accord ne sera interprété comme mis à la disposition du public de l'application agréée sans restriction.",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4. Il n'y aura pas de libération, de distribution ou de publication de l'application agréée par l'utilisateur final.",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. La NASA ne sera pas responsable de la maintenance ou de la mise à jour de l'application agréée, ni de la correction des erreurs dans l'application agréée. La NASA et l'utilisateur final reconnaissent qu'Apple n'a aucune obligation de fournir des services de maintenance et de soutien en ce qui concerne l'application agréée.",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            "6. L'utilisateur final représente et justifie que (i) il n'est pas situé dans un pays soumis à un embargo du gouvernement américain, ou qui a été désigné par le gouvernement américain comme un pays de «soutien terroriste»; et (ii) il / elle n'est répertorié sur aucune liste du gouvernement américain des parties interdites ou restreintes.",
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            "7. L'application agréée est fournie «telle quel» sans aucune garantie d'aucune sorte, exprimée, implicite ou statutaire, y compris, mais sans s'y limiter, toute garantie selon laquelle l'application agréée sera conforme aux spécifications, à toute garantie implicite de qualité marchande, à un objectif particulier et à la liberté de l'infraction, ou à toute garantie que l'application agréée sera sans erreur. En aucun cas, la NASA ne sera responsable de tout dommage, y compris, mais sans s'y limiter, des dommages directs, indirects, spéciaux ou conséquents, résultant, résultant ou de quelque manière que ce soit avec l'application agréée, que ce soit ou non sur la garantie, le contrat, le délit ou non, qu'il s'agisse ou non de la blessure ou non par des personnes ou non, et si non la perte ou non de la demande de licence. L'utilisateur final accepte de renoncer à toutes les réclamations contre le gouvernement américain, ses entrepreneurs et leurs sous-traitants, et indemnisera et tiendra inoffensif le gouvernement américain, ses entrepreneurs et leurs sous-traitants pour tout dommage que l'utilisateur final peut entraîner de l'utilisation finale de l'application agréée.",
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line8:
-            "8. En cas de défaillance de l'application agréée de se conformer à toute garantie appliquée par la loi, l'utilisateur final peut en informer Apple et Apple remboursera le prix d'achat (le cas échéant) pour la demande agréée à l'utilisateur final. Dans la mesure maximale autorisée par la loi applicable, Apple n'aura aucune autre pertes, passifs, dommages-intérêts, frais ou dépenses attribuables à toute défaillance de l'application agréée pour se conformer à toute garantie.",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. La NASA et l'utilisateur final reconnaissent que, en cas de prétend de tiers, que l'application agréée ou la possession de l'utilisateur final et l'utilisation de l'application agréée violaient les droits de propriété intellectuelle, la NASA, et non la pomme, la prétention contre les enquêteurs, la défense, le règlement et la décharge de toute demande de contrefaçon de propriété intellectuelle.",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10. La NASA et l'utilisateur final reconnaissent que la NASA, et non Apple est chargée de répondre à toute réclamation de l'utilisateur final ou du tiers concernant l'application agréée ou la possession de l'utilisateur final et / ou l'utilisation de l'application agréée, y compris, mais sans s'y limiter: (i) les réclamations de responsabilité des produits;(ii) toute réclamation selon laquelle l'application agréée ne se conforme pas à toute exigence légale ou réglementaire applicable, y compris toute garantie appliquée par la loi; et (iii) les réclamations résultant de la protection des consommateurs ou d'une législation similaire.",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11. Le présent accord sera interprété et les relations juridiques entre les parties auxquelles sont déterminées, conformément à la loi fédérale des États-Unis à toutes fins.",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12. Le présent accord constitue l'intégralité de la compréhension et de l'accord entre la NASA et l'utilisateur final concernant la publication de l'application agréée et ne peut pas être remplacée, modifiée ou modifiée.",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13. En acceptant et en utilisant l'application agréée en vertu du présent accord, l'utilisateur final accepte par la présente toutes les termes et conditions.",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "Contrat d'utilisation de l'application agréée",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "L'utilisateur final souhaite utiliser le produit suivant développé par le gouvernement américain représenté par le National Aeronautics and Space Administration, Ames Research Center, situé à Moffett Field, CA 94035 (ci-après NASA):",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
-          line1: "Logiciel:",
+          line1: "Software:",
           line2: "Version:",
-          line3: "Numéro de technologie de la NASA: MSC-27535-1",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "L'autorité de la NASA de publier l'application agréée est la directive de politique de la NASA (NPD) 2820.1C.",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          "En Conséquent, en considération de la NASA, publiant l'application agréée à l'utilisateur final et accordant à l'utilisateur final le droit non transférable d'utiliser l'application agréée pour une utilisation personnelle et non commerciale et comme spécifié ici et comme le permet des conditions générales du marché Android sur un appareil mobile Android Suivre: \"Dispositif\"",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1. L'application agréée reste la propriété de la NASA. L'utilisateur final reconnaît qu'il n'acquiert aucune participation dans l'application agréée en vertu du présent accord. L'application agréée n'est pas dans le domaine public et rien dans le présent accord ne sera interprété comme mis à la disposition du public de l'application agréée sans restriction.",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2. Il n'y aura pas de libération, de distribution ou de publication de l'application agréée par l'utilisateur final.",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. La NASA ne sera ni responsable ni responsable de la maintenance ou de la mise à jour de l'application agréée, ni de la correction des erreurs dans l'application agréée.",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            "4. L'utilisateur final représente et justifie que (i) il n'est pas situé dans un pays soumis à un embargo du gouvernement américain, ou qui a été désigné par le gouvernement américain comme un pays de «soutien terroriste»; et (ii) il / elle n'est répertorié sur aucune liste du gouvernement américain des parties interdites ou restreintes.",
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            "5. L'application agréée est fournie «telle quel» sans aucune garantie d'aucune sorte, exprimée, implicite ou statutaire, y compris, mais sans s'y limiter, toute garantie selon laquelle l'application agréée sera conforme aux spécifications, à toute garantie implicite de la qualité marchande, à une condition physique à un usage particulier et à la liberté de contrefaçon, ou à toute garantie que l'application agréée sera sans erreur. En aucun cas, la NASA ne sera responsable de tout dommage, y compris, mais sans s'y limiter, des dommages directs, indirects, spéciaux ou conséquents, résultant, résultant ou de quelque manière que ce soit avec la demande de licence, que ce soit ou non sur la garantie, le contrat, le délit ou non, qu'il s'agisse ou non de la blessure ou non par des personnes ou non, et si non la perte ou non de la demande de licence. L'utilisateur final accepte de renoncer à toutes les réclamations contre le gouvernement américain, ses entrepreneurs et leurs sous-traitants, et indemnisera et tiendra inoffensif le gouvernement américain, ses entrepreneurs et leurs sous-traitants pour tout dommage que l'utilisateur final peut subir de l'utilisation finale de l'application agréée, y compris les dommages-intérêts liés à la base ou résultant de l'application agréée.",
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6. Le présent accord sera interprété et les relations juridiques entre les parties auxquelles sont déterminées, conformément à la loi fédérale des États-Unis à toutes fins.",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7. Le présent accord constitue l'intégralité de la compréhension et de l'accord entre la NASA et l'utilisateur final concernant la libération de l'application agréée et ne peut pas être remplacé, modifié ou modifié.",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8. En acceptant et en utilisant l'application agréée en vertu du présent accord, l'utilisateur final accepte par la présente toutes les termes et conditions.",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },
@@ -314,6 +318,7 @@ const fr = {
         removeButton: "Supprimer",
       },
     },
+    localCalculations: "Calculs locaux",
   },
   resources: {
     header: "Ressources",

@@ -30,7 +30,7 @@ const ja = {
     buttonPositive: "OK",
   },
   thanksModal: {
-    body: "ご連絡いただきありがとうございます。メッセージを拝受しました。ご要望に対応させていただき、将来的なリリースの際にその解決策を含められるように善処いたします。なお、このアプリケーションはユーザーデータを収集しないため、すべてのメッセージに個別にご回答することはできませんので、ご了承ください。。",
+    body: "ご連絡いただきありがとうございます。 メッセージを受信し、リクエストを処理させていただきます。 このアプリケーションはユーザーデータを収集しないため、すべてのメッセージに個別に返信することはできないことにご注意ください。",
     dismiss: "終了",
   },
   privacy: {
@@ -102,8 +102,9 @@ const ja = {
         "ISS軌道データは、サーバーのメンテナンスにより現在利用できません。後でもう一度確認してください。",
     },
     header: {
-      firstTimeHead: "次の発見",
+      firstTimeHead: "次の目撃情報リスト",
       secondTimeHead: "カウントダウン",
+      timezone: "タイムゾーン",
     },
     selectLocation: {
       title: "[位置]を選択します",
@@ -114,6 +115,7 @@ const ja = {
       search: "検索結果",
       cta: "この位置の通知をカスタマイズします",
       actionTitle: "アラート",
+      refresh: "リフレッシュ",
     },
     selectSightings: {
       title: "今後の発見情報",
@@ -123,6 +125,9 @@ const ja = {
       aboveHorizon: "地平線の上",
       today: "今日",
       tomorrow: "明日",
+      appears: "登場",
+      disappears: "消える",
+      empty: "{{start}} から {{end}} まで、この場所で ISS が目撃される可能性はありません。",
       coach: {
         title: "アイコンの説明",
         moon: "ISSが地平線の上にある場合、選択した位置で夜間になります。",
@@ -157,19 +162,17 @@ const ja = {
     issCaptured: "この瞬間をキャプチャします",
     details: {
       title: "国際宇宙ステーション - 詳細",
-      distance: "距離",
       orbitalSpeed: "軌道速度",
       longitude: "経度",
       latitude: "緯度",
       altitude: "高度",
-      crewOnboard: "乗組員",
+      crewOnboard: "一般的な乗組員数",
       launched: "組み立てが始まりました",
       launchedValue: "1998年11月20日",
       mass: "推定質量",
       dimensions: "推定寸法",
       orbitalPeriod: "軌道期間",
       orbitsPerDay: "軌道/日",
-      orbitalDecay: "軌道減衰",
       dimensionsValue: "幅109m x長さ73m x高さ14m",
     },
   },
@@ -179,86 +182,88 @@ const ja = {
     notificationSettings: "通知設定",
     termsAndConditions: "規約と条件",
     contactUs: "お問い合わせ",
+    language: "言語",
     termsAndConditionsData: {
-      backButton: "設定",
+      backButton: "Settings",
       ios: {
-        title: "ライセンスアプリケーション契約",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "エンドユーザーは、300 E Street SW, Washington, D.C.に所在するNational Aeronautics and Space Administration（以下「NASA」といいます）に代表される米国政府により開発された以下のライセンスアプリケーションの使用を希望します。",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "ライセンスアプリケーション：",
-          line2: "バージョン：",
-          line3: "NASAテクノロジー番号：MSC-27535-1（以下、ライセンスされたアプリケーション）",
+          line1: "Licensed Application:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "NASAの連絡先：",
-          line2: "ジェイコブ・キートン",
-          line3: "NASA本部",
+          line1: "NASA Point of Contact:",
+          line2: "Jacob Keaton",
+          line3: "NASA Headquarters",
           line4: "300 E Street SW",
-          line5: "電子メール：spotthest@hq.nasa.gov",
+          line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
-        intro2: "NASAが認可された申請をリリースする権限は、NASAポリシー指令（NPD）2820.1Cである",
+        intro2:
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
-          "従って、NASAがエンドユーザーに対してライセンスアプリケーションをリリースし、エンドユーザーが所有または管理するiPhoneまたはiPod touch上で、App Storeの利用規約に定める利用規則により許可された範囲で、非商用目的に限り、本契約に定めるライセンスアプリケーションを使用する譲渡不能な権利をエンドユーザーに付与する対価として、エンドユーザーは以下のとおり同意するものとします。",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. NASAおよびエンドユーザは、本契約がNASAとエンドユーザの間でのみ締結されるものであり、Appleとの間で締結されるものではないこと、本契約は譲渡不能であること、およびAppleではなくNASAがライセンス対象アプリケーションおよびその内容に関して単独で責任を負うことを了承するものとする。",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. NASAとエンドユーザーは、AppleおよびAppleの子会社が本契約の第三者の受益者であり、本契約の条件をエンドユーザーが受信すると、Appleがこの契約の受益者としてのエンドユーザーとしてのこの契約を施行する権利を有する（そして権利を受け入れたと見なされる）ことを認め、同意するものとする。",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3.ライセンスされた申請は、NASAの財産のままです。エンドユーザーは、本契約に基づいて認可された申請に対する所有権を取得していないことを認めています。ライセンスアプリケーションはパブリックドメインではなく、本契約では、制限なしにライセンスアプリケーションを一般に公開するものと解釈されるものではないものとする。",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4.エンドユーザーによるライセンス対象アプリケーションのリリース、頒布、または出版は一切行われないものとする。",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. NASAは、提供されたライセンスアプリケーションのメンテナンスまたは更新、およびライセンスされたアプリケーションのエラーの修正についても責任を負わない。NASAとエンドユーザーは、Appleにはライセンスアプリケーションに関してメンテナンスおよびサポートサービスを提供する義務がないことを認めること",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            "6.エンドユーザーは、(i)米国政府の禁輸措置を受けている国、または米国政府によって「テロリスト支援国」として指定されている国に居住していないこと、および(ii)米国政府の禁止または制限対象者リストに記載されていないことを表明し、保証する。",
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            "7.ライセンスアプリケーションは、明示、黙示、または法令上の保証を問わず、ライセンスアプリケーションが 仕様に適合することの保証、商品性、特定目的への適合性、および権利侵害がないことの黙示の保証、または ライセンスアプリケーションにエラーがないことの保証を含むがこれらに限定されない、いかなる種類の保証もなく、 「現状のまま」提供されます。 いかなる場合においても、Nasaは、保証、契約、不法行為その他に基づくか否かを問わず、また、人又は物による傷害の有無を問わず、また、ライセンス・アプリケーションの使用から生じたか否かを問わず、ライセンスアプリケーションから生じた、又はライセンスアプリケーションに関連して生じた、直接損害、間接損害、特別損害又は派生的損害を含むがこれらに限定されない一切の損害について責任を負わない。  エンドユーザは、米国政府、その請負業者およびその下請業者に対する一切の請求を放棄することに同意し、また、エンドユーザがライセンスアプリケーションを使用したことにより被った損害（ライセンスアプリケーションに基づく、または起因する損害を含みます）について、米国政府、その請負業者およびその下請業者を免責し、損害を与えないものとする。",
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line8:
-            "8.ライセンスアプリケーションが法律で該当する保証に準拠しなかった場合、エンドユーザーはAppleに通知する場合があり、Appleはライセンスアプリケーションの購入価格（もしあれば）をエンドユーザーに返金します。適用される法律で許可されている最大範囲で、Appleには、ライセンスアプリケーションが保証に準拠することの失敗に起因する他の損失、負債、損害、費用、または費用はありません。",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. NASAとエンドユーザーは、第三者の場合、認可された申請またはエンドユーザーの所持とライセンスアプリケーションの使用が知的財産権を侵害していると主張していることを認めている。Appleではなく、NASAは、法律の対象となるそのような知的財産侵害請求の調査、防御、決済、および免除について単独で責任を負います。",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10.  NASAおよびエンドユーザは、Appleではなく、NASAが、エンドユーザまたはエンドユーザによるライセンスアプリケーションの所有および/または使用に関連する第三者からのクレーム（以下を含みますが、これらに限定されません）に対処する責任を負うことを了承するものとする：  (i) 製造物責任に関する請求、(ii) 法律により適用される保証を含む、ライセンスアプリケーションが適用される法的要件または規制要件に適合していないという請求、および(iii) 消費者保護法または類似の法律に基づいて生じる請求。",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11.本契約は解釈され、あらゆる目的で米国連邦法に従って、当事者間の法的関係が決定されるものとする。",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12.この契約は、ライセンスアプリケーションのリリースに関連するNASAとエンドユーザーの間の了解と合意全体を構成し、置き換えられたり、変更したり、修正されたりすることはできないものとする。",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13.エンドユーザーは、本契約に基づきライセンスアプリケーションを受領し使用することにより、本契約のすべての条件に同意するものとする。",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "ライセンスアプリケーション契約",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "エンドユーザーは、カリフォルニア州モフェット・フィールド 94035 に所在する米国航空宇宙局エイムズ研 究センター（以下 NASA）が代表する米国政府によって開発された以下の製品の使用を希望する。",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
-          line1: "ソフトウェア：",
-          line2: "バージョン：",
-          line3: "NASAテクノロジー番号：MSC-27535-1",
+          line1: "Software:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "NASAがライセンスアプリケーションをリリースする権限は、NASAポリシー指令（NPD）2820.1cである。",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          "従って、NASAがエンドユーザーに対してライセンスアプリケーションをリリースし、エンドユーザーが所有または管理するAndroidを搭載したモバイルデバイス（以下「デバイス」といいます）上で、個人的かつ非商業的な使用のために、本契約に明記されたとおり、またAndroidマーケット利用規約により許可されたとおり、ライセンス対象アプリケーションを使用する譲渡不能な権利をエンドユーザーに付与する対価として、エンドユーザーは以下のとおり同意するものとする。",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1.ライセンス対象アプリケーションはNASAに帰属します。 エンドユーザは、本契約に基づきライセンス対象アプリケーションの所有権を取得しないことを認めること。ライセンスアプリケーションはパブリックドメインではなく、本契約のいかなる条項も、ライセンス対象アプリケーションを無制限に公衆に提供するものと解釈されるものではないものとする。",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2.エンドユーザーによるライセンス対象アプリケーションのリリース、頒布、または出版は一切行われないものとする。",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. NASAは、提供されたライセンスアプリケーションのメンテナンスまたは更新、またはライセンスされたアプリケーションのエラーの修正についても責任を負わないものとする。",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            "4.エンドユーザーは、(i)米国政府の禁輸措置を受けている国、または米国政府によって「テロリスト支援国」として指定されている国に居住していないこと、および(ii)米国政府の禁止または制限対象者リストに記載されていないことを表明し、保証する。",
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            "5.ライセンスアプリケーションは、明示、黙示、または法令上の保証を問わず、ライセンスアプリケーションが 仕様に適合することの保証、商品性、特定目的への適合性、および権利侵害がないことの黙示の保証、または ライセンスアプリケーションにエラーがないことの保証を含むがこれらに限定されない、いかなる種類の保証もなく、「現状のまま」提供される。 いかなる場合においても、NASAは、保証、契約、不法行為その他に基づくか否かを問わず、また、人又は物による傷害の有無を問わず、また、ライセンス・アプリケーションの使用から生じたか否かを問わず、ライセンスアプリケーションから生じた、又はライセンスアプリケーションに関連して生じた、直接損害、間接損害、特別損害又は派生的損害を含むがこれらに限定されない一切の損害について責任を負わない。  エンドユーザは、米国政府、その請負業者およびその下請業者に対する一切の請求を放棄することに同意し、また、エンドユーザがライセンスアプリケーションを使用したことにより被った損害（ライセンスアプリケーションに基づく、または起因する損害を含みます）について、米国政府、その請負業者およびその下請業者を免責し、損害を与えないものとする。",
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6.本契約は解釈され、あらゆる目的で米国連邦法に従って、当事者間の法的関係が決定されるものとする。",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7.この契約は、ライセンスアプリケーションのリリースに関連するNASAとエンドユーザーの間の了解と契約全体を構成し、置き換えられたり、変更したり、修正されたりすることはできないものとする。",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8.エンドユーザーは、本契約に基づきライセンスアプリケーションを受領し使用することにより、本契約のすべての条件に同意するものとする。",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },
@@ -307,6 +312,7 @@ const ja = {
         removeButton: "消去",
       },
     },
+    localCalculations: "ローカル計算",
   },
   resources: {
     header: "リソース",

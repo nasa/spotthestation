@@ -38,6 +38,7 @@ export function HomeHeader({
     $headText,
     $timeText,
     $tipText,
+    $firstHeadText,
   } = useStyles(styles)
 
   return (
@@ -78,7 +79,7 @@ export function HomeHeader({
             accessibilityHint="sighting header"
             accessibilityRole="text"
             tx="homeScreen.header.firstTimeHead"
-            style={$headText}
+            style={$firstHeadText}
           />
           <Text
             accessible
@@ -171,6 +172,11 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     fontSize: fontSizes[10],
   }
 
+  const $firstHeadText: TextStyle = {
+    ...$headText,
+    fontSize: fontSizes[12],
+  }
+
   return {
     $headerContainer,
     $rowContainer,
@@ -181,5 +187,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $headText,
     $timeText,
     $tipText,
+    $firstHeadText,
   }
 }

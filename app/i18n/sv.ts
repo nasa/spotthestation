@@ -3,7 +3,7 @@ const sv = {
   errorScreen: {
     title: "Något gick fel!",
     friendlySubtitle:
-      "Det här är skärmen som dina användare kommer att se i produktionen när ett fel kuppstår.Du vill anpassa det här meddelandet (beläget i `App/i18n/en.ts ') och förmodligen också layouten (` app/skärmar/felaktigheter).Om du vill ta bort detta helt, kontrollera `app/app.tSx` för <ErrorBoundary> -komponenten.",
+      "Det här är skärmen som dina användare kommer att se i produktionen när ett fel kuppstår.Du vill anpassa det här meddelandet (beläget i `App/i18n/en.ts ') och förmodligen också layouten (` app/skärmar/felaktigheter).Om du vill ta bort detta helt, kontrollera `app/app.tSx` för <felboundary> -komponenten.",
     reset: "Återställ app",
   },
   snackBar: {
@@ -30,7 +30,7 @@ const sv = {
     buttonPositive: "OK",
   },
   thanksModal: {
-    body: "Tack för att du kontaktar oss.Vi har fått ditt meddelande och kommer att behandla din begäran.Vi hoppas kunna inkludera en resolution i framtida versioner. Observera att den här applikationen inte samlar in användardata, så vi kan inte svara på alla meddelanden individuellt.",
+    body: "Tack för att du kontaktar oss. Vi har tagit emot ditt meddelande och kommer att behandla din förfrågan. Observera att denna applikation inte samlar in användardata, så vi kan inte svara på alla meddelanden individuellt.",
     dismiss: "Avfärda",
   },
   privacy: {
@@ -101,8 +101,9 @@ const sv = {
         "ISS -banan är för närvarande inte tillgänglig på grund av serverunderhåll. Kom tillbaka igen senare.",
     },
     header: {
-      firstTimeHead: "Nästa observation",
+      firstTimeHead: "NÄSTA IAKTTAGELSE(ER) LISTA",
       secondTimeHead: "NEDRÄKNING",
+      timezone: "Tidszon",
     },
     selectLocation: {
       title: "Välj plats",
@@ -113,6 +114,7 @@ const sv = {
       search: "Sökresultat",
       cta: "Anpassa aviseringar för den här platsen",
       actionTitle: "Varna",
+      refresh: "Uppdatera",
     },
     selectSightings: {
       title: "Kommande observationer",
@@ -122,6 +124,10 @@ const sv = {
       aboveHorizon: "Ovanför horisonten",
       today: "Idag",
       tomorrow: "Imorgon",
+      appears: "Visas",
+      disappears: "Försvinner",
+      empty:
+        "Det finns inga potentiella ISS-observationer för den här platsen från {{start}} till {{end}}.",
       coach: {
         title: "Ikoner Beskrivning",
         moon: "Det kommer att vara natt på den valda platsen när ISS är över horisonten.",
@@ -156,19 +162,17 @@ const sv = {
     issCaptured: "Fånga detta ögonblick",
     details: {
       title: "Internationella rymdstationen - Detaljer",
-      distance: "Distans",
       orbitalSpeed: "Omloppshastighet",
       longitude: "Longitud",
       latitude: "Latitud",
       altitude: "Höjd över havet",
-      crewOnboard: "Besättning ombord",
+      crewOnboard: "Typiskt antal besättningar ombord",
       launched: "Montering började",
       launchedValue: "20 november 1998",
       mass: "Uppskattad massa",
       dimensions: "Uppskattade dimensioner",
       orbitalPeriod: "Omloppsperiod",
       orbitsPerDay: "Omlopp/dag",
-      orbitalDecay: "Omloppsförfall",
       dimensionsValue: "109 m bred x 73 m lång x 14 m lång",
     },
   },
@@ -178,87 +182,88 @@ const sv = {
     notificationSettings: "Notisinställningar",
     termsAndConditions: "Villkor",
     contactUs: "Kontakta oss",
+    language: "Språk",
     termsAndConditionsData: {
-      backButton: "inställningar",
+      backButton: "Settings",
       ios: {
-        title: "Licensierad ansökan om användning",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "Slutanvändare vill använda följande licensierade ansökan som utvecklats av USA: s regering, representerad av National Aeronautics and Space Administration, belägen på 300 E Street SW, Washington, D.C. (nedan NASA):",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "Licensierad ansökan:",
+          line1: "Licensed Application:",
           line2: "Version:",
-          line3: "NASA-tekniknummer: MSC-27535-1 (nedan licensierad applikation)",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "NASA -kontaktpunkt:",
+          line1: "NASA Point of Contact:",
           line2: "Jacob Keaton",
-          line3: "NASA: s huvudkontor",
+          line3: "NASA Headquarters",
           line4: "300 E Street SW",
-          line5: "E-post: spotthestation@hq.nasa.gov",
+          line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
         intro2:
-          "Myndigheten för NASA att frigöra den licensierade ansökan är NASA Policy Direktiv (NPD) 2820.1C",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
           "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. NASA och slutanvändare erkänner att detta avtal endast ingår mellan NASA och slutanvändare, och inte med Apple, detta avtal är inte överförbart, och NASA, inte Apple, är ensamt ansvarigt för den licensierade ansökan och innehållet därav.",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. NASA och slutanvändare erkänner och samtycker till att Apple och Apples dotterbolag är tredjepartsmottagare av detta avtal, och att Apple kommer att ha accepterat rätten att genomföra detta avtal mot slutanvändarens villkor som ett tredje parts förmånstillstånd.",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3. Den licensierade ansökan förblir NASA: s egendom.Slutanvändare erkänner att den inte förvärvar något ägarintresse i den licensierade ansökan enligt detta avtal.Den licensierade ansökan är inte i allmänhetens område och ingenting i detta avtal ska tolkas som att göra den licensierade ansökan tillgänglig för allmänheten utan begränsning.",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4. Det ska inte finnas någon frisläppande, distribution eller publicering av den licensierade ansökan från End-User.",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. NASA ska varken vara ansvarig eller ansvarig för underhåll eller uppdatering av den angivna licensierade ansökan eller för korrigering av fel i den licensierade ansökan.NASA och slutanvändare erkänner att Apple inte har någon skyldighet att tillhandahålla några underhålls- och supporttjänster med avseende på den licensierade ansökan.",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            "6. Slutanvändare representerar och garanterar att (i) han/hon inte är belägen i ett land som är föremål för ett amerikanskt regeringsembargo, eller som har utsetts av den amerikanska regeringen som ett ”terroriststöd”.och (ii) Han/hon är inte listad på någon amerikansk regeringslista över förbjudna eller begränsade parter.",
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            '7. Den licensierade ansökan tillhandahålls "som den är" utan någon garanti av något slag, antingen uttryckt, underförstådd eller lagstadgad, inklusive, men inte begränsad till, någon garanti för att den licensierade ansökan kommer att anpassa sig till specifikationer, alla underförstådda garantier för försäljningsbarhet, lämplighet för ett visst syfte och frihet från att motverka, eller någon garanti för att den licensierade ansökan kommer att vara felfri.Under inga omständigheter ska NASA vara ansvarig för skadestånd, inklusive, men inte begränsat till, direkt, indirekt, special- eller följdskador, som uppstår, till följd av eller på något sätt kopplade till den licensierade ansökan, oavsett om eller inte är baserad på garanti, tort eller på annat sätt, oavsett om skador har upprätthållits av personer eller egendom eller på annat sätt, eller inte förlust utifrån, eller inte, eller på annat sätt, oavsett om skada har upprätthållits av personer eller egendom eller på annat sätt, eller om eller inte förlust utifrån, eller inte, eller på annat sätt.Slutanvändaren samtycker till att avstå från alla fordringar mot den amerikanska regeringen, dess entreprenörer och deras underleverantörer, och ska ersätta och hålla ofarligt den amerikanska regeringen, dess entreprenörer och deras underleverantörer för eventuella skador som slutanvändare kan komma från slutanvändarens användning av den licensierade tillämpningen, inklusive eventuella skador från produkter baserade på, eller följaktligen från LICENS.',
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line8:
-            "8. I händelse av att det licensierade ansökan är att anpassa sig till eventuella garantier som är tillämpliga enligt lag, kan slutanvändare meddela Apple, och Apple kommer att återbetala inköpspriset (om någon) för den licensierade ansökan till slutanvändare.I den maximala utsträckningen som tillåts enligt tillämplig lag kommer Apple att inte ha några andra förluster, skulder, skador, kostnader eller utgifter som kan hänföras till eventuella misslyckanden i den licensierade ansökan att anpassa sig till alla garantier.",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. NASA och slutanvändare erkänner att i händelse av någon tredje part hävdar att den licensierade ansökan eller slutanvändarens besittning och användning av licensierad ansökan bryter mot immateriella rättigheter, NASA, inte Apple, ensam kommer att vara ansvarig för utredningen, försvaret, avvecklingen och ansvarsfriheten för en sådan intellektuell egendomskrav, med föremål för lag.",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10. NASA och slutanvändare erkänner att NASA, inte Apple är ansvarig för att ta itu med några påståenden om slutanvändare eller tredje part som hänför sig till licensierade ansökan eller slutanvändarens besittning och /eller användning av den licensierade ansökan, inklusive, men inte begränsat till: (i) produktansvar;(ii) alla påståenden om att den licensierade ansökan inte uppfyller eventuella tillämpliga juridiska eller lagstiftningskrav, inklusive eventuella garantier som tillämpas enligt lag;och (iii) påståenden som uppstår enligt konsumentskydd eller liknande lagstiftning.",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11. Detta avtal ska tolkas, och de rättsliga förbindelserna mellan parterna här, ska fastställas, i enlighet med USA: s federala lag för alla ändamål.",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12. Detta avtal utgör hela förståelsen och avtalet mellan NASA och slutanvändare som hänför sig till frisläppandet av den licensierade ansökan och får inte ersättas, modifieras eller ändras.",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13. Genom att acceptera och använda den licensierade ansökan enligt detta avtal samtycker slutanvändaren härmed till alla villkor här.",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "Licensierad ansökan om användning",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "Slutanvändare vill använda följande produkt som utvecklats av USA: s regering, representerad av National Aeronautics and Space Administration, Ames Research Center, beläget vid Moffett Field, CA 94035 (nedan NASA):",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
-          line1: "Programvara:",
+          line1: "Software:",
           line2: "Version:",
-          line3: "NASA-tekniknummer: MSC-27535-1",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "Myndigheten för NASA att frigöra den licensierade ansökan är NASA Policy Direktiv (NPD) 2820.1C.",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          'Nu, med hänsyn till att NASA släpper den licensierade ansökan till slutanvändare och beviljande av slutanvändare den icke-överförbara rätten att använda den licensierade applikationen för personlig, icke-kommersiell användning och som specificeras här och som tillåtet av Android-marknaden för alla Android-drivna mobila enheter ("enhet") som slutanvändare äger, är det tillåtna, slutföretag som följer på alla Android-drivna mobila enheter ("anordning") som slutanvändare äger, slutar, slutar, som följer, som följer med att följa alla Android-drivna mobila enheter ("enhet") som slutanvändare äger eller kontroller, slutar, som är i slutändan:',
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1. Den licensierade ansökan förblir NASA: s egendom.Slutanvändare erkänner att den inte förvärvar något ägarintresse i den licensierade ansökan enligt detta avtal.Den licensierade ansökan är inte i allmänhetens område och ingenting i detta avtal ska tolkas som att göra den licensierade ansökan tillgänglig för allmänheten utan begränsning.",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2. Det ska inte finnas någon frisläppande, distribution eller publicering av den licensierade ansökan från End-User.",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. NASA ska varken vara ansvarig eller ansvarig för underhåll eller uppdatering av den angivna licensierade ansökan eller för korrigering av fel i den licensierade ansökan.",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            "4. Slutanvändare representerar och garanterar att (i) han/hon inte är belägen i ett land som är föremål för ett amerikanskt regeringsembargo, eller som har utsetts av den amerikanska regeringen som ett ”terroriststöd”.och (ii) Han/hon är inte listad på någon amerikansk regeringslista över förbjudna eller begränsade parter.",
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            '5. Den licensierade ansökan tillhandahålls "som den är" utan någon garanti av något slag, antingen uttryckt, underförstådd eller lagstadgad, inklusive, men inte begränsad till, någon garanti för att den licensierade ansökan kommer att anpassa sig till specifikationer, alla underförstådda garantier för försäljningsbarhet, lämplighet för ett visst syfte och frihet från att motverka, eller någon garanti för att den licensierade ansökan kommer att vara felfri.Under inga omständigheter ska NASA vara ansvarig för skadestånd, inklusive, men inte begränsat till, direkt, indirekt, special- eller följdskador, som uppstår, till följd av eller på något sätt kopplade till den licensierade ansökan, oavsett om eller inte är baserad på garanti, tort eller på annat sätt, oavsett om skador har upprätthållits av personer eller egendom eller på annat sätt, eller inte förlust utifrån, eller inte, eller på annat sätt, oavsett om skada har upprätthållits av personer eller egendom eller på annat sätt, eller om eller inte förlust utifrån, eller inte, eller på annat sätt.Slutanvändare samtycker till att avstå från alla fordringar mot den amerikanska regeringen, dess entreprenörer och deras underleverantörer, och ska ersätta och hålla ofarligt den amerikanska regeringen, dess entreprenörer och deras underleverantörer för eventuella skador som slutanvändare kan komma från slutanvändarens användning av den licensierade ansökan, inklusive eventuella skador från licensierade tillämpningar baserade på eller resultera från licens.',
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6. Detta avtal ska tolkas, och de rättsliga förbindelserna mellan parterna här, ska fastställas, i enlighet med USA: s federala lag för alla ändamål.",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7. Detta avtal utgör hela förståelsen och avtalet mellan NASA och slutanvändare som hänför sig till frisläppandet av den licensierade ansökan och får inte ersättas, modifieras eller ändras.",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8. Genom att acceptera och använda den licensierade ansökan enligt detta avtal samtycker slutanvändaren härmed till alla villkor här.",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },
@@ -307,6 +312,7 @@ const sv = {
         removeButton: "Radera",
       },
     },
+    localCalculations: "Lokala beräkningar",
   },
   resources: {
     header: "Resurser",

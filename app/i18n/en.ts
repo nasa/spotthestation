@@ -104,7 +104,7 @@ const en = {
     header: {
       firstTimeHead: "NEXT SIGHTING(S) LIST",
       secondTimeHead: "COUNTDOWN",
-      timezone: "Time Zone:",
+      timezone: "Time Zone",
     },
     selectLocation: {
       title: "Select Location",
