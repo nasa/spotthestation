@@ -739,7 +739,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     bottom: "40%",
     fontSize: fontSizes[24],
     textAlign: "center",
-    width: "50%",
+    width: "60%",
     position: "absolute",
     color: "#fff",
     zIndex: 9,

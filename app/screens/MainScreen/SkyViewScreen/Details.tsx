@@ -298,7 +298,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     backgroundColor: colors.palette.overlayWhite,
     width: "48%",
     borderRadius: scale(10),
-    padding: scale(8),
+    paddingVertical: scale(8),
     marginBottom: scale(18),
   }
 

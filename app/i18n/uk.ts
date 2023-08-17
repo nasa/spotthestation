@@ -329,3 +329,4 @@ const uk = {
 }
 
 export default uk
+export type Translations = typeof uk
