@@ -69,7 +69,7 @@ const it = {
   onboarding: {
     splash: {
       title: "Individua la stazione",
-      subTitle: "Guarda il cielo e visualizza la Stazione Spaziale Internazionale (ISS)",
+      subTitle: "Guarda il cielo e visualizza la Stazione Spaziale Internazionale",
     },
     completeProfile: {
       notification: {

@@ -69,8 +69,7 @@ const nl = {
   onboarding: {
     splash: {
       title: "Zoek het station",
-      subTitle:
-        "Kijk omhoog in de lucht en bekijk het Internationale Ruimtestation (International Space Station, ISS)",
+      subTitle: "Kijk omhoog in de lucht en bekijk het Internationale Ruimtestation",
     },
     completeProfile: {
       notification: {

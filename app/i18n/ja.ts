@@ -69,7 +69,7 @@ const ja = {
   onboarding: {
     splash: {
       title: "国際宇宙ステーション（ISS）を見つけます",
-      subTitle: "空を見上げてください。国際宇宙ステーション（ISS）が見えます。",
+      subTitle: "空を見上げてください。国際宇宙ステーション が見えます。",
     },
     completeProfile: {
       notification: {

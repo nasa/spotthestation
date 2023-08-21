@@ -69,7 +69,7 @@ const en = {
   onboarding: {
     splash: {
       title: "Spot the Station",
-      subTitle: "Gaze up into the sky and view the International Space Station (ISS)",
+      subTitle: "Gaze up into the sky and view the International Space Station",
     },
     completeProfile: {
       notification: {
