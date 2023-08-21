@@ -1,9 +1,9 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 import Modal from "react-native-modal"
 import { Button, Icon, Text, IconTypes, Toggle } from "../../../components"
-import { colors, typography } from "../../../theme"
+import { colors, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -15,6 +15,8 @@ import * as storage from "../../../utils/storage"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { translate } from "../../../i18n"
 import { degToCompass } from "../../../utils/astro"
+import { SightingsFilterDropdown } from "./SightingsFilterDropdown"
+import i18n from "i18n-js"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
@@ -25,6 +27,14 @@ export interface SightingsProps {
   onToggle?: (values: ISSSighting) => void
   onToggleAll?: (value: boolean) => void
   lastSightingOrbitPointAt?: string
+}
+
+const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
+
+const hasDuration = (item: ISSSighting, duration: string) => {
+  if (duration === "longerThan2") return item.visible >= 2
+  if (duration === "shorterThan2") return item.visible < 2
+  return true
 }
 
 export function Sightings({
@@ -53,11 +63,72 @@ export function Sightings({
     $nextButton,
     $nextButtonText,
     $emptyText,
+    $filtersContainer,
+    $timeOfDayItem,
+    $timeOfDayText,
   } = useStyles(styles)
+
+  const timeOfDayOptions = useMemo(
+    () => [
+      {
+        label: translate("homeScreen.selectSightings.all"),
+        value: "",
+      },
+      {
+        label: (
+          <View style={$timeOfDayItem}>
+            <Icon icon="moon" size={40} color="white" containerStyle={$dropdownIcon} />
+            <Text style={$timeOfDayText} tx="homeScreen.selectSightings.night" />
+          </View>
+        ),
+        value: "0",
+      },
+      {
+        label: (
+          <View style={$timeOfDayItem}>
+            <Icon icon="sunset" size={40} color="white" containerStyle={$dropdownIcon} />
+            <Text style={$timeOfDayText} tx="homeScreen.selectSightings.twilight" />
+          </View>
+        ),
+        value: "1",
+      },
+    ],
+    [i18n.locale, $timeOfDayItem, $timeOfDayText],
+  )
+
+  const durationOptions = useMemo(
+    () => [
+      {
+        label: translate("homeScreen.selectSightings.all"),
+        value: "",
+      },
+      {
+        label: translate("homeScreen.selectSightings.shorterThan2"),
+        value: "shorterThan2",
+      },
+      {
+        label: translate("homeScreen.selectSightings.longerThan2"),
+        value: "longerThan2",
+      },
+    ],
+    [i18n.locale],
+  )
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
+  const [timeOfDay, setTimeOfDay] = useState("")
+  const [duration, setDuration] = useState("")
+
+  const filteredSightings = useMemo(() => {
+    return sightings.filter((item) => {
+      return (
+        new Date(item.date) > new Date() &&
+        (timeOfDay === "" || String(item.dayStage) === timeOfDay) &&
+        (duration === "" || hasDuration(item, duration))
+      )
+    })
+  }, [sightings, timeOfDay, duration])
 
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
@@ -155,6 +226,21 @@ export function Sightings({
           }}
         />
       </View>
+
+      <View style={$filtersContainer}>
+        <SightingsFilterDropdown
+          title="homeScreen.selectSightings.timeOfDay"
+          options={timeOfDayOptions}
+          value={timeOfDay}
+          onChange={({ value }) => setTimeOfDay(value)}
+        />
+        <SightingsFilterDropdown
+          title="homeScreen.selectSightings.duration"
+          options={durationOptions}
+          value={duration}
+          onChange={({ value }) => setDuration(value)}
+        />
+      </View>
       <View style={$scrollContainer}>
         <ExpandContainer
           title="homeScreen.selectSightings.sightings"
@@ -167,7 +253,7 @@ export function Sightings({
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
           >
-            {sightings.length === 0 ? (
+            {filteredSightings.length === 0 ? (
               <Text
                 style={$emptyText}
                 tx="homeScreen.selectSightings.empty"
@@ -179,27 +265,25 @@ export function Sightings({
                 }}
               />
             ) : (
-              [...sightings]
-                .filter((item) => new Date(item.date) > new Date())
-                .map((sighting: ISSSighting) => (
-                  <ListItem
-                    key={sighting.date}
-                    icon="clock"
-                    secondIcon={setStageIcon(sighting.dayStage)}
-                    title={formatedDate(sighting.date)}
-                    selected={sighting.notify}
-                    subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
-                      sighting.visible
-                    } ${translate("units.minute")}`}
-                    subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
-                      sighting.minAzimuth,
-                    )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
-                      sighting.maxAzimuth,
-                    )}`}
-                    withSwitch
-                    onToggle={() => onToggle(sighting)}
-                  />
-                ))
+              filteredSightings.map((sighting: ISSSighting) => (
+                <ListItem
+                  key={sighting.date}
+                  icon="clock"
+                  secondIcon={setStageIcon(sighting.dayStage)}
+                  title={formatedDate(sighting.date)}
+                  selected={sighting.notify}
+                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
+                    sighting.visible
+                  } ${translate("units.minute")}`}
+                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
+                    sighting.minAzimuth,
+                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
+                    sighting.maxAzimuth,
+                  )}`}
+                  withSwitch
+                  onToggle={() => onToggle(sighting)}
+                />
+              ))
             )}
           </ScrollView>
         </ExpandContainer>
@@ -373,6 +457,29 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     textAlign: "center",
   }
 
+  const $filtersContainer: ViewStyle = {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: scale(36),
+    paddingTop: scale(20),
+    marginHorizontal: -scale(5),
+  }
+
+  const $timeOfDayItem: ViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: scale(6),
+  }
+
+  const $timeOfDayText: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    marginLeft: scale(spacing.tiny),
+    color: colors.palette.neutral250,
+  }
+
   return {
     $modalBodyContainer,
     $coachModalBodyContainer,
@@ -389,5 +496,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $nextButton,
     $nextButtonText,
     $emptyText,
+    $filtersContainer,
+    $timeOfDayItem,
+    $timeOfDayText,
   }
 }

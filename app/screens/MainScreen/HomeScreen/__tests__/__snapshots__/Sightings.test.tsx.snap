@@ -281,6 +281,294 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginHorizontal": -7,
+        "paddingHorizontal": 52,
+        "paddingTop": 29,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "marginHorizontal": 7,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="homeScreen.selectSightings.timeOfDay"
+        accessibilityLabel="title"
+        accessibilityRole="text"
+        accessible={true}
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        homeScreen.selectSightings.timeOfDay undefined
+      </Text>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#353739",
+            "borderRadius": 40,
+            "height": 80,
+            "justifyContent": "center",
+            "marginTop": 15,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="select"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 35,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                  },
+                  Object {
+                    "color": "#ADADAE",
+                  },
+                ],
+                Object {},
+              ]
+            }
+          >
+            Select item
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 80,
+                "justifyContent": "center",
+                "marginRight": 17,
+              }
+            }
+          >
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 40,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 40,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "marginHorizontal": 7,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="homeScreen.selectSightings.duration"
+        accessibilityLabel="title"
+        accessibilityRole="text"
+        accessible={true}
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {},
+            Array [
+              Object {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              Object {
+                "fontFamily": "Helvetica Neue",
+              },
+              Object {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            Object {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        homeScreen.selectSightings.duration undefined
+      </Text>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#353739",
+            "borderRadius": 40,
+            "height": 80,
+            "justifyContent": "center",
+            "marginTop": 15,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="select"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 35,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                  },
+                  Object {
+                    "color": "#ADADAE",
+                  },
+                ],
+                Object {},
+              ]
+            }
+          >
+            Select item
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 80,
+                "justifyContent": "center",
+                "marginRight": 17,
+              }
+            }
+          >
+            <RCTImageView
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                Array [
+                  Object {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                Object {
+                  "height": 40,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 40,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
         "flex": 1,
         "paddingBottom": 43,
         "paddingHorizontal": 52,
@@ -370,7 +658,40 @@ exports[`renders correctly 1`] = `
         accessibilityRole="scrollbar"
         accessible={true}
       >
-        <View />
+        <View>
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {},
+                Array [
+                  Object {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  Object {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  Object {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                Object {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 35,
+                  "marginTop": 24,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            homeScreen.selectSightings.empty {"start":"Dec 12, 2012","end":"-"}
+          </Text>
+        </View>
       </RCTScrollView>
     </View>
   </View>

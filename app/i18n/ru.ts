@@ -127,6 +127,13 @@ const ru = {
       tomorrow: "Завтра",
       appears: "Появляется",
       disappears: "Исчезает",
+      all: "Все",
+      timeOfDay: "Время суток",
+      night: "Ночь",
+      twilight: "Сумерки",
+      duration: "Длительность",
+      shorterThan2: "короче 2 минут",
+      longerThan2: "2 минуты и дольше",
       empty: "Для этого местоположения с {{start}} по {{end}} нет потенциальных наблюдений МКС.",
       coach: {
         title: "Описание значков",

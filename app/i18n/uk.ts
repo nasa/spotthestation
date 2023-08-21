@@ -127,6 +127,13 @@ const uk = {
       tomorrow: "Завтра",
       appears: "Зʼявляється",
       disappears: "Зникає",
+      all: "Усі",
+      timeOfDay: "Час дня",
+      night: "Ніч",
+      twilight: "Сутінки",
+      duration: "Тривалість",
+      shorterThan2: "коротше 2 хвилин",
+      longerThan2: "2 хвилини і довше",
       empty: "Немає потенційних спостережень МКС для цієї локації з {{start}} по {{end}}.",
       coach: {
         title: "Пояснення до іконок",

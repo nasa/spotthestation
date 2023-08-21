@@ -127,6 +127,13 @@ const en = {
       tomorrow: "Tomorrow",
       appears: "Appears",
       disappears: "Disappears",
+      all: "All",
+      timeOfDay: "Time of day",
+      night: "Night",
+      twilight: "Twilight",
+      duration: "Duration",
+      shorterThan2: "shorter than 2 minutes",
+      longerThan2: "2 minutes and longer",
       empty:
         "There are no potential ISS sightings for this location from {{start}} through {{end}}.",
       coach: {
