@@ -5,15 +5,19 @@ import React from "react"
 import renderer from "react-test-renderer"
 import { Sightings } from "../Sightings"
 
-jest.useFakeTimers("modern").setSystemTime(new Date("12-12-2012 10:10:10"))
+jest.useFakeTimers("modern").setSystemTime(new Date("2020-12-12 10:10:10"))
 
 it("renders correctly", () => {
   const tree = renderer
     .create(
       <Sightings
+        timeOfDay=""
+        duration=""
+        onDurationChange={jest.fn()}
+        onTimeOfDayChange={jest.fn()}
         sightings={[
           {
-            date: "12-12-2012T10:10:10",
+            date: "2020-12-12T10:10:10",
             maxHeight: 20,
             visible: 5,
             dayStage: 0,
@@ -24,7 +28,7 @@ it("renders correctly", () => {
             maxAltitude: 0,
           },
           {
-            date: "12-13-2012T10:15:10",
+            date: "2020-12-13T10:15:10",
             maxHeight: 20,
             minAzimuth: 0,
             maxAzimuth: 0,
@@ -35,7 +39,7 @@ it("renders correctly", () => {
             notify: false,
           },
           {
-            date: "12-14-2012T10:20:10",
+            date: "2020-12-24T10:20:10",
             maxHeight: 20,
             minAzimuth: 0,
             maxAzimuth: 0,

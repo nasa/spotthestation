@@ -7,7 +7,7 @@ import { flow } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add } from "date-fns"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
-import { api } from "../services/api"
+import { api, ISSSighting } from "../services/api"
 import { getCurrentTimeZome } from "../utils/formatDate"
 import notifications from "../utils/notifications"
 import { Location } from "./Location"
@@ -96,6 +96,52 @@ const RootStoreActions = (self) => ({
     }
   }),
 
+  getFilteredSightings: (location: LocationType) => {
+    const hasDuration = (item: ISSSighting, duration: string) => {
+      if (duration === "longerThan2") return item.visible >= 2
+      if (duration === "shorterThan2") return item.visible < 2
+      return true
+    }
+
+    return location.sightings.filter((item) => {
+      return (
+        new Date(item.date) > new Date() &&
+        (location.filterTimeOfDay === "" || String(item.dayStage) === location.filterTimeOfDay) &&
+        (location.filterDuration === "" || hasDuration(item, location.filterDuration))
+      )
+    })
+  },
+
+  setSightingsTimeOfDay: (location: LocationType, value: string) => {
+    const updated = {
+      ...location,
+      filterTimeOfDay: value,
+    }
+
+    const filtered = self.getFilteredSightings(updated)
+    updated.sightings.forEach((sighting) => {
+      if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
+        sighting.notify = false
+    })
+
+    return self.setISSSightings(updated) as LocationType
+  },
+
+  setSightingsDuration: (location: LocationType, value: string) => {
+    const updated = {
+      ...location,
+      filterDuration: value,
+    }
+
+    const filtered = self.getFilteredSightings(updated)
+    updated.sightings.forEach((sighting) => {
+      if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
+        sighting.notify = false
+    })
+
+    return self.setISSSightings(updated) as LocationType
+  },
+
   setISSSightings: (value: LocationType) => {
     const isCurrentLocation = value.title === self.currentLocation?.title
     const valueCopy = JSON.parse(JSON.stringify(value))
@@ -115,6 +161,7 @@ const RootStoreActions = (self) => ({
     ]
 
     notifications.setNotifications(notifyFor)
+    return valueCopy as LocationType
   },
 
   setCurrentLocation: flow(function* setCurrentLocation(

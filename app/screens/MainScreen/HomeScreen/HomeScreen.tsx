@@ -67,6 +67,9 @@ export const HomeScreen = observer(function HomeScreen() {
     setTrajectoryError,
     requestCloseModal,
     requestOpenModal,
+    setSightingsTimeOfDay,
+    setSightingsDuration,
+    getFilteredSightings,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const appState = useRef(AppState.currentState)
@@ -303,6 +306,20 @@ export const HomeScreen = observer(function HomeScreen() {
     [current],
   )
 
+  const handleChangeTimeOfDay = useCallback(
+    (value: string) => {
+      setSightingsTimeOfDay(current, value)
+    },
+    [current],
+  )
+
+  const handleChangeDuration = useCallback(
+    (value: string) => {
+      setSightingsDuration(current, value)
+    },
+    [current],
+  )
+
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
       case 1:
@@ -437,7 +454,11 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <Sightings
           onClose={() => requestCloseModal("sightings")}
-          sightings={current ? current?.sightings : []}
+          sightings={current ? getFilteredSightings(current) : []}
+          timeOfDay={current?.filterTimeOfDay || ""}
+          duration={current?.filterDuration || ""}
+          onTimeOfDayChange={handleChangeTimeOfDay}
+          onDurationChange={handleChangeDuration}
           onToggle={handleSetSightingNotification}
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={currentTimeZone?.regionFormat === "US"}

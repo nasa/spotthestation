@@ -67,6 +67,8 @@ test("getISSSightings should update the store correctly", async () => {
       },
     ],
     lastSightingOrbitPointAt: "2023-12-12",
+    filterDuration: "",
+    filterTimeOfDay: "",
   })
   expect(rootStore.savedLocations).toEqual([
     {
@@ -87,6 +89,8 @@ test("getISSSightings should update the store correctly", async () => {
         },
       ],
       lastSightingOrbitPointAt: "2023-12-12",
+      filterDuration: "",
+      filterTimeOfDay: "",
     },
   ])
 })
@@ -108,6 +112,8 @@ test("setCurrentLocation should update the store correctly", async () => {
     sightings: [],
     subtitle: "sub",
     lastSightingOrbitPointAt: "2023-12-12",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   await rootStore.setCurrentLocation(mockValue)
@@ -147,6 +153,8 @@ test("setISSSightings should update the store correctly", () => {
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -189,6 +197,8 @@ test("setISSSightings should update the store incorrectly", () => {
       },
     ],
     subtitle: "sub",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -213,6 +223,8 @@ test("setSelectedLocation should update the store correctly", async () => {
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   await rootStore.setSelectedLocation(mockValue)
@@ -252,6 +264,8 @@ test("setNewSavedLocation should update the store correctly", async () => {
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   await rootStore.setNewSavedLocation(mockValue)
@@ -293,6 +307,8 @@ test("setSavedLocations should update the store correctly", () => {
     lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
+    filterDuration: "",
+    filterTimeOfDay: "",
   } as LocationType
 
   rootStore.setSavedLocations([mockValue])

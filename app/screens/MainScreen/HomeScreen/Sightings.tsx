@@ -27,15 +27,13 @@ export interface SightingsProps {
   onToggle?: (values: ISSSighting) => void
   onToggleAll?: (value: boolean) => void
   lastSightingOrbitPointAt?: string
+  timeOfDay: string
+  duration: string
+  onTimeOfDayChange: (value: string) => void
+  onDurationChange: (value: string) => void
 }
 
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
-
-const hasDuration = (item: ISSSighting, duration: string) => {
-  if (duration === "longerThan2") return item.visible >= 2
-  if (duration === "shorterThan2") return item.visible < 2
-  return true
-}
 
 export function Sightings({
   onClose,
@@ -46,6 +44,10 @@ export function Sightings({
   isNotifyAll,
   timezone,
   lastSightingOrbitPointAt,
+  timeOfDay,
+  duration,
+  onTimeOfDayChange,
+  onDurationChange,
 }: SightingsProps) {
   const {
     $modalBodyContainer,
@@ -117,18 +119,6 @@ export function Sightings({
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
-  const [timeOfDay, setTimeOfDay] = useState("")
-  const [duration, setDuration] = useState("")
-
-  const filteredSightings = useMemo(() => {
-    return sightings.filter((item) => {
-      return (
-        new Date(item.date) > new Date() &&
-        (timeOfDay === "" || String(item.dayStage) === timeOfDay) &&
-        (duration === "" || hasDuration(item, duration))
-      )
-    })
-  }, [sightings, timeOfDay, duration])
 
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
@@ -232,13 +222,13 @@ export function Sightings({
           title="homeScreen.selectSightings.timeOfDay"
           options={timeOfDayOptions}
           value={timeOfDay}
-          onChange={({ value }) => setTimeOfDay(value)}
+          onChange={({ value }) => onTimeOfDayChange(value)}
         />
         <SightingsFilterDropdown
           title="homeScreen.selectSightings.duration"
           options={durationOptions}
           value={duration}
-          onChange={({ value }) => setDuration(value)}
+          onChange={({ value }) => onDurationChange(value)}
         />
       </View>
       <View style={$scrollContainer}>
@@ -253,7 +243,7 @@ export function Sightings({
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
           >
-            {filteredSightings.length === 0 ? (
+            {sightings.length === 0 ? (
               <Text
                 style={$emptyText}
                 tx="homeScreen.selectSightings.empty"
@@ -265,7 +255,7 @@ export function Sightings({
                 }}
               />
             ) : (
-              filteredSightings.map((sighting: ISSSighting) => (
+              sightings.map((sighting: ISSSighting) => (
                 <ListItem
                   key={sighting.date}
                   icon="clock"

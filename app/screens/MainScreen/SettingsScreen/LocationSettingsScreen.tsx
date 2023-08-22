@@ -57,6 +57,9 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setSavedLocations,
     setISSSightings,
     setNotifications,
+    setSightingsTimeOfDay,
+    setSightingsDuration,
+    getFilteredSightings,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -99,7 +102,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           ),
         )
 
-        if (selectedLocation) {
+        if (selectedLocation && selectedLocation.title === location.title) {
           setSelectedLocation(
             {
               ...selectedLocation,
@@ -174,6 +177,22 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       setIsRemove(false)
     },
     [savedLocations],
+  )
+
+  const handleChangeTimeOfDay = useCallback(
+    (value: string) => {
+      const res = setSightingsTimeOfDay(current, value)
+      setCurrent(res)
+    },
+    [current],
+  )
+
+  const handleChangeDuration = useCallback(
+    (value: string) => {
+      const res = setSightingsDuration(current, value)
+      setCurrent(res)
+    },
+    [current],
   )
 
   const headerStyle = { ...$headerStyleOverride }
@@ -315,7 +334,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         >
           <Sightings
             onClose={() => setIsSightings(!isSightings)}
-            sightings={current ? current.sightings : []}
+            sightings={current ? getFilteredSightings(current) : []}
+            timeOfDay={current?.filterTimeOfDay || ""}
+            duration={current?.filterDuration || ""}
+            onTimeOfDayChange={handleChangeTimeOfDay}
+            onDurationChange={handleChangeDuration}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={currentTimeZone.regionFormat === "US"}

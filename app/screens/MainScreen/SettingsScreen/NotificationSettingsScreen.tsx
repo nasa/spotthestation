@@ -63,6 +63,9 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setCurrentLocation,
     setSelectedLocation,
     setSavedLocations,
+    setSightingsTimeOfDay,
+    setSightingsDuration,
+    getFilteredSightings,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -216,6 +219,20 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   useEffect(() => {
     getCurrentLocation()
   }, [getCurrentLocation])
+
+  const handleChangeTimeOfDay = useCallback(
+    (value: string) => {
+      setSightingsTimeOfDay(current, value)
+    },
+    [current],
+  )
+
+  const handleChangeDuration = useCallback(
+    (value: string) => {
+      setSightingsDuration(current, value)
+    },
+    [current],
+  )
 
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
@@ -417,7 +434,11 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
         >
           <Sightings
             onClose={() => setIsSightings(!isSightings)}
-            sightings={current ? current.sightings : []}
+            sightings={current ? getFilteredSightings(current) : []}
+            timeOfDay={current?.filterTimeOfDay || ""}
+            duration={current?.filterDuration || ""}
+            onTimeOfDayChange={handleChangeTimeOfDay}
+            onDurationChange={handleChangeDuration}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={currentTimeZone.regionFormat === "US"}
