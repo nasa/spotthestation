@@ -295,10 +295,6 @@ export function Sightings({
           >
             <Text tx="homeScreen.selectSightings.coach.title" style={$modalTitle} />
             <View style={$legend}>
-              <Icon icon="sun" size={44} color={colors.palette.yellow} />
-              <Text tx="homeScreen.selectSightings.coach.sun" style={$body} />
-            </View>
-            <View style={$legend}>
               <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
               <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
             </View>

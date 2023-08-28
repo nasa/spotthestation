@@ -42,13 +42,13 @@ const en = {
   },
   notifications: {
     push: {
-      title: "Spot the ISS now!",
-      subTitle: "The ISS is passing above you at",
+      title: "Spot the Station now!",
+      subTitle: "The Station is passing above you at",
     },
     before: {
-      titleOne: "Spot the ISS in",
+      titleOne: "Spot the Station in",
       titleTwo: "minutes!",
-      subTitleOne: "The ISS is passing above you in",
+      subTitleOne: "The Station is passing above you in",
       subTitleTwo: "minutes at",
     },
   },
@@ -61,8 +61,8 @@ const en = {
   },
   tabNavigator: {
     homeTab: "Home",
-    issViewTab: "ISS View",
-    issNowTab: "ISS Now",
+    issViewTab: "AR View",
+    issNowTab: "Tracker",
     resourcesTab: "Resources",
     settingsTab: "Settings",
   },
@@ -141,7 +141,6 @@ const en = {
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
         sunset:
           "There will be twilight at the selected location when the ISS is above the horizon.",
-        sun: "There will be daylight at the selected location when the ISS is above the horizon.",
       },
     },
     coachMarks: {

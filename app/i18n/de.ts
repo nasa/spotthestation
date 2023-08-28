@@ -135,7 +135,6 @@ const de = {
         moon: "Es wird Nacht am ausgewählten Ort sein, an dem sich die ISS über dem Horizont befindet.",
         sunset:
           "Am ausgewählten Ort wird es eine Dämmerung geben, an der sich die ISS über dem Horizont befindet.",
-        sun: "Am ausgewählten Ort wird es Tageslicht geben, an dem sich die ISS über dem Horizont befindet.",
       },
     },
     coachMarks: {

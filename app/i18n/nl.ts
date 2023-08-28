@@ -133,7 +133,6 @@ const nl = {
         moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
         sunset:
           "Er zal schemering zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
-        sun: "Er zal daglicht zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
       },
     },
     coachMarks: {

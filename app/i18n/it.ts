@@ -135,7 +135,6 @@ const it = {
         moon: "Sarà notte nella posizione selezionata quando l'ISS è al di sopra dell'orizzonte.",
         sunset:
           "Ci sarà il crepuscolo nella posizione selezionata quando l'ISS è al di sopra dell'orizzonte.",
-        sun: "Ci sarà la luce del giorno nella posizione selezionata quando l'ISS è al di sopra dell'orizzonte.",
       },
     },
     coachMarks: {

@@ -136,7 +136,6 @@ const fr = {
         moon: "Ce sera la nuit à la localisation sélectionnée lorsque l'ISS sera au-dessus de l'horizon.",
         sunset:
           "Ce sera le crépuscule à la localisation sélectionnée lorsque l'ISS sera au-dessus de l'horizon.",
-        sun: "Ce sera le jour à la localisation sélectionnée lorsque l'ISS sera au-dessus de l'horizon.",
       },
     },
     coachMarks: {

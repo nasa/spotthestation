@@ -135,7 +135,6 @@ const es = {
         moon: "Será nocturno en la ubicación seleccionada cuando la ISS esté por encima del horizonte.", // <-- "Será de noche en la ubicación seleccionada cuando la ISS esté por encima del horizonte."
         sunset:
           "Habrá crepúsculo en la ubicación seleccionada cuando la ISS esté por encima del horizonte.",
-        sun: "Habrá luz diurna en la ubicación seleccionada cuando la ISS esté por encima del horizonte.",
       },
     },
     coachMarks: {

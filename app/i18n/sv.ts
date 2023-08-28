@@ -132,7 +132,6 @@ const sv = {
         title: "Ikoner Beskrivning",
         moon: "Det kommer att vara natt på den valda platsen när ISS är över horisonten.",
         sunset: "Det kommer vara skymning vid den valda platsen när ISS passerar horisonten",
-        sun: "Det kommer vara dagsljus vid den valda platsen när ISS passerar horisonten.",
       },
     },
     coachMarks: {
