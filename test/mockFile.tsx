@@ -74,6 +74,8 @@ jest.mock("@react-native-firebase/analytics", () => ({}))
 jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),
+    reverseGeocode: jest.fn(),
+    getLocationAddress: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),
     getISSSightings: () => new Promise((resolve) => resolve({ ok: true, data: {
       lastSightingOrbitPointAt: '2023-12-12',

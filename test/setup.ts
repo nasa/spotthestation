@@ -2,7 +2,9 @@
 import * as ReactNative from "react-native"
 import mockAsyncStorage from "@react-native-async-storage/async-storage/jest/async-storage-mock"
 import mockFile from "./mockFile"
+import i18n from "i18n-js"
 
+i18n.locale = "en"
 // libraries to mock
 jest.doMock("react-native", () => {
   // Extend ReactNative

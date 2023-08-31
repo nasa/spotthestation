@@ -69,6 +69,7 @@ test("getISSSightings should update the store correctly", async () => {
     lastSightingOrbitPointAt: "2023-12-12",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   })
   expect(rootStore.savedLocations).toEqual([
     {
@@ -91,6 +92,7 @@ test("getISSSightings should update the store correctly", async () => {
       lastSightingOrbitPointAt: "2023-12-12",
       filterDuration: "",
       filterTimeOfDay: "",
+      googlePlaceId: "",
     },
   ])
 })
@@ -114,6 +116,7 @@ test("setCurrentLocation should update the store correctly", async () => {
     lastSightingOrbitPointAt: "2023-12-12",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   await rootStore.setCurrentLocation(mockValue)
@@ -155,6 +158,7 @@ test("setISSSightings should update the store correctly", () => {
     subtitle: "sub",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -199,6 +203,7 @@ test("setISSSightings should update the store incorrectly", () => {
     subtitle: "sub",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -225,6 +230,7 @@ test("setSelectedLocation should update the store correctly", async () => {
     subtitle: "sub",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   await rootStore.setSelectedLocation(mockValue)
@@ -266,6 +272,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
     subtitle: "sub",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   await rootStore.setNewSavedLocation(mockValue)
@@ -309,6 +316,7 @@ test("setSavedLocations should update the store correctly", () => {
     subtitle: "sub",
     filterDuration: "",
     filterTimeOfDay: "",
+    googlePlaceId: "",
   } as LocationType
 
   rootStore.setSavedLocations([mockValue])

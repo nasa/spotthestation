@@ -24,6 +24,7 @@ import { getCurrentLocation } from "../../utils/geolocation"
 import { ISSSighting } from "../../services/api"
 import * as storage from "../../utils/storage"
 import { PrivacyModal } from "./components/PrivacyModal"
+import i18n from "i18n-js"
 
 export interface LocationType {
   title: string
@@ -33,6 +34,7 @@ export interface LocationType {
   lastSightingOrbitPointAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
+  googlePlaceId?: string
 }
 
 enum Statuses {
@@ -188,13 +190,14 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           placeholder={translate("onboarding.completeProfile.location.selectLocation")}
           query={{
             key: Config.GOOGLE_API_TOKEN,
-            language: "en",
+            language: i18n.locale,
           }}
           onPress={(data, details = null) =>
             onValueChange({
               title: details.name,
               subtitle: details.formatted_address,
               location: details?.geometry?.location,
+              googlePlaceId: details?.place_id,
             })
           }
           onFail={(error) => console.error(error)}

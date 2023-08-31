@@ -97,10 +97,13 @@ export const HomeScreen = observer(function HomeScreen() {
   })
 
   useEffect(() => {
-    setAddress(calcAddress(selectedLocation, currentLocation))
     setLocation(calcLocation(selectedLocation, currentLocation))
     setCurrent(selectedLocation || currentLocation)
   }, [selectedLocation, currentLocation])
+
+  useEffect(() => {
+    setAddress(calcAddress(selectedLocation, currentLocation))
+  }, [selectedLocation?.subtitle, currentLocation?.subtitle])
 
   useEffect(() => {
     const backAction = () => {

@@ -75,6 +75,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
   const [current, setCurrent] = useState<LocationType>(null)
   const [isLocation, setIsLocation] = useState(false)
+  const [address, setAddress] = useState("")
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -118,6 +119,12 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     getCurrentLocation()
   }, [selectedLocation, currentLocation])
+
+  useEffect(() => {
+    if (selectedLocation) setAddress(selectedLocation.subtitle)
+    else if (currentLocation) setAddress(currentLocation.subtitle)
+    else setAddress("")
+  }, [selectedLocation?.subtitle, currentLocation?.subtitle])
 
   const getData = async () => {
     await getISSData({ lat: current?.location.lat, lon: current?.location.lng })
@@ -210,12 +217,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           blurIntensity={50}
         />
         <View style={$textContainer}>
-          <Text
-            text={current?.subtitle || ""}
-            style={$location}
-            ellipsizeMode="tail"
-            numberOfLines={1}
-          />
+          <Text text={address} style={$location} ellipsizeMode="tail" numberOfLines={1} />
           <Text text={`${formatDate(currentDateTime, "dd MMM yyyy k:mm:ss")}`} style={$date} />
         </View>
         <IconLinkButton

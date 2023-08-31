@@ -4,6 +4,7 @@ import { Point } from "react-native-google-places-autocomplete"
 import Config from "../config"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { api } from "../services/api"
+import i18n from "i18n-js"
 
 export interface TimeZoneData {
   dstOffset: number
@@ -15,6 +16,19 @@ export interface TimeZoneData {
 
 export interface TimeZoneDataResponse {
   zone: TimeZoneData
+  kind: string
+}
+
+export interface ReverseGeocodeResponse {
+  name?: string
+  googlePlaceId?: string
+  kind: string
+}
+
+export interface LocationAddressResponse {
+  address?: string
+  name?: string
+  googlePlaceId?: string
   kind: string
 }
 
@@ -47,20 +61,15 @@ export const getCurrentLocation = async (
     if (coords) {
       const { latitude, longitude } = coords
 
-      const response = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude,
-      })
-
-      const item = response[0]
-
-      const address = `${item?.streetNumber ?? ""} ${item?.street ?? ""}, ${item?.city ?? ""}, ${
-        item?.region || item?.subregion || item?.district || ""
-      } ${item?.postalCode ?? ""}, ${item?.country ?? ""}`
+      const rgResponse = await api.reverseGeocode(latitude, longitude)
+      if (rgResponse.kind !== "ok" || !rgResponse.googlePlaceId) return null
+      const response = await api.getLocationAddress(rgResponse.googlePlaceId)
+      if (response.kind !== "ok" || !response.address) return null
 
       return {
-        title: item?.name === item?.streetNumber ? address : item?.name,
-        subtitle: address,
+        title: response.name || response.address,
+        subtitle: response.address,
+        googlePlaceId: rgResponse.googlePlaceId,
         location: { lat: latitude, lng: longitude },
       }
     }
@@ -75,7 +84,7 @@ export const getNearbyPlaces = async (
 ): Promise<LocationType[]> => {
   const places: LocationType[] = []
   const res = await api.getPlaces(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&key=${Config.GOOGLE_API_TOKEN}`,
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
     "results",
   )
 
@@ -85,6 +94,7 @@ export const getNearbyPlaces = async (
         location: googlePlace.geometry.location,
         title: googlePlace.name,
         subtitle: googlePlace.vicinity,
+        googlePlaceId: googlePlace.place_id,
       })
     }
   }
@@ -98,9 +108,9 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
     `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search.replaceAll(
       " ",
       "%20",
-    )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=${
-      Config.GOOGLE_API_TOKEN
-    }`,
+    )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry%2Cplace_id&language=${
+      i18n.locale
+    }&key=${Config.GOOGLE_API_TOKEN}`,
     "candidates",
   )
 
@@ -110,6 +120,7 @@ export const getPlaces = async (search: string): Promise<LocationType[]> => {
         location: googlePlace.geometry.location,
         title: googlePlace.name,
         subtitle: googlePlace.formatted_address,
+        googlePlaceId: googlePlace.place_id,
         sightings: [],
       })
     }

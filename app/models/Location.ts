@@ -14,4 +14,5 @@ export const Location = types.model("Location", {
   lastSightingOrbitPointAt: types.maybeNull(types.string),
   filterTimeOfDay: types.optional(types.string, ""),
   filterDuration: types.optional(types.string, ""),
+  googlePlaceId: types.optional(types.string, ""),
 })

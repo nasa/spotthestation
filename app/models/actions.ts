@@ -210,6 +210,28 @@ const RootStoreActions = (self) => ({
     }
   }),
 
+  setLocationAddress(location: LocationType, name: string, address: string) {
+    location.subtitle = address
+    if (location === self.currentLocation) location.title = name || address
+  },
+
+  updateLocationAddresses: flow(function* updateLocationAddresses() {
+    const locations = [self.currentLocation, self.selectedLocation, ...self.savedLocations].filter(
+      Boolean,
+    )
+    yield Promise.all(
+      locations.map(async (location: LocationType) => {
+        if (!location.googlePlaceId) return
+
+        const response = await api.getLocationAddress(location.googlePlaceId)
+        if (response.kind !== "ok" || !response.address) return
+        self.setLocationAddress(location, response.name, response.address)
+      }),
+    )
+
+    self.setNotifications()
+  }),
+
   setSavedLocations: (values: LocationType[]) => {
     self.savedLocations = JSON.parse(JSON.stringify(values))
   },

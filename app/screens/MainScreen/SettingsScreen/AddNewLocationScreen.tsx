@@ -19,6 +19,7 @@ import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import i18n from "i18n-js"
 
 export interface AddNewLocationScreenParams {
   defaultLocation?: LocationType
@@ -169,13 +170,14 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           )}
           query={{
             key: Config.GOOGLE_API_TOKEN,
-            language: "en",
+            language: i18n.locale,
           }}
           onPress={(data, details = null) => {
             setLocation({
               title: details.name,
               subtitle: details.formatted_address,
               location: details?.geometry?.location,
+              googlePlaceId: details?.place_id,
               sightings: [],
             })
             setTitleValue(details.name)

@@ -24,6 +24,7 @@ import { api } from "../../../services/api"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { useStyles } from "../../../utils/useStyles"
+import i18n from "i18n-js"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const {
@@ -70,16 +71,16 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   useEffect(() => {
     if (marker) {
       api
-        .getLocationByCoords(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${marker.latitude},${marker.longitude}&key=${Config.GOOGLE_API_TOKEN}`,
-        )
+        .reverseGeocode(marker.latitude, marker.longitude)
         .then((res) => {
+          if (res.kind !== "ok") return
           setLocation({
             location: { lat: marker.latitude, lng: marker.longitude },
             title: "Location",
-            subtitle: res.places.results[0].formatted_address,
+            subtitle: res.name,
+            googlePlaceId: res.googlePlaceId,
           })
-          setTextValue(res.places.results[0].formatted_address)
+          setTextValue(res.name)
           setIsSave(true)
         })
         .catch((e) => console.log(e))
@@ -156,13 +157,14 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           )}
           query={{
             key: Config.GOOGLE_API_TOKEN,
-            language: "en",
+            language: i18n.locale,
           }}
           onPress={(data, details = null) => {
             setLocation({
               title: details.name,
               subtitle: details.formatted_address,
               location: details?.geometry?.location,
+              googlePlaceId: details?.place_id,
               sightings: [],
             })
             setMarker({

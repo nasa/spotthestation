@@ -22,10 +22,15 @@ import type {
   OrbitPoint,
 } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
-import { TimeZoneDataResponse } from "../../utils/geolocation"
+import {
+  LocationAddressResponse,
+  ReverseGeocodeResponse,
+  TimeZoneDataResponse,
+} from "../../utils/geolocation"
 import { ISSDataResponse, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
 import { addDays } from "date-fns"
+import i18n from "i18n-js"
 
 /**
  * Configuring the apisauce instance.
@@ -84,6 +89,48 @@ export class Api {
     }
 
     return { kind: "ok", zone: response.data }
+  }
+
+  async reverseGeocode(
+    lat: number,
+    lon: number,
+  ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
+    const response: ApiResponse<any> = await this.apisauce.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+      {},
+      { baseURL: "" },
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    return {
+      kind: "ok",
+      name: response.data?.results[0]?.formatted_address,
+      googlePlaceId: response.data?.results[0]?.place_id,
+    }
+  }
+
+  async getLocationAddress(placeId: string): Promise<LocationAddressResponse | GeneralApiProblem> {
+    const response: ApiResponse<any> = await this.apisauce.get(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+      {},
+      { baseURL: "" },
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    return {
+      kind: "ok",
+      name: response.data?.result?.name,
+      address: response.data?.result?.formatted_address,
+      googlePlaceId: response.data?.result?.placeId,
+    }
   }
 
   async getRawISSData(

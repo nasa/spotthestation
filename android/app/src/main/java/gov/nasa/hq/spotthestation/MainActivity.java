@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 
 import com.facebook.react.ReactActivity;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.zoontek.rnbootsplash.RNBootSplash;
@@ -12,6 +13,7 @@ import com.zoontek.rnbootsplash.RNBootSplash;
 import expo.modules.ReactActivityDelegateWrapper;
 
 public class MainActivity extends ReactActivity {
+  static String currentLocale;
 
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
@@ -19,6 +21,13 @@ public class MainActivity extends ReactActivity {
     Intent intent = new Intent("onConfigurationChanged");
     intent.putExtra("newConfig", newConfig);
     this.sendBroadcast(intent);
+
+    String locale = newConfig.locale.toString();
+    if (!MainActivity.currentLocale.equals(locale)) {
+        MainActivity.currentLocale = locale;
+        final ReactInstanceManager instanceManager = getReactInstanceManager();
+        instanceManager.recreateReactContextInBackground();
+    }
   }
   
   /**
@@ -44,6 +53,7 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     RNBootSplash.init(this);            // <- initialize the splash screen
     super.onCreate(null);               // or super.onCreate(savedInstanceState) when not using react-native-screens
+    MainActivity.currentLocale = getResources().getConfiguration().locale.toString();
   }
 
   public static class MainActivityDelegate extends ReactActivityDelegate {

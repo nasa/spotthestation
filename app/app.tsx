@@ -9,10 +9,10 @@
  * The app navigation resides in ./app/navigators, so head over there
  * if you're interested in adding screens and navigators.
  */
-import { setLocale } from "./i18n"
+import { addLocaleListener, removeLocaleListener, setLocale } from "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
@@ -25,6 +25,7 @@ import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
+import i18n from "i18n-js"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -104,26 +105,39 @@ function App(props: AppProps) {
     setTimeout(hideSplashScreen, 500)
   })
 
+  const updateLocationAddresses = useCallback(() => {
+    rootStore.updateLocationAddresses().catch(console.log)
+  }, [])
+
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
   }, [])
 
   useEffect(() => {
-    storage
-      .load("locale")
-      .then((locale) => {
+    ;(async () => {
+      try {
+        const locale = await storage.load("locale")
         if (locale) setLocale(locale as string)
+        else {
+          const prevSystemLocale = await storage.load("prevSystemLocale")
+          if (prevSystemLocale && prevSystemLocale !== i18n.locale) updateLocationAddresses()
+        }
+
+        await storage.save("prevSystemLocale", i18n.locale)
         setIsLocaleLoaded(true)
-      })
-      .catch(() => setIsLocaleLoaded(true))
+      } catch {
+        setIsLocaleLoaded(true)
+      }
+    })().catch(() => null)
   }, [])
 
   useEffect(() => {
-    if (!rehydrated || !isLocaleLoaded || !rootStore) return
+    if (!isLocaleLoaded) return undefined
 
-    rootStore.setNotifications()
-  }, [rootStore, rehydrated, isLocaleLoaded])
+    addLocaleListener(updateLocationAddresses)
+    return () => removeLocaleListener(updateLocationAddresses)
+  }, [isLocaleLoaded, updateLocationAddresses])
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background

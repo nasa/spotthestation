@@ -64,7 +64,7 @@ describe("getNearbyPlaces", () => {
     const places = await getNearbyPlaces({ lng, lat }, radius)
 
     expect(api.getPlaces).toHaveBeenCalledWith(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&key=google`,
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&language=en&key=google`,
       "results",
     )
     expect(places).toEqual(expectedPlaces)
@@ -84,7 +84,7 @@ describe("getNearbyPlaces", () => {
     const places = await getNearbyPlaces({ lng, lat }, radius)
 
     expect(api.getPlaces).toHaveBeenCalledWith(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&key=google`,
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&language=en&key=google`,
       "results",
     )
     expect(places).toEqual([])
@@ -135,7 +135,7 @@ describe("getPlaces", () => {
       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search.replaceAll(
         " ",
         "%20",
-      )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=google`,
+      )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry%2Cplace_id&language=en&key=google`,
       "candidates",
     )
     expect(places).toEqual(expectedPlaces)
@@ -157,7 +157,7 @@ describe("getPlaces", () => {
       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search.replaceAll(
         " ",
         "%20",
-      )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry&key=google`,
+      )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry%2Cplace_id&language=en&key=google`,
       "candidates",
     )
     expect(places).toEqual([])
@@ -179,25 +179,21 @@ describe("getCurrentLocation", () => {
       longitude: -74.005974,
     }
 
+    ;(api.reverseGeocode as any).mockResolvedValue({
+      kind: "ok",
+      googlePlaceId: "111",
+    })
+    ;(api.getLocationAddress as any).mockResolvedValue({
+      kind: "ok",
+      name: "New York",
+      address: "123 Main Street, New York City, New York 12345, USA",
+    })
     ;(Location as any).getCurrentPositionAsync.mockResolvedValue({ coords })
-
-    const reverseGeocodeResponse = [
-      {
-        name: "New York",
-        streetNumber: "123",
-        street: "Main Street",
-        city: "New York City",
-        region: "New York",
-        postalCode: "12345",
-        country: "USA",
-      },
-    ]
-
-    ;(Location as any).reverseGeocodeAsync.mockResolvedValue(reverseGeocodeResponse)
 
     const expectedLocation = {
       title: "New York",
       subtitle: "123 Main Street, New York City, New York 12345, USA",
+      googlePlaceId: "111",
       location: { lat: 40.712776, lng: -74.005974 },
     }
 
@@ -205,10 +201,7 @@ describe("getCurrentLocation", () => {
 
     expect((Location as any).requestForegroundPermissionsAsync).toHaveBeenCalled()
     expect((Location as any).getCurrentPositionAsync).toHaveBeenCalled()
-    expect((Location as any).reverseGeocodeAsync).toHaveBeenCalledWith({
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    })
+    expect(api.reverseGeocode).toHaveBeenCalledWith(coords.latitude, coords.longitude)
     expect(location).toEqual(expectedLocation)
   })
 
