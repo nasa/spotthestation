@@ -280,7 +280,8 @@ export async function getSightings(data: SatData[], lat: number, lon: number) {
 
   return {
     sightings: res,
-    lastSightingOrbitPointAt: new Date(data[data.length - 1].date).toISOString(),
+    lastSightingOrbitPointAt:
+      data.length > 0 ? new Date(data[data.length - 1].date).toISOString() : null,
   }
 }
 

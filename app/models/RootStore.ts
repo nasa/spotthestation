@@ -19,7 +19,6 @@ export const RootStoreModel = types
     currentModal: types.maybeNull(Modal),
     modalsQueue: types.optional(types.array(types.string), []),
     isCurrentLocationUpdating: types.optional(types.boolean, false),
-    isLocalCalculations: types.optional(types.boolean, true),
   })
   .props({})
   .actions(RootStoreActions)

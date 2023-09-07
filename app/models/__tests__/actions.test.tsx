@@ -17,7 +17,6 @@ test("getISSSightings should update the store incorrectly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockParams = { zone: "testZone", lat: 0, lon: 0 }
@@ -42,7 +41,6 @@ test("getISSSightings should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockParams = { zone: "testZone", lat: 0, lon: 0 }
@@ -53,20 +51,8 @@ test("getISSSightings should update the store correctly", async () => {
     title: "Test selected",
     subtitle: "",
     location: { lat: 0, lng: 0 },
-    sightings: [
-      {
-        maxAltitude: 10,
-        maxAzimuth: 0,
-        minAltitude: 10,
-        minAzimuth: 120,
-        date: "date",
-        dayStage: 1,
-        maxHeight: 12,
-        notify: false,
-        visible: 6,
-      },
-    ],
-    lastSightingOrbitPointAt: "2023-12-12",
+    sightings: [],
+    lastSightingOrbitPointAt: null,
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
@@ -76,20 +62,8 @@ test("getISSSightings should update the store correctly", async () => {
       title: "Test selected",
       subtitle: "",
       location: { lat: 0, lng: 0 },
-      sightings: [
-        {
-          maxAltitude: 10,
-          maxAzimuth: 0,
-          minAltitude: 10,
-          minAzimuth: 120,
-          date: "date",
-          dayStage: 1,
-          maxHeight: 12,
-          notify: false,
-          visible: 6,
-        },
-      ],
-      lastSightingOrbitPointAt: "2023-12-12",
+      sightings: [],
+      lastSightingOrbitPointAt: null,
       filterDuration: "",
       filterTimeOfDay: "",
       googlePlaceId: "",
@@ -105,7 +79,6 @@ test("setCurrentLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -123,19 +96,7 @@ test("setCurrentLocation should update the store correctly", async () => {
 
   expect(rootStore.currentLocation).toEqual({
     ...mockValue,
-    sightings: [
-      {
-        maxAltitude: 10,
-        maxAzimuth: 0,
-        minAltitude: 10,
-        minAzimuth: 120,
-        date: "date",
-        dayStage: 1,
-        maxHeight: 12,
-        notify: false,
-        visible: 6,
-      },
-    ],
+    sightings: [],
   })
 })
 
@@ -146,7 +107,6 @@ test("setISSSightings should update the store correctly", () => {
     savedLocations: [],
     issData: [],
     initLoading: false,
-    isLocalCalculations: false,
     sightingsLoaded: false,
   })
 
@@ -180,7 +140,6 @@ test("setISSSightings should update the store incorrectly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -219,7 +178,6 @@ test("setSelectedLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -237,19 +195,7 @@ test("setSelectedLocation should update the store correctly", async () => {
 
   expect(rootStore.selectedLocation).toEqual({
     ...mockValue,
-    sightings: [
-      {
-        maxAltitude: 10,
-        maxAzimuth: 0,
-        minAltitude: 10,
-        minAzimuth: 120,
-        date: "date",
-        dayStage: 1,
-        maxHeight: 12,
-        notify: false,
-        visible: 6,
-      },
-    ],
+    sightings: [],
   })
 })
 
@@ -261,13 +207,12 @@ test("setNewSavedLocation should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
+    lastSightingOrbitPointAt: null,
     sightings: [],
     subtitle: "sub",
     filterDuration: "",
@@ -280,19 +225,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
   expect(rootStore.savedLocations).toEqual([
     {
       ...mockValue,
-      sightings: [
-        {
-          maxAltitude: 10,
-          maxAzimuth: 0,
-          minAltitude: 10,
-          minAzimuth: 120,
-          date: "date",
-          dayStage: 1,
-          maxHeight: 12,
-          notify: false,
-          visible: 6,
-        },
-      ],
+      sightings: [],
     },
   ])
 })
@@ -305,7 +238,6 @@ test("setSavedLocations should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -332,7 +264,6 @@ test("setInitLoading should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   rootStore.setInitLoading(false)
@@ -348,7 +279,6 @@ test("setSightingsLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   rootStore.setSightingsLoaded(true)
@@ -364,7 +294,6 @@ test("setIssDataLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   rootStore.setNotifications()
@@ -380,7 +309,6 @@ test("setIssDataLoaded should update the store correctly", () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   rootStore.setIssDataLoaded(true)
@@ -396,7 +324,6 @@ test("setIssDataLoaded should update the store correctly", async () => {
     issData: [],
     initLoading: false,
     sightingsLoaded: false,
-    isLocalCalculations: false,
   })
 
   const mockValue = {
@@ -408,5 +335,5 @@ test("setIssDataLoaded should update the store correctly", async () => {
   } as LocationType
   await rootStore.getISSData(mockValue)
 
-  expect(rootStore.issData).toEqual(["data"])
+  expect(rootStore.issData).toEqual([])
 })

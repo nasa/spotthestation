@@ -93,6 +93,7 @@ jest.mock('../app/services/api', () => ({
         }]
       }})),
     getISSData: () => new Promise((resolve) => resolve({ ok: true, data: ['data'] })),
+    getRawISSData: () => new Promise((resolve) => resolve({ ok: true, data: [] })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
   }
 }))

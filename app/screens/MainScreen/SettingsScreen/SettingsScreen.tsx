@@ -7,9 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Screen, Text /* Icon */ } from "../../../components"
 import { colors, typography, spacing } from "../../../theme"
 import { SettingsItem } from "../components/SettingsItem"
-import { ListItem } from "../components/ListItem"
-import { useStores } from "../../../models"
-import { translate /* setLocale */ } from "../../../i18n"
+// import { setLocale } from "../../../i18n"
 // import { Dropdown } from "react-native-element-dropdown"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 // import i18n from "i18n-js"
@@ -39,7 +37,6 @@ export const SettingsScreen = observer(function SettingsScreen() {
   } = useStyles(styles)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
-  const { isLocalCalculations, setLocalCalculations /* setNotifications */ } = useStores()
 
   const handleNavigate = (screen) =>
     navigation.navigate("SettingsScreens" as never, { screen } as never)
@@ -128,15 +125,6 @@ export const SettingsScreen = observer(function SettingsScreen() {
         {/* /> */}
         {/* eslint-disable-next-line react-native/no-inline-styles */}
         <View style={{ flex: 1 }} />
-        <ListItem
-          icon="iss"
-          title={translate("settings.localCalculations")}
-          subtitle=""
-          selected={isLocalCalculations}
-          onToggle={() => setLocalCalculations(!isLocalCalculations)}
-          withSwitch
-          borderless
-        />
       </View>
     </Screen>
   )
