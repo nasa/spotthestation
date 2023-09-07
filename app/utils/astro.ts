@@ -195,13 +195,13 @@ function findEvents(
   return periods
 }
 
-function calculateDayStage(twinlites: SunCalc.GetTimesResult, eventTime: Date) {
-  if (twinlites.nightEnd >= eventTime || eventTime >= twinlites.night) {
+function calculateDayStage(twilight: SunCalc.GetTimesResult, eventTime: Date) {
+  if (twilight.nightEnd >= eventTime || eventTime >= twilight.night) {
     return 0
   }
   if (
-    (twinlites.nightEnd < eventTime && eventTime < twinlites.dawn) ||
-    (twinlites.dusk < eventTime && eventTime < twinlites.night)
+    (twilight.nightEnd < eventTime && eventTime < twilight.dawn) ||
+    (twilight.dusk < eventTime && eventTime < twilight.night)
   ) {
     return 1
   }
@@ -261,8 +261,8 @@ export async function getSightings(data: SatData[], lat: number, lon: number) {
     const ti1 = new Date(event.maxElevationTime)
     const ti2 = new Date(event.endTime)
 
-    const twinlites = SunCalc.getTimes(ti1, lat, lon)
-    const dayStage = calculateDayStage(twinlites, ti1)
+    const twilight = SunCalc.getTimes(ti1, lat, lon)
+    const dayStage = calculateDayStage(twilight, ti1)
     if (dayStage === 0 || dayStage === 1) {
       const item = {
         date: ti0.toISOString(),
