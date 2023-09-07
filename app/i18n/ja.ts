@@ -42,13 +42,13 @@ const ja = {
   },
   notifications: {
     push: {
-      title: "今すぐISSを見つけてください！",
-      subTitle: "ISSはあなたの上を通り過ぎています",
+      title: "今すぐステーションを見つけてください!",
+      subTitle: "駅があなたの上を通り過ぎていきます",
     },
     before: {
-      titleOne: "ISSを見つけてください",
+      titleOne: "駅を見つける",
       titleTwo: "数分以内に！",
-      subTitleOne: "ISSはあなたの上を通り過ぎています",
+      subTitleOne: "駅があなたの上を通り過ぎていきます",
       subTitleTwo: "数分の間",
     },
   },
@@ -61,8 +61,8 @@ const ja = {
   },
   tabNavigator: {
     homeTab: "家",
-    issViewTab: "ISSビュー",
-    issNowTab: "ISS今",
+    issViewTab: "ARビュー",
+    issNowTab: "トラッカー",
     resourcesTab: "リソース",
     settingsTab: "設定",
   },
@@ -127,6 +127,13 @@ const ja = {
       tomorrow: "明日",
       appears: "登場",
       disappears: "消える",
+      all: "全て",
+      timeOfDay: "時刻",
+      night: "夜",
+      twilight: "トワイライト",
+      duration: "間隔",
+      shorterThan2: "2分未満",
+      longerThan2: "2分以上",
       empty: "{{start}} から {{end}} まで、この場所で ISS が目撃される可能性はありません。",
       coach: {
         title: "アイコンの説明",

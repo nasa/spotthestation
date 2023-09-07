@@ -42,13 +42,13 @@ const sv = {
   },
   notifications: {
     push: {
-      title: "Hitta ISS nu!",
-      subTitle: "ISS passerar ovanför dig vid",
+      title: "Hitta stationen nu!",
+      subTitle: "Stationen passerar ovanför dig vid",
     },
     before: {
-      titleOne: "Hitta ISS i",
+      titleOne: "Hitta stationen i",
       titleTwo: "minuter!",
-      subTitleOne: "ISS passerar ovanför dig",
+      subTitleOne: "Stationen passerar ovanför dig",
       subTitleTwo: "protokoll vid",
     },
   },
@@ -61,8 +61,8 @@ const sv = {
   },
   tabNavigator: {
     homeTab: "Hem",
-    issViewTab: "ISS -vy",
-    issNowTab: "ISS nu",
+    issViewTab: "AR-vy",
+    issNowTab: "Spårare",
     resourcesTab: "Resurser",
     settingsTab: "inställningar",
   },
@@ -126,6 +126,13 @@ const sv = {
       tomorrow: "Imorgon",
       appears: "Visas",
       disappears: "Försvinner",
+      all: "Allt",
+      timeOfDay: "Tidpunkt på dygnet",
+      night: "Natt",
+      twilight: "Skymning",
+      duration: "Varaktighet",
+      shorterThan2: "kortare än 2 minuter",
+      longerThan2: "2 minuter och längre",
       empty:
         "Det finns inga potentiella ISS-observationer för den här platsen från {{start}} till {{end}}.",
       coach: {

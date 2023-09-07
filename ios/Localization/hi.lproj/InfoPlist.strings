@@ -1,8 +1,8 @@
-NSAppleMusicUsageDescription = "We need access to your media library to store recorded images and videos";
-NSCalendarsUsageDescription = "We need access to your calendar to enable scheduling of notifications for upcoming sightings";
-NSCameraUsageDescription = "We need access to your camera to enable Augmented Reality experience";
-NSLocationAlwaysAndWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationAlwaysUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSMicrophoneUsageDescription = "We need access to your microphone to enable audio recording in your videos";
-NSPhotoLibraryUsageDescription = "We need access to your media library to store recorded images and videos";
+NSAppleMusicUsageDescription = "हमें आपके मीडिया लाइब्रेरी तक पहुँच की आवश्यकता है ताकि हम रिकॉर्ड किए गए चित्र और वीडियो सहेज सकें";
+NSCalendarsUsageDescription = "हमें आपके कैलेंडर तक पहुँच की आवश्यकता है ताकि आगामी दृश्यों के लिए सूचनाओं की योजना की जा सके";
+NSCameraUsageDescription = "हमें आपके कैमरे तक पहुँच की आवश्यकता है ताकि वृद्धाकृत वास्तविकता अनुभव सकें";
+NSLocationAlwaysAndWhenInUseUsageDescription = "हम आपके क्षेत्र में आने वाले दृश्यों की गणना के लिए स्थान डेटा का उपयोग करते हैं";
+NSLocationAlwaysUsageDescription = "हम आपके क्षेत्र में आने वाले दृश्यों की गणना के लिए स्थान डेटा का उपयोग करते हैं";
+NSLocationWhenInUseUsageDescription = "हम आपके क्षेत्र में आने वाले दृश्यों की गणना के लिए स्थान डेटा का उपयोग करते हैं";
+NSMicrophoneUsageDescription = "हमें आपके माइक्रोफ़ोन तक पहुँच की आवश्यकता है ताकि आपके वीडियो में ऑडियो रिकॉर्डिंग सक्षम की जा सके";
+NSPhotoLibraryUsageDescription = "हमें आपके मीडिया लाइब्रेरी तक पहुँच की आवश्यकता है ताकि हम रिकॉर्ड किए गए चित्र और वीडियो सहेज सकें";

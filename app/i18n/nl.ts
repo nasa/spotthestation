@@ -42,13 +42,13 @@ const nl = {
   },
   notifications: {
     push: {
-      title: "Aanschouw nu het ISS!",
-      subTitle: "Het ISS passeert nu boven u met",
+      title: "Aanschouw nu het station!",
+      subTitle: "Het station passeert nu boven u met",
     },
     before: {
-      titleOne: "Zie het ISS over",
+      titleOne: "Zie het station over",
       titleTwo: "minuten!",
-      subTitleOne: "Het ISS passeert u over",
+      subTitleOne: "Het station passeert u over",
       subTitleTwo: "minuten met",
     },
   },
@@ -61,8 +61,8 @@ const nl = {
   },
   tabNavigator: {
     homeTab: "Thuis",
-    issViewTab: "ISS Weergave",
-    issNowTab: "ISS Nu",
+    issViewTab: "AR Weergave",
+    issNowTab: "Spoorzoeker",
     resourcesTab: "Bronnen",
     settingsTab: "Instellingen",
   },
@@ -126,6 +126,13 @@ const nl = {
       tomorrow: "Morgen",
       appears: "Komt naar voren",
       disappears: "Verdwijnt",
+      all: "Alle",
+      timeOfDay: "Tijdstip",
+      night: "Nacht",
+      twilight: "Schemering",
+      duration: "Duur",
+      shorterThan2: "korter dan 2 minuten",
+      longerThan2: "2 minuten en langer",
       empty:
         "Er zijn geen potentiële ISS-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
       coach: {

@@ -1,8 +1,8 @@
-NSAppleMusicUsageDescription = "We need access to your media library to store recorded images and videos";
-NSCalendarsUsageDescription = "We need access to your calendar to enable scheduling of notifications for upcoming sightings";
-NSCameraUsageDescription = "We need access to your camera to enable Augmented Reality experience";
-NSLocationAlwaysAndWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationAlwaysUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSMicrophoneUsageDescription = "We need access to your microphone to enable audio recording in your videos";
-NSPhotoLibraryUsageDescription = "We need access to your media library to store recorded images and videos";
+NSAppleMusicUsageDescription = "We hebben toegang tot uw mediabibliotheek nodig om opgenomen afbeeldingen en video's op te slaan";
+NSCalendarsUsageDescription = "We hebben toegang tot uw agenda nodig om het plannen van meldingen voor aanstaande waarnemingen mogelijk te maken";
+NSCameraUsageDescription = "We hebben toegang tot uw camera nodig om de augmented reality-ervaring mogelijk te maken";
+NSLocationAlwaysAndWhenInUseUsageDescription = "We gebruiken locatiegegevens om aanstaande waarnemingen in uw omgeving te berekenen";
+NSLocationAlwaysUsageDescription = "We gebruiken locatiegegevens om aanstaande waarnemingen in uw omgeving te berekenen";
+NSLocationWhenInUseUsageDescription = "We gebruiken locatiegegevens om aanstaande waarnemingen in uw omgeving te berekenen";
+NSMicrophoneUsageDescription = "We hebben toegang tot uw microfoon nodig om geluidsopname in uw video's mogelijk te maken";
+NSPhotoLibraryUsageDescription = "We hebben toegang tot uw mediabibliotheek nodig om opgenomen afbeeldingen en video's op te slaan";

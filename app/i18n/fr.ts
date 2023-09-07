@@ -43,13 +43,13 @@ const fr = {
   },
   notifications: {
     push: {
-      title: "Repérez l'ISS maintenant!",
-      subTitle: "L'ISS passe au-dessus de vous",
+      title: "Repérez la Station maintenant!",
+      subTitle: "La Station passe au-dessus de vous",
     },
     before: {
-      titleOne: "Repérez l'ISS dans",
+      titleOne: "Repérez la Station dans",
       titleTwo: "minutes!",
-      subTitleOne: "L'ISS passe au-dessus de vous",
+      subTitleOne: "La Station passe au-dessus de vous",
       subTitleTwo: "mintutes à",
     },
   },
@@ -62,8 +62,8 @@ const fr = {
   },
   tabNavigator: {
     homeTab: "Accueil",
-    issViewTab: "Vue ISS",
-    issNowTab: "ISS Now",
+    issViewTab: "Vue AR",
+    issNowTab: "Traqueur",
     resourcesTab: "Ressources",
     settingsTab: "Paramètres",
   },
@@ -76,7 +76,7 @@ const fr = {
       notification: {
         title: "Paramètres de notification",
         label: "Obtenez des alertes de notification push",
-        tip: "Obtenez des alertes lorsque la station spatiale approche de votre localisation.",
+        tip: "Obtenez des alertes lorsque la station spatiale s’approche de votre localisation.",
         nextButton: "Suivant",
       },
       location: {
@@ -129,6 +129,13 @@ const fr = {
       tomorrow: "Demain",
       appears: "Apparaît",
       disappears: "Disparaît",
+      all: "Tout",
+      timeOfDay: "Moment de la journée",
+      night: "Nuit",
+      twilight: "Crépuscule",
+      duration: "Durée",
+      shorterThan2: "moins de 2 minutes",
+      longerThan2: "2 minutes et plus",
       empty:
         "Il n'y a aucune observation potentielle de l'ISS pour cet emplacement de {{start}} à {{end}}.",
       coach: {
@@ -148,10 +155,10 @@ const fr = {
         "Vous pouvez sélectionner ou modifier votre localisation pour une autre directement ici.",
       sightingsTitle: "Prochaine observation et compte à rebours",
       sightingsData:
-        "Cette section vous montre la date et un compte à rebours pour la prochaine observation ISS à venir près de votre localisation sélectionnée. Vous pouvez appuyer sur la prochaine boîte d'observation pour voir une liste complète des prochaines observations.",
+        "Cette section vous montre la date et un compte à rebours pour la prochaine observation ISS à venir près de votre localisation sélectionnée. Vous pouvez appuyer sur la prochaine case d'observation pour voir une liste complète des prochaines observations.",
       globeTitle: "Terre interactive",
       globeData:
-        "Vous pouvez afficher la position en temps réel de l'ISS en touchant l'écran. Cela vous permet d'interagir avec carte de la Terre et de suivre l'emplacement de l'ISS en temps réel.",
+        "Vous pouvez afficher la position de l’ISS en temps réel en touchant l’écran. Cela vous permet d’interagir avec la carte de la terre et de suivre en temps réel l’emplacement de la station.",
       mapTitle: "Vue de carte 2D",
       mapData:
         "Cette section montre une représentation 2D du chemin complet de l'ISS à travers les régions jour et nuit de la Terre.",

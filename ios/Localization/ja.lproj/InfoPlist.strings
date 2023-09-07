@@ -1,8 +1,8 @@
-NSAppleMusicUsageDescription = "We need access to your media library to store recorded images and videos";
-NSCalendarsUsageDescription = "We need access to your calendar to enable scheduling of notifications for upcoming sightings";
-NSCameraUsageDescription = "We need access to your camera to enable Augmented Reality experience";
-NSLocationAlwaysAndWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationAlwaysUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSMicrophoneUsageDescription = "We need access to your microphone to enable audio recording in your videos";
-NSPhotoLibraryUsageDescription = "We need access to your media library to store recorded images and videos";
+NSAppleMusicUsageDescription = "録画した画像とビデオを保存するためにメディアライブラリへのアクセスが必要です";
+NSCalendarsUsageDescription = "将来の出来事の通知をスケジュールするためにカレンダーへのアクセスが必要です";
+NSCameraUsageDescription = "拡張現実体験を有効にするためにカメラへのアクセスが必要です";
+NSLocationAlwaysAndWhenInUseUsageDescription = "お住まいの地域での予定されている出来事を計算するために位置情報を使用しています";
+NSLocationAlwaysUsageDescription = "お住まいの地域での予定されている出来事を計算するために位置情報を使用しています";
+NSLocationWhenInUseUsageDescription = "お住まいの地域での予定されている出来事を計算するために位置情報を使用しています";
+NSMicrophoneUsageDescription = "ビデオのオーディオ録音を有効にするためにマイクへのアクセスが必要です";
+NSPhotoLibraryUsageDescription = "録画した画像とビデオを保存するためにメディアライブラリへのアクセスが必要です";

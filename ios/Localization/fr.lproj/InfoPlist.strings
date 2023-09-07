@@ -1,8 +1,8 @@
-NSAppleMusicUsageDescription = "We need access to your media library to store recorded images and videos";
-NSCalendarsUsageDescription = "We need access to your calendar to enable scheduling of notifications for upcoming sightings";
-NSCameraUsageDescription = "We need access to your camera to enable Augmented Reality experience";
-NSLocationAlwaysAndWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationAlwaysUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSLocationWhenInUseUsageDescription = "We use location data to calculate the upcoming sightings in your area";
-NSMicrophoneUsageDescription = "We need access to your microphone to enable audio recording in your videos";
-NSPhotoLibraryUsageDescription = "We need access to your media library to store recorded images and videos";
+NSAppleMusicUsageDescription = "Nous avons besoin d'accéder à votre bibliothèque multimédia pour enregistrer des images et des vidéos enregistrées";
+NSCalendarsUsageDescription = "Nous avons besoin d'accéder à votre calendrier pour permettre la planification de notifications pour les observations à venir";
+NSCameraUsageDescription = "Nous avons besoin d'accéder à votre appareil photo pour permettre l'expérience de réalité augmentée";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Nous utilisons les données de localisation pour calculer les observations à venir dans votre région";
+NSLocationAlwaysUsageDescription = "Nous utilisons les données de localisation pour calculer les observations à venir dans votre région";
+NSLocationWhenInUseUsageDescription = "Nous utilisons les données de localisation pour calculer les observations à venir dans votre région";
+NSMicrophoneUsageDescription = "Nous avons besoin d'accéder à votre microphone pour permettre l'enregistrement audio dans vos vidéos";
+NSPhotoLibraryUsageDescription = "Nous avons besoin d'accéder à votre bibliothèque multimédia pour enregistrer des images et des vidéos enregistrées";

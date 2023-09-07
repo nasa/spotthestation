@@ -42,13 +42,13 @@ const de = {
   },
   notifications: {
     push: {
-      title: "Erkennen Sie die ISS jetzt!",
-      subTitle: "Die ISS übergeht über Ihnen",
+      title: "Erkennen Sie die Station jetzt!",
+      subTitle: "Die Station übergeht über Ihnen",
     },
     before: {
-      titleOne: "Entdecken Sie die ISS in",
+      titleOne: "Entdecken Sie die Station in",
       titleTwo: "Protokoll!",
-      subTitleOne: "Die ISS übergeht über Ihnen in",
+      subTitleOne: "Die Station übergeht über Ihnen in",
       subTitleTwo: "Minuten",
     },
   },
@@ -61,8 +61,8 @@ const de = {
   },
   tabNavigator: {
     homeTab: "Heim",
-    issViewTab: "ISS -Ansicht",
-    issNowTab: "ISS jetzt",
+    issViewTab: "AR-Ansicht",
+    issNowTab: "Tracker",
     resourcesTab: "Ressourcen",
     settingsTab: "Einstellungen",
   },
@@ -86,12 +86,12 @@ const de = {
         orLabel: "oder",
         selectLocation: "Geben Sie Ihren Standort an",
         detecting: "Standort erkennen ...",
-        doneButton: "Erledigt",
+        doneButton: "Fertig",
         serviceAlertTitle: "Standortdienste deaktivierien",
         serviceAlertBody: "Bitte ermöglichen Sie Ihre Standortdienste.",
         permissionAlertTitle: "Erlaubnis nicht erteilten",
         permissionAlertBody:
-          "Wir verwenden Standortdaten, um die bevorstehenden Sichtungen an Ihrem aktuellen Standort zu berechnen.Bitte erteilen Sie die Standortberechtigungen, um diese Funktionalität zu ermöglichen.",
+          "Wir verwenden Standortdaten, um die bevorstehenden Sichtungen an Ihrem aktuellen Standort zu berechnen. Bitte erteilen Sie die Standortberechtigungen, um diese Funktionalität zu ermöglichen.",
       },
     },
   },
@@ -128,6 +128,13 @@ const de = {
       tomorrow: "Morgen",
       appears: "Erscheint",
       disappears: "Verschwindet",
+      all: "Alle",
+      timeOfDay: "Uhrzeit",
+      night: "Nacht",
+      twilight: "Dämmerung",
+      duration: "Dauer",
+      shorterThan2: "kürzer als 2 Minuten",
+      longerThan2: "2 Minuten und länger",
       empty:
         "Von {{start}} bis {{end}} gibt es für diesen Standort keine potenziellen ISS-Sichtungen.",
       coach: {
@@ -301,7 +308,7 @@ const de = {
       goBack: "Geh zurück",
       generalTitle: "Ortseinstellungen",
       cta: "Passen Sie Benachrichtigungen für diesen Ort an",
-      locationPermission: "Erlaubnis zur Erlaubnis zu Gewähren",
+      locationPermission: "Erteilen Du die Erlaubnis, den Standort zu verwenden",
       addNewLocation: {
         generalTitleAdd: "Neuen Standort hinzufügen",
         generalTitleEdit: "Standort bearbeiten",

@@ -42,13 +42,13 @@ const hi = {
   },
   notifications: {
     push: {
-      title: "अब आईएसएस को स्पॉट करें!",
-      subTitle: "आईएसएस आपके ऊपर से गुजर रहा है",
+      title: "अब स्टेशन को स्पॉट करें!",
+      subTitle: "स्टेशन आपके ऊपर से गुजर रहा है",
     },
     before: {
-      titleOne: "आईएसएस को स्पॉट करें",
+      titleOne: "स्टेशन को स्पॉट करें",
       titleTwo: "मिनट!",
-      subTitleOne: "आईएसएस आपके ऊपर से गुजर रहा है",
+      subTitleOne: "स्टेशन आपके ऊपर से गुजर रहा है",
       subTitleTwo: "मिनटों में",
     },
   },
@@ -61,8 +61,8 @@ const hi = {
   },
   tabNavigator: {
     homeTab: "घर",
-    issViewTab: "इस दृश्य को देखें",
-    issNowTab: "अब आईएसएस",
+    issViewTab: "एआर व्यू",
+    issNowTab: "ट्रैकर",
     resourcesTab: "संसाधन",
     settingsTab: "समायोजन",
   },
@@ -127,6 +127,13 @@ const hi = {
       tomorrow: "आने वाला कल",
       appears: "प्रकट होता है",
       disappears: "गायब",
+      all: "सभी",
+      timeOfDay: "अपना समय",
+      night: "रात",
+      twilight: "सांझ",
+      duration: "अवधि",
+      shorterThan2: "2 मिनट से कम",
+      longerThan2: "2 मिनट और अधिक",
       empty: "इस स्थान पर {{start}} से {{end}} तक आईएसएस देखे जाने की कोई संभावना नहीं है।",
       coach: {
         title: "प्रतीक विवरण",

@@ -42,13 +42,13 @@ const es = {
   },
   notifications: {
     push: {
-      title: "¡Detecte la ISS ahora!",
+      title: "¡Detecte la estación ahora!",
       subTitle: "La ISS está pasando por encima de usted en",
     },
     before: {
-      titleOne: "Detectar la ISS en",
+      titleOne: "Detectar la estación en",
       titleTwo: "¡minutos!",
-      subTitleOne: "La ISS está pasando por encima de usted en",
+      subTitleOne: "La estación está pasando por encima de usted en",
       subTitleTwo: "intermediario",
     },
   },
@@ -61,8 +61,8 @@ const es = {
   },
   tabNavigator: {
     homeTab: "Hogar",
-    issViewTab: "Vista de ISS",
-    issNowTab: "ISS ahora",
+    issViewTab: "Vista AR",
+    issNowTab: "Rastreador",
     resourcesTab: "Recursos",
     settingsTab: "Ajustes",
   },
@@ -128,6 +128,13 @@ const es = {
       tomorrow: "Mañana",
       appears: "Aparece",
       disappears: "Desaparece",
+      all: "Todo",
+      timeOfDay: "Hora del día",
+      night: "Noche",
+      twilight: "Crepúsculo",
+      duration: "Duración",
+      shorterThan2: "menos de 2 minutos",
+      longerThan2: "2 minutos y más",
       empty:
         "No hay posibles avistamientos de ISS para esta ubicación desde el {{start}} hasta el {{end}}.",
       coach: {

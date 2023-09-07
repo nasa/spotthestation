@@ -42,13 +42,13 @@ const it = {
   },
   notifications: {
     push: {
-      title: "Individua l'ISS ora!",
+      title: "Individua la Stazione ora!",
       subTitle: "L'ISS sta passando sopra di te alle",
     },
     before: {
-      titleOne: "Individua l'ISS",
+      titleOne: "Individua la Stazione",
       titleTwo: "minuti!",
-      subTitleOne: "La ISS sta passando sopra di te tra",
+      subTitleOne: "La Stazione sta passando sopra di te tra",
       subTitleTwo: "minuti alle",
     },
   },
@@ -61,8 +61,8 @@ const it = {
   },
   tabNavigator: {
     homeTab: "Home",
-    issViewTab: "Vista ISS",
-    issNowTab: "L'ISS ora",
+    issViewTab: "Vista AR",
+    issNowTab: "Localizzatore",
     resourcesTab: "Risorse",
     settingsTab: "Impostazioni",
   },
@@ -74,7 +74,7 @@ const it = {
     completeProfile: {
       notification: {
         title: "Impostazioni di notifica",
-        label: "River avvisi di notifica",
+        label: "Ricevi Avvisi di Notifica Push",
         tip: "Ricevi avvisi quando la stazione spaziale si avvicina alla tua posizione.",
         nextButton: "Avanti",
       },
@@ -119,15 +119,22 @@ const it = {
       refresh: "Ricaricare",
     },
     selectSightings: {
-      title: "Avvistamenti imminenti",
+      title: "Prossimi Avvistamenti",
       sightings: "Avvistamenti",
-      selectMessage: "Seleziona eventi per i quali vorresti essere avvisato.",
+      selectMessage: "Avvisami per tutti i prossimi avvistamenti in questa posizione.",
       switch: "Avvisami per tutti gli eventi imminenti in questa posizione.",
       aboveHorizon: "Sopra l'orizzonte",
       today: "Oggi",
       tomorrow: "Domani",
       appears: "Appare",
       disappears: "Scompare",
+      all: "Tutto",
+      timeOfDay: "Ora del giorno",
+      night: "Notte",
+      twilight: "Twilight",
+      duration: "Crepuscolo",
+      shorterThan2: "inferiore a 2 minuti",
+      longerThan2: "2 minuti e più",
       empty:
         "Non ci sono potenziali avvistamenti della ISS per questa località dal {{start}} al {{end}}.",
       coach: {
@@ -147,12 +154,12 @@ const it = {
       sightingsTitle: "Prossimo avvistamento e conto alla rovescia",
       sightingsData:
         "Questa sezione mostra la data e un timer per il conto alla rovescia per il prossimo avvistamento dell'ISS vicino alla posizione selezionata. Usa l'opzione \"avvistamenti successivi\" per vedere un elenco completo dei prossimi avvistamenti.",
-      globeTitle: "Terra interattiva",
+      globeTitle: "Avvistamenti Interattiva",
       globeData:
-        "È possibile visualizzare la posizione in tempo reale dell'ISS scorrere il dito sullo schermo. Ciò consente di interagire con la Terra e tracciare della posizione dell'ISS in tempo reale.",
-      mapTitle: "Vista della mappa 2D",
+        "È possibile visualizzare la posizione in tempo reale dell’ISS scorrendo il dito sullo schermo. Ciò consente di interagire con la Terra e seguire la posizione dell’ISS in tempo reale.",
+      mapTitle: "Visualizzazione della mappa 2D",
       mapData:
-        "Questa sezione mostra una rappresentazione 2D dell'intero percorso dell'ISS relativamente alle regioni notturne e diurne di tutta la terra.",
+        "Questa sezione mostra una rappresentazione 2D dell'intero percorso dell'ISS relativamente alle regioni notturne e diurne di tutta la Terra.",
       navigationTitle: "Navigazione",
       navigationData:
         "È possibile scoprire diverse funzionalità dell'app dal menu di navigazione in basso.",
@@ -273,7 +280,7 @@ const it = {
     contactUsData: {
       backButton: "Impostazioni",
       title: "Contattaci",
-      titlePlaceholder: "Scegli il titolo",
+      titlePlaceholder: "Scegli il Soggetto",
       commentsPlaceholder: "Inserisci Commenti",
       sendButton: "Invia",
       contactUsOptions: {
@@ -287,7 +294,7 @@ const it = {
       backButton: "Impostazioni",
       notificationTitle: "Impostazioni di notifica",
       privacyTitle: "Impostazioni sulla Privacy",
-      upcomingLabel: "Prossimi eventi",
+      upcomingLabel: "Prossimi Avvistamenti",
       customizeLabel: "Personalizza le notifiche",
       upcomingTip: "Disattiva le notifiche per smettere di ricevere notifiche di eventi.",
       notifyMeBefore: "Avvisami prima",
