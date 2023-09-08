@@ -179,6 +179,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
   const [countdown, setCountdown] = useState("T - 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
+  const [isStartingRecording, setIsStartingRecording] = useState(false)
   const [isSpotted, setIsSpotted] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
@@ -336,6 +337,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
     setIsRecording(true)
+    if (Platform.OS === 'android') setIsStartingRecording(true)
     const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
       (error: any) => {
         Snackbar.show({
@@ -361,18 +363,31 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   async function saveToGallery(path: string, type: "photo" | "video" | "auto") {
     if (Platform.OS === "android") {
-      // On Android, we need to request permission to write to external storage
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          title: translate("permissionsAndroid.title"),
-          message: translate("permissionsAndroid.message"),
-          buttonNeutral: translate("permissionsAndroid.buttonNeutral"),
-          buttonNegative: translate("permissionsAndroid.buttonNegative"),
-          buttonPositive: translate("permissionsAndroid.buttonPositive"),
-        },
-      )
-      if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+      let granted: boolean
+      if (Platform.Version >= 33) {
+        const statuses = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
+          PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
+        ])
+
+        granted = statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+          statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO] ===
+          PermissionsAndroid.RESULTS.GRANTED
+      } else {
+        granted = (await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          {
+            title: translate("permissionsAndroid.title"),
+            message: translate("permissionsAndroid.message"),
+            buttonNeutral: translate("permissionsAndroid.buttonNeutral"),
+            buttonNegative: translate("permissionsAndroid.buttonNegative"),
+            buttonPositive: translate("permissionsAndroid.buttonPositive"),
+          }
+        )) === PermissionsAndroid.RESULTS.GRANTED
+      }
+
+      if (!granted) {
         setIsPermissionsModal(true)
         return
       }
@@ -475,15 +490,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (nextAppState !== "active" && isRecording) {
+      if (nextAppState !== "active" && isRecording && (Platform.OS !== 'android' || isStartingRecording === false)) {
         stopRecording()
       }
+
+      if (nextAppState !== "active" && isRecording) setIsStartingRecording(false)
     })
 
     return () => {
       subscription.remove()
     }
-  }, [isRecording])
+  }, [isRecording, isStartingRecording])
 
   const animatedCameraButtonStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
@@ -514,17 +531,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       isPortrait={false}
     >
       <View style={[$headerContainer, headerStyle]}>
-        {isFullScreen && (
-          <IconLinkButton
-            accessible
-            accessibilityLabel="x button"
-            accessibilityHint="disable full screen mode"
-            icon="x"
-            onPress={() => setIsFullScreen(false)}
-            buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
-          />
-        )}
-      </View>
+          {isFullScreen && (
+            <IconLinkButton
+              accessible
+              accessibilityLabel="x button"
+              accessibilityHint="disable full screen mode"
+              icon="x"
+              onPress={() => setIsFullScreen(false)}
+              buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
+            />
+          )}
+        </View>
       {!isCameraAllowed ? (
         <Pressable
           style={[$body, bodyStyle]}
