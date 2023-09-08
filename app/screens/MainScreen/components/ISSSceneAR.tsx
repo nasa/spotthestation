@@ -228,11 +228,13 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
               <ViroPolyline
                 position={markerPosition}
                 points={pastOrbitCoords}
-                thickness={0.05}
+                thickness={0.1}
               />
-              {futureOrbitCoords.map((point) => (
-                <ViroSphere key={point.toString()} position={point} radius={0.05} />
-              ))}
+              <ViroPolyline
+                position={markerPosition}
+                points={futureOrbitCoords}
+                thickness={0.02}
+              />
             </>
           )}
           <ViroImage
