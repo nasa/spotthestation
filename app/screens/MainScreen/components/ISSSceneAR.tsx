@@ -208,6 +208,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     return throttle(cb, 50)
   }, [sceneNavigator, issMarkerPosition, initialHeading])
 
+  const markerPosition = useMemo(
+    () => worldTransform(issMarkerPosition, initialHeading),
+    [issMarkerPosition, initialHeading]
+  )
+
+  const rotation = useMemo<[number, number, number]>(() => [
+    issAzAlt[1],
+    -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)),
+    0,
+  ], [issAzAlt, initialHeading])
+
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
       {isVisible && (
@@ -215,7 +226,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
           {settings.isPathVisible && (
             <>
               <ViroPolyline
-                position={worldTransform(issMarkerPosition, initialHeading)}
+                position={markerPosition}
                 points={pastOrbitCoords}
                 thickness={0.05}
               />
@@ -227,12 +238,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
           <ViroImage
             height={1.5}
             width={1.5}
-            rotation={[
-              issAzAlt[1],
-              -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)),
-              0,
-            ]}
-            position={worldTransform(issMarkerPosition, initialHeading)}
+            rotation={rotation}
+            position={markerPosition}
             source={icon}
           />
         </>
