@@ -438,7 +438,7 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.17.12):
     - React-Core
-  - RNCPushNotificationIOS (1.10.1):
+  - RNCPushNotificationIOS (1.11.0):
     - React-Core
   - RNDateTimePicker (6.7.5):
     - React-Core
@@ -808,7 +808,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 9e46c82a14a3b3a25be4e1e151ce6d21536b89c0
   FirebaseInstallations: 2a2c6859354cbec0a228a863d4daf6de7c74ced4
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
+  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   GoogleAppMeasurement: d3dabccdb336fc0ae44b633c8abaa26559893cd9
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   hermes-engine: 409b787d72bde225a3e5ce982f9c3ace6ff56691
@@ -860,7 +860,7 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
   RNCAsyncStorage: 09fc8595e6d6f6d5abf16b23a56b257d9c6b7c5b
-  RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
+  RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
   RNDateTimePicker: 65e1d202799460b286ff5e741d8baf54695e8abd
   RNDeviceInfo: 475a4c447168d0ad4c807e48ef5e0963a0f4eb1b
   RNFBAnalytics: f13089c0af878ab74fba09f5e873c63e3f9de9c8

@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Platform } from "react-native"
 import PushNotification from "react-native-push-notification"
+import PushNotificationIOS from "@react-native-community/push-notification-ios"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../services/api"
 import * as storage from "../utils/storage"
@@ -36,7 +37,8 @@ class Notifications {
     const end = new Date((await storage.load("muteUntil")) as string)
     const privacy = await storage.load("privacy")
     const notifyBefore = await storage.load("notifyBefore")
-    PushNotification.cancelAllLocalNotifications()
+
+    let notifications = []
     for await (const location of locations) {
       const events = location?.sightings || []
       const eventsForNotify: ISSSighting[] = events.filter((item) => item.notify)
@@ -46,31 +48,59 @@ class Notifications {
         const muted = isDateBetweenHours(eventDate, start, end)
 
         if ((!privacy || !muted) && Date.now() <= eventDate.getTime()) {
-          PushNotification.localNotificationSchedule({
-            smallIcon: "ic_notification",
-            channelId: "default-channel-id",
-            title: translate("notifications.push.title"),
-            message: `${translate("notifications.push.subTitle")} ${location.title}`,
-            date: eventDate,
-          })
-          if (notifyBefore) {
-            PushNotification.localNotificationSchedule({
-              smallIcon: "ic_notification",
-              channelId: "default-channel-id",
+          if (
+            notifyBefore &&
+            new Date(eventDate.getTime() - notifyBefore * 60000).valueOf() > Date.now()
+          ) {
+            notifications.push({
               title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
                 "notifications.before.titleTwo",
               )}`,
-              message: `${translate(
-                "notifications.before.subTitleOne",
-              )} ${notifyBefore} ${translate("notifications.before.subTitleTwo")} ${
-                location.title
-              }`,
-              date: new Date(eventDate.getTime() - notifyBefore * 60000),
+              body: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${translate(
+                "notifications.before.subTitleTwo",
+              )} ${location.title}`,
+              fireDate: new Date(eventDate.getTime() - notifyBefore * 60000),
             })
           }
+
+          notifications.push({
+            title: translate("notifications.push.title"),
+            body: `${translate("notifications.push.subTitle")} ${location.title}`,
+            fireDate: eventDate,
+          })
         }
       })
     }
+
+    notifications.sort((a, b) => a.fireDate - b.fireDate)
+    if (Platform.OS === "ios") {
+      notifications = notifications.slice(0, 64)
+    }
+
+    if (Platform.OS === "ios") {
+      PushNotificationIOS.removeAllPendingNotificationRequests()
+    } else {
+      PushNotification.cancelAllLocalNotifications()
+    }
+
+    notifications.forEach((notification) => {
+      if (Platform.OS === "ios") {
+        PushNotificationIOS.addNotificationRequest({
+          id: notification.fireDate.valueOf().toString(),
+          title: notification.title,
+          body: notification.body,
+          fireDate: notification.fireDate,
+        })
+      } else {
+        PushNotification.localNotificationSchedule({
+          smallIcon: "ic_notification",
+          channelId: "default-channel-id",
+          title: notification.title,
+          message: notification.body,
+          date: notification.fireDate,
+        })
+      }
+    })
   }
 }
 

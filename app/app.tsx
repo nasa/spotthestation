@@ -12,7 +12,7 @@
 import { addLocaleListener, removeLocaleListener, setLocale } from "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
@@ -26,6 +26,7 @@ import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
 import i18n from "i18n-js"
+import { AppState, Platform } from "react-native"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -94,6 +95,7 @@ function App(props: AppProps) {
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
+  const prevAppState = useRef<string>()
 
   const { rootStore, rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.
@@ -108,6 +110,25 @@ function App(props: AppProps) {
   const updateLocationAddresses = useCallback(() => {
     rootStore.updateLocationAddresses().catch(console.log)
   }, [])
+
+  useEffect(() => {
+    if (!rootStore || Platform.OS !== "ios") return undefined
+
+    rootStore.setNotifications()
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        nextAppState === "active" &&
+        prevAppState.current &&
+        prevAppState.current !== nextAppState
+      )
+        rootStore.setNotifications()
+      prevAppState.current = nextAppState
+    })
+
+    return () => {
+      subscription.remove()
+    }
+  }, [rootStore])
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
