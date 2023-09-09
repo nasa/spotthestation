@@ -24,7 +24,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import { check, request, PERMISSIONS, RESULTS, openSettings } from "react-native-permissions"
 import Share from "react-native-share"
-import { captureScreen } from "react-native-view-shot"
+import ViewShot, { captureScreen, captureRef } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -311,28 +311,58 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
   }
 
-  const takeScreenshot = () => {
+  const [screenshot, setScreenshot] = useState('')
+  const arContainerRef = useRef()
+  const screenshotLoaded = useRef<boolean>(false)
+
+  const takeScreenshot = async () => {
     if (!arView.current) return null
 
     flashCameraIcon()
-    return captureScreen({
-      format: "jpg",
-      quality: 1,
-    }).then(
-      async (uri) => {
-        await saveToGallery(uri, "photo")
-        setMediaUrl(uri)
-        setMediaType("photo")
-        return uri
-      },
-      (error) => {
-        Snackbar.show({
-          text: error,
-          duration: Snackbar.LENGTH_LONG,
+    let uri
+
+    try {
+      if (Platform.OS === 'android') {
+        const screenshot = await captureRef(arContainerRef, {
+          format: "jpg",
+          quality: 1,
+          handleGLSurfaceViewOnAndroid: true,
         })
-        return null
-      },
-    )
+
+        setScreenshot(screenshot)
+        await new Promise((resolve) => setInterval(() => {
+          if (screenshotLoaded.current) resolve(null)
+        }, 100))
+
+        uri = await captureScreen({
+          format: "jpg",
+          quality: 1,
+        })
+
+        screenshotLoaded.current = false
+        setScreenshot('')
+      } else {
+        uri = await captureScreen({
+          format: "jpg",
+          quality: 1,
+        })
+      }
+
+      await saveToGallery(uri, "photo")
+      setMediaUrl(uri)
+      setMediaType("photo")
+      return uri
+    } catch (error) {
+      screenshotLoaded.current = false
+      setScreenshot('')
+
+      console.log(error)
+      Snackbar.show({
+        text: error.message ? error.message : error,
+        duration: Snackbar.LENGTH_LONG,
+      })
+      return null
+    }
   }
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
@@ -569,18 +599,25 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       ) : (
         <View style={[$body, bodyStyle]}>
           {issData?.length > 0 && (
-            <ARView
-              ref={arView}
-              isFullScreen={isFullScreen}
-              isPathVisible={isPathVisible}
-              isRecording={isRecording}
-              recordedSeconds={recordedSeconds}
-              issPath={issData.filter((point: OrbitPoint) => {
-                const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
-                return diff < 60 * 60 * 1000
-              })}
-              setIsSpotted={setIsSpotted}
-            />
+            <ViewShot ref={arContainerRef} style={{ flex: 1 }}>
+              <ARView
+                image={screenshot}
+                onImageLoaded={() => {
+                  console.log('loaded')
+                  screenshotLoaded.current = true
+                }}
+                ref={arView}
+                isFullScreen={isFullScreen}
+                isPathVisible={isPathVisible}
+                isRecording={isRecording}
+                recordedSeconds={recordedSeconds}
+                issPath={issData.filter((point: OrbitPoint) => {
+                  const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
+                  return diff < 60 * 60 * 1000
+                })}
+                setIsSpotted={setIsSpotted}
+              />
+            </ViewShot>
           )}
           <View style={[$bottomContainer, bottomContainerStyle]}>
             <View style={[$buttonColumn, isLandscape && { flexDirection: "row" }]}>
