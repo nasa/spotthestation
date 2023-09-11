@@ -58,6 +58,7 @@ const sv = {
     kilogram: "kg",
     month: "månad",
     metersPerSecond: "m/s",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "Hem",

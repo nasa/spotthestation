@@ -23,6 +23,7 @@ import { openSettings } from "react-native-permissions"
 import * as storage from "../../../utils/storage"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import i18n from "i18n-js"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -341,7 +342,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             onDurationChange={handleChangeDuration}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
-            isUS={currentTimeZone.regionFormat === "US"}
+            isUS={i18n.locale === "en"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
             timezone={currentTimeZone?.timeZone}
             lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}

@@ -1,8 +1,8 @@
 NSAppleMusicUsageDescription = "Necesitamos acceso a tu biblioteca de medios para almacenar imágenes y videos grabados";
 NSCalendarsUsageDescription = "Necesitamos acceso a tu calendario para habilitar la programación de notificaciones de avistamientos futuros";
-NSCameraUsageDescription = "Necesitamos acceso a tu cámara para habilitar la experiencia de realidad aumentada";
-NSLocationAlwaysAndWhenInUseUsageDescription = "Utilizamos datos de ubicación para calcular los avistamientos próximos en tu área";
-NSLocationAlwaysUsageDescription = "Utilizamos datos de ubicación para calcular los avistamientos próximos en tu área";
-NSLocationWhenInUseUsageDescription = "Utilizamos datos de ubicación para calcular los avistamientos próximos en tu área";
-NSMicrophoneUsageDescription = "Necesitamos acceso a tu micrófono para habilitar la grabación de audio en tus videos";
-NSPhotoLibraryUsageDescription = "Necesitamos acceso a tu biblioteca de medios para almacenar imágenes y videos grabados";
+NSCameraUsageDescription = "Necesitamos acceder a tu cámara para activar la experiencia de realidad aumentada";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Utilizamos datos de localización para calcular los próximos avistamientos en su zona";
+NSLocationAlwaysUsageDescription = "Utilizamos datos de localización para calcular los próximos avistamientos en su zona";
+NSLocationWhenInUseUsageDescription = "Utilizamos datos de localización para calcular los próximos avistamientos en su zona";
+NSMicrophoneUsageDescription = "Necesitamos acceder a tu micrófono para activar las grabación de audio de tus vídeos";
+NSPhotoLibraryUsageDescription = "Necesitamos acceder a tu mediateca para almacenar las imágenes y los vídeos grabados";

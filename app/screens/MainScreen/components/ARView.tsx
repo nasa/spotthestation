@@ -24,7 +24,16 @@ interface ARViewProps {
 }
 
 export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARView(
-  { isFullScreen, isPathVisible, isRecording, recordedSeconds, issPath, setIsSpotted, image, onImageLoaded },
+  {
+    isFullScreen,
+    isPathVisible,
+    isRecording,
+    recordedSeconds,
+    issPath,
+    setIsSpotted,
+    image,
+    onImageLoaded,
+  },
   ref,
 ) {
   const { $container, $hudContainer, $image } = useStyles(styles)
@@ -116,12 +125,9 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
         style={$container}
       />
 
-      { Boolean(image) && (
-        <Image
-          source={{ uri: image }}
-          style={$image as ImageStyle}
-          onLoad={onImageLoaded}
-        />)}
+      {Boolean(image) && (
+        <Image source={{ uri: image }} style={$image as ImageStyle} onLoad={onImageLoaded} />
+      )}
 
       {isFullScreen && (
         <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
@@ -151,9 +157,9 @@ const styles: StyleFn = () => {
   }
 
   const $image: ViewStyle = {
-    width: '100%',
-    height: '100%',
-    position: 'absolute'
+    width: "100%",
+    height: "100%",
+    position: "absolute",
   }
 
   return { $container, $hudContainer, $image }

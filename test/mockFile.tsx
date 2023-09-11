@@ -41,7 +41,7 @@ jest.mock("react-native-permissions", () => ({
   PERMISSIONS: '', 
   RESULTS: ''
 }))
-jest.mock("@react-native-community/cameraroll", () => ({
+jest.mock("@react-native-camera-roll/camera-roll", () => ({
   Share: jest.fn(),
 }))
 jest.mock("react-native-share", () => ({
@@ -62,6 +62,11 @@ jest.mock("react-native-push-notification", () => ({
   cancelAllLocalNotifications: jest.fn(),
   localNotificationSchedule: jest.fn()
 }))
+jest.mock("@react-native-community/push-notification-ios", () => ({
+  removeAllPendingNotificationRequests: jest.fn(),
+  addNotificationRequest: jest.fn(),
+}))
+
 jest.mock("react-native-orientation-locker", () => ({
   getInitialOrientation: jest.fn(),
   addOrientationListener: jest.fn(),

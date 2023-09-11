@@ -5,7 +5,6 @@ import {
   ViroCameraTransform,
   ViroImage,
   ViroPolyline,
-  ViroSphere,
   ViroTrackingStateConstants,
 } from "@viro-community/react-viro"
 import { cartesianToAzAlt } from "../../../utils/geometry"
@@ -210,14 +209,13 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
   const markerPosition = useMemo(
     () => worldTransform(issMarkerPosition, initialHeading),
-    [issMarkerPosition, initialHeading]
+    [issMarkerPosition, initialHeading],
   )
 
-  const rotation = useMemo<[number, number, number]>(() => [
-    issAzAlt[1],
-    -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)),
-    0,
-  ], [issAzAlt, initialHeading])
+  const rotation = useMemo<[number, number, number]>(
+    () => [issAzAlt[1], -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)), 0],
+    [issAzAlt, initialHeading],
+  )
 
   return (
     <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
@@ -225,16 +223,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         <>
           {settings.isPathVisible && (
             <>
-              <ViroPolyline
-                position={markerPosition}
-                points={pastOrbitCoords}
-                thickness={0.1}
-              />
-              <ViroPolyline
-                position={markerPosition}
-                points={futureOrbitCoords}
-                thickness={0.02}
-              />
+              <ViroPolyline position={markerPosition} points={pastOrbitCoords} thickness={0.1} />
+              <ViroPolyline position={markerPosition} points={futureOrbitCoords} thickness={0.02} />
             </>
           )}
           <ViroImage

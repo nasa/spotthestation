@@ -393,7 +393,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          T - 00:00:00:00
+          units.time undefined - 00:00:00:00
         </Text>
         <Text
           allowFontScaling={false}

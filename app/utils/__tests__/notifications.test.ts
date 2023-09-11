@@ -2,7 +2,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import notifications from "../../utils/notifications"
 import { LocationType } from "../../screens/OnboardingScreen/SignupLocation"
-import PushNotification from "react-native-push-notification"
+import PushNotificationIOS from "@react-native-community/push-notification-ios"
 
 it("call getCurrentTimeZome with selectedLocation", async () => {
   await AsyncStorage.setItem("muteFrom", "12-12-2012 11:11:11")
@@ -25,6 +25,6 @@ it("call getCurrentTimeZome with selectedLocation", async () => {
     },
   ] as LocationType[])
 
-  expect(PushNotification.cancelAllLocalNotifications).toBeCalledTimes(1)
-  expect(PushNotification.localNotificationSchedule).toBeCalledTimes(2)
+  expect(PushNotificationIOS.removeAllPendingNotificationRequests).toBeCalledTimes(1)
+  expect(PushNotificationIOS.addNotificationRequest).toBeCalledTimes(2)
 })

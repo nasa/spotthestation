@@ -59,6 +59,7 @@ const fr = {
     kilogram: "kg",
     month: "mois",
     metersPerSecond: "M/S",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "Accueil",

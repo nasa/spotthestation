@@ -28,6 +28,8 @@ import { InitLoader } from "./InitLoader"
 import { TrajectoryError } from "./TrajectoryError"
 import MyModal from "./MyModal"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import { translate } from "../../../i18n"
+import i18n from "i18n-js"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -86,7 +88,7 @@ export const HomeScreen = observer(function HomeScreen() {
     dayStage: 0,
   })
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
-  const [countdown, setCountdown] = useState("T - 00:00:00:00")
+  const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [stage, setStage] = useState(1)
@@ -177,7 +179,7 @@ export const HomeScreen = observer(function HomeScreen() {
           maxAltitude: 0,
           dayStage: 0,
         })
-        setCountdown("T - 00:00:00:00")
+        setCountdown("- 00:00:00:00")
         setIsCurrentSightingLoaded(true)
         return
       }
@@ -188,7 +190,7 @@ export const HomeScreen = observer(function HomeScreen() {
       callback(
         formatTimer(
           diff,
-          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "T - " : "T + ",
+          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "- " : "+ ",
         ),
       )
     },
@@ -409,12 +411,12 @@ export const HomeScreen = observer(function HomeScreen() {
           currentSightning.date
             ? formatDateWithTZ(
                 currentSightning.date,
-                currentTimeZone.regionFormat === "US" ? "MMM dd, yyyy" : "dd MMM yyyy",
+                i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy",
                 currentTimeZone.timeZone,
               )
             : "-"
         }
-        countdown={countdown}
+        countdown={`${translate("units.time")} ${countdown}`}
         timezone={currentTimeZone?.timeZone}
       />
       {appState.current === "active" && globeVisible && (
@@ -464,7 +466,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onDurationChange={handleChangeDuration}
           onToggle={handleSetSightingNotification}
           onToggleAll={handleSetSightingNotificationToAll}
-          isUS={currentTimeZone?.regionFormat === "US"}
+          isUS={i18n.locale === "en"}
           isNotifyAll={current && current?.sightings.every((item) => item.notify)}
           timezone={currentTimeZone?.timeZone}
           lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}

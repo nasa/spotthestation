@@ -177,7 +177,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
-  const [countdown, setCountdown] = useState("T - 00:00:00:00")
+  const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
   const [isStartingRecording, setIsStartingRecording] = useState(false)
   const [isSpotted, setIsSpotted] = useState(false)
@@ -211,7 +211,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const timeDiff = useCallback(
     (callback: (diff: string) => void) => {
       if (result.length === 0) {
-        setCountdown("T - 00:00:00:00")
+        setCountdown("- 00:00:00:00")
         return
       }
       const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
@@ -219,7 +219,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       callback(
         formatTimer(
           diff,
-          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "T - " : "T + ",
+          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "- " : "+ ",
         ),
       )
     },
@@ -311,7 +311,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
   }
 
-  const [screenshot, setScreenshot] = useState('')
+  const [screenshot, setScreenshot] = useState("")
   const arContainerRef = useRef()
   const screenshotLoaded = useRef<boolean>(false)
 
@@ -322,7 +322,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     let uri
 
     try {
-      if (Platform.OS === 'android') {
+      if (Platform.OS === "android") {
         const screenshot = await captureRef(arContainerRef, {
           format: "jpg",
           quality: 1,
@@ -330,9 +330,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         })
 
         setScreenshot(screenshot)
-        await new Promise((resolve) => setInterval(() => {
-          if (screenshotLoaded.current) resolve(null)
-        }, 100))
+        await new Promise((resolve) =>
+          setInterval(() => {
+            if (screenshotLoaded.current) resolve(null)
+          }, 100),
+        )
 
         uri = await captureScreen({
           format: "jpg",
@@ -340,7 +342,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         })
 
         screenshotLoaded.current = false
-        setScreenshot('')
+        setScreenshot("")
       } else {
         uri = await captureScreen({
           format: "jpg",
@@ -354,7 +356,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       return uri
     } catch (error) {
       screenshotLoaded.current = false
-      setScreenshot('')
+      setScreenshot("")
 
       console.log(error)
       Snackbar.show({
@@ -367,7 +369,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
     setIsRecording(true)
-    if (Platform.OS === 'android') setIsStartingRecording(true)
+    if (Platform.OS === "android") setIsStartingRecording(true)
     const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
       (error: any) => {
         Snackbar.show({
@@ -400,21 +402,20 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
         ])
 
-        granted = statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES] ===
-          PermissionsAndroid.RESULTS.GRANTED &&
+        granted =
+          statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
           statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO] ===
-          PermissionsAndroid.RESULTS.GRANTED
+            PermissionsAndroid.RESULTS.GRANTED
       } else {
-        granted = (await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-          {
+        granted =
+          (await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
             title: translate("permissionsAndroid.title"),
             message: translate("permissionsAndroid.message"),
             buttonNeutral: translate("permissionsAndroid.buttonNeutral"),
             buttonNegative: translate("permissionsAndroid.buttonNegative"),
             buttonPositive: translate("permissionsAndroid.buttonPositive"),
-          }
-        )) === PermissionsAndroid.RESULTS.GRANTED
+          })) === PermissionsAndroid.RESULTS.GRANTED
       }
 
       if (!granted) {
@@ -520,7 +521,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (nextAppState !== "active" && isRecording && (Platform.OS !== 'android' || isStartingRecording === false)) {
+      if (
+        nextAppState !== "active" &&
+        isRecording &&
+        (Platform.OS !== "android" || isStartingRecording === false)
+      ) {
         stopRecording()
       }
 
@@ -561,17 +566,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       isPortrait={false}
     >
       <View style={[$headerContainer, headerStyle]}>
-          {isFullScreen && (
-            <IconLinkButton
-              accessible
-              accessibilityLabel="x button"
-              accessibilityHint="disable full screen mode"
-              icon="x"
-              onPress={() => setIsFullScreen(false)}
-              buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
-            />
-          )}
-        </View>
+        {isFullScreen && (
+          <IconLinkButton
+            accessible
+            accessibilityLabel="x button"
+            accessibilityHint="disable full screen mode"
+            icon="x"
+            onPress={() => setIsFullScreen(false)}
+            buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
+          />
+        )}
+      </View>
       {!isCameraAllowed ? (
         <Pressable
           style={[$body, bodyStyle]}
@@ -603,7 +608,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               <ARView
                 image={screenshot}
                 onImageLoaded={() => {
-                  console.log('loaded')
+                  console.log("loaded")
                   screenshotLoaded.current = true
                 }}
                 ref={arView}
@@ -654,7 +659,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               style={$timeContainer}
             >
               <Text tx="issView.timeHeader" style={$timeHeader} />
-              <Text text={countdown} style={$time} />
+              <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
             </View>
             <View style={[$buttonColumn, isLandscape && { flexDirection: "row" }]}>
               <IconLinkButton

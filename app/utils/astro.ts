@@ -209,25 +209,27 @@ function calculateDayStage(twilight: SunCalc.GetTimesResult, eventTime: Date) {
   return 2
 }
 
+const compassDirections = <const>[
+  "N",
+  "NNE",
+  "NE",
+  "ENE",
+  "E",
+  "ESE",
+  "SE",
+  "SSE",
+  "S",
+  "SSW",
+  "SW",
+  "WSW",
+  "W",
+  "WNW",
+  "NW",
+  "NNW",
+]
+
 export function degToCompass(d: number) {
-  return [
-    "N",
-    "NNE",
-    "NE",
-    "ENE",
-    "E",
-    "ESE",
-    "SE",
-    "SSE",
-    "S",
-    "SSW",
-    "SW",
-    "WSW",
-    "W",
-    "WNW",
-    "NW",
-    "NNW",
-  ][Math.floor(((d + 360 / 16 / 2) % 360) / (360 / 16))]
+  return compassDirections[Math.floor(((d + 360 / 16 / 2) % 360) / (360 / 16))]
 }
 
 export async function getSightings(data: SatData[], lat: number, lon: number) {

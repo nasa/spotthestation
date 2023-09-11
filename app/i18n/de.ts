@@ -58,6 +58,7 @@ const de = {
     kilogram: "kg",
     month: "Monat",
     metersPerSecond: "MS",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "Heim",
@@ -308,7 +309,7 @@ const de = {
       goBack: "Geh zurück",
       generalTitle: "Ortseinstellungen",
       cta: "Passen Sie Benachrichtigungen für diesen Ort an",
-      locationPermission: "Erteilen Du die Erlaubnis, den Standort zu verwenden",
+      locationPermission: "Erteilen Sie die Erlaubnis, den Standort zu verwenden",
       addNewLocation: {
         generalTitleAdd: "Neuen Standort hinzufügen",
         generalTitleEdit: "Standort bearbeiten",

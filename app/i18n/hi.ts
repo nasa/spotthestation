@@ -58,6 +58,7 @@ const hi = {
     kilogram: "किलोग्राम",
     month: "महीना",
     metersPerSecond: "एम/एस",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "घर",

@@ -20,6 +20,7 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ISSSighting } from "../../../services/api/api.types"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import i18n from "i18n-js"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const {
@@ -441,7 +442,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             onDurationChange={handleChangeDuration}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
-            isUS={currentTimeZone.regionFormat === "US"}
+            isUS={i18n.locale === "en"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
             timezone={currentTimeZone?.timeZone}
             lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}

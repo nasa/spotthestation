@@ -58,6 +58,7 @@ const en = {
     kilogram: "kg",
     month: "month",
     metersPerSecond: "M/S",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "Home",
@@ -141,6 +142,24 @@ const en = {
         moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
         sunset:
           "There will be twilight at the selected location when the ISS is above the horizon.",
+      },
+      compass: {
+        N: "N",
+        NNE: "NNE",
+        NE: "NE",
+        ENE: "ENE",
+        E: "E",
+        ESE: "ESE",
+        SE: "SE",
+        SSE: "SSE",
+        S: "S",
+        SSW: "SSW",
+        SW: "SW",
+        WSW: "WSW",
+        W: "W",
+        WNW: "WNW",
+        NW: "NW",
+        NNW: "NNW",
       },
     },
     coachMarks: {

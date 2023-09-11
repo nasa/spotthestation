@@ -265,10 +265,10 @@ export function Sightings({
                   subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
                     sighting.visible
                   } ${translate("units.minute")}`}
-                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${degToCompass(
-                    sighting.minAzimuth,
-                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${degToCompass(
-                    sighting.maxAzimuth,
+                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${translate(
+                    `homeScreen.selectSightings.compass.${degToCompass(sighting.minAzimuth)}`,
+                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${translate(
+                    `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,
                   )}`}
                   withSwitch
                   onToggle={() => onToggle(sighting)}

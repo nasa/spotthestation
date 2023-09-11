@@ -58,6 +58,7 @@ const ja = {
     kilogram: "kg",
     month: "月",
     metersPerSecond: "MS",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "家",

@@ -865,7 +865,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: N | homeScreen.selectSightings.disappears undefined: N
+                  homeScreen.selectSightings.appears undefined: homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View
@@ -1184,7 +1184,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: N | homeScreen.selectSightings.disappears undefined: N
+                  homeScreen.selectSightings.appears undefined: homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View
@@ -1503,7 +1503,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: N | homeScreen.selectSightings.disappears undefined: N
+                  homeScreen.selectSightings.appears undefined: homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View

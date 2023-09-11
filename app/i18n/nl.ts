@@ -58,6 +58,7 @@ const nl = {
     kilogram: "kg",
     month: "maand",
     metersPerSecond: "M/S",
+    time: "T",
   },
   tabNavigator: {
     homeTab: "Thuis",
