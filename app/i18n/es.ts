@@ -43,7 +43,7 @@ const es = {
   notifications: {
     push: {
       title: "¡Detecte la estación ahora!",
-      subTitle: "La ISS está pasando por encima de usted en",
+      subTitle: "La estación está pasando por encima de usted en",
     },
     before: {
       titleOne: "Detectar la estación en",
@@ -99,9 +99,9 @@ const es = {
   homeScreen: {
     initLoader: {
       message:
-        "Los datos de ISS se están cargando ... Esto puede tardar un momento en completarse.",
+        "Los datos de estación se están cargando ... Esto puede tardar un momento en completarse.",
       trajectoryError:
-        "Los datos de trayectoria de ISS no están disponibles actualmente debido al mantenimiento del servidor. Por favor, vuelva más tarde.",
+        "Los datos de trayectoria de estación no están disponibles actualmente debido al mantenimiento del servidor. Por favor, vuelva más tarde.",
     },
     header: {
       firstTimeHead: "LISTA DE PRÓXIMOS AVISTAMIENTOS",
@@ -137,12 +137,12 @@ const es = {
       shorterThan2: "menos de 2 minutos",
       longerThan2: "2 minutos y más",
       empty:
-        "No hay posibles avistamientos de ISS para esta ubicación desde el {{start}} hasta el {{end}}.",
+        "No hay posibles avistamientos de EII para esta ubicación desde el {{start}} hasta el {{end}}.",
       coach: {
         title: "Descripción de los iconos",
-        moon: "Será de noche en la ubicación seleccionada cuando la EEI esté por encima del horizonte.",
+        moon: "Será de noche en la ubicación seleccionada cuando la estación esté por encima del horizonte.",
         sunset:
-          "Habrá crepúsculo en la ubicación seleccionada cuando la EEI esté por encima del horizonte.",
+          "Habrá crepúsculo en la ubicación seleccionada cuando la estación esté por encima del horizonte.",
       },
       compass: {
         N: "N",
@@ -172,13 +172,13 @@ const es = {
       locationData: "Puedes seleccionar o cambiar tu ubicación directamente desde aquí.",
       sightingsTitle: "Siguiente avistamiento y cuenta regresiva",
       sightingsData:
-        "Esta sección te muestra la fecha y un temporizador de cuenta regresiva para el próximo avistamiento de la EEI cerca de tu ubicación seleccionada. Puedes tocar el siguiente cuadro de avistamiento para ver una lista completa de los próximos avistamientos.",
+        "Esta sección te muestra la fecha y un temporizador de cuenta regresiva para el próximo avistamiento de la estación cerca de tu ubicación seleccionada. Puedes tocar el siguiente cuadro de avistamiento para ver una lista completa de los próximos avistamientos.",
       globeTitle: "Tierra interactiva",
       globeData:
-        "Mientras deslizando el dedo por la pantalla, puedes ver la posición de la EEI en tiempo real. Esto te permite interactuar con la Tierra y rastrear la ubicación de la EEI en tiempo real.",
+        "Mientras deslizando el dedo por la pantalla, puedes ver la posición de la estación en tiempo real. Esto te permite interactuar con la Tierra y rastrear la ubicación de la estación en tiempo real.",
       mapTitle: "Vista del mapa 2D",
       mapData:
-        "Esta sección muestra una representación en 2D del camino completo de la EEI sobre las regiones de día y noche en la Tierra.",
+        "Esta sección muestra una representación en 2D del camino completo de la estación sobre las regiones de día y noche en la Tierra.",
       navigationTitle: "Navegación",
       navigationData:
         "Puedes navegar por diferentes funciones de la aplicación usando el menú de navegación a continuación.",

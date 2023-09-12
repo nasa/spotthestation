@@ -98,9 +98,9 @@ const en = {
   },
   homeScreen: {
     initLoader: {
-      message: "ISS data is loading… This may take a moment to complete.",
+      message: "Station data is loading… This may take a moment to complete.",
       trajectoryError:
-        "The ISS trajectory data is currently unavailable due to server maintenance. Please check back again later.",
+        "The Station trajectory data is currently unavailable due to server maintenance. Please check back again later.",
     },
     header: {
       firstTimeHead: "NEXT SIGHTING(S) LIST",
@@ -136,12 +136,12 @@ const en = {
       shorterThan2: "shorter than 2 minutes",
       longerThan2: "2 minutes and longer",
       empty:
-        "There are no potential ISS sightings for this location from {{start}} through {{end}}.",
+        "There are no potential Station sightings for this location from {{start}} through {{end}}.",
       coach: {
         title: "Icons Description",
-        moon: "It will be nighttime at the selected location when the ISS is above the horizon.",
+        moon: "It will be nighttime at the selected location when the Station is above the horizon.",
         sunset:
-          "There will be twilight at the selected location when the ISS is above the horizon.",
+          "There will be twilight at the selected location when the Station is above the horizon.",
       },
       compass: {
         N: "N",
@@ -171,13 +171,13 @@ const en = {
       locationData: "You can select or change your location to a different one directly from here.",
       sightingsTitle: "Next Sighting & Countdown",
       sightingsData:
-        "This section shows you the date and a countdown timer for the next upcoming ISS sighting near your selected location. You can tap on the Next Sighting box to see a complete list of the upcoming sightings.",
+        "This section shows you the date and a countdown timer for the next upcoming Station sighting near your selected location. You can tap on the Next Sighting box to see a complete list of the upcoming sightings.",
       globeTitle: "Interactive Earth",
       globeData:
-        "You can view the real-time position of the ISS by swiping on the screen. This allows you to interact with the Earth and track the location of the ISS in real-time.",
+        "You can view the real-time position of the Station by swiping on the screen. This allows you to interact with the Earth and track the location of the ISS in real-time.",
       mapTitle: "2D Map View",
       mapData:
-        "This section shows a 2D representation of the full path of ISS against the night and day regions across the earth.",
+        "This section shows a 2D representation of the full path of Station against the night and day regions across the earth.",
       navigationTitle: "Navigation",
       navigationData:
         "You can browse through different features of the app from the navigation menu below.",

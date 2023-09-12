@@ -99,9 +99,9 @@ const de = {
   homeScreen: {
     initLoader: {
       message:
-        "ISS -Daten werden geladen. Dies kann einen Moment dauern, bis es abgeschlossen wird.",
+        "Station -Daten werden geladen. Dies kann einen Moment dauern, bis es abgeschlossen wird.",
       trajectoryError:
-        "Die ISS -Trajektoriendaten sind derzeit aufgrund der Serverwartung nicht verfügbar.Bitte schauen Sie später an.",
+        "Die Station -Trajektoriendaten sind derzeit aufgrund der Serverwartung nicht verfügbar.Bitte schauen Sie später an.",
     },
     header: {
       firstTimeHead: "LISTE DER NÄCHSTEN SICHTUNGEN",
@@ -137,12 +137,30 @@ const de = {
       shorterThan2: "kürzer als 2 Minuten",
       longerThan2: "2 Minuten und länger",
       empty:
-        "Von {{start}} bis {{end}} gibt es für diesen Standort keine potenziellen ISS-Sichtungen.",
+        "Von {{start}} bis {{end}} gibt es für diesen Standort keine potenziellen Station-Sichtungen.",
       coach: {
         title: "Symbole Beschreibung",
-        moon: "Es wird Nacht am ausgewählten Ort sein, an dem sich die ISS über dem Horizont befindet.",
+        moon: "Es wird Nacht am ausgewählten Ort sein, an dem sich die Station über dem Horizont befindet.",
         sunset:
-          "Am ausgewählten Ort wird es eine Dämmerung geben, an der sich die ISS über dem Horizont befindet.",
+          "Am ausgewählten Ort wird es eine Dämmerung geben, an der sich die Station über dem Horizont befindet.",
+      },
+      compass: {
+        N: "N",
+        NNE: "NNO",
+        NE: "NO",
+        ENE: "ONO",
+        E: "O",
+        ESE: "OSO",
+        SE: "SO",
+        SSE: "SSO",
+        S: "S",
+        SSW: "SSW",
+        SW: "SW",
+        WSW: "WSW",
+        W: "W",
+        WNW: "WNW",
+        NW: "NW",
+        NNW: "NNW",
       },
     },
     coachMarks: {
@@ -155,13 +173,13 @@ const de = {
         "Sie können Ihren Standort direkt von hier direkt aus auswählen oder in eine andere ändern.",
       sightingsTitle: "Nächste Sichtung & Countdown",
       sightingsData:
-        "In diesem Abschnitt werden Sie das Datum und einen Countdown -Timer für das nächste bevorstehende ISS -Sicht in der Nähe Ihres ausgewählten Standorts angezeigt.Sie können auf die nächste Sichtbox tippen, um eine vollständige Liste der bevorstehenden Sichtungen zu sehen.",
+        "In diesem Abschnitt werden Sie das Datum und einen Countdown -Timer für das nächste bevorstehende Station -Sicht in der Nähe Ihres ausgewählten Standorts angezeigt.Sie können auf die nächste Sichtbox tippen, um eine vollständige Liste der bevorstehenden Sichtungen zu sehen.",
       globeTitle: "Interaktive Erde",
       globeData:
-        "Sie können die Echtzeitposition der ISS ansehen, indem Sie auf dem Bildschirm wischen.Auf diese Weise können Sie mit der Erde interagieren und den Ort der ISS in Echtzeit verfolgen.",
+        "Sie können die Echtzeitposition der Station ansehen, indem Sie auf dem Bildschirm wischen.Auf diese Weise können Sie mit der Erde interagieren und den Ort der Station in Echtzeit verfolgen.",
       mapTitle: "2D -Kartenansicht",
       mapData:
-        "Dieser Abschnitt zeigt eine 2D -Darstellung des vollständigen Weges der ISS gegen die Nacht- und Tagesregionen auf der ganzen Erde.",
+        "Dieser Abschnitt zeigt eine 2D -Darstellung des vollständigen Weges der Station gegen die Nacht- und Tagesregionen auf der ganzen Erde.",
       navigationTitle: "Navigation",
       navigationData:
         "Sie können im folgenden Navigationsmenü verschiedene Funktionen der App durchsuchen.",

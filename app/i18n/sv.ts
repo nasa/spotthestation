@@ -97,9 +97,9 @@ const sv = {
   },
   homeScreen: {
     initLoader: {
-      message: "ISS data laddas ... det kan ta en stund att slutföra.",
+      message: "Stationen data laddas ... det kan ta en stund att slutföra.",
       trajectoryError:
-        "ISS -banan är för närvarande inte tillgänglig på grund av serverunderhåll. Kom tillbaka igen senare.",
+        "Stationen -banan är för närvarande inte tillgänglig på grund av serverunderhåll. Kom tillbaka igen senare.",
     },
     header: {
       firstTimeHead: "NÄSTA IAKTTAGELSE(ER) LISTA",
@@ -135,11 +135,29 @@ const sv = {
       shorterThan2: "kortare än 2 minuter",
       longerThan2: "2 minuter och längre",
       empty:
-        "Det finns inga potentiella ISS-observationer för den här platsen från {{start}} till {{end}}.",
+        "Det finns inga potentiella Stationen-observationer för den här platsen från {{start}} till {{end}}.",
       coach: {
         title: "Ikoner Beskrivning",
-        moon: "Det kommer att vara natt på den valda platsen när ISS är över horisonten.",
-        sunset: "Det kommer vara skymning vid den valda platsen när ISS passerar horisonten",
+        moon: "Det kommer att vara natt på den valda platsen när Stationen är över horisonten.",
+        sunset: "Det kommer vara skymning vid den valda platsen när Stationen passerar horisonten",
+      },
+      compass: {
+        N: "N",
+        NNE: "NNO",
+        NE: "NO",
+        ENE: "ONO",
+        E: "O",
+        ESE: "OSO",
+        SE: "SO",
+        SSE: "SSO",
+        S: "S",
+        SSW: "SSV",
+        SW: "SV",
+        WSW: "VSV",
+        W: "V",
+        WNW: "VNV",
+        NW: "NV",
+        NNW: "NNV",
       },
     },
     coachMarks: {
@@ -151,13 +169,13 @@ const sv = {
       locationData: "Du kan välja eller ändra din plats till en annan direkt härifrån.",
       sightingsTitle: "Nästa observation och nedräkning",
       sightingsData:
-        "Det här avsnittet visar dig datumet och en nedräkningstimer för nästa kommande ISS -observation nära din valda plats.Du kan trycka på nästa observationsruta för att se en komplett lista över de kommande observationerna.",
+        "Det här avsnittet visar dig datumet och en nedräkningstimer för nästa kommande Stationen -observation nära din valda plats.Du kan trycka på nästa observationsruta för att se en komplett lista över de kommande observationerna.",
       globeTitle: "Interaktiva jorden",
       globeData:
-        "Du kan se ISS i realtid genom att svepa på skärmen.Detta gör att du kan interagera med jorden och spåra platsen för ISS i realtid.",
+        "Du kan se Stationen i realtid genom att svepa på skärmen.Detta gör att du kan interagera med jorden och spåra platsen för Stationen i realtid.",
       mapTitle: "2d Map View",
       mapData:
-        "Detta avsnitt visar en 2D -representation av den fullständiga vägen för ISS mot natt- och dagregionerna över jorden.",
+        "Detta avsnitt visar en 2D -representation av den fullständiga vägen för Stationen mot natt- och dagregionerna över jorden.",
       navigationTitle: "Navigering",
       navigationData: "Du kan bläddra igenom olika funktioner i appen från navigationsmenyn nedan.",
     },

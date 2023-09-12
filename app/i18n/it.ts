@@ -43,7 +43,7 @@ const it = {
   notifications: {
     push: {
       title: "Individua la Stazione ora!",
-      subTitle: "L'ISS sta passando sopra di te alle",
+      subTitle: "La Stazione sta passando sopra di te alle",
     },
     before: {
       titleOne: "Individua la Stazione",
@@ -99,9 +99,9 @@ const it = {
   homeScreen: {
     initLoader: {
       message:
-        "I dati dell'ISS stanno caricando ... Questo potrebbe richiedere un momento per essere completato.",
+        "I dati della Stazione stanno caricando ... Questo potrebbe richiedere un momento per essere completato.",
       trajectoryError:
-        "I dati della traiettoria dell'ISS non sono attualmente disponibili a causa della manutenzione del server. Si prega di riprovare più tardi.",
+        "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della manutenzione del server. Si prega di riprovare più tardi.",
     },
     header: {
       firstTimeHead: "ELENCO DEI PROSSIMI AVVISTAMENTI",
@@ -137,12 +137,30 @@ const it = {
       shorterThan2: "inferiore a 2 minuti",
       longerThan2: "2 minuti e più",
       empty:
-        "Non ci sono potenziali avvistamenti della ISS per questa località dal {{start}} al {{end}}.",
+        "Non ci sono potenziali avvistamenti della Stazione per questa località dal {{start}} al {{end}}.",
       coach: {
         title: "Descrizione delle icone",
-        moon: "Sarà notte nella posizione selezionata quando l'ISS è al di sopra dell'orizzonte.",
+        moon: "Sarà notte nella posizione selezionata quando la Stazione è al di sopra dell'orizzonte.",
         sunset:
-          "Ci sarà il crepuscolo nella posizione selezionata quando l'ISS è al di sopra dell'orizzonte.",
+          "Ci sarà il crepuscolo nella posizione selezionata quando la Stazione è al di sopra dell'orizzonte.",
+      },
+      compass: {
+        N: "N",
+        NNE: "NNE",
+        NE: "NE",
+        ENE: "ENE",
+        E: "E",
+        ESE: "ESE",
+        SE: "SE",
+        SSE: "SSE",
+        S: "S",
+        SSW: "SSW",
+        SW: "SW",
+        WSW: "WSW",
+        W: "W",
+        WNW: "WNW",
+        NW: "NW",
+        NNW: "NNW",
       },
     },
     coachMarks: {
@@ -154,13 +172,13 @@ const it = {
       locationData: "Puoi selezionare o modificare la tua posizione direttamente da qui.",
       sightingsTitle: "Prossimo avvistamento e conto alla rovescia",
       sightingsData:
-        "Questa sezione mostra la data e un timer per il conto alla rovescia per il prossimo avvistamento dell'ISS vicino alla posizione selezionata. Usa l'opzione \"avvistamenti successivi\" per vedere un elenco completo dei prossimi avvistamenti.",
+        "Questa sezione mostra la data e un timer per il conto alla rovescia per il prossimo avvistamento della Stazione vicino alla posizione selezionata. Usa l'opzione \"avvistamenti successivi\" per vedere un elenco completo dei prossimi avvistamenti.",
       globeTitle: "Avvistamenti Interattiva",
       globeData:
-        "È possibile visualizzare la posizione in tempo reale dell’ISS scorrendo il dito sullo schermo. Ciò consente di interagire con la Terra e seguire la posizione dell’ISS in tempo reale.",
+        "È possibile visualizzare la posizione in tempo reale della Stazione scorrendo il dito sullo schermo. Ciò consente di interagire con la Terra e seguire la posizione della Stazione in tempo reale.",
       mapTitle: "Visualizzazione della mappa 2D",
       mapData:
-        "Questa sezione mostra una rappresentazione 2D dell'intero percorso dell'ISS relativamente alle regioni notturne e diurne di tutta la Terra.",
+        "Questa sezione mostra una rappresentazione 2D dell'intero percorso della Stazione relativamente alle regioni notturne e diurne di tutta la Terra.",
       navigationTitle: "Navigazione",
       navigationData:
         "È possibile scoprire diverse funzionalità dell'app dal menu di navigazione in basso.",

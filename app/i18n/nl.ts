@@ -97,9 +97,9 @@ const nl = {
   },
   homeScreen: {
     initLoader: {
-      message: "ISS-gegevens worden geladen... Dit kan even duren.",
+      message: "Station-gegevens worden geladen... Dit kan even duren.",
       trajectoryError:
-        "De ISS-trajectgegevens zijn momenteel niet beschikbaar vanwege serveronderhoud. Kom later terug.",
+        "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege serveronderhoud. Kom later terug.",
     },
     header: {
       firstTimeHead: "VOLGENDE WAARNEMING(EN) LIJST",
@@ -135,12 +135,30 @@ const nl = {
       shorterThan2: "korter dan 2 minuten",
       longerThan2: "2 minuten en langer",
       empty:
-        "Er zijn geen potentiële ISS-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
+        "Er zijn geen potentiële Station-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
       coach: {
         title: "Beschrijving van pictogrammen",
-        moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
+        moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het Station boven de horizon is.",
         sunset:
-          "Er zal schemering zijn op de geselecteerde locatie wanneer het ISS boven de horizon is.",
+          "Er zal schemering zijn op de geselecteerde locatie wanneer het Station boven de horizon is.",
+      },
+      compass: {
+        N: "N",
+        NNE: "NNO",
+        NE: "NO",
+        ENE: "ONO",
+        E: "O",
+        ESE: "OZO",
+        SE: "ZO",
+        SSE: "ZZO",
+        S: "Z",
+        SSW: "ZZW",
+        SW: "ZW",
+        WSW: "WZW",
+        W: "W",
+        WNW: "WNW",
+        NW: "NW",
+        NNW: "NNW",
       },
     },
     coachMarks: {
@@ -153,13 +171,13 @@ const nl = {
         "U kunt uw locatie direct vanaf hier selecteren of wijzigen naar een andere locatie.",
       sightingsTitle: "Volgende waarneming & Aftellen",
       sightingsData:
-        'Deze sectie laat u de datum en een aftelklok zien voor de eerstvolgende ISS-waarneming in de buurt van uw geselecteerde locatie. U kunt op de knop "Volgende Waarneming" tikken om een complete lijst van de aankomende waarnemingen te zien.',
+        'Deze sectie laat u de datum en een aftelklok zien voor de eerstvolgende Station-waarneming in de buurt van uw geselecteerde locatie. U kunt op de knop "Volgende Waarneming" tikken om een complete lijst van de aankomende waarnemingen te zien.',
       globeTitle: "Interactieve aarde",
       globeData:
-        "U kunt de realtime positie van het ISS bekijken door over het scherm te vegen. Dit stelt u in staat de aarde te beinvloeden en het spoor van het ISS in de werkelijke tijd te volgen.",
+        "U kunt de realtime positie van het Station bekijken door over het scherm te vegen. Dit stelt u in staat de aarde te beinvloeden en het spoor van het Station in de werkelijke tijd te volgen.",
       mapTitle: "2D kaartweergave",
       mapData:
-        "Deze sectie toont een 2D-weergave van het volledige pad van het ISS tegen de nacht- en dagregio's van de aarde.",
+        "Deze sectie toont een 2D-weergave van het volledige pad van het Station tegen de nacht- en dagregio's van de aarde.",
       navigationTitle: "Navigatie",
       navigationData:
         "U kunt door de verschillende functies van de app bladeren via het onderstaande navigatiemenu.",
