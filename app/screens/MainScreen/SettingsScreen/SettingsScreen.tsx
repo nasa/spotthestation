@@ -1,25 +1,26 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-// import uniqBy from "lodash/uniqBy"
+import uniqBy from "lodash/uniqBy"
 import React from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Screen, Text /* Icon */ } from "../../../components"
+import { Screen, Text, Icon } from "../../../components"
 import { colors, typography, spacing } from "../../../theme"
 import { SettingsItem } from "../components/SettingsItem"
-// import { setLocale } from "../../../i18n"
-// import { Dropdown } from "react-native-element-dropdown"
+import { useStores } from "../../../models"
+import { setLocale } from "../../../i18n"
+import { Dropdown } from "react-native-element-dropdown"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-// import i18n from "i18n-js"
-// import * as storage from "../../../utils/storage"
+import i18n from "i18n-js"
+import * as storage from "../../../utils/storage"
 
-// const languages = uniqBy(
-//   Object.keys(i18n.translations).map((key) => ({
-//     label: (i18n.translations[key] as any).name as string,
-//     value: key,
-//   })),
-//   "label",
-// )
+const languages = uniqBy(
+  Object.keys(i18n.translations).map((key) => ({
+    label: (i18n.translations[key] as any).name as string,
+    value: key,
+  })),
+  "label",
+)
 
 export const SettingsScreen = observer(function SettingsScreen() {
   const {
@@ -28,28 +29,29 @@ export const SettingsScreen = observer(function SettingsScreen() {
     $itemsConteiner,
     $headerContainer,
     $header,
-    // $dropdown,
-    // $dropdownContainer,
-    // $dropdownPlaceholder,
-    // $dropdownSelected,
-    // $dropdownText,
-    // $dropdownRightAccessory,
+    $dropdown,
+    $dropdownContainer,
+    $dropdownPlaceholder,
+    $dropdownSelected,
+    $dropdownText,
+    $dropdownRightAccessory,
   } = useStyles(styles)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
+  const { setNotifications } = useStores()
 
   const handleNavigate = (screen) =>
     navigation.navigate("SettingsScreens" as never, { screen } as never)
 
-  // const onChangeLanguage = async ({ value }) => {
-  //   await storage.save("locale", value)
-  //   setLocale(value as string)
-  //   setNotifications()
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{ name: "Settings" as never }],
-  //   })
-  // }
+  const onChangeLanguage = async ({ value }) => {
+    await storage.save("locale", value)
+    setLocale(value as string)
+    setNotifications()
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Settings" as never }],
+    })
+  }
 
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
@@ -92,39 +94,37 @@ export const SettingsScreen = observer(function SettingsScreen() {
           title="settings.contactUs"
           onPress={() => handleNavigate("ContactUs")}
         />
-        {/* <SettingsItem */}
-        {/*   icon="globe" */}
-        {/*   title="settings.language" */}
-        {/*   rightControl={ */}
-        {/*     <Dropdown */}
-        {/*       accessibilityLabel="language select" */}
-        {/*       style={$dropdown} */}
-        {/*       placeholderStyle={[$dropdownText, $dropdownPlaceholder]} */}
-        {/*       selectedTextStyle={[$dropdownText, $dropdownSelected]} */}
-        {/*       data={languages} */}
-        {/*       itemContainerStyle={{ */}
-        {/*         backgroundColor: colors.palette.neutral350, */}
-        {/*       }} */}
-        {/*       containerStyle={$dropdownContainer} */}
-        {/*       itemTextStyle={$dropdownText} */}
-        {/*       activeColor={colors.palette.neutral450} */}
-        {/*       value={i18n.locale} */}
-        {/*       labelField="label" */}
-        {/*       valueField="value" */}
-        {/*       onChange={onChangeLanguage} */}
-        {/*       renderRightIcon={() => ( */}
-        {/*         <Icon */}
-        {/*           icon="chevronDown" */}
-        {/*           size={28} */}
-        {/*           color={colors.palette.neutral450} */}
-        {/*           containerStyle={$dropdownRightAccessory} */}
-        {/*         /> */}
-        {/*       )} */}
-        {/*     /> */}
-        {/*   } */}
-        {/* /> */}
-        {/* eslint-disable-next-line react-native/no-inline-styles */}
-        <View style={{ flex: 1 }} />
+        <SettingsItem
+          icon="globe"
+          title="settings.language"
+          rightControl={
+            <Dropdown
+              accessibilityLabel="language select"
+              style={$dropdown}
+              placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
+              selectedTextStyle={[$dropdownText, $dropdownSelected]}
+              data={languages}
+              itemContainerStyle={{
+                backgroundColor: colors.palette.neutral350,
+              }}
+              containerStyle={$dropdownContainer}
+              itemTextStyle={$dropdownText}
+              activeColor={colors.palette.neutral450}
+              value={i18n.locale}
+              labelField="label"
+              valueField="value"
+              onChange={onChangeLanguage}
+              renderRightIcon={() => (
+                <Icon
+                  icon="chevronDown"
+                  size={28}
+                  color={colors.palette.neutral450}
+                  containerStyle={$dropdownRightAccessory}
+                />
+              )}
+            />
+          }
+        />
       </View>
     </Screen>
   )
