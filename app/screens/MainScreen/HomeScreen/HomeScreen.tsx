@@ -295,7 +295,7 @@ export const HomeScreen = observer(function HomeScreen() {
           return item
         }),
       }
-      setISSSightings(updated)
+      setCurrent(setISSSightings(updated))
     },
     [current],
   )
@@ -306,7 +306,7 @@ export const HomeScreen = observer(function HomeScreen() {
         ...current,
         sightings: current.sightings.map((item) => ({ ...item, notify })),
       }
-      setISSSightings(updated)
+      setCurrent(setISSSightings(updated))
     },
     [current],
   )
