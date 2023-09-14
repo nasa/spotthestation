@@ -9,6 +9,7 @@ import {
   Image,
   ImageStyle,
 } from "react-native"
+import en from "date-fns/locale/en-US"
 import { Text } from "../../../components"
 import { typography, colors } from "../../../theme"
 import { formatDate } from "../../../utils/formatDate"
@@ -62,7 +63,7 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
         text={title}
         style={$titleText}
       />
-      {Boolean(date) && <Text text={formatDate(date, "MMM d, yyyy")} style={$dateText} />}
+      {Boolean(date) && <Text text={formatDate(date, "MMM d, yyyy", { locale: en })} style={$dateText} />}
     </Pressable>
   )
 }

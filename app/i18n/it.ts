@@ -63,7 +63,7 @@ const it = {
   tabNavigator: {
     homeTab: "Home",
     issViewTab: "Vista AR",
-    issNowTab: "Localizzatore",
+    issNowTab: "Tracker",
     resourcesTab: "Risorse",
     settingsTab: "Impostazioni",
   },
@@ -350,7 +350,7 @@ const it = {
     searchResults: "Risultati di ricerca",
     tabs: {
       news: "Notizie",
-      about: "Di",
+      about: "Informazioni",
       details: "Dettagli",
     },
   },
