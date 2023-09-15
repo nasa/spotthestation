@@ -78,7 +78,6 @@ exports[`renders correctly 1`] = `
                     "width": 60,
                   },
                   undefined,
-                  undefined,
                 ],
               ]
             }
@@ -182,7 +181,6 @@ exports[`renders correctly 1`] = `
                     "position": "relative",
                     "width": 60,
                   },
-                  undefined,
                   undefined,
                 ],
               ]

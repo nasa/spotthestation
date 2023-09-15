@@ -63,7 +63,9 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
         text={title}
         style={$titleText}
       />
-      {Boolean(date) && <Text text={formatDate(date, "MMM d, yyyy", { locale: en })} style={$dateText} />}
+      {Boolean(date) && (
+        <Text text={formatDate(date, "MMM d, yyyy", { locale: en })} style={$dateText} />
+      )}
     </Pressable>
   )
 }

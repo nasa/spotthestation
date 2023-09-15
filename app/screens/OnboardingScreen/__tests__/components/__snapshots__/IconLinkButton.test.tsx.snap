@@ -26,7 +26,7 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#1E2022",
+        "backgroundColor": "red",
         "borderRadius": 143,
         "display": "flex",
         "height": 60,
@@ -56,9 +56,6 @@ exports[`renders correctly 1`] = `
               "width": 60,
             },
             undefined,
-            Object {
-              "backgroundColor": "red",
-            },
           ],
         ]
       }

@@ -358,7 +358,6 @@ exports[`renders correctly 1`] = `
                 "height": 92,
                 "width": 92,
               },
-              undefined,
             ],
           ]
         }

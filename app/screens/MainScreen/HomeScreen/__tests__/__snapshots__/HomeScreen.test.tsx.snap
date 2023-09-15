@@ -120,7 +120,6 @@ exports[`renders correctly 1`] = `
                     "width": 60,
                   },
                   undefined,
-                  undefined,
                 ],
               ]
             }

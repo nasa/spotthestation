@@ -172,7 +172,7 @@ const it = {
       locationData: "Puoi selezionare o modificare la tua posizione direttamente da qui.",
       sightingsTitle: "Prossimo avvistamento e conto alla rovescia",
       sightingsData:
-        "Questa sezione mostra la data e un timer per il conto alla rovescia per il prossimo avvistamento della Stazione vicino alla posizione selezionata. Usa l'opzione \"avvistamenti successivi\" per vedere un elenco completo dei prossimi avvistamenti.",
+        'Questa sezione mostra la data e un timer per il conto alla rovescia per il prossimo avvistamento della Stazione vicino alla posizione selezionata. Usa l\'opzione "avvistamenti successivi" per vedere un elenco completo dei prossimi avvistamenti.',
       globeTitle: "Avvistamenti Interattiva",
       globeData:
         "È possibile visualizzare la posizione in tempo reale della Stazione scorrendo il dito sullo schermo. Ciò consente di interagire con la Terra e seguire la posizione della Stazione in tempo reale.",

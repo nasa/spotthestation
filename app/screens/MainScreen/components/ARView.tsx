@@ -70,16 +70,45 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
       return
     }
 
+    let currentIdx = -1
+    let minDiff = Infinity
+    for (let i = 0; i < issPath.length; ++i) {
+      const diff = Math.abs(new Date().valueOf() - new Date(issPath[i].date).valueOf())
+      if (diff < minDiff) {
+        currentIdx = i
+        minDiff = diff
+      }
+    }
+
+    if (currentIdx < 0) return
+
+    let startIdx = currentIdx
+    let endIdx = currentIdx
+    if (issPath[currentIdx].elevation > 0) {
+      while (startIdx > 0 && issPath[startIdx].elevation > 0) startIdx = startIdx - 1
+      while (endIdx < issPath.length - 1 && issPath[endIdx].elevation > 0) endIdx = endIdx + 1
+    } else {
+      while (startIdx < issPath.length - 1 && issPath[startIdx].elevation < 0)
+        startIdx = startIdx + 1
+      endIdx = startIdx
+      while (endIdx < issPath.length - 1 && issPath[endIdx].elevation > 0) endIdx = endIdx + 1
+    }
+
+    if (startIdx > 1) startIdx -= 1
+    if (endIdx < issPath.length - 1) endIdx += 1
+
     setCurve(
       new CatmullRomCurve3(
-        issPath.map(
-          (p) => new Vector3(...azAltToCartesian(normalizeHeading(p.azimuth), p.elevation, 10)),
-        ),
+        issPath
+          .slice(startIdx, endIdx + 1)
+          .map(
+            (p) => new Vector3(...azAltToCartesian(normalizeHeading(p.azimuth), p.elevation, 10)),
+          ),
       ),
     )
 
-    setCurveStartsAt(new Date(issPath[0].date).valueOf())
-    setCurveEndsAt(new Date(issPath[issPath.length - 1].date).valueOf())
+    setCurveStartsAt(new Date(issPath[startIdx].date).valueOf())
+    setCurveEndsAt(new Date(issPath[endIdx].date).valueOf())
   }, [issPath])
 
   useEffect(() => {
@@ -93,8 +122,13 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
     }
     const update = () => {
       const t =
-        (Date.now() - new Date(issPath[0].date).valueOf()) /
-        (new Date(issPath[issPath.length - 1].date).valueOf() - new Date(issPath[0].date).valueOf())
+        (Date.now() - new Date(curveStartsAt).valueOf()) /
+        (new Date(curveEndsAt).valueOf() - new Date(curveStartsAt).valueOf())
+
+      if (t > 1 || t < 0) {
+        setIssPosition(null)
+        return
+      }
 
       let point: Vector3
       try {
@@ -129,7 +163,7 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
         <Image source={{ uri: image }} style={$image as ImageStyle} onLoad={onImageLoaded} />
       )}
 
-      {isFullScreen && (
+      {isFullScreen && Boolean(issPosition) && (
         <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
       )}
 

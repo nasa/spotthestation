@@ -70,11 +70,8 @@ export function IconLinkButton(props: LinkButtonWithArrowProps) {
 
   return (
     <Pressable accessibilityRole="imagebutton" {...rest}>
-      <Animated.View style={[$viewStyle, $buttonStyle]}>
-        <BlurView
-          intensity={blurIntensity}
-          style={[$viewStyle, $viewStyleOverride, backgroundColor && { backgroundColor }]}
-        >
+      <Animated.View style={[$viewStyle, $buttonStyle, backgroundColor && { backgroundColor }]}>
+        <BlurView intensity={blurIntensity} style={[$viewStyle, $viewStyleOverride]}>
           {icon ? (
             <Icon
               icon={icon}

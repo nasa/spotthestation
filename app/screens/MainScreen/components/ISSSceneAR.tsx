@@ -55,8 +55,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
   const [settings, setSettings] = useState({ isPathVisible: false })
   const [pastIssPathCoords, setPastIssPathCoords] = useState<[number, number, number][]>([])
   const [futureIssPathCoords, setFutureIssPathCoords] = useState<[number, number, number][]>([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number, number]>([0, 0, 0])
-  const [issAzAlt, setIssAzAlt] = useState<[number, number]>([0, 0])
+  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number, number]>(null)
+  const [issAzAlt, setIssAzAlt] = useState<[number, number]>(null)
   const headingRef = useRef<number>()
   const trackingStateRef = useRef()
 
@@ -112,6 +112,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
     const update = () => {
       const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
       let current: Vector3
+      const pastPoints = []
+      const futurePoints = []
+
+      if (t < 0 || t > 1) {
+        setFutureIssPathCoords([])
+        setPastIssPathCoords([])
+        setIssMarkerPosition(null)
+        setIssAzAlt(null)
+        return
+      }
+
       try {
         current = curve.getPoint(t)
       } catch (e) {
@@ -119,13 +130,11 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         return
       }
 
-      const pastPoints = []
       for (let i = 0; i <= 50; ++i) {
         const pt = curve.getPoint((i * t) / 50)
         pastPoints.push([pt.x, pt.y, pt.z])
       }
 
-      const futurePoints = []
       for (let i = 0; i <= 50; ++i) {
         const pt = curve.getPoint(t + (i * (1 - t)) / 50)
         futurePoints.push([pt.x, pt.y, pt.z])
@@ -155,6 +164,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
 
   const onCamera = useMemo(() => {
     const cb: CameraTransformCallback = ({ cameraTransform }) => {
+      if (!issMarkerPosition || !issAzAlt) return
       const issWorldCoords = worldTransform(issMarkerPosition, initialHeading)
       const totalAngle =
         (new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180) /
@@ -208,12 +218,15 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
   }, [sceneNavigator, issMarkerPosition, initialHeading])
 
   const markerPosition = useMemo(
-    () => worldTransform(issMarkerPosition, initialHeading),
+    () => (issMarkerPosition ? worldTransform(issMarkerPosition, initialHeading) : null),
     [issMarkerPosition, initialHeading],
   )
 
   const rotation = useMemo<[number, number, number]>(
-    () => [issAzAlt[1], -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)), 0],
+    () =>
+      issAzAlt
+        ? [issAzAlt[1], -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)), 0]
+        : null,
     [issAzAlt, initialHeading],
   )
 
@@ -223,17 +236,23 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         <>
           {settings.isPathVisible && (
             <>
-              <ViroPolyline position={markerPosition} points={pastOrbitCoords} thickness={0.1} />
-              <ViroPolyline position={markerPosition} points={futureOrbitCoords} thickness={0.02} />
+              {pastOrbitCoords.length > 0 && (
+                <ViroPolyline position={[0, 0, 0]} points={pastOrbitCoords} thickness={0.1} />
+              )}
+              {futureOrbitCoords.length > 0 && (
+                <ViroPolyline position={[0, 0, 0]} points={futureOrbitCoords} thickness={0.02} />
+              )}
             </>
           )}
-          <ViroImage
-            height={1.5}
-            width={1.5}
-            rotation={rotation}
-            position={markerPosition}
-            source={icon}
-          />
+          {Boolean(rotation) && (
+            <ViroImage
+              height={1.5}
+              width={1.5}
+              rotation={rotation}
+              position={markerPosition}
+              source={icon}
+            />
+          )}
         </>
       )}
     </ViroARScene>

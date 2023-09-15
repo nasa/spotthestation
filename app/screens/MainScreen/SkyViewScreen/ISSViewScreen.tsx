@@ -41,7 +41,6 @@ import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
-import { OrbitPoint } from "../../../services/api"
 import {
   interpolateColor,
   useAnimatedStyle,
@@ -179,7 +178,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
-  const [isStartingRecording, setIsStartingRecording] = useState(false)
   const [isSpotted, setIsSpotted] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
@@ -368,8 +366,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
-    setIsRecording(true)
-    if (Platform.OS === "android") setIsStartingRecording(true)
     const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
       (error: any) => {
         Snackbar.show({
@@ -390,6 +386,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       setRecordedSeconds(0)
     }
 
+    setIsRecording(true)
     setRecordedSeconds(0)
   }
 
@@ -521,21 +518,15 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (
-        nextAppState !== "active" &&
-        isRecording &&
-        (Platform.OS !== "android" || isStartingRecording === false)
-      ) {
+      if (nextAppState !== "active" && isRecording) {
         stopRecording()
       }
-
-      if (nextAppState !== "active" && isRecording) setIsStartingRecording(false)
     })
 
     return () => {
       subscription.remove()
     }
-  }, [isRecording, isStartingRecording])
+  }, [isRecording])
 
   const animatedCameraButtonStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
@@ -616,10 +607,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 isPathVisible={isPathVisible}
                 isRecording={isRecording}
                 recordedSeconds={recordedSeconds}
-                issPath={issData.filter((point: OrbitPoint) => {
-                  const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
-                  return diff < 60 * 60 * 1000
-                })}
+                issPath={issData}
                 setIsSpotted={setIsSpotted}
               />
             </ViewShot>
