@@ -130,14 +130,11 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         return
       }
 
-      for (let i = 0; i <= 50; ++i) {
-        const pt = curve.getPoint((i * t) / 50)
-        pastPoints.push([pt.x, pt.y, pt.z])
-      }
-
-      for (let i = 0; i <= 50; ++i) {
-        const pt = curve.getPoint(t + (i * (1 - t)) / 50)
-        futurePoints.push([pt.x, pt.y, pt.z])
+      for (let i = 0; i <= 100; ++i) {
+        const u = i / 100
+        const pt = curve.getPointAt(i / 100)
+        if (t > curve.getUtoTmapping(u, null)) pastPoints.push([pt.x, pt.y, pt.z])
+        else futurePoints.push([pt.x, pt.y, pt.z])
       }
 
       setPastIssPathCoords(pastPoints)

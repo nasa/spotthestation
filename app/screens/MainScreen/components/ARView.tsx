@@ -94,8 +94,8 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
       while (endIdx < issPath.length - 1 && issPath[endIdx].elevation > 0) endIdx = endIdx + 1
     }
 
-    if (startIdx > 1) startIdx -= 1
-    if (endIdx < issPath.length - 1) endIdx += 1
+    startIdx = Math.max(0, startIdx - 2)
+    endIdx = Math.min(issPath.length - 1, endIdx + 2)
 
     setCurve(
       new CatmullRomCurve3(

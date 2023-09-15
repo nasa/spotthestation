@@ -140,7 +140,7 @@ const RootStoreActions = (self) => ({
     return self.setISSSightings(updated) as LocationType
   },
 
-  setISSSightings: (value: LocationType) => {
+  setISSSightings: (value: LocationType): LocationType => {
     const isCurrentLocation = value.title === self.currentLocation?.title
     const valueCopy = JSON.parse(JSON.stringify(value))
     self.selectedLocation = Location.create(valueCopy)
