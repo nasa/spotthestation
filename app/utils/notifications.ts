@@ -36,7 +36,7 @@ class Notifications {
     const start = new Date((await storage.load("muteFrom")) as string)
     const end = new Date((await storage.load("muteUntil")) as string)
     const privacy = await storage.load("privacy")
-    const notifyBefore = await storage.load("notifyBefore")
+    const notifyBefore = (await storage.load("notifyBefore")) || 15
 
     let notifications = []
     for await (const location of locations) {

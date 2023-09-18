@@ -19,7 +19,7 @@ import * as storage from "../utils/storage"
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params) {
     const { data, ok } = yield api.getRawISSData({
-      from: new Date().toISOString(),
+      from: new Date(new Date().setMinutes(new Date().getMinutes() - 30)).toISOString(),
     })
 
     if (!ok) return { ok: false }

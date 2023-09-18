@@ -94,24 +94,15 @@ export const formatDateWithTZ = (date: string, dateFormat?: string, timeZone?: s
 }
 
 export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
-  const startHours = start.getHours()
-  const startMinutes = start.getMinutes()
-  const startSeconds = start.getSeconds()
-  const endHours = end.getHours()
-  const endMinutes = end.getMinutes()
-  const endSeconds = end.getSeconds()
+  const startValue = format(start, "HHmmss")
+  const endValue = format(end, "HHmmss")
+  const value = format(date, "HHmmss")
 
-  const startDate = new Date(date)
-  startDate.setHours(startHours, startMinutes, startSeconds, 0)
-  const endDate = new Date(date)
-  endDate.setHours(endHours, endMinutes, endSeconds, 0)
+  if (endValue < startValue) {
+    return (value >= startValue && value <= "235959") || (value >= "000000" && value < endValue)
+  }
 
-  if (startHours === endHours && startMinutes === endMinutes && startSeconds === endSeconds)
-    return false
-
-  if (endDate < startDate) endDate.setDate(endDate.getDate() + 1)
-
-  return date >= startDate && date < endDate
+  return value >= startValue && value < endValue
 }
 
 const getLocation = async () => {

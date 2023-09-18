@@ -77,22 +77,13 @@ export const HomeScreen = observer(function HomeScreen() {
   const appState = useRef(AppState.currentState)
   const [globeVisible, setGlobeVisible] = useState(false)
 
-  const [currentSightning, setCurrentSightning] = useState<ISSSighting>({
-    date: null,
-    visible: 0,
-    maxHeight: 0,
-    minAzimuth: 0,
-    maxAzimuth: 0,
-    minAltitude: 0,
-    maxAltitude: 0,
-    dayStage: 0,
-  })
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [address, setAddress] = useState("")
   const [location, setLocation] = useState<[number, number]>(null)
   const [stage, setStage] = useState(1)
   const [current, setCurrent] = useState<LocationType>(null)
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
     regionFormat: "US",
@@ -136,13 +127,35 @@ export const HomeScreen = observer(function HomeScreen() {
     [current?.sightings, events],
   )
 
-  const result = useMemo(
+  const [currentSightingIdx, setCurrentSightingIdx] = useState(-1)
+
+  const updateCurrentSighting = useCallback(() => {
+    const idx = eventsList.findIndex(
+      (sighting) =>
+        new Date(sighting.date) >
+        new Date(new Date().getTime() - Math.max(sighting.visible, 10) * 60 * 1000),
+    )
+
+    setCurrentSightingIdx(idx)
+  }, [eventsList])
+
+  useEffect(() => {
+    updateCurrentSighting()
+  }, [eventsList])
+
+  const currentSighting = useMemo(
     () =>
-      eventsList.filter(
-        (sighting) =>
-          new Date(sighting.date) > new Date(new Date().getTime() - sighting.visible * 60 * 1000),
-      ),
-    [eventsList],
+      eventsList[currentSightingIdx] || {
+        date: null,
+        visible: 0,
+        maxHeight: 0,
+        minAzimuth: 0,
+        maxAzimuth: 0,
+        minAltitude: 0,
+        maxAltitude: 0,
+        dayStage: 0,
+      },
+    [currentSightingIdx, eventsList],
   )
 
   useEffect(() => {
@@ -168,43 +181,45 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const timeDiff = useCallback(
     (callback: (diff: string) => void) => {
-      if (result.length === 0) {
-        setCurrentSightning({
-          date: null,
-          visible: 0,
-          maxHeight: 0,
-          minAzimuth: 0,
-          maxAzimuth: 0,
-          minAltitude: 0,
-          maxAltitude: 0,
-          dayStage: 0,
-        })
+      if (!currentSighting.date) {
         setCountdown("- 00:00:00:00")
         setIsCurrentSightingLoaded(true)
         return
       }
-      setCurrentSightning(result[0])
+
+      if (
+        new Date().getTime() - new Date(currentSighting.date).getTime() >
+        Math.max(currentSighting.visible, 10) * 60 * 1000
+      ) {
+        updateCurrentSighting()
+        return
+      }
+
       setTimeout(() => setIsCurrentSightingLoaded(true), 1000)
-      const duration = intervalToDuration({ start: new Date(result[0].date), end: new Date() })
+      const duration = intervalToDuration({
+        start: new Date(currentSighting.date),
+        end: new Date(),
+      })
       const diff = formatDuration(duration, { delimiter: "," })
       callback(
         formatTimer(
           diff,
-          new Date(result[0].date).toISOString() >= new Date().toISOString() ? "- " : "+ ",
+          new Date(currentSighting.date).toISOString() >= new Date().toISOString() ? "- " : "+ ",
         ),
       )
     },
-    [result],
+    [currentSighting],
   )
 
   const startCountdown = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
+    timeDiff(setCountdown)
     intervalRef.current = setInterval(() => timeDiff(setCountdown), 1000)
-  }, [result, timeDiff])
+  }, [currentSighting, timeDiff])
 
   useEffect(() => {
     startCountdown()
-  }, [result, startCountdown, timeDiff])
+  }, [currentSighting, startCountdown, timeDiff])
 
   const getCoach = async () => {
     const coachCompleted = await storage.load("coachCompleted")
@@ -246,8 +261,10 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   useEffect(() => {
-    setSelectedLocation(current).catch(() => null)
-  }, [])
+    if (!isInitialLoad || !current) return
+    setSelectedLocation(current).catch((e) => console.log(e))
+    setIsInitialLoad(false)
+  }, [current, isInitialLoad])
 
   useEffect(() => {
     if (!location) return
@@ -408,9 +425,9 @@ export const HomeScreen = observer(function HomeScreen() {
         onLocationPress={() => requestOpenModal("location")}
         onSightingsPress={() => current && requestOpenModal("sightings")}
         sighting={
-          currentSightning.date
+          currentSighting.date
             ? formatDateWithTZ(
-                currentSightning.date,
+                currentSighting.date,
                 i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy",
                 currentTimeZone.timeZone,
               )
