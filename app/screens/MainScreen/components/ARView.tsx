@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, forwardRef, useMemo } from "react"
-import { Image, ImageStyle, View, ViewStyle } from "react-native"
+import { AppState, AppStateStatus, Image, ImageStyle, View, ViewStyle } from "react-native"
 import { ViroARSceneNavigator } from "@viro-community/react-viro"
 
 import { colors } from "../../../theme"
@@ -38,6 +38,7 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
 ) {
   const { $container, $hudContainer, $image } = useStyles(styles)
 
+  const [appState, setAppState] = useState<AppStateStatus>("active")
   const [issPosition, setIssPosition] = useState<[number, number]>(null)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
@@ -62,8 +63,8 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
   )
 
   useEffect(() => {
-    emitter.emit("settings", { isPathVisible })
-  }, [isPathVisible])
+    if (appState === "active") emitter.emit("settings", { isPathVisible })
+  }, [isPathVisible, appState])
 
   useEffect(() => {
     if (issPath.length === 0) {
@@ -112,8 +113,8 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
   }, [issPath])
 
   useEffect(() => {
-    emitter.emit("issData", { curve, curveStartsAt, curveEndsAt })
-  }, [curve])
+    if (appState === "active") emitter.emit("issData", { curve, curveStartsAt, curveEndsAt })
+  }, [curve, appState])
 
   useEffect(() => {
     if (!curve) {
@@ -148,16 +149,26 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
     }
   }, [curve])
 
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", setAppState)
+
+    return () => {
+      subscription.remove()
+    }
+  }, [isRecording])
+
   return (
     <View style={$container}>
-      <ViroARSceneNavigator
-        ref={ref}
-        worldAlignment="GravityAndHeading"
-        autofocus={true}
-        initialScene={intialScene}
-        viroAppProps={viroAppProps}
-        style={$container}
-      />
+      {appState === "active" && (
+        <ViroARSceneNavigator
+          ref={ref}
+          worldAlignment="GravityAndHeading"
+          autofocus={true}
+          initialScene={intialScene}
+          viroAppProps={viroAppProps}
+          style={$container}
+        />
+      )}
 
       {Boolean(image) && (
         <Image source={{ uri: image }} style={$image as ImageStyle} onLoad={onImageLoaded} />
