@@ -49,6 +49,7 @@ import {
   withTiming,
 } from "react-native-reanimated"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import { OrbitPoint } from "../../../services/api"
 
 export interface ISSViewScreenRouteProps {
   toggleBottomTabs: (value: boolean) => void
@@ -384,6 +385,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       })
       setIsRecording(false)
       setRecordedSeconds(0)
+      return
     }
 
     setIsRecording(true)
@@ -528,6 +530,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
   }, [isRecording])
 
+  const issPath = useMemo(() => {
+    return issData.filter((point: OrbitPoint) => {
+      const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
+      return diff < 60 * 60 * 1000
+    })
+  }, [issData])
+
   const animatedCameraButtonStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
       whiteness.value,
@@ -607,7 +616,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 isPathVisible={isPathVisible}
                 isRecording={isRecording}
                 recordedSeconds={recordedSeconds}
-                issPath={issData}
+                issPath={issPath}
                 setIsSpotted={setIsSpotted}
               />
             </ViewShot>

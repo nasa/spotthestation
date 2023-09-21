@@ -137,6 +137,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneP
         else futurePoints.push([pt.x, pt.y, pt.z])
       }
 
+      pastPoints.push([current.x, current.y, current.z])
+      futurePoints.unshift([current.x, current.y, current.z])
+
       setPastIssPathCoords(pastPoints)
       setFutureIssPathCoords(futurePoints)
       setIssMarkerPosition([current.x, current.y, current.z])
