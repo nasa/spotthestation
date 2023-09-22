@@ -6,7 +6,7 @@
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { AppState, BackHandler, Platform, ViewStyle } from "react-native"
+import { BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
 import { ISSSighting, OrbitPoint } from "../../../services/api"
 import { colors } from "../../../theme"
@@ -74,7 +74,6 @@ export const HomeScreen = observer(function HomeScreen() {
     getFilteredSightings,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
-  const appState = useRef(AppState.currentState)
   const [globeVisible, setGlobeVisible] = useState(false)
 
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
@@ -106,16 +105,6 @@ export const HomeScreen = observer(function HomeScreen() {
     const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction)
 
     return () => backHandler.remove()
-  }, [])
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      appState.current = nextAppState
-    })
-
-    return () => {
-      subscription.remove()
-    }
   }, [])
 
   const events = useMemo(
@@ -436,9 +425,7 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={`${translate("units.time")} ${countdown}`}
         timezone={currentTimeZone?.timeZone}
       />
-      {appState.current === "active" && globeVisible && (
-        <Globe zoom={1.5} marker={location} issPath={issData} />
-      )}
+      {globeVisible && <Globe zoom={1.5} marker={location} issPath={issData} />}
       <FlatMap style={$flatMap} issPath={issData} currentLocation={location} />
       <MyModal
         name="location"
