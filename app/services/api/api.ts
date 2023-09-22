@@ -96,7 +96,7 @@ export class Api {
     lon: number,
   ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
     const response: ApiResponse<any> = await this.apisauce.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality|postal_code|plus_code&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
       {},
       { baseURL: "" },
     )
@@ -106,10 +106,16 @@ export class Api {
       if (problem) return problem
     }
 
+    const results = (response.data?.results || []) as any[]
+    const result =
+      results?.find((r: { types: string[] }) => r.types?.includes("locality")) ||
+      results?.find((r: { types: string[] }) => r.types?.includes("postal_code")) ||
+      results[0]
+
     return {
       kind: "ok",
-      name: response.data?.results[0]?.formatted_address,
-      googlePlaceId: response.data?.results[0]?.place_id,
+      name: result?.formatted_address,
+      googlePlaceId: result?.place_id,
     }
   }
 

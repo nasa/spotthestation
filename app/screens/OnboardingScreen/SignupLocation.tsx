@@ -14,7 +14,6 @@ import {
   Point,
   GooglePlacesAutocompleteRef,
 } from "react-native-google-places-autocomplete"
-import * as Location from "expo-location"
 import Modal from "react-native-modal"
 import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
@@ -25,6 +24,7 @@ import { ISSSighting } from "../../services/api"
 import * as storage from "../../utils/storage"
 import { PrivacyModal } from "./components/PrivacyModal"
 import i18n from "i18n-js"
+import { PositionError } from "react-native-geolocation-service"
 
 export interface LocationType {
   title: string
@@ -105,7 +105,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
   const handleDetect = async () => {
     setStatus(Statuses.detecting)
 
-    if (await Location.hasServicesEnabledAsync()) {
+    try {
       const location = await getCurrentLocation(() =>
         Alert.alert(
           translate("onboarding.completeProfile.location.permissionAlertTitle"),
@@ -123,7 +123,13 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         ),
       )
       if (location) onValueChange(location)
-    } else {
+    } catch (e) {
+      if (
+        e.code !== PositionError.POSITION_UNAVAILABLE &&
+        e.code !== PositionError.PLAY_SERVICE_NOT_AVAILABLE
+      )
+        throw e
+
       Alert.alert(
         translate("onboarding.completeProfile.location.serviceAlertTitle"),
         translate("onboarding.completeProfile.location.serviceAlertBody"),

@@ -102,8 +102,7 @@ jest.mock('../app/services/api', () => ({
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
   }
 }))
-jest.mock('expo-location', () => ({
-  requestForegroundPermissionsAsync: jest.fn(),
-  getCurrentPositionAsync: jest.fn(),
-  reverseGeocodeAsync: jest.fn(),
+jest.mock('react-native-geolocation-service', () => ({
+  requestAuthorization: jest.fn(),
+  getCurrentPosition: jest.fn(),
 }))

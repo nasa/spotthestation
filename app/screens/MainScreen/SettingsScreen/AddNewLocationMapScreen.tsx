@@ -69,22 +69,25 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   }
 
   useEffect(() => {
-    if (marker) {
-      api
-        .reverseGeocode(marker.latitude, marker.longitude)
-        .then((res) => {
-          if (res.kind !== "ok") return
-          setLocation({
-            location: { lat: marker.latitude, lng: marker.longitude },
-            title: "Location",
-            subtitle: res.name,
-            googlePlaceId: res.googlePlaceId,
-          })
-          setTextValue(res.name)
-          setIsSave(true)
+    ;(async () => {
+      if (marker) {
+        const res = await api.reverseGeocode(marker.latitude, marker.longitude)
+        if (res.kind !== "ok") return
+
+        const addrResponse = await api.getLocationAddress(res.googlePlaceId)
+        if (addrResponse.kind !== "ok" || !addrResponse.address) return null
+
+        setLocation({
+          location: { lat: marker.latitude, lng: marker.longitude },
+          title: addrResponse.name || addrResponse.address || "Location",
+          subtitle: addrResponse.address,
+          googlePlaceId: res.googlePlaceId,
         })
-        .catch((e) => console.log(e))
-    }
+
+        setTextValue(addrResponse.address)
+        setIsSave(true)
+      }
+    })().catch((e) => console.log(e))
   }, [marker])
 
   const handleNavigate = () =>

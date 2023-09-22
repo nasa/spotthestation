@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { api } from "../../services/api"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../geolocation"
-import * as Location from "expo-location"
+import Location from "react-native-geolocation-service"
 
 describe("getNearbyPlaces", () => {
   afterEach(() => {
@@ -172,7 +172,7 @@ describe("getCurrentLocation", () => {
   it("returns the current location", async () => {
     const permission = "granted"
 
-    ;(Location as any).requestForegroundPermissionsAsync.mockResolvedValue({ status: permission })
+    ;(Location as any).requestAuthorization.mockResolvedValue(permission)
 
     const coords = {
       latitude: 40.712776,
@@ -188,7 +188,9 @@ describe("getCurrentLocation", () => {
       name: "New York",
       address: "123 Main Street, New York City, New York 12345, USA",
     })
-    ;(Location as any).getCurrentPositionAsync.mockResolvedValue({ coords })
+    ;(Location as any).getCurrentPosition.mockImplementation(
+      (cb: (a: { coords: any }) => void) => cb({ coords }), // eslint-disable-line n/no-callback-literal
+    )
 
     const expectedLocation = {
       title: "New York",
@@ -199,8 +201,8 @@ describe("getCurrentLocation", () => {
 
     const location = await getCurrentLocation()
 
-    expect((Location as any).requestForegroundPermissionsAsync).toHaveBeenCalled()
-    expect((Location as any).getCurrentPositionAsync).toHaveBeenCalled()
+    expect((Location as any).requestAuthorization).toHaveBeenCalled()
+    expect((Location as any).getCurrentPosition).toHaveBeenCalled()
     expect(api.reverseGeocode).toHaveBeenCalledWith(coords.latitude, coords.longitude)
     expect(location).toEqual(expectedLocation)
   })
@@ -208,13 +210,13 @@ describe("getCurrentLocation", () => {
   it("returns null when permission is not granted", async () => {
     const permission = "denied"
 
-    ;(Location as any).requestForegroundPermissionsAsync.mockResolvedValue({ status: permission })
+    ;(Location as any).requestAuthorization.mockResolvedValue({ status: permission })
 
     const location = await getCurrentLocation()
 
-    expect((Location as any).requestForegroundPermissionsAsync).toHaveBeenCalled()
-    expect((Location as any).getCurrentPositionAsync).not.toHaveBeenCalled()
-    expect((Location as any).reverseGeocodeAsync).not.toHaveBeenCalled()
+    expect((Location as any).requestAuthorization).toHaveBeenCalled()
+    expect((Location as any).getCurrentPosition).not.toHaveBeenCalled()
+    expect(api.reverseGeocode).not.toHaveBeenCalled()
     expect(location).toBeNull()
   })
 })

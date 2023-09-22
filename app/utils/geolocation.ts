@@ -1,10 +1,12 @@
 /* eslint-disable n/no-callback-literal */
-import * as Location from "expo-location"
+import Location, { GeoPosition, PositionError } from "react-native-geolocation-service"
 import { Point } from "react-native-google-places-autocomplete"
 import Config from "../config"
 import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import { api } from "../services/api"
 import i18n from "i18n-js"
+// eslint-disable-next-line react-native/split-platform-components
+import { Platform, PermissionsAndroid } from "react-native"
 
 export interface TimeZoneData {
   dstOffset: number
@@ -33,27 +35,49 @@ export interface LocationAddressResponse {
 }
 
 const getCurrentLocationWithTimeout = (timeout: number) => {
-  return new Promise<Location.LocationObject>((resolve, reject) => {
-    setTimeout(() => {
-      resolve(null)
-    }, timeout)
-    Location.getCurrentPositionAsync().then(resolve).catch(reject)
+  return new Promise<GeoPosition>((resolve, reject) => {
+    Location.getCurrentPosition(
+      resolve,
+      (e) => (e.code === PositionError.TIMEOUT ? resolve(null) : reject(e)),
+      {
+        timeout,
+        accuracy: { android: "low", ios: "threeKilometers" },
+        enableHighAccuracy: false,
+      },
+    )
   })
+}
+
+class LocationError extends Error {
+  code: PositionError = null
+  constructor(code: PositionError) {
+    super()
+    this.code = code
+  }
 }
 
 export const getCurrentLocation = async (
   alert?: () => void,
   callback?: (value: boolean) => void,
 ): Promise<LocationType> => {
-  const { status: permission } = await Location.requestForegroundPermissionsAsync()
-  if (callback) callback(permission === "granted")
-  if (permission !== "granted") {
+  let granted = false
+  if (Platform.OS === "android") {
+    granted =
+      (await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION)) ===
+      PermissionsAndroid.RESULTS.GRANTED
+  } else {
+    const permission = await Location.requestAuthorization("whenInUse")
+    granted = permission === "granted"
+    if (permission === "disabled") throw new LocationError(PositionError.POSITION_UNAVAILABLE)
+  }
+
+  if (callback) callback(granted)
+  if (!granted) {
     alert && alert()
     return null
   } else {
     let res = await getCurrentLocationWithTimeout(10000)
     if (!res) res = await getCurrentLocationWithTimeout(5000)
-    if (!res) res = await Location.getLastKnownPositionAsync()
     if (!res) throw Error("Unable to get current location")
 
     const { coords } = res
