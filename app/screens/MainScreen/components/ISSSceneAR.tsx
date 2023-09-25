@@ -1,260 +1,341 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from "react"
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import throttle from "lodash.throttle"
 import {
-  ViroARScene,
-  ViroCameraTransform,
-  ViroImage,
-  ViroPolyline,
-  ViroTrackingStateConstants,
-} from "@viro-community/react-viro"
+  BufferGeometry,
+  Line,
+  LineBasicMaterial,
+  LineDashedMaterial,
+  PerspectiveCamera,
+  Scene,
+  Sprite,
+  SpriteMaterial,
+  Texture,
+  Vector3,
+  WebGLRenderer,
+} from "three"
+import { Image, LayoutRectangle, Platform, StyleSheet, View } from "react-native"
+import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
+import { loadTextureAsync, Renderer } from "expo-three"
+import { Camera, CameraDeviceFormat, useCameraDevices } from "react-native-vision-camera"
+import { maxBy } from "lodash"
+import { iconRegistry } from "../../../components"
+import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
-import { CatmullRomCurve3, Vector3 } from "three"
-import mitt from "mitt"
-import { Platform } from "react-native"
-import watchHeading from "../../../utils/heading"
-
-const icon = require("../../../../assets/icons/iss.png")
+import watchOrientation from "../../../utils/orientation"
 
 interface ISSSceneProps {
-  sceneNavigator: {
-    project: (value: [number, number, number]) => Promise<{ screenPosition: [number, number] }>
-    viroAppProps: {
-      onScreenPositionChange: (value: [number, number]) => void
-    }
-  }
+  onScreenPositionChange: (value: [number, number]) => void
+  issMarkerPosition: Vector3
+  pastIssPathCoords: Vector3[]
+  futureIssPathCoords: Vector3[]
+  isPathVisible: boolean
+  still: boolean
+  onStillReady: () => void
 }
 
-type CameraTransformCallback = (cameraTransform: ViroCameraTransform) => void
+const createISSMarker = (texture: Texture, position: Vector3) => {
+  const mesh = new Sprite()
+  texture.needsUpdate = true
+  mesh.material = new SpriteMaterial({
+    map: texture,
+    color: 0xffffff,
+  })
+  mesh.material.depthTest = false
+  mesh.scale.set(150, 150, 1)
+  mesh.position.set(position.x, position.y, position.z)
+  mesh.visible = true
 
-type ISSDataCallback = (data: {
-  curve: CatmullRomCurve3
-  curveStartsAt: number
-  curveEndsAt: number
-}) => void
-
-export const emitter = mitt()
-
-const worldTransform = (input: [number, number, number], heading): [number, number, number] => {
-  if (Platform.OS === "ios") return input
-
-  const angle = (360 - heading) * (Math.PI / 180)
-
-  const x = input[0] * Math.cos(angle) - input[2] * Math.sin(angle)
-  const z = input[0] * Math.sin(angle) + input[2] * Math.cos(angle)
-
-  return [x, input[1], z]
+  return mesh
 }
 
-export const ISSSceneAR = memo(function ISSSceneAR({ sceneNavigator }: ISSSceneProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const [initialHeading, setInitialHeading] = useState(null)
-  const [curve, setCurve] = useState<CatmullRomCurve3>()
-  const [curveStartsAt, setCurveStartsAt] = useState(0)
-  const [curveEndsAt, setCurveEndsAt] = useState(0)
+const createOrbit = (pastPoints: Vector3[], futurePoints: Vector3[]) => {
+  const pastLine = new Line()
+  pastLine.material = new LineBasicMaterial({ color: 0xffffff, linewidth: 6 })
+  pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
 
-  const [settings, setSettings] = useState({ isPathVisible: false })
-  const [pastIssPathCoords, setPastIssPathCoords] = useState<[number, number, number][]>([])
-  const [futureIssPathCoords, setFutureIssPathCoords] = useState<[number, number, number][]>([])
-  const [issMarkerPosition, setIssMarkerPosition] = useState<[number, number, number]>(null)
-  const [issAzAlt, setIssAzAlt] = useState<[number, number]>(null)
-  const headingRef = useRef<number>()
-  const trackingStateRef = useRef()
+  const futureLine = new Line()
+  futureLine.material = new LineDashedMaterial({
+    color: 0xffffff,
+    linewidth: 6,
+    dashSize: 50,
+    gapSize: 50,
+  })
+
+  futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
+  futureLine.computeLineDistances()
+
+  return [pastLine, futureLine]
+}
+
+export const ISSSceneAR = memo(function ISSSceneAR({
+  onScreenPositionChange,
+  pastIssPathCoords,
+  futureIssPathCoords,
+  issMarkerPosition,
+  isPathVisible,
+  still,
+  onStillReady,
+}: ISSSceneProps) {
+  const [layout, setLayout] = useState<LayoutRectangle>()
+  const devices = useCameraDevices()
+  const device = devices.back
+  const [activeFormat, setActiveFormat] = useState<CameraDeviceFormat>(null)
+  const [issTexture, setIssTexture] = useState<Texture>(null)
+
+  const cameraRef = useRef<PerspectiveCamera>(null)
+  const glRef = useRef<ExpoWebGLRenderingContext>()
+  const sceneRef = useRef<Scene>()
+  const issMarkerRef = useRef<Sprite>(null)
+  const pastRef = useRef<Line>(null)
+  const futureRef = useRef<Line>(null)
+  const deadRef = useRef<boolean>(false)
+  const realCameraRef = useRef<Camera>(null)
 
   useEffect(() => {
-    emitter.on("settings", setSettings)
+    copyAssetToCacheAsync(iconRegistry.iss as string, "iss.png")
+      .then((uri) => loadTextureAsync({ asset: uri }))
+      .then(setIssTexture)
+      .catch((e) => console.log(e))
+
     return () => {
-      emitter.off("settings", setSettings)
+      deadRef.current = true
     }
   }, [])
 
   useEffect(() => {
-    const unsub = watchHeading((val) => {
-      headingRef.current = val
-      if (!isVisible) showScene()
-    })
-    return () => unsub()
-  }, [isVisible, initialHeading])
+    if (!device) return
 
-  useEffect(() => {
-    const handler: ISSDataCallback = (data) => {
-      setCurve(data.curve)
-      setCurveStartsAt(data.curveStartsAt)
-      setCurveEndsAt(data.curveEndsAt)
-    }
-    emitter.on("issData", handler)
-    return () => {
-      emitter.off("issData", handler)
-    }
-  }, [])
-
-  function showScene() {
-    if (
-      trackingStateRef.current !== ViroTrackingStateConstants.TRACKING_NORMAL ||
-      headingRef.current === null
+    const format = maxBy(
+      [...device.formats].sort(
+        (a, b) => b.videoWidth * b.videoHeight - a.videoWidth * a.videoHeight,
+      ),
+      (f) => f.maxISO,
     )
-      return
-    if (initialHeading === null) setInitialHeading(headingRef.current)
-    setIsVisible(true)
-  }
 
-  function onInitialized(state) {
-    trackingStateRef.current = state
-    if (state === ViroTrackingStateConstants.TRACKING_NORMAL) {
-      showScene()
-    } else if (state === ViroTrackingStateConstants.TRACKING_UNAVAILABLE) {
-      setIsVisible(false)
+    setActiveFormat(format)
+  }, [device])
+
+  const updateCurveGeometry = useCallback(() => {
+    if (
+      pastIssPathCoords.length === 0 ||
+      futureIssPathCoords.length === 0 ||
+      !sceneRef.current ||
+      !isPathVisible
+    ) {
+      if (futureRef.current) sceneRef.current.remove(futureRef.current)
+      if (pastRef.current) sceneRef.current.remove(pastRef.current)
+      return
     }
-  }
+
+    if (!futureRef.current || !pastRef.current) {
+      const [past, future] = createOrbit(pastIssPathCoords, futureIssPathCoords)
+      pastRef.current = past
+      futureRef.current = future
+    } else {
+      pastRef.current.geometry = new BufferGeometry().setFromPoints(pastIssPathCoords)
+      futureRef.current.geometry = new BufferGeometry().setFromPoints(futureIssPathCoords)
+
+      futureRef.current.computeLineDistances()
+    }
+
+    if (!sceneRef.current) return
+    if (!sceneRef.current.getObjectById(pastRef.current.id)) sceneRef.current?.add(pastRef.current)
+    if (!sceneRef.current.getObjectById(futureRef.current.id))
+      sceneRef.current?.add(futureRef.current)
+  }, [isPathVisible, pastIssPathCoords, futureIssPathCoords, sceneRef.current])
 
   useEffect(() => {
-    if (!curve) return undefined
+    updateCurveGeometry()
+  }, [updateCurveGeometry])
 
-    const update = () => {
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-      let current: Vector3
-      const pastPoints = []
-      const futurePoints = []
-
-      if (t < 0 || t > 1) {
-        setFutureIssPathCoords([])
-        setPastIssPathCoords([])
-        setIssMarkerPosition(null)
-        setIssAzAlt(null)
-        return
-      }
-
-      try {
-        current = curve.getPoint(t)
-      } catch (e) {
-        console.error(e)
-        return
-      }
-
-      for (let i = 0; i <= 100; ++i) {
-        const u = i / 100
-        const pt = curve.getPointAt(i / 100)
-        if (t > curve.getUtoTmapping(u, null)) pastPoints.push([pt.x, pt.y, pt.z])
-        else futurePoints.push([pt.x, pt.y, pt.z])
-      }
-
-      pastPoints.push([current.x, current.y, current.z])
-      futurePoints.unshift([current.x, current.y, current.z])
-
-      setPastIssPathCoords(pastPoints)
-      setFutureIssPathCoords(futurePoints)
-      setIssMarkerPosition([current.x, current.y, current.z])
-      setIssAzAlt(cartesianToAzAlt([current.x, current.y, current.z]))
+  useEffect(() => {
+    if (!issMarkerPosition || !sceneRef.current || !issTexture) {
+      if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
+      return
     }
 
-    update()
-
-    const timeout = setInterval(update, 10000)
-    return () => {
-      clearInterval(timeout)
+    if (!issMarkerRef.current) {
+      issMarkerRef.current = createISSMarker(issTexture, issMarkerPosition)
+    } else {
+      issMarkerRef.current.position.set(
+        issMarkerPosition.x,
+        issMarkerPosition.y,
+        issMarkerPosition.z,
+      )
     }
-  }, [curve])
 
-  const pastOrbitCoords = useMemo<[number, number, number][]>(() => {
-    return pastIssPathCoords.map((pt) => worldTransform(pt, initialHeading))
-  }, [pastIssPathCoords, initialHeading])
+    if (!sceneRef.current) return
+    if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
+      sceneRef.current?.add(issMarkerRef.current)
+  }, [issTexture, issMarkerPosition, sceneRef.current])
 
-  const futureOrbitCoords = useMemo<[number, number, number][]>(() => {
-    return futureIssPathCoords.map((pt) => worldTransform(pt, initialHeading))
-  }, [futureIssPathCoords, initialHeading])
+  useEffect(() => {
+    if (!cameraRef.current || !layout) return
 
-  const onCamera = useMemo(() => {
-    const cb: CameraTransformCallback = ({ cameraTransform }) => {
-      if (!issMarkerPosition || !issAzAlt) return
-      const issWorldCoords = worldTransform(issMarkerPosition, initialHeading)
-      const totalAngle =
-        (new Vector3(...issWorldCoords).angleTo(new Vector3(...cameraTransform.forward)) * 180) /
-        Math.PI
+    const layoutRatio = layout.width / layout.height
+    const cameraRatio = activeFormat.videoHeight / activeFormat.videoWidth
 
-      if (totalAngle < 85) {
-        sceneNavigator
-          .project(issWorldCoords)
-          .then(({ screenPosition }) => {
-            sceneNavigator.viroAppProps?.onScreenPositionChange([
-              screenPosition[0],
-              screenPosition[1],
-            ])
-          })
-          .catch((err) => {
-            console.error(err)
-          })
-      } else {
-        let angleX =
-          (new Vector3(...cameraTransform.forward)
-            .projectOnPlane(new Vector3(0, 1, 0))
-            .angleTo(new Vector3(...issWorldCoords).projectOnPlane(new Vector3(0, 1, 0))) *
-            180) /
-          Math.PI
+    let realWidth = 0
+    let realHeight = 0
+    if (cameraRatio < layoutRatio) {
+      realWidth = layout.width
+      realHeight = layout.width / cameraRatio
+    } else {
+      realHeight = layout.height
+      realWidth = layout.height * cameraRatio
+    }
 
-        let angleY =
-          (new Vector3(...cameraTransform.forward)
-            .projectOnPlane(new Vector3(0, 1, 0))
-            .angleTo(new Vector3(...cameraTransform.forward)) *
-            180) /
-          Math.PI
+    cameraRef.current.setViewOffset(
+      realWidth,
+      realHeight,
+      (realWidth - layout.width) / 2,
+      (realHeight - layout.height) / 2,
+      layout.width,
+      layout.height,
+    )
+  }, [layout, cameraRef.current])
 
-        angleY = (cameraTransform.forward[1] > 0 ? angleY : -angleY) - issAzAlt[1]
-        angleX =
-          new Vector3(...issWorldCoords).cross(new Vector3(...cameraTransform.forward)).y > 0
-            ? angleX
-            : -angleX
+  const contextRenderer = useCallback(
+    (gl: ExpoWebGLRenderingContext) => {
+      glRef.current = gl
+      const scene = new Scene()
+      sceneRef.current = scene
+      const camera = new PerspectiveCamera(
+        activeFormat.fieldOfView,
+        activeFormat.videoHeight / activeFormat.videoWidth,
+        0.1,
+        6000,
+      )
 
-        if (Math.abs(angleX) > Math.abs(angleY)) {
-          sceneNavigator.viroAppProps?.onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0])
-        } else {
-          sceneNavigator.viroAppProps?.onScreenPositionChange([
-            10000,
-            angleY > 0 ? 1000000 : -1000000,
-          ])
-        }
+      camera.position.set(0, 0, 0)
+      camera.rotation.set(0, 0, 0)
+      cameraRef.current = camera
+
+      const renderer: WebGLRenderer = new Renderer({ gl })
+      renderer.debug.checkShaderErrors = false
+
+      renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight)
+
+      const render = () => {
+        if (deadRef.current) return
+        requestAnimationFrame(render)
+        renderer.render(scene, cameraRef.current)
+        gl.endFrameEXP()
       }
-    }
 
-    return throttle(cb, 50)
-  }, [sceneNavigator, issMarkerPosition, initialHeading])
-
-  const markerPosition = useMemo(
-    () => (issMarkerPosition ? worldTransform(issMarkerPosition, initialHeading) : null),
-    [issMarkerPosition, initialHeading],
+      render()
+    },
+    [activeFormat],
   )
 
-  const rotation = useMemo<[number, number, number]>(
+  const onCameraChange = useMemo(
     () =>
-      issAzAlt
-        ? [issAzAlt[1], -(issAzAlt[0] - (Platform.OS === "android" ? initialHeading : 0)), 0]
-        : null,
-    [issAzAlt, initialHeading],
+      throttle(() => {
+        if (!cameraRef.current || !glRef.current || !issMarkerPosition) return
+
+        const forward = cameraRef.current.getWorldDirection(new Vector3())
+        const totalAngle = (issMarkerPosition.clone().angleTo(forward) * 180) / Math.PI
+
+        if (totalAngle < 85) {
+          const projected = issMarkerPosition.clone().project(cameraRef.current)
+          const x = ((projected.x + 1) * glRef.current.drawingBufferWidth) / 2
+          const y = (-(projected.y - 1) * glRef.current.drawingBufferHeight) / 2
+          onScreenPositionChange([x, y])
+        } else {
+          let angleX =
+            (forward
+              .clone()
+              .projectOnPlane(new Vector3(0, 1, 0))
+              .angleTo(issMarkerPosition.clone().projectOnPlane(new Vector3(0, 1, 0))) *
+              180) /
+            Math.PI
+
+          let angleY =
+            (forward.clone().projectOnPlane(new Vector3(0, 1, 0)).angleTo(forward) * 180) / Math.PI
+
+          const azAlt = cartesianToAzAlt([
+            issMarkerPosition.x,
+            issMarkerPosition.y,
+            issMarkerPosition.z,
+          ])
+          angleY = (forward.y > 0 ? angleY : -angleY) - azAlt[1]
+          angleX = issMarkerPosition.clone().cross(forward).y > 0 ? angleX : -angleX
+
+          if (Math.abs(angleX) > Math.abs(angleY)) {
+            onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0])
+          } else {
+            onScreenPositionChange([10000, angleY > 0 ? 1000000 : -1000000])
+          }
+        }
+      }, 50),
+    [issMarkerPosition],
   )
+
+  useEffect(() => {
+    if (!cameraRef.current) return undefined
+    const unsub = watchOrientation((targetRot) => {
+      cameraRef.current.rotation.setFromQuaternion(targetRot)
+      onCameraChange()
+    })
+
+    return () => unsub()
+  }, [onCameraChange])
+
+  const [isLayoutUpdating, setIsLayoutUpdating] = useState(false)
+  const [stillImage, setStillImage] = useState(null)
+
+  useEffect(() => {
+    if (Platform.OS === "android") setIsLayoutUpdating(true)
+  }, [layout])
+
+  useEffect(() => {
+    if (isLayoutUpdating) setIsLayoutUpdating(false)
+  }, [isLayoutUpdating])
+
+  useEffect(() => {
+    if (!still) {
+      setStillImage(null)
+      return
+    }
+
+    if (!realCameraRef.current) return
+
+    ;(Platform.OS === "android"
+      ? realCameraRef.current.takeSnapshot()
+      : realCameraRef.current.takePhoto()
+    )
+      .then((photo) => {
+        setStillImage(`file://${photo.path}`)
+      })
+      .catch((e) => console.log(e))
+  }, [still])
 
   return (
-    <ViroARScene onTrackingUpdated={onInitialized} onCameraTransformUpdate={onCamera}>
-      {isVisible && (
+    <View style={StyleSheet.absoluteFill} onLayout={(e) => setLayout(e.nativeEvent.layout)}>
+      {Boolean(layout && activeFormat) && (
         <>
-          {settings.isPathVisible && (
-            <>
-              {pastOrbitCoords.length > 0 && (
-                <ViroPolyline position={[0, 0, 0]} points={pastOrbitCoords} thickness={0.1} />
-              )}
-              {futureOrbitCoords.length > 0 && (
-                <ViroPolyline position={[0, 0, 0]} points={futureOrbitCoords} thickness={0.02} />
-              )}
-            </>
-          )}
-          {Boolean(rotation) && (
-            <ViroImage
-              height={1.5}
-              width={1.5}
-              rotation={rotation}
-              position={markerPosition}
-              source={icon}
+          <Camera
+            ref={realCameraRef}
+            style={StyleSheet.absoluteFill}
+            device={device}
+            isActive={true}
+            format={activeFormat}
+            photo={true}
+          />
+
+          {stillImage && (
+            <Image
+              source={{ uri: stillImage }}
+              style={StyleSheet.absoluteFill}
+              onLoad={() => setTimeout(onStillReady, 500)}
             />
+          )}
+
+          {!isLayoutUpdating && (
+            <GLView style={StyleSheet.absoluteFill} onContextCreate={contextRenderer} />
           )}
         </>
       )}
-    </ViroARScene>
+    </View>
   )
 })

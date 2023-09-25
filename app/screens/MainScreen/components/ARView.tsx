@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState, forwardRef, useMemo } from "react"
-import { AppState, AppStateStatus, Image, ImageStyle, View, ViewStyle } from "react-native"
-import { ViroARSceneNavigator } from "@viro-community/react-viro"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { View, ViewStyle } from "react-native"
 
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
 import { DirectionCircle } from "./DirectionCircle"
 import { RecordingIndicator } from "./RecordingIndicator"
-import { ISSSceneAR, emitter } from "./ISSSceneAR"
+import { ISSSceneAR } from "./ISSSceneAR"
 import { azAltToCartesian, cartesianToAzAlt, normalizeHeading } from "../../../utils/geometry"
 import { OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
@@ -19,52 +18,32 @@ interface ARViewProps {
   recordedSeconds: number
   issPath: OrbitPoint[]
   setIsSpotted: (value: boolean) => void
-  image?: string
-  onImageLoaded?: () => void
+  still: boolean
+  onStillReady: () => void
 }
 
-export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARView(
-  {
-    isFullScreen,
-    isPathVisible,
-    isRecording,
-    recordedSeconds,
-    issPath,
-    setIsSpotted,
-    image,
-    onImageLoaded,
-  },
-  ref,
-) {
-  const { $container, $hudContainer, $image } = useStyles(styles)
-
-  const [appState, setAppState] = useState<AppStateStatus>("active")
-  const [issPosition, setIssPosition] = useState<[number, number]>(null)
+export const ARView = function ARView({
+  isFullScreen,
+  isPathVisible,
+  isRecording,
+  recordedSeconds,
+  issPath,
+  setIsSpotted,
+  still,
+  onStillReady,
+}: ARViewProps) {
+  const { $container, $hudContainer } = useStyles(styles)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
   const [curveEndsAt, setCurveEndsAt] = useState(0)
-  const [position, setPosition] = useState([0, 0])
+  const [position, setPosition] = useState(null)
+  const [issMarkerPosition, setIssMarkerPosition] = useState<Vector3>(null)
+  const [pastIssPathCoords, setPastIssPathCoords] = useState<Vector3[]>([])
+  const [futureIssPathCoords, setFutureIssPathCoords] = useState<Vector3[]>([])
+
   const onScreenPositionChange = useCallback((pos: [number, number]) => {
     setPosition(pos)
   }, [])
-
-  const viroAppProps = useMemo(
-    () => ({
-      onScreenPositionChange,
-    }),
-    [onScreenPositionChange],
-  )
-
-  const intialScene = useMemo(
-    () => ({
-      scene: ISSSceneAR as any,
-    }),
-    [onScreenPositionChange],
-  )
-
-  useEffect(() => {
-    if (appState === "active") emitter.emit("settings", { isPathVisible })
-  }, [isPathVisible, appState])
 
   useEffect(() => {
     if (issPath.length === 0) {
@@ -74,7 +53,7 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
     setCurve(
       new CatmullRomCurve3(
         issPath.map(
-          (p) => new Vector3(...azAltToCartesian(normalizeHeading(p.azimuth), p.elevation, 10)),
+          (p) => new Vector3(...azAltToCartesian(normalizeHeading(p.azimuth), p.elevation, 1000)),
         ),
       ),
     )
@@ -84,29 +63,47 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
   }, [issPath])
 
   useEffect(() => {
-    if (appState === "active") emitter.emit("issData", { curve, curveStartsAt, curveEndsAt })
-  }, [curve, appState])
+    if (!isFullScreen) setIsSpotted(false)
+  }, [isFullScreen])
 
   useEffect(() => {
-    if (!curve) {
-      setIssPosition(null)
-      return undefined
-    }
-    const update = () => {
-      const t =
-        (Date.now() - new Date(issPath[0].date).valueOf()) /
-        (new Date(issPath[issPath.length - 1].date).valueOf() - new Date(issPath[0].date).valueOf())
+    if (!curve) return undefined
 
-      let point: Vector3
+    const update = () => {
+      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      let current: Vector3
+      const pastPoints = []
+      const futurePoints = []
+
+      if (t < 0 || t > 1) {
+        setFutureIssPathCoords([])
+        setPastIssPathCoords([])
+        setIssMarkerPosition(null)
+        return
+      }
+
       try {
-        point = curve.getPoint(t)
+        current = curve.getPoint(t)
       } catch (e) {
         console.error(e)
         return
       }
 
-      setIssPosition(cartesianToAzAlt([point.x, point.y, point.z]))
+      for (let i = 0; i <= 100; ++i) {
+        const u = i / 100
+        const pt = curve.getPointAt(i / 100)
+        if (t > curve.getUtoTmapping(u, null)) pastPoints.push(pt)
+        else futurePoints.push(pt)
+      }
+
+      pastPoints.push(current)
+      futurePoints.unshift(current)
+
+      setPastIssPathCoords(pastPoints)
+      setFutureIssPathCoords(futurePoints)
+      setIssMarkerPosition(current)
     }
+
     update()
 
     const timeout = setInterval(update, 10000)
@@ -115,44 +112,39 @@ export const ARView = forwardRef<ViroARSceneNavigator, ARViewProps>(function ARV
     }
   }, [curve])
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", setAppState)
-
-    return () => {
-      subscription.remove()
-    }
-  }, [isRecording])
+  const issAzAlt = useMemo(
+    () =>
+      issMarkerPosition
+        ? cartesianToAzAlt([issMarkerPosition.x, issMarkerPosition.y, issMarkerPosition.z])
+        : null,
+    [issMarkerPosition],
+  )
 
   return (
     <View style={$container}>
-      {appState === "active" && (
-        <ViroARSceneNavigator
-          ref={ref}
-          worldAlignment="GravityAndHeading"
-          autofocus={true}
-          initialScene={intialScene}
-          viroAppProps={viroAppProps}
-          style={$container}
-        />
-      )}
+      <ISSSceneAR
+        issMarkerPosition={issMarkerPosition}
+        pastIssPathCoords={pastIssPathCoords}
+        futureIssPathCoords={futureIssPathCoords}
+        onScreenPositionChange={onScreenPositionChange}
+        isPathVisible={isPathVisible}
+        still={still}
+        onStillReady={onStillReady}
+      />
 
-      {Boolean(image) && (
-        <Image source={{ uri: image }} style={$image as ImageStyle} onLoad={onImageLoaded} />
-      )}
-
-      {isFullScreen && Boolean(issPosition) && (
+      {isFullScreen && Boolean(position) && (
         <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
       )}
 
       <View style={$hudContainer}>
-        {Boolean(issPosition) && (
-          <Compass issPosition={normalizeHeading(issPosition[0])} isFullScreen={isFullScreen} />
+        {Boolean(issAzAlt) && (
+          <Compass issPosition={normalizeHeading(issAzAlt[0])} isFullScreen={isFullScreen} />
         )}
         {isRecording && <RecordingIndicator recordedSeconds={recordedSeconds} />}
       </View>
     </View>
   )
-})
+}
 
 const styles: StyleFn = () => {
   const $container: ViewStyle = {

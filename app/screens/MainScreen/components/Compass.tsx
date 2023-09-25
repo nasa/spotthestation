@@ -8,8 +8,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../../../components"
 import { colors } from "../../../theme"
 import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../utils/geometry"
-import watchHeading from "../../../utils/heading"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import watchOrientation from "../../../utils/orientation"
+import { Vector2, Vector3 } from "three"
 
 const compassLine = require("../../../../assets/icons/compass-line.png")
 
@@ -46,7 +47,11 @@ export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
   ].filter((letter) => isInHeadingRange(left, right, letter.offset))
 
   useEffect(() => {
-    const unsub = watchHeading(setHeading)
+    const unsub = watchOrientation((rotation) => {
+      const vec = new Vector3(0, 0, -1).applyQuaternion(rotation)
+      const angle = (new Vector2(-vec.z, vec.x).angle() * 180) / Math.PI
+      setHeading(normalizeHeading(angle))
+    })
     return () => unsub()
   }, [])
 

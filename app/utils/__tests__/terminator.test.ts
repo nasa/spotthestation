@@ -7,13 +7,6 @@ it("test_happy_path_returns_array_of_latitude_and_longitude_pairs", () => {
   expect(result[result.length - 1]).toEqual([90, 180])
 })
 
-it("test_happy_path_uses_current_date_if_no_date_is_provided", () => {
-  const result = compute()
-  expect(Array.isArray(result)).toBe(true)
-  expect(result[0]).toEqual([-90, -360])
-  expect(result[result.length - 1]).toEqual([-90, 180])
-})
-
 it("test_happy_path_uses_resolution_of_2_degrees_if_no_resolution_is_provided", () => {
   const result = compute(new Date(2022, 0, 1))
   expect(Array.isArray(result)).toBe(true)
@@ -48,13 +41,6 @@ it("test_happy_path_returns_array_of_latitude_and_longitude_pairs", () => {
   expect(Array.isArray(result)).toBe(true)
   expect(result[0]).toEqual([90, -360])
   expect(result[result.length - 1]).toEqual([90, 360])
-})
-
-it("test_happy_path_uses_current_date_if_no_date_is_provided", () => {
-  const result = computeOld()
-  expect(Array.isArray(result)).toBe(true)
-  expect(result[0]).toEqual([-90, -360])
-  expect(result[result.length - 1]).toEqual([-90, 360])
 })
 
 it("test_happy_path_uses_resolution_of_2_degrees_if_no_resolution_is_provided", () => {

@@ -24,7 +24,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import { check, request, PERMISSIONS, RESULTS, openSettings } from "react-native-permissions"
 import Share from "react-native-share"
-import ViewShot, { captureScreen, captureRef } from "react-native-view-shot"
+import ViewShot, { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -33,7 +33,6 @@ import { intervalToDuration, formatDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
-import { ViroARSceneNavigator } from "@viro-community/react-viro"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
@@ -185,10 +184,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [mediaUrl, setMediaUrl] = useState("")
   const [mediaType, setMediaType] = useState("")
   const [current, setCurrent] = useState<LocationType>(null)
+  const [still, setStill] = useState(false)
   const whiteness = useSharedValue(0)
 
   const intervalRef = useRef<NodeJS.Timeout>(null)
-  const arView = useRef<ViroARSceneNavigator>()
 
   const events = useMemo(
     () => current?.sightings?.filter((item) => item.notify) || [],
@@ -310,60 +309,23 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     )
   }
 
-  const [screenshot, setScreenshot] = useState("")
   const arContainerRef = useRef()
-  const screenshotLoaded = useRef<boolean>(false)
 
-  const takeScreenshot = async () => {
-    if (!arView.current) return null
-
+  const takeScreenshot = () => {
     flashCameraIcon()
-    let uri
+    setStill(true)
+  }
 
-    try {
-      if (Platform.OS === "android") {
-        const screenshot = await captureRef(arContainerRef, {
-          format: "jpg",
-          quality: 1,
-          handleGLSurfaceViewOnAndroid: true,
-        })
+  const completeScreenshot = async () => {
+    const uri = await captureScreen({
+      format: "jpg",
+      quality: 1,
+    })
 
-        setScreenshot(screenshot)
-        await new Promise((resolve) =>
-          setInterval(() => {
-            if (screenshotLoaded.current) resolve(null)
-          }, 100),
-        )
-
-        uri = await captureScreen({
-          format: "jpg",
-          quality: 1,
-        })
-
-        screenshotLoaded.current = false
-        setScreenshot("")
-      } else {
-        uri = await captureScreen({
-          format: "jpg",
-          quality: 1,
-        })
-      }
-
-      await saveToGallery(uri, "photo")
-      setMediaUrl(uri)
-      setMediaType("photo")
-      return uri
-    } catch (error) {
-      screenshotLoaded.current = false
-      setScreenshot("")
-
-      console.log(error)
-      Snackbar.show({
-        text: error.message ? error.message : error,
-        duration: Snackbar.LENGTH_LONG,
-      })
-      return null
-    }
+    setStill(false)
+    await saveToGallery(uri, "photo")
+    setMediaUrl(uri)
+    setMediaType("photo")
   }
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
@@ -606,12 +568,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           {issData?.length > 0 && (
             <ViewShot ref={arContainerRef} style={{ flex: 1 }}>
               <ARView
-                image={screenshot}
-                onImageLoaded={() => {
-                  console.log("loaded")
-                  screenshotLoaded.current = true
-                }}
-                ref={arView}
+                still={still}
+                onStillReady={completeScreenshot}
                 isFullScreen={isFullScreen}
                 isPathVisible={isPathVisible}
                 isRecording={isRecording}

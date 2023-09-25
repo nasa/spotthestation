@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-sensors/ios/RNSensorsOrientation.m b/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
+index 757d302..68810a5 100644
+--- a/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
++++ b/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
+@@ -128,7 +128,7 @@ - (void) isAvailableWithResolver:(RCTPromiseResolveBlock) resolve
+ 
+     /* Receive the orientation data on this block */
+ 		NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+-    [self->_motionManager startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *deviceMotion, NSError *error)
++        [self->_motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXMagneticNorthZVertical toQueue:queue withHandler:^(CMDeviceMotion *deviceMotion, NSError *error)
+      {
+          CMAttitude *attitude = deviceMotion.attitude;
+ 

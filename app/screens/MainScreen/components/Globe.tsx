@@ -1,10 +1,8 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { Platform, ViewStyle } from "react-native"
+import { ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
-import * as FileSystem from "expo-file-system"
-import { Asset } from "expo-asset"
 import {
   Sprite,
   SpriteMaterial,
@@ -31,26 +29,10 @@ import { iconRegistry } from "../../../components/Icon"
 import ControlsView from "./ControlsView"
 import { OrbitPoint } from "../../../services/api"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
+import { copyAssetToCacheAsync } from "../../../utils/gl"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/World-Map.jpg")
-
-async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
-  if (Platform.OS === "ios") return assetModule
-
-  const localUri = `${FileSystem.cacheDirectory}asset_${localFilename}`
-  const fileInfo = await FileSystem.getInfoAsync(localUri, { size: false })
-  if (!fileInfo.exists) {
-    const asset = Asset.fromModule(assetModule)
-    await asset.downloadAsync()
-    console.log(`copyAssetToCacheAsync ${asset.localUri} -> ${localUri}`)
-    await FileSystem.copyAsync({
-      from: asset.localUri,
-      to: localUri,
-    })
-  }
-  return localUri
-}
 
 export interface GlobeProps {
   marker?: number[]
@@ -77,6 +59,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
   const futurehRef = useRef<Line>(null)
   const sceneRef = useRef<Scene>(null)
   const globeRef = useRef<Mesh>(null)
+  const deadRef = useRef<boolean>(false)
   const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
 
   useEffect(() => {
@@ -196,6 +179,12 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
       clearInterval(timeout)
     }
   }, [curve])
+
+  useEffect(() => {
+    return () => {
+      deadRef.current = true
+    }
+  }, [])
 
   const createMarker = async () => {
     const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
@@ -365,6 +354,8 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
     }
 
     const render = () => {
+      if (deadRef.current) return
+
       requestAnimationFrame(render)
       update()
       renderer.render(scene, camera)
