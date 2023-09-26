@@ -5,7 +5,7 @@ import {
   Line,
   LineBasicMaterial,
   LineDashedMaterial,
-  PerspectiveCamera,
+  PerspectiveCamera, Quaternion,
   Scene,
   Sprite,
   SpriteMaterial,
@@ -13,15 +13,16 @@ import {
   Vector3,
   WebGLRenderer,
 } from "three"
-import { Image, LayoutRectangle, Platform, StyleSheet, View } from "react-native"
+import { Image, LayoutRectangle, PixelRatio, Platform, StyleSheet, View } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { loadTextureAsync, Renderer } from "expo-three"
-import { Camera, CameraDeviceFormat, useCameraDevices } from "react-native-vision-camera"
+import { Camera, CameraDeviceFormat, useCameraDevice } from "react-native-vision-camera"
 import { maxBy } from "lodash"
 import { iconRegistry } from "../../../components"
 import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
 import watchOrientation from "../../../utils/orientation"
+import Orientation from "react-native-orientation-locker"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -77,8 +78,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   onStillReady,
 }: ISSSceneProps) {
   const [layout, setLayout] = useState<LayoutRectangle>()
-  const devices = useCameraDevices()
-  const device = devices.back
+  const device = useCameraDevice('back')
+  const [orientation, setOrientation] = useState(Orientation.getInitialOrientation())
+
   const [activeFormat, setActiveFormat] = useState<CameraDeviceFormat>(null)
   const [issTexture, setIssTexture] = useState<Texture>(null)
 
@@ -170,10 +172,13 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   }, [issTexture, issMarkerPosition, sceneRef.current])
 
   useEffect(() => {
-    if (!cameraRef.current || !layout) return
+    if (!layout) return
 
+    const isLandscape = orientation.startsWith("LANDSCAPE")
     const layoutRatio = layout.width / layout.height
-    const cameraRatio = activeFormat.videoHeight / activeFormat.videoWidth
+    const cameraRatio = isLandscape
+      ? activeFormat.videoWidth / activeFormat.videoHeight
+      : activeFormat.videoHeight / activeFormat.videoWidth
 
     let realWidth = 0
     let realHeight = 0
@@ -185,7 +190,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       realWidth = layout.height * cameraRatio
     }
 
-    cameraRef.current.setViewOffset(
+    let fov = activeFormat.fieldOfView
+    if (isLandscape) fov = fov / cameraRatio
+
+    const camera = new PerspectiveCamera(
+      fov,
+      cameraRatio,
+      0.1,
+      6000,
+    )
+
+    camera.setViewOffset(
       realWidth,
       realHeight,
       (realWidth - layout.width) / 2,
@@ -193,23 +208,19 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       layout.width,
       layout.height,
     )
-  }, [layout, cameraRef.current])
+
+    camera.position.set(0, 0, 0)
+    camera.rotation.set(0, 0, 0)
+
+    cameraRef.current = camera
+  }, [layout, orientation])
 
   const contextRenderer = useCallback(
     (gl: ExpoWebGLRenderingContext) => {
       glRef.current = gl
+
       const scene = new Scene()
       sceneRef.current = scene
-      const camera = new PerspectiveCamera(
-        activeFormat.fieldOfView,
-        activeFormat.videoHeight / activeFormat.videoWidth,
-        0.1,
-        6000,
-      )
-
-      camera.position.set(0, 0, 0)
-      camera.rotation.set(0, 0, 0)
-      cameraRef.current = camera
 
       const renderer: WebGLRenderer = new Renderer({ gl })
       renderer.debug.checkShaderErrors = false
@@ -219,7 +230,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       const render = () => {
         if (deadRef.current) return
         requestAnimationFrame(render)
-        renderer.render(scene, cameraRef.current)
+        if (cameraRef.current) renderer.render(scene, cameraRef.current)
         gl.endFrameEXP()
       }
 
@@ -231,15 +242,15 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   const onCameraChange = useMemo(
     () =>
       throttle(() => {
-        if (!cameraRef.current || !glRef.current || !issMarkerPosition) return
+        if (!cameraRef.current || !glRef.current || !issMarkerPosition || !layout) return
 
         const forward = cameraRef.current.getWorldDirection(new Vector3())
         const totalAngle = (issMarkerPosition.clone().angleTo(forward) * 180) / Math.PI
 
         if (totalAngle < 85) {
           const projected = issMarkerPosition.clone().project(cameraRef.current)
-          const x = ((projected.x + 1) * glRef.current.drawingBufferWidth) / 2
-          const y = (-(projected.y - 1) * glRef.current.drawingBufferHeight) / 2
+          const x = ((projected.x + 1) * layout.width * PixelRatio.get()) / 2
+          const y = (-(projected.y - 1) * layout.height * PixelRatio.get()) / 2
           onScreenPositionChange([x, y])
         } else {
           let angleX =
@@ -273,13 +284,20 @@ export const ISSSceneAR = memo(function ISSSceneAR({
 
   useEffect(() => {
     if (!cameraRef.current) return undefined
-    const unsub = watchOrientation((targetRot) => {
+    const unsub = watchOrientation((rotation) => {
+      let targetRot = rotation
+      if (orientation === "LANDSCAPE-RIGHT") {
+        targetRot = new Quaternion().multiplyQuaternions(targetRot, new Quaternion().setFromAxisAngle(new Vector3(0,0,1), Math.PI / 2))
+      } else if (orientation === "LANDSCAPE-LEFT") {
+        targetRot = new Quaternion().multiplyQuaternions(targetRot, new Quaternion().setFromAxisAngle(new Vector3(0,0,1), -Math.PI / 2))
+      }
+
       cameraRef.current.rotation.setFromQuaternion(targetRot)
       onCameraChange()
     })
 
     return () => unsub()
-  }, [onCameraChange])
+  }, [cameraRef.current, orientation, onCameraChange])
 
   const [isLayoutUpdating, setIsLayoutUpdating] = useState(false)
   const [stillImage, setStillImage] = useState(null)
@@ -300,15 +318,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({
 
     if (!realCameraRef.current) return
 
-    ;(Platform.OS === "android"
-      ? realCameraRef.current.takeSnapshot()
-      : realCameraRef.current.takePhoto()
-    )
+    realCameraRef.current.takePhoto()
       .then((photo) => {
         setStillImage(`file://${photo.path}`)
       })
       .catch((e) => console.log(e))
   }, [still])
+
+  useEffect(() => {
+    Orientation.addOrientationListener(setOrientation)
+    return () => Orientation.removeOrientationListener(setOrientation)
+  }, [])
 
   return (
     <View style={StyleSheet.absoluteFill} onLayout={(e) => setLayout(e.nativeEvent.layout)}>

@@ -340,8 +340,6 @@ PODS:
     - glog
   - react-native-cameraroll (5.8.0):
     - React-Core
-  - react-native-compass-heading (1.4.2):
-    - React
   - react-native-config (1.4.11):
     - react-native-config/App (= 1.4.11)
   - react-native-config/App (1.4.11):
@@ -516,7 +514,7 @@ PODS:
     - React
   - ViroReact (1.0):
     - React
-  - VisionCamera (2.16.1):
+  - VisionCamera (3.1.0):
     - React
     - React-callinvoker
     - React-Core
@@ -560,7 +558,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
-  - react-native-compass-heading (from `../node_modules/react-native-compass-heading`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
@@ -700,8 +697,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-camera-roll/camera-roll"
-  react-native-compass-heading:
-    :path: "../node_modules/react-native-compass-heading"
   react-native-config:
     :path: "../node_modules/react-native-config"
   react-native-geolocation-service:
@@ -842,7 +837,6 @@ SPEC CHECKSUMS:
   React-jsinspector: 2a1985769123b199c195a96f46478b35db139712
   React-logger: 7fbdc3576b2ed3834360c8ea3c1c2ec54ac3043a
   react-native-cameraroll: 8cc80e0922a6a432938a26f3b50714adcb2adb5f
-  react-native-compass-heading: 1a7083ff9729c9e222cec5e00112398a7868db09
   react-native-config: bcafda5b4c51491ee1b0e1d0c4e3905bc7b56c1b
   react-native-geolocation-service: 608e1da71a1ac31b4de64d9ef2815f697978c55b
   react-native-get-random-values: a6ea6a8a65dc93e96e24a11105b1a9c8cfe1d72a
@@ -888,7 +882,7 @@ SPEC CHECKSUMS:
   Turf: 469ce2c3d22e5e8e4818d5a3b254699a5c89efa4
   ViroKit: 700d3d4ca086368d06224de1cbbc19781aea2094
   ViroReact: f4980e6b04918c4340637f9cbaae22a6bb7ea440
-  VisionCamera: 038cba190635523eedb2ae8a67bb226d7ef2f054
+  VisionCamera: 53aa6766f9aea2342d8b7ba2761e98c717be33b0
   Yoga: 0518155cfbcc68c56223422f6a20a71b82e307d2
 
 PODFILE CHECKSUM: 235c79f4529ea273074181606ce073e7e5d2de1f

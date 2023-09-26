@@ -14008,11 +14008,6 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-compass-heading@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-compass-heading/-/react-native-compass-heading-1.4.2.tgz#144aa060e06815586f22b488b05e30eee26144ab"
-  integrity sha512-7j37EIw2bNXgdu/mb47eTxXgXqwnMQAud69KflqaTfxXdr+6ODurlou3WH1o/V+6pAIV2A0kuYJJ9S7l9T8CMg==
-
 react-native-config@^1.4.11:
   version "1.4.11"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.11.tgz#f9ea08a8dffbe3fd4f2187d80d2594756526dee8"
@@ -14211,10 +14206,12 @@ react-native-view-shot@^3.6.0:
   dependencies:
     html2canvas "^1.4.1"
 
-react-native-vision-camera@^2.16.1:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.1.tgz#b1af6d2161a7b19dc39da8f645344a63b0d4ded8"
-  integrity sha512-2utw/1EkgeaL6CLQX9Bm6HEpkmkbyx/dBJmwjA2nVz3IuXn5ys57NwMa0o/qg8proSGvcs8XKpqtQtnMPA1P+w==
+react-native-vision-camera@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-3.1.0.tgz#c98d1c87580fa17f6dab9e03de1394bc9ba9e473"
+  integrity sha512-Aq7xmqZxw7JXxB49bthhSVuy9SxwOMxageOmFfw6cbF5aSAAFuDx7FwuI5eqeOelz+5VYnge2ehVu4Al9Pjc6A==
+  dependencies:
+    string-hash-64 "^1.0.3"
 
 react-native-web@~0.18.7:
   version "0.18.10"
