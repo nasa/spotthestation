@@ -31,18 +31,14 @@ local.properties
 *.iml
 *.hprof
 .cxx/
+*.keystore
+!debug.keystore
 
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
-
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
 
 # fastlane
 #
@@ -158,3 +154,6 @@ coverage/
 ios/tmp.xcconfig
 android/app/google-services.json
 ios/GoogleService-Info.plist
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*

@@ -12,13 +12,6 @@ include ':app'
 
 includeBuild('../node_modules/react-native-gradle-plugin')
 
-if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {
-    include(":ReactAndroid")
-    project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
-    include(":ReactAndroid:hermes-engine")
-    project(":ReactAndroid:hermes-engine").projectDir = file('../node_modules/react-native/ReactAndroid/hermes-engine')
-}
-
 include ':react_viro', ':arcore_client', ':gvr_common', ':viro_renderer'
 project(':arcore_client').projectDir = new File('../node_modules/@viro-community/react-viro/android/arcore_client')
 project(':gvr_common').projectDir = new File('../node_modules/@viro-community/react-viro/android/gvr_common')
