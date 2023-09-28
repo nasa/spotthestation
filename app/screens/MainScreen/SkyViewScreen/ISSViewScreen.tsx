@@ -150,7 +150,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $bottomContainerStyleOverride,
     $button,
     $buttonFs,
-    $text,
     $container,
     $headerContainer,
     $modal,
@@ -178,7 +177,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
-  const [isSpotted, setIsSpotted] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
   const [location, setLocation] = useState<[number, number]>(null)
   const [mediaUrl, setMediaUrl] = useState("")
@@ -575,7 +573,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 isRecording={isRecording}
                 recordedSeconds={recordedSeconds}
                 issPath={issPath}
-                setIsSpotted={setIsSpotted}
+                onTakeScreenshot={takeScreenshot}
               />
             </ViewShot>
           )}
@@ -696,13 +694,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           }}
         />
       </Modal>
-      {isSpotted && (
-        <Text
-          tx="issView.issCaptured"
-          style={[$text, { textDecorationLine: "underline" }]}
-          onPress={takeScreenshot}
-        />
-      )}
     </Screen>
   )
 })
@@ -747,17 +738,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     ...$iconButton,
     width: scale(54),
     height: scale(54),
-  }
-
-  const $text: TextStyle = {
-    bottom: "40%",
-    fontSize: fontSizes[24],
-    textAlign: "center",
-    width: "60%",
-    position: "absolute",
-    color: "#fff",
-    zIndex: 9,
-    alignSelf: "center",
   }
 
   const $container: ViewStyle = {
@@ -856,7 +836,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $bottomContainerStyleOverride,
     $button,
     $buttonFs,
-    $text,
     $container,
     $headerContainer,
     $modal,

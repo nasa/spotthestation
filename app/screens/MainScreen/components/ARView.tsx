@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
@@ -10,6 +10,7 @@ import { azAltToCartesian, cartesianToAzAlt, normalizeHeading } from "../../../u
 import { OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import { Text } from "../../../components"
 
 interface ARViewProps {
   isFullScreen: boolean
@@ -17,9 +18,9 @@ interface ARViewProps {
   isRecording: boolean
   recordedSeconds: number
   issPath: OrbitPoint[]
-  setIsSpotted: (value: boolean) => void
   still: boolean
   onStillReady: () => void
+  onTakeScreenshot: () => void
 }
 
 export const ARView = function ARView({
@@ -28,11 +29,11 @@ export const ARView = function ARView({
   isRecording,
   recordedSeconds,
   issPath,
-  setIsSpotted,
   still,
   onStillReady,
+  onTakeScreenshot,
 }: ARViewProps) {
-  const { $container, $hudContainer } = useStyles(styles)
+  const { $container, $hudContainer, $text } = useStyles(styles)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
   const [curveEndsAt, setCurveEndsAt] = useState(0)
@@ -40,6 +41,7 @@ export const ARView = function ARView({
   const [issMarkerPosition, setIssMarkerPosition] = useState<Vector3>(null)
   const [pastIssPathCoords, setPastIssPathCoords] = useState<Vector3[]>([])
   const [futureIssPathCoords, setFutureIssPathCoords] = useState<Vector3[]>([])
+  const [isSpotted, setIsSpotted] = useState(false)
 
   const onScreenPositionChange = useCallback((pos: [number, number]) => {
     setPosition(pos)
@@ -120,6 +122,17 @@ export const ARView = function ARView({
     [issMarkerPosition],
   )
 
+  const [isStillReady, setIsStillReady] = useState(false)
+
+  useEffect(() => {
+    if (!still) setIsStillReady(false)
+  }, [still])
+
+  const handleStillReady = useCallback(() => {
+    setIsStillReady(true)
+    setTimeout(onStillReady, 500)
+  }, [onStillReady])
+
   return (
     <View style={$container}>
       <ISSSceneAR
@@ -129,11 +142,15 @@ export const ARView = function ARView({
         onScreenPositionChange={onScreenPositionChange}
         isPathVisible={isPathVisible}
         still={still}
-        onStillReady={onStillReady}
+        onStillReady={handleStillReady}
       />
 
-      {isFullScreen && Boolean(position) && (
+      {isFullScreen && Boolean(position) && !(still && isStillReady) && (
         <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
+      )}
+
+      {isFullScreen && isSpotted && !(still && isStillReady) && (
+        <Text tx="issView.issCaptured" style={$text} onPress={onTakeScreenshot} />
       )}
 
       <View style={$hudContainer}>
@@ -146,7 +163,7 @@ export const ARView = function ARView({
   )
 }
 
-const styles: StyleFn = () => {
+const styles: StyleFn = ({ fontSizes }) => {
   const $container: ViewStyle = {
     flex: 1,
     backgroundColor: colors.backgroundDark,
@@ -165,5 +182,17 @@ const styles: StyleFn = () => {
     position: "absolute",
   }
 
-  return { $container, $hudContainer, $image }
+  const $text: TextStyle = {
+    bottom: "40%",
+    fontSize: fontSizes[24],
+    textAlign: "center",
+    width: "60%",
+    position: "absolute",
+    color: "#fff",
+    zIndex: 9,
+    alignSelf: "center",
+    textDecorationLine: "underline",
+  }
+
+  return { $container, $hudContainer, $image, $text }
 }

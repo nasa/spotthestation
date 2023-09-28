@@ -60,15 +60,15 @@ const createISSMarker = (texture: Texture, position: Vector3) => {
 
 const createOrbit = (pastPoints: Vector3[], futurePoints: Vector3[]) => {
   const pastLine = new Line()
-  pastLine.material = new LineBasicMaterial({ color: 0xffffff, linewidth: 6 })
+  pastLine.material = new LineBasicMaterial({ color: 0xffffff, linewidth: 8 })
   pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
 
   const futureLine = new Line()
   futureLine.material = new LineDashedMaterial({
     color: 0xffffff,
-    linewidth: 6,
-    dashSize: 50,
-    gapSize: 50,
+    linewidth: 8,
+    dashSize: 20,
+    gapSize: 20,
   })
 
   futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
@@ -199,10 +199,16 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       )
     }
 
+    if (cameraRef.current) {
+      const d = cameraRef.current.getFocalLength()
+      const scale = (4 * (1000 - d)) / d
+      issMarkerRef.current.scale.set(scale, scale, 1)
+    }
+
     if (!sceneRef.current) return
     if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
       sceneRef.current?.add(issMarkerRef.current)
-  }, [issTexture, issMarkerPosition, sceneRef.current])
+  }, [issTexture, issMarkerPosition, sceneRef.current, cameraRef.current])
 
   useEffect(() => {
     if (!layout || !activeFormat) return
@@ -377,7 +383,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
             <Image
               source={{ uri: stillImage }}
               style={StyleSheet.absoluteFill}
-              onLoadEnd={() => setTimeout(onStillReady, 500)}
+              onLoadEnd={onStillReady}
             />
           )}
 

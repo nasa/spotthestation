@@ -591,7 +591,7 @@ exports[`renders correctly 1`] = `
           {
             "busy": undefined,
             "checked": undefined,
-            "disabled": undefined,
+            "disabled": true,
             "expanded": undefined,
             "selected": undefined,
           }
@@ -635,14 +635,19 @@ exports[`renders correctly 1`] = `
                 "borderWidth": 1,
               },
             ],
-            {
-              "backgroundColor": "#0B3D91",
-              "borderRadius": 40,
-              "borderWidth": 0,
-              "height": 80,
-              "marginVertical": 35,
-              "width": "100%",
-            },
+            [
+              {
+                "backgroundColor": "#0B3D91",
+                "borderRadius": 40,
+                "borderWidth": 0,
+                "height": 80,
+                "marginVertical": 35,
+                "width": "100%",
+              },
+              {
+                "opacity": 0.5,
+              },
+            ],
             false,
           ]
         }

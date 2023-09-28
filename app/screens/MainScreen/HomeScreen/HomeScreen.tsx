@@ -48,10 +48,10 @@ function calcAddress(selectedLocation, currentLocation) {
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { $container, $modal, $flatMap } = useStyles(styles)
+  const { $container, $modal, $flatMap, $mark5 } = useStyles(styles)
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
-  const $topInsetMargin = useSafeAreaInsetsStyle(["top"], "margin")
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
   const {
     issData,
     getISSData,
@@ -389,9 +389,7 @@ export const HomeScreen = observer(function HomeScreen() {
             icon="list"
             title="homeScreen.coachMarks.navigationTitle"
             bodyText="homeScreen.coachMarks.navigationData"
-            style={{
-              marginTop: Platform.OS === "ios" ? normalizeHeight(0.38) : normalizeHeight(0.52),
-            }}
+            style={$mark5}
             stage={stage}
             onPressFinish={handleSetCoachCompleted}
             onPressNext={() => setStage(stage + 1)}
@@ -523,7 +521,7 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 })
 
-const styles: StyleFn = () => {
+const styles: StyleFn = ({ scale }) => {
   const $container: ViewStyle = {
     flex: 1,
     backgroundColor: colors.backgroundDark,
@@ -541,5 +539,11 @@ const styles: StyleFn = () => {
     width: "100%",
   }
 
-  return { $container, $modal, $flatMap }
+  const $mark5: ViewStyle = {
+    position: "absolute",
+    alignSelf: "center",
+    bottom: scale(160),
+  }
+
+  return { $container, $modal, $flatMap, $mark5 }
 }
