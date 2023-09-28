@@ -5,12 +5,5 @@ module.exports = {
     // packages, you can add them to the referenced path below and uncomment this line.
     // "./assets/fonts/"
   ],
-  dependencies: {
-    "@viro-community/react-viro": {
-      platforms: {
-        android: null,
-        ios: null
-      }
-    }
-  }
+  dependencies: {}
 }

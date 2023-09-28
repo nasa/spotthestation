@@ -1,0 +1,65 @@
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/utils/CameraCharacteristicsUtils.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/utils/CameraCharacteristicsUtils.kt
+index 545505b..23e2861 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/utils/CameraCharacteristicsUtils.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/utils/CameraCharacteristicsUtils.kt
+@@ -55,5 +55,5 @@ fun CameraCharacteristics.getFieldOfView(): Double {
+   val focalLengths = this.get(CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS)!!
+   val sensorSize = this.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE)!!
+ 
+-  return 2 * atan(sensorSize.bigger / (focalLengths[0] * 2)) * (180 / PI)
++  return 2 * atan(sensorSize.height / (focalLengths[0] * 2)) * (180 / PI)
+ }
+diff --git a/node_modules/react-native-vision-camera/ios/CameraView+Orientation.swift b/node_modules/react-native-vision-camera/ios/CameraView+Orientation.swift
+index e647b8e..37f996b 100644
+--- a/node_modules/react-native-vision-camera/ios/CameraView+Orientation.swift
++++ b/node_modules/react-native-vision-camera/ios/CameraView+Orientation.swift
+@@ -10,9 +10,20 @@ import Foundation
+ import UIKit
+ 
+ extension CameraView {
++            private var windowInterfaceOrientation: UIInterfaceOrientation {
++                var orientation: UIInterfaceOrientation = .portrait
++                if #available(iOS 13.0, *) {
++                orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
++                } else {
++                    orientation = UIApplication.shared.statusBarOrientation
++                }
++    
++                return orientation
++            }
++    
+   /// Orientation of the input connection (preview)
+   private var inputOrientation: UIInterfaceOrientation {
+-    return .portrait
++    return windowInterfaceOrientation
+   }
+ 
+   // Orientation of the output connections (photo, video, frame processor)
+@@ -31,15 +42,18 @@ extension CameraView {
+     // Updates the Orientation for all rotable
+     let isMirrored = self.videoDeviceInput?.device.position == .front
+ 
+-    let connectionOrientation = self.outputOrientation
+-    self.captureSession.outputs.forEach { output in
+-      output.connections.forEach { connection in
+-        if connection.isVideoMirroringSupported {
+-          connection.automaticallyAdjustsVideoMirroring = false
+-          connection.isVideoMirrored = isMirrored
+-        }
+-        connection.setInterfaceOrientation(connectionOrientation)
++      DispatchQueue.main.async {
++          self.videoPreviewLayer.connection?.setInterfaceOrientation(self.outputOrientation)
++          let connectionOrientation = self.outputOrientation
++          self.captureSession.outputs.forEach { output in
++              output.connections.forEach { connection in
++                  if connection.isVideoMirroringSupported {
++                      connection.automaticallyAdjustsVideoMirroring = false
++                      connection.isVideoMirrored = isMirrored
++                  }
++                  connection.setInterfaceOrientation(connectionOrientation)
++              }
++          }
+       }
+-    }
+   }
+ }

@@ -5,7 +5,8 @@ import {
   Line,
   LineBasicMaterial,
   LineDashedMaterial,
-  PerspectiveCamera, Quaternion,
+  PerspectiveCamera,
+  Quaternion,
   Scene,
   Sprite,
   SpriteMaterial,
@@ -13,11 +14,19 @@ import {
   Vector3,
   WebGLRenderer,
 } from "three"
-import { Image, LayoutRectangle, PixelRatio, Platform, StyleSheet, View } from "react-native"
+import {
+  Dimensions,
+  Image,
+  LayoutRectangle,
+  PixelRatio,
+  Platform,
+  StyleSheet,
+  View,
+} from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { loadTextureAsync, Renderer } from "expo-three"
-import { Camera, CameraDeviceFormat, useCameraDevice } from "react-native-vision-camera"
-import { maxBy } from "lodash"
+import { Camera, CameraDeviceFormat, useCameraDevices } from "react-native-vision-camera"
+import { maxBy, minBy } from "lodash"
 import { iconRegistry } from "../../../components"
 import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
@@ -68,6 +77,10 @@ const createOrbit = (pastPoints: Vector3[], futurePoints: Vector3[]) => {
   return [pastLine, futureLine]
 }
 
+const getRatio = (d1: number, d2: number) => {
+  return Math.max(d1, d2) / Math.min(d1, d2)
+}
+
 export const ISSSceneAR = memo(function ISSSceneAR({
   onScreenPositionChange,
   pastIssPathCoords,
@@ -78,7 +91,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   onStillReady,
 }: ISSSceneProps) {
   const [layout, setLayout] = useState<LayoutRectangle>()
-  const device = useCameraDevice('back')
+  const devices = useCameraDevices()
+  const device = devices.back
   const [orientation, setOrientation] = useState(Orientation.getInitialOrientation())
 
   const [activeFormat, setActiveFormat] = useState<CameraDeviceFormat>(null)
@@ -107,13 +121,32 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   useEffect(() => {
     if (!device) return
 
-    const format = maxBy(
-      [...device.formats].sort(
-        (a, b) => b.videoWidth * b.videoHeight - a.videoWidth * a.videoHeight,
-      ),
-      (f) => f.maxISO,
+    let formats = device.formats.filter(
+      (f) => f.photoWidth === f.videoWidth && f.photoHeight === f.videoHeight,
     )
 
+    if (formats.length > 1) {
+      const { maxISO } = maxBy(formats, (f) => f.maxISO)
+      formats = formats.filter((f) => f.maxISO === maxISO)
+    }
+
+    if (formats.length > 1) {
+      const { width, height } = Dimensions.get("window")
+      const { videoWidth, videoHeight } = minBy(formats, (f) => {
+        return Math.abs(getRatio(width, height) - getRatio(f.videoWidth, f.videoHeight))
+      })
+
+      const formatRatio = getRatio(videoWidth, videoHeight)
+      formats = formats.filter(
+        (f) => Math.abs(getRatio(f.videoWidth, f.videoHeight) - formatRatio) < 0.0001,
+      )
+    }
+
+    if (formats.length > 1) {
+      formats = [maxBy(formats, (f) => f.videoWidth * f.videoHeight)]
+    }
+
+    const format = formats.length > 0 ? formats[0] : device.formats[device.formats.length - 1]
     setActiveFormat(format)
   }, [device])
 
@@ -172,7 +205,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   }, [issTexture, issMarkerPosition, sceneRef.current])
 
   useEffect(() => {
-    if (!layout) return
+    if (!layout || !activeFormat) return
 
     const isLandscape = orientation.startsWith("LANDSCAPE")
     const layoutRatio = layout.width / layout.height
@@ -193,12 +226,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     let fov = activeFormat.fieldOfView
     if (isLandscape) fov = fov / cameraRatio
 
-    const camera = new PerspectiveCamera(
-      fov,
-      cameraRatio,
-      0.1,
-      6000,
-    )
+    const camera = new PerspectiveCamera(fov, cameraRatio, 0.1, 6000)
 
     camera.setViewOffset(
       realWidth,
@@ -213,7 +241,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     camera.rotation.set(0, 0, 0)
 
     cameraRef.current = camera
-  }, [layout, orientation])
+  }, [layout, orientation, activeFormat])
 
   const contextRenderer = useCallback(
     (gl: ExpoWebGLRenderingContext) => {
@@ -279,17 +307,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({
           }
         }
       }, 50),
-    [issMarkerPosition],
+    [issMarkerPosition, layout, glRef.current, cameraRef.current],
   )
 
   useEffect(() => {
     if (!cameraRef.current) return undefined
     const unsub = watchOrientation((rotation) => {
-      let targetRot = rotation
+      const targetRot = rotation
       if (orientation === "LANDSCAPE-RIGHT") {
-        targetRot = new Quaternion().multiplyQuaternions(targetRot, new Quaternion().setFromAxisAngle(new Vector3(0,0,1), Math.PI / 2))
+        targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), Math.PI / 2))
       } else if (orientation === "LANDSCAPE-LEFT") {
-        targetRot = new Quaternion().multiplyQuaternions(targetRot, new Quaternion().setFromAxisAngle(new Vector3(0,0,1), -Math.PI / 2))
+        targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), -Math.PI / 2))
       }
 
       cameraRef.current.rotation.setFromQuaternion(targetRot)
@@ -317,8 +345,10 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     }
 
     if (!realCameraRef.current) return
-
-    realCameraRef.current.takePhoto()
+    ;(Platform.OS === "android"
+      ? realCameraRef.current.takeSnapshot()
+      : realCameraRef.current.takePhoto()
+    )
       .then((photo) => {
         setStillImage(`file://${photo.path}`)
       })
@@ -347,7 +377,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
             <Image
               source={{ uri: stillImage }}
               style={StyleSheet.absoluteFill}
-              onLoad={() => setTimeout(onStillReady, 500)}
+              onLoadEnd={() => setTimeout(onStillReady, 500)}
             />
           )}
 

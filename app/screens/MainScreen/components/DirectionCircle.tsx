@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { ViewStyle, View, useWindowDimensions, PixelRatio } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { arc as d3Arc } from "d3-shape"
@@ -23,7 +23,9 @@ export const DirectionCircle = ({ screenX, screenY, setIsSpotted }) => {
   const distance = useMemo(() => Math.sqrt(x * x + y * y), [x, y])
   const isSpotted = distance <= 70
 
-  setIsSpotted(isSpotted)
+  useEffect(() => {
+    setIsSpotted(isSpotted)
+  }, [isSpotted])
 
   const outerArc = useMemo(() => {
     return arc({

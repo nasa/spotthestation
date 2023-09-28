@@ -557,11 +557,7 @@ PODS:
   - SentryPrivate (8.7.3)
   - SSZipArchive (2.2.3)
   - Turf (2.6.1)
-  - ViroKit (1.0):
-    - React
-  - ViroReact (1.0):
-    - React
-  - VisionCamera (3.1.0):
+  - VisionCamera (2.16.1):
     - React
     - React-callinvoker
     - React-Core
@@ -644,8 +640,6 @@ DEPENDENCIES:
   - RNShare (from `../node_modules/react-native-share`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - "ViroKit (from `../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/`)"
-  - "ViroReact (from `../node_modules/@viro-community/react-viro/ios`)"
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -822,10 +816,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-snackbar"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  ViroKit:
-    :path: "../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/"
-  ViroReact:
-    :path: "../node_modules/@viro-community/react-viro/ios"
   VisionCamera:
     :path: "../node_modules/react-native-vision-camera"
   Yoga:
@@ -927,11 +917,9 @@ SPEC CHECKSUMS:
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Turf: 469ce2c3d22e5e8e4818d5a3b254699a5c89efa4
-  ViroKit: 700d3d4ca086368d06224de1cbbc19781aea2094
-  ViroReact: f4980e6b04918c4340637f9cbaae22a6bb7ea440
-  VisionCamera: 53aa6766f9aea2342d8b7ba2761e98c717be33b0
+  VisionCamera: 72a895edca08708955be332ce5d6ab2af3a0f251
   Yoga: 135109c9b8c5d1a8af3a58d21cd4c7aa7f3bf555
 
-PODFILE CHECKSUM: c74efa3cd1a999ebc21d1f6cadd90c042c57827a
+PODFILE CHECKSUM: daba7cfe94452fff5eeb61d368975bf1a702eb59
 
 COCOAPODS: 1.12.1

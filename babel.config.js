@@ -10,7 +10,7 @@ const plugins = [
     {
       moduleName: "react-native-dotenv",
       path: ".env",
-      verbose: true,
+      verbose: false,
     }
   ],
   "react-native-reanimated/plugin", // NOTE: this must be last in the plugins
