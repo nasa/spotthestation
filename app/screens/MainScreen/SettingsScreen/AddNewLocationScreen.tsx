@@ -45,6 +45,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     $dropdownText,
     $save,
     $saveText,
+    $saveDisabled,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -71,7 +72,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const handleSave = useCallback(() => {
     location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
-    if (!location.title) return
+    if (!location.title || !location.googlePlaceId) return
     let res = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
@@ -124,6 +125,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
+
+  const isSaveDisabled = !location.googlePlaceId || !location.title
 
   return (
     <Screen
@@ -260,7 +263,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             accessibilityLabel="save button"
             accessibilityHint="save location"
             tx="settings.locationSettingsData.addNewLocation.saveButton"
-            style={$save}
+            disabled={isSaveDisabled}
+            style={[$save, isSaveDisabled && $saveDisabled]}
             textStyle={$saveText}
             pressedStyle={$save}
             onPress={handleSave}
@@ -398,6 +402,10 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     marginVertical: scale(24),
   }
 
+  const $saveDisabled: ViewStyle = {
+    opacity: 0.5,
+  }
+
   const $saveText: TextStyle = {
     color: colors.palette.neutral100,
     fontSize: fontSizes[18],
@@ -425,5 +433,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $dropdownText,
     $save,
     $saveText,
+    $saveDisabled,
   }
 }
