@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { FeedItem } from "../../components/FeedItem"
+import { render } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer.create(<FeedItem title="title" image="" tags={["tag"]} />).toJSON()
+  const tree = render(<FeedItem title="title" image="" tags={["tag"]} />).toJSON()
   expect(tree).toMatchSnapshot()
 })

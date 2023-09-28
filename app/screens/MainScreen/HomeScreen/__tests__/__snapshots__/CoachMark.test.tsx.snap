@@ -7,8 +7,8 @@ exports[`renders correctly 1`] = `
   accessibilityRole="text"
   accessible={true}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "backgroundColor": "#0B3D91",
         "borderRadius": 23,
@@ -16,7 +16,7 @@ exports[`renders correctly 1`] = `
         "paddingVertical": 36,
         "width": "100%",
       },
-      Object {
+      {
         "marginTop": 18,
       },
     ]
@@ -25,23 +25,23 @@ exports[`renders correctly 1`] = `
   <Text
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#FFFFFF",
           "fontFamily": "Helvetica Neue",
           "fontSize": 23,
@@ -59,11 +59,20 @@ exports[`renders correctly 1`] = `
   </Text>
   <View>
     <RCTImageView
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
       internal_analyticTag={null}
       resizeMode="contain"
       source={
-        Array [
-          Object {
+        [
+          {
             "height": undefined,
             "uri": undefined,
             "width": undefined,
@@ -71,7 +80,7 @@ exports[`renders correctly 1`] = `
         ]
       }
       style={
-        Object {
+        {
           "height": 63,
           "overflow": "hidden",
           "resizeMode": "contain",
@@ -83,23 +92,23 @@ exports[`renders correctly 1`] = `
   <Text
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#FFFFFF",
           "fontFamily": "Helvetica Neue",
           "fontSize": 35,
@@ -115,23 +124,23 @@ exports[`renders correctly 1`] = `
   <Text
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#FFFFFF",
           "fontFamily": "Helvetica Neue",
           "fontSize": 26,
@@ -145,7 +154,7 @@ exports[`renders correctly 1`] = `
   </Text>
   <View
     style={
-      Object {
+      {
         "alignSelf": "flex-end",
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -157,6 +166,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="skip coach mark"
       accessibilityLabel="skip button"
       accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -170,9 +196,9 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Array [
-            Object {
+        [
+          [
+            {
               "alignItems": "center",
               "borderRadius": 6,
               "flexDirection": "row",
@@ -182,13 +208,13 @@ exports[`renders correctly 1`] = `
               "paddingHorizontal": 17,
               "paddingVertical": 17,
             },
-            Object {
+            {
               "backgroundColor": "#FFFFFF",
               "borderColor": "#B6ACA6",
               "borderWidth": 1,
             },
           ],
-          Object {
+          {
             "backgroundColor": "transparent",
             "borderWidth": 0,
             "height": 80,
@@ -201,24 +227,24 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "flexGrow": 0,
                 "flexShrink": 1,
                 "fontFamily": "HelveticaNeue-Medium",
@@ -227,7 +253,7 @@ exports[`renders correctly 1`] = `
                 "textAlign": "center",
                 "zIndex": 2,
               },
-              Object {
+              {
                 "color": "#FFFFFF",
                 "fontFamily": "HelveticaNeue-Medium",
                 "fontSize": 26,
@@ -245,6 +271,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="next coach mark"
       accessibilityLabel="next button"
       accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -258,9 +301,9 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Array [
-            Object {
+        [
+          [
+            {
               "alignItems": "center",
               "borderRadius": 6,
               "flexDirection": "row",
@@ -270,13 +313,13 @@ exports[`renders correctly 1`] = `
               "paddingHorizontal": 17,
               "paddingVertical": 17,
             },
-            Object {
+            {
               "backgroundColor": "#FFFFFF",
               "borderColor": "#B6ACA6",
               "borderWidth": 1,
             },
           ],
-          Object {
+          {
             "backgroundColor": "#FFFFFF",
             "borderRadius": 40,
             "borderWidth": 0,
@@ -290,24 +333,24 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "flexGrow": 0,
                 "flexShrink": 1,
                 "fontFamily": "HelveticaNeue-Medium",
@@ -316,7 +359,7 @@ exports[`renders correctly 1`] = `
                 "textAlign": "center",
                 "zIndex": 2,
               },
-              Object {
+              {
                 "color": "#0B3D91",
                 "fontFamily": "HelveticaNeue-Medium",
                 "fontSize": 26,

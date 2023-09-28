@@ -5,13 +5,13 @@ exports[`Splash renders correctly 1`] = `
   <View
     accessibilityIgnoresInvertColors={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "display": "flex",
           "flex": 1,
           "flexDirection": "column",
         },
-        Object {},
+        {},
       ]
     }
   >
@@ -19,15 +19,15 @@ exports[`Splash renders correctly 1`] = `
       resizeMode="cover"
       source={1}
       style={
-        Array [
-          Object {
+        [
+          {
             "bottom": 0,
             "left": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
           },
-          Object {
+          {
             "height": undefined,
             "width": undefined,
           },
@@ -36,11 +36,20 @@ exports[`Splash renders correctly 1`] = `
       }
     />
     <RCTImageView
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
       internal_analyticTag={null}
       resizeMode="cover"
       source={
-        Array [
-          Object {
+        [
+          {
             "height": undefined,
             "uri": undefined,
             "width": undefined,
@@ -48,7 +57,7 @@ exports[`Splash renders correctly 1`] = `
         ]
       }
       style={
-        Object {
+        {
           "height": 158,
           "marginLeft": 52,
           "marginTop": 52,
@@ -58,11 +67,20 @@ exports[`Splash renders correctly 1`] = `
       }
     />
     <RCTImageView
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
       internal_analyticTag={null}
       resizeMode="cover"
       source={
-        Array [
-          Object {
+        [
+          {
             "height": undefined,
             "uri": undefined,
             "width": undefined,
@@ -70,7 +88,7 @@ exports[`Splash renders correctly 1`] = `
         ]
       }
       style={
-        Object {
+        {
           "height": undefined,
           "overflow": "hidden",
           "position": "absolute",
@@ -81,7 +99,7 @@ exports[`Splash renders correctly 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "position": "absolute",
           "top": "68%",
         }
@@ -94,23 +112,23 @@ exports[`Splash renders correctly 1`] = `
         accessible={true}
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#FFFFFF",
               "fontFamily": "HelveticaNeue-Bold",
               "fontSize": 69,
@@ -125,7 +143,7 @@ exports[`Splash renders correctly 1`] = `
       </Text>
       <View
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexDirection": "row",
             "justifyContent": "space-between",
@@ -141,23 +159,23 @@ exports[`Splash renders correctly 1`] = `
           accessible={true}
           allowFontScaling={false}
           style={
-            Array [
-              Object {},
-              Array [
-                Object {
+            [
+              {},
+              [
+                {
                   "fontSize": 23,
                   "lineHeight": 35,
                 },
-                Object {
+                {
                   "fontFamily": "Helvetica Neue",
                 },
-                Object {
+                {
                   "color": "#191015",
                 },
               ],
               undefined,
               undefined,
-              Object {
+              {
                 "color": "#DEDDDE",
                 "fontFamily": "Helvetica Neue",
                 "fontSize": 35,

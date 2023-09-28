@@ -5,6 +5,23 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
   accessibilityHint="pressable feed item"
   accessibilityLabel="pressable feed item"
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -18,7 +35,7 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "alignItems": "flex-start",
       "justifyContent": "space-between",
       "paddingTop": 23,
@@ -33,7 +50,7 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
     accessibilityRole="text"
     accessible={true}
     style={
-      Object {
+      {
         "flexDirection": "row",
         "left": 26,
         "position": "absolute",
@@ -46,18 +63,27 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
     accessibilityHint="image"
     accessibilityLabel="image"
     accessibilityRole="image"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
     accessible={true}
     internal_analyticTag={null}
     resizeMode="cover"
     source={
-      Array [
-        Object {
+      [
+        {
           "uri": "",
         },
       ]
     }
     style={
-      Object {
+      {
         "aspectRatio": 0.7,
         "borderRadius": 17,
         "height": undefined,
@@ -74,23 +100,23 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
     accessible={true}
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#ADADAE",
           "fontFamily": "Helvetica Neue",
           "fontSize": 20,
@@ -107,23 +133,23 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
     accessible={true}
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#DEDDDE",
           "fontFamily": "Helvetica Neue",
           "fontSize": 26,
@@ -143,6 +169,23 @@ exports[`renders correctly 1`] = `
   accessibilityHint="pressable feed item"
   accessibilityLabel="pressable feed item"
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -156,7 +199,7 @@ exports[`renders correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "alignItems": "flex-start",
       "justifyContent": "space-between",
       "paddingTop": 23,
@@ -171,7 +214,7 @@ exports[`renders correctly 1`] = `
     accessibilityRole="text"
     accessible={true}
     style={
-      Object {
+      {
         "flexDirection": "row",
         "left": 26,
         "position": "absolute",
@@ -184,18 +227,27 @@ exports[`renders correctly 1`] = `
     accessibilityHint="image"
     accessibilityLabel="image"
     accessibilityRole="image"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
     accessible={true}
     internal_analyticTag={null}
     resizeMode="cover"
     source={
-      Array [
-        Object {
+      [
+        {
           "uri": "",
         },
       ]
     }
     style={
-      Object {
+      {
         "aspectRatio": 0.7,
         "borderRadius": 17,
         "height": undefined,
@@ -212,23 +264,23 @@ exports[`renders correctly 1`] = `
     accessible={true}
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#ADADAE",
           "fontFamily": "Helvetica Neue",
           "fontSize": 20,
@@ -245,23 +297,23 @@ exports[`renders correctly 1`] = `
     accessible={true}
     allowFontScaling={false}
     style={
-      Array [
-        Object {},
-        Array [
-          Object {
+      [
+        {},
+        [
+          {
             "fontSize": 23,
             "lineHeight": 35,
           },
-          Object {
+          {
             "fontFamily": "Helvetica Neue",
           },
-          Object {
+          {
             "color": "#191015",
           },
         ],
         undefined,
         undefined,
-        Object {
+        {
           "color": "#DEDDDE",
           "fontFamily": "Helvetica Neue",
           "fontSize": 26,

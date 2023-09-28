@@ -6,6 +6,23 @@ exports[`renders correctly 1`] = `
     accessibilityHint="Navigates to the previous screen"
     accessibilityLabel="Back button"
     accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -19,7 +36,7 @@ exports[`renders correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "paddingBottom": 11,
@@ -29,11 +46,20 @@ exports[`renders correctly 1`] = `
   >
     <View>
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -41,7 +67,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 35,
             "overflow": "hidden",
             "resizeMode": "contain",
@@ -55,23 +81,23 @@ exports[`renders correctly 1`] = `
     <Text
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#DEDDDE",
             "fontFamily": "Helvetica Neue",
             "fontSize": 35,
@@ -92,20 +118,37 @@ exports[`renders correctly 1`] = `
     accessibilityRole="scrollbar"
     accessible={true}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 60,
       }
     }
     scrollEnabled={true}
     style={
-      Object {
+      {
         "paddingHorizontal": 18,
       }
     }
   >
     <View>
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -128,23 +171,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 52,
@@ -160,23 +203,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -192,24 +235,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -217,7 +260,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -229,24 +272,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -254,7 +297,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -266,24 +309,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -291,7 +334,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -303,23 +346,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -333,24 +376,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -358,7 +401,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -370,24 +413,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -395,7 +438,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -407,24 +450,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -432,7 +475,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -444,24 +487,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -469,7 +512,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -481,24 +524,24 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -506,7 +549,7 @@ exports[`renders correctly 1`] = `
                     "paddingBottom": 16,
                     "textAlign": "left",
                   },
-                  Object {
+                  {
                     "paddingBottom": 0,
                   },
                 ],
@@ -518,23 +561,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -550,23 +593,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -582,23 +625,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -614,23 +657,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -646,23 +689,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -678,23 +721,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -710,23 +753,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -742,23 +785,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -774,23 +817,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -806,23 +849,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -838,23 +881,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -870,23 +913,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -902,23 +945,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -934,23 +977,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,
@@ -966,23 +1009,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 35,

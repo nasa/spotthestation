@@ -3,8 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import renderer from "react-test-renderer"
-import { act } from "@testing-library/react"
+import { act, render } from "@testing-library/react-native"
 import { Splash } from "../Splash"
 
 jest.mock("@react-navigation/native", () => ({
@@ -23,12 +22,12 @@ jest.mock("../components/IconLinkButton", () => ({
 
 describe("Splash", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(<Splash />).toJSON()
+    const tree = render(<Splash />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("navigates to the next screen when Arrow right button is clicked", () => {
-    const component = renderer.create(<Splash />)
+    const component = render(<Splash />)
     const openSettingsButton = component.root.findByProps({
       icon: "back",
     })

@@ -2,17 +2,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { NavigationContainer } from "@react-navigation/native"
 import { SelectLocation } from "../SelectLocation"
+import { render } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <NavigationContainer>
-        <SelectLocation onClose={jest.fn()} />
-      </NavigationContainer>,
-    )
-    .toJSON()
+  const tree = render(
+    <NavigationContainer>
+      <SelectLocation onClose={jest.fn()} />
+    </NavigationContainer>,
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })

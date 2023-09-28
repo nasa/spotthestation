@@ -3,6 +3,23 @@
 exports[`renders correctly 1`] = `
 <View
   accessibilityRole="imagebutton"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -18,13 +35,13 @@ exports[`renders correctly 1`] = `
 >
   <View
     animatedStyle={
-      Object {
-        "value": Object {},
+      {
+        "value": {},
       }
     }
     collapsable={false}
     style={
-      Object {
+      {
         "alignItems": "center",
         "backgroundColor": "red",
         "borderRadius": 143,
@@ -39,12 +56,12 @@ exports[`renders correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "transparent",
           },
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "#1E2022",
               "borderRadius": 143,
@@ -62,13 +79,13 @@ exports[`renders correctly 1`] = `
     >
       <ViewManagerAdapter_ExpoBlurView
         proxiedProperties={
-          Object {
+          {
             "intensity": 0,
             "tint": "default",
           }
         }
         style={
-          Object {
+          {
             "bottom": 0,
             "left": 0,
             "position": "absolute",
@@ -79,11 +96,20 @@ exports[`renders correctly 1`] = `
       />
       <View>
         <RCTImageView
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
           internal_analyticTag={null}
           resizeMode="contain"
           source={
-            Array [
-              Object {
+            [
+              {
                 "height": undefined,
                 "uri": undefined,
                 "width": undefined,
@@ -91,7 +117,7 @@ exports[`renders correctly 1`] = `
             ]
           }
           style={
-            Object {
+            {
               "height": 29,
               "overflow": "hidden",
               "resizeMode": "contain",

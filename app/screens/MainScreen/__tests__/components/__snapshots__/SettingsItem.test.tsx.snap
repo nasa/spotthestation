@@ -5,6 +5,23 @@ exports[`renders correctly 1`] = `
   accessibilityHint="pressable settings item"
   accessibilityLabel="pressable settings item"
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -18,7 +35,7 @@ exports[`renders correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "alignItems": "flex-start",
       "flexDirection": "row",
       "justifyContent": "space-between",
@@ -29,8 +46,8 @@ exports[`renders correctly 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "flex-start",
           "borderBottomWidth": 2,
           "borderColor": "#353739",
@@ -46,11 +63,20 @@ exports[`renders correctly 1`] = `
   >
     <View>
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -58,7 +84,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 35,
             "overflow": "hidden",
             "resizeMode": "contain",
@@ -71,7 +97,7 @@ exports[`renders correctly 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "paddingLeft": 26,
@@ -87,23 +113,23 @@ exports[`renders correctly 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#FFFFFF",
               "fontFamily": "Helvetica Neue",
               "fontSize": 35,
@@ -118,11 +144,20 @@ exports[`renders correctly 1`] = `
     </View>
     <View>
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -130,7 +165,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 35,
             "overflow": "hidden",
             "resizeMode": "contain",

@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { AddNewLocationScreen } from "../AddNewLocationScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { fireEvent, render, waitFor } from "@testing-library/react-native"
@@ -18,13 +17,11 @@ jest.mock("@react-navigation/native", () => ({
   }),
 }))
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <NavigationContainer>
-        <AddNewLocationScreen />
-      </NavigationContainer>,
-    )
-    .toJSON()
+  const tree = render(
+    <NavigationContainer>
+      <AddNewLocationScreen />
+    </NavigationContainer>,
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 

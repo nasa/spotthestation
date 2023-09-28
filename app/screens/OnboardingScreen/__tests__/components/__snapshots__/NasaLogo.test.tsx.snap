@@ -2,11 +2,20 @@
 
 exports[`renders correctly 1`] = `
 <RCTImageView
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
   internal_analyticTag={null}
   resizeMode="cover"
   source={
-    Array [
-      Object {
+    [
+      {
         "height": undefined,
         "uri": undefined,
         "width": undefined,
@@ -14,7 +23,7 @@ exports[`renders correctly 1`] = `
     ]
   }
   style={
-    Object {
+    {
       "height": 158,
       "marginLeft": 52,
       "marginTop": 52,

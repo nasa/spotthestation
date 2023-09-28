@@ -2,18 +2,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { HomeHeader } from "../HomeScreen/HomeHeader"
+import { render } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <HomeHeader
-        user={{ firstName: "John", address: "Continental" }}
-        onLocationPress={() => ({})}
-        onSightingsPress={() => ({})}
-      />,
-    )
-    .toJSON()
+  const tree = render(
+    <HomeHeader
+      user={{ firstName: "John", address: "Continental" }}
+      onLocationPress={() => ({})}
+      onSightingsPress={() => ({})}
+    />,
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })

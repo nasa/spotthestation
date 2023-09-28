@@ -4,8 +4,8 @@ exports[`renders correctly 1`] = `
 <div>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "flex-start",
           "flexDirection": "row",
           "justifyContent": "space-between",
@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
           "width": "100%",
           "zIndex": 10,
         },
-        Object {
+        {
           "left": 26,
           "paddingHorizontal": 0,
           "top": 35,
@@ -26,6 +26,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="enable/disable full screen mode"
       accessibilityLabel="x or maximize button"
       accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -41,13 +58,13 @@ exports[`renders correctly 1`] = `
     >
       <View
         animatedStyle={
-          Object {
-            "value": Object {},
+          {
+            "value": {},
           }
         }
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
             "borderRadius": 143,
@@ -62,12 +79,12 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
               },
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#1E2022",
                   "borderRadius": 143,
@@ -85,13 +102,13 @@ exports[`renders correctly 1`] = `
         >
           <ViewManagerAdapter_ExpoBlurView
             proxiedProperties={
-              Object {
+              {
                 "intensity": 50,
                 "tint": "default",
               }
             }
             style={
-              Object {
+              {
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -102,11 +119,20 @@ exports[`renders correctly 1`] = `
           />
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -114,7 +140,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 29,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -130,7 +156,7 @@ exports[`renders correctly 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flex": 1,
           "paddingHorizontal": 15,
         }
@@ -141,23 +167,23 @@ exports[`renders correctly 1`] = `
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#FFFFFF",
               "fontFamily": "Helvetica Neue",
               "fontSize": 29,
@@ -171,23 +197,23 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#FFFFFF",
               "fontFamily": "Helvetica Neue",
               "fontSize": 19,
@@ -206,6 +232,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="change location"
       accessibilityLabel="pin button"
       accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -221,13 +264,13 @@ exports[`renders correctly 1`] = `
     >
       <View
         animatedStyle={
-          Object {
-            "value": Object {},
+          {
+            "value": {},
           }
         }
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
             "borderRadius": 143,
@@ -242,12 +285,12 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
               },
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#1E2022",
                   "borderRadius": 143,
@@ -265,13 +308,13 @@ exports[`renders correctly 1`] = `
         >
           <ViewManagerAdapter_ExpoBlurView
             proxiedProperties={
-              Object {
+              {
                 "intensity": 50,
                 "tint": "default",
               }
             }
             style={
-              Object {
+              {
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -282,11 +325,20 @@ exports[`renders correctly 1`] = `
           />
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -294,7 +346,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 29,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -311,15 +363,15 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "rgba(0, 0, 0, 1)",
           "borderRadius": 17,
           "flex": 1,
           "overflow": "hidden",
           "position": "relative",
         },
-        Object {
+        {
           "marginTop": 115,
         },
         false,
@@ -329,8 +381,8 @@ exports[`renders correctly 1`] = `
     <div />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "rgba(255, 255, 255, 0.2)",
             "borderRadius": 143,
             "height": 129,
@@ -338,7 +390,7 @@ exports[`renders correctly 1`] = `
             "overflow": "hidden",
             "padding": 3,
           },
-          Object {
+          {
             "bottom": 26,
             "left": 26,
             "padding": 0,
@@ -350,12 +402,12 @@ exports[`renders correctly 1`] = `
     >
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "transparent",
             },
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "rgba(255, 255, 255, 0.2)",
                 "borderRadius": 143,
                 "height": 129,
@@ -364,7 +416,7 @@ exports[`renders correctly 1`] = `
                 "padding": 3,
               },
               false,
-              Object {
+              {
                 "bottom": 0,
               },
             ],
@@ -373,13 +425,13 @@ exports[`renders correctly 1`] = `
       >
         <ViewManagerAdapter_ExpoBlurView
           proxiedProperties={
-            Object {
+            {
               "intensity": 50,
               "tint": "default",
             }
           }
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -392,6 +444,23 @@ exports[`renders correctly 1`] = `
           accessibilityHint="enable map view"
           accessibilityLabel="2D button"
           accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -407,13 +476,13 @@ exports[`renders correctly 1`] = `
         >
           <View
             animatedStyle={
-              Object {
-                "value": Object {},
+              {
+                "value": {},
               }
             }
             collapsable={false}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 143,
@@ -428,12 +497,12 @@ exports[`renders correctly 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#1E2022",
                       "borderRadius": 143,
@@ -451,13 +520,13 @@ exports[`renders correctly 1`] = `
             >
               <ViewManagerAdapter_ExpoBlurView
                 proxiedProperties={
-                  Object {
+                  {
                     "intensity": 0,
                     "tint": "default",
                   }
                 }
                 style={
-                  Object {
+                  {
                     "bottom": 0,
                     "left": 0,
                     "position": "absolute",
@@ -469,35 +538,35 @@ exports[`renders correctly 1`] = `
               <Text
                 allowFontScaling={false}
                 style={
-                  Array [
-                    Object {},
-                    Array [
-                      Object {
+                  [
+                    {},
+                    [
+                      {
                         "fontSize": 23,
                         "lineHeight": 35,
                       },
-                      Object {
+                      {
                         "fontFamily": "Helvetica Neue",
                       },
-                      Object {
+                      {
                         "color": "#191015",
                       },
                     ],
                     undefined,
                     undefined,
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#FFFFFF",
                         "fontSize": 40,
                         "lineHeight": 40,
                       },
-                      Array [
-                        Object {
+                      [
+                        {
                           "fontFamily": "HelveticaNeue-Medium",
                           "fontSize": 17,
                           "lineHeight": 20,
                         },
-                        Object {
+                        {
                           "color": "#0B3D91",
                         },
                       ],
@@ -514,6 +583,23 @@ exports[`renders correctly 1`] = `
           accessibilityHint="enable globe view"
           accessibilityLabel="3D button"
           accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -529,13 +615,13 @@ exports[`renders correctly 1`] = `
         >
           <View
             animatedStyle={
-              Object {
-                "value": Object {},
+              {
+                "value": {},
               }
             }
             collapsable={false}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "borderRadius": 143,
@@ -550,12 +636,12 @@ exports[`renders correctly 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#1E2022",
                       "borderRadius": 143,
@@ -573,13 +659,13 @@ exports[`renders correctly 1`] = `
             >
               <ViewManagerAdapter_ExpoBlurView
                 proxiedProperties={
-                  Object {
+                  {
                     "intensity": 0,
                     "tint": "default",
                   }
                 }
                 style={
-                  Object {
+                  {
                     "bottom": 0,
                     "left": 0,
                     "position": "absolute",
@@ -591,29 +677,29 @@ exports[`renders correctly 1`] = `
               <Text
                 allowFontScaling={false}
                 style={
-                  Array [
-                    Object {},
-                    Array [
-                      Object {
+                  [
+                    {},
+                    [
+                      {
                         "fontSize": 23,
                         "lineHeight": 35,
                       },
-                      Object {
+                      {
                         "fontFamily": "Helvetica Neue",
                       },
-                      Object {
+                      {
                         "color": "#191015",
                       },
                     ],
                     undefined,
                     undefined,
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#FFFFFF",
                         "fontSize": 40,
                         "lineHeight": 40,
                       },
-                      Object {
+                      {
                         "fontFamily": "HelveticaNeue-Medium",
                         "fontSize": 17,
                         "lineHeight": 20,
@@ -631,12 +717,12 @@ exports[`renders correctly 1`] = `
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "height": 129,
             "justifyContent": "space-between",
           },
-          Object {
+          {
             "bottom": 26,
             "position": "absolute",
             "right": 26,
@@ -650,8 +736,20 @@ exports[`renders correctly 1`] = `
         accessibilityLabel="+ button"
         accessibilityRole="imagebutton"
         accessibilityState={
-          Object {
+          {
+            "busy": undefined,
+            "checked": undefined,
             "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
           }
         }
         accessible={true}
@@ -669,13 +767,13 @@ exports[`renders correctly 1`] = `
       >
         <View
           animatedStyle={
-            Object {
-              "value": Object {},
+            {
+              "value": {},
             }
           }
           collapsable={false}
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "rgba(255, 255, 255, 0.2)",
               "borderRadius": 143,
@@ -690,12 +788,12 @@ exports[`renders correctly 1`] = `
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#1E2022",
                     "borderRadius": 143,
@@ -713,13 +811,13 @@ exports[`renders correctly 1`] = `
           >
             <ViewManagerAdapter_ExpoBlurView
               proxiedProperties={
-                Object {
+                {
                   "intensity": 50,
                   "tint": "default",
                 }
               }
               style={
-                Object {
+                {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -731,24 +829,24 @@ exports[`renders correctly 1`] = `
             <Text
               allowFontScaling={false}
               style={
-                Array [
-                  Object {},
-                  Array [
-                    Object {
+                [
+                  {},
+                  [
+                    {
                       "fontSize": 23,
                       "lineHeight": 35,
                     },
-                    Object {
+                    {
                       "fontFamily": "Helvetica Neue",
                     },
-                    Object {
+                    {
                       "color": "#191015",
                     },
                   ],
                   undefined,
                   undefined,
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "fontSize": 40,
                       "lineHeight": 40,
@@ -768,8 +866,20 @@ exports[`renders correctly 1`] = `
         accessibilityLabel="- button"
         accessibilityRole="imagebutton"
         accessibilityState={
-          Object {
+          {
+            "busy": undefined,
+            "checked": undefined,
             "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
           }
         }
         accessible={true}
@@ -787,13 +897,13 @@ exports[`renders correctly 1`] = `
       >
         <View
           animatedStyle={
-            Object {
-              "value": Object {},
+            {
+              "value": {},
             }
           }
           collapsable={false}
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "rgba(255, 255, 255, 0.2)",
               "borderRadius": 143,
@@ -809,12 +919,12 @@ exports[`renders correctly 1`] = `
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#1E2022",
                     "borderRadius": 143,
@@ -832,13 +942,13 @@ exports[`renders correctly 1`] = `
           >
             <ViewManagerAdapter_ExpoBlurView
               proxiedProperties={
-                Object {
+                {
                   "intensity": 50,
                   "tint": "default",
                 }
               }
               style={
-                Object {
+                {
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -850,24 +960,24 @@ exports[`renders correctly 1`] = `
             <Text
               allowFontScaling={false}
               style={
-                Array [
-                  Object {},
-                  Array [
-                    Object {
+                [
+                  {},
+                  [
+                    {
                       "fontSize": 23,
                       "lineHeight": 35,
                     },
-                    Object {
+                    {
                       "fontFamily": "Helvetica Neue",
                     },
-                    Object {
+                    {
                       "color": "#191015",
                     },
                   ],
                   undefined,
                   undefined,
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "fontSize": 40,
                       "lineHeight": 40,
@@ -903,7 +1013,7 @@ exports[`renders correctly 1`] = `
     scrollTo={null}
     statusBarTranslucent={false}
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]

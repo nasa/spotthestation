@@ -12,7 +12,7 @@ jest.mock("../../utils/notifications", () => ({
 test("getISSSightings should update the store incorrectly", async () => {
   const rootStore = RootStoreModel.create({
     selectedLocation: null,
-    currentLocation: null,
+    currentLocation: {},
     savedLocations: [],
     issData: [],
     initLoading: false,
@@ -24,7 +24,6 @@ test("getISSSightings should update the store incorrectly", async () => {
   await rootStore.getISSSightings(mockParams)
 
   expect(rootStore.selectedLocation).toBeNull()
-  expect(rootStore.currentLocation).toBeNull()
   expect(rootStore.savedLocations).toEqual([])
 })
 

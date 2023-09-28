@@ -3,16 +3,16 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "#1E2022",
         "borderTopLeftRadius": 26,
         "borderTopRightRadius": 26,
         "flex": 1,
       },
-      Object {},
-      Object {},
-      Object {
+      {},
+      {},
+      {
         "fontFamily": "Helvetica Neue",
         "fontSize": 20,
       },
@@ -22,11 +22,11 @@ exports[`renders correctly 1`] = `
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "flex": 1,
         },
-        Object {
+        {
           "paddingBottom": 0,
         },
       ]
@@ -36,6 +36,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="close modal"
       accessibilityLabel="x button"
       accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -47,7 +64,7 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "padding": 26,
           "position": "absolute",
@@ -58,11 +75,20 @@ exports[`renders correctly 1`] = `
       }
     >
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -70,7 +96,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 52,
             "overflow": "hidden",
             "resizeMode": "contain",
@@ -88,23 +114,23 @@ exports[`renders correctly 1`] = `
       accessible={true}
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#DEDDDE",
             "fontFamily": "Helvetica Neue",
             "fontSize": 40,
@@ -120,8 +146,20 @@ exports[`renders correctly 1`] = `
     </Text>
     <View
       accessibilityState={
-        Object {
+        {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -135,15 +173,15 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
         }
       }
     >
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "flex-start",
               "backgroundColor": "#1E2022",
               "borderRadius": 40,
@@ -153,13 +191,13 @@ exports[`renders correctly 1`] = `
             },
             false,
             undefined,
-            Object {
+            {
               "paddingStart": 0,
             },
-            Object {
+            {
               "paddingEnd": 0,
             },
-            Object {
+            {
               "backgroundColor": "#353739",
               "borderColor": "transparent",
               "borderRadius": 40,
@@ -173,7 +211,7 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "height": 80,
               "justifyContent": "center",
@@ -182,11 +220,20 @@ exports[`renders correctly 1`] = `
           }
         >
           <RCTImageView
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
             internal_analyticTag={null}
             resizeMode="contain"
             source={
-              Array [
-                Object {
+              [
+                {
                   "height": undefined,
                   "uri": undefined,
                   "width": undefined,
@@ -194,7 +241,7 @@ exports[`renders correctly 1`] = `
               ]
             }
             style={
-              Object {
+              {
                 "height": 40,
                 "overflow": "hidden",
                 "resizeMode": "contain",
@@ -220,8 +267,8 @@ exports[`renders correctly 1`] = `
           placeholder="homeScreen.selectLocation.inputPlaceholder undefined"
           placeholderTextColor="#ADADAE"
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "stretch",
                 "color": "#DEDDDE",
                 "flex": 1,
@@ -236,7 +283,7 @@ exports[`renders correctly 1`] = `
               false,
               undefined,
               undefined,
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
                 "fontSize": 20,
               },
@@ -248,6 +295,23 @@ exports[`renders correctly 1`] = `
         />
         <View
           accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -259,7 +323,7 @@ exports[`renders correctly 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Object {
+            {
               "alignItems": "center",
               "height": 80,
               "justifyContent": "center",
@@ -269,11 +333,20 @@ exports[`renders correctly 1`] = `
           }
         >
           <RCTImageView
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
             internal_analyticTag={null}
             resizeMode="contain"
             source={
-              Array [
-                Object {
+              [
+                {
                   "height": undefined,
                   "uri": undefined,
                   "width": undefined,
@@ -281,7 +354,7 @@ exports[`renders correctly 1`] = `
               ]
             }
             style={
-              Object {
+              {
                 "height": 40,
                 "overflow": "hidden",
                 "resizeMode": "contain",
@@ -296,7 +369,7 @@ exports[`renders correctly 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "paddingHorizontal": 16,
           "paddingTop": 10,
         }
@@ -306,6 +379,23 @@ exports[`renders correctly 1`] = `
         accessibilityHint="pressable settings item"
         accessibilityLabel="pressable settings item"
         accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -319,7 +409,7 @@ exports[`renders correctly 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "alignItems": "flex-start",
             "flexDirection": "row",
             "justifyContent": "space-between",
@@ -330,8 +420,8 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "flex-start",
                 "borderBottomWidth": 2,
                 "borderColor": "#353739",
@@ -341,7 +431,7 @@ exports[`renders correctly 1`] = `
                 "marginLeft": 15,
                 "paddingBottom": 23,
               },
-              Object {
+              {
                 "borderBottomWidth": 0,
               },
             ]
@@ -349,11 +439,20 @@ exports[`renders correctly 1`] = `
         >
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -361,7 +460,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 35,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -374,7 +473,7 @@ exports[`renders correctly 1`] = `
           </View>
           <View
             style={
-              Object {
+              {
                 "flex": 1,
                 "flexDirection": "column",
                 "paddingLeft": 26,
@@ -390,23 +489,23 @@ exports[`renders correctly 1`] = `
               ellipsizeMode="tail"
               numberOfLines={1}
               style={
-                Array [
-                  Object {},
-                  Array [
-                    Object {
+                [
+                  {},
+                  [
+                    {
                       "fontSize": 23,
                       "lineHeight": 35,
                     },
-                    Object {
+                    {
                       "fontFamily": "Helvetica Neue",
                     },
-                    Object {
+                    {
                       "color": "#191015",
                     },
                   ],
                   undefined,
                   undefined,
-                  Object {
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "Helvetica Neue",
                     "fontSize": 35,
@@ -421,11 +520,20 @@ exports[`renders correctly 1`] = `
           </View>
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -433,7 +541,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 35,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -453,7 +561,7 @@ exports[`renders correctly 1`] = `
       accessibilityRole="scrollbar"
       accessible={true}
       style={
-        Object {
+        {
           "flex": 1,
           "marginBottom": 35,
           "paddingHorizontal": 52,
@@ -482,7 +590,7 @@ exports[`renders correctly 1`] = `
     scrollTo={null}
     statusBarTranslucent={false}
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]

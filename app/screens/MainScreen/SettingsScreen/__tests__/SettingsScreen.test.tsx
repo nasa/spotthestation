@@ -3,10 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { useNavigation } from "@react-navigation/native"
 import { SettingsScreen } from "../SettingsScreen"
-import { fireEvent, render } from "@testing-library/react"
+import { fireEvent, render } from "@testing-library/react-native"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
@@ -35,7 +34,7 @@ describe("SettingsScreen", () => {
   })
 
   test("renders correctly", () => {
-    const tree = renderer.create(<SettingsScreen />).toJSON()
+    const tree = render(<SettingsScreen />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -48,7 +47,7 @@ describe("SettingsScreen", () => {
   test("navigates to LocationSettings screen when location settings item is pressed", () => {
     const { getByText } = render(<SettingsScreen />)
     const locationSettingsItem = getByText("settings.locationSettings undefined")
-    ;(fireEvent as any).click(locationSettingsItem)
+    ;(fireEvent as any).press(locationSettingsItem)
     expect(mockNavigation.navigate).toHaveBeenCalledWith("SettingsScreens", {
       screen: "LocationSettings",
     })

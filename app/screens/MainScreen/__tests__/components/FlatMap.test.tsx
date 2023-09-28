@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react"
-import renderer from "react-test-renderer"
 import { render } from "@testing-library/react-native"
 import { FlatMap } from "../../components/FlatMap"
 import { OrbitPoint } from "../../../../services/api"
@@ -36,7 +35,7 @@ describe("FlatMap", () => {
   const mockCurrentLocation: [number, number] = [2, 2]
 
   test("renders without issues", () => {
-    const tree = renderer.create(<FlatMap />).toJSON()
+    const tree = render(<FlatMap />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

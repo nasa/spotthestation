@@ -3,7 +3,7 @@
 exports[`RecordingIndicator renders correctly 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#FC3D21",
       "borderRadius": 6,
       "marginTop": 29,
@@ -15,7 +15,7 @@ exports[`RecordingIndicator renders correctly 1`] = `
 >
   <Text
     style={
-      Object {
+      {
         "color": "#DEDDDE",
         "fontSize": 23,
         "lineHeight": 23,

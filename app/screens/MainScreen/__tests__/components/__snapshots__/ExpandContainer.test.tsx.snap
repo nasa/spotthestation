@@ -3,8 +3,8 @@
 exports[`ExpandContainer renders correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "marginTop": 52,
         "width": "100%",
       },
@@ -14,7 +14,7 @@ exports[`ExpandContainer renders correctly 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "flexDirection": "row",
         "justifyContent": "space-between",
         "marginBottom": 26,
@@ -23,8 +23,8 @@ exports[`ExpandContainer renders correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "row",
@@ -40,24 +40,24 @@ exports[`ExpandContainer renders correctly 1`] = `
         accessible={true}
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "color": "#ADADAE",
                 "fontFamily": "Helvetica Neue",
                 "fontSize": 19,
@@ -74,6 +74,23 @@ exports[`ExpandContainer renders correctly 1`] = `
     </View>
     <View
       accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -85,17 +102,26 @@ exports[`ExpandContainer renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
         }
       }
     >
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -103,12 +129,12 @@ exports[`ExpandContainer renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 26,
             "overflow": "hidden",
             "resizeMode": "contain",
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "rotate": "180deg",
               },
             ],

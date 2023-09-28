@@ -3,26 +3,23 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { NavigationContainer } from "@react-navigation/native"
 import React from "react"
-import renderer from "react-test-renderer"
 import { SignupLocation } from "../SignupLocation"
 import { render, fireEvent } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <NavigationContainer>
-        <SignupLocation
-          value={{
-            title: "John",
-            subtitle: "Wick",
-            location: { lat: 0, lng: 0 },
-          }}
-          onAction={() => ({})}
-          onValueChange={() => ({})}
-        />
-      </NavigationContainer>,
-    )
-    .toJSON()
+  const tree = render(
+    <NavigationContainer>
+      <SignupLocation
+        value={{
+          title: "John",
+          subtitle: "Wick",
+          location: { lat: 0, lng: 0 },
+        }}
+        onAction={() => ({})}
+        onValueChange={() => ({})}
+      />
+    </NavigationContainer>,
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
@@ -33,7 +30,7 @@ describe("SignupLocation", () => {
     location: { lat: 38.89511, lng: -77.03637 },
   }
 
-  test("renders start state correctly", () => {
+  it("renders start state correctly", () => {
     const { getByText } = render(
       <SignupLocation value={mockValue} onValueChange={jest.fn()} onAction={jest.fn()} />,
     )

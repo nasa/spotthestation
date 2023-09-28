@@ -4,24 +4,24 @@ exports[`Tag component renders correctly 1`] = `
 <Text
   allowFontScaling={false}
   style={
-    Array [
-      Object {},
-      Array [
-        Object {
+    [
+      {},
+      [
+        {
           "fontSize": 23,
           "lineHeight": 35,
         },
-        Object {
+        {
           "fontFamily": "Helvetica Neue",
         },
-        Object {
+        {
           "color": "#191015",
         },
       ],
       undefined,
       undefined,
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#DEDDDE",
           "borderRadius": 6,
           "color": "#1E2022",
@@ -34,7 +34,7 @@ exports[`Tag component renders correctly 1`] = `
           "paddingHorizontal": 10,
           "paddingVertical": 6,
         },
-        Object {},
+        {},
       ],
     ]
   }

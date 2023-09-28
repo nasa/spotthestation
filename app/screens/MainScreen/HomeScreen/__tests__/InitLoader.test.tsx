@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { InitLoader } from "../InitLoader"
+import { render } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer.create(<InitLoader />).toJSON()
+  const tree = render(<InitLoader />).toJSON()
   expect(tree).toMatchSnapshot()
 })

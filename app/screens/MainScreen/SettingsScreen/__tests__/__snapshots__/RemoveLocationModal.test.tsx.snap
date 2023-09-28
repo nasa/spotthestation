@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#1E2022",
       "borderTopLeftRadius": 26,
       "borderTopRightRadius": 26,
@@ -16,7 +16,7 @@ exports[`renders correctly 1`] = `
     accessibilityRole="button"
     accessible={true}
     style={
-      Object {
+      {
         "padding": 26,
         "position": "absolute",
         "right": 0,
@@ -26,11 +26,20 @@ exports[`renders correctly 1`] = `
     }
   >
     <RCTImageView
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
       internal_analyticTag={null}
       resizeMode="contain"
       source={
-        Array [
-          Object {
+        [
+          {
             "height": undefined,
             "uri": undefined,
             "width": undefined,
@@ -38,7 +47,7 @@ exports[`renders correctly 1`] = `
         ]
       }
       style={
-        Object {
+        {
           "height": 52,
           "overflow": "hidden",
           "resizeMode": "contain",
@@ -51,7 +60,7 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "marginVertical": 52,
         "width": "100%",
@@ -60,11 +69,20 @@ exports[`renders correctly 1`] = `
   >
     <View>
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -72,7 +90,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 86,
             "overflow": "hidden",
             "resizeMode": "contain",
@@ -84,7 +102,7 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "paddingBottom": 75,
         "paddingHorizontal": 52,
         "width": "100%",
@@ -94,23 +112,23 @@ exports[`renders correctly 1`] = `
     <Text
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#ADADAE",
             "fontFamily": "Helvetica Neue",
             "fontSize": 26,
@@ -126,23 +144,23 @@ exports[`renders correctly 1`] = `
     <Text
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#DEDDDE",
             "fontFamily": "HelveticaNeue-Medium",
             "fontSize": 26,
@@ -156,23 +174,23 @@ exports[`renders correctly 1`] = `
     <Text
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#ADADAE",
             "fontFamily": "Helvetica Neue",
             "fontSize": 23,
@@ -185,7 +203,7 @@ exports[`renders correctly 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
           "justifyContent": "space-between",
@@ -194,6 +212,23 @@ exports[`renders correctly 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -207,9 +242,9 @@ exports[`renders correctly 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Array [
-              Object {
+          [
+            [
+              {
                 "alignItems": "center",
                 "borderRadius": 6,
                 "flexDirection": "row",
@@ -219,13 +254,13 @@ exports[`renders correctly 1`] = `
                 "paddingHorizontal": 17,
                 "paddingVertical": 17,
               },
-              Object {
+              {
                 "backgroundColor": "#FFFFFF",
                 "borderColor": "#B6ACA6",
                 "borderWidth": 1,
               },
             ],
-            Object {
+            {
               "backgroundColor": "#353739",
               "borderRadius": 40,
               "borderWidth": 0,
@@ -241,24 +276,24 @@ exports[`renders correctly 1`] = `
         <Text
           allowFontScaling={false}
           style={
-            Array [
-              Object {},
-              Array [
-                Object {
+            [
+              {},
+              [
+                {
                   "fontSize": 23,
                   "lineHeight": 35,
                 },
-                Object {
+                {
                   "fontFamily": "Helvetica Neue",
                 },
-                Object {
+                {
                   "color": "#191015",
                 },
               ],
               undefined,
               undefined,
-              Array [
-                Object {
+              [
+                {
                   "flexGrow": 0,
                   "flexShrink": 1,
                   "fontFamily": "HelveticaNeue-Medium",
@@ -267,7 +302,7 @@ exports[`renders correctly 1`] = `
                   "textAlign": "center",
                   "zIndex": 2,
                 },
-                Object {
+                {
                   "color": "#FFFFFF",
                   "fontFamily": "HelveticaNeue-Medium",
                   "fontSize": 26,
@@ -283,6 +318,23 @@ exports[`renders correctly 1`] = `
       </View>
       <View
         accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -296,9 +348,9 @@ exports[`renders correctly 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Array [
-              Object {
+          [
+            [
+              {
                 "alignItems": "center",
                 "borderRadius": 6,
                 "flexDirection": "row",
@@ -308,14 +360,14 @@ exports[`renders correctly 1`] = `
                 "paddingHorizontal": 17,
                 "paddingVertical": 17,
               },
-              Object {
+              {
                 "backgroundColor": "#FFFFFF",
                 "borderColor": "#B6ACA6",
                 "borderWidth": 1,
               },
             ],
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#353739",
                 "borderRadius": 40,
                 "borderWidth": 0,
@@ -324,7 +376,7 @@ exports[`renders correctly 1`] = `
                 "marginTop": 35,
                 "width": "40%",
               },
-              Object {
+              {
                 "backgroundColor": "#FC3D21",
               },
             ],
@@ -335,24 +387,24 @@ exports[`renders correctly 1`] = `
         <Text
           allowFontScaling={false}
           style={
-            Array [
-              Object {},
-              Array [
-                Object {
+            [
+              {},
+              [
+                {
                   "fontSize": 23,
                   "lineHeight": 35,
                 },
-                Object {
+                {
                   "fontFamily": "Helvetica Neue",
                 },
-                Object {
+                {
                   "color": "#191015",
                 },
               ],
               undefined,
               undefined,
-              Array [
-                Object {
+              [
+                {
                   "flexGrow": 0,
                   "flexShrink": 1,
                   "fontFamily": "HelveticaNeue-Medium",
@@ -361,7 +413,7 @@ exports[`renders correctly 1`] = `
                   "textAlign": "center",
                   "zIndex": 2,
                 },
-                Object {
+                {
                   "color": "#FFFFFF",
                   "fontFamily": "HelveticaNeue-Medium",
                   "fontSize": 26,

@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { NasaLogo } from "../../components/NasaLogo"
+import { render } from "@testing-library/react-native"
 
 it("renders correctly", () => {
-  const tree = renderer.create(<NasaLogo />).toJSON()
+  const tree = render(<NasaLogo />).toJSON()
   expect(tree).toMatchSnapshot()
 })

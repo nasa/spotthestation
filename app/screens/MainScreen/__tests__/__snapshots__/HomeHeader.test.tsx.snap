@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Object {
+    {
       "paddingHorizontal": 18,
       "paddingTop": 18,
       "width": "100%",
@@ -12,7 +12,7 @@ exports[`renders correctly 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "flex-start",
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "width": "85%",
         }
       }
@@ -36,23 +36,23 @@ exports[`renders correctly 1`] = `
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#FFFFFF",
               "fontFamily": "Helvetica Neue",
               "fontSize": 29,
@@ -68,6 +68,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="open select location modal"
       accessibilityLabel="pin button"
       accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -83,13 +100,13 @@ exports[`renders correctly 1`] = `
     >
       <View
         animatedStyle={
-          Object {
-            "value": Object {},
+          {
+            "value": {},
           }
         }
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "backgroundColor": "#1E2022",
             "borderRadius": 143,
@@ -104,12 +121,12 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
               },
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#1E2022",
                   "borderRadius": 143,
@@ -127,13 +144,13 @@ exports[`renders correctly 1`] = `
         >
           <ViewManagerAdapter_ExpoBlurView
             proxiedProperties={
-              Object {
+              {
                 "intensity": 0,
                 "tint": "default",
               }
             }
             style={
-              Object {
+              {
                 "bottom": 0,
                 "left": 0,
                 "position": "absolute",
@@ -144,11 +161,20 @@ exports[`renders correctly 1`] = `
           />
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -156,7 +182,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 29,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -173,7 +199,7 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "alignItems": "flex-start",
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -185,6 +211,23 @@ exports[`renders correctly 1`] = `
       accessibilityHint="open sightings modal"
       accessibilityLabel="next sighting"
       accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -198,15 +241,15 @@ exports[`renders correctly 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "#1E2022",
             "borderRadius": 15,
             "borderWidth": 2,
             "paddingVertical": 8,
             "width": "48%",
           },
-          Object {
+          {
             "borderColor": "#0B3D91",
           },
         ]
@@ -219,23 +262,23 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 17,
@@ -254,23 +297,23 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#DEDDDE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 26,
@@ -287,23 +330,23 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 15,
@@ -322,7 +365,7 @@ exports[`renders correctly 1`] = `
       accessibilityRole="text"
       accessible={true}
       style={
-        Object {
+        {
           "backgroundColor": "#1E2022",
           "borderRadius": 15,
           "borderWidth": 2,
@@ -334,23 +377,23 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 20,
@@ -365,23 +408,23 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#DEDDDE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 26,
@@ -394,23 +437,23 @@ exports[`renders correctly 1`] = `
       <Text
         allowFontScaling={false}
         style={
-          Array [
-            Object {},
-            Array [
-              Object {
+          [
+            {},
+            [
+              {
                 "fontSize": 23,
                 "lineHeight": 35,
               },
-              Object {
+              {
                 "fontFamily": "Helvetica Neue",
               },
-              Object {
+              {
                 "color": "#191015",
               },
             ],
             undefined,
             undefined,
-            Object {
+            {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
               "fontSize": 15,

@@ -3,12 +3,12 @@
 exports[`renders correctly 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "rgba(0, 0, 0, 1)",
         "flex": 1,
       },
-      Object {
+      {
         "paddingTop": 0,
       },
     ]
@@ -18,6 +18,23 @@ exports[`renders correctly 1`] = `
     accessibilityHint="Navigates to the previous screen"
     accessibilityLabel="Back button"
     accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -31,7 +48,7 @@ exports[`renders correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "alignItems": "center",
         "backgroundColor": "rgba(0, 0, 0, 1)",
         "flexDirection": "row",
@@ -43,11 +60,20 @@ exports[`renders correctly 1`] = `
   >
     <View>
       <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
         internal_analyticTag={null}
         resizeMode="contain"
         source={
-          Array [
-            Object {
+          [
+            {
               "height": undefined,
               "uri": undefined,
               "width": undefined,
@@ -55,7 +81,7 @@ exports[`renders correctly 1`] = `
           ]
         }
         style={
-          Object {
+          {
             "height": 35,
             "overflow": "hidden",
             "resizeMode": "contain",
@@ -69,23 +95,23 @@ exports[`renders correctly 1`] = `
     <Text
       allowFontScaling={false}
       style={
-        Array [
-          Object {},
-          Array [
-            Object {
+        [
+          {},
+          [
+            {
               "fontSize": 23,
               "lineHeight": 35,
             },
-            Object {
+            {
               "fontFamily": "Helvetica Neue",
             },
-            Object {
+            {
               "color": "#191015",
             },
           ],
           undefined,
           undefined,
-          Object {
+          {
             "color": "#DEDDDE",
             "fontFamily": "Helvetica Neue",
             "fontSize": 26,
@@ -102,12 +128,12 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flex": 1,
           "overflow": "hidden",
         },
-        Object {
+        {
           "flex": 1,
         },
       ]
@@ -128,7 +154,7 @@ exports[`renders correctly 1`] = `
       onMessage={[Function]}
       onShouldStartLoadWithRequest={[Function]}
       source={
-        Object {
+        {
           "height": 100,
           "scale": 2,
           "uri": "https://placekitten.com/200/200",
@@ -136,12 +162,12 @@ exports[`renders correctly 1`] = `
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "flex": 1,
             "overflow": "hidden",
           },
-          Object {
+          {
             "backgroundColor": "#ffffff",
           },
           undefined,

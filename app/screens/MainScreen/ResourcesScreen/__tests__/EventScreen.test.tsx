@@ -2,9 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
-import renderer from "react-test-renderer"
 import { EventScreen } from "../EventScreen"
 import { NavigationContainer } from "@react-navigation/native"
+import { render } from "@testing-library/react-native"
 
 jest.mock("@react-navigation/native", () => ({
   ...Object.assign({}, jest.requireActual("@react-navigation/native")),
@@ -16,12 +16,10 @@ jest.mock("@react-navigation/native", () => ({
   }),
 }))
 it("renders correctly", () => {
-  const tree = renderer
-    .create(
-      <NavigationContainer>
-        <EventScreen />
-      </NavigationContainer>,
-    )
-    .toJSON()
+  const tree = render(
+    <NavigationContainer>
+      <EventScreen />
+    </NavigationContainer>,
+  ).toJSON()
   expect(tree).toMatchSnapshot()
 })

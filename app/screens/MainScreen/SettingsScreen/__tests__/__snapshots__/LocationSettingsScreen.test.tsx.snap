@@ -4,7 +4,7 @@ exports[`renders correctly 1`] = `
 <div>
   <View
     style={
-      Object {
+      {
         "flex": 1,
         "paddingBottom": 172,
       }
@@ -16,14 +16,14 @@ exports[`renders correctly 1`] = `
       accessibilityRole="scrollbar"
       accessible={true}
       contentContainerStyle={
-        Object {
+        {
           "flexGrow": 1,
           "paddingBottom": 86,
         }
       }
       scrollEnabled={true}
       style={
-        Object {
+        {
           "paddingBottom": 15,
           "paddingHorizontal": 26,
         }
@@ -34,6 +34,23 @@ exports[`renders correctly 1`] = `
           accessibilityHint="Navigates to the previous screen"
           accessibilityLabel="Back button"
           accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -47,7 +64,7 @@ exports[`renders correctly 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Object {
+            {
               "alignItems": "center",
               "flexDirection": "row",
               "paddingBottom": 11,
@@ -56,11 +73,20 @@ exports[`renders correctly 1`] = `
         >
           <View>
             <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
               internal_analyticTag={null}
               resizeMode="contain"
               source={
-                Array [
-                  Object {
+                [
+                  {
                     "height": undefined,
                     "uri": undefined,
                     "width": undefined,
@@ -68,7 +94,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
               style={
-                Object {
+                {
                   "height": 35,
                   "overflow": "hidden",
                   "resizeMode": "contain",
@@ -82,23 +108,23 @@ exports[`renders correctly 1`] = `
           <Text
             allowFontScaling={false}
             style={
-              Array [
-                Object {},
-                Array [
-                  Object {
+              [
+                {},
+                [
+                  {
                     "fontSize": 23,
                     "lineHeight": 35,
                   },
-                  Object {
+                  {
                     "fontFamily": "Helvetica Neue",
                   },
-                  Object {
+                  {
                     "color": "#191015",
                   },
                 ],
                 undefined,
                 undefined,
-                Object {
+                {
                   "color": "#DEDDDE",
                   "fontFamily": "Helvetica Neue",
                   "fontSize": 26,
@@ -116,23 +142,23 @@ exports[`renders correctly 1`] = `
         <Text
           allowFontScaling={false}
           style={
-            Array [
-              Object {},
-              Array [
-                Object {
+            [
+              {},
+              [
+                {
                   "fontSize": 23,
                   "lineHeight": 35,
                 },
-                Object {
+                {
                   "fontFamily": "Helvetica Neue",
                 },
-                Object {
+                {
                   "color": "#191015",
                 },
               ],
               undefined,
               undefined,
-              Object {
+              {
                 "color": "#DEDDDE",
                 "fontFamily": "Helvetica Neue",
                 "fontSize": 52,
@@ -149,6 +175,23 @@ exports[`renders correctly 1`] = `
           accessibilityHint="pressable settings item"
           accessibilityLabel="pressable settings item"
           accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -162,7 +205,7 @@ exports[`renders correctly 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -173,8 +216,8 @@ exports[`renders correctly 1`] = `
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "flex-start",
                   "borderBottomWidth": 2,
                   "borderColor": "#353739",
@@ -184,7 +227,7 @@ exports[`renders correctly 1`] = `
                   "marginLeft": 15,
                   "paddingBottom": 23,
                 },
-                Object {
+                {
                   "borderBottomWidth": 0,
                 },
               ]
@@ -192,11 +235,20 @@ exports[`renders correctly 1`] = `
           >
             <View>
               <RCTImageView
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
                 internal_analyticTag={null}
                 resizeMode="contain"
                 source={
-                  Array [
-                    Object {
+                  [
+                    {
                       "height": undefined,
                       "uri": undefined,
                       "width": undefined,
@@ -204,7 +256,7 @@ exports[`renders correctly 1`] = `
                   ]
                 }
                 style={
-                  Object {
+                  {
                     "height": 35,
                     "overflow": "hidden",
                     "resizeMode": "contain",
@@ -217,7 +269,7 @@ exports[`renders correctly 1`] = `
             </View>
             <View
               style={
-                Object {
+                {
                   "flex": 1,
                   "flexDirection": "column",
                   "paddingLeft": 26,
@@ -233,23 +285,23 @@ exports[`renders correctly 1`] = `
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
-                  Array [
-                    Object {},
-                    Array [
-                      Object {
+                  [
+                    {},
+                    [
+                      {
                         "fontSize": 23,
                         "lineHeight": 35,
                       },
-                      Object {
+                      {
                         "fontFamily": "Helvetica Neue",
                       },
-                      Object {
+                      {
                         "color": "#191015",
                       },
                     ],
                     undefined,
                     undefined,
-                    Object {
+                    {
                       "color": "#FFFFFF",
                       "fontFamily": "Helvetica Neue",
                       "fontSize": 35,
@@ -264,11 +316,20 @@ exports[`renders correctly 1`] = `
             </View>
             <View>
               <RCTImageView
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
                 internal_analyticTag={null}
                 resizeMode="contain"
                 source={
-                  Array [
-                    Object {
+                  [
+                    {
                       "height": undefined,
                       "uri": undefined,
                       "width": undefined,
@@ -276,7 +337,7 @@ exports[`renders correctly 1`] = `
                   ]
                 }
                 style={
-                  Object {
+                  {
                     "height": 35,
                     "overflow": "hidden",
                     "resizeMode": "contain",
@@ -294,6 +355,23 @@ exports[`renders correctly 1`] = `
   </View>
   <View
     accessibilityRole="imagebutton"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -307,7 +385,7 @@ exports[`renders correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "alignSelf": "center",
         "bottom": NaN,
         "position": "absolute",
@@ -316,13 +394,13 @@ exports[`renders correctly 1`] = `
   >
     <View
       animatedStyle={
-        Object {
-          "value": Object {},
+        {
+          "value": {},
         }
       }
       collapsable={false}
       style={
-        Object {
+        {
           "alignItems": "center",
           "backgroundColor": "#0B3D91",
           "borderRadius": 143,
@@ -337,12 +415,12 @@ exports[`renders correctly 1`] = `
     >
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "transparent",
             },
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "backgroundColor": "#1E2022",
                 "borderRadius": 143,
@@ -353,7 +431,7 @@ exports[`renders correctly 1`] = `
                 "position": "relative",
                 "width": 60,
               },
-              Object {
+              {
                 "backgroundColor": "#0B3D91",
                 "height": 92,
                 "width": 92,
@@ -364,13 +442,13 @@ exports[`renders correctly 1`] = `
       >
         <ViewManagerAdapter_ExpoBlurView
           proxiedProperties={
-            Object {
+            {
               "intensity": 0,
               "tint": "default",
             }
           }
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "position": "absolute",
@@ -381,11 +459,20 @@ exports[`renders correctly 1`] = `
         />
         <View>
           <RCTImageView
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
             internal_analyticTag={null}
             resizeMode="contain"
             source={
-              Array [
-                Object {
+              [
+                {
                   "height": undefined,
                   "uri": undefined,
                   "width": undefined,
@@ -393,7 +480,7 @@ exports[`renders correctly 1`] = `
               ]
             }
             style={
-              Object {
+              {
                 "height": 40,
                 "overflow": "hidden",
                 "resizeMode": "contain",
@@ -426,7 +513,7 @@ exports[`renders correctly 1`] = `
     scrollTo={null}
     statusBarTranslucent={false}
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
