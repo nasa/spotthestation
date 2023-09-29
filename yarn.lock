@@ -9102,6 +9102,11 @@ geojson-rbush@3.x:
     "@types/geojson" "7946.0.8"
     rbush "^3.0.1"
 
+geomagnetism@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/geomagnetism/-/geomagnetism-0.1.1.tgz#895560c4717b3a01ba8d1ce54ed609f16e80723b"
+  integrity sha512-XNtaHJCDzcf9UKJ+aBFAZbbuk6dyNqLvrtz5rfxvxTKcpot0rA8VvACd1yXxZIrvp1ZuReBucphhcfEEksrNiQ==
+
 get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"

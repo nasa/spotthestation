@@ -32,6 +32,7 @@ import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
 import watchOrientation from "../../../utils/orientation"
 import Orientation from "react-native-orientation-locker"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -41,6 +42,7 @@ interface ISSSceneProps {
   isPathVisible: boolean
   still: boolean
   onStillReady: () => void
+  location: LocationType
 }
 
 const createISSMarker = (texture: Texture, position: Vector3) => {
@@ -89,6 +91,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   isPathVisible,
   still,
   onStillReady,
+  location,
 }: ISSSceneProps) {
   const [layout, setLayout] = useState<LayoutRectangle>()
   const devices = useCameraDevices()
@@ -318,20 +321,23 @@ export const ISSSceneAR = memo(function ISSSceneAR({
 
   useEffect(() => {
     if (!cameraRef.current) return undefined
-    const unsub = watchOrientation((rotation) => {
-      const targetRot = rotation
-      if (orientation === "LANDSCAPE-RIGHT") {
-        targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), Math.PI / 2))
-      } else if (orientation === "LANDSCAPE-LEFT") {
-        targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), -Math.PI / 2))
-      }
+    const unsub = watchOrientation(
+      (rotation) => {
+        const targetRot = rotation
+        if (orientation === "LANDSCAPE-RIGHT") {
+          targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), Math.PI / 2))
+        } else if (orientation === "LANDSCAPE-LEFT") {
+          targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), -Math.PI / 2))
+        }
 
-      cameraRef.current.rotation.setFromQuaternion(targetRot)
-      onCameraChange()
-    })
+        cameraRef.current.rotation.setFromQuaternion(targetRot)
+        onCameraChange()
+      },
+      [location.location.lat, location.location.lng],
+    )
 
     return () => unsub()
-  }, [cameraRef.current, orientation, onCameraChange])
+  }, [cameraRef.current, orientation, onCameraChange, location])
 
   const [isLayoutUpdating, setIsLayoutUpdating] = useState(false)
   const [stillImage, setStillImage] = useState(null)

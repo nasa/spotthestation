@@ -2,8 +2,14 @@ import { orientation, SensorTypes, setUpdateIntervalForType } from "react-native
 import { Platform } from "react-native"
 import { Subscription } from "rxjs"
 import { Quaternion, Vector3 } from "three"
+import geomagnetism from "geomagnetism"
 
-type Watcher = (rotation: Quaternion) => void
+type WatcherFunc = (rotation: Quaternion) => void
+type Watcher = {
+  func: WatcherFunc
+  declination: number
+}
+
 const watchers: Watcher[] = []
 let subscription: Subscription = null
 
@@ -20,21 +26,27 @@ function addWatcher(watcher: Watcher) {
     subscription = orientation.subscribe(({ qx, qy, qz, qw }) => {
       const sourceRot = new Quaternion(qx, qy, qz, qw)
 
-      let targetRot: Quaternion
-      if (Platform.OS === "ios") {
-        // convert from ios reference system
-        // (X - north, Y - left, Z - up) -> (X - right, Y - up, Z - south)
-        targetRot = new Quaternion().multiplyQuaternions(
-          rotateY,
-          new Quaternion().multiplyQuaternions(rotateX, sourceRot),
-        )
-      } else {
-        // convert from android reference system
-        // (X - right, Y - north, Z - up) -> (X - right, Y - up, Z - south)
-        targetRot = new Quaternion().multiplyQuaternions(rotateX, sourceRot)
-      }
+      watchers.forEach((watcher) => {
+        // convert to true north
+        let targetRot = new Quaternion()
+          .setFromAxisAngle(new Vector3(0, 0, 1), (-watcher.declination * Math.PI) / 180)
+          .multiply(sourceRot)
 
-      watchers.forEach((watcher) => watcher(targetRot))
+        if (Platform.OS === "ios") {
+          // convert from ios reference system
+          // (X - north, Y - left, Z - up) -> (X - right, Y - up, Z - south)
+          targetRot = new Quaternion().multiplyQuaternions(
+            rotateY,
+            new Quaternion().multiplyQuaternions(rotateX, targetRot),
+          )
+        } else {
+          // convert from android reference system
+          // (X - right, Y - north, Z - up) -> (X - right, Y - up, Z - south)
+          targetRot = new Quaternion().multiplyQuaternions(rotateX, targetRot)
+        }
+
+        watcher.func(targetRot)
+      })
     })
   }
 }
@@ -47,7 +59,17 @@ function removeWatcher(watcher: Watcher) {
   }
 }
 
-export default function watchOrientation(watcher: Watcher) {
+const declinationCache = {}
+
+export default function watchOrientation(func: WatcherFunc, location: [number, number]) {
+  if (!declinationCache[location.toString()]) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const info = (geomagnetism as any).model().point(location)
+    const declination = info.decl as number
+    declinationCache[location.toString()] = declination
+  }
+
+  const watcher = { func, declination: declinationCache[location.toString()] }
   addWatcher(watcher)
   return () => removeWatcher(watcher)
 }

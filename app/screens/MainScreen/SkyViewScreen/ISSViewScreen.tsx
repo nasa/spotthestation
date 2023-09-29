@@ -574,6 +574,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 recordedSeconds={recordedSeconds}
                 issPath={issPath}
                 onTakeScreenshot={takeScreenshot}
+                location={current}
               />
             </ViewShot>
           )}

@@ -11,6 +11,7 @@ import { OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { Text } from "../../../components"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 interface ARViewProps {
   isFullScreen: boolean
@@ -21,6 +22,7 @@ interface ARViewProps {
   still: boolean
   onStillReady: () => void
   onTakeScreenshot: () => void
+  location: LocationType
 }
 
 export const ARView = function ARView({
@@ -32,6 +34,7 @@ export const ARView = function ARView({
   still,
   onStillReady,
   onTakeScreenshot,
+  location,
 }: ARViewProps) {
   const { $container, $hudContainer, $text } = useStyles(styles)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
@@ -143,6 +146,7 @@ export const ARView = function ARView({
         isPathVisible={isPathVisible}
         still={still}
         onStillReady={handleStillReady}
+        location={location}
       />
 
       {isFullScreen && Boolean(position) && !(still && isStillReady) && (
@@ -155,7 +159,11 @@ export const ARView = function ARView({
 
       <View style={$hudContainer}>
         {Boolean(issAzAlt) && (
-          <Compass issPosition={normalizeHeading(issAzAlt[0])} isFullScreen={isFullScreen} />
+          <Compass
+            issPosition={normalizeHeading(issAzAlt[0])}
+            isFullScreen={isFullScreen}
+            location={location}
+          />
         )}
         {isRecording && <RecordingIndicator recordedSeconds={recordedSeconds} />}
       </View>

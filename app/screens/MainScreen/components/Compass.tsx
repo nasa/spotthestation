@@ -11,6 +11,7 @@ import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../util
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import watchOrientation from "../../../utils/orientation"
 import { Vector2, Vector3 } from "three"
+import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 const compassLine = require("../../../../assets/icons/compass-line.png")
 
@@ -20,9 +21,10 @@ const LETTER_OFFSET = 10
 type CompassProps = {
   issPosition: number
   isFullScreen: boolean
+  location: LocationType
 }
 
-export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
+export const Compass = ({ issPosition, isFullScreen, location }: CompassProps) => {
   const {
     $container,
     $containerFs,
@@ -47,13 +49,16 @@ export const Compass = ({ issPosition, isFullScreen }: CompassProps) => {
   ].filter((letter) => isInHeadingRange(left, right, letter.offset))
 
   useEffect(() => {
-    const unsub = watchOrientation((rotation) => {
-      const vec = new Vector3(0, 0, -1).applyQuaternion(rotation)
-      const angle = (new Vector2(-vec.z, vec.x).angle() * 180) / Math.PI
-      setHeading(normalizeHeading(angle))
-    })
+    const unsub = watchOrientation(
+      (rotation) => {
+        const vec = new Vector3(0, 0, -1).applyQuaternion(rotation)
+        const angle = (new Vector2(-vec.z, vec.x).angle() * 180) / Math.PI
+        setHeading(normalizeHeading(angle))
+      },
+      [location.location.lat, location.location.lng],
+    )
     return () => unsub()
-  }, [])
+  }, [location])
 
   const issVisible = isInHeadingRange(left, right, issPosition)
   const container = { ...(isFullScreen ? $containerFs : $container) }
