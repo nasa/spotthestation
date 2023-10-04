@@ -2,7 +2,7 @@ import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useEffect, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { translate } from "../../../i18n"
-import { Icon, Text } from "../../../components"
+import { Text } from "../../../components"
 import { OrbitPoint } from "../../../services/api/api.types"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
@@ -17,12 +17,11 @@ export interface DetailsProps {
   observer: [number, number]
 }
 
-export function Details({ onClose, issData }: DetailsProps) {
+export function Details({ issData }: DetailsProps) {
   const {
     $modalBodyContainer,
     $contentContainer,
     $buttonsContainer,
-    $close,
     $title,
     $detailBox,
     $detailTitle,
@@ -105,19 +104,6 @@ export function Details({ onClose, issData }: DetailsProps) {
 
   return (
     <View style={$modalBodyContainer}>
-      {Boolean(onClose) && (
-        <Icon
-          icon="x"
-          accessible
-          accessibilityLabel="x button"
-          accessibilityHint="close modal"
-          accessibilityRole="button"
-          color={colors.palette.neutral450}
-          onPress={onClose}
-          containerStyle={$close}
-          size={36}
-        />
-      )}
       <View style={$contentContainer}>
         <Text
           accessible
@@ -266,7 +252,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $contentContainer: ViewStyle = {
     width: "100%",
     paddingHorizontal: scale(36),
-    paddingBottom: scale(52),
+    paddingBottom: scale(24),
   }
 
   const $buttonsContainer: ViewStyle = {
@@ -276,14 +262,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     justifyContent: "space-between",
   }
 
-  const $close: ViewStyle = {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: scale(18),
-    zIndex: 5,
-  }
-
   const $title: TextStyle = {
     color: colors.palette.neutral250,
     width: "95%",
@@ -291,7 +269,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     fontFamily: typography.primary.normal,
     lineHeight: lineHeights[44],
     paddingBottom: scale(36),
-    marginTop: scale(36),
+    marginTop: scale(24),
   }
 
   const $detailBox: ViewStyle = {
@@ -348,7 +326,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $modalBodyContainer,
     $contentContainer,
     $buttonsContainer,
-    $close,
     $title,
     $detailBox,
     $detailTitle,

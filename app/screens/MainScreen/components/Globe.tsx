@@ -23,7 +23,7 @@ import {
 } from "three"
 import { colors } from "../../../theme"
 import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
-import { coordinatesToPosition } from "./helpers"
+import { coordinatesToPosition, positionToCoordinates } from "./helpers"
 import { iconRegistry } from "../../../components/Icon"
 
 import ControlsView from "./ControlsView"
@@ -41,9 +41,17 @@ export interface GlobeProps {
   pastIssPathCoords?: [number, number][]
   futureIssPathCoords?: [number, number][]
   issPath: OrbitPoint[]
+  onCameraChange?: (coords: [number, number]) => void
+  defaultCameraPosition?: [number, number]
 }
 
-export function Globe({ marker, zoom, issPath }: GlobeProps) {
+export function Globe({
+  marker,
+  zoom,
+  issPath,
+  onCameraChange,
+  defaultCameraPosition,
+}: GlobeProps) {
   const { $container, $pan } = useStyles(styles)
 
   const mapper = useCallback((p) => {
@@ -315,6 +323,18 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
     pointRef.current.visible = cameraToPin.length() < L
   }, [globeRef.current, pointRef.current, camera])
 
+  const handleCameraChange = useCallback(() => {
+    checkMarkerVisibility()
+    if (onCameraChange) {
+      const coords = positionToCoordinates([
+        camera.position.x,
+        camera.position.y,
+        camera.position.z,
+      ])
+      onCameraChange(coords)
+    }
+  }, [onCameraChange, checkMarkerVisibility])
+
   useEffect(() => {
     checkMarkerVisibility()
   }, [globeRef.current, pointRef.current, camera, marker])
@@ -331,7 +351,8 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
 
     const ambient = new AmbientLight("white", 666)
 
-    camera.position.set(0, 0, 850)
+    const cameraPosition = coordinatesToPosition(defaultCameraPosition || [0, 0], 850)
+    camera.position.set(...cameraPosition)
 
     setCamera(camera)
 
@@ -367,7 +388,7 @@ export function Globe({ marker, zoom, issPath }: GlobeProps) {
 
   return (
     <>
-      <ControlsView style={$pan} camera={camera} onPositionChange={checkMarkerVisibility}>
+      <ControlsView style={$pan} camera={camera} onPositionChange={handleCameraChange}>
         <GLView style={$container} onContextCreate={contextRenderer} key="d" />
       </ControlsView>
     </>

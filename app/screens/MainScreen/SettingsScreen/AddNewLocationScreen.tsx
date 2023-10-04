@@ -126,7 +126,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
 
-  const isSaveDisabled = !location.googlePlaceId || !location.title
+  const isSaveDisabled = !location?.googlePlaceId || !location?.title
 
   return (
     <Screen

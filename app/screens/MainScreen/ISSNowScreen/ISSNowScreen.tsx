@@ -7,7 +7,7 @@
 import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
@@ -76,6 +76,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [current, setCurrent] = useState<LocationType>(null)
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
+  const cameraPosition = useRef(null)
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -182,6 +183,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     [selectedLocation, currentLocation],
   )
 
+  const handleCameraChange = useCallback((coords: [number, number]) => {
+    cameraPosition.current = coords
+  }, [])
+
   const headerStyle = { ...(isFullScreen ? $headerStyleOverrideFs : $headerStyleOverride) }
   headerStyle.top = Number(headerStyle.top) + topInset
 
@@ -243,7 +248,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             key={isFullScreen.toString() + isLandscape.toString()}
             issPath={issData}
             zoom={zoomLevel + 1}
+            defaultCameraPosition={cameraPosition.current}
             marker={current && [current?.location?.lat, current?.location?.lng]}
+            onCameraChange={handleCameraChange}
           />
         )}
         {!isGlobe && (
@@ -251,6 +258,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             issPath={issData}
             style={$flatMap}
             zoom={zoomLevel}
+            defaultCameraPosition={cameraPosition.current}
+            onCameraChange={handleCameraChange}
             markers={
               current?.location
                 ? [{ latitude: current?.location?.lat, longitude: current?.location?.lng }]

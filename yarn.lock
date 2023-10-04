@@ -4765,11 +4765,6 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@webgeodatavore/geojson.terminator@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@webgeodatavore/geojson.terminator/-/geojson.terminator-1.0.2.tgz#1c26bbf22e401e2be59805fe845084120b7952fb"
-  integrity sha512-Mx7Z1fyLxkuJg6mCO7JL0MnPIh11HOFFU9Sv3j28r5/e2kVdmS2OSYE2cnyMxSlea8mNBax74K1SsK4+4vt5Wg==
-
 "@xmldom/xmldom@~0.7.0":
   version "0.7.9"
   resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.9.tgz#7f9278a50e737920e21b297b8a35286e9942c056"

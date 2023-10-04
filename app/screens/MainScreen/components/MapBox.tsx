@@ -5,6 +5,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL from "@rnmapbox/maps"
+import GeoJSON from "geojson"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
 import { colors } from "../../../theme"
@@ -12,6 +13,7 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 import { OrbitPoint } from "../../../services/api"
+import { RegionPayload } from "@rnmapbox/maps/lib/typescript/components/MapView"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
@@ -24,6 +26,8 @@ interface MapBoxProps {
   issPath?: OrbitPoint[]
   onPress?: (params: any) => void
   markers?: LatLng[]
+  onCameraChange?: (coords: [number, number]) => void
+  defaultCameraPosition?: [number, number]
 }
 
 export function MapBox({
@@ -34,6 +38,8 @@ export function MapBox({
   issPath = [],
   onPress,
   markers = [],
+  onCameraChange,
+  defaultCameraPosition,
 }: MapBoxProps) {
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
@@ -100,8 +106,17 @@ export function MapBox({
     [curve],
   )
 
+  const handleCameraChange = useCallback(
+    (feature: GeoJSON.Feature<GeoJSON.Point, RegionPayload>) => {
+      if (!onCameraChange) return
+      onCameraChange([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
+    },
+    [onCameraChange],
+  )
+
   return !loading ? (
     <MapboxGL.MapView
+      onRegionIsChanging={handleCameraChange}
       style={style}
       logoEnabled={false}
       styleURL={
@@ -127,9 +142,19 @@ export function MapBox({
         </MapboxGL.ShapeSource>
       )}
       <MapboxGL.Camera
+        animationDuration={0}
+        animationMode="none"
         zoomLevel={zoom}
         defaultSettings={
-          markers.length && { centerCoordinate: [markers[0].longitude, markers[0].latitude] }
+          defaultCameraPosition
+            ? {
+                zoomLevel: zoom,
+                centerCoordinate: [defaultCameraPosition[1], defaultCameraPosition[0]],
+              }
+            : markers.length && {
+                zoomLevel: zoom,
+                centerCoordinate: [markers[0].longitude, markers[0].latitude],
+              }
         }
       />
       {Boolean(issPathCoords2D?.length) && (

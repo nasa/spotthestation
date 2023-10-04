@@ -1,4 +1,4 @@
-export function coordinatesToPosition(coordinates, radius) {
+export function coordinatesToPosition(coordinates, radius): [number, number, number] {
   const [lat, long] = coordinates
   const phi = (lat * Math.PI) / 180
   const theta = ((long - 180) * Math.PI) / 180
@@ -8,6 +8,16 @@ export function coordinatesToPosition(coordinates, radius) {
   const z = radius * Math.cos(phi) * Math.sin(theta)
 
   return [x, y, z]
+}
+
+export function positionToCoordinates(position: [number, number, number]): [number, number] {
+  const [x, y, z] = position
+
+  const long = -(Math.atan2(z, x) * 180) / Math.PI
+  const hyp = Math.sqrt(x * x + z * z)
+  const lat = (Math.atan2(y, hyp) * 180) / Math.PI
+
+  return [lat, long]
 }
 
 export const formatTimer = (diff: string, prefix: string): string => {

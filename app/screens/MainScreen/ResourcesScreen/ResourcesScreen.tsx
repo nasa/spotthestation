@@ -483,8 +483,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     backgroundColor: "transparent",
     borderRadius: scale(28),
     borderWidth: 0,
-    marginRight: scale(24),
-    paddingHorizontal: scale(20),
+    marginRight: scale(0),
+    paddingHorizontal: scale(16),
   }
 
   const $active: ViewStyle = {
@@ -493,7 +493,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $buttonText: TextStyle = {
     color: colors.palette.neutral100,
-    fontSize: fontSizes[18],
+    fontSize: fontSizes[17],
     fontFamily: typography.primary.medium,
     lineHeight: lineHeights[22],
     textTransform: "capitalize",
