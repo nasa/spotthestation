@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`NotificationSettingsScreen renders correctly 1`] = `
 <div>
   <RCTScrollView
     accessibilityHint="Notification settings scrollable us area"
@@ -716,7 +716,7 @@ exports[`renders correctly 1`] = `
             accessibilityState={
               {
                 "busy": undefined,
-                "checked": false,
+                "checked": null,
                 "disabled": undefined,
                 "expanded": undefined,
                 "selected": undefined,

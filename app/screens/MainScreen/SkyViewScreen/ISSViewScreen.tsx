@@ -228,6 +228,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [result, timeDiff])
 
   useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
     startCountdown()
   }, [result, startCountdown, timeDiff])
 

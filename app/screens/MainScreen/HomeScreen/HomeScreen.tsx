@@ -30,6 +30,7 @@ import MyModal from "./MyModal"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { translate } from "../../../i18n"
 import i18n from "i18n-js"
+import { navigationRef } from "../../../navigators"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -207,6 +208,12 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [currentSighting, timeDiff])
 
   useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
     startCountdown()
   }, [currentSighting, startCountdown, timeDiff])
 
@@ -241,6 +248,7 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     // Clear the initialParams prop when the screen is unmounted
     return () => {
+      if (!navigationRef.isReady()) return
       navigation.setParams({ showSightings: false } as never)
     }
   }, [navigation])

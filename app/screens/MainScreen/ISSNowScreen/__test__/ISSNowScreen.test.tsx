@@ -5,6 +5,7 @@ import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { ISSNowScreen } from "../ISSNowScreen"
 import { render } from "@testing-library/react-native"
+import MockDate from "mockdate"
 jest.mock("@react-navigation/native", () => ({
   ...Object.assign({}, jest.requireActual("@react-navigation/native")),
   useRoute: () => ({
@@ -16,12 +17,22 @@ jest.mock("@react-navigation/native", () => ({
     },
   }),
 }))
-jest.useFakeTimers("modern").setSystemTime(new Date("12-12-2012 10:10:10"))
-it("renders correctly", () => {
-  const tree = render(
-    <NavigationContainer>
-      <ISSNowScreen />
-    </NavigationContainer>,
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+
+describe("ISSNowScreen", () => {
+  beforeEach(() => {
+    MockDate.set("12-12-2012 10:10:10")
+  })
+
+  afterEach(() => {
+    MockDate.reset()
+  })
+
+  it("renders correctly", () => {
+    const tree = render(
+      <NavigationContainer>
+        <ISSNowScreen />
+      </NavigationContainer>,
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

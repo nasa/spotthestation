@@ -4,7 +4,7 @@
 import React from "react"
 import { AddNewLocationScreen } from "../AddNewLocationScreen"
 import { NavigationContainer } from "@react-navigation/native"
-import { fireEvent, render, waitFor } from "@testing-library/react-native"
+import { act, fireEvent, render, waitFor } from "@testing-library/react-native"
 import { useStores } from "../../../../models"
 
 jest.mock("@react-navigation/native", () => ({
@@ -16,13 +16,18 @@ jest.mock("@react-navigation/native", () => ({
     },
   }),
 }))
-it("renders correctly", () => {
-  const tree = render(
+it("renders correctly", async () => {
+  const component = render(
     <NavigationContainer>
       <AddNewLocationScreen />
     </NavigationContainer>,
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+  })
+
+  expect(component.toJSON()).toMatchSnapshot()
 })
 
 test("clears the text input and sets location value after selecting a place from the list", async () => {

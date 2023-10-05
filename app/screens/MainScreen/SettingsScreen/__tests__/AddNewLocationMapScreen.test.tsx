@@ -4,15 +4,20 @@
 import React from "react"
 import { AddNewLocationMapScreen } from "../AddNewLocationMapScreen"
 import { NavigationContainer } from "@react-navigation/native"
-import { fireEvent, render, waitFor } from "@testing-library/react-native"
+import { act, fireEvent, render, waitFor } from "@testing-library/react-native"
 
-it("renders correctly", () => {
-  const tree = render(
+it("renders correctly", async () => {
+  const component = render(
     <NavigationContainer>
       <AddNewLocationMapScreen />
     </NavigationContainer>,
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+  })
+
+  expect(component.toJSON()).toMatchSnapshot()
 })
 
 test("the text input", async () => {

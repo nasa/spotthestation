@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`Sightings renders correctly 1`] = `
 <View
   style={
     [
@@ -898,7 +898,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.today undefined, 10:10 AM UTC
+                  12 Dec 2020, 10:10 AM UTC
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1263,7 +1263,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.tomorrow undefined, 10:15 AM UTC
+                  13 Dec 2020, 10:15 AM UTC
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1824,5 +1824,425 @@ exports[`renders correctly 1`] = `
       </RCTScrollView>
     </View>
   </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    useNativeDriverForBackdrop={true}
+    visible={true}
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      forwardedRef={[Function]}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "black",
+          "bottom": 0,
+          "height": 1334,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+        }
+      }
+    />
+    <View
+      collapsable={false}
+      deviceHeight={null}
+      deviceWidth={null}
+      forwardedRef={[Function]}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      panResponderThreshold={4}
+      pointerEvents="box-none"
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      style={
+        {
+          "flex": 1,
+          "justifyContent": "flex-start",
+          "left": 0,
+          "margin": 0,
+          "paddingHorizontal": 18,
+          "transform": [
+            {
+              "translateY": 1334,
+            },
+          ],
+        }
+      }
+      supportedOrientations={
+        [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      useNativeDriverForBackdrop={true}
+    >
+      <View
+        accessibilityHint="coach mark"
+        accessibilityLabel="coach mark"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {
+              "backgroundColor": "#0B3D91",
+              "borderRadius": 23,
+              "paddingHorizontal": 30,
+              "paddingVertical": 36,
+              "width": "100%",
+            },
+            {
+              "marginTop": 266.8,
+            },
+          ]
+        }
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 40,
+                "lineHeight": undefined,
+                "marginBottom": 29,
+                "paddingHorizontal": 52,
+              },
+            ]
+          }
+        >
+          homeScreen.selectSightings.coach.title undefined
+        </Text>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "margin": 0,
+              "width": "80%",
+            }
+          }
+        >
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 63,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FD9C1F",
+                  "width": 63,
+                }
+              }
+              tintColor="#FD9C1F"
+            />
+          </View>
+          <Text
+            allowFontScaling={false}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                  "paddingBottom": 10,
+                  "paddingLeft": 5,
+                },
+              ]
+            }
+          >
+            homeScreen.selectSightings.coach.sunset undefined
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "margin": 0,
+              "width": "80%",
+            }
+          }
+        >
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 63,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 63,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+          <Text
+            allowFontScaling={false}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 32,
+                  "paddingBottom": 10,
+                  "paddingLeft": 5,
+                },
+              ]
+            }
+          >
+            homeScreen.selectSightings.coach.moon undefined
+          </Text>
+        </View>
+        <View
+          accessibilityHint="dismiss coach mark"
+          accessibilityLabel="dismiss button"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              [
+                {
+                  "alignItems": "center",
+                  "borderRadius": 6,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "minHeight": 80,
+                  "overflow": "hidden",
+                  "paddingHorizontal": 17,
+                  "paddingVertical": 17,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#B6ACA6",
+                  "borderWidth": 1,
+                },
+              ],
+              {
+                "alignSelf": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 40,
+                "borderWidth": 0,
+                "height": 80,
+                "marginTop": 24,
+                "width": 201,
+              },
+              false,
+            ]
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                [
+                  {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                    "fontFamily": "HelveticaNeue-Medium",
+                    "fontSize": 23,
+                    "lineHeight": 29,
+                    "textAlign": "center",
+                    "zIndex": 2,
+                  },
+                  {
+                    "color": "#0B3D91",
+                    "fontFamily": "HelveticaNeue-Medium",
+                    "fontSize": 26,
+                    "lineHeight": 32,
+                  },
+                  false,
+                ],
+              ]
+            }
+          >
+            homeScreen.coachMarks.dismiss undefined
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
 </View>
 `;

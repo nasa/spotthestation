@@ -4,13 +4,18 @@
 import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { HomeScreen } from "../HomeScreen"
-import { render } from "@testing-library/react-native"
+import { act, render } from "@testing-library/react-native"
 
-it("renders correctly", () => {
-  const tree = render(
+it("renders correctly", async () => {
+  const component = render(
     <NavigationContainer>
       <HomeScreen />
     </NavigationContainer>,
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+  })
+
+  expect(component.toJSON()).toMatchSnapshot()
 })

@@ -9,7 +9,7 @@ module.exports = {
     }]
   },
   transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!@react-native|react-native|@expo-.*|expo-.*)",
+    "<rootDir>/node_modules/(?!@react-native|react-native|@expo-.*|expo-.*|@react-navigation)",
   ],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron"],
   coveragePathIgnorePatterns: [
@@ -17,4 +17,5 @@ module.exports = {
   ],
   testEnvironment: "node",
   setupFiles: ["<rootDir>/test/setup.tsx"],
+  workerIdleMemoryLimit: "1GB",
 }

@@ -3,16 +3,30 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
 import { NotificationSettingsScreen } from "../NotificationSettingsScreen"
-import { render } from "@testing-library/react-native"
+import { act, render } from "@testing-library/react-native"
 import { NavigationContainer } from "@react-navigation/native"
+import * as MockDate from "mockdate"
 
-jest.useFakeTimers("modern").setSystemTime(new Date("12-12-2012 10:10:10"))
+describe("NotificationSettingsScreen", () => {
+  beforeEach(() => {
+    MockDate.set("12-12-2012 10:10:10")
+  })
 
-it("renders correctly", () => {
-  const tree = render(
-    <NavigationContainer>
-      <NotificationSettingsScreen />
-    </NavigationContainer>,
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  afterEach(() => {
+    MockDate.reset()
+  })
+
+  it("renders correctly", async () => {
+    const component = render(
+      <NavigationContainer>
+        <NotificationSettingsScreen />
+      </NavigationContainer>,
+    )
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100))
+    })
+
+    expect(component.toJSON()).toMatchSnapshot()
+  })
 })

@@ -130,7 +130,21 @@ jest.mock('../app/services/api', () => ({
     getISSData: () => new Promise((resolve) => resolve({ ok: true, data: ['data'] })),
     getRawISSData: () => new Promise((resolve) => resolve({ ok: true, data: [] })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
-    getFeed: () => new Promise((resolve) => resolve({ ok: true, places: "" }))
+    getFeed: () => new Promise((resolve) => resolve({ ok: true, places: `
+      <?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0"
+       xmlns:content="http://purl.org/rss/1.0/modules/content/"
+       xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:atom="http://www.w3.org/2005/Atom"
+       xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+       xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+      >
+      <channel>
+        <item></item>
+      </channel>
+     </rss>
+    ` }))
   }
 }))
 jest.mock('react-native-geolocation-service', () => ({

@@ -507,19 +507,7 @@ exports[`renders correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
-      >
-        <View
-          style={
-            {
-              "paddingVertical": 29,
-            }
-          }
-        >
-          <ActivityIndicator
-            size="large"
-          />
-        </View>
-      </View>
+      />
     </View>
   </RCTScrollView>
 </div>

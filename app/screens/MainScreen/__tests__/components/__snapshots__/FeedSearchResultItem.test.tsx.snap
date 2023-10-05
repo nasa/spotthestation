@@ -78,7 +78,7 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
     source={
       [
         {
-          "uri": "",
+          "uri": "test.jpg",
         },
       ]
     }
@@ -242,7 +242,7 @@ exports[`renders correctly 1`] = `
     source={
       [
         {
-          "uri": "",
+          "uri": "test.jpg",
         },
       ]
     }
