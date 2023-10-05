@@ -898,7 +898,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.today undefined, 8:10 AM UTC
+                  homeScreen.selectSightings.today undefined, 10:10 AM UTC
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1263,7 +1263,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.tomorrow undefined, 8:15 AM UTC
+                  homeScreen.selectSightings.tomorrow undefined, 10:15 AM UTC
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1628,7 +1628,7 @@ exports[`renders correctly 1`] = `
                     ]
                   }
                 >
-                  24 Dec 2020, 8:20 AM UTC
+                  24 Dec 2020, 10:20 AM UTC
                 </Text>
                 <Text
                   allowFontScaling={false}
