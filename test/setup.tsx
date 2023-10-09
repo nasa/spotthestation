@@ -127,8 +127,7 @@ jest.mock('../app/services/api', () => ({
           visible: 6,
         }]
       }})),
-    getISSData: () => new Promise((resolve) => resolve({ ok: true, data: ['data'] })),
-    getRawISSData: () => new Promise((resolve) => resolve({ ok: true, data: [] })),
+    getISSData: () => new Promise((resolve) => resolve({ ok: true, data: { points: [], shadowIntervals: [] } })),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
     getFeed: () => new Promise((resolve) => resolve({ ok: true, places: `
       <?xml version="1.0" encoding="UTF-8"?>

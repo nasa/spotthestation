@@ -18,12 +18,12 @@ import * as storage from "../utils/storage"
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params) {
-    const { data, ok } = yield api.getRawISSData({
+    const { data, ok } = yield api.getISSData({
       from: new Date(new Date().setMinutes(new Date().getMinutes() - 30)).toISOString(),
     })
 
     if (!ok) return { ok: false }
-    const sightings = yield getSightings(data, params.lat, params.lon)
+    const sightings = yield getSightings(data.points, data.shadowIntervals, params.lat, params.lon)
 
     return { ok: true, data: sightings }
   }),
@@ -317,13 +317,13 @@ const RootStoreActions = (self) => ({
 
   getISSData: flow(function* getISSData(params) {
     try {
-      const { data, ok } = yield api.getRawISSData({
+      const { data, ok } = yield api.getISSData({
         from: sub(new Date(), { minutes: 100 }).toISOString(),
         to: add(new Date(), { minutes: 100 }).toISOString(),
       })
 
       if (ok) {
-        self.issData = getSatPath(data, params.lat, params.lon)
+        self.issData = getSatPath(data.points, params.lat, params.lon)
         if (self.initLoading) self.issDataLoaded = true
       } else {
         self.trajectoryError = true

@@ -13,6 +13,8 @@ export type SatData = {
   velocity: [number, number, number]
 }
 
+export type ShadowInterval = [number, number]
+
 type Period = {
   startTime: string
   endTime?: string
@@ -156,6 +158,7 @@ function altaz(
 
 function findEvents(
   sat: { location: [number, number, number]; date: string }[],
+  shadowIntervals: ShadowInterval[],
   topos: [number, number, number],
   threshold = 0.0,
 ) {
@@ -163,9 +166,18 @@ function findEvents(
 
   const periods: Period[] = []
   let currentPeriod: Period = null
+  let intervalIdx = 0
 
   data.forEach((d) => {
-    if (d.elevation > threshold) {
+    let interval = shadowIntervals[intervalIdx]
+    const timestamp = new Date(d.time).valueOf() / 1000
+    while (timestamp > interval[1] && intervalIdx < shadowIntervals.length - 1) {
+      ++intervalIdx
+      interval = shadowIntervals[intervalIdx]
+    }
+
+    const isInShadow = timestamp >= interval[0] && timestamp <= interval[1]
+    if (d.elevation > threshold && !isInShadow) {
       if (currentPeriod === null) {
         currentPeriod = {
           startTime: d.time,
@@ -232,7 +244,12 @@ export function degToCompass(d: number) {
   return compassDirections[Math.floor(((d + 360 / 16 / 2) % 360) / (360 / 16))]
 }
 
-export async function getSightings(data: SatData[], lat: number, lon: number) {
+export async function getSightings(
+  data: SatData[],
+  shadowIntervals: ShadowInterval[],
+  lat: number,
+  lon: number,
+) {
   const curve = new CatmullRomCurve3(data.map((pt) => new Vector3(...pt.location)))
 
   const points: { location: [number, number, number]; date: string }[] = []
@@ -256,7 +273,7 @@ export async function getSightings(data: SatData[], lat: number, lon: number) {
     if (i % 10 === 0) await new Promise(runAfterInteractions)
   }
 
-  const events = findEvents(points, [lat, lon, 0], 10)
+  const events = findEvents(points, shadowIntervals, [lat, lon, 0], 10)
   const res: Sighting[] = []
   events.forEach((event) => {
     const ti0 = new Date(event.startTime)

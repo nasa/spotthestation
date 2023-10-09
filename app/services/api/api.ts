@@ -12,15 +12,7 @@ import {
 } from "apisauce"
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
-import type {
-  ApiConfig,
-  GetISSDataParams,
-  GetISSSightingsParams,
-  GetRawISSDataParams,
-  ISSSighting,
-  ISSSightingResponse,
-  OrbitPoint,
-} from "./api.types"
+import type { ApiConfig, GetRawISSDataParams } from "./api.types"
 import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import {
   LocationAddressResponse,
@@ -29,7 +21,6 @@ import {
 } from "../../utils/geolocation"
 import { ISSDataResponse, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
-import { addDays } from "date-fns"
 import i18n from "i18n-js"
 
 /**
@@ -157,63 +148,20 @@ export class Api {
     return { ok: true, data: response.data }
   }
 
-  async getISSData({
-    lat,
-    lon,
-    withoutInterpolation,
-  }: GetISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<OrbitPoint[]> = await this.apisauce.post(
+  async getISSData(params?: GetRawISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
+    const response: ApiResponse<ISSDataResponse["data"]> = await this.apisauce.post(
       "/tracking/iss-data",
-      {
-        lat,
-        lon,
-        without_interpolation: withoutInterpolation ? "1" : "",
-      },
+      params || {},
       { baseURL: Config.API_URL },
     )
 
-    if (!response.ok || !response.data.length) {
+    if (!response.ok || typeof response.data === "string") {
       const problem = getGeneralApiProblem(response)
       if (problem) return { ok: false, data: response.data }
-      if (!response.data.length) return { ok: false, data: "Data is empty!" }
+      if (response.data === "string") return { ok: false, data: "Data is empty!" }
     }
 
     return { ok: true, data: response.data }
-  }
-
-  async getISSSightings({ zone, lat, lon }: GetISSSightingsParams): Promise<ISSSightingResponse> {
-    const response: ApiResponse<
-      { sightings: ISSSighting[]; lastSightingOrbitPointAt: string } | ISSSighting[]
-    > = await this.apisauce.post(
-      `/tracking/oem-nasa`,
-      { lat, lon, zone, v: "2" },
-      { baseURL: Config.API_URL },
-    )
-
-    const sightings = Array.isArray(response.data) ? response.data : response.data?.sightings
-    const lastSightingOrbitPointAt = Array.isArray(response.data)
-      ? addDays(new Date(), 11).toISOString()
-      : new Date(response.data?.lastSightingOrbitPointAt).toISOString()
-
-    const data = { sightings, lastSightingOrbitPointAt }
-
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      return { ok: false, data: problem ? problem.kind : "" }
-    }
-
-    return { ok: true, data }
-  }
-
-  async getLocationByCoords(url: string): Promise<any> {
-    const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
-
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      if (problem) return problem
-    }
-
-    return { kind: "ok", places: response.data }
   }
 
   async getFeed(page: number): Promise<any> {
