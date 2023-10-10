@@ -16,10 +16,10 @@ export type SatData = {
 export type ShadowInterval = [number, number]
 
 type Period = {
-  startTime: string
-  endTime?: string
+  startTime: number
+  endTime?: number
   maxElevation: number
-  maxElevationTime: string
+  maxElevationTime: number
   minAzimuth: number
   maxAzimuth: number
   minAltitude: number
@@ -35,6 +35,15 @@ type Sighting = {
   maxAltitude: number
   visible: number
   dayStage: number
+}
+
+type StepperProps = {
+  interval: number
+  from: number
+  shadowIntervals: ShadowInterval[]
+  curve: CatmullRomCurve3
+  curveGrid: number[]
+  topos: [number, number, number]
 }
 
 function modulo(x: number, y: number) {
@@ -141,68 +150,170 @@ function ECEFToLookAngles(
   return topocentricToLookAngles(topS, topE, topZ)
 }
 
-function altaz(
-  sat: { location: [number, number, number]; date: string }[],
-  topos: [number, number, number],
-) {
-  return sat.map((position) => {
-    const r = position.location
-    const { elevation, azimuth } = ECEFToLookAngles(topos[0], topos[1], topos[2], r[0], r[1], r[2])
-    return {
-      time: position.date,
-      elevation: (elevation * 180) / Math.PI,
-      azimuth: (azimuth * 180) / Math.PI,
-    }
-  })
+function altaz(location: [number, number, number], topos: [number, number, number]) {
+  const { elevation, azimuth } = ECEFToLookAngles(
+    topos[0],
+    topos[1],
+    topos[2],
+    location[0],
+    location[1],
+    location[2],
+  )
+  return {
+    elevation: (elevation * 180) / Math.PI,
+    azimuth: (azimuth * 180) / Math.PI,
+  }
 }
 
-function findEvents(
-  sat: { location: [number, number, number]; date: string }[],
+function stepper({ interval, from, shadowIntervals, curve, curveGrid, topos }: StepperProps) {
+  let timestamp = from
+  let startIdx = interval < 0 ? curveGrid.length - 1 : 0
+  let shadowIdx = interval < 0 ? shadowIntervals.length - 1 : 0
+
+  return () => {
+    if (timestamp > curveGrid[curveGrid.length - 1]) return null
+    if (timestamp < curveGrid[0]) return null
+
+    if (shadowIntervals.length > 0) {
+      if (interval < 0) {
+        while (timestamp / 1000 < shadowIntervals[shadowIdx][0] && shadowIdx > 0) {
+          --shadowIdx
+        }
+      } else {
+        while (
+          timestamp / 1000 > shadowIntervals[shadowIdx][1] &&
+          shadowIdx < shadowIntervals.length - 1
+        ) {
+          ++shadowIdx
+        }
+      }
+    }
+
+    if (interval < 0) {
+      while (timestamp < curveGrid[startIdx] && startIdx > 0) {
+        --startIdx
+      }
+    } else {
+      while (timestamp > curveGrid[startIdx + 1] && startIdx < curveGrid.length - 2) {
+        ++startIdx
+      }
+    }
+
+    const dt1 = curveGrid[startIdx]
+    const dt2 = curveGrid[startIdx + 1]
+
+    const dt = (timestamp - dt1) / (dt2 - dt1)
+
+    const ts = startIdx / (curveGrid.length - 1)
+    const te = (startIdx + 1) / (curveGrid.length - 1)
+    const t = ts + (te - ts) * dt
+    const pt = curve.getPoint(t)
+
+    const shadowInterval = shadowIntervals[shadowIdx]
+    const isInShadow =
+      shadowInterval &&
+      timestamp / 1000 >= shadowInterval[0] &&
+      timestamp / 1000 <= shadowInterval[1]
+
+    const res = {
+      time: timestamp,
+      isInShadow,
+      ...altaz([pt.x, pt.y, pt.z], topos),
+    }
+
+    timestamp = timestamp + interval
+    return res
+  }
+}
+
+async function findEvents(
+  data: SatData[],
   shadowIntervals: ShadowInterval[],
   topos: [number, number, number],
   threshold = 0.0,
 ) {
-  const data = altaz(sat, topos)
+  if (data.length === 0) return []
+  const curve = new CatmullRomCurve3(data.map((pt) => new Vector3(...pt.location)))
+  const curveGrid = data.map((pt) => new Date(pt.date).valueOf())
 
   const periods: Period[] = []
-  let currentPeriod: Period = null
-  let intervalIdx = 0
-
-  data.forEach((d) => {
-    let interval = shadowIntervals[intervalIdx]
-    const timestamp = new Date(d.time).valueOf() / 1000
-    while (timestamp > interval[1] && intervalIdx < shadowIntervals.length - 1) {
-      ++intervalIdx
-      interval = shadowIntervals[intervalIdx]
-    }
-
-    const isInShadow = timestamp >= interval[0] && timestamp <= interval[1]
-    if (d.elevation > threshold && !isInShadow) {
-      if (currentPeriod === null) {
-        currentPeriod = {
-          startTime: d.time,
-          maxElevation: d.elevation,
-          maxElevationTime: d.time,
-          minAzimuth: d.azimuth,
-          maxAzimuth: d.azimuth,
-          minAltitude: d.elevation,
-          maxAltitude: d.elevation,
-        }
-      } else {
-        if (d.elevation > currentPeriod.maxElevation) {
-          currentPeriod.maxElevation = d.elevation
-          currentPeriod.maxElevationTime = d.time
-        }
-
-        currentPeriod.maxAzimuth = d.azimuth
-        currentPeriod.maxAltitude = d.elevation
-      }
-    } else if (currentPeriod !== null) {
-      currentPeriod.endTime = d.time
-      periods.push(currentPeriod)
-      currentPeriod = null
-    }
+  const stepperSettings = { shadowIntervals, curve, curveGrid, topos }
+  let next = stepper({
+    interval: 15000,
+    from: curveGrid[0],
+    ...stepperSettings,
   })
+
+  let idx = 1
+  while (true) {
+    ++idx
+    if (idx % 10 === 0) {
+      await new Promise(runAfterInteractions)
+    }
+
+    const point = next()
+    if (!point) break
+    if (!point || point.elevation <= threshold || point.isInShadow) continue
+
+    const currentPeriod: Period = {
+      startTime: null,
+      minAltitude: 0,
+      minAzimuth: 0,
+      maxElevation: 0,
+      maxAzimuth: 0,
+      maxAltitude: 0,
+      maxElevationTime: null,
+    }
+
+    const back = stepper({
+      interval: -1000,
+      from: point.time,
+      ...stepperSettings,
+    })
+
+    const forward = stepper({
+      interval: 1000,
+      from: point.time,
+      ...stepperSettings,
+    })
+
+    while (true) {
+      const point = back()
+      if (!point || point.elevation <= threshold || point.isInShadow) break
+
+      currentPeriod.startTime = point.time
+      currentPeriod.minAzimuth = point.azimuth
+      currentPeriod.minAltitude = point.elevation
+
+      if (point.elevation > currentPeriod.maxElevation) {
+        currentPeriod.maxElevation = point.elevation
+        currentPeriod.maxElevationTime = point.time
+      }
+    }
+
+    while (true) {
+      const point = forward()
+      if (!point || point.elevation <= threshold || point.isInShadow) break
+
+      currentPeriod.endTime = point.time
+      currentPeriod.maxAzimuth = point.azimuth
+      currentPeriod.maxAltitude = point.elevation
+
+      if (point.elevation > currentPeriod.maxElevation) {
+        currentPeriod.maxElevation = point.elevation
+        currentPeriod.maxElevationTime = point.time
+      }
+    }
+
+    periods.push(currentPeriod)
+    next = stepper({
+      interval: 15000,
+      from: currentPeriod.endTime,
+      ...stepperSettings,
+    })
+
+    next()
+  }
 
   return periods
 }
@@ -250,30 +361,7 @@ export async function getSightings(
   lat: number,
   lon: number,
 ) {
-  const curve = new CatmullRomCurve3(data.map((pt) => new Vector3(...pt.location)))
-
-  const points: { location: [number, number, number]; date: string }[] = []
-  for (let i = 0; i < data.length - 1; ++i) {
-    const start = new Date(data[i].date).valueOf()
-    const end = new Date(data[i + 1].date).valueOf()
-
-    const steps = Math.max(1, Math.floor((end - start) / 15000))
-    for (let j = 0; j < steps; ++j) {
-      const ts = i / (data.length - 1)
-      const te = (i + 1) / (data.length - 1)
-      const t = ts + (te - ts) * (j / steps)
-      const pt = curve.getPoint(t)
-
-      points.push({
-        date: new Date(start + j * 15000).toISOString(),
-        location: [pt.x, pt.y, pt.z],
-      })
-    }
-
-    if (i % 10 === 0) await new Promise(runAfterInteractions)
-  }
-
-  const events = findEvents(points, shadowIntervals, [lat, lon, 0], 10)
+  const events = await findEvents(data, shadowIntervals, [lat, lon, 0], 10)
   const res: Sighting[] = []
   events.forEach((event) => {
     const ti0 = new Date(event.startTime)
