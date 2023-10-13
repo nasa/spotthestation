@@ -33,26 +33,33 @@ const items = [
     tags: [],
     title: "ISS Overview",
     image:
-      "https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/iss_05-12-23b.jpg?itok=JEHUinxe",
+      "https://www.nasa.gov/wp-content/uploads/2021/08/44911459904-375bc02163-k-0.jpg?resize=1200,800",
     type: "event",
-    link: "https://www.nasa.gov/mission_pages/station/overview/index.html",
+    link: "https://www.nasa.gov/reference/international-space-station",
   },
   {
     tags: ["history"],
     title: "International Space Station Facts and Figures",
     date: "2023-01-04T00:00:00.000000",
-    image:
-      "https://www.nasa.gov/sites/default/files/thumbnails/image/iss-blowout_updated_view-web-version-010323.png",
+    image: "https://www.nasa.gov/wp-content/uploads/2023/05/iss-blowout-updated-view-2023-300.png",
     type: "event",
-    link: "https://www.nasa.gov/feature/facts-and-figures",
+    link: "https://www.nasa.gov/international-space-station/space-station-facts-and-figures",
   },
   {
     tags: ["history"],
     title: "ISS Crews and Expeditions",
     date: "2023-01-04T00:00:00.000000",
-    image: "https://www.nasa.gov/sites/default/files/thumbnails/image/jsc2021e064218_alt.jpg",
+    image: "https://www.nasa.gov/wp-content/uploads/2023/05/exp70-portrait.jpg?w=1000",
     type: "event",
-    link: "https://www.nasa.gov/mission_pages/station/expeditions/index.html",
+    link: "https://www.nasa.gov/international-space-station/expedition-missions",
+  },
+  {
+    tags: [],
+    title: "ISS International Cooperation",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://www.nasa.gov/wp-content/uploads/2023/03/ops-map.png",
+    type: "event",
+    link: "https://www.nasa.gov/international-space-station/space-station-international-cooperation",
   },
 ]
 

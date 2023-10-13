@@ -68,17 +68,17 @@ export function Details({ issData }: DetailsProps) {
       return interpolate(t, p1, p2)
     }
 
+    let currentIdx = 0
     const update = () => {
       if (!issData.length) return
+      for (; currentIdx < issData.length; ++currentIdx) {
+        if (new Date().valueOf() < new Date(issData[currentIdx].date).valueOf()) break
+      }
 
-      const idx = issData.findIndex((point) => {
-        return new Date().valueOf() < new Date(point.date).valueOf()
-      })
+      if (currentIdx < 1 || currentIdx >= issData.length) return
 
-      if (idx < 1) return
-
-      const pt1 = issData[idx - 1]
-      const pt2 = issData[idx]
+      const pt1 = issData[currentIdx - 1]
+      const pt2 = issData[currentIdx]
       const t =
         (Date.now() - new Date(pt1.date).valueOf()) /
         (new Date(pt2.date).valueOf() - new Date(pt1.date).valueOf())
@@ -94,7 +94,7 @@ export function Details({ issData }: DetailsProps) {
     }
     update()
 
-    const timeout = setInterval(update, 10000)
+    const timeout = setInterval(update, 1000)
     return () => {
       clearInterval(timeout)
     }
