@@ -11,7 +11,6 @@ jest.mock("@react-navigation/native", () => ({
   useRoute: () => ({
     params: {
       id: 1,
-      toggleBottomTabs: jest.fn(),
     },
   }),
 }))

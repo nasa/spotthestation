@@ -25,15 +25,16 @@ export interface ListItemProps {
   icon: IconTypes
   secondIcon?: { icon: IconTypes; color: string }
   ctaTx?: TxKeyPath
-  onToggle?: () => void
+  onToggle?: (date: string) => void
   onPress?: PressableProps["onPress"]
   onCtaPress?: () => void
   onEdit?: () => void
   onDelete?: () => void
   borderless?: boolean
+  value?: string
 }
 
-export function ListItem({
+export const ListItem = React.memo(function ListItem({
   title,
   ctaTx,
   subtitle,
@@ -50,6 +51,7 @@ export function ListItem({
   editable,
   disabled,
   borderless,
+  value,
 }: ListItemProps) {
   const {
     $container,
@@ -125,7 +127,7 @@ export function ListItem({
             accessibilityHint="toggle location alerts"
             variant="switch"
             value={selected}
-            onValueChange={onToggle}
+            onValueChange={() => onToggle(value)}
             disabled={disabled}
           />
         )}
@@ -144,7 +146,7 @@ export function ListItem({
       </View>
     </Pressable>
   )
-}
+})
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $container: ViewStyle = {

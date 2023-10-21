@@ -4,10 +4,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { useRoute } from "@react-navigation/native"
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
@@ -24,11 +23,7 @@ import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { OrbitPoint } from "../../../services/api"
 import { useStyles } from "../../../utils/useStyles"
-
-export interface ISSNowScreenRouteProps {
-  toggleBottomTabs: (value: boolean) => void
-  toggleIsLandscape: (value: boolean) => void
-}
+import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const {
@@ -64,7 +59,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     $modal,
   } = useStyles(styles)
 
-  const route: ISSNowScreenRouteProps = useRoute().params as ISSNowScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const { currentLocation, selectedLocation, issData, getISSData, setSelectedLocation } =
     useStores()
@@ -73,10 +67,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [zoomLevel, setZoomLevel] = useState(0)
   const [isLandscape, setIsLandscape] = useState(false)
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
-  const [current, setCurrent] = useState<LocationType>(null)
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
   const cameraPosition = useRef(null)
+  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -108,18 +102,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
     return () => clearInterval(secTimer)
   }, [])
-
-  const getCurrentLocation = useCallback(() => {
-    if (selectedLocation) {
-      setCurrent(selectedLocation)
-    } else {
-      setCurrent(currentLocation)
-    }
-  }, [selectedLocation, currentLocation])
-
-  useEffect(() => {
-    getCurrentLocation()
-  }, [selectedLocation, currentLocation])
 
   useEffect(() => {
     if (selectedLocation) setAddress(selectedLocation.subtitle)
@@ -158,12 +140,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     getData().catch((e) => console.log(e))
   }, [current])
 
-  useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
-  useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
+  const { toggleBottomTabs, toggleIsLandscape } = useContext(TabNavigatorContext)
+
+  useEffect(() => toggleBottomTabs(!isFullScreen), [isFullScreen])
+  useEffect(() => toggleIsLandscape(isLandscape), [isLandscape])
 
   useEffect(() => {
     const backAction = () => {
-      route.toggleBottomTabs(true)
+      toggleBottomTabs(true)
       return false
     }
 
@@ -174,11 +158,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   const handleChangeLocation = useCallback(
     async (location: LocationType) => {
-      setCurrent(location)
       setIsLocation(false)
       setSelectedLocation(location)
       await storage.save("selectedLocation", location)
-      getCurrentLocation()
     },
     [selectedLocation, currentLocation],
   )

@@ -8,7 +8,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import {
   View,
   ViewStyle,
@@ -36,7 +36,6 @@ import Snackbar from "react-native-snackbar"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
@@ -49,11 +48,7 @@ import {
 } from "react-native-reanimated"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { OrbitPoint } from "../../../services/api"
-
-export interface ISSViewScreenRouteProps {
-  toggleBottomTabs: (value: boolean) => void
-  toggleIsLandscape: (value: boolean) => void
-}
+import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
 async function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -140,6 +135,12 @@ async function requestMicrophonePermissions(): Promise<string> {
   return ""
 }
 
+function calcLocation(selectedLocation, currentLocation): [number, number] {
+  if (selectedLocation) return [selectedLocation.location.lat, selectedLocation.location.lng]
+  if (currentLocation) return [currentLocation.location.lat, currentLocation.location.lng]
+  return null
+}
+
 export const ISSViewScreen = observer(function ISSNowScreen() {
   const {
     $containerStyleOverride,
@@ -166,7 +167,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $mr24,
   } = useStyles(styles)
 
-  const route: ISSViewScreenRouteProps = useRoute().params as ISSViewScreenRouteProps
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
   const { currentLocation, selectedLocation, issData, getISSSightings, getISSData } = useStores()
@@ -178,11 +178,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
   const [recordedSeconds, setRecordedSeconds] = useState(0)
-  const [location, setLocation] = useState<[number, number]>(null)
   const [mediaUrl, setMediaUrl] = useState("")
   const [mediaType, setMediaType] = useState("")
-  const [current, setCurrent] = useState<LocationType>(null)
   const [still, setStill] = useState(false)
+  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
+  const location = useMemo(() => calcLocation(selectedLocation, currentLocation), [selectedLocation, currentLocation])
   const whiteness = useSharedValue(0)
 
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -244,24 +244,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     })
   }, [])
 
-  const getLocation = useCallback(() => {
-    let lat: number
-    let lng: number
-    if (selectedLocation) {
-      lat = selectedLocation.location.lat
-      lng = selectedLocation.location.lng
-      setCurrent(JSON.parse(JSON.stringify(selectedLocation)) as LocationType)
-    } else {
-      if (currentLocation) {
-        lat = currentLocation.location.lat
-        lng = currentLocation.location.lng
-        setCurrent(JSON.parse(JSON.stringify(currentLocation)) as LocationType)
-      }
-    }
-
-    if (lat && lng) setLocation([lat, lng])
-  }, [selectedLocation, currentLocation])
-
   const getSightings = async () => {
     const { timeZone } = await getCurrentTimeZome()
     await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
@@ -270,10 +252,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const getData = async () => {
     await getISSData({ lat: location[0], lon: location[1] })
   }
-
-  useEffect(() => {
-    getLocation()
-  }, [selectedLocation, currentLocation, getLocation])
 
   useEffect(() => {
     return () => {
@@ -430,8 +408,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     return () => Orientation.removeOrientationListener(onOrientationDidChange)
   }, [])
 
-  useEffect(() => route.toggleBottomTabs(!isFullScreen), [isFullScreen])
-  useEffect(() => route.toggleIsLandscape(isLandscape), [isLandscape])
+  const { toggleBottomTabs, toggleIsLandscape } = useContext(TabNavigatorContext)
+
+  useEffect(() => toggleBottomTabs(!isFullScreen), [isFullScreen])
+  useEffect(() => toggleIsLandscape(isLandscape), [isLandscape])
 
   const onShare = async () => {
     try {
@@ -475,7 +455,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     const backAction = () => {
-      route.toggleBottomTabs(true)
+      toggleBottomTabs(true)
       return false
     }
 

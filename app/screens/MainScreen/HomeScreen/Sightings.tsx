@@ -24,7 +24,7 @@ export interface SightingsProps {
   isNotifyAll?: boolean
   timezone?: string
   onClose?: PressableProps["onPress"]
-  onToggle?: (values: ISSSighting) => void
+  onToggle?: (date: string) => void
   onToggleAll?: (value: boolean) => void
   lastSightingOrbitPointAt?: string
   timeOfDay: string
@@ -34,6 +34,12 @@ export interface SightingsProps {
 }
 
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
+
+const stageIcons: { icon: IconTypes; color: string }[] = [
+  { icon: "moon", color: colors.palette.neutral450 },
+  { icon: "sunset", color: colors.palette.nasaOrange },
+  { icon: "sun", color: colors.palette.yellow }
+]
 
 export function Sightings({
   onClose,
@@ -149,16 +155,8 @@ export function Sightings({
   }
 
   const setStageIcon = (stage): { icon: IconTypes; color: string } => {
-    switch (stage) {
-      case 0:
-        return { icon: "moon", color: colors.palette.neutral450 }
-      case 1:
-        return { icon: "sunset", color: colors.palette.nasaOrange }
-      case 2:
-        return { icon: "sun", color: colors.palette.yellow }
-      default:
-        return { icon: "sunset", color: colors.palette.nasaOrange }
-    }
+    if (stage >= 0 && stage <= 2) return stageIcons[stage]
+    return stageIcons[1]
   }
 
   const getCoach = async () => {
@@ -258,6 +256,7 @@ export function Sightings({
               sightings.map((sighting: ISSSighting) => (
                 <ListItem
                   key={sighting.date}
+                  value={sighting.date}
                   icon="clock"
                   secondIcon={setStageIcon(sighting.dayStage)}
                   title={formatedDate(sighting.date)}
@@ -271,7 +270,7 @@ export function Sightings({
                     `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,
                   )}`}
                   withSwitch
-                  onToggle={() => onToggle(sighting)}
+                  onToggle={onToggle}
                 />
               ))
             )}

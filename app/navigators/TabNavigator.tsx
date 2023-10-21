@@ -2,30 +2,28 @@
 /* eslint-disable react-native/no-inline-styles */
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps, useRoute } from "@react-navigation/native"
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
 import {
   ISSNowScreen,
   HomeScreen,
-  ISSNowScreenRouteProps,
-  ISSViewScreenRouteProps,
   HomeScreenRouteProps,
   ISSViewScreen,
   Resources,
   SettingsScreen,
 } from "../screens"
-import { ResourcesScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/ResourcesScreen"
 import { colors } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 import { StyleFn, useStyles } from "../utils/useStyles"
+import { TabNavigatorContext } from "./navigationUtilities"
 
 export type TabParamList = {
   Home: HomeScreenRouteProps
-  ISSView: ISSViewScreenRouteProps
-  ISSNow: ISSNowScreenRouteProps
-  Resources: ResourcesScreenRouteProps
+  ISSView: undefined
+  ISSNow: undefined
+  Resources: undefined
   Settings: undefined
 }
 
@@ -51,109 +49,105 @@ export function TabNavigator() {
   const tabBar = { ...(isLandscape ? $tabBarLandscape : $tabBarPortrait) }
   if (!isLandscape) tabBar.height = Number(tabBar.height) + bottom
 
+  const context = useMemo(() => ({
+    toggleBottomTabs: setIsTabsVisible,
+    toggleIsLandscape: setIsLandscape,
+  }), [setIsLandscape, setIsTabsVisible])
+
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: colors.palette.neutral100,
-        tabBarStyle: [
-          $tabBar,
-          tabBar,
-          {
-            display: isTabsVisible ? "flex" : "none",
-          },
-        ],
-        tabBarItemStyle: $tabBarItem,
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        initialParams={params}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text
-              tx="tabNavigator.homeTab"
-              style={[$tab, { color: focused ? color : "transparent" }]}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => <Icon icon="home" color={color} size={size} />,
-          unmountOnBlur: true,
+    <TabNavigatorContext.Provider value={context}>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: colors.palette.neutral100,
+          tabBarStyle: [
+            $tabBar,
+            tabBar,
+            {
+              display: isTabsVisible ? "flex" : "none",
+            },
+          ],
+          tabBarItemStyle: $tabBarItem,
         }}
-      />
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          initialParams={params}
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text
+                tx="tabNavigator.homeTab"
+                style={[$tab, { color: focused ? color : "transparent" }]}
+              />
+            ),
+            tabBarIcon: ({ color, size }) => <Icon icon="home" color={color} size={size} />,
+            unmountOnBlur: true,
+          }}
+        />
 
-      <Tab.Screen
-        name="ISSView"
-        component={ISSViewScreen}
-        initialParams={{
-          toggleBottomTabs: setIsTabsVisible,
-          toggleIsLandscape: setIsLandscape,
-        }}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text
-              tx="tabNavigator.issViewTab"
-              style={[$tab, { color: focused ? color : "transparent" }]}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => <Icon icon="globe" color={color} size={size} />,
-          unmountOnBlur: true,
-        }}
-      />
+        <Tab.Screen
+          name="ISSView"
+          component={ISSViewScreen}
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text
+                tx="tabNavigator.issViewTab"
+                style={[$tab, { color: focused ? color : "transparent" }]}
+              />
+            ),
+            tabBarIcon: ({ color, size }) => <Icon icon="globe" color={color} size={size} />,
+            unmountOnBlur: true,
+          }}
+        />
 
-      <Tab.Screen
-        name="ISSNow"
-        component={ISSNowScreen}
-        initialParams={{
-          toggleBottomTabs: setIsTabsVisible,
-          toggleIsLandscape: setIsLandscape,
-        }}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text
-              tx="tabNavigator.issNowTab"
-              style={[$tab, { color: focused ? color : "transparent" }]}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => <Icon icon="tv" color={color} size={size} />,
-          unmountOnBlur: true,
-        }}
-      />
+        <Tab.Screen
+          name="ISSNow"
+          component={ISSNowScreen}
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text
+                tx="tabNavigator.issNowTab"
+                style={[$tab, { color: focused ? color : "transparent" }]}
+              />
+            ),
+            tabBarIcon: ({ color, size }) => <Icon icon="tv" color={color} size={size} />,
+            unmountOnBlur: true,
+          }}
+        />
 
-      <Tab.Screen
-        name="Resources"
-        component={Resources}
-        initialParams={{
-          toggleBottomTabs: setIsTabsVisible,
-        }}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text
-              tx="tabNavigator.resourcesTab"
-              style={[$tab, { color: focused ? color : "transparent" }]}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => <Icon icon="book" color={color} size={size} />,
-          unmountOnBlur: true,
-        }}
-      />
+        <Tab.Screen
+          name="Resources"
+          component={Resources}
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text
+                tx="tabNavigator.resourcesTab"
+                style={[$tab, { color: focused ? color : "transparent" }]}
+              />
+            ),
+            tabBarIcon: ({ color, size }) => <Icon icon="book" color={color} size={size} />,
+            unmountOnBlur: true,
+          }}
+        />
 
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          tabBarLabel: ({ focused, color }) => (
-            <Text
-              tx="tabNavigator.settingsTab"
-              style={[$tab, { color: focused ? color : "transparent" }]}
-            />
-          ),
-          tabBarIcon: ({ color, size }) => <Icon icon="settings" color={color} size={size} />,
-          unmountOnBlur: true,
-        }}
-      />
-    </Tab.Navigator>
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text
+                tx="tabNavigator.settingsTab"
+                style={[$tab, { color: focused ? color : "transparent" }]}
+              />
+            ),
+            tabBarIcon: ({ color, size }) => <Icon icon="settings" color={color} size={size} />,
+            unmountOnBlur: true,
+          }}
+        />
+      </Tab.Navigator>
+    </TabNavigatorContext.Provider>
   )
 }
 

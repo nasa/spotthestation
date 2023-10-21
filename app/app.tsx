@@ -27,6 +27,7 @@ import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
 import i18n from "i18n-js"
 import { AppState, Platform } from "react-native"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -178,11 +179,13 @@ function App(props: AppProps) {
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <ErrorBoundary catchErrors={Config.catchErrors}>
-          <AppNavigator
-            linking={linking}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <AppNavigator
+              linking={linking}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </GestureHandlerRootView>
         </ErrorBoundary>
       </SafeAreaProvider>
     </RootStoreProvider>

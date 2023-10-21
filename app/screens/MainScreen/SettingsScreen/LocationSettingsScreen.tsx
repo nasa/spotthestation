@@ -15,7 +15,6 @@ import { getCurrentLocation } from "../../../utils/geolocation"
 import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
-import { ISSSighting } from "../../../services/api/api.types"
 import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
 import { SettingsItem } from "../components/SettingsItem"
@@ -90,6 +89,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
   const handleToggle = useCallback(
     (location: LocationType, type: string) => {
+      const { title } = location
       const isNotifyAll = location.sightings.every((item) => item.notify)
       if (type === "saved") {
         setSavedLocations(
@@ -103,7 +103,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           ),
         )
 
-        if (selectedLocation && selectedLocation.title === location.title) {
+        if (selectedLocation && selectedLocation.title === title) {
           setSelectedLocation(
             {
               ...selectedLocation,
@@ -128,11 +128,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   )
 
   const handleSetSightingNotification = useCallback(
-    (value: ISSSighting) => {
+    (value: string) => {
       const updated = {
         ...current,
         sightings: current.sightings.map((item) => {
-          if (item.date === value.date) {
+          if (item.date === value) {
             return { ...item, notify: !item.notify }
           }
           return item

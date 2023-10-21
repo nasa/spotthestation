@@ -3,9 +3,9 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
@@ -27,6 +27,7 @@ import { useStores } from "../../../models"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { Details } from "../SkyViewScreen/Details"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
+import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
 const items = [
   {
@@ -65,10 +66,6 @@ const items = [
 
 const suggestions = ["NASA Upcoming Missons", "Interviews of the Week", "ARTEMIS II"]
 
-export interface ResourcesScreenRouteProps {
-  toggleBottomTabs: (value: boolean) => void
-}
-
 export const Resources = observer(function HomeScreen() {
   const {
     $container,
@@ -91,7 +88,6 @@ export const Resources = observer(function HomeScreen() {
   } = useStyles(styles)
 
   const navigation = useNavigation()
-  const route: ResourcesScreenRouteProps = useRoute().params as ResourcesScreenRouteProps
   const { currentLocation, selectedLocation, issData, getISSData } = useStores()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const [isSearch, setIsSearch] = useState(false)
@@ -168,6 +164,8 @@ export const Resources = observer(function HomeScreen() {
     if (!location) return
     getData().catch((e) => console.log(e))
   }, [location])
+
+  const { toggleBottomTabs } = useContext(TabNavigatorContext)
 
   const renderFooter = useCallback(() => {
     if (isLoading) {
@@ -271,12 +269,14 @@ export const Resources = observer(function HomeScreen() {
     }
   }, [searchQuery, news])
 
+  useEffect(() => {
+    toggleBottomTabs(!isSearch)
+  }, [isSearch])
+
   const renderBody = useCallback(() => {
     if (isSearch) {
-      route.toggleBottomTabs(false)
       return renderSearch()
     } else {
-      route.toggleBottomTabs(true)
       return (
         <FlatList
           data={news}

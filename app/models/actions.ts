@@ -231,7 +231,7 @@ const RootStoreActions = (self) => ({
   }),
 
   setSavedLocations: (values: LocationType[]) => {
-    self.savedLocations = JSON.parse(JSON.stringify(values))
+    self.savedLocations = values.map((location) => Location.create(JSON.parse(JSON.stringify(location))))
   },
 
   setInitLoading: (value: boolean) => {

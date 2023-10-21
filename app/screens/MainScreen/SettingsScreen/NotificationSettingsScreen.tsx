@@ -17,7 +17,6 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { LocationType } from "../../OnboardingScreen/SignupLocation"
-import { ISSSighting } from "../../../services/api/api.types"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
@@ -83,7 +82,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   })
 
   const [isSightings, setIsSightings] = useState(false)
-  const [current, setCurrent] = useState<LocationType>(null)
+  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
     regionFormat: "US",
@@ -151,7 +150,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     storage.save("upcoming", !isNotifyAll)
 
     setNotifications()
-  }, [currentLocation, savedLocations, isNotifyAll])
+  }, [currentLocation, selectedLocation, savedLocations, isNotifyAll])
 
   const handleChange = useCallback(
     async (value, field: string) => {
@@ -166,18 +165,17 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   )
 
   const handleSetSightingNotification = useCallback(
-    (value: ISSSighting) => {
+    (value: string) => {
       const updated = {
         ...current,
         sightings: current.sightings.map((item) => {
-          if (item.date === value.date) {
+          if (item.date === value) {
             return { ...item, notify: !item.notify }
           }
           return item
         }),
       }
       setISSSightings(updated)
-      setCurrent(updated)
     },
     [current],
   )
@@ -189,7 +187,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
         sightings: current.sightings.map((item) => ({ ...item, notify })),
       }
       setISSSightings(updated)
-      setCurrent(updated)
     },
     [current],
   )
@@ -208,18 +205,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
 
     getTimeZone(current).catch((e) => console.log(e))
   }, [current])
-
-  const getCurrentLocation = useCallback(() => {
-    if (selectedLocation) {
-      setCurrent(selectedLocation)
-    } else {
-      setCurrent(currentLocation)
-    }
-  }, [selectedLocation, currentLocation])
-
-  useEffect(() => {
-    getCurrentLocation()
-  }, [getCurrentLocation])
 
   const handleChangeTimeOfDay = useCallback(
     (value: string) => {

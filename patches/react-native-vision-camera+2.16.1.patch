@@ -63,3 +63,42 @@ index e647b8e..37f996b 100644
 -    }
    }
  }
+diff --git a/node_modules/react-native-vision-camera/lib/commonjs/FrameProcessorContext.js b/node_modules/react-native-vision-camera/lib/commonjs/FrameProcessorContext.js
+index 1e3c29a..ad6865a 100644
+--- a/node_modules/react-native-vision-camera/lib/commonjs/FrameProcessorContext.js
++++ b/node_modules/react-native-vision-camera/lib/commonjs/FrameProcessorContext.js
+@@ -11,7 +11,7 @@ let createWorklet = () => {
+ try {
+   const reanimated = require('react-native-reanimated');
+   if (reanimated.createWorkletRuntime == null) {
+-    console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.");
++    // console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.");
+   }
+   workletRuntime = reanimated.createWorkletRuntime('VisionCamera');
+   createWorklet = reanimated.makeShareableCloneRecursive;
+diff --git a/node_modules/react-native-vision-camera/lib/module/FrameProcessorContext.js b/node_modules/react-native-vision-camera/lib/module/FrameProcessorContext.js
+index 923724c..7ba234f 100644
+--- a/node_modules/react-native-vision-camera/lib/module/FrameProcessorContext.js
++++ b/node_modules/react-native-vision-camera/lib/module/FrameProcessorContext.js
+@@ -5,7 +5,7 @@ let createWorklet = () => {
+ try {
+   const reanimated = require('react-native-reanimated');
+   if (reanimated.createWorkletRuntime == null) {
+-    console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.");
++    // console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.");
+   }
+   workletRuntime = reanimated.createWorkletRuntime('VisionCamera');
+   createWorklet = reanimated.makeShareableCloneRecursive;
+diff --git a/node_modules/react-native-vision-camera/src/FrameProcessorContext.ts b/node_modules/react-native-vision-camera/src/FrameProcessorContext.ts
+index bc83659..17861a6 100644
+--- a/node_modules/react-native-vision-camera/src/FrameProcessorContext.ts
++++ b/node_modules/react-native-vision-camera/src/FrameProcessorContext.ts
+@@ -6,7 +6,7 @@ let createWorklet = () => {
+ try {
+   const reanimated = require('react-native-reanimated')
+   if (reanimated.createWorkletRuntime == null) {
+-    console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.")
++    // console.warn("Frame Processors are disabled because you're using an incompatible version of Reanimated.")
+   }
+   workletRuntime = reanimated.createWorkletRuntime('VisionCamera')
+   createWorklet = reanimated.makeShareableCloneRecursive

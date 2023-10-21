@@ -98,7 +98,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
 
   return (
     <Screen
-      preset="scroll"
+      preset={step === 2 ? "fixed" : "scroll"}
       contentContainerStyle={$container}
       style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
       statusBarStyle="light"

@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
-import { ISSSighting, OrbitPoint } from "../../../services/api"
+import { OrbitPoint } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -30,7 +30,7 @@ import MyModal from "./MyModal"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { translate } from "../../../i18n"
 import i18n from "i18n-js"
-import { navigationRef } from "../../../navigators"
+import { navigationRef } from "../../../navigators/navigationUtilities"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -80,19 +80,15 @@ export const HomeScreen = observer(function HomeScreen() {
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [address, setAddress] = useState("")
-  const [location, setLocation] = useState<[number, number]>(null)
   const [stage, setStage] = useState(1)
-  const [current, setCurrent] = useState<LocationType>(null)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
     regionFormat: "US",
   })
 
-  useEffect(() => {
-    setLocation(calcLocation(selectedLocation, currentLocation))
-    setCurrent(selectedLocation || currentLocation)
-  }, [selectedLocation, currentLocation])
+  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
+  const location = useMemo(() => calcLocation(selectedLocation, currentLocation), [selectedLocation, currentLocation])
 
   useEffect(() => {
     setAddress(calcAddress(selectedLocation, currentLocation))
@@ -135,7 +131,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const currentSighting = useMemo(
     () =>
-      eventsList[currentSightingIdx] || {
+      (eventsList.length > currentSightingIdx && eventsList[currentSightingIdx]) ? eventsList[currentSightingIdx] : {
         date: null,
         visible: 0,
         maxHeight: 0,
@@ -299,17 +295,17 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 
   const handleSetSightingNotification = useCallback(
-    (value: ISSSighting) => {
+    (value: string) => {
       const updated = {
         ...current,
         sightings: current.sightings.map((item) => {
-          if (item.date === value.date) {
+          if (item.date === value) {
             return { ...item, notify: !item.notify }
           }
           return item
         }),
       }
-      setCurrent(setISSSightings(updated))
+      setISSSightings(updated)
     },
     [current],
   )
@@ -320,7 +316,7 @@ export const HomeScreen = observer(function HomeScreen() {
         ...current,
         sightings: current.sightings.map((item) => ({ ...item, notify })),
       }
-      setCurrent(setISSSightings(updated))
+      setISSSightings(updated)
     },
     [current],
   )

@@ -12,8 +12,6 @@ jest.mock("@react-navigation/native", () => ({
     params: {
       id: 1,
       title: "Mock Title",
-      toggleBottomTabs: jest.fn(),
-      toggleIsLandscape: jest.fn(),
     },
   }),
 }))

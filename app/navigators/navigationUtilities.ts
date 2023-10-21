@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, createContext } from "react"
 import { BackHandler, Platform } from "react-native"
 import {
   PartialState,
@@ -11,6 +11,8 @@ import analytics from "@react-native-firebase/analytics"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
+
+export const TabNavigatorContext = createContext(null)
 
 /* eslint-disable */
 export const RootNavigation = {

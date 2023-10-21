@@ -383,6 +383,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
             isActive={true}
             format={activeFormat}
             photo={true}
+            frameProcessor={undefined}
           />
 
           {stillImage && (

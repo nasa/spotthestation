@@ -3,7 +3,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { Platform, View, ViewStyle } from "react-native"
+import { View, ViewStyle } from "react-native"
 import MapboxGL from "@rnmapbox/maps"
 import GeoJSON from "geojson"
 import Config from "../../../config"
@@ -81,11 +81,9 @@ export function MapBox({
   }, [curve])
 
   useEffect(() => {
-    if (Platform.OS === "android") MapboxGL.setWellKnownTileServer("Mapbox")
     MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN)
       .then(() => {
         MapboxGL.setTelemetryEnabled(false)
-        if (Platform.OS === "android") MapboxGL.setConnected(true)
         setLoading(false)
       })
       .catch((e) => console.log(e))
@@ -119,11 +117,7 @@ export function MapBox({
       onRegionIsChanging={handleCameraChange}
       style={style}
       logoEnabled={false}
-      styleURL={
-        Platform.OS === "android"
-          ? "mapbox://styles/mapbox/satellite-streets-v12"
-          : "mapbox://styles/mapbox/satellite-streets-v11"
-      }
+      styleURL="mapbox://styles/mapbox/satellite-streets-v11"
       attributionEnabled={false}
       zoomEnabled={zoomEnabled}
       scaleBarEnabled={false}
@@ -194,10 +188,11 @@ export function MapBox({
           id="myShapeSourceMarker"
           shape={{ type: "Point", coordinates: [...issCoords2D].reverse() }}
         >
+          <MapboxGL.Images images={{ marker: positionMarker }} />
           <MapboxGL.SymbolLayer
             id="myShapeSourceMarker"
             style={{
-              iconImage: positionMarker,
+              iconImage: "marker",
               iconSize: 0.5,
             }}
           />
@@ -210,10 +205,11 @@ export function MapBox({
             id="myShapeSourceMarkerPosition"
             shape={{ type: "Point", coordinates: [marker.longitude, marker.latitude] }}
           >
+            <MapboxGL.Images images={{ pin: pinMarker }} />
             <MapboxGL.SymbolLayer
               id="myShapeSourceMarkerPosition"
               style={{
-                iconImage: pinMarker,
+                iconImage: "pin",
                 iconSize: 0.25,
                 iconAnchor: "bottom",
               }}

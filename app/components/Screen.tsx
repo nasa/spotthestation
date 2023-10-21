@@ -1,6 +1,8 @@
 import { StyleFn, useStyles } from "../utils/useStyles"
 import { useScrollToTop } from "@react-navigation/native"
 import { StatusBar, StatusBarProps } from "expo-status-bar"
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+
 import React, { useRef, useState } from "react"
 import {
   Keyboard,
@@ -11,7 +13,6 @@ import {
   ScrollView,
   ScrollViewProps,
   StyleProp,
-  TouchableWithoutFeedback,
   View,
   ViewStyle,
 } from "react-native"
@@ -195,6 +196,9 @@ function ScreenWithScrolling(props: ScreenProps) {
   )
 }
 
+const tap = Gesture.Tap()
+tap.onEnd(Keyboard.dismiss)
+
 export function Screen(props: ScreenProps) {
   const { $containerStyle, $keyboardAvoidingViewStyle } = useStyles(styles)
 
@@ -211,7 +215,7 @@ export function Screen(props: ScreenProps) {
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <GestureDetector gesture={tap}>
       <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
         <OrientationLocker orientation={isPortrait ? PORTRAIT : UNLOCK} />
         <StatusBar style={statusBarStyle} {...StatusBarProps} />
@@ -229,7 +233,7 @@ export function Screen(props: ScreenProps) {
           )}
         </KeyboardAvoidingView>
       </View>
-    </TouchableWithoutFeedback>
+    </GestureDetector>
   )
 }
 

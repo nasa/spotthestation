@@ -94,22 +94,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
-    setNewSavedLocation(location)
-      .then(() => {
-        Snackbar.show({
-          text: translate("snackBar.locationSaved"),
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: translate("snackBar.ok"),
-            textColor: "green",
-            onPress: () => {
-              Snackbar.dismiss()
-            },
-          },
-        })
-        handleNavigate()
-      })
-      .catch((error) => {
+    setNewSavedLocation(location).catch((error) => {
         Snackbar.show({
           text: error,
           duration: Snackbar.LENGTH_LONG,
@@ -122,6 +107,19 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           },
         })
       })
+
+    Snackbar.show({
+      text: translate("snackBar.locationSaved"),
+      duration: Snackbar.LENGTH_LONG,
+      action: {
+        text: translate("snackBar.ok"),
+        textColor: "green",
+        onPress: () => {
+          Snackbar.dismiss()
+        },
+      },
+    })
+    handleNavigate()
   }, [location])
 
   const headerStyle = { ...$headerStyleOverride }

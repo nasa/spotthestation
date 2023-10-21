@@ -46,15 +46,17 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
           <Tag key={tag} title={tag} />
         ))}
       </View>
-      <Image
-        accessible
-        accessibilityLabel="image"
-        accessibilityHint="image"
-        accessibilityRole="image"
-        source={{ uri: image }}
-        style={$imageContainer as ImageStyle}
-        resizeMode="cover"
-      />
+      { image && (
+        <Image
+          accessible
+          accessibilityLabel="image"
+          accessibilityHint="image"
+          accessibilityRole="image"
+          source={{ uri: image }}
+          style={$imageContainer as ImageStyle}
+          resizeMode="cover"
+        />
+      )}
       <Text
         accessible
         accessibilityLabel="title"
