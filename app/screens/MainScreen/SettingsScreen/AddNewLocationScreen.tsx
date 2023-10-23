@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable react-native/no-inline-styles */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useRef, useState } from "react"
@@ -8,7 +5,6 @@ import { ViewStyle, TextStyle, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
 import {
@@ -20,6 +16,7 @@ import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
+import { LocationType } from "../../../services/api"
 
 export interface AddNewLocationScreenParams {
   defaultLocation?: LocationType
@@ -51,15 +48,15 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const navigation = useNavigation()
   const { savedLocations, setSavedLocations, setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
-  const {
-    params: { defaultLocation },
-  } = useRoute<any>()
+  const { defaultLocation } = useRoute().params as AddNewLocationScreenParams
 
   const addressRef = useRef<GooglePlacesAutocompleteRef>()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [titleValue, setTitleValue] = useState(defaultLocation?.title || "")
-  const [location, setLocation] = useState<LocationType>({ ...defaultLocation })
+  const [location, setLocation] = useState<LocationType>(
+    defaultLocation ? null : { ...defaultLocation },
+  )
 
   const handleClear = () => {
     addressRef.current?.clear()
@@ -73,7 +70,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const handleSave = useCallback(() => {
     location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
     if (!location.title || !location.googlePlaceId) return
-    let res = [...savedLocations]
+    let res: LocationType[] = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
         text: translate("snackBar.locationExist"),
@@ -91,7 +88,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
     if (defaultLocation) {
       res = res.filter((item) => item.title !== defaultLocation.title)
-      res.push(location as any)
+      res.push(location)
       setSavedLocations(res)
     } else {
       setNewSavedLocation(location).catch((error) => {

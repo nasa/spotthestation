@@ -1,6 +1,4 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable camelcase */
 import React, { useCallback, useEffect, useState } from "react"
 import {
   ViewStyle,
@@ -18,7 +16,6 @@ import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 import { SettingsItem } from "../components/SettingsItem"
@@ -27,6 +24,7 @@ import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
 import * as storage from "../../../utils/storage"
 import { RefreshButton } from "./RefreshButton"
+import { LocationType } from "../../../services/api"
 
 export interface SelectLocationProps {
   /**
@@ -58,6 +56,8 @@ export function SelectLocation({
     $active,
     $keyboardAvoidingViewStyle,
     $modal,
+    $settingsContainer,
+    $refreshButton,
   } = useStyles(styles)
 
   const {
@@ -229,7 +229,7 @@ export function SelectLocation({
             )
           }
         />
-        <View style={{ paddingHorizontal: 16, paddingTop: 10 }}>
+        <View style={$settingsContainer}>
           <SettingsItem
             icon="settings"
             title="settings.locationSettings"
@@ -257,7 +257,7 @@ export function SelectLocation({
                   button={
                     <RefreshButton
                       inProgress={isCurrentLocationUpdating}
-                      containerStyle={{ marginLeft: 5 }}
+                      containerStyle={$refreshButton}
                       onPress={updateCurrentLocation}
                     />
                   }
@@ -430,6 +430,10 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     margin: 0,
   }
 
+  const $settingsContainer: ViewStyle = { paddingHorizontal: 16, paddingTop: 10 }
+
+  const $refreshButton = { marginLeft: 5 }
+
   return {
     $modalBodyContainer,
     $scrollContainer,
@@ -440,5 +444,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $active,
     $keyboardAvoidingViewStyle,
     $modal,
+    $settingsContainer,
+    $refreshButton,
   }
 }

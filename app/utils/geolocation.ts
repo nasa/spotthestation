@@ -1,11 +1,8 @@
-/* eslint-disable n/no-callback-literal */
 import Location, { GeoPosition, PositionError } from "react-native-geolocation-service"
 import { Point } from "react-native-google-places-autocomplete"
 import Config from "../config"
-import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
-import { api } from "../services/api"
+import { api, LocationType } from "../services/api"
 import i18n from "i18n-js"
-// eslint-disable-next-line react-native/split-platform-components
 import { Platform, PermissionsAndroid } from "react-native"
 
 export interface TimeZoneData {

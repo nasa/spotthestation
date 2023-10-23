@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { RootStoreModel } from "../RootStore"
-import { LocationType } from "../../screens/OnboardingScreen/SignupLocation"
 import notifications from "../../utils/notifications"
+import { LocationType } from "../../services/api"
 
 jest.mock("../../utils/notifications", () => ({
-  setNotifications: jest.fn(),
+  setNotifications: jest.fn().mockResolvedValue(null),
 }))
 
 test("getISSSightings should update the store incorrectly", async () => {
@@ -325,14 +322,7 @@ test("setIssDataLoaded should update the store correctly", async () => {
     sightingsLoaded: false,
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
-    sightings: [],
-    subtitle: "sub",
-  } as LocationType
-  await rootStore.getISSData(mockValue)
+  await rootStore.getISSData({ lat: 0, lon: 0 })
 
   expect(rootStore.issData).toEqual([])
 })

@@ -1,6 +1,3 @@
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
 import { NotificationSettingsScreen } from "../NotificationSettingsScreen"
 import { act, render } from "@testing-library/react-native"

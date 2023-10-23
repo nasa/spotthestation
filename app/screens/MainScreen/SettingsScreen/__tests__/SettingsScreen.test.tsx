@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React from "react"
+import React, { Component } from "react"
 import { useNavigation } from "@react-navigation/native"
 import { SettingsScreen } from "../SettingsScreen"
 import { fireEvent, render } from "@testing-library/react-native"
+import { jest } from "@jest/globals"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
@@ -13,7 +10,7 @@ jest.mock("@react-navigation/native", () => ({
 }))
 
 jest.mock("mobx-react-lite", () => ({
-  observer: (component) => component,
+  observer: (component: Component) => component,
 }))
 
 jest.mock("react-native-safe-area-context", () => ({
@@ -26,7 +23,7 @@ describe("SettingsScreen", () => {
   }
 
   beforeEach(() => {
-    ;(useNavigation as any).mockReturnValue(mockNavigation)
+    jest.mocked(useNavigation).mockReturnValue(mockNavigation)
   })
 
   afterEach(() => {
@@ -47,7 +44,7 @@ describe("SettingsScreen", () => {
   test("navigates to LocationSettings screen when location settings item is pressed", () => {
     const { getByText } = render(<SettingsScreen />)
     const locationSettingsItem = getByText("settings.locationSettings undefined")
-    ;(fireEvent as any).press(locationSettingsItem)
+    fireEvent.press(locationSettingsItem)
     expect(mockNavigation.navigate).toHaveBeenCalledWith("SettingsScreens", {
       screen: "LocationSettings",
     })

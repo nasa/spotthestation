@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useIsMounted } from "../useIsMounted"
 import { renderHook } from "@testing-library/react-hooks"
 

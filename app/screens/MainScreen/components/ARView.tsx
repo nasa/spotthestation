@@ -7,11 +7,10 @@ import { DirectionCircle } from "./DirectionCircle"
 import { RecordingIndicator } from "./RecordingIndicator"
 import { ISSSceneAR } from "./ISSSceneAR"
 import { azAltToCartesian, cartesianToAzAlt, normalizeHeading } from "../../../utils/geometry"
-import { OrbitPoint } from "../../../services/api"
+import { LocationType, OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { Text } from "../../../components"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 
 interface ARViewProps {
   isFullScreen: boolean

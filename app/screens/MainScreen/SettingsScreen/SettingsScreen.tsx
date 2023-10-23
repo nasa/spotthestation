@@ -16,7 +16,7 @@ import * as storage from "../../../utils/storage"
 
 const languages = uniqBy(
   Object.keys(i18n.translations).map((key) => ({
-    label: (i18n.translations[key] as any).name as string,
+    label: (i18n.translations[key] as { name: string }).name,
     value: key,
   })),
   "label",

@@ -17,6 +17,7 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["index.js", "App.js", "app", "test"],
-  "extends": "expo/tsconfig.base"
+  "include": ["index.js", "App.js", "app", "test", "typings"],
+  "extends": "expo/tsconfig.base",
+  "typeRoots": ["./node_modules/@types", "./typings"]
 }

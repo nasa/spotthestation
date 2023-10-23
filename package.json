@@ -139,6 +139,7 @@
     "@types/lodash.throttle": "^4.1.7",
     "@types/react": "18.2.14",
     "@types/react-native": "0.70.10",
+    "@types/react-test-renderer": "^18.0.5",
     "@types/three": "^0.146.0",
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
@@ -242,6 +243,7 @@
       "@typescript-eslint/no-unsafe-assignment": 0,
       "@typescript-eslint/no-unsafe-member-access": 0,
       "@typescript-eslint/no-misused-promises": 0,
+      "@typescript-eslint/unbound-method": 0,
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -252,12 +254,14 @@
       "semi": "error",
       "comma-dangle": 0,
       "multiline-ternary": 0,
+      "n/no-callback-literal": 0,
       "no-undef": 0,
       "no-unused-vars": 0,
       "no-use-before-define": 0,
       "no-global-assign": 0,
       "quotes": 0,
       "react-native/no-raw-text": 0,
+      "react-native/split-platform-components": 0,
       "react/no-unescaped-entities": 0,
       "react/prop-types": 0,
       "space-before-function-paren": 0

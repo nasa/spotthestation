@@ -1,13 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { jest } from "@jest/globals"
 import { applySnapshot, onSnapshot } from "mobx-state-tree"
 import * as storage from "../../../utils/storage"
 import { setupRootStore } from "../setupRootStore"
+import { RootStoreModel } from "../../RootStore"
 
-jest.mock("mobx-state-tree", () => ({
-  applySnapshot: jest.fn(),
-  onSnapshot: jest.fn(),
-}))
+jest.mock("mobx-state-tree", () => {
+  const actual: object = jest.requireActual("mobx-state-tree")
+  return {
+    ...actual,
+    applySnapshot: jest.fn(),
+    onSnapshot: jest.fn(),
+  }
+})
 
 jest.mock("../../../utils/storage", () => ({
   load: jest.fn(),
@@ -20,10 +24,10 @@ describe("setupRootStore", () => {
   })
 
   it("should load and apply snapshot from storage", async () => {
-    const mockRootStore: any = {}
-    const mockRestoredState: any = { data: "snapshot" }
+    const mockRootStore = RootStoreModel.create()
+    const mockRestoredState = { data: "snapshot" }
 
-    ;(storage.load as any).mockResolvedValue(mockRestoredState)
+    jest.mocked(storage.load).mockResolvedValue(mockRestoredState)
 
     await setupRootStore(mockRootStore)
 
@@ -32,11 +36,13 @@ describe("setupRootStore", () => {
   })
 
   it("should handle error while loading snapshot from storage", async () => {
-    const mockRootStore: any = {}
+    const mockRootStore = RootStoreModel.create()
     const mockErrorMessage = "Failed to load snapshot"
     const mockError = new Error(mockErrorMessage)
 
-    ;(storage.load as any).mockRejectedValue(mockError)
+    ;(storage.load as unknown as jest.Mock<typeof storage.load>).mockRejectedValue(
+      mockError as never,
+    )
     console.tron = { error: jest.fn() } as any
 
     await setupRootStore(mockRootStore)
@@ -46,10 +52,11 @@ describe("setupRootStore", () => {
   })
 
   it("should track changes and save snapshot to storage", async () => {
-    const mockRootStore: any = {}
+    const mockRootStore = RootStoreModel.create()
     const mockSnapshot = { data: "snapshot" }
-
-    ;(onSnapshot as any).mockImplementation((_, callback) => {
+    /* prettier-ignore */
+    const onMockSnapshot = onSnapshot as typeof onSnapshot<typeof mockSnapshot>
+    jest.mocked(onMockSnapshot).mockImplementation((_, callback) => {
       callback(mockSnapshot)
       return jest.fn()
     })
@@ -66,14 +73,14 @@ describe("setupRootStore", () => {
   })
 
   it("should unsubscribe from tracking changes", async () => {
-    const mockRootStore: any = {}
+    const mockRootStore = RootStoreModel.create()
 
-    ;(onSnapshot as any).mockReturnValue(jest.fn())
+    jest.mocked(onSnapshot).mockReturnValue(jest.fn())
 
     const result = await setupRootStore(mockRootStore)
     result.unsubscribe()
 
     expect(result.unsubscribe).toEqual(expect.any(Function))
-    expect((onSnapshot as any).mock.calls[0][0]).toEqual(mockRootStore)
+    expect(jest.mocked(onSnapshot).mock.calls[0][0]).toEqual(mockRootStore)
   })
 })

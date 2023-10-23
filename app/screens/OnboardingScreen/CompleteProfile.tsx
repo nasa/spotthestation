@@ -6,7 +6,7 @@ import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
-import { LocationType, SignupLocation } from "./SignupLocation"
+import { SignupLocation } from "./SignupLocation"
 import { SignupNotificationSettings } from "./SignupNotificationSettings"
 import * as storage from "../../utils/storage"
 import Snackbar from "react-native-snackbar"
@@ -15,6 +15,7 @@ import { useStores } from "../../models"
 import analytics from "@react-native-firebase/analytics"
 import { translate } from "../../i18n"
 import { StyleFn, useStyles } from "../../utils/useStyles"
+import { LocationType } from "../../services/api"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const { $container, $contentContainer, $back, $step } = useStyles(styles)

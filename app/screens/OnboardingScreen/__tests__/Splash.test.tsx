@@ -1,9 +1,6 @@
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { act, render } from "@testing-library/react-native"
+import { fireEvent, render } from "@testing-library/react-native"
 import { Splash } from "../Splash"
 
 jest.mock("@react-navigation/native", () => ({
@@ -32,10 +29,7 @@ describe("Splash", () => {
       icon: "back",
     })
 
-    act(() => {
-      openSettingsButton.props.onPress()
-    })
-
+    fireEvent.press(openSettingsButton)
     expect(useNavigation().navigate).not.toHaveBeenCalled()
   })
 })

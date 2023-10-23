@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react"
 import { render } from "@testing-library/react-native"
 import { FlatMap } from "../../components/FlatMap"

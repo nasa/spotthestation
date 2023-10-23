@@ -1,12 +1,3 @@
-/* eslint-disable react-native/split-platform-components */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable n/no-callback-literal */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable react-native/no-inline-styles */
-import { useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import {
@@ -47,62 +38,73 @@ import {
   withTiming,
 } from "react-native-reanimated"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import { OrbitPoint } from "../../../services/api"
+import { LocationType, OrbitPoint } from "../../../services/api"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
-async function checkCameraPermissions(callback: (value: boolean) => void) {
+function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
-    const result = await check(PERMISSIONS.ANDROID.CAMERA)
-    if (result === RESULTS.GRANTED) {
-      callback(true)
-    } else if (result === RESULTS.DENIED) {
-      callback(false)
-      requestCameraPermissions(callback)
-    }
+    check(PERMISSIONS.ANDROID.CAMERA)
+      .then((result) => {
+        if (result === RESULTS.GRANTED) {
+          callback(true)
+        } else if (result === RESULTS.DENIED) {
+          callback(false)
+          requestCameraPermissions(callback)
+        }
+      })
+      .catch(() => callback(false))
   } else if (Platform.OS === "ios") {
     const permission = PERMISSIONS.IOS.CAMERA
-    const permissionStatus = await check(permission)
-    if (permissionStatus === RESULTS.GRANTED) {
-      callback(true)
-    } else {
-      callback(false)
-      requestCameraPermissions(callback)
-    }
+    check(permission)
+      .then((permissionStatus) => {
+        if (permissionStatus === RESULTS.GRANTED) {
+          callback(true)
+        } else {
+          callback(false)
+          requestCameraPermissions(callback)
+        }
+      })
+      .catch(() => callback(false))
   }
 }
 
-async function requestCameraPermissions(callback: (value: boolean) => void, afterClick?: boolean) {
+function requestCameraPermissions(callback: (value: boolean) => void, afterClick?: boolean) {
   if (Platform.OS === "android") {
-    const permissionResult = await request(PERMISSIONS.ANDROID.CAMERA)
-    if (permissionResult === RESULTS.GRANTED) {
-      callback(true)
-    } else {
-      callback(false)
-      if (afterClick) {
-        openSettings().catch(() =>
-          Snackbar.show({
-            text: translate("snackBar.openSettingsError"),
-            duration: Snackbar.LENGTH_LONG,
-          }),
-        )
-      }
-    }
+    request(PERMISSIONS.ANDROID.CAMERA)
+      .then((permissionResult) => {
+        if (permissionResult === RESULTS.GRANTED) {
+          callback(true)
+        } else {
+          callback(false)
+          if (afterClick) {
+            openSettings().catch(() =>
+              Snackbar.show({
+                text: translate("snackBar.openSettingsError"),
+                duration: Snackbar.LENGTH_LONG,
+              }),
+            )
+          }
+        }
+      })
+      .catch(() => callback(false))
   } else if (Platform.OS === "ios") {
-    const permissionResult = await request(PERMISSIONS.IOS.CAMERA)
-
-    if (permissionResult === RESULTS.GRANTED) {
-      callback(true)
-    } else if (permissionResult === RESULTS.BLOCKED) {
-      callback(false)
-      if (afterClick) {
-        openSettings().catch(() =>
-          Snackbar.show({
-            text: translate("snackBar.openSettingsError"),
-            duration: Snackbar.LENGTH_LONG,
-          }),
-        )
-      }
-    }
+    request(PERMISSIONS.IOS.CAMERA)
+      .then((permissionResult) => {
+        if (permissionResult === RESULTS.GRANTED) {
+          callback(true)
+        } else if (permissionResult === RESULTS.BLOCKED) {
+          callback(false)
+          if (afterClick) {
+            openSettings().catch(() =>
+              Snackbar.show({
+                text: translate("snackBar.openSettingsError"),
+                duration: Snackbar.LENGTH_LONG,
+              }),
+            )
+          }
+        }
+      })
+      .catch(() => callback(false))
   }
 }
 
@@ -135,7 +137,10 @@ async function requestMicrophonePermissions(): Promise<string> {
   return ""
 }
 
-function calcLocation(selectedLocation, currentLocation): [number, number] {
+function calcLocation(
+  selectedLocation: LocationType,
+  currentLocation: LocationType,
+): [number, number] {
   if (selectedLocation) return [selectedLocation.location.lat, selectedLocation.location.lng]
   if (currentLocation) return [currentLocation.location.lat, currentLocation.location.lng]
   return null
@@ -165,6 +170,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $stop,
     $ml24,
     $mr24,
+    $flex,
+    $row,
+    $permissionText,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
@@ -181,8 +189,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [mediaUrl, setMediaUrl] = useState("")
   const [mediaType, setMediaType] = useState("")
   const [still, setStill] = useState(false)
-  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
-  const location = useMemo(() => calcLocation(selectedLocation, currentLocation), [selectedLocation, currentLocation])
+  const current = useMemo(
+    () => selectedLocation || currentLocation,
+    [selectedLocation, currentLocation],
+  )
+  const location = useMemo(
+    () => calcLocation(selectedLocation, currentLocation),
+    [selectedLocation, currentLocation],
+  )
   const whiteness = useSharedValue(0)
 
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -290,8 +304,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       withTiming(0, { duration: 300 }),
     )
   }
-
-  const arContainerRef = useRef()
 
   const takeScreenshot = () => {
     flashCameraIcon()
@@ -429,10 +441,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         title: "Share file",
         failOnCancel: false,
         urls: [url],
+        type: undefined,
       }
 
-      if (url.split(".").pop() === "mp4")
-        shareOptions = { ...shareOptions, type: "video/mp4" } as any
+      if (url.split(".").pop() === "mp4") shareOptions = { ...shareOptions, type: "video/mp4" }
 
       const { success } = await Share.open(shareOptions)
       if (success) {
@@ -467,7 +479,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       if (nextAppState !== "active" && isRecording) {
-        stopRecording()
+        stopRecording().catch(console.error)
       }
     })
 
@@ -477,7 +489,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [isRecording])
 
   const issPath = useMemo(() => {
-    return issData.filter((point: OrbitPoint) => {
+    return (issData as OrbitPoint[]).filter((point: OrbitPoint) => {
       const diff = Math.abs(new Date().valueOf() - new Date(point.date).valueOf())
       return diff < 60 * 60 * 1000
     })
@@ -533,24 +545,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             }, true)
           }
         >
-          <Text
-            tx="issView.cameraPermissionText"
-            style={[
-              $time,
-              {
-                borderColor: colors.palette.buttonBlue,
-                borderRadius: 10,
-                borderWidth: 1,
-                padding: 5,
-                textDecorationLine: "underline",
-              },
-            ]}
-          />
+          <Text tx="issView.cameraPermissionText" style={[$time, $permissionText]} />
         </Pressable>
       ) : (
         <View style={[$body, bodyStyle]}>
           {issData?.length > 0 && (
-            <ViewShot ref={arContainerRef} style={{ flex: 1 }}>
+            <ViewShot style={$flex}>
               <ARView
                 still={still}
                 onStillReady={completeScreenshot}
@@ -565,7 +565,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             </ViewShot>
           )}
           <View style={[$bottomContainer, bottomContainerStyle]}>
-            <View style={[$buttonColumn, isLandscape && { flexDirection: "row" }]}>
+            <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
                 accessibilityLabel="path line"
@@ -601,7 +601,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               <Text tx="issView.timeHeader" style={$timeHeader} />
               <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
             </View>
-            <View style={[$buttonColumn, isLandscape && { flexDirection: "row" }]}>
+            <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
                 accessibilityLabel="share"
@@ -644,7 +644,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   accessibilityHint="record a video"
                   icon="video"
                   onPress={() => {
-                    checkMicrophonePermissions().then((value) => startRecording(value))
+                    checkMicrophonePermissions()
+                      .then((value) => startRecording(value))
+                      .catch(console.error)
                   }}
                   buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                 />
@@ -811,8 +813,18 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     textTransform: "uppercase",
   }
 
-  const $ml24 = { marginLeft: scale(24) }
-  const $mr24 = { marginRight: scale(24) }
+  const $ml24: ViewStyle = { marginLeft: scale(24) }
+  const $mr24: ViewStyle = { marginRight: scale(24) }
+
+  const $row: ViewStyle = { flexDirection: "row" }
+  const $flex: ViewStyle = { flex: 1 }
+  const $permissionText: TextStyle = {
+    borderColor: colors.palette.buttonBlue,
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 5,
+    textDecorationLine: "underline",
+  }
 
   return {
     $containerStyleOverride,
@@ -838,5 +850,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $stop,
     $ml24,
     $mr24,
+    $row,
+    $flex,
+    $permissionText,
   }
 }

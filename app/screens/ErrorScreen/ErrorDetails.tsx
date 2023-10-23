@@ -1,6 +1,4 @@
 import { StyleFn, useStyles } from "../../utils/useStyles"
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { ErrorInfo } from "react"
 import { ScrollView, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text } from "../../components"
@@ -12,7 +10,7 @@ export interface ErrorDetailsProps {
   onReset(): void
 }
 
-export function ErrorDetails(props: ErrorDetailsProps) {
+export function ErrorDetails({ onReset, error, errorInfo }: ErrorDetailsProps) {
   const {
     $contentContainer,
     $topSection,
@@ -37,20 +35,11 @@ export function ErrorDetails(props: ErrorDetailsProps) {
       </View>
 
       <ScrollView style={$errorSection} contentContainerStyle={$errorSectionContentContainer}>
-        <Text style={$errorContent} weight="bold" text={`${props.error}`.trim()} />
-        <Text
-          selectable
-          style={$errorBacktrace}
-          text={`${props.errorInfo.componentStack}`.trim()}
-        />
+        <Text style={$errorContent} weight="bold" text={`${String(error)}`.trim()} />
+        <Text selectable style={$errorBacktrace} text={`${errorInfo.componentStack}`.trim()} />
       </ScrollView>
 
-      <Button
-        preset="reversed"
-        style={$resetButton}
-        onPress={props.onReset}
-        tx="errorScreen.reset"
-      />
+      <Button preset="reversed" style={$resetButton} onPress={onReset} tx="errorScreen.reset" />
     </Screen>
   )
 }

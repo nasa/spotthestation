@@ -1,7 +1,7 @@
 import { StyleFn, useStyles } from "../utils/useStyles"
 import { useScrollToTop } from "@react-navigation/native"
 import { StatusBar, StatusBarProps } from "expo-status-bar"
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import { GestureDetector, Gesture } from "react-native-gesture-handler"
 
 import React, { useRef, useState } from "react"
 import {
@@ -59,6 +59,8 @@ interface BaseScreenProps {
   KeyboardAvoidingViewProps?: KeyboardAvoidingViewProps
 
   isPortrait?: boolean
+
+  dismissKeyboardOnPress?: boolean
 }
 
 interface FixedScreenProps extends BaseScreenProps {
@@ -196,8 +198,8 @@ function ScreenWithScrolling(props: ScreenProps) {
   )
 }
 
-const tap = Gesture.Tap()
-tap.onEnd(Keyboard.dismiss)
+const tap = Gesture.Tap().onEnd(Keyboard.dismiss)
+const disabledTap = Gesture.Tap().enabled(false)
 
 export function Screen(props: ScreenProps) {
   const { $containerStyle, $keyboardAvoidingViewStyle } = useStyles(styles)
@@ -210,12 +212,13 @@ export function Screen(props: ScreenProps) {
     StatusBarProps,
     statusBarStyle = "dark",
     isPortrait = true,
+    dismissKeyboardOnPress,
   } = props
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
 
   return (
-    <GestureDetector gesture={tap}>
+    <GestureDetector gesture={dismissKeyboardOnPress === false ? disabledTap : tap}>
       <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
         <OrientationLocker orientation={isPortrait ? PORTRAIT : UNLOCK} />
         <StatusBar style={statusBarStyle} {...StatusBarProps} />

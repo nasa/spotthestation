@@ -1,44 +1,34 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState, useEffect, useRef, createContext } from "react"
 import { BackHandler, Platform } from "react-native"
 import {
   PartialState,
   NavigationState,
-  NavigationAction,
   createNavigationContainerRef,
 } from "@react-navigation/native"
 import analytics from "@react-native-firebase/analytics"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
+import * as storage from "../utils/storage"
 
-export const TabNavigatorContext = createContext(null)
-
-/* eslint-disable */
-export const RootNavigation = {
-  navigate(_name: string, _params?: any) {},
-  goBack() {},
-  resetRoot(_state?: PartialState<NavigationState> | NavigationState) {},
-  getRootState(): NavigationState {
-    return {} as any
-  },
-  dispatch(_action: NavigationAction) {},
+type TabNavigatorContextType = {
+  toggleBottomTabs: (val: boolean) => void
+  toggleIsLandscape: (val: boolean) => void
 }
-/* eslint-enable */
+export const TabNavigatorContext = createContext<TabNavigatorContextType>(null)
 
 export const navigationRef = createNavigationContainerRef()
 
 /**
  * Gets the current screen from any navigation state.
  */
-export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
+export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>): string {
   const route = state.routes[state.index]
 
   // Found the active route -- return the name
   if (!route.state) return route.name
 
   // Recursive call to deal with nested routers
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return getActiveRouteName(route.state)
 }
 
@@ -66,11 +56,9 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
       }
 
       // grab the current route
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const routeName = getActiveRouteName(navigationRef.getRootState())
 
       // are we allowed to exit?
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       if (canExitRef.current(routeName)) {
         // exit and let the system know we've handled the event
         BackHandler.exitApp()
@@ -110,8 +98,8 @@ function navigationRestoredDefaultState(persistNavigation: PersistNavigationConf
 /**
  * Custom hook for persisting navigation state.
  */
-export function useNavigationPersistence(storage: any, persistenceKey: string) {
-  const [initialNavigationState, setInitialNavigationState] = useState()
+export function useNavigationPersistence(persistenceKey: string) {
+  const [initialNavigationState, setInitialNavigationState] = useState<NavigationState>()
   const isMounted = useIsMounted()
 
   const initNavState = navigationRestoredDefaultState(Config.persistNavigation)
@@ -119,9 +107,8 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
 
   const routeNameRef = useRef<string | undefined>()
 
-  const onNavigationStateChange = (state) => {
+  const onNavigationStateChange = (state: NavigationState) => {
     const previousRouteName = routeNameRef.current
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument
     const currentRouteName = getActiveRouteName(state)
 
     if (previousRouteName !== currentRouteName) {
@@ -139,19 +126,15 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
     }
 
     // Save the current route name for later comparision
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     routeNameRef.current = currentRouteName
 
     // Persist state to storage
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    storage.save(persistenceKey, state)
+    storage.save(persistenceKey, state).catch(console.error)
   }
 
   const restoreState = async () => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      const state = await storage.load(persistenceKey)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      const state = (await storage.load(persistenceKey)) as NavigationState
       if (state) setInitialNavigationState(state)
     } finally {
       if (isMounted()) setIsRestored(true)
@@ -159,8 +142,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (!isRestored) restoreState()
+    if (!isRestored) restoreState().catch(console.error)
   }, [isRestored])
 
   return { onNavigationStateChange, restoreState, isRestored, initialNavigationState }

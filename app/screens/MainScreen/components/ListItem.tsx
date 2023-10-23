@@ -1,5 +1,4 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-/* eslint-disable react-native/no-inline-styles */
 import React from "react"
 import {
   ViewStyle,
@@ -62,6 +61,9 @@ export const ListItem = React.memo(function ListItem({
     $tip,
     $spinner,
     $cta,
+    $buttons,
+    $mr0,
+    $withoutBottomBorder,
   } = useStyles(styles)
 
   return (
@@ -77,7 +79,7 @@ export const ListItem = React.memo(function ListItem({
         <Icon icon={icon} size={24} color={colors.palette.neutral450} />
         {secondIcon && <Icon icon={secondIcon.icon} size={24} color={secondIcon.color} />}
       </View>
-      <View style={[$bodyContainer, borderless && { borderBottomWidth: 0 }]}>
+      <View style={[$bodyContainer, borderless && $withoutBottomBorder]}>
         <View
           accessible
           accessibilityLabel="list item body"
@@ -103,14 +105,14 @@ export const ListItem = React.memo(function ListItem({
               accessibilityRole="text"
               style={$titleContainer}
             >
-              <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
+              <View style={$buttons}>
                 {onEdit && (
                   <Icon
                     icon="edit"
                     size={30}
                     color={colors.palette.yellow}
                     onPress={onEdit}
-                    containerStyle={{ marginRight: 10 }}
+                    containerStyle={$mr0}
                   />
                 )}
                 {onDelete && (
@@ -204,6 +206,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $cta: ViewStyle = { marginTop: scale(10) }
 
+  const $buttons: ViewStyle = { flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }
+
+  const $mr0 = { marginRight: 10 }
+
+  const $withoutBottomBorder = { borderBottomWidth: 0 }
+
   return {
     $container,
     $bodyContainer,
@@ -213,5 +221,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $tip,
     $spinner,
     $cta,
+    $buttons,
+    $mr0,
+    $withoutBottomBorder,
   }
 }

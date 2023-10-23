@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import notifications from "../../utils/notifications"
-import { LocationType } from "../../screens/OnboardingScreen/SignupLocation"
 import PushNotificationIOS from "@react-native-community/push-notification-ios"
 import MockDate from "mockdate"
+import { LocationType } from "../../services/api"
 
 describe("notifications", () => {
   beforeEach(() => {

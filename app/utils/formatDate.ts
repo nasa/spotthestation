@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Locale, format, parseISO } from "date-fns"
 import { formatInTimeZone } from "date-fns-tz"
 import I18n from "i18n-js"
@@ -19,23 +16,23 @@ import sv from "date-fns/locale/sv"
 import hi from "date-fns/locale/hi"
 import de from "date-fns/locale/de"
 import nb from "date-fns/locale/nb"
-import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
 import * as storage from "../utils/storage"
 import { getLocationTimeZone } from "./geolocation"
 import { Platform } from "react-native"
+import { LocationType } from "../services/api"
 
 if ((global as any).HermesInternal) {
   if (Platform.OS === "ios") {
     // Polyfills required to use Intl with Hermes engine
-    require("@formatjs/intl-getcanonicallocales/polyfill").default
-    require("@formatjs/intl-locale/polyfill").default
-    require("@formatjs/intl-pluralrules/polyfill").default
-    require("@formatjs/intl-pluralrules/locale-data/en").default
-    require("@formatjs/intl-numberformat/polyfill").default
-    require("@formatjs/intl-numberformat/locale-data/en").default
-    require("@formatjs/intl-datetimeformat/polyfill").default
-    require("@formatjs/intl-datetimeformat/locale-data/en").default
-    require("@formatjs/intl-datetimeformat/add-all-tz").default
+    require("@formatjs/intl-getcanonicallocales/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-locale/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-pluralrules/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-pluralrules/locale-data/en").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-numberformat/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-numberformat/locale-data/en").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/locale-data/en").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/add-all-tz").default // eslint-disable-line no-unused-expressions
   } else {
     require("@formatjs/intl-getcanonicallocales/polyfill")
     require("@formatjs/intl-locale/polyfill")

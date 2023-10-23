@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
@@ -16,13 +10,12 @@ import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
-import { OrbitPoint } from "../../../services/api"
-import { useStyles } from "../../../utils/useStyles"
+import { LocationType, OrbitPoint } from "../../../services/api"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
@@ -57,6 +50,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     $active,
     $disabled,
     $modal,
+    $bottom0,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
@@ -70,7 +64,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
   const cameraPosition = useRef(null)
-  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
+  const current = useMemo(
+    () => selectedLocation || currentLocation,
+    [selectedLocation, currentLocation],
+  )
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -116,7 +113,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     if (!current || !issData?.length) return undefined
 
-    const lastOrbitPoint = issData.find((point: OrbitPoint, idx: number) => {
+    const lastOrbitPoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
       return (
         new Date().valueOf() < new Date(point.date).valueOf() &&
         idx < issData.length - 1 &&
@@ -159,7 +156,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const handleChangeLocation = useCallback(
     async (location: LocationType) => {
       setIsLocation(false)
-      setSelectedLocation(location)
+      setSelectedLocation(location).catch(console.error)
       await storage.save("selectedLocation", location)
     },
     [selectedLocation, currentLocation],
@@ -260,7 +257,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             style={[
               $modButtons,
               isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
-              { bottom: 0 },
+              $bottom0,
             ]}
           >
             <IconLinkButton
@@ -336,7 +333,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   )
 })
 
-const styles = ({ scale, fontSizes, lineHeights }) => {
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $containerStyleOverride: ViewStyle = {
     paddingHorizontal: scale(18),
     margin: 0,
@@ -518,6 +515,8 @@ const styles = ({ scale, fontSizes, lineHeights }) => {
     margin: 0,
   }
 
+  const $bottom0: ViewStyle = { bottom: 0 }
+
   return {
     $containerStyleOverride,
     $containerStyleOverrideFs,
@@ -551,5 +550,6 @@ const styles = ({ scale, fontSizes, lineHeights }) => {
     $active,
     $disabled,
     $modal,
+    $bottom0,
   }
 }

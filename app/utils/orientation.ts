@@ -63,9 +63,8 @@ const declinationCache = {}
 
 export default function watchOrientation(func: WatcherFunc, location: [number, number]) {
   if (!declinationCache[location.toString()]) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const info = (geomagnetism as any).model().point(location)
-    const declination = info.decl as number
+    const info = geomagnetism.model().point(location)
+    const declination = info.decl
     declinationCache[location.toString()] = declination
   }
 

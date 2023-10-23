@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect } from "react"
 import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -11,7 +7,7 @@ import { normalizeHeading, isInHeadingRange, headingOffset } from "../../../util
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import watchOrientation from "../../../utils/orientation"
 import { Vector2, Vector3 } from "three"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { LocationType } from "../../../services/api"
 
 const compassLine = require("../../../../assets/icons/compass-line.png")
 

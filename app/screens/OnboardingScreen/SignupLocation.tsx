@@ -11,7 +11,6 @@ import {
 } from "react-native"
 import {
   GooglePlacesAutocomplete,
-  Point,
   GooglePlacesAutocompleteRef,
 } from "react-native-google-places-autocomplete"
 import Modal from "react-native-modal"
@@ -20,22 +19,11 @@ import Config from "../../config"
 import { translate } from "../../i18n"
 import { colors, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
-import { ISSSighting } from "../../services/api"
 import * as storage from "../../utils/storage"
 import { PrivacyModal } from "./components/PrivacyModal"
 import i18n from "i18n-js"
 import { PositionError } from "react-native-geolocation-service"
-
-export interface LocationType {
-  title: string
-  subtitle: string
-  location: Point
-  sightings?: ISSSighting[]
-  lastSightingOrbitPointAt?: string
-  filterTimeOfDay?: string
-  filterDuration?: string
-  googlePlaceId?: string
-}
+import { LocationType } from "../../services/api"
 
 enum Statuses {
   start = "start",

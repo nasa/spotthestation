@@ -1,6 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useMemo } from "react"
@@ -23,12 +20,13 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
     $title,
     $text,
     $backButtonText,
+    $pb0,
   } = useStyles(styles)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
 
   const tnc = useMemo(() => {
-    const platform = en.settings.termsAndConditionsData[Platform.OS]
+    const platform = en.settings.termsAndConditionsData[Platform.OS as "ios" | "android"]
     const translationPrefix = `settings.termsAndConditionsData.${Platform.OS}`
     const body: string[] = Object.keys(platform.body)
 
@@ -49,7 +47,7 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
       body: body.map((item) => translate(`${translationPrefix}.body.${item}` as TxKeyPath)),
       contactData:
         Platform.OS === "ios"
-          ? Object.keys(platform.contactData).map((item) =>
+          ? Object.keys(en.settings.termsAndConditionsData.ios.contactData).map((item) =>
               translate(`${translationPrefix}.contactData.${item}` as TxKeyPath),
             )
           : null,
@@ -96,13 +94,11 @@ export const TermsAndConditionsScreen = observer(function TermsAndConditionsScre
             <Text text={tnc.title} style={$title} />
             <Text text={tnc.intro1} style={$text} />
             {tnc.appData.map((item) => (
-              <Text key={item} text={item} style={[$text, { paddingBottom: 0 }]} />
+              <Text key={item} text={item} style={[$text, $pb0]} />
             ))}
             <Text text="" style={$text} />
             {tnc.contactData &&
-              tnc.contactData.map((item) => (
-                <Text key={item} text={item} style={[$text, { paddingBottom: 0 }]} />
-              ))}
+              tnc.contactData.map((item) => <Text key={item} text={item} style={[$text, $pb0]} />)}
             <Text text={tnc.intro2} style={$text} />
             <Text text={tnc.intro3} style={$text} />
             {tnc.body.map((item) => (
@@ -167,6 +163,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingLeft: 5,
   }
 
+  const $pb0 = { paddingBottom: 0 }
+
   return {
     $headerStyleOverride,
     $container,
@@ -176,5 +174,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $title,
     $text,
     $backButtonText,
+    $pb0,
   }
 }

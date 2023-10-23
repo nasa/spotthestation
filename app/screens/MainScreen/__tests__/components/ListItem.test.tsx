@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react"
 import { ListItem } from "../../components/ListItem"
 import { render, fireEvent } from "@testing-library/react-native"
@@ -40,7 +39,7 @@ describe("ListItem", () => {
     expect(onPressMock).toHaveBeenCalled()
   })
 
-  it("calls onToggle callback when the switch is toggled", () => {
+  it("calls onToggle callback when the switch is toggled", async () => {
     const onToggleMock = jest.fn()
     const component = render(
       <ListItem
@@ -48,12 +47,13 @@ describe("ListItem", () => {
         subtitle="Test subtitle"
         icon="bell"
         onPress={jest.fn()}
+        value="value"
         onToggle={onToggleMock}
         withSwitch
       />,
     )
-    const toggleSwitch = component.root.findByProps({ accessibilityLabel: "switch button" })
-    toggleSwitch.props.onValueChange(true)
-    expect(onToggleMock).toHaveBeenCalledWith(true)
+    const toggleSwitch = await component.findByLabelText("switch button")
+    fireEvent.press(toggleSwitch)
+    expect(onToggleMock).toHaveBeenCalledWith("value")
   })
 })

@@ -1,10 +1,8 @@
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react"
 import { Resources } from "../ResourcesScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { act, render } from "@testing-library/react-native"
+import { TabNavigatorContext } from "../../../../navigators"
 
 jest.mock("@react-navigation/native", () => ({
   ...Object.assign({}, jest.requireActual("@react-navigation/native")),
@@ -16,9 +14,13 @@ jest.mock("@react-navigation/native", () => ({
 }))
 it("renders correctly", async () => {
   const component = render(
-    <NavigationContainer>
-      <Resources />
-    </NavigationContainer>,
+    <TabNavigatorContext.Provider
+      value={{ toggleBottomTabs: jest.fn(), toggleIsLandscape: jest.fn() }}
+    >
+      <NavigationContainer>
+        <Resources />
+      </NavigationContainer>
+    </TabNavigatorContext.Provider>,
   )
 
   await act(async () => {

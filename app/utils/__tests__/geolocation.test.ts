@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { api } from "../../services/api"
 import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../geolocation"
-import Location from "react-native-geolocation-service"
+import { requestAuthorization, getCurrentPosition } from "react-native-geolocation-service"
+import { jest } from "@jest/globals"
+import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
 
 describe("getNearbyPlaces", () => {
   afterEach(() => {
@@ -14,8 +14,8 @@ describe("getNearbyPlaces", () => {
     const lat = 67.89
     const radius = 1000
 
-    const mockResponse: any = {
-      kind: "ok",
+    const mockResponse = {
+      kind: "ok" as const,
       places: [
         {
           geometry: {
@@ -37,10 +37,10 @@ describe("getNearbyPlaces", () => {
           name: "Place 2",
           vicinity: "Address 2",
         },
-      ],
+      ] as GooglePlaceDetail[],
     }
 
-    ;(api.getPlaces as any).mockResolvedValue(mockResponse)
+    jest.mocked(api.getPlaces).mockResolvedValue(mockResponse)
 
     const expectedPlaces = [
       {
@@ -76,10 +76,10 @@ describe("getNearbyPlaces", () => {
     const radius = 1000
 
     const mockResponse = {
-      kind: "error",
+      kind: "bad-data" as const,
       message: "Something went wrong",
     }
-    ;(api.getPlaces as any).mockResolvedValue(mockResponse)
+    jest.mocked(api.getPlaces).mockResolvedValue(mockResponse)
 
     const places = await getNearbyPlaces({ lng, lat }, radius)
 
@@ -99,8 +99,8 @@ describe("getPlaces", () => {
   it("returns an array of places", async () => {
     const search = "New York"
 
-    const mockResponse: any = {
-      kind: "ok",
+    const mockResponse = {
+      kind: "ok" as const,
       places: [
         {
           geometry: {
@@ -112,10 +112,10 @@ describe("getPlaces", () => {
           name: "New York",
           formatted_address: "New York, NY, USA",
         },
-      ],
+      ] as GooglePlaceDetail[],
     }
 
-    ;(api.getPlaces as any).mockResolvedValue(mockResponse)
+    jest.mocked(api.getPlaces).mockResolvedValue(mockResponse)
 
     const expectedPlaces = [
       {
@@ -144,12 +144,12 @@ describe("getPlaces", () => {
   it('returns an empty array when API response is not "ok"', async () => {
     const search = "Invalid Place"
 
-    const mockResponse: any = {
-      kind: "error",
+    const mockResponse = {
+      kind: "bad-data" as const,
       message: "Place not found",
     }
 
-    ;(api.getPlaces as any).mockResolvedValue(mockResponse)
+    jest.mocked(api.getPlaces).mockResolvedValue(mockResponse)
 
     const places = await getPlaces(search)
 
@@ -172,25 +172,27 @@ describe("getCurrentLocation", () => {
   it("returns the current location", async () => {
     const permission = "granted"
 
-    ;(Location as any).requestAuthorization.mockResolvedValue(permission)
+    jest.mocked(requestAuthorization).mockResolvedValue(permission)
 
     const coords = {
       latitude: 40.712776,
       longitude: -74.005974,
     }
 
-    ;(api.reverseGeocode as any).mockResolvedValue({
+    jest.mocked(api.reverseGeocode).mockResolvedValue({
       kind: "ok",
       googlePlaceId: "111",
     })
-    ;(api.getLocationAddress as any).mockResolvedValue({
+    jest.mocked(api.getLocationAddress).mockResolvedValue({
       kind: "ok",
       name: "New York",
       address: "123 Main Street, New York City, New York 12345, USA",
     })
-    ;(Location as any).getCurrentPosition.mockImplementation(
-      (cb: (a: { coords: any }) => void) => cb({ coords }), // eslint-disable-line n/no-callback-literal
-    )
+    jest
+      .mocked(getCurrentPosition)
+      .mockImplementation((cb: (a: { coords: any; timestamp: number }) => void) =>
+        cb({ coords, timestamp: 0 }),
+      )
 
     const expectedLocation = {
       title: "New York",
@@ -201,8 +203,8 @@ describe("getCurrentLocation", () => {
 
     const location = await getCurrentLocation()
 
-    expect((Location as any).requestAuthorization).toHaveBeenCalled()
-    expect((Location as any).getCurrentPosition).toHaveBeenCalled()
+    expect(requestAuthorization).toHaveBeenCalled()
+    expect(getCurrentPosition).toHaveBeenCalled()
     expect(api.reverseGeocode).toHaveBeenCalledWith(coords.latitude, coords.longitude)
     expect(location).toEqual(expectedLocation)
   })
@@ -210,12 +212,12 @@ describe("getCurrentLocation", () => {
   it("returns null when permission is not granted", async () => {
     const permission = "denied"
 
-    ;(Location as any).requestAuthorization.mockResolvedValue({ status: permission })
+    jest.mocked(requestAuthorization).mockResolvedValue(permission)
 
     const location = await getCurrentLocation()
 
-    expect((Location as any).requestAuthorization).toHaveBeenCalled()
-    expect((Location as any).getCurrentPosition).not.toHaveBeenCalled()
+    expect(requestAuthorization).toHaveBeenCalled()
+    expect(getCurrentPosition).not.toHaveBeenCalled()
     expect(api.reverseGeocode).not.toHaveBeenCalled()
     expect(location).toBeNull()
   })

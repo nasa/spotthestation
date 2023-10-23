@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useState } from "react"
@@ -17,14 +12,13 @@ import {
 } from "react-native"
 import { XMLParser } from "fast-xml-parser"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
-import { api } from "../../../services/api"
+import { api, LocationType, OrbitPoint } from "../../../services/api"
 import { colors, typography } from "../../../theme"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 import { useStores } from "../../../models"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { Details } from "../SkyViewScreen/Details"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
@@ -66,6 +60,13 @@ const items = [
 
 const suggestions = ["NASA Upcoming Missons", "Interviews of the Week", "ARTEMIS II"]
 
+type NewsType = {
+  "content:encoded": string
+  title: string
+  type: string
+  pubDate: string
+}
+
 export const Resources = observer(function HomeScreen() {
   const {
     $container,
@@ -85,6 +86,7 @@ export const Resources = observer(function HomeScreen() {
     $footer,
     $searchResultsContainer,
     $searchFieldContainer,
+    $justifyCenter,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -94,7 +96,7 @@ export const Resources = observer(function HomeScreen() {
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [type, setType] = useState("news")
-  const [news, setNews] = useState([])
+  const [news, setNews] = useState<NewsType[]>([])
   const [page, setPage] = useState(1)
   const [isFocus, setIsFocus] = useState(false)
   const [location, setLocation] = useState<[number, number]>(null)
@@ -105,6 +107,7 @@ export const Resources = observer(function HomeScreen() {
       api
         .getFeed(+paged)
         .then((res) => {
+          if (!res.ok) return setIsLoading(false)
           const parser = new XMLParser()
           const jObj = parser.parse(res.places)
           setNews([...news, ...jObj.rss.channel.item])
@@ -144,7 +147,7 @@ export const Resources = observer(function HomeScreen() {
   useEffect(() => {
     if (!location || !issData?.length) return undefined
 
-    const lastOrbitPoint = issData[issData.length - 1]
+    const lastOrbitPoint = issData[issData.length - 1] as OrbitPoint
     if (!lastOrbitPoint) return undefined
     const diff = new Date(lastOrbitPoint.date).valueOf() - Date.now()
     if (diff <= 0) return undefined
@@ -233,7 +236,7 @@ export const Resources = observer(function HomeScreen() {
               />
             )}
             numColumns={2}
-            columnWrapperStyle={{ justifyContent: "space-between" }}
+            columnWrapperStyle={$justifyCenter}
             contentContainerStyle={$searchResultsContainer}
           />
         </ExpandContainer>
@@ -294,7 +297,7 @@ export const Resources = observer(function HomeScreen() {
             />
           )}
           numColumns={2}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
+          columnWrapperStyle={$justifyCenter}
           onEndReached={() => {
             setPage(page + 1)
             fetchData(page + 1)
@@ -513,6 +516,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $searchFieldContainer = { flex: 1, marginRight: scale(18) }
 
+  const $justifyCenter: ViewStyle = { justifyContent: "space-between" }
+
   return {
     $container,
     $headerContainer,
@@ -531,5 +536,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $footer,
     $searchResultsContainer,
     $searchFieldContainer,
+    $justifyCenter,
   }
 }

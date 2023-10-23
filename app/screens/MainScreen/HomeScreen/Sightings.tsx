@@ -38,7 +38,7 @@ const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
 const stageIcons: { icon: IconTypes; color: string }[] = [
   { icon: "moon", color: colors.palette.neutral450 },
   { icon: "sunset", color: colors.palette.nasaOrange },
-  { icon: "sun", color: colors.palette.yellow }
+  { icon: "sun", color: colors.palette.yellow },
 ]
 
 export function Sightings({

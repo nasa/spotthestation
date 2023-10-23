@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React from "react"
 import { render } from "@testing-library/react-native"
 import { RootStoreProvider, useStores } from "../.."
@@ -19,7 +17,6 @@ describe("RootStoreProvider", () => {
       </RootStoreProvider>,
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     expect(getAllByText("Test Property")).toHaveLength(1)
   })
 })

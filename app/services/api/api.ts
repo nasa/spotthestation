@@ -19,7 +19,7 @@ import {
   ReverseGeocodeResponse,
   TimeZoneDataResponse,
 } from "../../utils/geolocation"
-import { ISSDataResponse, RawISSDataResponse } from "./api.types"
+import { FeedResponse, ISSDataResponse, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
 import i18n from "i18n-js"
 
@@ -97,10 +97,10 @@ export class Api {
       if (problem) return problem
     }
 
-    const results = (response.data?.results || []) as any[]
+    const results = (response.data?.results || []) as GooglePlaceDetail[]
     const result =
-      results?.find((r: { types: string[] }) => r.types?.includes("locality")) ||
-      results?.find((r: { types: string[] }) => r.types?.includes("postal_code")) ||
+      results?.find((r) => r.types?.includes("locality")) ||
+      results?.find((r) => r.types?.includes("postal_code")) ||
       results[0]
 
     return {
@@ -148,7 +148,7 @@ export class Api {
     return { ok: true, data: response.data }
   }
 
-  async getISSData(params?: GetRawISSDataParams): Promise<ISSDataResponse | GeneralApiProblem> {
+  async getISSData(params?: GetRawISSDataParams): Promise<ISSDataResponse> {
     const response: ApiResponse<ISSDataResponse["data"]> = await this.apisauce.post(
       "/tracking/iss-data",
       params || {},
@@ -164,7 +164,7 @@ export class Api {
     return { ok: true, data: response.data }
   }
 
-  async getFeed(page: number): Promise<any> {
+  async getFeed(page: number): Promise<FeedResponse> {
     const response: ApiResponse<any> = await this.apisauce.get(
       `https://blogs.nasa.gov/spacestation/feed?paged=${page}`,
       {},
@@ -173,10 +173,10 @@ export class Api {
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
-      if (problem) return problem
+      if (problem) return { ok: false, places: "" }
     }
 
-    return { kind: "ok", places: response.data }
+    return { ok: true, places: response.data }
   }
 
   async sendMail(subject: string, body: string) {
@@ -192,8 +192,7 @@ export class Api {
         return { ...problem, message: response?.originalError?.message ?? "Some error occured!" }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return response.data
+    return response.data as string
   }
 }
 

@@ -1,14 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable react-native/no-inline-styles */
 import { intervalToDuration, formatDuration } from "date-fns"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
-import { OrbitPoint } from "../../../services/api"
+import { LocationType, OrbitPoint } from "../../../services/api"
 import { colors } from "../../../theme"
 import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
@@ -20,7 +15,6 @@ import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Sightings"
 import { CoachMark } from "./CoachMark"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
@@ -36,20 +30,23 @@ export interface HomeScreenRouteProps {
   showSightings: boolean
 }
 
-function calcLocation(selectedLocation, currentLocation): [number, number] {
+function calcLocation(
+  selectedLocation: LocationType,
+  currentLocation: LocationType,
+): [number, number] {
   if (selectedLocation) return [selectedLocation.location.lat, selectedLocation.location.lng]
   if (currentLocation) return [currentLocation.location.lat, currentLocation.location.lng]
   return null
 }
 
-function calcAddress(selectedLocation, currentLocation) {
+function calcAddress(selectedLocation: LocationType, currentLocation: LocationType) {
   if (selectedLocation) return selectedLocation.subtitle
   if (currentLocation) return currentLocation.subtitle
   return null
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { $container, $modal, $flatMap, $mark5 } = useStyles(styles)
+  const { $container, $modal, $popupModal, $flatMap, $mark5 } = useStyles(styles)
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
@@ -87,8 +84,14 @@ export const HomeScreen = observer(function HomeScreen() {
     regionFormat: "US",
   })
 
-  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
-  const location = useMemo(() => calcLocation(selectedLocation, currentLocation), [selectedLocation, currentLocation])
+  const current = useMemo(
+    () => selectedLocation || currentLocation,
+    [selectedLocation, currentLocation],
+  )
+  const location = useMemo(
+    () => calcLocation(selectedLocation, currentLocation),
+    [selectedLocation, currentLocation],
+  )
 
   useEffect(() => {
     setAddress(calcAddress(selectedLocation, currentLocation))
@@ -131,23 +134,26 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const currentSighting = useMemo(
     () =>
-      (eventsList.length > currentSightingIdx && eventsList[currentSightingIdx]) ? eventsList[currentSightingIdx] : {
-        date: null,
-        visible: 0,
-        maxHeight: 0,
-        minAzimuth: 0,
-        maxAzimuth: 0,
-        minAltitude: 0,
-        maxAltitude: 0,
-        dayStage: 0,
-      },
+      eventsList.length > currentSightingIdx && eventsList[currentSightingIdx]
+        ? eventsList[currentSightingIdx]
+        : {
+            date: null,
+            visible: 0,
+            maxHeight: 0,
+            minAzimuth: 0,
+            maxAzimuth: 0,
+            minAltitude: 0,
+            maxAltitude: 0,
+            notify: false,
+            dayStage: 0,
+          },
     [currentSightingIdx, eventsList],
   )
 
   useEffect(() => {
     if (!location || !issData?.length) return undefined
 
-    const lastOrbitPoint = issData.find((point: OrbitPoint, idx: number) => {
+    const lastOrbitPoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
       return (
         new Date().valueOf() < new Date(point.date).valueOf() &&
         idx < issData.length - 1 &&
@@ -483,11 +489,7 @@ export const HomeScreen = observer(function HomeScreen() {
         useNativeDriver={false}
         useNativeDriverForBackdrop
         backdropOpacity={0.85}
-        style={[
-          $modal,
-          { paddingHorizontal: 18, justifyContent: "flex-start" },
-          Platform.OS === "ios" && $topInsetMargin,
-        ]}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
       >
         <InitLoader />
       </MyModal>
@@ -496,11 +498,7 @@ export const HomeScreen = observer(function HomeScreen() {
         useNativeDriver={false}
         useNativeDriverForBackdrop
         backdropOpacity={0.85}
-        style={[
-          $modal,
-          { paddingHorizontal: 18, justifyContent: "flex-start" },
-          Platform.OS === "ios" && $topInsetMargin,
-        ]}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
       >
         <TrajectoryError
           onDismiss={() => {
@@ -513,11 +511,7 @@ export const HomeScreen = observer(function HomeScreen() {
         useNativeDriver={false}
         useNativeDriverForBackdrop
         backdropOpacity={0.4}
-        style={[
-          $modal,
-          { paddingHorizontal: 18, justifyContent: "flex-start" },
-          Platform.OS === "ios" && $topInsetMargin,
-        ]}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
       >
         {renderCoachMarks()}
       </MyModal>
@@ -539,6 +533,8 @@ const styles: StyleFn = ({ scale }) => {
     margin: 0,
   }
 
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   const $flatMap: ViewStyle = {
     width: "100%",
   }
@@ -549,5 +545,5 @@ const styles: StyleFn = ({ scale }) => {
     bottom: scale(160),
   }
 
-  return { $container, $modal, $flatMap, $mark5 }
+  return { $container, $modal, $popupModal, $flatMap, $mark5 }
 }

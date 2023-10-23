@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Platform } from "react-native"
 import PushNotification from "react-native-push-notification"
 import PushNotificationIOS from "@react-native-community/push-notification-ios"
-import { LocationType } from "../screens/OnboardingScreen/SignupLocation"
-import { ISSSighting } from "../services/api"
+import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
 import { isDateBetweenHours } from "./formatDate"
 import { translate } from "../i18n"
@@ -20,7 +16,7 @@ class Notifications {
         soundName: "default",
         vibrate: true,
       },
-      (created) => console.log(`Channel 'default-channel-id' created: ${created}`),
+      (created) => console.log(`Channel 'default-channel-id' created: ${String(created)}`),
     )
 
     PushNotification.configure({
@@ -36,9 +32,9 @@ class Notifications {
     const start = new Date((await storage.load("muteFrom")) as string)
     const end = new Date((await storage.load("muteUntil")) as string)
     const privacy = await storage.load("privacy")
-    const notifyBefore = (await storage.load("notifyBefore")) || 15
+    const notifyBefore: number = (await storage.load("notifyBefore")) || 15
 
-    let notifications = []
+    let notifications: { fireDate: Date; title: string; body: string }[] = []
     for await (const location of locations) {
       const events = location?.sightings || []
       const eventsForNotify: ISSSighting[] = events.filter((item) => item.notify)
@@ -72,7 +68,7 @@ class Notifications {
       })
     }
 
-    notifications.sort((a, b) => a.fireDate - b.fireDate)
+    notifications.sort((a, b) => a.fireDate.valueOf() - b.fireDate.valueOf())
     if (Platform.OS === "ios") {
       notifications = notifications.slice(0, 64)
     }

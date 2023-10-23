@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
@@ -57,19 +55,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
         `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\nThank you.\nSpotTheStation Mobile App`,
       )
       .then((data) => {
-        if (data.kind) {
-          Snackbar.show({
-            text: data.message,
-            duration: Snackbar.LENGTH_LONG,
-            action: {
-              text: translate("snackBar.ok"),
-              textColor: "red",
-              onPress: () => {
-                Snackbar.dismiss()
-              },
-            },
-          })
-        } else {
+        if (typeof data === "string") {
           setThanksModal(true)
           Snackbar.show({
             text: data,
@@ -77,6 +63,18 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             action: {
               text: translate("snackBar.ok"),
               textColor: "green",
+              onPress: () => {
+                Snackbar.dismiss()
+              },
+            },
+          })
+        } else {
+          Snackbar.show({
+            text: data.message,
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: translate("snackBar.ok"),
+              textColor: "red",
               onPress: () => {
                 Snackbar.dismiss()
               },
@@ -213,7 +211,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
         useNativeDriver
         useNativeDriverForBackdrop
         backdropOpacity={0.5}
-        style={[$modal, { paddingHorizontal: 18, justifyContent: "flex-start" }]}
+        style={$modal}
       >
         <View
           accessible
@@ -258,9 +256,10 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $modal: ViewStyle = {
     flex: 1,
-    justifyContent: "flex-end",
     left: 0,
     margin: 0,
+    paddingHorizontal: 18,
+    justifyContent: "flex-start",
   }
 
   const $scrollContentContainerStyle: ViewStyle = {

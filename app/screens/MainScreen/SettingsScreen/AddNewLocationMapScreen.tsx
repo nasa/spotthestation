@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useRef, useState } from "react"
@@ -10,7 +6,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
 import { Icon, Screen, Text, Button } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import Config from "react-native-config"
 import {
@@ -20,10 +15,10 @@ import {
 import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
 import { LatLng } from "react-native-maps"
-import { api } from "../../../services/api"
+import { api, LocationType } from "../../../services/api"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
-import { useStyles } from "../../../utils/useStyles"
+import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
@@ -49,6 +44,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     $close,
     $title,
     $modalButton,
+    $map,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -95,18 +91,18 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
 
   const handleSave = useCallback(() => {
     setNewSavedLocation(location).catch((error) => {
-        Snackbar.show({
-          text: error,
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: translate("snackBar.ok"),
-            textColor: "green",
-            onPress: () => {
-              Snackbar.dismiss()
-            },
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: translate("snackBar.ok"),
+          textColor: "green",
+          onPress: () => {
+            Snackbar.dismiss()
           },
-        })
+        },
       })
+    })
 
     Snackbar.show({
       text: translate("snackBar.locationSaved"),
@@ -131,13 +127,15 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       contentContainerStyle={$container}
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
+      dismissKeyboardOnPress={false}
     >
       <MapBox
-        style={{ flex: 1 }}
+        style={$map}
         withNightOverlay={false}
-        onPress={({ geometry }) =>
+        onPress={({ geometry }) => {
+          console.log("lal", geometry)
           setMarker({ latitude: geometry.coordinates[1], longitude: geometry.coordinates[0] })
-        }
+        }}
         markers={marker ? [marker] : []}
         zoomEnabled
       />
@@ -266,7 +264,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   )
 })
 
-const styles = ({ scale, fontSizes, lineHeights }) => {
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $headerStyleOverride: TextStyle = {
     top: scale(18),
   }
@@ -420,6 +418,8 @@ const styles = ({ scale, fontSizes, lineHeights }) => {
     marginBottom: scale(24),
   }
 
+  const $map: ViewStyle = { flex: 1 }
+
   return {
     $headerStyleOverride,
     $container,
@@ -442,5 +442,6 @@ const styles = ({ scale, fontSizes, lineHeights }) => {
     $close,
     $title,
     $modalButton,
+    $map,
   }
 }

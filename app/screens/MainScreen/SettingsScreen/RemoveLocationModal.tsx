@@ -3,7 +3,7 @@ import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
 import { Icon, Text, Button } from "../../../components"
 import { colors, typography } from "../../../theme"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { LocationType } from "../../../services/api"
 
 export interface RemoveLocationModalProps {
   onClose?: PressableProps["onPress"]

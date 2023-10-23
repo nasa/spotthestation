@@ -1,20 +1,16 @@
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React from "react"
+import React, { Component } from "react"
 import { ContactUsScreen } from "../ContactUsScreen"
 import { useNavigation } from "@react-navigation/native"
 import { act, fireEvent, render } from "@testing-library/react-native"
 import { api } from "../../../../services/api"
+import { jest } from "@jest/globals"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
 }))
 
 jest.mock("mobx-react-lite", () => ({
-  observer: (component) => component,
+  observer: (component: Component) => component,
 }))
 
 jest.mock("react-native-safe-area-context", () => ({
@@ -32,7 +28,7 @@ describe("ContactUsScreen", () => {
   }
 
   beforeEach(() => {
-    ;(useNavigation as any).mockReturnValue(mockNavigation)
+    jest.mocked(useNavigation).mockReturnValue(mockNavigation)
   })
 
   afterEach(() => {
@@ -66,6 +62,6 @@ describe("ContactUsScreen", () => {
       await Promise.resolve()
     })
 
-    expect((api as any).sendMail).not.toHaveBeenCalled()
+    expect(api.sendMail).not.toHaveBeenCalled()
   })
 })

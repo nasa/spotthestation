@@ -31,6 +31,20 @@ export interface OrbitPoint {
   altitude: number
 }
 
+export interface LocationType {
+  title: string
+  subtitle: string
+  location: {
+    lat: number
+    lng: number
+  }
+  sightings?: ISSSighting[]
+  lastSightingOrbitPointAt?: string
+  filterTimeOfDay?: string
+  filterDuration?: string
+  googlePlaceId?: string
+}
+
 export interface RawISSDataResponse {
   ok: boolean
   data: SatData[] | string
@@ -39,6 +53,11 @@ export interface RawISSDataResponse {
 export interface ISSDataResponse {
   ok: boolean
   data: { points: SatData[]; shadowIntervals: ShadowInterval[] } | string
+}
+
+export interface FeedResponse {
+  ok: boolean
+  places: string
 }
 
 /**

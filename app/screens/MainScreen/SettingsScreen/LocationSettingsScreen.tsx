@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable react-native/no-inline-styles */
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useCallback, useState } from "react"
+import React, { useEffect, useCallback, useState, useMemo } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
@@ -23,6 +20,7 @@ import * as storage from "../../../utils/storage"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
+import { LocationType } from "../../../services/api"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -41,6 +39,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     $title,
     $scrollWrapper,
     $addButtonContainer,
+    $refreshButton,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -65,7 +64,15 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const bottomInset = useSafeAreaInsets().bottom
 
   const [isSightings, setIsSightings] = useState(false)
-  const [current, setCurrent] = useState<LocationType>(null)
+  const [currentTitle, setCurrentTitle] = useState<string>(null)
+
+  const current = useMemo(() => {
+    if (!currentTitle) return null
+    if (selectedLocation && selectedLocation.title === currentTitle) return selectedLocation
+    if (currentLocation && currentLocation.title === currentTitle) return currentLocation
+    return savedLocations.find((loc) => loc.title === currentTitle)
+  }, [currentTitle, selectedLocation, currentLocation, savedLocations])
+
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
     regionFormat: "US",
@@ -124,7 +131,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
       setNotifications()
     },
-    [currentLocation, savedLocations],
+    [currentLocation, selectedLocation, savedLocations],
   )
 
   const handleSetSightingNotification = useCallback(
@@ -139,7 +146,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         }),
       }
       setISSSightings(updated)
-      setCurrent(updated)
     },
     [current],
   )
@@ -151,13 +157,12 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         sightings: current.sightings.map((item) => ({ ...item, notify })),
       }
       setISSSightings(updated)
-      setCurrent(updated)
     },
     [current],
   )
 
   const handleCtaPress = (item: LocationType) => {
-    setCurrent(item)
+    setCurrentTitle(item.title)
     setIsSightings(true)
   }
 
@@ -182,16 +187,14 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
   const handleChangeTimeOfDay = useCallback(
     (value: string) => {
-      const res = setSightingsTimeOfDay(current, value)
-      setCurrent(res)
+      setSightingsTimeOfDay(current, value)
     },
     [current],
   )
 
   const handleChangeDuration = useCallback(
     (value: string) => {
-      const res = setSightingsDuration(current, value)
-      setCurrent(res)
+      setSightingsDuration(current, value)
     },
     [current],
   )
@@ -254,7 +257,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
               button={
                 <RefreshButton
                   inProgress={isCurrentLocationUpdating}
-                  containerStyle={{ marginLeft: 5 }}
+                  containerStyle={$refreshButton}
                   onPress={getLocation}
                 />
               }
@@ -443,6 +446,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $scrollWrapper = { flex: 1, paddingBottom: scale(120) }
+  const $refreshButton = { marginLeft: 5 }
 
   return {
     $headerStyleOverride,
@@ -457,5 +461,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $title,
     $scrollWrapper,
     $addButtonContainer,
+    $refreshButton,
   }
 }

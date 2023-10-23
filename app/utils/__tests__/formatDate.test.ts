@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { LocationType } from "../../screens/OnboardingScreen/SignupLocation"
 import { getShortTZ, formatDate, getCurrentTimeZome, isDateBetweenHours } from "../formatDate"
+import { LocationType } from "../../services/api"
 
 it("call getShortTZ", () => {
   expect(getShortTZ("Europe/Kyiv")).toBe("EEST")

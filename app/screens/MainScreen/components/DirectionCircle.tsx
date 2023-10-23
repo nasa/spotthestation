@@ -1,5 +1,4 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useEffect, useMemo } from "react"
 import { ViewStyle, View, useWindowDimensions, PixelRatio } from "react-native"
 import Svg, { Path } from "react-native-svg"
@@ -8,7 +7,13 @@ import { degToRad } from "../../../utils/geometry"
 
 const arc = d3Arc()
 
-export const DirectionCircle = ({ screenX, screenY, setIsSpotted }) => {
+type DirectionCircleProps = {
+  screenX: number
+  screenY: number
+  setIsSpotted: (value: boolean) => void
+}
+
+export const DirectionCircle = ({ screenX, screenY, setIsSpotted }: DirectionCircleProps) => {
   const { $container, $innerCircle, $outerCircle } = useStyles(styles)
 
   const dimensions = useWindowDimensions()

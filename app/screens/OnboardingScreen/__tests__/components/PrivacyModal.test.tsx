@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react"
 import { render, fireEvent } from "@testing-library/react-native"
 import { PrivacyModal } from "../../components/PrivacyModal"
@@ -15,7 +14,7 @@ describe("PrivacyModal", () => {
     const { getByText } = render(<PrivacyModal onPressSkip={onPressSkipMock} />)
     const skipButton = getByText("privacy.skip undefined")
 
-    ;(fireEvent as any).press(skipButton)
+    fireEvent.press(skipButton)
 
     expect(onPressSkipMock).toHaveBeenCalledTimes(1)
   })
@@ -25,7 +24,7 @@ describe("PrivacyModal", () => {
     const { getByText } = render(<PrivacyModal onPressAgree={onPressAgreeMock} />)
     const agreeButton = getByText("privacy.agree undefined")
 
-    ;(fireEvent as any).press(agreeButton)
+    fireEvent.press(agreeButton)
 
     expect(onPressAgreeMock).toHaveBeenCalledTimes(1)
   })
@@ -35,8 +34,8 @@ describe("PrivacyModal", () => {
     const privacyPolicyText = getByText("privacy.policy undefined")
 
     jest.spyOn(Linking, "openURL")
-    ;(fireEvent as any).press(privacyPolicyText)
+    fireEvent.press(privacyPolicyText)
 
-    expect((Linking as any).openURL).toHaveBeenCalledWith("https://www.spotthestation.org")
+    expect(Linking.openURL).toHaveBeenCalledWith("https://www.spotthestation.org")
   })
 })

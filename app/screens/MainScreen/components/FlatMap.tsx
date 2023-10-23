@@ -1,6 +1,4 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { ViewStyle, View, Image, ImageStyle } from "react-native"
 import { Svg, Polygon, Polyline } from "react-native-svg"
@@ -125,9 +123,9 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
         )}
       </Svg>
       {Boolean(issCoords2D) && (
-        // eslint-disable-next-line react-native/no-inline-styles
         <View
           testID="iss-marker"
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             position: "absolute",
             left: toScreenCoords(issCoords2D)[0] - scale(18),
@@ -138,9 +136,9 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
         </View>
       )}
       {Boolean(currentLocation) && (
-        // eslint-disable-next-line react-native/no-inline-styles
         <View
           testID="current-location-marker"
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             position: "absolute",
             left: toScreenCoords(currentLocation2D)[0] - scale(7),

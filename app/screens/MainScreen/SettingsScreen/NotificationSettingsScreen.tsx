@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
@@ -16,10 +13,10 @@ import { colors, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
+import { LocationType } from "../../../services/api"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const {
@@ -51,6 +48,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     $disabled,
     $cta,
     $privacyContainer,
+    $notifyBefore,
+    $mt0,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -82,7 +81,10 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   })
 
   const [isSightings, setIsSightings] = useState(false)
-  const current = useMemo(() => selectedLocation || currentLocation, [selectedLocation, currentLocation])
+  const current = useMemo(
+    () => selectedLocation || currentLocation,
+    [selectedLocation, currentLocation],
+  )
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
     regionFormat: "US",
@@ -96,8 +98,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   }, [currentLocation, savedLocations])
 
   const loadSettings = async () => {
-    const start = await storage.load("muteFrom")
-    const end = await storage.load("muteUntil")
+    const start = (await storage.load("muteFrom")) as string
+    const end = (await storage.load("muteUntil")) as string
     const notifyBefore = await storage.load("notifyBefore")
 
     setSettings({
@@ -113,7 +115,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   }
 
   useEffect(() => {
-    loadSettings()
+    loadSettings().catch(console.error)
   }, [])
 
   const handleToggleNotifications = useCallback(() => {
@@ -147,7 +149,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       upcoming: !isNotifyAll,
     })
 
-    storage.save("upcoming", !isNotifyAll)
+    storage.save("upcoming", !isNotifyAll).catch(console.error)
 
     setNotifications()
   }, [currentLocation, selectedLocation, savedLocations, isNotifyAll])
@@ -282,11 +284,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           <ExpandContainer
             title="settings.notificationSettingsData.notifyMeBefore"
             expandble={false}
-            containerStyle={{
-              marginTop: 10,
-              borderBottomWidth: 1,
-              borderBottomColor: colors.palette.neutral350,
-            }}
+            containerStyle={$notifyBefore}
           >
             <Dropdown
               accessibilityLabel="period select"
@@ -332,7 +330,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           <ExpandContainer
             title="settings.notificationSettingsData.turnOffNotifications"
             expandble={false}
-            containerStyle={{ marginTop: 0 }}
+            containerStyle={$mt0}
           >
             <View style={$muteContainer}>
               <View style={$muteButton}>
@@ -387,7 +385,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteFrom}
             onConfirm={(date) => {
               setFrom(false)
-              handleChange(date, "muteFrom")
+              handleChange(date, "muteFrom").catch(console.error)
             }}
             onCancel={() => setFrom(false)}
           />
@@ -397,7 +395,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteUntil}
             onConfirm={(date) => {
               setUntil(false)
-              handleChange(date, "muteUntil")
+              handleChange(date, "muteUntil").catch(console.error)
             }}
             onCancel={() => setUntil(false)}
           />
@@ -612,6 +610,13 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $cta = { marginTop: scale(10) }
 
   const $privacyContainer = { marginTop: scale(15), borderBottomWidth: 0 }
+  const $notifyBefore = {
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.palette.neutral350,
+  }
+
+  const $mt0 = { marginTop: 0 }
 
   return {
     $headerStyleOverride,
@@ -643,5 +648,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $disabled,
     $cta,
     $privacyContainer,
+    $notifyBefore,
+    $mt0,
   }
 }

@@ -26,7 +26,7 @@ import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
 import i18n from "i18n-js"
-import { AppState, Platform } from "react-native"
+import { AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 const codePushConfig = {
@@ -92,7 +92,7 @@ function App(props: AppProps) {
     initialNavigationState,
     onNavigationStateChange,
     isRestored: isNavigationStateRestored,
-  } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
+  } = useNavigationPersistence(NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
@@ -179,7 +179,7 @@ function App(props: AppProps) {
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <ErrorBoundary catchErrors={Config.catchErrors}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
+          <GestureHandlerRootView style={$flex}>
             <AppNavigator
               linking={linking}
               initialState={initialNavigationState}
@@ -195,3 +195,7 @@ function App(props: AppProps) {
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export default codePush(codePushConfig)(Sentry.wrap(App))
+
+const $flex: ViewStyle = {
+  flex: 1,
+}

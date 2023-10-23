@@ -32,7 +32,7 @@ import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
 import watchOrientation from "../../../utils/orientation"
 import Orientation from "react-native-orientation-locker"
-import { LocationType } from "../../OnboardingScreen/SignupLocation"
+import { LocationType } from "../../../services/api"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void

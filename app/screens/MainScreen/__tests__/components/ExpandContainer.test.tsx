@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React from "react"
 import { View, Text } from "react-native"
 import { ExpandContainer } from "../../components/ExpandContainer"

@@ -1,11 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { View, ViewStyle } from "react-native"
-import MapboxGL from "@rnmapbox/maps"
-import GeoJSON from "geojson"
+import MapboxGL, { MapState } from "@rnmapbox/maps"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
 import { colors } from "../../../theme"
@@ -13,7 +8,6 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 import { OrbitPoint } from "../../../services/api"
-import { RegionPayload } from "@rnmapbox/maps/lib/typescript/components/MapView"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
@@ -105,16 +99,16 @@ export function MapBox({
   )
 
   const handleCameraChange = useCallback(
-    (feature: GeoJSON.Feature<GeoJSON.Point, RegionPayload>) => {
+    (state: MapState) => {
       if (!onCameraChange) return
-      onCameraChange([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
+      onCameraChange([state.properties.center[1], state.properties.center[0]])
     },
     [onCameraChange],
   )
 
   return !loading ? (
     <MapboxGL.MapView
-      onRegionIsChanging={handleCameraChange}
+      onCameraChanged={handleCameraChange}
       style={style}
       logoEnabled={false}
       styleURL="mapbox://styles/mapbox/satellite-streets-v11"
@@ -131,7 +125,7 @@ export function MapBox({
           <MapboxGL.FillLayer
             id="daynight"
             sourceID="daynight-layer"
-            style={{ fillOpacity: 0.5, fillColor: colors.palette.buttonBlue }}
+            style={{ fillOpacity: 0.5, fillColor: colors.palette.buttonBlue }} // eslint-disable-line react-native/no-inline-styles
           />
         </MapboxGL.ShapeSource>
       )}
@@ -164,7 +158,7 @@ export function MapBox({
           >
             <MapboxGL.LineLayer
               id="myLineLayer"
-              style={{ lineColor: colors.palette.green, lineWidth: 3 }}
+              style={{ lineColor: colors.palette.green, lineWidth: 3 }} // eslint-disable-line react-native/no-inline-styles
             />
           </MapboxGL.ShapeSource>
           <MapboxGL.ShapeSource
@@ -178,7 +172,7 @@ export function MapBox({
           >
             <MapboxGL.LineLayer
               id="myLineLayerDashed"
-              style={{ lineColor: colors.palette.neutral450, lineWidth: 3, lineDasharray: [3, 2] }}
+              style={{ lineColor: colors.palette.neutral450, lineWidth: 3, lineDasharray: [3, 2] }} // eslint-disable-line react-native/no-inline-styles
             />
           </MapboxGL.ShapeSource>
         </>
@@ -191,10 +185,7 @@ export function MapBox({
           <MapboxGL.Images images={{ marker: positionMarker }} />
           <MapboxGL.SymbolLayer
             id="myShapeSourceMarker"
-            style={{
-              iconImage: "marker",
-              iconSize: 0.5,
-            }}
+            style={{ iconImage: "marker", iconSize: 0.5 }} // eslint-disable-line react-native/no-inline-styles
           />
         </MapboxGL.ShapeSource>
       )}
@@ -208,11 +199,7 @@ export function MapBox({
             <MapboxGL.Images images={{ pin: pinMarker }} />
             <MapboxGL.SymbolLayer
               id="myShapeSourceMarkerPosition"
-              style={{
-                iconImage: "pin",
-                iconSize: 0.25,
-                iconAnchor: "bottom",
-              }}
+              style={{ iconImage: "pin", iconSize: 0.25, iconAnchor: "bottom" }} // eslint-disable-line react-native/no-inline-styles
             />
           </MapboxGL.ShapeSource>
         ))}
