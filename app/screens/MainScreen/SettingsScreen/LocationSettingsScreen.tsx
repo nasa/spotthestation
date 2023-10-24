@@ -66,12 +66,13 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   const [isSightings, setIsSightings] = useState(false)
   const [currentTitle, setCurrentTitle] = useState<string>(null)
 
+  const saved = savedLocations.find((loc) => loc.title === currentTitle)
   const current = useMemo(() => {
     if (!currentTitle) return null
     if (selectedLocation && selectedLocation.title === currentTitle) return selectedLocation
     if (currentLocation && currentLocation.title === currentTitle) return currentLocation
-    return savedLocations.find((loc) => loc.title === currentTitle)
-  }, [currentTitle, selectedLocation, currentLocation, savedLocations])
+    return saved
+  }, [currentTitle, selectedLocation, currentLocation, saved])
 
   const [currentTimeZone, setCurrentTimeZone] = useState({
     timeZone: "US/Central",
@@ -109,21 +110,21 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
               : item,
           ),
         )
-
-        if (selectedLocation && selectedLocation.title === title) {
-          setSelectedLocation(
-            {
-              ...selectedLocation,
-              sightings: selectedLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
-            },
-            true,
-          ).catch((e) => console.log(e))
-        }
       } else {
         setCurrentLocation(
           {
             ...currentLocation,
             sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+          },
+          true,
+        ).catch((e) => console.log(e))
+      }
+
+      if (selectedLocation && selectedLocation.title === title) {
+        setSelectedLocation(
+          {
+            ...selectedLocation,
+            sightings: selectedLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
           },
           true,
         ).catch((e) => console.log(e))

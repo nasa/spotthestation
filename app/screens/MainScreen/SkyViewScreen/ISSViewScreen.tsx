@@ -440,7 +440,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       let shareOptions = {
         title: "Share file",
         failOnCancel: false,
-        urls: [url],
+        url: url.startsWith("file://") ? url : `file://${url}`,
         type: undefined,
       }
 

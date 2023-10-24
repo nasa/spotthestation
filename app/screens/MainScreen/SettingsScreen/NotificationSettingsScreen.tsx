@@ -152,7 +152,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     storage.save("upcoming", !isNotifyAll).catch(console.error)
 
     setNotifications()
-  }, [currentLocation, selectedLocation, savedLocations, isNotifyAll])
+  }, [currentLocation, selectedLocation, savedLocations, isNotifyAll, settings])
 
   const handleChange = useCallback(
     async (value, field: string) => {

@@ -103,7 +103,9 @@ export const Resources = observer(function HomeScreen() {
 
   const fetchData = useCallback(
     (paged = 1) => {
+      if (isLoading) return
       setIsLoading(true)
+      setPage(paged)
       api
         .getFeed(+paged)
         .then((res) => {
@@ -118,7 +120,7 @@ export const Resources = observer(function HomeScreen() {
           console.log(e)
         })
     },
-    [news],
+    [news, isLoading],
   )
 
   useEffect(() => {
@@ -299,7 +301,6 @@ export const Resources = observer(function HomeScreen() {
           numColumns={2}
           columnWrapperStyle={$justifyCenter}
           onEndReached={() => {
-            setPage(page + 1)
             fetchData(page + 1)
           }}
           onEndReachedThreshold={0.5}

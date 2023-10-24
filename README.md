@@ -46,7 +46,12 @@ Before you can run this project, you will need to have the following software in
    ```
    sudo chmod 0600 ~/.netrc
    ```
-5. Install project dependencies:
+6. Create `.gradle/gradle.properties` file in your home directory (not project directory) with the following content:
+   ```
+   MAPBOX_DOWNLOADS_TOKEN=YOUR_SECRET_MAPBOX_ACCESS_TOKEN
+   ```
+   Replace `YOUR_SECRET_MAPBOX_ACCESS_TOKEN` with your Mapbox token.
+7. Install project dependencies:
     ```
     yarn install
     ```
