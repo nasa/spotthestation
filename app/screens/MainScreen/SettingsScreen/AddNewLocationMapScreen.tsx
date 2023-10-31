@@ -133,7 +133,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         style={$map}
         withNightOverlay={false}
         onPress={({ geometry }) => {
-          console.log("lal", geometry)
           setMarker({ latitude: geometry.coordinates[1], longitude: geometry.coordinates[0] })
         }}
         markers={marker ? [marker] : []}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { View, ViewStyle } from "react-native"
 import MapboxGL, { MapState } from "@rnmapbox/maps"
 import Config from "../../../config"
@@ -8,6 +8,7 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 import { OrbitPoint } from "../../../services/api"
+import { CameraRef } from "@rnmapbox/maps/lib/typescript/components/Camera"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
@@ -38,6 +39,7 @@ export function MapBox({
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
+  const cameraRef = useRef<CameraRef>()
 
   const mapper = useCallback((p: [number, number]) => {
     return new Vector3(p[0], p[1], 0)
@@ -93,6 +95,14 @@ export function MapBox({
     }
   }, [])
 
+  useEffect(() => {
+    if (!cameraRef.current || !defaultCameraPosition) return
+
+    cameraRef.current.setCamera({
+      centerCoordinate: [defaultCameraPosition[1], defaultCameraPosition[0]],
+    })
+  }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1]])
+
   const issPathCoords2D = useMemo(
     () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),
     [curve],
@@ -130,6 +140,7 @@ export function MapBox({
         </MapboxGL.ShapeSource>
       )}
       <MapboxGL.Camera
+        ref={cameraRef}
         animationDuration={0}
         animationMode="none"
         zoomLevel={zoom}

@@ -1,9 +1,20 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { getShortTZ, formatDate, getCurrentTimeZome, isDateBetweenHours } from "../formatDate"
 import { LocationType } from "../../services/api"
+import MockDate from "mockdate"
 
-it("call getShortTZ", () => {
-  expect(getShortTZ("Europe/Kyiv")).toBe("EEST")
+describe("getShortTZ", () => {
+  beforeEach(() => {
+    MockDate.set("08-12-2012 10:10:10")
+  })
+
+  afterEach(() => {
+    MockDate.reset()
+  })
+
+  it("call getShortTZ", () => {
+    expect(getShortTZ("Europe/Kyiv")).toBe("EEST")
+  })
 })
 
 it("call formatDate", () => {

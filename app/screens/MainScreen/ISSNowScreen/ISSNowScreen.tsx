@@ -63,7 +63,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
-  const cameraPosition = useRef(null)
+  const [defaultCameraPosition, setDefaultCameraPosition] = useState<[number, number]>([0, 0])
+  const cameraPosition = useRef<[number, number]>([0, 0])
   const current = useMemo(
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
@@ -136,6 +137,12 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
     getData().catch((e) => console.log(e))
   }, [current])
+
+  useEffect(() => {
+    if (!current) return
+    setDefaultCameraPosition([current.location.lat, current.location.lng])
+    cameraPosition.current = [current.location.lat, current.location.lng]
+  }, [current?.location.lat, current?.location.lng])
 
   const { toggleBottomTabs, toggleIsLandscape } = useContext(TabNavigatorContext)
 
@@ -227,7 +234,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             key={isFullScreen.toString() + isLandscape.toString()}
             issPath={issData}
             zoom={zoomLevel + 1}
-            defaultCameraPosition={cameraPosition.current}
+            defaultCameraPosition={defaultCameraPosition}
             marker={current && [current?.location?.lat, current?.location?.lng]}
             onCameraChange={handleCameraChange}
           />
@@ -237,7 +244,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             issPath={issData}
             style={$flatMap}
             zoom={zoomLevel}
-            defaultCameraPosition={cameraPosition.current}
+            defaultCameraPosition={defaultCameraPosition}
             onCameraChange={handleCameraChange}
             markers={
               current?.location
@@ -266,7 +273,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               accessibilityHint="enable map view"
               text="2D"
               textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-              onPress={() => setIsGlobe(false)}
+              onPress={() => {
+                setIsGlobe(false)
+                setDefaultCameraPosition(cameraPosition.current)
+              }}
               buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
             />
             <IconLinkButton
@@ -275,7 +285,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               accessibilityHint="enable globe view"
               text="3D"
               textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-              onPress={() => setIsGlobe(true)}
+              onPress={() => {
+                setIsGlobe(true)
+                setDefaultCameraPosition(cameraPosition.current)
+              }}
               buttonStyle={isGlobe ? [$modButton, $active] : $modButton}
             />
           </BlurView>

@@ -433,7 +433,9 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={`${translate("units.time")} ${countdown}`}
         timezone={currentTimeZone?.timeZone}
       />
-      {globeVisible && <Globe zoom={1.5} marker={location} issPath={issData} />}
+      {globeVisible && (
+        <Globe zoom={1.5} marker={location} issPath={issData} defaultCameraPosition={location} />
+      )}
       <FlatMap style={$flatMap} issPath={issData} currentLocation={location} />
       <MyModal
         name="location"

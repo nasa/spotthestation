@@ -260,28 +260,6 @@ export function Globe({
   }
 
   const createOrbit = () => {
-    // const pastCurve = new CatmullRomCurve3(
-    //   pastIssPathCoords.map((coords) => {
-    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-    //   }),
-    // )
-    //
-    // const futureCurve = new CatmullRomCurve3(
-    //   futureIssPathCoords.map((coords) => {
-    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-    //   }),
-    // )
-    //
-    // const points = curve.getPoints(100)
-    // const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
-    // const pastPoints = points
-    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) >= 0)
-    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
-    //
-    // const futurePoints = points
-    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) < 0)
-    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
-
     const pastLine = new Line()
     pastLine.material = new LineBasicMaterial({ color: 0x00ff00, linewidth: 6 })
     const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
@@ -338,6 +316,13 @@ export function Globe({
   useEffect(() => {
     checkMarkerVisibility()
   }, [globeRef.current, pointRef.current, camera, marker])
+
+  useEffect(() => {
+    if (!camera || !defaultCameraPosition) return
+    const cameraPosition = coordinatesToPosition(defaultCameraPosition, 850)
+    camera.position.set(...cameraPosition)
+    camera.lookAt(new Vector3(0, 0, 0))
+  }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1], camera])
 
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
