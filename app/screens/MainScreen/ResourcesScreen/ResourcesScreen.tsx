@@ -26,7 +26,7 @@ import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 const items = [
   {
     tags: [],
-    title: "ISS Overview",
+    title: "International Space Station Overview",
     image:
       "https://www.nasa.gov/wp-content/uploads/2021/08/44911459904-375bc02163-k-0.jpg?resize=1200,800",
     type: "event",
@@ -42,7 +42,7 @@ const items = [
   },
   {
     tags: ["history"],
-    title: "ISS Crews and Expeditions",
+    title: "International Space Station Crews and Expeditions",
     date: "2023-01-04T00:00:00.000000",
     image: "https://www.nasa.gov/wp-content/uploads/2023/05/exp70-portrait.jpg?w=1000",
     type: "event",
@@ -50,7 +50,7 @@ const items = [
   },
   {
     tags: [],
-    title: "ISS International Cooperation",
+    title: "International Space Station International Cooperation",
     date: "2023-01-04T00:00:00.000000",
     image: "https://www.nasa.gov/wp-content/uploads/2023/03/ops-map.png",
     type: "event",
