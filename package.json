@@ -89,7 +89,7 @@
     "react-native-code-push": "^8.1.0",
     "react-native-config": "^1.4.11",
     "react-native-confirmation-code-field": "^7.3.1",
-    "react-native-device-info": "^10.6.0",
+    "react-native-device-info": "^10.11.0",
     "react-native-element-dropdown": "^2.5.1",
     "react-native-email": "^2.1.0",
     "react-native-geolocation-service": "^5.3.1",
