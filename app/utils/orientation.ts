@@ -1,4 +1,5 @@
 import { orientation, SensorTypes, setUpdateIntervalForType } from "react-native-sensors"
+import { isAvailable as isSensorAvailable } from "react-native-sensors/src/rnsensors"
 import { Platform } from "react-native"
 import { Subscription } from "rxjs"
 import { Quaternion, Vector3 } from "three"
@@ -60,6 +61,14 @@ function removeWatcher(watcher: Watcher) {
 }
 
 const declinationCache = {}
+
+export function isAvailable(): Promise<boolean> {
+  const fn = isSensorAvailable as (sensor: string) => Promise<any>
+  return fn("orientation").then(
+    () => true,
+    () => false,
+  )
+}
 
 export default function watchOrientation(func: WatcherFunc, location: [number, number]) {
   if (!declinationCache[location.toString()]) {

@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ViewStyle } from "react-native"
+import { ActivityIndicator, StyleSheet, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
 import {
@@ -61,6 +61,7 @@ export function Globe({
   const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
 
   const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
+  const [isReady, setIsReady] = useState(false)
   const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
@@ -362,6 +363,7 @@ export function Globe({
     const render = () => {
       if (deadRef.current) return
 
+      setIsReady(true)
       requestAnimationFrame(render)
       update()
       renderer.render(scene, camera)
@@ -375,6 +377,7 @@ export function Globe({
     <>
       <ControlsView style={$pan} camera={camera} onPositionChange={handleCameraChange}>
         <GLView style={$container} onContextCreate={contextRenderer} key="d" />
+        {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}
       </ControlsView>
     </>
   )

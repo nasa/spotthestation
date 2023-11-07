@@ -112,7 +112,7 @@
     "react-native-svg": "^13.8.0",
     "react-native-version": "^4.0.0",
     "react-native-view-shot": "^3.6.0",
-    "react-native-vision-camera": "^2.16.1",
+    "react-native-vision-camera": "^2.16.5",
     "react-native-web": "~0.18.7",
     "react-native-webview": "^11.26.1",
     "reactotron-mst": "3.1.4",

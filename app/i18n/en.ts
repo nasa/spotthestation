@@ -203,6 +203,9 @@ const en = {
       orbitsPerDay: "Orbits/Day",
       dimensionsValue: "109m wide x 73m long x 14m tall",
     },
+    arNotSupported: "AR is not supported on this device",
+    noOrientationSensor: "Orientation sensor is not available",
+    screenshotError: "Unable to capture screenshot",
   },
   settings: {
     header: "Settings",

@@ -201,6 +201,9 @@ const uk = {
       orbitsPerDay: "Обертів на день",
       dimensionsValue: "109м x 73м x 14м",
     },
+    arNotSupported: "AR не підтримується на цьому пристрої",
+    noOrientationSensor: "Сенсор орієнтації недоступний",
+    screenshotError: "Неможливо зробити знімок екрану",
   },
   settings: {
     header: "Налаштування",

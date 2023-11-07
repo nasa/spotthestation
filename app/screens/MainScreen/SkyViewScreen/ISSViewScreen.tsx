@@ -311,15 +311,24 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const completeScreenshot = async () => {
-    const uri = await captureScreen({
-      format: "jpg",
-      quality: 1,
-    })
+    try {
+      const uri = await captureScreen({
+        format: "jpg",
+        quality: 1,
+      })
 
-    setStill(false)
-    await saveToGallery(uri, "photo")
-    setMediaUrl(uri)
-    setMediaType("photo")
+      setStill(false)
+      await saveToGallery(uri, "photo")
+      setMediaUrl(uri)
+      setMediaType("photo")
+    } catch (e) {
+      setStill(false)
+      console.error(e)
+      Snackbar.show({
+        text: translate("issView.screenshotError"),
+        duration: Snackbar.LENGTH_LONG,
+      })
+    }
   }
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {

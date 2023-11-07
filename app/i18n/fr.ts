@@ -206,6 +206,9 @@ const fr = {
       orbitsPerDay: "Orbites / jour",
       dimensionsValue: "109 m de large x 73 m de long x 14 m de haut",
     },
+    arNotSupported: "La AR n'est pas prise en charge sur cet appareil",
+    noOrientationSensor: "Capteur d'orientation non disponible",
+    screenshotError: "Impossible de capturer la capture d'écran",
   },
   settings: {
     header: "Paramètres",

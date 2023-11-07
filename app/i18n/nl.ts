@@ -203,6 +203,9 @@ const nl = {
       orbitsPerDay: "Banen/dag",
       dimensionsValue: "109m breed x 73m lang x 14m hoog",
     },
+    arNotSupported: "AR wordt niet ondersteund op dit apparaat",
+    noOrientationSensor: "Orientatiesensor niet beschikbaar",
+    screenshotError: "Kan geen schermafbeelding maken",
   },
   settings: {
     header: "Instellingen",

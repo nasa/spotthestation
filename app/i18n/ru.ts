@@ -202,6 +202,9 @@ const ru = {
       orbitsPerDay: "Орбит в сутки",
       dimensionsValue: "109м x 73м x 14м",
     },
+    arNotSupported: "AR не поддерживается на этом устройстве",
+    noOrientationSensor: "Датчик ориентации недоступен",
+    screenshotError: "Невозможно сделать снимок экрана",
   },
   settings: {
     header: "Настройки",

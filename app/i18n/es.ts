@@ -204,6 +204,9 @@ const es = {
       orbitsPerDay: "Orbitas al día",
       dimensionsValue: "109m de ancho x 73m de largo x 14m de alto",
     },
+    arNotSupported: "La realidad aumentada no es compatible en este dispositivo",
+    noOrientationSensor: "Sensor de orientación no disponible",
+    screenshotError: "No se puede capturar la captura de pantalla",
   },
   settings: {
     header: "Ajustes",

@@ -200,6 +200,9 @@ const ja = {
       orbitsPerDay: "軌道/日",
       dimensionsValue: "幅109m x長さ73m x高さ14m",
     },
+    arNotSupported: "このデバイスではARはサポートされていません",
+    noOrientationSensor: "方向センサーは利用できません",
+    screenshotError: "スクリーンショットのキャプチャができません",
   },
   settings: {
     header: "設定",

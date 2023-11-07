@@ -200,6 +200,9 @@ const sv = {
       orbitsPerDay: "Omlopp/dag",
       dimensionsValue: "109 m bred x 73 m lång x 14 m lång",
     },
+    arNotSupported: "AR stöds inte på den här enheten",
+    noOrientationSensor: "Orienteringssensor är inte tillgänglig",
+    screenshotError: "Kan inte ta skärmbild",
   },
   settings: {
     header: "inställningar",

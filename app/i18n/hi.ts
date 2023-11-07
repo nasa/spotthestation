@@ -201,6 +201,9 @@ const hi = {
       orbitsPerDay: "कक्षाओं/दिन",
       dimensionsValue: "109 मीटर चौड़ा x 73 मीटर लंबा x 14 मीटर ऊँचा",
     },
+    arNotSupported: "इस उपकरण पर AR का समर्थन नहीं है",
+    noOrientationSensor: "ओरिएंटेशन सेंसर उपलब्ध नहीं है",
+    screenshotError: "स्क्रीनशॉट कैप्चर करने में असमर्थ",
   },
   settings: {
     header: "समायोजन",

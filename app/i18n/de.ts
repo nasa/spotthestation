@@ -205,6 +205,9 @@ const de = {
       orbitsPerDay: "Umlaufbahnen/Tag",
       dimensionsValue: "109 m breit x 73 m lang x 14 m hoch",
     },
+    arNotSupported: "AR wird auf diesem Gerät nicht unterstützt",
+    noOrientationSensor: "Orientierungssensor nicht verfügbar",
+    screenshotError: "Screenshot kann nicht erstellt werden",
   },
   settings: {
     header: "Einstellungen",
