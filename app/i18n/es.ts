@@ -42,7 +42,7 @@ const es = {
   },
   notifications: {
     push: {
-      title: "¡Detecte la estación ahora!",
+      title: "¡Aviste la estación!",
       subTitle: "La estación está pasando por encima de usted en",
     },
     before: {
@@ -57,7 +57,7 @@ const es = {
     kilometer: "km",
     kilogram: "kg",
     month: "mes",
-    metersPerSecond: "min/s",
+    metersPerSecond: "m/s",
     time: "H",
   },
   tabNavigator: {
