@@ -26,6 +26,14 @@ class Notifications {
       popInitialNotification: true,
       requestPermissions: Platform.OS === "ios",
     })
+
+    if (Platform.OS === "android") {
+      setTimeout(() => {
+        PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS).catch(
+          console.error,
+        )
+      }, 1000)
+    }
   }
 
   setNotifications = async (locations: LocationType[]) => {
@@ -71,10 +79,6 @@ class Notifications {
     notifications.sort((a, b) => a.fireDate.valueOf() - b.fireDate.valueOf())
     if (Platform.OS === "ios") {
       notifications = notifications.slice(0, 64)
-    }
-
-    if (Platform.OS === "android" && notifications.length > 0) {
-      await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS)
     }
 
     if (Platform.OS === "ios") {
