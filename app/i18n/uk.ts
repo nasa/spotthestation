@@ -203,6 +203,7 @@ const uk = {
     },
     arNotSupported: "AR не підтримується на цьому пристрої",
     noOrientationSensor: "Сенсор орієнтації недоступний",
+    noMagnetometerSensor: "Магнітометр недоступний",
     screenshotError: "Неможливо зробити знімок екрану",
   },
   settings: {
@@ -212,6 +213,14 @@ const uk = {
     termsAndConditions: "Умови та положення",
     contactUs: "Зв'яжіться з нами",
     language: "Мова",
+    calibrateCompass: "Калібрування компасу",
+    calibrateCompassData: {
+      instructions: "Для калібрування компасу оберніть пристрій вісімкою декілька разів.",
+      accuracy: "Точність сенсора:",
+      low: "Низька",
+      medium: "Середня",
+      high: "Висока",
+    },
     termsAndConditionsData: {
       backButton: "Налаштування",
       ios: {

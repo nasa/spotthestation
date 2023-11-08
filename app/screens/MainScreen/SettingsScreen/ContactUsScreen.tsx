@@ -52,7 +52,15 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     api
       .sendMail(
         `Spot the Station Mobile App: ${title}`,
-        `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\n\nBuild Number: ${DeviceInfo.getBuildNumber()}\nOS: ${Platform.OS} ${Platform.OS === 'android' ? `sdk ${Platform.Version}` : Platform.Version}\nBrand: ${DeviceInfo.getBrand()}\nModel: ${Platform.OS === 'ios' ? `${DeviceInfo.getModel()} (device id: ${DeviceInfo.getDeviceId()})` : DeviceInfo.getModel()}\n\nThank you.\nSpotTheStation Mobile App`,
+        `This email includes feedback received on the NASA SpotTheStation Mobile App version ${DeviceInfo.getVersion()}. Please forward this email to the relevant responsible individual, so that an appropriate response is provided.\nFeedback Category: ${title}\nFeedback Comments: ${comments}\n\nBuild Number: ${DeviceInfo.getBuildNumber()}\nOS: ${
+          Platform.OS
+        } ${
+          Platform.OS === "android" ? `sdk ${Platform.Version}` : Platform.Version
+        }\nBrand: ${DeviceInfo.getBrand()}\nModel: ${
+          Platform.OS === "ios"
+            ? `${DeviceInfo.getModel()} (device id: ${DeviceInfo.getDeviceId()})`
+            : DeviceInfo.getModel()
+        }\n\nThank you.\nSpotTheStation Mobile App`,
       )
       .then((data) => {
         if (typeof data === "string") {

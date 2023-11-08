@@ -206,6 +206,7 @@ const es = {
     },
     arNotSupported: "La realidad aumentada no es compatible en este dispositivo",
     noOrientationSensor: "Sensor de orientación no disponible",
+    noMagnetometerSensor: "El magnetómetro no está disponible",
     screenshotError: "No se puede capturar la captura de pantalla",
   },
   settings: {
@@ -215,6 +216,15 @@ const es = {
     termsAndConditions: "Términos y condiciones",
     contactUs: "Contáctenos",
     language: "Idioma",
+    calibrateCompass: "Calibración de brújula",
+    calibrateCompassData: {
+      instructions:
+        "Para calibrar la brújula, gire su dispositivo varias veces en un patrón de ocho.",
+      accuracy: "Precisión del sensor:",
+      low: "Baja",
+      medium: "Media",
+      high: "Alta",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

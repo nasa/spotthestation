@@ -202,6 +202,7 @@ const ja = {
     },
     arNotSupported: "このデバイスではARはサポートされていません",
     noOrientationSensor: "方向センサーは利用できません",
+    noMagnetometerSensor: "磁力計は利用できません",
     screenshotError: "スクリーンショットのキャプチャができません",
   },
   settings: {
@@ -211,6 +212,15 @@ const ja = {
     termsAndConditions: "規約と条件",
     contactUs: "お問い合わせ",
     language: "言語",
+    calibrateCompass: "コンパスのキャリブレーション",
+    calibrateCompassData: {
+      instructions:
+        "コンパスをキャリブレーションするには、デバイスを8の字のパターンで複数回回転させてください。",
+      accuracy: "センサー精度:",
+      low: "低",
+      medium: "中",
+      high: "高",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

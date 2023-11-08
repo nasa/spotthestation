@@ -206,6 +206,7 @@ const it = {
     },
     arNotSupported: "AR non è supportato su questo dispositivo",
     noOrientationSensor: "Sensore di orientamento non disponibile",
+    noMagnetometerSensor: "Il magnetometro non è disponibile",
     screenshotError: "Impossibile catturare lo screenshot",
   },
   settings: {
@@ -215,6 +216,15 @@ const it = {
     termsAndConditions: "Termini e Condizioni",
     contactUs: "Contattaci",
     language: "Lingua",
+    calibrateCompass: "Calibrazione della bussola",
+    calibrateCompassData: {
+      instructions:
+        "Per calibrare la bussola, ruota il tuo dispositivo più volte in un pattern a forma di 8.",
+      accuracy: "Precisione del sensore:",
+      low: "Bassa",
+      medium: "Media",
+      high: "Alta",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

@@ -202,6 +202,7 @@ const sv = {
     },
     arNotSupported: "AR stöds inte på den här enheten",
     noOrientationSensor: "Orienteringssensor är inte tillgänglig",
+    noMagnetometerSensor: "Magnetometern är inte tillgänglig",
     screenshotError: "Kan inte ta skärmbild",
   },
   settings: {
@@ -211,6 +212,14 @@ const sv = {
     termsAndConditions: "Villkor",
     contactUs: "Kontakta oss",
     language: "Språk",
+    calibrateCompass: "Kalibrera kompassen",
+    calibrateCompassData: {
+      instructions: "För att kalibrera kompassen, rotera din enhet flera gånger i ett åttamönster.",
+      accuracy: "Sensornoggrannhet:",
+      low: "Låg",
+      medium: "Medium",
+      high: "Hög",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

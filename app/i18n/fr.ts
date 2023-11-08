@@ -208,6 +208,7 @@ const fr = {
     },
     arNotSupported: "La AR n'est pas prise en charge sur cet appareil",
     noOrientationSensor: "Capteur d'orientation non disponible",
+    noMagnetometerSensor: "Le magnétomètre n'est pas disponible",
     screenshotError: "Impossible de capturer la capture d'écran",
   },
   settings: {
@@ -217,6 +218,15 @@ const fr = {
     termsAndConditions: "Termes et conditions",
     contactUs: "Contactez-nous",
     language: "Langue",
+    calibrateCompass: "Calibrage de la boussole",
+    calibrateCompassData: {
+      instructions:
+        "Pour calibrer la boussole, faites pivoter votre appareil plusieurs fois en un motif en forme de 8.",
+      accuracy: "Précision du capteur:",
+      low: "Faible",
+      medium: "Moyenne",
+      high: "Élevée",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

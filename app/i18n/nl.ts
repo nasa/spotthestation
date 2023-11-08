@@ -205,6 +205,7 @@ const nl = {
     },
     arNotSupported: "AR wordt niet ondersteund op dit apparaat",
     noOrientationSensor: "Orientatiesensor niet beschikbaar",
+    noMagnetometerSensor: "Magnetometer is niet beschikbaar",
     screenshotError: "Kan geen schermafbeelding maken",
   },
   settings: {
@@ -214,6 +215,15 @@ const nl = {
     termsAndConditions: "Voorwaarden",
     contactUs: "Neem contact met ons op",
     language: "Taal",
+    calibrateCompass: "Kalibreer de kompas",
+    calibrateCompassData: {
+      instructions:
+        "Om de kompas te kalibreren, draai uw apparaat meerdere keren in een figuur 8-patroon.",
+      accuracy: "Sensornauwkeurigheid:",
+      low: "Laag",
+      medium: "Gemiddeld",
+      high: "Hoog",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

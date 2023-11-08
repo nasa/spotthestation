@@ -1,5 +1,58 @@
+diff --git a/node_modules/react-native-sensors/android/src/main/java/com/sensors/RNSensor.java b/node_modules/react-native-sensors/android/src/main/java/com/sensors/RNSensor.java
+index 811fdd3..f3321c1 100644
+--- a/node_modules/react-native-sensors/android/src/main/java/com/sensors/RNSensor.java
++++ b/node_modules/react-native-sensors/android/src/main/java/com/sensors/RNSensor.java
+@@ -119,6 +119,21 @@ public class RNSensor extends ReactContextBaseJavaModule implements SensorEventL
+           map.putDouble("x", sensorEvent.values[0]);
+           map.putDouble("y", sensorEvent.values[1]);
+           map.putDouble("z", sensorEvent.values[2]);
++
++          int accuracy = -1;
++          switch (sensorEvent.accuracy) {
++            case SensorManager.SENSOR_STATUS_ACCURACY_LOW:
++              accuracy = 0;
++              break;
++            case SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM:
++              accuracy = 1;
++              break;
++            case SensorManager.SENSOR_STATUS_ACCURACY_HIGH:
++              accuracy = 2;
++              break;
++          }
++
++          map.putInt("accuracy", accuracy);
+           break;
+ 
+         case Sensor.TYPE_PRESSURE:
+diff --git a/node_modules/react-native-sensors/index.d.ts b/node_modules/react-native-sensors/index.d.ts
+index 00d1dd4..5763e17 100644
+--- a/node_modules/react-native-sensors/index.d.ts
++++ b/node_modules/react-native-sensors/index.d.ts
+@@ -16,11 +16,14 @@ declare module "react-native-sensors" {
+ 
+   export const setLogLevelForType: (type: keyof Sensors, logLevel: 0 | 1 | 2) => void;
+ 
++  export type SensorAccuracy = -1 | 0 | 1 | 2
++
+   export interface SensorData {
+     x: number;
+     y: number;
+     z: number;
+     timestamp: number;
++    accuracy: SensorAccuracy;
+   }
+ 
+   export interface BarometerData {
+@@ -37,6 +40,7 @@ declare module "react-native-sensors" {
+     roll: number;
+     yaw: number;
+     timestamp: number;
++        accuracy: SensorAccuracy;
+   }
+ 
+   type SensorsBase = {
 diff --git a/node_modules/react-native-sensors/ios/RNSensorsOrientation.m b/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
-index 757d302..68810a5 100644
+index 757d302..c67d6b0 100644
 --- a/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
 +++ b/node_modules/react-native-sensors/ios/RNSensorsOrientation.m
 @@ -128,7 +128,7 @@ - (void) isAvailableWithResolver:(RCTPromiseResolveBlock) resolve
@@ -10,4 +63,22 @@ index 757d302..68810a5 100644
 +        [self->_motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXMagneticNorthZVertical toQueue:queue withHandler:^(CMDeviceMotion *deviceMotion, NSError *error)
       {
           CMAttitude *attitude = deviceMotion.attitude;
+          
+@@ -142,6 +142,7 @@ - (void) isAvailableWithResolver:(RCTPromiseResolveBlock) resolve
+          double yaw = attitude.yaw;
+ 
+          double timestamp = [RNSensorsUtils sensorTimestampToEpochMilliseconds:deviceMotion.timestamp];
++         int accuracy = deviceMotion.magneticField.accuracy;
+ 
+          if (self->logLevel > 1) {
+              NSLog(@"Updated device motion pitch/roll/yaw: %f, %f, %f, %f", pitch, roll, yaw, timestamp);
+@@ -156,7 +157,8 @@ - (void) isAvailableWithResolver:(RCTPromiseResolveBlock) resolve
+                                                            @"qy" : [NSNumber numberWithDouble:qy],
+                                                            @"qz" : [NSNumber numberWithDouble:qz],
+                                                            @"qw" : [NSNumber numberWithDouble:qw],
+-                                                           @"timestamp" : [NSNumber numberWithDouble:timestamp]
++                                                           @"timestamp" : [NSNumber numberWithDouble:timestamp],
++                                                           @"accuracy": [NSNumber numberWithInt:accuracy]
+                                                        }];
+      }];
  

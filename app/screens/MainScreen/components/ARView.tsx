@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { Alert, TextStyle, View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
@@ -11,8 +11,6 @@ import { LocationType, OrbitPoint } from "../../../services/api"
 import { CatmullRomCurve3, Vector3 } from "three"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { Text } from "../../../components"
-import { isAvailable } from "../../../utils/orientation"
-import { translate } from "../../../i18n"
 
 interface ARViewProps {
   isFullScreen: boolean
@@ -38,7 +36,6 @@ export const ARView = function ARView({
   location,
 }: ARViewProps) {
   const { $container, $hudContainer, $text } = useStyles(styles)
-  const [isSupported, setIsSupported] = useState(false)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
   const [curveEndsAt, setCurveEndsAt] = useState(0)
@@ -50,17 +47,6 @@ export const ARView = function ARView({
 
   const onScreenPositionChange = useCallback((pos: [number, number]) => {
     setPosition(pos)
-  }, [])
-
-  useEffect(() => {
-    const notSupported = () =>
-      Alert.alert(translate("issView.arNotSupported"), translate("issView.noOrientationSensor"))
-    isAvailable()
-      .then((res) => {
-        if (!res) notSupported()
-        else setIsSupported(true)
-      })
-      .catch(notSupported)
   }, [])
 
   useEffect(() => {
@@ -148,8 +134,6 @@ export const ARView = function ARView({
     setIsStillReady(true)
     setTimeout(onStillReady, 500)
   }, [onStillReady])
-
-  if (!isSupported) return null
 
   return (
     <View style={$container}>

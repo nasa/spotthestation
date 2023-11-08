@@ -1,4 +1,10 @@
-import { orientation, SensorTypes, setUpdateIntervalForType } from "react-native-sensors"
+import {
+  orientation,
+  magnetometer,
+  SensorTypes,
+  setUpdateIntervalForType,
+  SensorAccuracy,
+} from "react-native-sensors"
 import { isAvailable as isSensorAvailable } from "react-native-sensors/src/rnsensors"
 import { Platform } from "react-native"
 import { Subscription } from "rxjs"
@@ -6,6 +12,7 @@ import { Quaternion, Vector3 } from "three"
 import geomagnetism from "geomagnetism"
 
 type WatcherFunc = (rotation: Quaternion) => void
+type AccuracyWatcherFunc = (accuracy: SensorAccuracy) => void
 type Watcher = {
   func: WatcherFunc
   declination: number
@@ -15,6 +22,7 @@ const watchers: Watcher[] = []
 let subscription: Subscription = null
 
 setUpdateIntervalForType(SensorTypes.orientation, 50)
+setUpdateIntervalForType(SensorTypes.magnetometer, 50)
 
 const rotateX = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2)
 const rotateY = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI / 2)
@@ -62,7 +70,15 @@ function removeWatcher(watcher: Watcher) {
 
 const declinationCache = {}
 
-export function isAvailable(): Promise<boolean> {
+export function isOrientationAvailable(): Promise<boolean> {
+  const fn = isSensorAvailable as (sensor: string) => Promise<any>
+  return fn("orientation").then(
+    () => true,
+    () => false,
+  )
+}
+
+export function isMagnetometerAvailable(): Promise<boolean> {
   const fn = isSensorAvailable as (sensor: string) => Promise<any>
   return fn("orientation").then(
     () => true,
@@ -80,4 +96,33 @@ export default function watchOrientation(func: WatcherFunc, location: [number, n
   const watcher = { func, declination: declinationCache[location.toString()] }
   addWatcher(watcher)
   return () => removeWatcher(watcher)
+}
+
+export function watchCalibrationState(func: AccuracyWatcherFunc) {
+  let subscription: Subscription
+  let lastAccuracy: SensorAccuracy
+  let repeat = 0
+
+  const handler = ({ accuracy }: { accuracy: SensorAccuracy }) => {
+    if (lastAccuracy === accuracy) {
+      ++repeat
+    } else {
+      lastAccuracy = accuracy
+      repeat = 0
+    }
+
+    if (repeat === 3) {
+      func(lastAccuracy)
+    }
+  }
+
+  if (Platform.OS === "android") {
+    subscription = magnetometer.subscribe(handler)
+  } else {
+    subscription = orientation.subscribe(handler)
+  }
+
+  return () => {
+    subscription.unsubscribe()
+  }
 }

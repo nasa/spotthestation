@@ -203,6 +203,7 @@ const hi = {
     },
     arNotSupported: "इस उपकरण पर AR का समर्थन नहीं है",
     noOrientationSensor: "ओरिएंटेशन सेंसर उपलब्ध नहीं है",
+    noMagnetometerSensor: "मैग्नेटोमीटर उपलब्ध नहीं है",
     screenshotError: "स्क्रीनशॉट कैप्चर करने में असमर्थ",
   },
   settings: {
@@ -212,6 +213,14 @@ const hi = {
     termsAndConditions: "नियम और शर्तें",
     contactUs: "संपर्क करें",
     language: "भाषा",
+    calibrateCompass: "कंपास कैलिब्रेशन",
+    calibrateCompassData: {
+      instructions: "कंपास को कैलिब्रेट करने के लिए, अपने उपकरण को कई बार आठ के पैटर्न में घुमाएं।",
+      accuracy: "सेंसर शौध्रता:",
+      low: "कम",
+      medium: "मध्यम",
+      high: "उच्च",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

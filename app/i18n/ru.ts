@@ -204,6 +204,7 @@ const ru = {
     },
     arNotSupported: "AR не поддерживается на этом устройстве",
     noOrientationSensor: "Датчик ориентации недоступен",
+    noMagnetometerSensor: "Магнитометр недоступен",
     screenshotError: "Невозможно сделать снимок экрана",
   },
   settings: {
@@ -213,6 +214,14 @@ const ru = {
     termsAndConditions: "Условия использования",
     contactUs: "Свяжитесь с нами",
     language: "Язык",
+    calibrateCompass: "Калибровка компаса",
+    calibrateCompassData: {
+      instructions: "Для калибровки компаса поверните устройство восьмёркой несколько раз.",
+      accuracy: "Точность сенсора:",
+      low: "Низкая",
+      medium: "Средняя",
+      high: "Высокая",
+    },
     termsAndConditionsData: {
       backButton: "Настройки",
       ios: {

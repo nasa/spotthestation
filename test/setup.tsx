@@ -106,6 +106,18 @@ jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))
 jest.mock("@react-native-firebase/analytics", () => ({}))
+
+jest.mock("react-native-sensors", () => ({
+  orientation: { subscribe: jest.fn() },
+  magnetometer: { subscribe: jest.fn() },
+  SensorTypes: { orientation: null, magnetometer: null },
+  setUpdateIntervalForType: jest.fn()
+}))
+
+jest.mock("react-native-sensors/src/rnsensors", () => ({
+  isAvailable: jest.fn().mockResolvedValue(false)
+}))
+
 jest.mock('../app/services/api', () => ({
   api: {
     getPlaces: jest.fn(),

@@ -207,6 +207,7 @@ const de = {
     },
     arNotSupported: "AR wird auf diesem Gerät nicht unterstützt",
     noOrientationSensor: "Orientierungssensor nicht verfügbar",
+    noMagnetometerSensor: "Magnetometer ist nicht verfügbar",
     screenshotError: "Screenshot kann nicht erstellt werden",
   },
   settings: {
@@ -216,6 +217,15 @@ const de = {
     termsAndConditions: "Geschäftsbedingungen",
     contactUs: "Kontaktieren Sie uns",
     language: "Sprache",
+    calibrateCompass: "Kompasskalibrierung",
+    calibrateCompassData: {
+      instructions:
+        "Um den Kompass zu kalibrieren, drehen Sie Ihr Gerät mehrmals in einer Acht-Figur.",
+      accuracy: "Sensorgenauigkeit:",
+      low: "Niedrig",
+      medium: "Mittel",
+      high: "Hoch",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {
