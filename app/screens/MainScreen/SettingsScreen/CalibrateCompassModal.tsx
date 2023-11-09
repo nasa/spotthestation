@@ -13,6 +13,7 @@ export interface CalibrateCompassModalProps {
 
 function formatAccuracy(accuracy: SensorAccuracy) {
   switch (accuracy) {
+    case -1:
     case 0:
       return "low"
     case 1:
