@@ -5,7 +5,7 @@ import { BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
 import { LocationType, OrbitPoint } from "../../../services/api"
 import { colors } from "../../../theme"
-import { formatDateWithTZ, getCurrentTimeZome } from "../../../utils/formatDate"
+import { formatDateWithTZ, getCurrentTimeZone } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
@@ -79,10 +79,6 @@ export const HomeScreen = observer(function HomeScreen() {
   const [address, setAddress] = useState("")
   const [stage, setStage] = useState(1)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
-  const [currentTimeZone, setCurrentTimeZone] = useState({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
 
   const current = useMemo(
     () => selectedLocation || currentLocation,
@@ -267,11 +263,6 @@ export const HomeScreen = observer(function HomeScreen() {
 
   useEffect(() => {
     if (!location) return
-
-    getCurrentTimeZome()
-      .then(({ timeZone, regionFormat }) => setCurrentTimeZone({ timeZone, regionFormat }))
-      .catch((e) => console.log(e))
-
     getData().catch((e) => console.log(e))
   }, [location?.[0], location?.[1]])
 
@@ -281,7 +272,7 @@ export const HomeScreen = observer(function HomeScreen() {
   }
 
   const handleChangeLocation = useCallback(
-    async (location: LocationType) => {
+    (location: LocationType) => {
       requestCloseModal("location")
       if (
         current &&
@@ -295,7 +286,6 @@ export const HomeScreen = observer(function HomeScreen() {
       setIssDataLoaded(false)
       setSightingsLoaded(false)
       setSelectedLocation(location).catch((e) => console.log(e))
-      await storage.save("selectedLocation", location)
     },
     [current],
   )
@@ -426,12 +416,12 @@ export const HomeScreen = observer(function HomeScreen() {
             ? formatDateWithTZ(
                 currentSighting.date,
                 i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy",
-                currentTimeZone.timeZone,
+                current?.timezone || getCurrentTimeZone(),
               )
             : "-"
         }
         countdown={`${translate("units.time")} ${countdown}`}
-        timezone={currentTimeZone?.timeZone}
+        timezone={current?.timezone || getCurrentTimeZone()}
       />
       {globeVisible && (
         <Globe zoom={1.5} marker={location} issPath={issData} defaultCameraPosition={location} />
@@ -482,7 +472,7 @@ export const HomeScreen = observer(function HomeScreen() {
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={i18n.locale === "en"}
           isNotifyAll={current && current?.sightings.every((item) => item.notify)}
-          timezone={currentTimeZone?.timeZone}
+          timezone={current?.timezone || getCurrentTimeZone()}
           lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
         />
       </MyModal>

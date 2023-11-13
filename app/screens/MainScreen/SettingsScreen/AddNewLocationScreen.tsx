@@ -165,6 +165,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         />
         <GooglePlacesAutocomplete
           ref={addressRef}
+          debounce={400}
           placeholder={translate(
             "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
           )}

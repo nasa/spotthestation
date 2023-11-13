@@ -29,7 +29,6 @@ import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { getCurrentTimeZome } from "../../../utils/formatDate"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
@@ -49,6 +48,7 @@ import {
   watchCalibrationState,
 } from "../../../utils/orientation"
 import { CalibrateCompassModal } from "../SettingsScreen/CalibrateCompassModal"
+import { getCurrentTimeZone } from "../../../utils/formatDate"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -311,8 +311,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const getSightings = async () => {
-    const { timeZone } = await getCurrentTimeZome()
-    await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
+    await getISSSightings({
+      zone: current?.timezone || getCurrentTimeZone(),
+      lat: location[0],
+      lon: location[1],
+    })
   }
 
   const getData = async () => {

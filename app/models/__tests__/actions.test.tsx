@@ -52,6 +52,7 @@ test("getISSSightings should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "",
   })
   expect(rootStore.savedLocations).toEqual([
     {
@@ -63,6 +64,7 @@ test("getISSSightings should update the store correctly", async () => {
       filterDuration: "",
       filterTimeOfDay: "",
       googlePlaceId: "",
+      timezone: "",
     },
   ])
 })
@@ -86,6 +88,7 @@ test("setCurrentLocation should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "US/Central",
   } as LocationType
 
   await rootStore.setCurrentLocation(mockValue)
@@ -115,6 +118,7 @@ test("setISSSightings should update the store correctly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -159,6 +163,7 @@ test("setISSSightings should update the store incorrectly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "",
   } as LocationType
 
   rootStore.setISSSightings(mockValue)
@@ -168,7 +173,6 @@ test("setISSSightings should update the store incorrectly", () => {
 
 test("setSelectedLocation should update the store correctly", async () => {
   const rootStore = RootStoreModel.create({
-    selectedLocation: {},
     currentLocation: null,
     savedLocations: [],
     issData: [],
@@ -179,12 +183,13 @@ test("setSelectedLocation should update the store correctly", async () => {
   const mockValue = {
     title: "New Location",
     location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
     sightings: [],
     subtitle: "sub",
+    lastSightingOrbitPointAt: "2023-12-12",
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "US/Central",
   } as LocationType
 
   await rootStore.setSelectedLocation(mockValue)
@@ -214,6 +219,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "",
   } as LocationType
 
   await rootStore.setNewSavedLocation(mockValue)
@@ -245,6 +251,7 @@ test("setSavedLocations should update the store correctly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    timezone: "",
   } as LocationType
 
   rootStore.setSavedLocations([mockValue])

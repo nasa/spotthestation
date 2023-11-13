@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useCallback, useState, useMemo } from "react"
+import React, { useCallback, useState, useMemo } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
@@ -8,19 +8,18 @@ import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import { getCurrentLocation } from "../../../utils/geolocation"
+import { getCurrentLocation, getLocationTimeZone } from "../../../utils/geolocation"
 import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
-import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
 import { SettingsItem } from "../components/SettingsItem"
 import { openSettings } from "react-native-permissions"
-import * as storage from "../../../utils/storage"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
 import { LocationType } from "../../../services/api"
+import { getCurrentTimeZone } from "../../../utils/formatDate"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -74,10 +73,6 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     return saved
   }, [currentTitle, selectedLocation, currentLocation, saved])
 
-  const [currentTimeZone, setCurrentTimeZone] = useState({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
   const [isRemove, setIsRemove] = useState(false)
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [locationPermission, setLocationPermission] = useState<boolean>(false)
@@ -86,9 +81,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setIsCurrentLocationUpdating(true)
     try {
       const location = await getCurrentLocation(() => ({}), setLocationPermission)
-      if (!location) return setIsCurrentLocationUpdating(false)
+      const isSameLocation =
+        location?.location.lat === currentLocation?.location.lat &&
+        location?.location.lng === currentLocation?.location.lng
+      if (!location || isSameLocation) return setIsCurrentLocationUpdating(false)
       await setCurrentLocation(location)
-      await storage.save("currentLocation", location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
       console.log(e)
@@ -162,21 +159,38 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     [current],
   )
 
-  const handleCtaPress = (item: LocationType) => {
+  const handleCtaPress = async (item: LocationType) => {
+    if (item.title !== selectedLocation?.title && item.title !== currentLocation?.title) {
+      const saved = savedLocations.find((loc) => loc.title === item.title)
+      let tz = null
+
+      try {
+        if (!saved.timezone) {
+          const { kind, zone } = await getLocationTimeZone(saved.location, Date.now() / 1000)
+          if (kind === "ok" && zone) tz = zone.timeZoneId
+          console.log("tz updated!", tz)
+        }
+      } catch (e) {
+        console.error(e)
+      }
+
+      setSavedLocations(
+        savedLocations.map((l) =>
+          item.title === l.title
+            ? {
+                ...l,
+                timezone: tz,
+              }
+            : l,
+        ),
+      )
+
+      setSavedLocations(savedLocations)
+    }
+
     setCurrentTitle(item.title)
     setIsSightings(true)
   }
-
-  const getTimeZone = async (location: LocationType) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome(location)
-    setCurrentTimeZone({ timeZone, regionFormat })
-  }
-
-  useEffect(() => {
-    if (!current) return
-
-    getTimeZone(current).catch((e) => console.log(e))
-  }, [current])
 
   const handleRemove = useCallback(
     (location: LocationType) => {
@@ -348,7 +362,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={i18n.locale === "en"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
-            timezone={currentTimeZone?.timeZone}
+            timezone={current?.timezone || getCurrentTimeZone()}
             lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
           />
         </Modal>

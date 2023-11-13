@@ -70,17 +70,14 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         const res = await api.reverseGeocode(marker.latitude, marker.longitude)
         if (res.kind !== "ok") return
 
-        const addrResponse = await api.getLocationAddress(res.googlePlaceId)
-        if (addrResponse.kind !== "ok" || !addrResponse.address) return null
-
         setLocation({
           location: { lat: marker.latitude, lng: marker.longitude },
-          title: addrResponse.name || addrResponse.address || "Location",
-          subtitle: addrResponse.address,
+          title: res.name || res.address || "Location",
+          subtitle: res.address,
           googlePlaceId: res.googlePlaceId,
         })
 
-        setTextValue(addrResponse.address)
+        setTextValue(res.address)
         setIsSave(true)
       }
     })().catch((e) => console.log(e))
@@ -150,6 +147,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         </View>
         <GooglePlacesAutocomplete
           ref={addressRef}
+          debounce={400}
           placeholder={translate(
             "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
           )}

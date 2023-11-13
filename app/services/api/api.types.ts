@@ -43,6 +43,7 @@ export interface LocationType {
   filterTimeOfDay?: string
   filterDuration?: string
   googlePlaceId?: string
+  timezone?: string
 }
 
 export interface RawISSDataResponse {

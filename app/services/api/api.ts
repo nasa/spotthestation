@@ -105,7 +105,8 @@ export class Api {
 
     return {
       kind: "ok",
-      name: result?.formatted_address,
+      name: result.address_components?.[0]?.long_name,
+      address: result?.formatted_address,
       googlePlaceId: result?.place_id,
     }
   }

@@ -10,7 +10,6 @@ import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
-import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
@@ -161,10 +160,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [isFullScreen])
 
   const handleChangeLocation = useCallback(
-    async (location: LocationType) => {
+    (location: LocationType) => {
       setIsLocation(false)
       setSelectedLocation(location).catch(console.error)
-      await storage.save("selectedLocation", location)
     },
     [selectedLocation, currentLocation],
   )

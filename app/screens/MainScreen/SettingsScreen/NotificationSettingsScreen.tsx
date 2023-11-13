@@ -11,12 +11,11 @@ import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
 import { colors, spacing, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
-import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZone } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
-import { LocationType } from "../../../services/api"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const {
@@ -85,10 +84,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
   )
-  const [currentTimeZone, setCurrentTimeZone] = useState({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
 
   const isNotifyAll = useMemo(() => {
     return (
@@ -196,17 +191,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   const handleCtaPress = () => {
     setIsSightings(true)
   }
-
-  const getTimeZone = async (location: LocationType) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome(location)
-    setCurrentTimeZone({ timeZone, regionFormat })
-  }
-
-  useEffect(() => {
-    if (!current) return
-
-    getTimeZone(current).catch((e) => console.log(e))
-  }, [current])
 
   const handleChangeTimeOfDay = useCallback(
     (value: string) => {
@@ -427,7 +411,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={i18n.locale === "en"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
-            timezone={currentTimeZone?.timeZone}
+            timezone={current?.timezone || getCurrentTimeZone()}
             lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
           />
         </Modal>

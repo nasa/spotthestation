@@ -181,6 +181,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
         />
         <GooglePlacesAutocomplete
           ref={addressRef}
+          debounce={400}
           placeholder={translate("onboarding.completeProfile.location.selectLocation")}
           query={{
             key: Config.GOOGLE_API_TOKEN,

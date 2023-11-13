@@ -357,7 +357,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          homeScreen.header.timezone undefined: US/Central
+          homeScreen.header.timezone undefined: Test/test
         </Text>
       </View>
       <View

@@ -1,6 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { getShortTZ, formatDate, getCurrentTimeZome, isDateBetweenHours } from "../formatDate"
-import { LocationType } from "../../services/api"
+import { getShortTZ, formatDate, isDateBetweenHours } from "../formatDate"
 import MockDate from "mockdate"
 
 describe("getShortTZ", () => {
@@ -19,19 +17,6 @@ describe("getShortTZ", () => {
 
 it("call formatDate", () => {
   expect(formatDate(new Date("12-12-2012").toISOString())).toBe("Dec 12, 2012")
-})
-
-it("call getCurrentTimeZome", async () => {
-  expect(await getCurrentTimeZome()).toStrictEqual({ timeZone: "Test/test", regionFormat: "TC" })
-  expect(await getCurrentTimeZome({ location: { lat: 0, lng: 0 } } as LocationType)).toStrictEqual({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
-})
-
-it("call getCurrentTimeZome with selectedLocation", async () => {
-  await AsyncStorage.setItem("selectedLocation", JSON.stringify({ location: { lat: 0, lng: 0 } }))
-  expect(await getCurrentTimeZome()).toStrictEqual({ timeZone: "US/Central", regionFormat: "US" })
 })
 
 it("call isDateBetweenHours", () => {

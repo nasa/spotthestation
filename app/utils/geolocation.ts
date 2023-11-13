@@ -4,6 +4,8 @@ import Config from "../config"
 import { api, LocationType } from "../services/api"
 import i18n from "i18n-js"
 import { Platform, PermissionsAndroid } from "react-native"
+import * as storage from "./storage"
+import { degToRad } from "./geometry"
 
 export interface TimeZoneData {
   dstOffset: number
@@ -19,6 +21,7 @@ export interface TimeZoneDataResponse {
 }
 
 export interface ReverseGeocodeResponse {
+  address?: string
   name?: string
   googlePlaceId?: string
   kind: string
@@ -79,48 +82,38 @@ export const getCurrentLocation = async (
 
     const { coords } = res
 
+    let prevLocation: LocationType = null
+    try {
+      prevLocation = JSON.parse((await storage.load("userCurrentLocation")) as string)
+    } catch {}
+
     if (coords) {
       const { latitude, longitude } = coords
 
+      if (
+        prevLocation &&
+        getDistance(latitude, longitude, prevLocation.location.lat, prevLocation.location.lng) <
+          1000
+      ) {
+        return prevLocation
+      }
+
       const rgResponse = await api.reverseGeocode(latitude, longitude)
       if (rgResponse.kind !== "ok" || !rgResponse.googlePlaceId) return null
-      const response = await api.getLocationAddress(rgResponse.googlePlaceId)
-      if (response.kind !== "ok" || !response.address) return null
 
-      return {
-        title: response.name || response.address,
-        subtitle: response.address,
+      const result = {
+        title: rgResponse.name || rgResponse.address,
+        subtitle: rgResponse.address,
         googlePlaceId: rgResponse.googlePlaceId,
         location: { lat: latitude, lng: longitude },
       }
+
+      await storage.save("userCurrentLocation", JSON.stringify(result))
+      return result
     }
 
     return null
   }
-}
-
-export const getNearbyPlaces = async (
-  { lng, lat }: Point,
-  radius: number,
-): Promise<LocationType[]> => {
-  const places: LocationType[] = []
-  const res = await api.getPlaces(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
-    "results",
-  )
-
-  if (res.kind === "ok") {
-    for (const googlePlace of res.places) {
-      places.push({
-        location: googlePlace.geometry.location,
-        title: googlePlace.name,
-        subtitle: googlePlace.vicinity,
-        googlePlaceId: googlePlace.place_id,
-      })
-    }
-  }
-
-  return places
 }
 
 export const getPlaces = async (search: string): Promise<LocationType[]> => {
@@ -157,4 +150,17 @@ export const getLocationTimeZone = async (
   return (await api.getLocationTimeZone(
     `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=${Config.GOOGLE_API_TOKEN}`,
   )) as TimeZoneDataResponse
+}
+
+function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371000
+  const dLat = degToRad(lat2 - lat1)
+  const dLon = degToRad(lon2 - lon1)
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  const d = R * c
+  return d
 }

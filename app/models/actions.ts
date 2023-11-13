@@ -3,13 +3,14 @@ import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add } from "date-fns"
 import { api, ISSSighting, LocationType } from "../services/api"
-import { getCurrentTimeZome } from "../utils/formatDate"
+import { getCurrentTimeZone } from "../utils/formatDate"
 import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
 import { getSatPath, getSightings } from "../utils/astro"
 import * as storage from "../utils/storage"
+import { getLocationTimeZone } from "../utils/geolocation"
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params: { lat: number; lon: number }) {
@@ -168,17 +169,21 @@ const RootStoreActions = (self) => ({
       self.currentLocation &&
       self.currentLocation.title === self.selectedLocation.title
 
+    if (!valueCopy.timezone) {
+      const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
+      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
+      console.log("tz updated!", valueCopy.timezone)
+    }
+
     self.currentLocation = Location.create(valueCopy)
     if (!updateSettingsOnly) {
       if (isSelectedLocation) {
-        yield storage.remove("selectedLocation")
         self.selectedLocation = null
       }
 
-      const { timeZone } = yield getCurrentTimeZome(valueCopy)
       self.getISSSightings(
         {
-          zone: timeZone,
+          zone: valueCopy.timezone || getCurrentTimeZone(),
           lat: valueCopy.location.lat,
           lon: valueCopy.location.lng,
         },
@@ -192,12 +197,17 @@ const RootStoreActions = (self) => ({
     updateSettingsOnly?: boolean,
   ) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
-    const { timeZone } = yield getCurrentTimeZome(valueCopy)
+
+    if (!valueCopy.timezone) {
+      const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
+      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
+      console.log("tz updated!", valueCopy.timezone)
+    }
     self.selectedLocation = Location.create(valueCopy)
 
     if (!updateSettingsOnly) {
       self.getISSSightings({
-        zone: timeZone,
+        zone: valueCopy.timezone || getCurrentTimeZone(),
         lat: valueCopy.location.lat,
         lon: valueCopy.location.lng,
       })
