@@ -108,7 +108,7 @@ android {
         applicationId project.env.get("APP_BUNDLE_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2023110814
+        versionCode 2023111605
         versionName "1.2.1"
     }
 
