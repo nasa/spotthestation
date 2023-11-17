@@ -14,6 +14,7 @@ import {
   GooglePlacesAutocompleteRef,
 } from "react-native-google-places-autocomplete"
 import Modal from "react-native-modal"
+import { v4 as uuidv4 } from "uuid"
 import { Icon, Text, Button } from "../../components"
 import Config from "../../config"
 import { translate } from "../../i18n"
@@ -79,6 +80,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
   const [privacyModal, setPrivacyModal] = useState(false)
   const [status, setStatus] = useState(Statuses.start)
   const [textValue, setTextValue] = useState("")
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   useEffect(() => {
     if (value.title) setStatus(Statuses.result)
@@ -186,15 +188,22 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           query={{
             key: Config.GOOGLE_API_TOKEN,
             language: i18n.locale,
+            types: "locality|postal_code|plus_code",
+            sessiontoken: autocompleteToken,
           }}
-          onPress={(data, details = null) =>
+          GooglePlacesDetailsQuery={{
+            sessiontoken: autocompleteToken,
+            fields: "name,formatted_address,geometry,place_id",
+          }}
+          onPress={(data, details = null) => {
             onValueChange({
               title: details.name,
               subtitle: details.formatted_address,
               location: details?.geometry?.location,
               googlePlaceId: details?.place_id,
             })
-          }
+            setAutocompleteToken(uuidv4())
+          }}
           onFail={(error) => console.error(error)}
           enablePoweredByContainer={false}
           isRowScrollable={false}

@@ -13,9 +13,9 @@ import {
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
 import type { ApiConfig, GetRawISSDataParams } from "./api.types"
-import { GooglePlaceDetail } from "react-native-google-places-autocomplete"
+import { GooglePlaceData, GooglePlaceDetail } from "react-native-google-places-autocomplete"
 import {
-  LocationAddressResponse,
+  LocationDetailsResponse,
   ReverseGeocodeResponse,
   TimeZoneDataResponse,
 } from "../../utils/geolocation"
@@ -54,11 +54,16 @@ export class Api {
   }
 
   async getPlaces(
-    url: string,
-    key: "results" | "candidates",
-  ): Promise<{ kind: "ok"; places: GooglePlaceDetail[] } | GeneralApiProblem> {
-    const response: ApiResponse<Record<typeof key, GooglePlaceDetail[]>> = await this.apisauce.get(
-      url,
+    search: string,
+    sessionToken: string = null,
+  ): Promise<{ kind: "ok"; places: GooglePlaceData[] } | GeneralApiProblem> {
+    const response: ApiResponse<{ predictions: GooglePlaceData[] }> = await this.apisauce.get(
+      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search.replaceAll(
+        " ",
+        "%20",
+      )}&types=locality|postal_code|plus_code&language=${i18n.locale}&key=${
+        Config.GOOGLE_API_TOKEN
+      }${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
       {},
       { baseURL: "" },
     )
@@ -68,7 +73,7 @@ export class Api {
       if (problem) return problem
     }
 
-    return { kind: "ok", places: response.data[key] }
+    return { kind: "ok", places: response.data.predictions }
   }
 
   async getLocationTimeZone(url: string): Promise<TimeZoneDataResponse | GeneralApiProblem> {
@@ -111,9 +116,14 @@ export class Api {
     }
   }
 
-  async getLocationAddress(placeId: string): Promise<LocationAddressResponse | GeneralApiProblem> {
+  async getLocationDetails(
+    placeId: string,
+    sessionToken: string = null,
+  ): Promise<LocationDetailsResponse | GeneralApiProblem> {
     const response: ApiResponse<any> = await this.apisauce.get(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name%2Cformatted_address%2Cgeometry&language=${
+        i18n.locale
+      }&key=${Config.GOOGLE_API_TOKEN}${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
       {},
       { baseURL: "" },
     )
@@ -127,7 +137,8 @@ export class Api {
       kind: "ok",
       name: response.data?.result?.name,
       address: response.data?.result?.formatted_address,
-      googlePlaceId: response.data?.result?.placeId,
+      googlePlaceId: placeId,
+      location: response.data?.result?.geometry?.location,
     }
   }
 

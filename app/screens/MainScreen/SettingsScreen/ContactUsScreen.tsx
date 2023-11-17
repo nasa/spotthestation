@@ -1,7 +1,15 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
+import {
+  ViewStyle,
+  TextStyle,
+  ScrollView,
+  Pressable,
+  View,
+  Platform,
+  ActivityIndicator,
+} from "react-native"
 import { Dropdown } from "react-native-element-dropdown"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -40,6 +48,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     $modalText,
     $nextButton,
     $nextButtonText,
+    $loader,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -47,8 +56,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
   const [title, setTitle] = useState("")
   const [comments, setComments] = useState("")
   const [thanksModal, setThanksModal] = useState(false)
+  const [isSending, setIsSending] = useState(false)
 
   const handleSend = useCallback(() => {
+    setIsSending(true)
     api
       .sendMail(
         `Spot the Station Mobile App: ${title}`,
@@ -65,17 +76,6 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
       .then((data) => {
         if (typeof data === "string") {
           setThanksModal(true)
-          Snackbar.show({
-            text: data,
-            duration: Snackbar.LENGTH_LONG,
-            action: {
-              text: translate("snackBar.ok"),
-              textColor: "green",
-              onPress: () => {
-                Snackbar.dismiss()
-              },
-            },
-          })
         } else {
           Snackbar.show({
             text: data.message,
@@ -89,8 +89,9 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             },
           })
         }
+        setIsSending(false)
       })
-      .catch((e) =>
+      .catch((e) => {
         Snackbar.show({
           text: e,
           duration: Snackbar.LENGTH_LONG,
@@ -101,8 +102,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
               Snackbar.dismiss()
             },
           },
-        }),
-      )
+        })
+
+        setIsSending(false)
+      })
   }, [title, comments])
 
   const headerStyle = { ...$headerStyleOverride }
@@ -202,17 +205,20 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           style={[$multiline, $inputWithoutPadding]}
           onChangeText={setComments}
         />
-        <Button
-          accessible
-          accessibilityLabel="send button"
-          accessibilityHint="Navigates to the mail app"
-          tx="settings.contactUsData.sendButton"
-          textStyle={$buttonText}
-          style={!title || !comments ? [$button, $disabled] : $button}
-          pressedStyle={$button}
-          onPress={handleSend}
-          disabled={!title || !comments}
-        />
+        {!isSending && (
+          <Button
+            accessible
+            accessibilityLabel="send button"
+            accessibilityHint="Navigates to the mail app"
+            tx="settings.contactUsData.sendButton"
+            textStyle={$buttonText}
+            style={!title || !comments ? [$button, $disabled] : $button}
+            pressedStyle={$button}
+            onPress={handleSend}
+            disabled={!title || !comments}
+          ></Button>
+        )}
+        {isSending && <ActivityIndicator style={$loader} color={colors.palette.neutral100} />}
       </ScrollView>
       <Modal
         isVisible={thanksModal}
@@ -237,7 +243,11 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
             textStyle={$nextButtonText}
             style={$nextButton}
             pressedStyle={$nextButton}
-            onPress={() => setThanksModal(false)}
+            onPress={() => {
+              setThanksModal(false)
+              setComments("")
+              setTitle("")
+            }}
           />
         </View>
       </Modal>
@@ -368,6 +378,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     borderRadius: scale(28),
     borderWidth: 0,
     marginVertical: scale(24),
+    alignItems: "center",
+  }
+
+  const $loader: ViewStyle = {
+    marginVertical: scale(24),
+    height: scale(64),
   }
 
   const $buttonText: TextStyle = {
@@ -440,5 +456,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $modalText,
     $nextButton,
     $nextButtonText,
+    $loader,
   }
 }

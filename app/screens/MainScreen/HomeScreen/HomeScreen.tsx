@@ -95,6 +95,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
   useEffect(() => {
     const backAction = () => {
+      BackHandler.exitApp()
       return true
     }
 
@@ -281,10 +282,10 @@ export const HomeScreen = observer(function HomeScreen() {
       )
         return
 
-      setInitLoading(true)
-      setIsCurrentSightingLoaded(false)
       setIssDataLoaded(false)
       setSightingsLoaded(false)
+      setInitLoading(true)
+      setIsCurrentSightingLoaded(false)
       setSelectedLocation(location).catch((e) => console.log(e))
     },
     [current],
@@ -443,7 +444,7 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <SelectLocation
           selectedLocation={current}
-          onLocationPress={handleChangeLocation}
+          onChangeLocation={handleChangeLocation}
           onClose={() => requestCloseModal("location")}
         />
       </MyModal>

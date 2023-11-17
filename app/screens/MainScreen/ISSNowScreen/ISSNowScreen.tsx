@@ -132,10 +132,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [issData])
 
   useEffect(() => {
-    if (!current) return
-
+    if (!current || !current.location) return
     getData().catch((e) => console.log(e))
-  }, [current])
+  }, [current?.location?.lat, current?.location?.lng])
 
   useEffect(() => {
     if (!current) return
@@ -336,7 +335,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       >
         <SelectLocation
           selectedLocation={current}
-          onLocationPress={handleChangeLocation}
+          onChangeLocation={handleChangeLocation}
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>

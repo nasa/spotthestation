@@ -20,6 +20,7 @@ import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
+import { v4 as uuidv4 } from "uuid"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const {
@@ -57,6 +58,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   const [textValue, setTextValue] = useState("")
   const [location, setLocation] = useState<LocationType>(null)
   const [marker, setMarker] = useState<LatLng>(null)
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const handleClear = () => {
     addressRef.current?.clear()
@@ -154,8 +156,15 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           query={{
             key: Config.GOOGLE_API_TOKEN,
             language: i18n.locale,
+            types: "locality|postal_code|plus_code",
+            sessiontoken: autocompleteToken,
+          }}
+          GooglePlacesDetailsQuery={{
+            sessiontoken: autocompleteToken,
+            fields: "name,formatted_address,geometry,place_id",
           }}
           onPress={(data, details = null) => {
+            setAutocompleteToken(uuidv4())
             setLocation({
               title: details.name,
               subtitle: details.formatted_address,

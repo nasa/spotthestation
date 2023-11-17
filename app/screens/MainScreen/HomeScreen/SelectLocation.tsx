@@ -15,7 +15,7 @@ import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
-import { getCurrentLocation, getPlaces } from "../../../utils/geolocation"
+import { getCurrentLocation } from "../../../utils/geolocation"
 import Snackbar from "react-native-snackbar"
 import debounce from "lodash/debounce"
 import { useStores } from "../../../models"
@@ -24,7 +24,9 @@ import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
 import { RefreshButton } from "./RefreshButton"
-import { LocationType } from "../../../services/api"
+import { api, LocationType } from "../../../services/api"
+import { GooglePlaceData } from "react-native-google-places-autocomplete"
+import { v4 as uuidv4 } from "uuid"
 
 export interface SelectLocationProps {
   /**
@@ -38,12 +40,12 @@ export interface SelectLocationProps {
   /**
    * A function for select new location.
    */
-  onLocationPress?: (value: LocationType) => void
+  onChangeLocation?: (value: LocationType) => void
 }
 
 export function SelectLocation({
   onClose,
-  onLocationPress,
+  onChangeLocation,
   selectedLocation,
 }: SelectLocationProps) {
   const {
@@ -72,9 +74,10 @@ export function SelectLocation({
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [toRemove, setToRemove] = useState<LocationType>(null)
-  const [searchResult, setSearchResult] = useState<LocationType[]>([])
+  const [searchResult, setSearchResult] = useState<GooglePlaceData[]>([])
   const [isRemove, setIsRemove] = useState(false)
   const [isSearchCurrentLocationUpdating, setIsSearchCurrentLocationUpdating] = useState(false)
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -111,12 +114,13 @@ export function SelectLocation({
       return
     }
 
-    const locations = await getPlaces(value)
+    const locations = await api.getPlaces(value, autocompleteToken)
+    if (locations.kind !== "ok") return
 
     setSearchResult(
       Object.values(
-        locations.reduce((acc, obj) => {
-          acc[obj.title] = obj
+        locations.places.reduce((acc, obj) => {
+          acc[obj.description] = obj
           return acc
         }, {}),
       ),
@@ -164,11 +168,9 @@ export function SelectLocation({
     handleTextValue(textValue)
   }, [handleTextValue, textValue])
 
-  const isSelected = (value: LocationType) => {
+  const isSelected = (placeId: string) => {
     if (selectedLocation) {
-      const { location: selected } = selectedLocation
-      const { location } = value
-      return selected.lat === location.lat && selected.lng === location.lng
+      return selectedLocation.googlePlaceId === placeId
     }
 
     return false
@@ -176,10 +178,36 @@ export function SelectLocation({
 
   const handleRemove = useCallback(
     (location: LocationType) => {
+      if (selectedLocation && location.title === selectedLocation.title) {
+        onChangeLocation(currentLocation)
+      }
       setSavedLocations(savedLocations.filter((item) => item.title !== location.title))
       setIsRemove(false)
     },
     [savedLocations],
+  )
+
+  const handleAutocompleteItemPress = useCallback(
+    async (item: GooglePlaceData) => {
+      const res = await api.getLocationDetails(item.place_id, autocompleteToken)
+      setAutocompleteToken(uuidv4())
+
+      if (res.kind !== "ok") {
+        Snackbar.show({
+          text: translate("snackBar.defaultError"),
+          duration: Snackbar.LENGTH_SHORT,
+        })
+        return
+      }
+
+      onChangeLocation({
+        title: res.name,
+        subtitle: res.address,
+        location: res.location,
+        googlePlaceId: item.place_id,
+      })
+    },
+    [onChangeLocation],
   )
 
   const renderLocationAccessory = (style) => {
@@ -260,6 +288,7 @@ export function SelectLocation({
           accessibilityLabel="search location"
           accessibilityHint="type for search location"
           accessibilityRole="scrollbar"
+          keyboardShouldPersistTaps="always"
           style={$scrollContainer}
         >
           {!isFocus && searchResult.length === 0 && (
@@ -280,8 +309,8 @@ export function SelectLocation({
                     icon="pin"
                     title={currentLocation.title}
                     subtitle={currentLocation.subtitle}
-                    selected={isSelected(currentLocation)}
-                    onPress={() => onLocationPress(currentLocation)}
+                    selected={isSelected(currentLocation.googlePlaceId)}
+                    onPress={() => onChangeLocation(currentLocation)}
                   />
                 </ExpandContainer>
               )}
@@ -296,9 +325,9 @@ export function SelectLocation({
                       icon="pin"
                       title={location.title}
                       subtitle={location.subtitle}
-                      selected={isSelected(location)}
+                      selected={isSelected(location.googlePlaceId)}
                       editable
-                      onPress={() => onLocationPress(location)}
+                      onPress={() => onChangeLocation(location)}
                       onDelete={() => {
                         setIsRemove(true)
                         setToRemove(location)
@@ -322,14 +351,13 @@ export function SelectLocation({
               itemsCount={searchResult.length}
               expandble={false}
             >
-              {searchResult.map((place: LocationType) => (
+              {searchResult.map((place) => (
                 <ListItem
-                  key={place.title}
+                  key={place.place_id}
                   icon="pin"
-                  title={place.title}
-                  subtitle={place.subtitle}
-                  selected={isSelected(place)}
-                  onPress={() => onLocationPress(place)}
+                  title={place.description}
+                  selected={isSelected(place.place_id)}
+                  onPress={() => handleAutocompleteItemPress(place)}
                 />
               ))}
             </ExpandContainer>

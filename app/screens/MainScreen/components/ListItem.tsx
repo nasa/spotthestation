@@ -18,7 +18,7 @@ export interface ListItemProps {
   editable?: boolean
   disabled?: boolean
   title: string
-  subtitle: string
+  subtitle?: string
   subtitle2?: string
   subtitle3?: string
   icon: IconTypes
@@ -88,7 +88,9 @@ export const ListItem = React.memo(function ListItem({
           style={$titleContainer}
         >
           <Text text={title} style={$titleText} ellipsizeMode="tail" numberOfLines={1} />
-          <Text text={subtitle} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          {Boolean(subtitle) && (
+            <Text text={subtitle} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
           {Boolean(subtitle2) && (
             <Text text={subtitle2} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
           )}

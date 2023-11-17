@@ -2,7 +2,6 @@ import Location, { GeoPosition, PositionError } from "react-native-geolocation-s
 import { Point } from "react-native-google-places-autocomplete"
 import Config from "../config"
 import { api, LocationType } from "../services/api"
-import i18n from "i18n-js"
 import { Platform, PermissionsAndroid } from "react-native"
 import * as storage from "./storage"
 import { degToRad } from "./geometry"
@@ -27,10 +26,14 @@ export interface ReverseGeocodeResponse {
   kind: string
 }
 
-export interface LocationAddressResponse {
+export interface LocationDetailsResponse {
   address?: string
   name?: string
   googlePlaceId?: string
+  location: {
+    lat: number
+    lng: number
+  }
   kind: string
 }
 
@@ -114,33 +117,6 @@ export const getCurrentLocation = async (
 
     return null
   }
-}
-
-export const getPlaces = async (search: string): Promise<LocationType[]> => {
-  const places: LocationType[] = []
-  const res = await api.getPlaces(
-    `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${search.replaceAll(
-      " ",
-      "%20",
-    )}&inputtype=textquery&fields=formatted_address%2Cname%2Cgeometry%2Cplace_id&language=${
-      i18n.locale
-    }&key=${Config.GOOGLE_API_TOKEN}`,
-    "candidates",
-  )
-
-  if (res.kind === "ok") {
-    for (const googlePlace of res.places) {
-      places.push({
-        location: googlePlace.geometry.location,
-        title: googlePlace.name,
-        subtitle: googlePlace.formatted_address,
-        googlePlaceId: googlePlace.place_id,
-        sightings: [],
-      })
-    }
-  }
-
-  return places
 }
 
 export const getLocationTimeZone = async (

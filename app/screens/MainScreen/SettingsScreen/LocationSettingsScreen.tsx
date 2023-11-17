@@ -193,11 +193,14 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   }
 
   const handleRemove = useCallback(
-    (location: LocationType) => {
+    async (location: LocationType) => {
+      if (selectedLocation && location.title === selectedLocation.title) {
+        await setSelectedLocation(null).catch(console.error)
+      }
       setSavedLocations(savedLocations.filter((item) => item.title !== location.title))
       setIsRemove(false)
     },
-    [savedLocations],
+    [selectedLocation, savedLocations],
   )
 
   const handleChangeTimeOfDay = useCallback(

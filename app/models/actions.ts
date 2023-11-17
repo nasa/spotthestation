@@ -193,24 +193,28 @@ const RootStoreActions = (self) => ({
   }),
 
   setSelectedLocation: flow(function* setSelectedLocation(
-    value: LocationType,
+    value: LocationType | null,
     updateSettingsOnly?: boolean,
   ) {
-    const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
+    if (value) {
+      const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
 
-    if (!valueCopy.timezone) {
-      const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
-      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
-      console.log("tz updated!", valueCopy.timezone)
-    }
-    self.selectedLocation = Location.create(valueCopy)
+      if (!valueCopy.timezone) {
+        const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
+        if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
+        console.log("tz updated!", valueCopy.timezone)
+      }
 
-    if (!updateSettingsOnly) {
-      self.getISSSightings({
-        zone: valueCopy.timezone || getCurrentTimeZone(),
-        lat: valueCopy.location.lat,
-        lon: valueCopy.location.lng,
-      })
+      self.selectedLocation = Location.create(valueCopy)
+      if (!updateSettingsOnly) {
+        self.getISSSightings({
+          zone: valueCopy.timezone || getCurrentTimeZone(),
+          lat: valueCopy.location.lat,
+          lon: valueCopy.location.lng,
+        })
+      }
+    } else {
+      self.selectedLocation = null
     }
   }),
 
@@ -227,7 +231,7 @@ const RootStoreActions = (self) => ({
       locations.map(async (location: LocationType) => {
         if (!location.googlePlaceId) return
 
-        const response = await api.getLocationAddress(location.googlePlaceId)
+        const response = await api.getLocationDetails(location.googlePlaceId)
         if (response.kind !== "ok" || !response.address) return
         self.setLocationAddress(location, response.name, response.address)
       }),

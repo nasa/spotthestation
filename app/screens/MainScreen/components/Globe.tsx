@@ -70,16 +70,30 @@ export function Globe({
   const globeRef = useRef<Mesh>(null)
   const deadRef = useRef<boolean>(false)
   const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
+  const [issMarkerTexture, setIssMarkerTexture] = useState<Texture>(null)
+  const [markerTexture, setMarkerTexture] = useState<Texture>(null)
 
   useEffect(() => {
-    async function updateMarker() {
-      if (!issCoords3D || !sceneRef.current) {
+    copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
+      .then((uri) => loadTextureAsync({ asset: uri }))
+      .then(setIssMarkerTexture)
+      .catch((e) => console.log(e))
+
+    copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
+      .then((uri) => loadTextureAsync({ asset: uri }))
+      .then(setMarkerTexture)
+      .catch((e) => console.log(e))
+  }, [])
+
+  useEffect(() => {
+    function updateMarker() {
+      if (!issCoords3D || !sceneRef.current || !issMarkerTexture) {
         if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
         return
       }
 
       if (!issMarkerRef.current) {
-        issMarkerRef.current = await createISSMarker(issCoords3D)
+        issMarkerRef.current = createISSMarker(issMarkerTexture, issCoords3D)
       } else {
         issMarkerRef.current.position.set(...issCoords3D)
       }
@@ -89,18 +103,18 @@ export function Globe({
         sceneRef.current?.add(issMarkerRef.current)
     }
 
-    updateMarker().catch(() => null)
-  }, [issCoords3D, sceneRef.current])
+    updateMarker()
+  }, [issMarkerTexture, issCoords3D, sceneRef.current])
 
   useEffect(() => {
-    async function updateMarker() {
-      if (!marker || !sceneRef.current) {
+    function updateMarker() {
+      if (!marker || !sceneRef.current || !markerTexture) {
         if (pointRef.current) sceneRef.current.remove(pointRef.current)
         return
       }
 
       if (!pointRef.current) {
-        pointRef.current = await createMarker()
+        pointRef.current = createMarker(markerTexture)
       } else {
         const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
         pointRef.current.position.set(x, y, z)
@@ -111,8 +125,8 @@ export function Globe({
         sceneRef.current?.add(pointRef.current)
     }
 
-    updateMarker().catch(() => null)
-  }, [marker, sceneRef.current])
+    updateMarker()
+  }, [markerTexture, marker, sceneRef.current])
 
   const updateCurveGeometry = useCallback(() => {
     if (!curve || !sceneRef.current) {
@@ -195,12 +209,8 @@ export function Globe({
     }
   }, [])
 
-  const createMarker = async () => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
+  const createMarker = (texture: Texture) => {
     const mesh = new Sprite()
-    const texture: Texture = await loadTextureAsync({
-      asset: uri,
-    })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
@@ -218,12 +228,8 @@ export function Globe({
     return mesh
   }
 
-  const createISSMarker = async (position: [number, number, number] = [0, 0, 0]) => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
+  const createISSMarker = (texture: Texture, position: [number, number, number] = [0, 0, 0]) => {
     const mesh = new Sprite()
-    const texture: Texture = await loadTextureAsync({
-      asset: uri,
-    })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
