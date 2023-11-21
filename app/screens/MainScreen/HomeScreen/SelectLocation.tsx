@@ -24,9 +24,7 @@ import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
 import { RefreshButton } from "./RefreshButton"
-import { api, LocationType } from "../../../services/api"
-import { GooglePlaceData } from "react-native-google-places-autocomplete"
-import { v4 as uuidv4 } from "uuid"
+import { api, LocationType, OSMSearchResult } from "../../../services/api"
 
 export interface SelectLocationProps {
   /**
@@ -74,10 +72,9 @@ export function SelectLocation({
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [toRemove, setToRemove] = useState<LocationType>(null)
-  const [searchResult, setSearchResult] = useState<GooglePlaceData[]>([])
+  const [searchResult, setSearchResult] = useState<OSMSearchResult[]>([])
   const [isRemove, setIsRemove] = useState(false)
   const [isSearchCurrentLocationUpdating, setIsSearchCurrentLocationUpdating] = useState(false)
-  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -114,13 +111,13 @@ export function SelectLocation({
       return
     }
 
-    const locations = await api.getPlaces(value, autocompleteToken)
+    const locations = await api.getPlaces(value)
     if (locations.kind !== "ok") return
 
     setSearchResult(
       Object.values(
         locations.places.reduce((acc, obj) => {
-          acc[obj.description] = obj
+          acc[obj.display_name] = obj
           return acc
         }, {}),
       ),
@@ -168,9 +165,9 @@ export function SelectLocation({
     handleTextValue(textValue)
   }, [handleTextValue, textValue])
 
-  const isSelected = (placeId: string) => {
+  const isSelected = (lat: number, lon: number) => {
     if (selectedLocation) {
-      return selectedLocation.googlePlaceId === placeId
+      return selectedLocation.location.lat === lat && selectedLocation.location.lng === lon
     }
 
     return false
@@ -188,23 +185,27 @@ export function SelectLocation({
   )
 
   const handleAutocompleteItemPress = useCallback(
-    async (item: GooglePlaceData) => {
-      const res = await api.getLocationDetails(item.place_id, autocompleteToken)
-      setAutocompleteToken(uuidv4())
-
-      if (res.kind !== "ok") {
+    (item: OSMSearchResult) => {
+      if (savedLocations.find((loc) => loc.title === item.name)) {
         Snackbar.show({
-          text: translate("snackBar.defaultError"),
-          duration: Snackbar.LENGTH_SHORT,
+          text: translate("snackBar.locationExist"),
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: translate("snackBar.ok"),
+            textColor: "green",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
         })
         return
       }
 
       onChangeLocation({
-        title: res.name,
-        subtitle: res.address,
-        location: res.location,
-        googlePlaceId: item.place_id,
+        title: item.name,
+        subtitle: item.display_name,
+        location: { lat: Number(item.lat), lng: Number(item.lon) },
+        osmPlaceId: String(item.place_id),
       })
     },
     [onChangeLocation],
@@ -309,7 +310,10 @@ export function SelectLocation({
                     icon="pin"
                     title={currentLocation.title}
                     subtitle={currentLocation.subtitle}
-                    selected={isSelected(currentLocation.googlePlaceId)}
+                    selected={isSelected(
+                      currentLocation.location.lat,
+                      currentLocation.location.lng,
+                    )}
                     onPress={() => onChangeLocation(currentLocation)}
                   />
                 </ExpandContainer>
@@ -325,7 +329,7 @@ export function SelectLocation({
                       icon="pin"
                       title={location.title}
                       subtitle={location.subtitle}
-                      selected={isSelected(location.googlePlaceId)}
+                      selected={isSelected(location.location.lat, location.location.lng)}
                       editable
                       onPress={() => onChangeLocation(location)}
                       onDelete={() => {
@@ -355,8 +359,8 @@ export function SelectLocation({
                 <ListItem
                   key={place.place_id}
                   icon="pin"
-                  title={place.description}
-                  selected={isSelected(place.place_id)}
+                  title={place.display_name}
+                  selected={isSelected(Number(place.lat), Number(place.lon))}
                   onPress={() => handleAutocompleteItemPress(place)}
                 />
               ))}

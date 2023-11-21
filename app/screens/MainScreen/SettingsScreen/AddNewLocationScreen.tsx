@@ -1,23 +1,17 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useRef, useState } from "react"
-import { ViewStyle, TextStyle, View } from "react-native"
+import { ViewStyle, TextStyle, View, TextInput } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Accessory, Button, Icon, Screen, Text, TextField } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import Config from "react-native-config"
-import {
-  GooglePlacesAutocomplete,
-  GooglePlacesAutocompleteRef,
-} from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import i18n from "i18n-js"
 import { LocationType } from "../../../services/api"
-import { v4 as uuidv4 } from "uuid"
+import { LocationAutocomplete } from "../../../components/LocationAutocomplete"
 
 export interface AddNewLocationScreenParams {
   defaultLocation?: LocationType
@@ -35,8 +29,6 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     $locations,
     $active,
     $locationsListContainer,
-    $dropdownLeftAccessory,
-    $dropdownRightAccessory,
     $dropdownSelected,
     $locationsRow,
     $locationsRowText,
@@ -51,14 +43,13 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const topInset = useSafeAreaInsets().top
   const { defaultLocation } = useRoute().params as AddNewLocationScreenParams
 
-  const addressRef = useRef<GooglePlacesAutocompleteRef>()
+  const addressRef = useRef<TextInput>()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [titleValue, setTitleValue] = useState(defaultLocation?.title || "")
   const [location, setLocation] = useState<LocationType>(
     defaultLocation ? null : { ...defaultLocation },
   )
-  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const handleClear = () => {
     addressRef.current?.clear()
@@ -71,7 +62,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const handleSave = useCallback(() => {
     location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
-    if (!location.title || !location.googlePlaceId) return
+    if (!location.title || !location.osmPlaceId) return
     let res: LocationType[] = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
@@ -125,7 +116,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
 
-  const isSaveDisabled = !location?.googlePlaceId || !location?.title
+  const isSaveDisabled = !location?.osmPlaceId || !location?.title
 
   return (
     <Screen
@@ -165,38 +156,21 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           }`}
           style={$title}
         />
-        <GooglePlacesAutocomplete
+        <LocationAutocomplete
           ref={addressRef}
-          debounce={400}
           placeholder={translate(
             "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
           )}
-          query={{
-            key: Config.GOOGLE_API_TOKEN,
-            language: i18n.locale,
-            types: "locality|postal_code|plus_code",
-            sessiontoken: autocompleteToken,
-          }}
-          GooglePlacesDetailsQuery={{
-            sessiontoken: autocompleteToken,
-            fields: "name,formatted_address,geometry,place_id",
-          }}
-          onPress={(data, details = null) => {
-            setAutocompleteToken(uuidv4())
+          onPress={(data) => {
             setLocation({
-              title: details.name,
-              subtitle: details.formatted_address,
-              location: details?.geometry?.location,
-              googlePlaceId: details?.place_id,
+              title: data.name,
+              subtitle: data.display_name,
+              location: { lat: Number(data.lat), lng: Number(data.lon) },
+              osmPlaceId: String(data.place_id),
               sightings: [],
             })
-            setTitleValue(details.name)
+            setTitleValue(data.name)
           }}
-          onFail={(error) => console.error(error)}
-          enablePoweredByContainer={false}
-          isRowScrollable={false}
-          fetchDetails={true}
-          keepResultsAfterBlur={true}
           styles={{
             textInputContainer: isFocus ? [$locations, $active] : $locations,
             textInput: {
@@ -227,22 +201,17 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
               />
             )
           }}
-          renderLeftButton={() => (
-            <Icon
-              icon="pin"
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={$dropdownLeftAccessory}
-            />
+          renderLeftAccessory={({ style }) => (
+            <Icon icon="pin" size={28} color={colors.palette.neutral450} style={style} />
           )}
-          renderRightButton={() =>
+          renderRightAccessory={({ style }) =>
             isFocus &&
             textValue && (
               <Icon
                 icon="xCircle"
                 size={28}
                 color={colors.palette.neutral450}
-                containerStyle={$dropdownRightAccessory}
+                style={style}
                 onPress={handleClear}
               />
             )

@@ -12,16 +12,16 @@ import {
 } from "apisauce"
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
-import type { ApiConfig, GetRawISSDataParams } from "./api.types"
-import { GooglePlaceData, GooglePlaceDetail } from "react-native-google-places-autocomplete"
+import type { ApiConfig, GetRawISSDataParams, OSMSearchResult } from "./api.types"
 import {
-  LocationDetailsResponse,
+  formatAddress,
   ReverseGeocodeResponse,
   TimeZoneDataResponse,
 } from "../../utils/geolocation"
 import { FeedResponse, ISSDataResponse, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
 import i18n from "i18n-js"
+import uniqBy from "lodash/uniqBy"
 
 /**
  * Configuring the apisauce instance.
@@ -55,15 +55,12 @@ export class Api {
 
   async getPlaces(
     search: string,
-    sessionToken: string = null,
-  ): Promise<{ kind: "ok"; places: GooglePlaceData[] } | GeneralApiProblem> {
-    const response: ApiResponse<{ predictions: GooglePlaceData[] }> = await this.apisauce.get(
-      `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search.replaceAll(
+  ): Promise<{ kind: "ok"; places: OSMSearchResult[] } | GeneralApiProblem> {
+    const response: ApiResponse<OSMSearchResult[]> = await this.apisauce.get(
+      `https://nominatim.openstreetmap.org/search?q=${search.replaceAll(
         " ",
         "%20",
-      )}&types=locality|postal_code|plus_code&language=${i18n.locale}&key=${
-        Config.GOOGLE_API_TOKEN
-      }${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
+      )}&featureType=city&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
       { baseURL: "" },
     )
@@ -73,7 +70,13 @@ export class Api {
       if (problem) return problem
     }
 
-    return { kind: "ok", places: response.data.predictions }
+    return {
+      kind: "ok",
+      places: uniqBy(
+        response.data.map((d) => ({ ...d, display_name: formatAddress(d) })),
+        "display_name",
+      ),
+    }
   }
 
   async getLocationTimeZone(url: string): Promise<TimeZoneDataResponse | GeneralApiProblem> {
@@ -92,38 +95,7 @@ export class Api {
     lon: number,
   ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
     const response: ApiResponse<any> = await this.apisauce.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality|postal_code|plus_code&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
-      {},
-      { baseURL: "" },
-    )
-
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      if (problem) return problem
-    }
-
-    const results = (response.data?.results || []) as GooglePlaceDetail[]
-    const result =
-      results?.find((r) => r.types?.includes("locality")) ||
-      results?.find((r) => r.types?.includes("postal_code")) ||
-      results[0]
-
-    return {
-      kind: "ok",
-      name: result.address_components?.[0]?.long_name,
-      address: result?.formatted_address,
-      googlePlaceId: result?.place_id,
-    }
-  }
-
-  async getLocationDetails(
-    placeId: string,
-    sessionToken: string = null,
-  ): Promise<LocationDetailsResponse | GeneralApiProblem> {
-    const response: ApiResponse<any> = await this.apisauce.get(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name%2Cformatted_address%2Cgeometry&language=${
-        i18n.locale
-      }&key=${Config.GOOGLE_API_TOKEN}${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
       { baseURL: "" },
     )
@@ -135,10 +107,9 @@ export class Api {
 
     return {
       kind: "ok",
-      name: response.data?.result?.name,
-      address: response.data?.result?.formatted_address,
-      googlePlaceId: placeId,
-      location: response.data?.result?.geometry?.location,
+      name: response.data.name,
+      address: formatAddress(response.data as OSMSearchResult),
+      osmPlaceId: response.data.place_id,
     }
   }
 

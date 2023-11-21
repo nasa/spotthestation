@@ -42,7 +42,7 @@ export interface LocationType {
   lastSightingOrbitPointAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
-  googlePlaceId?: string
+  osmPlaceId?: string
   timezone?: string
 }
 
@@ -74,4 +74,14 @@ export interface ApiConfig {
    * Milliseconds before we timeout the request.
    */
   timeout: number
+}
+
+export interface OSMSearchResult {
+  display_name: string
+  place_id: number
+  name: string
+  lat: string
+  lon: string
+  address: Record<string, string>
+  addresstype: string
 }

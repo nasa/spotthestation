@@ -170,8 +170,8 @@ const RootStoreActions = (self) => ({
       self.currentLocation.title === self.selectedLocation.title
 
     if (!valueCopy.timezone) {
-      const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
-      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
+      const { kind, zone } = yield getLocationTimeZone(valueCopy.location)
+      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZone
       console.log("tz updated!", valueCopy.timezone)
     }
 
@@ -200,8 +200,8 @@ const RootStoreActions = (self) => ({
       const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
 
       if (!valueCopy.timezone) {
-        const { kind, zone } = yield getLocationTimeZone(valueCopy.location, Date.now() / 1000)
-        if (kind === "ok" && zone) valueCopy.timezone = zone.timeZoneId
+        const { kind, zone } = yield getLocationTimeZone(valueCopy.location)
+        if (kind === "ok" && zone) valueCopy.timezone = zone.timeZone
         console.log("tz updated!", valueCopy.timezone)
       }
 
@@ -229,9 +229,7 @@ const RootStoreActions = (self) => ({
     )
     yield Promise.all(
       locations.map(async (location: LocationType) => {
-        if (!location.googlePlaceId) return
-
-        const response = await api.getLocationDetails(location.googlePlaceId)
+        const response = await api.reverseGeocode(location.location.lat, location.location.lng)
         if (response.kind !== "ok" || !response.address) return
         self.setLocationAddress(location, response.name, response.address)
       }),

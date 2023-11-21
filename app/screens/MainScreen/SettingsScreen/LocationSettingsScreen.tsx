@@ -166,8 +166,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
       try {
         if (!saved.timezone) {
-          const { kind, zone } = await getLocationTimeZone(saved.location, Date.now() / 1000)
-          if (kind === "ok" && zone) tz = zone.timeZoneId
+          const { kind, zone } = await getLocationTimeZone(saved.location)
+          if (kind === "ok" && zone) tz = zone.timeZone
           console.log("tz updated!", tz)
         }
       } catch (e) {

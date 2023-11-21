@@ -1,39 +1,19 @@
 import Location, { GeoPosition, PositionError } from "react-native-geolocation-service"
 import { Point } from "react-native-google-places-autocomplete"
-import Config from "../config"
-import { api, LocationType } from "../services/api"
+import { api, LocationType, OSMSearchResult } from "../services/api"
 import { Platform, PermissionsAndroid } from "react-native"
 import * as storage from "./storage"
 import { degToRad } from "./geometry"
 
-export interface TimeZoneData {
-  dstOffset: number
-  rawOffset: number
-  status: string
-  timeZoneId: string
-  timeZoneName: string
-}
-
 export interface TimeZoneDataResponse {
-  zone: TimeZoneData
+  zone: { timeZone: string }
   kind: string
 }
 
 export interface ReverseGeocodeResponse {
   address?: string
   name?: string
-  googlePlaceId?: string
-  kind: string
-}
-
-export interface LocationDetailsResponse {
-  address?: string
-  name?: string
-  googlePlaceId?: string
-  location: {
-    lat: number
-    lng: number
-  }
+  osmPlaceId?: number
   kind: string
 }
 
@@ -102,12 +82,12 @@ export const getCurrentLocation = async (
       }
 
       const rgResponse = await api.reverseGeocode(latitude, longitude)
-      if (rgResponse.kind !== "ok" || !rgResponse.googlePlaceId) return null
+      if (rgResponse.kind !== "ok" || !rgResponse.osmPlaceId) return null
 
       const result = {
         title: rgResponse.name || rgResponse.address,
         subtitle: rgResponse.address,
-        googlePlaceId: rgResponse.googlePlaceId,
+        osmPlaceId: String(rgResponse.osmPlaceId),
         location: { lat: latitude, lng: longitude },
       }
 
@@ -119,12 +99,9 @@ export const getCurrentLocation = async (
   }
 }
 
-export const getLocationTimeZone = async (
-  { lng, lat }: Point,
-  timestamp: number,
-): Promise<TimeZoneDataResponse> => {
+export const getLocationTimeZone = async ({ lng, lat }: Point): Promise<TimeZoneDataResponse> => {
   return (await api.getLocationTimeZone(
-    `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=${Config.GOOGLE_API_TOKEN}`,
+    `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lng}`,
   )) as TimeZoneDataResponse
 }
 
@@ -139,4 +116,20 @@ function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
   const d = R * c
   return d
+}
+
+export function formatAddress(item: OSMSearchResult) {
+  if (item.addresstype === "county")
+    return [item.address.county, item.address.state, item.address.country]
+      .filter(Boolean)
+      .join(", ")
+  if (item.addresstype === "city")
+    return [item.address.city, item.address.state, item.address.country].filter(Boolean).join(", ")
+  if (item.addresstype === "town")
+    return [item.address.town, item.address.state, item.address.country].filter(Boolean).join(", ")
+  if (item.addresstype === "municipality")
+    return [item.address.municipality, item.address.state, item.address.country]
+      .filter(Boolean)
+      .join(", ")
+  return item.display_name
 }

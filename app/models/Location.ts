@@ -15,5 +15,6 @@ export const Location = types.model("Location", {
   filterTimeOfDay: types.optional(types.string, ""),
   filterDuration: types.optional(types.string, ""),
   googlePlaceId: types.optional(types.string, ""),
+  osmPlaceId: types.optional(types.string, ""),
   timezone: types.optional(types.string, ""),
 })
