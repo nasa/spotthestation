@@ -1,19 +1,17 @@
 import Location, { GeoPosition, PositionError } from "react-native-geolocation-service"
-import { Point } from "react-native-google-places-autocomplete"
 import { api, LocationType, OSMSearchResult } from "../services/api"
 import { Platform, PermissionsAndroid } from "react-native"
 import * as storage from "./storage"
 import { degToRad } from "./geometry"
 
 export interface TimeZoneDataResponse {
-  zone: { timeZone: string }
+  zone: string
   kind: string
 }
 
 export interface ReverseGeocodeResponse {
   address?: string
   name?: string
-  osmPlaceId?: number
   kind: string
 }
 
@@ -82,12 +80,11 @@ export const getCurrentLocation = async (
       }
 
       const rgResponse = await api.reverseGeocode(latitude, longitude)
-      if (rgResponse.kind !== "ok" || !rgResponse.osmPlaceId) return null
+      if (rgResponse.kind !== "ok" || (!rgResponse.name && !rgResponse.address)) return null
 
       const result = {
         title: rgResponse.name || rgResponse.address,
         subtitle: rgResponse.address,
-        osmPlaceId: String(rgResponse.osmPlaceId),
         location: { lat: latitude, lng: longitude },
       }
 
@@ -97,12 +94,6 @@ export const getCurrentLocation = async (
 
     return null
   }
-}
-
-export const getLocationTimeZone = async ({ lng, lat }: Point): Promise<TimeZoneDataResponse> => {
-  return (await api.getLocationTimeZone(
-    `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lng}`,
-  )) as TimeZoneDataResponse
 }
 
 function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {

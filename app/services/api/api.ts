@@ -18,10 +18,11 @@ import {
   ReverseGeocodeResponse,
   TimeZoneDataResponse,
 } from "../../utils/geolocation"
-import { FeedResponse, ISSDataResponse, RawISSDataResponse } from "./api.types"
+import { FeedResponse, ISSDataResponse, PlaceDetails, RawISSDataResponse } from "./api.types"
 import { SatData } from "../../utils/astro"
 import i18n from "i18n-js"
 import uniqBy from "lodash/uniqBy"
+import { GooglePlaceData, GooglePlaceDetail } from "react-native-google-places-autocomplete"
 
 /**
  * Configuring the apisauce instance.
@@ -55,7 +56,8 @@ export class Api {
 
   async getPlaces(
     search: string,
-  ): Promise<{ kind: "ok"; places: OSMSearchResult[] } | GeneralApiProblem> {
+    sessionToken: string = null,
+  ): Promise<{ kind: "ok"; places: PlaceDetails[] } | GeneralApiProblem> {
     const response: ApiResponse<OSMSearchResult[]> = await this.apisauce.get(
       `https://nominatim.openstreetmap.org/search?q=${search.replaceAll(
         " ",
@@ -65,9 +67,32 @@ export class Api {
       { baseURL: "" },
     )
 
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      if (problem) return problem
+    if (!response.ok || !Array.isArray(response.data)) {
+      const responseGmaps: ApiResponse<{ predictions: GooglePlaceData[] }> =
+        await this.apisauce.get(
+          `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search.replaceAll(
+            " ",
+            "%20",
+          )}&types=locality|postal_code|plus_code&language=${i18n.locale}&key=${
+            Config.GOOGLE_API_TOKEN
+          }${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
+          {},
+          { baseURL: "" },
+        )
+
+      if (!responseGmaps.ok) {
+        const problem = getGeneralApiProblem(responseGmaps)
+        if (problem) return problem
+      }
+
+      return {
+        kind: "ok",
+        places: responseGmaps.data.predictions.map((place) => ({
+          display_name: place.description,
+          name: place.description,
+          google_place_id: place.place_id,
+        })),
+      }
     }
 
     return {
@@ -79,23 +104,43 @@ export class Api {
     }
   }
 
-  async getLocationTimeZone(url: string): Promise<TimeZoneDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<any> = await this.apisauce.get(url, {}, { baseURL: "" })
-
-    if (!response.ok) {
-      const problem = getGeneralApiProblem(response)
-      if (problem) return problem
-    }
-
-    return { kind: "ok", zone: response.data }
-  }
-
-  async reverseGeocode(
+  async getLocationTimeZone(
     lat: number,
     lon: number,
-  ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
+  ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
     const response: ApiResponse<any> = await this.apisauce.get(
-      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
+      `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`,
+      {},
+      { baseURL: "" },
+    )
+
+    if (!response.ok || !response.data?.timeZone) {
+      const responseGmaps: ApiResponse<any> = await this.apisauce.get(
+        `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
+          Date.now() / 1000
+        }&key=${Config.GOOGLE_API_TOKEN}`,
+        {},
+        { baseURL: "" },
+      )
+      if (!responseGmaps.ok) {
+        const problem = getGeneralApiProblem(responseGmaps)
+        if (problem) return problem
+      }
+
+      return { kind: "ok", zone: responseGmaps.data.timeZoneId }
+    }
+
+    return { kind: "ok", zone: response.data.timeZone }
+  }
+
+  async getGoogleLocationDetails(
+    placeId: string,
+    sessionToken: string = null,
+  ): Promise<{ kind: "ok"; place: PlaceDetails } | GeneralApiProblem> {
+    const response: ApiResponse<any> = await this.apisauce.get(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name%2Cformatted_address%2Cgeometry&language=${
+        i18n.locale
+      }&key=${Config.GOOGLE_API_TOKEN}${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
       {},
       { baseURL: "" },
     )
@@ -107,9 +152,54 @@ export class Api {
 
     return {
       kind: "ok",
+      place: {
+        name: response.data?.result?.name,
+        display_name: response.data?.result?.formatted_address,
+        lat: String(response.data?.result?.geometry?.location?.lat),
+        lon: String(response.data?.result?.geometry?.location?.lng),
+      },
+    }
+  }
+
+  async reverseGeocode(
+    lat: number,
+    lon: number,
+  ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
+    const response: ApiResponse<OSMSearchResult> = await this.apisauce.get(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
+      {},
+      { baseURL: "" },
+    )
+
+    if (!response.ok || !response.data.name) {
+      const responseGmaps: ApiResponse<any> = await this.apisauce.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality|postal_code|plus_code&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+        {},
+        { baseURL: "" },
+      )
+
+      if (!responseGmaps.ok) {
+        const problem = getGeneralApiProblem(responseGmaps)
+        if (problem) return problem
+      }
+
+      const results = (responseGmaps.data?.results || []) as GooglePlaceDetail[]
+      const result =
+        results?.find((r) => r.types?.includes("locality")) ||
+        results?.find((r) => r.types?.includes("postal_code")) ||
+        results[0]
+
+      return {
+        kind: "ok",
+        name: result.address_components?.[0]?.long_name,
+        address: result?.formatted_address,
+      }
+    }
+
+    return {
+      kind: "ok",
       name: response.data.name,
-      address: formatAddress(response.data as OSMSearchResult),
-      osmPlaceId: response.data.place_id,
+      address: formatAddress(response.data),
     }
   }
 

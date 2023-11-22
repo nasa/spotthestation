@@ -10,7 +10,6 @@ import { Modal } from "./Modal"
 import { translate } from "../i18n"
 import { getSatPath, getSightings } from "../utils/astro"
 import * as storage from "../utils/storage"
-import { getLocationTimeZone } from "../utils/geolocation"
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params: { lat: number; lon: number }) {
@@ -170,8 +169,11 @@ const RootStoreActions = (self) => ({
       self.currentLocation.title === self.selectedLocation.title
 
     if (!valueCopy.timezone) {
-      const { kind, zone } = yield getLocationTimeZone(valueCopy.location)
-      if (kind === "ok" && zone) valueCopy.timezone = zone.timeZone
+      const { kind, zone } = yield api.getLocationTimeZone(
+        valueCopy.location.lat,
+        valueCopy.location.lng,
+      )
+      if (kind === "ok" && zone) valueCopy.timezone = zone
       console.log("tz updated!", valueCopy.timezone)
     }
 
@@ -200,8 +202,11 @@ const RootStoreActions = (self) => ({
       const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
 
       if (!valueCopy.timezone) {
-        const { kind, zone } = yield getLocationTimeZone(valueCopy.location)
-        if (kind === "ok" && zone) valueCopy.timezone = zone.timeZone
+        const { kind, zone } = yield api.getLocationTimeZone(
+          valueCopy.location.lat,
+          valueCopy.location.lng,
+        )
+        if (kind === "ok" && zone) valueCopy.timezone = zone
         console.log("tz updated!", valueCopy.timezone)
       }
 

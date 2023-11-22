@@ -18,13 +18,14 @@ import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { getCurrentLocation } from "../../../utils/geolocation"
 import Snackbar from "react-native-snackbar"
 import debounce from "lodash/debounce"
+import { v4 as uuidv4 } from "uuid"
 import { useStores } from "../../../models"
 import { SettingsItem } from "../components/SettingsItem"
 import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
 import { RefreshButton } from "./RefreshButton"
-import { api, LocationType, OSMSearchResult } from "../../../services/api"
+import { api, LocationType, OSMSearchResult, PlaceDetails } from "../../../services/api"
 
 export interface SelectLocationProps {
   /**
@@ -75,6 +76,7 @@ export function SelectLocation({
   const [searchResult, setSearchResult] = useState<OSMSearchResult[]>([])
   const [isRemove, setIsRemove] = useState(false)
   const [isSearchCurrentLocationUpdating, setIsSearchCurrentLocationUpdating] = useState(false)
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -111,7 +113,7 @@ export function SelectLocation({
       return
     }
 
-    const locations = await api.getPlaces(value)
+    const locations = await api.getPlaces(value, autocompleteToken)
     if (locations.kind !== "ok") return
 
     setSearchResult(
@@ -185,7 +187,23 @@ export function SelectLocation({
   )
 
   const handleAutocompleteItemPress = useCallback(
-    (item: OSMSearchResult) => {
+    async (item: PlaceDetails) => {
+      let details = item
+      if (details.google_place_id) {
+        const res = await api.getGoogleLocationDetails(details.google_place_id, autocompleteToken)
+        setAutocompleteToken(uuidv4())
+
+        if (res.kind !== "ok") {
+          Snackbar.show({
+            text: translate("snackBar.defaultError"),
+            duration: Snackbar.LENGTH_SHORT,
+          })
+          return
+        }
+
+        details = res.place
+      }
+
       if (savedLocations.find((loc) => loc.title === item.name)) {
         Snackbar.show({
           text: translate("snackBar.locationExist"),
@@ -202,13 +220,12 @@ export function SelectLocation({
       }
 
       onChangeLocation({
-        title: item.name,
-        subtitle: item.display_name,
-        location: { lat: Number(item.lat), lng: Number(item.lon) },
-        osmPlaceId: String(item.place_id),
+        title: details.name,
+        subtitle: details.display_name,
+        location: { lat: Number(details.lat), lng: Number(details.lon) },
       })
     },
-    [onChangeLocation],
+    [onChangeLocation, autocompleteToken],
   )
 
   const renderLocationAccessory = (style) => {

@@ -62,7 +62,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
 
   const handleSave = useCallback(() => {
     location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
-    if (!location.title || !location.osmPlaceId) return
+    if (!location.title || !location.location) return
     let res: LocationType[] = [...savedLocations]
     if (res.find((item) => item.title === titleValue)) {
       Snackbar.show({
@@ -116,7 +116,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
 
-  const isSaveDisabled = !location?.osmPlaceId || !location?.title
+  const isSaveDisabled = !location?.location || !location?.title
 
   return (
     <Screen
@@ -166,7 +166,6 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
               title: data.name,
               subtitle: data.display_name,
               location: { lat: Number(data.lat), lng: Number(data.lon) },
-              osmPlaceId: String(data.place_id),
               sightings: [],
             })
             setTitleValue(data.name)

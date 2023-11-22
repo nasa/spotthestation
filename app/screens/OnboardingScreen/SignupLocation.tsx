@@ -181,7 +181,6 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
               title: data.name,
               subtitle: data.display_name,
               location: { lat: Number(data.lat), lng: Number(data.lon) },
-              osmPlaceId: String(data.place_id),
             })
           }}
           styles={{

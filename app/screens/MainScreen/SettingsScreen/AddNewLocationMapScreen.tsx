@@ -67,7 +67,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           location: { lat: marker.latitude, lng: marker.longitude },
           title: res.name || res.address || "Location",
           subtitle: res.address,
-          osmPlaceId: String(res.osmPlaceId),
         })
 
         setTextValue(res.address)
@@ -163,7 +162,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
               title: data.name,
               subtitle: data.display_name,
               location: { lat: Number(data.lat), lng: Number(data.lon) },
-              osmPlaceId: String(data.place_id),
               sightings: [],
             })
             setMarker({

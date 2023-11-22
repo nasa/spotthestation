@@ -8,7 +8,7 @@ import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import { getCurrentLocation, getLocationTimeZone } from "../../../utils/geolocation"
+import { getCurrentLocation } from "../../../utils/geolocation"
 import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
@@ -18,7 +18,7 @@ import { openSettings } from "react-native-permissions"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
-import { LocationType } from "../../../services/api"
+import { api, LocationType } from "../../../services/api"
 import { getCurrentTimeZone } from "../../../utils/formatDate"
 
 export interface LocationSettingsScreenParams {
@@ -166,8 +166,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
 
       try {
         if (!saved.timezone) {
-          const { kind, zone } = await getLocationTimeZone(saved.location)
-          if (kind === "ok" && zone) tz = zone.timeZone
+          const res = await api.getLocationTimeZone(saved.location.lat, saved.location.lng)
+          if (res.kind === "ok" && res.zone) tz = res.zone
           console.log("tz updated!", tz)
         }
       } catch (e) {

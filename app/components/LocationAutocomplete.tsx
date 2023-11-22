@@ -17,7 +17,8 @@ import React, {
   useRef,
   useState,
 } from "react"
-import { api, OSMSearchResult } from "../services/api"
+import { v4 as uuidv4 } from "uuid"
+import { api, PlaceDetails } from "../services/api"
 import { StyleFn, useStyles } from "../utils/useStyles"
 
 interface LocationAutocompleteProps extends Omit<TextFieldProps, "ref"> {
@@ -25,7 +26,7 @@ interface LocationAutocompleteProps extends Omit<TextFieldProps, "ref"> {
   textInputProps: TextInputProps
   styles: any
   renderRow: (item: { description: string }) => ReactNode
-  onPress: (item: OSMSearchResult) => void
+  onPress: (item: PlaceDetails) => void
 }
 
 export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
@@ -42,8 +43,9 @@ export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
 ) {
   const { $list, $row, $container } = useStyles(styles)
 
-  const [results, setResults] = useState<OSMSearchResult[]>([])
+  const [results, setResults] = useState<PlaceDetails[]>([])
   const inputRef = useRef<TextInput>()
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const handleSearch = useMemo(
     () =>
@@ -54,24 +56,31 @@ export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
         }
 
         api
-          .getPlaces(value)
+          .getPlaces(value, autocompleteToken)
           .then((res) => {
             if (res.kind === "ok") setResults(res.places)
           })
           .catch(console.error)
       }, 400),
-    [],
+    [autocompleteToken],
   )
 
-  const renderItem = useCallback(({ item }: { item: OSMSearchResult }) => {
+  const handlePress = useCallback(async (item: PlaceDetails) => {
+    let details = item
+    if (details.google_place_id) {
+      const res = await api.getGoogleLocationDetails(item.google_place_id, autocompleteToken)
+      if (res.kind !== "ok") return
+      details = res.place
+    }
+
+    onPress(details)
+    setResults([])
+    setAutocompleteToken(uuidv4())
+  }, [])
+
+  const renderItem = useCallback(({ item }: { item: PlaceDetails }) => {
     return (
-      <TouchableOpacity
-        style={[customStyles.row, $row]}
-        onPress={() => {
-          onPress(item)
-          setResults([])
-        }}
-      >
+      <TouchableOpacity style={[customStyles.row, $row]} onPress={() => handlePress(item)}>
         {renderRow({ description: item.display_name })}
       </TouchableOpacity>
     )

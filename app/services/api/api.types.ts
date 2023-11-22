@@ -42,7 +42,6 @@ export interface LocationType {
   lastSightingOrbitPointAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
-  osmPlaceId?: string
   timezone?: string
 }
 
@@ -84,4 +83,12 @@ export interface OSMSearchResult {
   lon: string
   address: Record<string, string>
   addresstype: string
+}
+
+export interface PlaceDetails {
+  display_name: string
+  name: string
+  lat?: string
+  lon?: string
+  google_place_id?: string
 }
