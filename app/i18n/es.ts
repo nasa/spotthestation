@@ -42,12 +42,12 @@ const es = {
   },
   notifications: {
     push: {
-      title: "¡Aviste la estación!",
+      title: "¡La estación es visible ahora!",
       subTitle: "La estación está pasando por encima de usted en",
     },
     before: {
-      titleOne: "Detectar la estación en",
-      titleTwo: "¡minutos!",
+      titleOne: "¡La estación será visible en",
+      titleTwo: "minutos!",
       subTitleOne: "La estación está pasando por encima de usted en",
       subTitleTwo: "intermediario",
     },
