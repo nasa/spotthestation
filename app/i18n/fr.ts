@@ -50,7 +50,7 @@ const fr = {
       titleOne: "Repérez la Station dans",
       titleTwo: "minutes!",
       subTitleOne: "La Station passe au-dessus de vous",
-      subTitleTwo: "mintutes à",
+      subTitleTwo: "minutes à",
     },
   },
   units: {

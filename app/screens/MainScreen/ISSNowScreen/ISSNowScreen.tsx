@@ -178,6 +178,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   return (
     <Screen
+      dismissKeyboardOnPress={false}
       preset="fixed"
       contentContainerStyle={[
         $container,
@@ -238,6 +239,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         )}
         {!isGlobe && (
           <MapBox
+            attributionPosition="top"
             issPath={issData}
             style={$flatMap}
             zoom={zoomLevel}

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL, { MapState } from "@rnmapbox/maps"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
@@ -22,8 +22,22 @@ interface MapBoxProps {
   onPress?: (params: any) => void
   markers?: LatLng[]
   onCameraChange?: (coords: [number, number]) => void
-  defaultCameraPosition?: [number, number]
+  defaultCameraPosition?: [number, number],
+  attributionPosition?: 'top' | 'bottom'
 }
+
+const attributionTop = Platform.select({
+  ios: { top: -10, right: 0 },
+  android: { top: 10, right: 10 }
+})
+
+const attributionBottom = Platform.select({
+  ios: { bottom: 10, right: 5  },
+  android: { bottom: 10, right: 10  }
+})
+
+const logoTop = { top: 10, left: 10 }
+const logoBottom = { bottom: 10, left: 10 }
 
 export function MapBox({
   style,
@@ -35,6 +49,7 @@ export function MapBox({
   markers = [],
   onCameraChange,
   defaultCameraPosition,
+  attributionPosition,
 }: MapBoxProps) {
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
@@ -120,9 +135,11 @@ export function MapBox({
     <MapboxGL.MapView
       onCameraChanged={handleCameraChange}
       style={style}
-      logoEnabled={false}
+      logoEnabled
       styleURL="mapbox://styles/mapbox/satellite-streets-v11"
-      attributionEnabled={false}
+      attributionEnabled
+      attributionPosition={attributionPosition === 'top' ? attributionTop : attributionBottom}
+      logoPosition={attributionPosition === 'top' ? logoTop : logoBottom}
       zoomEnabled={zoomEnabled}
       scaleBarEnabled={false}
       onPress={onPress}
@@ -156,7 +173,7 @@ export function MapBox({
               }
         }
       />
-      {Boolean(issPathCoords2D?.length) && (
+      {Boolean(issPathCoords2D?.length) && Boolean(issCoords2D) && (
         <>
           <MapboxGL.ShapeSource
             id="myShapeSource"

@@ -1,5 +1,5 @@
 import {
-  FlatList,
+  FlatList, Keyboard,
   TextInput,
   TextInputProps,
   TouchableOpacity,
@@ -20,6 +20,7 @@ import React, {
 import { v4 as uuidv4 } from "uuid"
 import { api, PlaceDetails } from "../services/api"
 import { StyleFn, useStyles } from "../utils/useStyles"
+import { Gesture, GestureDetector } from "react-native-gesture-handler"
 
 interface LocationAutocompleteProps extends Omit<TextFieldProps, "ref"> {
   placeholder?: string
@@ -28,6 +29,8 @@ interface LocationAutocompleteProps extends Omit<TextFieldProps, "ref"> {
   renderRow: (item: { description: string }) => ReactNode
   onPress: (item: PlaceDetails) => void
 }
+
+const tap = Gesture.Tap().onEnd(Keyboard.dismiss)
 
 export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
   {
@@ -94,36 +97,38 @@ export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
   }))
 
   return (
-    <View style={$container}>
-      <TextField
-        ref={inputRef}
-        accessible
-        accessibilityLabel="search location"
-        accessibilityHint="type for search location"
-        accessibilityRole="search"
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholderTx="homeScreen.selectLocation.inputPlaceholder"
-        style={customStyles.textInput}
-        inputWrapperStyle={customStyles.textInputContainer}
-        placeholder={placeholder}
-        renderLeftAccessory={renderLeftAccessory}
-        renderRightAccessory={renderRightAccessory}
-        {...textInputProps}
-        onChangeText={(val) => {
-          handleSearch(val)
-          if (textInputProps.onChangeText) textInputProps.onChangeText(val)
-        }}
-      />
-      {results.length > 0 && (
-        <FlatList
-          data={results}
-          renderItem={renderItem}
-          keyboardShouldPersistTaps="always"
-          style={[$list, customStyles.listView]}
+    <GestureDetector gesture={tap}>
+      <View style={$container}>
+        <TextField
+          ref={inputRef}
+          accessible
+          accessibilityLabel="search location"
+          accessibilityHint="type for search location"
+          accessibilityRole="search"
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholderTx="homeScreen.selectLocation.inputPlaceholder"
+          style={customStyles.textInput}
+          inputWrapperStyle={customStyles.textInputContainer}
+          placeholder={placeholder}
+          renderLeftAccessory={renderLeftAccessory}
+          renderRightAccessory={renderRightAccessory}
+          {...textInputProps}
+          onChangeText={(val) => {
+            handleSearch(val)
+            if (textInputProps.onChangeText) textInputProps.onChangeText(val)
+          }}
         />
-      )}
-    </View>
+        {results.length > 0 && (
+          <FlatList
+            data={results}
+            renderItem={renderItem}
+            keyboardShouldPersistTaps="always"
+            style={[$list, customStyles.listView]}
+          />
+        )}
+      </View>
+    </GestureDetector>
   )
 })
 
