@@ -59,12 +59,12 @@ export class Api {
     sessionToken: string = null,
   ): Promise<{ kind: "ok"; places: PlaceDetails[] } | GeneralApiProblem> {
     const response: ApiResponse<OSMSearchResult[]> = await this.apisauce.get(
-      `https://nominatim.openstreetmap.org/search?q=${search.replaceAll(
+      `https://nominatim.spotthestation.org/search?q=${search.replaceAll(
         " ",
         "%20",
       )}&featureType=city&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
-      { baseURL: "" },
+      { baseURL: "", headers: { Accept: "*/*" } },
     )
 
     if (!response.ok || !Array.isArray(response.data)) {
@@ -98,7 +98,18 @@ export class Api {
     return {
       kind: "ok",
       places: uniqBy(
-        response.data.map((d) => ({ ...d, display_name: formatAddress(d) })),
+        response.data.map((d) => ({
+          ...d,
+          name:
+            d.name ||
+            d.address.city ||
+            d.address.town ||
+            d.address.village ||
+            d.address.municipality ||
+            d.address.county ||
+            formatAddress(d),
+          display_name: formatAddress(d),
+        })),
         "display_name",
       ),
     }
@@ -166,9 +177,9 @@ export class Api {
     lon: number,
   ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
     const response: ApiResponse<OSMSearchResult> = await this.apisauce.get(
-      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
+      `https://nominatim.spotthestation.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
-      { baseURL: "" },
+      { baseURL: "", headers: { Accept: "*/*" } },
     )
 
     if (!response.ok || !response.data.name) {

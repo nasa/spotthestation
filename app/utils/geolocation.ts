@@ -110,17 +110,25 @@ function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
 }
 
 export function formatAddress(item: OSMSearchResult) {
-  if (item.addresstype === "county")
-    return [item.address.county, item.address.state, item.address.country]
+  if (item.address.village) {
+    return [item.address.village, item.address.state, item.address.country]
       .filter(Boolean)
       .join(", ")
-  if (item.addresstype === "city")
-    return [item.address.city, item.address.state, item.address.country].filter(Boolean).join(", ")
-  if (item.addresstype === "town")
+  }
+
+  if (item.address.town) {
     return [item.address.town, item.address.state, item.address.country].filter(Boolean).join(", ")
-  if (item.addresstype === "municipality")
+  }
+
+  if (item.address.city) {
+    return [item.address.city, item.address.state, item.address.country].filter(Boolean).join(", ")
+  }
+
+  if (item.address.municipality) {
     return [item.address.municipality, item.address.state, item.address.country]
       .filter(Boolean)
       .join(", ")
+  }
+
   return item.display_name
 }

@@ -22,18 +22,18 @@ interface MapBoxProps {
   onPress?: (params: any) => void
   markers?: LatLng[]
   onCameraChange?: (coords: [number, number]) => void
-  defaultCameraPosition?: [number, number],
-  attributionPosition?: 'top' | 'bottom'
+  defaultCameraPosition?: [number, number]
+  attributionPosition?: "top" | "bottom"
 }
 
 const attributionTop = Platform.select({
   ios: { top: -10, right: 0 },
-  android: { top: 10, right: 10 }
+  android: { top: 10, right: 10 },
 })
 
 const attributionBottom = Platform.select({
-  ios: { bottom: 10, right: 5  },
-  android: { bottom: 10, right: 10  }
+  ios: { bottom: 10, right: 5 },
+  android: { bottom: 10, right: 10 },
 })
 
 const logoTop = { top: 10, left: 10 }
@@ -138,8 +138,8 @@ export function MapBox({
       logoEnabled
       styleURL="mapbox://styles/mapbox/satellite-streets-v11"
       attributionEnabled
-      attributionPosition={attributionPosition === 'top' ? attributionTop : attributionBottom}
-      logoPosition={attributionPosition === 'top' ? logoTop : logoBottom}
+      attributionPosition={attributionPosition === "top" ? attributionTop : attributionBottom}
+      logoPosition={attributionPosition === "top" ? logoTop : logoBottom}
       zoomEnabled={zoomEnabled}
       scaleBarEnabled={false}
       onPress={onPress}
