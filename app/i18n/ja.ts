@@ -222,7 +222,7 @@ const ja = {
       high: "高",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "設定",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:

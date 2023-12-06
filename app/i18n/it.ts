@@ -226,7 +226,7 @@ const it = {
       high: "Alta",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Impostazioni",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:

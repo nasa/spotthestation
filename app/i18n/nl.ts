@@ -225,7 +225,7 @@ const nl = {
       high: "Hoog",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Instellingen",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:

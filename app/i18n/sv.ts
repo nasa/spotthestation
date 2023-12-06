@@ -221,7 +221,7 @@ const sv = {
       high: "Hög",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "inställningar",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:

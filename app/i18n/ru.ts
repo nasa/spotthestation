@@ -225,84 +225,84 @@ const ru = {
     termsAndConditionsData: {
       backButton: "Настройки",
       ios: {
-        title: "ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ ОБ ИСПОЛЬЗОВАНИИ ПРИЛОЖЕНИЯ",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "ПОЛЬЗОВАТЕЛЬ желает использовать следующее ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ, разработанное Правительством Соединенных Штатов Америки, представленное Национальным управление по аэронавтике и исследованию космического пространства, находящимся по адресу: 300 E Street SW, Вашингтон, округ Колумбия (далее - NASA):",
+          "END-USER wishes to use the following LICENSED APPLICATION developed by the United States Government as represented by the National Aeronautics and Space Administration, located at 300 E Street SW, Washington, D.C. (hereinafter NASA):",
         appData: {
-          line1: "Лицензированное приложение:",
-          line2: "Версия:",
-          line3: "Номер технологии NASA: MSC-27535-1 (далее - ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ)",
+          line1: "Licensed Application:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1 (hereinafter LICENSED APPLICATION)",
         },
         contactData: {
-          line1: "Контактное лицо в NASA:",
-          line2: "Джейкоб Китон",
-          line3: "Главный офис NASA",
+          line1: "NASA Point of Contact:",
+          line2: "Jacob Keaton",
+          line3: "NASA Headquarters",
           line4: "300 E Street SW",
-          line5: "Электронная почта: SpotTheStation@hq.nasa.gov",
+          line5: "E-mail: SpotTheStation@hq.nasa.gov",
         },
         intro2:
-          "Правом NASA на предоставление ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ является Политика NASA NPD 2820.1C",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C",
         intro3:
-          "ТАКИМ ОБРАЗОМ, учитывая, что NASA предоставляет ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ ПОЛЬЗОВАТЕЛЮ и предоставляет ПОЛЬЗОВАТЕЛЮ непередаваемое право использования ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ в соответствии с настоящим соглашением на любом iPhone или iPod touch, которым ПОЛЬЗОВАТЕЛЬ владеет или управляет, и в соответствии с Правилами использования, установленными в Пользовательском соглашении App Store, только для некоммерческих целей, ПОЛЬЗОВАТЕЛЬ соглашается со следующим:",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION as specified herein on any iPhone or iPod touch that END-USER owns or controls and as permitted by the Usage Rules set forth in the App Store Terms and Conditions for non-commercial purposes only, END-USER agrees as follows:",
         body: {
           line1:
-            "1. NASA и ПОЛЬЗОВАТЕЛЬ признают, что настоящее Соглашение заключено только между NASA и ПОЛЬЗОВАТЕЛЕМ, а не с Apple, это Соглашение непередаваемое, и NASA, а не Apple, полностью отвечает за ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ и его содержание.",
+            "1.        NASA and END-USER acknowledge that this Agreement is concluded between NASA and END-USER only, and not with Apple, this Agreement is non-transferable, and NASA, not Apple, is solely responsible for the LICENSED APPLICATION and the content thereof.",
           line2:
-            "2. NASA и ПОЛЬЗОВАТЕЛЬ признают и соглашаются, что Apple и дочерние компании Apple являются третьими сторонами, имеющими права в соответствии с настоящим Соглашением, и что после принятия ПОЛЬЗОВАТЕЛЕМ условий настоящего Соглашения Apple будет иметь право (и будет считаться принявшим право) принимать меры по исполнению настоящего Соглашения против ПОЛЬЗОВАТЕЛЯ в качестве третьей стороны, имеющей права по настоящему Соглашению.",
+            "2.        NASA and END-USER acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this Agreement, and that upon END-USER’s acceptance of the terms and conditions of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against END-USER as a third party beneficiary of this Agreement.",
           line3:
-            "3. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ остается собственностью NASA. ПОЛЬЗОВАТЕЛЬ признает, что не приобретает никакого права собственности на ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ на основании настоящего Соглашения. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ не является общественным достоянием, и ничто в настоящем Соглашении не может толковаться как предоставление ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ общественности без ограничений.",
+            "3.        The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line4:
-            "4. ПОЛЬЗОВАТЕЛЬ не имеет права выпускать, распространять или публиковать ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ.",
+            "4.        There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line5:
-            "5. NASA не несет никакой ответственности за обслуживание или обновление предоставленного ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ, а также за исправление ошибок в ЛИЦЕНЗИРОВАННОМ ПРИЛОЖЕНИИ. NASA и ПОЛЬЗОВАТЕЛЬ признают, что Apple не несет никаких обязательств предоставлять обслуживание и поддержку ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ.",
+            "5.        NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.  NASA and END-USER acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the LICENSED APPLICATION.",
           line6:
-            '6. ПОЛЬЗОВАТЕЛЬ заявляет и гарантирует, что (i) он/она не находится в стране, подверженной эмбарго правительства США или которая была признана правительством США страной, "поддерживающей терроризм"; и (ii) он/она не включен(а) в какой-либо список запрещенных или ограниченных правительством США сторон.',
+            "6.        END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line7:
-            '7. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ ПРЕДОСТАВЛЯЕТСЯ "КАК ЕСТЬ" БЕЗ ЛЮБЫХ ГАРАНТИЙ ЛЮБОГО ВИДА, НИ ВЫРАЖЕННЫХ, НИ ПОДРАЗУМЕВАЕМЫХ, НИ ПРАВОВЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ, ЛЮБЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ БУДЕТ СООТВЕТСТВОВАТЬ ТРЕБОВАНИЯМ, ЛЮБЫЕ ПОДРАЗУМЕВАЕМЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ БУДЕТ ПОДХОДИТЬ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ, НАДЕЖНОСТЬ ИСПОЛЬЗОВАНИЯ И ОТСУТСТВИЕ НАРУШЕНИЯ, А ТАКЖЕ ЛЮБЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ НЕ БУДЕТ СОДЕРЖАТЬ ОШИБОК. В НИКАКОМ СЛУЧАЕ NASA НЕ НЕСЕТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБОЙ УЩЕРБ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ, ПРЯМОЙ, КОСВЕННЫЙ, СПЕЦИАЛЬНЫЙ ИЛИ ПОСЛЕДСТВЕННЫЙ УЩЕРБ, ВОЗНИКАЮЩИЙ В КАКОМ-ЛИБО ОТНОШЕНИИ С ЛИЦЕНЗИРОВАННЫМ ПРИЛОЖЕНИЕМ, ВНЕ ЗАВИСИМОСТИ ОТ ТОГО, ВОЗНИК ЛИ ТАКОЙ УЩЕРБ НА ГАРАНТИЙНОМ, КОНТРАКТНОМ, ДЕЛИКТНОМ ИЛИ ДРУГОМ ОСНОВАНИИ, БЫЛ ЛИ УЩЕРБ НАНЕСЕН ЛИЦУ ИЛИ ИМУЩЕСТВУ, И БЫЛ ЛИ УЩЕРБ ПРИЧИНЕН ИСПОЛЬЗОВАНИЕМ ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ ИЛИ НЕТ. ПОЛЬЗОВАТЕЛЬ СОГЛАШАЕТСЯ ОТКАЗАТЬСЯ ОТ ВСЕХ ПРЕТЕНЗИЙ К ПРАВИТЕЛЬСТВУ США, ЕГО ПОДРЯДЧИКАМ И ИХ СУБПОДРЯДЧИКАМ И ОБЯЗУЕТСЯ ВЫПЛАТИТЬ ВОЗМЕЩЕНИЕ И ОСВОБОДИТЬ ОТ ОТВЕТСТВЕННОСТИ ПРАВИТЕЛЬСТВО США, ЕГО ПОДРЯДЧИКОВ И ИХ СУБПОДРЯДЧИКОВ ЗА ЛЮБОЙ УЩЕРБ, НАНЕСЕННЫЙ В РЕЗУЛЬТАТЕ ИСПОЛЬЗОВАНИЯ ПОЛЬЗОВАТЕЛЕМ ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ, ВКЛЮЧАЯ ЛЮБОЙ УЩЕРБ ОТ ПРОДУКТОВ, ОСНОВАННЫХ НА ЛИЦЕНЗИРОВАННОМ ПРИЛОЖЕНИИ.',
+            "7.        THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION. END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line8:
-            "8. В случае несоответствия ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ любой гарантии, предоставленной законом, ПОЛЬЗОВАТЕЛЬ может уведомить Apple, и Apple вернет ПОЛЬЗОВАТЕЛЮ стоимость покупки (если таковая была) ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ. В максимально допустимой степени согласно применимому законодательству, Apple не несет ответственности за любые другие убытки, обязательства, повреждения, расходы или издержки, связанные с несоответствием ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ какой-либо гарантии.",
+            "8.        In the event of any failure of the LICENSED APPLICATION to conform to any warranty made applicable by law, END-USER may notify Apple, and Apple will refund the purchase price (if any) for the LICENSED APPLICATION to END-USER. To the maximum extent permitted by applicable law, Apple will have no other losses, liabilities, damages, costs or expenses attributable to any failure of the LICENSED APPLICATION to conform to any warranty.",
           line9:
-            "9. NASA и ПОЛЬЗОВАТЕЛЬ признают, что в случае каких-либо претензий третьих сторон относительно того, что ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ или владение и использование ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ ПОЛЬЗОВАТЕЛЕМ нарушает права интелектуальной собственности, ответственность за исследование, защиту, урегулирование и устранение любых таких претензий по нарушению интеллектуальных прав будет лежать исключительно на NASA, а не на Apple, с учетом закона.",
+            "9.        NASA and END-USER acknowledge that, in the event of any third party claim that the LICENSED APPLICATION or END-USER’s possession and use of LICENSED APPLICATION infringes intellectual property rights, NASA, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim, subject to law.",
           line10:
-            "10. NASA и ПОЛЬЗОВАТЕЛЬ признают, что NASA, а не Apple, несет ответственность за урегулирование любых претензий ПОЛЬЗОВАТЕЛЯ или третьих сторон, связанных с ЛИЦЕНЗИРОВАННЫМ ПРИЛОЖЕНИЕМ или владением и/или использованием ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ ПОЛЬЗОВАТЕЛЕМ, включая, но не ограничиваясь: (i) претензии по ответственности за качество продукта; (ii) любые претензии о несоответствии ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ применимым правовым или регулирующим требованиям, включая любые гарантии, предоставленные законом; и (iii) претензии, возникающие в соответствии с законодательством о защите прав потребителей или аналогичным законодательством.",
+            "10.        NASA and END-USER acknowledge that NASA, not Apple is responsible for addressing any claims of END-USER or third party relating to the LICENSED APPLICATION or END-USER’s possession and /or use of the LICENSED APPLICATION, including, but not limited to:  (i) product liability claims; (ii) any claim that the LICENSED APPLICATION fails to conform to any applicable legal or regulatory requirement, including any warranties made applicable by law; and (iii) claims arising under consumer protection or similar legislation.",
           line11:
-            "11. Настоящее Соглашение должно толковаться и юридические отношения между сторонами должны определяться в соответствии с федеральным законодательством Соединенных Штатов Америки для всех целей.",
+            "11.        This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line12:
-            "12. Настоящее Соглашение составляет полное понимание и согласие между NASA и ПОЛЬЗОВАТЕЛЕМ относительно выпуска ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ и не может быть заменено, изменено или дополнено.",
+            "12.        This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line13:
-            "13. Принимая и используя ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ на основании настоящего Соглашения, ПОЛЬЗОВАТЕЛЬ тем самым соглашается со всеми здесь приведенными условиями.",
+            "13.        By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
       android: {
-        title: "СОГЛАШЕНИЕ ОБ ИСПОЛЬЗОВАНИИ ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ",
+        title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
-          "КОНЕЧНЫЙ ПОЛЬЗОВАТЕЛЬ желает использовать следующий ПРОДУКТ, разработанный Правительством Соединенных Штатов Америки, представленный Национальным управление по аэронавтике и исследованию космического пространства, находящимся по адресу: Moffett Field, CA 94035 (далее - NASA):",
+          "END-USER wishes to use the following PRODUCT developed by the United States Government as represented by the National Aeronautics and Space Administration, Ames Research Center, located at Moffett Field, CA 94035 (hereinafter NASA):",
         appData: {
-          line1: "Программное обеспечение:",
-          line2: "Версия:",
-          line3: "Номер технологии NASA: MSC-27535-1",
+          line1: "Software:",
+          line2: "Version:",
+          line3: "NASA Technology Number: MSC-27535-1",
         },
         intro2:
-          "Правом NASA на выпуск ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ является Политика NASA NPD 2820.1C.",
+          "The authority for NASA to release the LICENSED APPLICATION is NASA Policy Directive (NPD) 2820.1C.",
         intro3:
-          "ТАКИМ ОБРАЗОМ, принимая во внимание предоставление ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ ПОЛЬЗОВАТЕЛЮ и предоставление ПОЛЬЗОВАТЕЛЮ непередаваемого права использования ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ в личных, некоммерческих целях и в соответствии с условиями, указанными здесь, а также в соответствии с Условиями использования Android Market, на любом мобильном устройстве с операционной системой Android (далее - Устройство), которым ПОЛЬЗОВАТЕЛЬ владеет или управляет, ПОЛЬЗОВАТЕЛЬ соглашается со следующим:",
+          "NOW THEREFORE, in consideration of NASA releasing the LICENSED APPLICATION to END-USER and granting END-USER the non-transferable right to use the LICENSED APPLICATION for personal, noncommercial use and as specified herein and as permitted by the Android Market Terms of Service on any Android-powered mobile device (“Device”) that END-USER owns or controls, END-USER agrees as follows:",
         body: {
           line1:
-            "1. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ остается собственностью NASA. ПОЛЬЗОВАТЕЛЬ признает, что не приобретает никакого права собственности на ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ на основании настоящего Соглашения. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ не является общественным достоянием, и ничто в настоящем Соглашении не может толковаться как предоставление ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ общественности без ограничений.",
+            "1.	The LICENSED APPLICATION remains the property of NASA.  END-USER acknowledges that it acquires no ownership interest in the LICENSED APPLICATION under this Agreement.  The LICENSED APPLICATION is not in the public domain and nothing in this Agreement shall be construed as making the LICENSED APPLICATION available to the public without restriction.",
           line2:
-            "2. ПОЛЬЗОВАТЕЛЬ не имеет права выпускать, распространять или публиковать ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ.",
+            "2.	There shall be no release, distribution, or publication of the LICENSED APPLICATION by END-USER.",
           line3:
-            "3. NASA не несет ни ответственности, ни обязанности по обслуживанию или обновлению предоставленного ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ, а также по исправлению ошибок в ЛИЦЕНЗИРОВАННОМ ПРИЛОЖЕНИИ.",
+            "3.	NASA shall be neither liable nor responsible for any maintenance or updating of the provided LICENSED APPLICATION, nor for correction of any errors in the LICENSED APPLICATION.",
           line4:
-            '4. ПОЛЬЗОВАТЕЛЬ заявляет и гарантирует, что (i) он/она не находится в стране, подверженной эмбарго правительства США или которая была названа правительством США страной, "поддерживающей терроризм"; и (ii) он/она не включен(а) в какой-либо список запрещенных или ограниченных правительством США сторон.',
+            "4.	END-USER represents and warrants that (i) he/she is not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
           line5:
-            '5. ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ ПРЕДОСТАВЛЯЕТСЯ "КАК ЕСТЬ" БЕЗ ЛЮБЫХ ГАРАНТИЙ ЛЮБОГО ВИДА, НИ ВЫРАЖЕННЫХ, НИ ПОДРАЗУМЕВАЕМЫХ, НИ ПРАВОВЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ, ЛЮБЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ БУДЕТ СООТВЕТСТВОВАТЬ ТРЕБОВАНИЯМ, ЛЮБЫЕ ПОДРАЗУМЕВАЕМЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ БУДЕТ ПОДХОДИТЬ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ, НАДЕЖНОСТЬ ИСПОЛЬЗОВАНИЯ И ОТСУТСТВИЕ НАРУШЕНИЯ, А ТАКЖЕ ЛЮБЫЕ ГАРАНТИИ ТОГО, ЧТО ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ НЕ БУДЕТ СОДЕРЖАТЬ ОШИБОК. В НИКАКОМ СЛУЧАЕ NASA НЕ НЕСЕТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБОЙ УЩЕРБ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ, ПРЯМОЙ, КОСВЕННЫЙ, СПЕЦИАЛЬНЫЙ ИЛИ ПОСЛЕДСТВЕННЫЙ УЩЕРБ, ВОЗНИКАЮЩИЙ В КАКОМ-ЛИБО ОТНОШЕНИИ С ЛИЦЕНЗИРОВАННЫМ ПРИЛОЖЕНИЕМ, ВНЕ ЗАВИСИМОСТИ ОТ ТОГО, ВОЗНИК ЛИ ТАКОЙ УЩЕРБ НА ГАРАНТИЙНОМ, КОНТРАКТНОМ, ДЕЛИКТНОМ ИЛИ ДРУГОМ ОСНОВАНИИ, БЫЛ ЛИ УЩЕРБ НАНЕСЕН ЛИЦУ ИЛИ ИМУЩЕСТВУ, И БЫЛ ЛИ УЩЕРБ ПРИЧИНЕН ИСПОЛЬЗОВАНИЕМ ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ ИЛИ НЕТ. ПОЛЬЗОВАТЕЛЬ СОГЛАШАЕТСЯ ОТКАЗАТЬСЯ ОТ ВСЕХ ПРЕТЕНЗИЙ К ПРАВИТЕЛЬСТВУ США, ЕГО ПОДРЯДЧИКАМ И ИХ СУБПОДРЯДЧИКАМ И ОБЯЗУЕТСЯ ВЫПЛАТИТЬ ВОЗМЕЩЕНИЕ И ОСВОБОДИТЬ ОТ ОТВЕТСТВЕННОСТИ ПРАВИТЕЛЬСТВО США, ЕГО ПОДРЯДЧИКОВ И ИХ СУБПОДРЯДЧИКОВ ЗА ЛЮБОЙ УЩЕРБ, НАНЕСЕННЫЙ В РЕЗУЛЬТАТЕ ИСПОЛЬЗОВАНИЯ ПОЛЬЗОВАТЕЛЕМ ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ, ВКЛЮЧАЯ ЛЮБОЙ УЩЕРБ ОТ ПРОДУКТОВ, ОСНОВАННЫХ НА ЛИЦЕНЗИРОВАННОМ ПРИЛОЖЕНИИ.',
+            "5.	THE LICENSED APPLICATION IS PROVIDED “AS IS” WITHOUT ANY WARRANTY OF ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY THAT THE LICENSED APPLICATION WILL CONFORM TO SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND FREEDOM FROM INFRINGEMENT, OR ANY WARRANTY THAT THE LICENSED APPLICATION WILL BE ERROR FREE.  IN NO EVENT SHALL NASA BE LIABLE FOR ANY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF, RESULTING FROM, OR IN ANY WAY CONNECTED WITH THE LICENSED APPLICATION, WHETHER OR NOT BASED UPON WARRANTY, CONTRACT, TORT, OR OTHERWISE, WHETHER OR NOT INJURY WAS SUSTAINED BY PERSONS OR PROPERTY OR OTHERWISE, AND WHETHER OR NOT LOSS WAS SUSTAINED FROM, OR AROSE OUT OF USE OF THE LICENSED APPLICATION.   END-USER AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS, AND SHALL INDEMNIFY AND HOLD HARMLESS THE U.S. GOVERNMENT, ITS CONTRACTORS AND THEIR SUBCONTRACTORS FOR ANY DAMAGE THAT END-USER MAY INCUR FROM END-USER’S USE OF THE LICENSED APPLICATION, INCLUDING ANY DAMAGES FROM LICENSED APPLICATIONS BASED ON, OR RESULTING FROM, THE LICENSED APPLICATION.",
           line6:
-            "6. Настоящее Соглашение должно толковаться и юридические отношения между сторонами должны определяться в соответствии с федеральным законодательством Соединенных Штатов Америки для всех целей.",
+            "6.	This Agreement shall be construed, and the legal relations between the parties hereto shall be determined, in accordance with United States federal law for all purposes.",
           line7:
-            "7. Настоящее Соглашение составляет полное понимание и согласие между NASA и ПОЛЬЗОВАТЕЛЕМ относительно выпуска ЛИЦЕНЗИРОВАННОГО ПРИЛОЖЕНИЯ и не может быть заменено, изменено или дополнено.",
+            "7.	This Agreement constitutes the entire understanding and agreement between NASA and END-USER relating to release of the LICENSED APPLICATION and may not be superseded, modified or amended.",
           line8:
-            "8. Принимая и используя ЛИЦЕНЗИРОВАННОЕ ПРИЛОЖЕНИЕ на основании настоящего Соглашения, ПОЛЬЗОВАТЕЛЬ тем самым соглашается со всеми здесь приведенными условиями.",
+            "8.	By accepting and using the LICENSED APPLICATION under this Agreement, END-USER hereby agrees to all terms and conditions herein.",
         },
       },
     },

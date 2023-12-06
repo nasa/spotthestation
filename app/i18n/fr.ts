@@ -228,7 +228,7 @@ const fr = {
       high: "Élevée",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Paramètres",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:

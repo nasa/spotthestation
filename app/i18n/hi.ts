@@ -222,7 +222,7 @@ const hi = {
       high: "उच्च",
     },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "समायोजन",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
