@@ -274,7 +274,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     if (!available)
       return Alert.alert(
         translate("issView.arNotSupported"),
-        translate("issView.noOrientationSensor"),
+        translate("issView.noMagnetometerSensor"),
       )
 
     available = await isOrientationAvailable().catch(() => false)
@@ -746,25 +746,27 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         />
       </Modal>
 
-      <Modal
-        isVisible={isCalibrationModalVisible}
-        onBackdropPress={handleCalibrationFinish}
-        onSwipeComplete={handleCalibrationFinish}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={[$modal, $calibrateModal]}
-      >
-        <CalibrateCompassModal
-          onClose={handleCalibrationFinish}
-          onHighAccuracy={handleCalibrationFinish}
-        />
-      </Modal>
+      {isSupported && (
+        <Modal
+          isVisible={isCalibrationModalVisible}
+          onBackdropPress={handleCalibrationFinish}
+          onSwipeComplete={handleCalibrationFinish}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={[$modal, $calibrateModal]}
+        >
+          <CalibrateCompassModal
+            onClose={handleCalibrationFinish}
+            onHighAccuracy={handleCalibrationFinish}
+          />
+        </Modal>
+      )}
     </Screen>
   )
 })

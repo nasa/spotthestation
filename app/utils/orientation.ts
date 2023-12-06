@@ -21,9 +21,6 @@ type Watcher = {
 const watchers: Watcher[] = []
 let subscription: Subscription = null
 
-setUpdateIntervalForType(SensorTypes.orientation, 50)
-setUpdateIntervalForType(SensorTypes.magnetometer, 50)
-
 const rotateX = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2)
 const rotateY = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI / 2)
 
@@ -32,6 +29,7 @@ function addWatcher(watcher: Watcher) {
   watchers.push(watcher)
 
   if (wasEmpty) {
+    setUpdateIntervalForType(SensorTypes.orientation, 50)
     subscription = orientation.subscribe(({ qx, qy, qz, qw }) => {
       const sourceRot = new Quaternion(qx, qy, qz, qw)
 
@@ -80,7 +78,7 @@ export function isOrientationAvailable(): Promise<boolean> {
 
 export function isMagnetometerAvailable(): Promise<boolean> {
   const fn = isSensorAvailable as (sensor: string) => Promise<any>
-  return fn("orientation").then(
+  return fn("magnetometer").then(
     () => true,
     () => false,
   )
@@ -117,8 +115,10 @@ export function watchCalibrationState(func: AccuracyWatcherFunc) {
   }
 
   if (Platform.OS === "android") {
+    setUpdateIntervalForType(SensorTypes.magnetometer, 50)
     subscription = magnetometer.subscribe(handler)
   } else {
+    setUpdateIntervalForType(SensorTypes.orientation, 50)
     subscription = orientation.subscribe(handler)
   }
 
