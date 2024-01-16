@@ -326,6 +326,8 @@ const sv = {
       upcomingTip: "Stäng av för att sluta ta emot notiser om händelser.",
       notifyMeBefore: "Meddela mig innan",
       turnOffNotifications: "Stäng av notiser",
+      rangeInputPlaceholder: "Välj mellan 1 till 120 minuter",
+      customOption: "Anpassad",
       from: "Från",
       until: "Fram tills",
     },

@@ -330,6 +330,8 @@ const nl = {
       upcomingTip: "Schakel uit om geen gebeurtenismeldingen meer te ontvangen.",
       notifyMeBefore: "HERINNER MIJ VAN TEVOREN",
       turnOffNotifications: "SCHAKEL MELDINGEN UIT",
+      rangeInputPlaceholder: "Kies tussen 1 tot 120 minuten",
+      customOption: "Aangepast",
       from: "Van",
       until: "Tot",
     },

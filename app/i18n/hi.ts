@@ -327,6 +327,8 @@ const hi = {
       upcomingTip: "घटना सूचना प्राप्त करने से रोकने के लिए बंद करें।",
       notifyMeBefore: "मुझे पहले सूचित करें",
       turnOffNotifications: "सूचनाएं बंद करो",
+      rangeInputPlaceholder: "1 से 120 मिनट के बीच चुनें",
+      customOption: "कस्टम",
       from: "से",
       until: "जब तक",
     },

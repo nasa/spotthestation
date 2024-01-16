@@ -331,6 +331,8 @@ const it = {
       upcomingTip: "Disattiva le notifiche per smettere di ricevere notifiche di eventi.",
       notifyMeBefore: "Avvisami prima",
       turnOffNotifications: "Disattiva le notifiche",
+      rangeInputPlaceholder: "Scegli tra 1 a 120 minuti",
+      customOption: "Personalizzato",
       from: "Da",
       until: "Fino a",
     },

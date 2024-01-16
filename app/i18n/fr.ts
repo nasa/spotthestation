@@ -333,6 +333,8 @@ const fr = {
       upcomingTip: "Desactivez pour arrêter de recevoir des notifications d'événements.",
       notifyMeBefore: "Informez-moi avant",
       turnOffNotifications: "DÉSACTIVER LES NOTIFICATIONS",
+      rangeInputPlaceholder: "Choisissez entre 1 à 120 minutes",
+      customOption: "Personnalisé",
       from: "Depuis",
       until: "Jusqu'à",
     },

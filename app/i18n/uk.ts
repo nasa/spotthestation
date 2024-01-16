@@ -327,6 +327,8 @@ const uk = {
       upcomingTip: "Вимкніть, щоб припинити отримання сповіщень про події.",
       notifyMeBefore: "СПОВІСТИТИ МЕНЕ ЗА",
       turnOffNotifications: "ВИМКНУТИ СПОВІЩЕННЯ",
+      rangeInputPlaceholder: "Оберіть від 1 до 120 хвилин",
+      customOption: "Користувацький",
       from: "З",
       until: "До",
     },

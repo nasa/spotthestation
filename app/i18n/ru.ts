@@ -328,6 +328,8 @@ const ru = {
       upcomingTip: "Выключите, чтобы перестать получать уведомления о событиях.",
       notifyMeBefore: "УВЕДОМИТЬ МЕНЯ ЗА",
       turnOffNotifications: "ВЫКЛЮЧИТЬ УВЕДОМЛЕНИЯ",
+      rangeInputPlaceholder: "Выберите от 1 до 120 минут",
+      customOption: "Пользовательский",
       from: "С",
       until: "До",
     },

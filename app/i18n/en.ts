@@ -330,6 +330,8 @@ const en = {
       upcomingTip: "Turn off to stop receiving event notifications.",
       notifyMeBefore: "NOTIFY ME BEFORE",
       turnOffNotifications: "TURN OFF NOTIFICATIONS",
+      rangeInputPlaceholder: "Choose between 1 to 120 minutes",
+      customOption: "Custom",
       from: "From",
       until: "Until",
     },

@@ -332,6 +332,8 @@ const de = {
       upcomingTip: "Schalten Sie aus, um die Ereignisbenachrichtigungen zu beenden.",
       notifyMeBefore: "Benachrichtigen Sie mich vorher",
       turnOffNotifications: "BENACHRICHTIGUNGEN ABSCHALTEN",
+      rangeInputPlaceholder: "Wählen Sie zwischen 1 bis 120 Minuten",
+      customOption: "Benutzerdefiniert",
       from: "Aus",
       until: "Bis",
     },

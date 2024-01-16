@@ -327,6 +327,8 @@ const ja = {
       upcomingTip: "イベント通知の受信を停止するには、オフになります。",
       notifyMeBefore: "前に私に通知してください",
       turnOffNotifications: "通知をオフにします",
+      rangeInputPlaceholder: "1から120分の間を選択してください",
+      customOption: "カスタム",
       from: "から",
       until: "それまで",
     },
