@@ -52,6 +52,7 @@ test("getISSSightings should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "",
   })
   expect(rootStore.savedLocations).toEqual([
@@ -64,6 +65,7 @@ test("getISSSightings should update the store correctly", async () => {
       filterDuration: "",
       filterTimeOfDay: "",
       googlePlaceId: "",
+      osmPlaceId: "",
       timezone: "",
     },
   ])
@@ -88,6 +90,7 @@ test("setCurrentLocation should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "US/Central",
   } as LocationType
 
@@ -118,6 +121,7 @@ test("setISSSightings should update the store correctly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "",
   } as LocationType
 
@@ -163,6 +167,7 @@ test("setISSSightings should update the store incorrectly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "",
   } as LocationType
 
@@ -189,6 +194,7 @@ test("setSelectedLocation should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "US/Central",
   } as LocationType
 
@@ -219,6 +225,7 @@ test("setNewSavedLocation should update the store correctly", async () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "",
   } as LocationType
 
@@ -251,6 +258,7 @@ test("setSavedLocations should update the store correctly", () => {
     filterDuration: "",
     filterTimeOfDay: "",
     googlePlaceId: "",
+    osmPlaceId: "",
     timezone: "",
   } as LocationType
 

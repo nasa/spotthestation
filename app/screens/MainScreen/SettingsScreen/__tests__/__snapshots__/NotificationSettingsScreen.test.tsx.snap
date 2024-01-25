@@ -545,118 +545,120 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
               </Text>
             </View>
           </View>
-          <View
-            onLayout={[Function]}
-            style={
-              {
-                "backgroundColor": "#1E2022",
-                "borderRadius": 40,
-                "height": 80,
-                "justifyContent": "center",
-                "marginBottom": 26,
-                "overflow": "hidden",
-              }
-            }
-          >
+          <View>
             <View
-              accessibilityLabel="period select"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+              onLayout={[Function]}
               style={
                 {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 35,
-                  "justifyContent": "space-between",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 40,
+                  "height": 80,
+                  "justifyContent": "center",
+                  "marginBottom": 26,
+                  "overflow": "hidden",
                 }
               }
             >
-              <Text
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "fontSize": 16,
-                    },
-                    [
-                      {
-                        "color": "#DEDDDE",
-                        "flex": 1,
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 26,
-                        "marginHorizontal": 17,
-                        "paddingHorizontal": 0,
-                        "paddingVertical": 0,
-                        "textAlignVertical": "center",
-                      },
-                      {
-                        "color": "#DEDDDE",
-                      },
-                    ],
-                    {},
-                  ]
-                }
-              >
-                15 units.minute undefined
-              </Text>
               <View
+                accessibilityLabel="period select"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
                   {
                     "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
-                    "marginEnd": 35,
+                    "flexDirection": "row",
+                    "height": 35,
+                    "justifyContent": "space-between",
                   }
                 }
               >
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
+                <Text
+                  style={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "flex": 1,
+                        "fontSize": 16,
                       },
+                      [
+                        {
+                          "color": "#DEDDDE",
+                          "flex": 1,
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "marginHorizontal": 17,
+                          "paddingHorizontal": 0,
+                          "paddingVertical": 0,
+                          "textAlignVertical": "center",
+                        },
+                        {
+                          "color": "#DEDDDE",
+                        },
+                      ],
+                      {},
                     ]
                   }
+                >
+                  15 units.minute undefined
+                </Text>
+                <View
                   style={
                     {
-                      "height": 40,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 40,
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                      "marginEnd": 35,
                     }
                   }
-                  tintColor="#ADADAE"
-                />
+                >
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      [
+                        {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#ADADAE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
               </View>
             </View>
           </View>

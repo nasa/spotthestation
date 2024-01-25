@@ -120,7 +120,7 @@ jest.mock("react-native-sensors/src/rnsensors", () => ({
 
 jest.mock('../app/services/api', () => ({
   api: {
-    getPlaces: jest.fn(),
+    getPlaces: () => new Promise((resolve) => resolve({ kind: 'ok', places: [] })),
     reverseGeocode: jest.fn(),
     getLocationAddress: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),

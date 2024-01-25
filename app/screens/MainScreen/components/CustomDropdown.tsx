@@ -1,13 +1,13 @@
-import React, { useMemo, useState } from 'react'
-import { View, TextStyle, ViewStyle } from 'react-native'
-import { Dropdown } from 'react-native-element-dropdown'
-import { Icon, TextField } from '../../../components'
-import { colors, typography, spacing } from '../../../theme'
-import { useStyles, StyleFn } from '../../../utils/useStyles'
-import { translate } from '../../../i18n'
+import React, { useMemo, useState } from "react"
+import { View, TextStyle, ViewStyle } from "react-native"
+import { Dropdown } from "react-native-element-dropdown"
+import { Icon, TextField } from "../../../components"
+import { colors, typography, spacing } from "../../../theme"
+import { useStyles, StyleFn } from "../../../utils/useStyles"
+import { translate } from "../../../i18n"
 
 export interface CustomDropdownProps {
-  data: { label: string, value: number }[]
+  data: { label: string; value: number }[]
   onValueChange: (value: string) => void
   value: number
 }
@@ -21,24 +21,27 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
     $dropdownSelected,
     $dropdownText,
     $dropdownRightAccessory,
-    $input
+    $input,
   } = useStyles(styles)
   const [isCustom, setIsCustom] = useState(false)
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState("")
 
   const options = useMemo(() => {
     const customOption = { label: `${value} ${translate("units.minute")}`, value }
     const updatedOptions = [...data]
 
-    if (value && !data.some(item => item.value === value)) {
+    if (value && !data.some((item) => item.value === value)) {
       updatedOptions.push(customOption)
     }
 
-    return [...updatedOptions, { label: translate("settings.notificationSettingsData.customOption"), value: 'custom' }]
+    return [
+      ...updatedOptions,
+      { label: translate("settings.notificationSettingsData.customOption"), value: "custom" },
+    ]
   }, [value, data])
 
   const handleDropdownChange = (value: string) => {
-    if (value === 'custom') {
+    if (value === "custom") {
       setIsCustom(true)
     } else {
       onValueChange(value)
@@ -54,8 +57,8 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
       else if (valueNumber > 120) valueNumber = 120
 
       setInputValue(valueNumber.toString())
-    } else if (value === '') {
-        setInputValue('')
+    } else if (value === "") {
+      setInputValue("")
     }
   }
 
@@ -74,7 +77,7 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
             autoCorrect={false}
             onChangeText={handleInputChange}
             inputWrapperStyle={$input}
-            renderRightAccessory={({ style }) =>
+            renderRightAccessory={({ style }) => (
               <>
                 <Icon
                   icon="xCircle"
@@ -83,7 +86,7 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
                   style={style}
                   onPress={() => {
                     setIsCustom(false)
-                    setInputValue('')
+                    setInputValue("")
                   }}
                 />
                 {inputValue && (
@@ -94,14 +97,14 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
                     style={style}
                     onPress={() => {
                       setIsCustom(false)
-                      setInputValue('')
+                      setInputValue("")
                       onValueChange(inputValue)
                     }}
                   />
                 )}
               </>
-            }
-          />    
+            )}
+          />
         </View>
       ) : (
         <Dropdown
@@ -199,6 +202,6 @@ const styles: StyleFn = ({ scale, fontSizes }) => {
     $dropdownSelected,
     $dropdownText,
     $dropdownRightAccessory,
-    $input
+    $input,
   }
 }

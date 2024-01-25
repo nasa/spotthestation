@@ -123,6 +123,6 @@ export function watchCalibrationState(func: AccuracyWatcherFunc) {
   }
 
   return () => {
-    subscription.unsubscribe()
+    subscription?.unsubscribe()
   }
 }

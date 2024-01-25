@@ -271,8 +271,8 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 { label: `15 ${translate("units.minute")}`, value: 15 },
                 { label: `30 ${translate("units.minute")}`, value: 30 },
                 { label: `60 ${translate("units.minute")}`, value: 60 },
-              ]} 
-              onValueChange={(value) => handleChange(value, "notifyBefore")} 
+              ]}
+              onValueChange={(value) => handleChange(value, "notifyBefore")}
               value={settings?.notifyBefore}
             />
           </ExpandContainer>

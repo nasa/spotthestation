@@ -332,7 +332,7 @@ function calculateDayStage(twilight: SunCalc.GetTimesResult, eventTime: Date) {
   return 2
 }
 
-const compassDirections = <const>[
+export const compassDirections = <const>[
   "N",
   "NNE",
   "NE",

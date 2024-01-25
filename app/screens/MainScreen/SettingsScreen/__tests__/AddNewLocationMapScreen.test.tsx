@@ -24,9 +24,7 @@ test("the text input", async () => {
     </NavigationContainer>,
   )
 
-  const textInput = getByPlaceholderText(
-    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
-  )
+  const textInput = getByPlaceholderText("homeScreen.selectLocation.inputPlaceholder undefined")
   fireEvent.changeText(textInput, "Some location")
 
   await waitFor(() => {
@@ -41,9 +39,7 @@ test("closes the modal window after clicking the Close button", async () => {
     </NavigationContainer>,
   )
 
-  const textInput = getByPlaceholderText(
-    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
-  )
+  const textInput = getByPlaceholderText("homeScreen.selectLocation.inputPlaceholder undefined")
   fireEvent.changeText(textInput, "Some location")
 
   await waitFor(() => {

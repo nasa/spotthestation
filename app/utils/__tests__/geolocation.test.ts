@@ -20,7 +20,6 @@ describe("getCurrentLocation", () => {
 
     jest.mocked(api.reverseGeocode).mockResolvedValue({
       kind: "ok",
-      googlePlaceId: "111",
       name: "New York",
       address: "123 Main Street, New York City, New York 12345, USA",
     })
@@ -34,7 +33,6 @@ describe("getCurrentLocation", () => {
     const expectedLocation = {
       title: "New York",
       subtitle: "123 Main Street, New York City, New York 12345, USA",
-      googlePlaceId: "111",
       location: { lat: 40.712776, lng: -74.005974 },
     }
 

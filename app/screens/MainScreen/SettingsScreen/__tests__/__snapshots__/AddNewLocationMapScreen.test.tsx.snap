@@ -161,117 +161,168 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
     <View
-      pointerEvents="box-none"
+      collapsable={false}
       style={
-        [
-          {
-            "flex": 1,
-          },
-          {
-            "flex": 0,
-          },
-        ]
+        {
+          "zIndex": 1,
+        }
       }
     >
       <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
-          [
-            {
-              "flexDirection": "row",
-            },
-            {
-              "backgroundColor": "#1E2022",
-              "borderColor": "transparent",
-              "borderRadius": 40,
-              "borderWidth": 2,
-              "height": 80,
-              "marginBottom": 26,
-              "overflow": "hidden",
-            },
-          ]
+          {
+            "opacity": 1,
+          }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "height": 80,
-              "justifyContent": "center",
-              "marginStart": 24,
-            }
-          }
-        >
-          <RCTImageView
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            internal_analyticTag={null}
-            resizeMode="contain"
-            source={
-              [
-                {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
-                },
-              ]
-            }
-            style={
-              {
-                "height": 40,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#ADADAE",
-                "width": 40,
-              }
-            }
-            tintColor="#ADADAE"
-          />
-        </View>
-        <TextInput
-          allowFontScaling={false}
-          clearButtonMode="never"
-          onBlur={[Function]}
-          onChangeText={[Function]}
-          onFocus={[Function]}
-          placeholder="settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined"
-          placeholderTextColor="#ADADAE"
-          style={
             [
               {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 5,
-                "flex": 1,
-                "fontSize": 15,
-                "height": 44,
-                "marginBottom": 5,
-                "paddingHorizontal": 10,
-                "paddingVertical": 5,
+                "alignItems": "flex-start",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 40,
+                "flexDirection": "row",
+                "height": 80,
+                "overflow": "hidden",
+              },
+              false,
+              undefined,
+              {
+                "paddingStart": 0,
               },
               {
-                "alignSelf": "stretch",
-                "backgroundColor": "transparent",
-                "borderRadius": 0,
-                "color": "#DEDDDE",
-                "flex": 1,
-                "fontFamily": "Helvetica Neue",
-                "fontSize": 26,
+                "paddingEnd": 0,
+              },
+              {
+                "backgroundColor": "#1E2022",
+                "borderColor": "transparent",
+                "borderRadius": 40,
+                "borderWidth": 2,
                 "height": 80,
-                "lineHeight": 32,
-                "marginHorizontal": 17,
-                "paddingHorizontal": 0,
-                "textAlignVertical": "center",
+                "marginBottom": 26,
+                "overflow": "hidden",
               },
             ]
           }
-          value=""
-        />
+        >
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "marginStart": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 40,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+          <TextInput
+            accessibilityHint="type for search location"
+            accessibilityLabel="search location"
+            accessibilityRole="search"
+            accessible={true}
+            allowFontScaling={false}
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="never"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            placeholder="homeScreen.selectLocation.inputPlaceholder undefined"
+            placeholderTextColor="#ADADAE"
+            style={
+              [
+                {
+                  "alignSelf": "stretch",
+                  "color": "#DEDDDE",
+                  "flex": 1,
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "height": 80,
+                  "marginHorizontal": 17,
+                  "paddingHorizontal": 0,
+                  "paddingVertical": 0,
+                  "textAlignVertical": "center",
+                },
+                false,
+                undefined,
+                undefined,
+                {
+                  "alignSelf": "stretch",
+                  "backgroundColor": "transparent",
+                  "borderRadius": 0,
+                  "color": "#DEDDDE",
+                  "flex": 1,
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "height": 80,
+                  "lineHeight": 32,
+                  "marginHorizontal": 17,
+                  "paddingHorizontal": 0,
+                  "textAlignVertical": "center",
+                },
+              ]
+            }
+            textAlignVertical="top"
+            underlineColorAndroid="rgba(0, 0, 0, 0)"
+            value=""
+          />
+        </View>
       </View>
     </View>
   </View>
