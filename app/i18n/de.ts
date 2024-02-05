@@ -125,6 +125,7 @@ const de = {
       selectMessage: "Wählen Sie Ereignisse aus, über die Sie benachrichtigt werden möchten.",
       switch: "Benachrichtigen Sie mich über alle bevorstehenden Veranstaltungen an diesem Ort.",
       aboveHorizon: "Über dem Horizont",
+      maxHeight: "Maximale Höhe von",
       today: "Heute",
       tomorrow: "Morgen",
       appears: "Erscheint",
@@ -364,10 +365,15 @@ const de = {
     searchPlaceholder: "Suchartikel, Ereignisse usw.",
     suggestions: "VORSCHLÄGE",
     searchResults: "Suchergebnisse",
+    liveTitle: "Hochauflösendes Live-Streaming-Video der Erde",
+    liveDescription:
+      "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich überquert ein Sonnenkollektor das Bild. Um diesen Livestream anzusehen, besuchen Sie bitte",
+    liveLink: "diese NASA-Webseite",
     tabs: {
       news: "Nachricht",
       about: "Um",
       details: "Einzelheiten",
+      live: "Live-Stream",
     },
   },
 }

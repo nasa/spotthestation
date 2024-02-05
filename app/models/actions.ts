@@ -99,7 +99,8 @@ const RootStoreActions = (self) => ({
 
     return location.sightings.filter((item) => {
       return (
-        new Date(item.date) > new Date() &&
+        new Date(item.date) >
+          new Date(new Date().getTime() - Math.max(item.visible, 30) * 60 * 1000) &&
         (location.filterTimeOfDay === "" || String(item.dayStage) === location.filterTimeOfDay) &&
         (location.filterDuration === "" || hasDuration(item, location.filterDuration))
       )

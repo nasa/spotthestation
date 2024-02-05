@@ -20,6 +20,7 @@ import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 import { useStores } from "../../../models"
 import { Details } from "../SkyViewScreen/Details"
+import { Live } from "./Live"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 
@@ -326,6 +327,20 @@ export const Resources = observer(function HomeScreen() {
     )
   }, [issData, location])
 
+  const renderLive = useCallback(() => {
+    return (
+      <ScrollView
+        accessible
+        accessibilityLabel="recent results"
+        accessibilityHint="recent results"
+        accessibilityRole="scrollbar"
+        style={$scrollContainer}
+      >
+        <Live onLink={() => link({ link: "https://eol.jsc.nasa.gov/esrs/hdev/" })} />
+      </ScrollView>
+    )
+  }, [issData, location])
+
   const renderTab = (type: string) => {
     switch (type) {
       case "about":
@@ -334,6 +349,8 @@ export const Resources = observer(function HomeScreen() {
         return renderBody()
       case "details":
         return renderDetails()
+      case "live":
+        return renderLive()
       default:
         return renderStatic()
     }
@@ -390,13 +407,13 @@ export const Resources = observer(function HomeScreen() {
       </View>
       <View style={$horizontalScrollContainer}>
         <ScrollView horizontal style={$horizontalScrollContainer}>
-          {["news", "about", "details"].map((item) => (
+          {["news", "about", "details", "live"].map((item) => (
             <Button
               key={item}
               accessible
               accessibilityLabel={`${item} button`}
               accessibilityHint={`show ${item} view`}
-              tx={`resources.tabs.${(item as "news") || "about" || "details"}`}
+              tx={`resources.tabs.${(item as "news") || "about" || "details" || "live"}`}
               style={[$button, item === type && $active]}
               textStyle={$buttonText}
               pressedStyle={$button}

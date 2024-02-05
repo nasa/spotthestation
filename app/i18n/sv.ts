@@ -123,6 +123,7 @@ const sv = {
       selectMessage: "Välj händelser som du vill bli meddelad för.",
       switch: "Meddela mig för alla kommande händelser på den här platsen.",
       aboveHorizon: "Ovanför horisonten",
+      maxHeight: "maxhöjd av",
       today: "Idag",
       tomorrow: "Imorgon",
       appears: "Visas",
@@ -358,10 +359,15 @@ const sv = {
     searchPlaceholder: "Sökartiklar, händelser osv ...",
     suggestions: "FÖRSLAG",
     searchResults: "sökresultat",
+    liveTitle: "Högupplöst live-strömning av jorden",
+    liveDescription:
+      "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel. För att se denna livestream, besök",
+    liveLink: "denna NASA-webbsida",
     tabs: {
       news: "Nyheter",
       about: "Om",
       details: "Information",
+      live: "Live-strömning",
     },
   },
 }

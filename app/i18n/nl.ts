@@ -123,6 +123,7 @@ const nl = {
       selectMessage: "Selecteer gebeurtenissen waarvan u op de hoogte gehouden wilt worden.",
       switch: "Houd mij op de hoogte van alle aankomende gebeurtenissen op deze locatie.",
       aboveHorizon: "Boven de horizon",
+      maxHeight: "maximale hoogte van",
       today: "Vandaag",
       tomorrow: "Morgen",
       appears: "Komt naar voren",
@@ -362,10 +363,15 @@ const nl = {
     searchPlaceholder: "Zoek naar artikelen, gebeurtenissen, etc...",
     suggestions: "SUGGESTIES",
     searchResults: "Zoekresultaten",
+    liveTitle: "High Definition Live Streaming Video van de Aarde",
+    liveDescription:
+      "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert. Om deze live stream te bekijken, ga naar",
+    liveLink: "deze NASA-webpagina",
     tabs: {
       news: "Nieuws",
       about: "Over ons",
       details: "Details",
+      live: "Live Stream",
     },
   },
 }

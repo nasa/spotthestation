@@ -125,6 +125,7 @@ const es = {
       selectMessage: "Seleccione los eventos de los que deseas recibir notificaciones.",
       switch: "Notifícame para todos los próximos eventos en esta ubicación.",
       aboveHorizon: "Encima del horizonte",
+      maxHeight: "Altura máxima de",
       today: "Hoy",
       tomorrow: "Mañana",
       appears: "Aparece",
@@ -363,10 +364,15 @@ const es = {
     searchPlaceholder: "Búsqueda de artículos, eventos, etc.",
     suggestions: "Sugerencias",
     searchResults: "Resultados de la búsqueda",
+    liveTitle: "Video de transmisión en vivo de alta definición de la Tierra",
+    liveDescription:
+      "Actualmente, se está transmitiendo un video en vivo de la Tierra desde una cámara HD externa montada en la ISS. La cámara está mirando hacia la Tierra con un panel solar ocasional pasando por la vista. Para ver esta transmisión en vivo, visite",
+    liveLink: "esta página web de la NASA",
     tabs: {
       news: "Noticias",
       about: "Acerca de la estación",
       details: "Detalles",
+      live: "Transmisión en vivo",
     },
   },
 }

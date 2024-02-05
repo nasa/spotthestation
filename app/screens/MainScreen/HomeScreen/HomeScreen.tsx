@@ -119,7 +119,7 @@ export const HomeScreen = observer(function HomeScreen() {
     const idx = eventsList.findIndex(
       (sighting) =>
         new Date(sighting.date) >
-        new Date(new Date().getTime() - Math.max(sighting.visible, 10) * 60 * 1000),
+        new Date(new Date().getTime() - Math.max(sighting.visible, 30) * 60 * 1000),
     )
 
     setCurrentSightingIdx(idx)
@@ -178,7 +178,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
       if (
         new Date().getTime() - new Date(currentSighting.date).getTime() >
-        Math.max(currentSighting.visible, 10) * 60 * 1000
+        Math.max(currentSighting.visible, 30) * 60 * 1000
       ) {
         updateCurrentSighting()
         return

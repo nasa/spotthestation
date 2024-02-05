@@ -124,6 +124,7 @@ const ja = {
       selectMessage: "通知したいイベントを選択します。",
       switch: "この位置での今後の全てのイベントについて私に通知してください。",
       aboveHorizon: "地平線の上",
+      maxHeight: "の最大高さ",
       today: "今日",
       tomorrow: "明日",
       appears: "登場",
@@ -359,10 +360,15 @@ const ja = {
     searchPlaceholder: "記事、イベントなどを検索...",
     suggestions: "提案",
     searchResults: "の検索結果",
+    liveTitle: "地球の高精細ライブストリーミングビデオ",
+    liveDescription:
+      "現在、地球のライブ映像がISSに取り付けられた外部のHDカメラからストリーミングされています。 カメラは地球の方を向いており、時折太陽パネルが画面を通過します。 このライブストリームを視聴するには、以下のNASAのウェブページを訪れてください",
+    liveLink: "このNASAのウェブページ",
     tabs: {
       news: "ニュース",
       about: "ABOUT",
       details: "詳細",
+      live: "ライブストリーム",
     },
   },
 }

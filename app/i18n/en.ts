@@ -124,6 +124,7 @@ const en = {
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
       aboveHorizon: "Above the horizon",
+      maxHeight: "max height of",
       today: "Today",
       tomorrow: "Tomorrow",
       appears: "Appears",
@@ -362,10 +363,15 @@ const en = {
     searchPlaceholder: "Search articles, events, etc...",
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",
+    liveTitle: "High Definition Live Streaming Video of the Earth",
+    liveDescription:
+      "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view. To view this live stream, please visit",
+    liveLink: "this NASA web page",
     tabs: {
       news: "News",
       about: "About",
       details: "Details",
+      live: "Live Stream",
     },
   },
 }
