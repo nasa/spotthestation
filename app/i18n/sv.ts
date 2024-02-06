@@ -361,8 +361,7 @@ const sv = {
     searchResults: "sökresultat",
     liveTitle: "Högupplöst live-strömning av jorden",
     liveDescription:
-      "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel. För att se denna livestream, besök",
-    liveLink: "denna NASA-webbsida",
+      "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel.",
     tabs: {
       news: "Nyheter",
       about: "Om",

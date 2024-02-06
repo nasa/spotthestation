@@ -365,8 +365,7 @@ const nl = {
     searchResults: "Zoekresultaten",
     liveTitle: "High Definition Live Streaming Video van de Aarde",
     liveDescription:
-      "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert. Om deze live stream te bekijken, ga naar",
-    liveLink: "deze NASA-webpagina",
+      "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert.",
     tabs: {
       news: "Nieuws",
       about: "Over ons",

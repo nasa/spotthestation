@@ -367,8 +367,7 @@ const de = {
     searchResults: "Suchergebnisse",
     liveTitle: "Hochauflösendes Live-Streaming-Video der Erde",
     liveDescription:
-      "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich überquert ein Sonnenkollektor das Bild. Um diesen Livestream anzusehen, besuchen Sie bitte",
-    liveLink: "diese NASA-Webseite",
+      "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich überquert ein Sonnenkollektor das Bild.",
     tabs: {
       news: "Nachricht",
       about: "Um",

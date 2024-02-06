@@ -79,6 +79,7 @@ export const Resources = observer(function HomeScreen() {
     $header,
     $suggestion,
     $scrollContainer,
+    $liveContainer,
     $horizontalScrollContainer,
     $searchField,
     $button,
@@ -334,9 +335,10 @@ export const Resources = observer(function HomeScreen() {
         accessibilityLabel="recent results"
         accessibilityHint="recent results"
         accessibilityRole="scrollbar"
+        contentContainerStyle={$liveContainer}
         style={$scrollContainer}
       >
-        <Live onLink={() => link({ link: "https://eol.jsc.nasa.gov/esrs/hdev/" })} />
+        <Live />
       </ScrollView>
     )
   }, [issData, location])
@@ -358,6 +360,7 @@ export const Resources = observer(function HomeScreen() {
 
   return (
     <Screen
+      dismissKeyboardOnPress={type !== "live"}
       preset="fixed"
       contentContainerStyle={$container}
       style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
@@ -536,6 +539,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $justifyCenter: ViewStyle = { justifyContent: "space-between" }
 
+  const $liveContainer: ViewStyle = { flexGrow: 1 }
+
   return {
     $container,
     $headerContainer,
@@ -555,5 +560,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $searchResultsContainer,
     $searchFieldContainer,
     $justifyCenter,
+    $liveContainer,
   }
 }

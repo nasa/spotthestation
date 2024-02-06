@@ -366,8 +366,7 @@ const it = {
     searchResults: "Risultati di ricerca",
     liveTitle: "Video in diretta ad alta definizione della Terra",
     liveDescription:
-      "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera è rivolta verso la Terra con un pannello solare occasionale che attraversa la vista. Per visualizzare questo flusso live, visita",
-    liveLink: "questa pagina web della NASA",
+      "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera è rivolta verso la Terra con un pannello solare occasionale che attraversa la vista.",
     tabs: {
       news: "Notizie",
       about: "Informazioni",

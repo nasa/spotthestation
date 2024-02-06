@@ -365,8 +365,7 @@ const en = {
     searchResults: "Search Results",
     liveTitle: "High Definition Live Streaming Video of the Earth",
     liveDescription:
-      "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view. To view this live stream, please visit",
-    liveLink: "this NASA web page",
+      "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view.",
     tabs: {
       news: "News",
       about: "About",

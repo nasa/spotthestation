@@ -368,8 +368,7 @@ const fr = {
     searchResults: "Résultats de recherche",
     liveTitle: "Vidéo en direct en haute définition de la Terre",
     liveDescription:
-      "Actuellement, une vidéo en direct de la Terre est diffusée depuis une caméra HD externe montée sur l'ISS. La caméra est orientée vers la Terre avec de temps en temps un panneau solaire passant à travers la vue. Pour voir ce flux en direct, veuillez visiter",
-    liveLink: "cette page web de la NASA",
+      "Actuellement, une vidéo en direct de la Terre est diffusée depuis une caméra HD externe montée sur l'ISS. La caméra est orientée vers la Terre avec de temps en temps un panneau solaire passant à travers la vue.",
     tabs: {
       news: "Actualités",
       about: "À propos",

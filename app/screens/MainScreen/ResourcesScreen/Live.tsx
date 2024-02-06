@@ -1,22 +1,16 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import React from "react"
-import {
-  ViewStyle,
-  View,
-  TextStyle,
-  Image,
-  ImageStyle,
-  Text as RNText,
-  Pressable,
-} from "react-native"
+import React, { useState } from "react"
+import YoutubePlayer from "react-native-youtube-iframe"
+import { ViewStyle, View, TextStyle, Text as RNText } from "react-native"
 import { Text } from "../../../components"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 
 const streamId = "P9C25Un7xaM"
 
-export function Live({ onLink }) {
-  const { $contentContainer, $title, $description, $text, $image, $flex, $link } = useStyles(styles)
+export function Live() {
+  const { $contentContainer, $title, $description, $text, $flex } = useStyles(styles)
+  const [videoHeight, setVideoHeight] = useState(0)
 
   return (
     <View style={$contentContainer}>
@@ -36,19 +30,18 @@ export function Live({ onLink }) {
         accessibilityRole="text"
         style={$description}
       >
-        <Text style={$text} tx="resources.liveDescription" />{" "}
-        <Text style={[$text, $link]} tx="resources.liveLink" onPress={onLink} />
-        <Text style={$text}>.</Text>
+        <Text style={$text} tx="resources.liveDescription" />
       </RNText>
 
       <View style={$flex} />
 
-      <Pressable onPress={onLink}>
-        <Image
-          style={$image as ImageStyle}
-          source={{ uri: `https://img.youtube.com/vi/${streamId}/maxresdefault.jpg` }}
-        />
-      </Pressable>
+      <View
+        onLayout={(e) => {
+          setVideoHeight((e.nativeEvent.layout.width * 9) / 16)
+        }}
+      >
+        {videoHeight > 0 && <YoutubePlayer height={videoHeight} videoId={streamId} />}
+      </View>
     </View>
   )
 }
@@ -80,15 +73,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     lineHeight: lineHeights[28],
   }
 
-  const $link: TextStyle = {
-    textDecorationLine: "underline",
-  }
-
-  const $image: ViewStyle = {
-    width: "100%",
-    aspectRatio: 16 / 9,
-  }
-
   const $flex: ViewStyle = {
     flex: 1,
   }
@@ -98,8 +82,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $title,
     $description,
     $text,
-    $image,
     $flex,
-    $link,
   }
 }

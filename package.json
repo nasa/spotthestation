@@ -116,6 +116,7 @@
     "react-native-vision-camera": "^2.16.5",
     "react-native-web": "~0.18.7",
     "react-native-webview": "^11.26.1",
+    "react-native-youtube-iframe": "^2.3.0",
     "reactotron-mst": "3.1.4",
     "reactotron-react-js": "^3.3.7",
     "reactotron-react-native": "5.0.3",
