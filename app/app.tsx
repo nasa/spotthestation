@@ -131,11 +131,11 @@ function App(props: AppProps) {
       subscription.remove()
     }
   }, [rootStore])
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
-  }, [])
+  //
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-empty-function
+  //   if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
+  // }, [])
 
   useEffect(() => {
     ;(async () => {

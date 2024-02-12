@@ -4,6 +4,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   Pressable,
   ScrollView,
   TextStyle,
@@ -23,6 +24,8 @@ import { Details } from "../SkyViewScreen/Details"
 import { Live } from "./Live"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 
 const items = [
   {
@@ -89,11 +92,24 @@ export const Resources = observer(function HomeScreen() {
     $searchResultsContainer,
     $searchFieldContainer,
     $justifyCenter,
+    $modal,
+    $popupModal,
   } = useStyles(styles)
 
   const navigation = useNavigation()
-  const { currentLocation, selectedLocation, issData, getISSData } = useStores()
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSData,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
   const [isSearch, setIsSearch] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -171,6 +187,11 @@ export const Resources = observer(function HomeScreen() {
     if (!location) return
     getData().catch((e) => console.log(e))
   }, [location])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const { toggleBottomTabs } = useContext(TabNavigatorContext)
 
@@ -426,6 +447,21 @@ export const Resources = observer(function HomeScreen() {
         </ScrollView>
       </View>
       {renderTab(type)}
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -541,6 +577,15 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $liveContainer: ViewStyle = { flexGrow: 1 }
 
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
+
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   return {
     $container,
     $headerContainer,
@@ -561,5 +606,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $searchFieldContainer,
     $justifyCenter,
     $liveContainer,
+    $modal,
+    $popupModal,
   }
 }

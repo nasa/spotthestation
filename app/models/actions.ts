@@ -3,7 +3,6 @@ import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add } from "date-fns"
 import { api, ISSSighting, LocationType } from "../services/api"
-import { getCurrentTimeZone } from "../utils/formatDate"
 import notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
@@ -13,25 +12,25 @@ import * as storage from "../utils/storage"
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params: { lat: number; lon: number }) {
-    const { data, ok } = yield* toGenerator(
+    const { data, ok, kind } = yield* toGenerator(
       api.getISSData({
         from: new Date(new Date().setMinutes(new Date().getMinutes() - 30)).toISOString(),
       }),
     )
 
-    if (!ok || typeof data === "string") return { ok: false }
+    if (!ok || typeof data === "string") return { ok: false, data, kind }
     const sightings = yield getSightings(data.points, data.shadowIntervals, params.lat, params.lon)
 
     return { ok: true, data: sightings }
   }),
 
-  getISSSightings: flow(function* getISSSightings(params, isCurrent?: boolean) {
+  getISSSightings: flow(function* getISSSightings(location: LocationType) {
     try {
-      const location = isCurrent
-        ? self.currentLocation
-        : self.selectedLocation || self.currentLocation
       const locationCopy = JSON.parse(JSON.stringify(location)) as LocationType
-      const { data, ok } = yield self.calculateSightings(params)
+      const { data, ok, kind } = yield self.calculateSightings({
+        lat: location.location.lat,
+        lon: location.location.lng,
+      })
 
       if (ok) {
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
@@ -47,6 +46,7 @@ const RootStoreActions = (self) => ({
 
         locationCopy.sightings = [...dataToSave]
         locationCopy.lastSightingOrbitPointAt = data.lastSightingOrbitPointAt
+        locationCopy.lastUpdatedAt = new Date().toISOString()
         if (isSelectedLocation) {
           self.selectedLocation = Location.create(locationCopy)
         }
@@ -68,22 +68,13 @@ const RootStoreActions = (self) => ({
         self.setIsCurrentLocationUpdating(false)
       } else {
         self.trajectoryError = true
+        self.trajectoryErrorKind = kind
         if (self.initLoading) self.sightingsLoaded = true
         self.setIsCurrentLocationUpdating(false)
-        Snackbar.show({
-          text: data as string,
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: translate("snackBar.dismiss"),
-            textColor: "red",
-            onPress: () => {
-              Snackbar.dismiss()
-            },
-          },
-        })
       }
     } catch (e) {
       self.trajectoryError = true
+      self.trajectoryErrorKind = ""
       if (self.initLoading) self.sightingsLoaded = true
       self.setIsCurrentLocationUpdating(false)
       console.error(e)
@@ -139,15 +130,21 @@ const RootStoreActions = (self) => ({
 
   setISSSightings: (value: LocationType): LocationType => {
     const isCurrentLocation = value.title === self.currentLocation?.title
+    const isSelectedLocation = value.title === self.selectedLocation?.title
     const valueCopy = JSON.parse(JSON.stringify(value)) as LocationType
-    self.selectedLocation = Location.create(valueCopy)
 
     let savedLocations = []
+    if (isCurrentLocation) {
+      self.currentLocation = Location.create(valueCopy)
+    }
+
+    if (isSelectedLocation) {
+      self.selectedLocation = Location.create(valueCopy)
+    }
+
     if (!isCurrentLocation) {
       savedLocations = self.savedLocations.filter((location) => location.title !== value.title)
       self.savedLocations = [...savedLocations, valueCopy]
-    } else {
-      self.currentLocation = Location.create(valueCopy)
     }
 
     const notifyFor: LocationType[] = [
@@ -184,14 +181,7 @@ const RootStoreActions = (self) => ({
         self.selectedLocation = null
       }
 
-      self.getISSSightings(
-        {
-          zone: valueCopy.timezone || getCurrentTimeZone(),
-          lat: valueCopy.location.lat,
-          lon: valueCopy.location.lng,
-        },
-        true,
-      )
+      self.getISSSightings(valueCopy)
     }
   }),
 
@@ -213,11 +203,7 @@ const RootStoreActions = (self) => ({
 
       self.selectedLocation = Location.create(valueCopy)
       if (!updateSettingsOnly) {
-        self.getISSSightings({
-          zone: valueCopy.timezone || getCurrentTimeZone(),
-          lat: valueCopy.location.lat,
-          lon: valueCopy.location.lng,
-        })
+        self.getISSSightings(valueCopy)
       }
     } else {
       self.selectedLocation = null
@@ -256,6 +242,7 @@ const RootStoreActions = (self) => ({
 
   setTrajectoryError: (value: boolean) => {
     self.trajectoryError = value
+    self.trajectoryErrorKind = ""
   },
 
   setSightingsLoaded: (value: boolean) => {
@@ -278,6 +265,16 @@ const RootStoreActions = (self) => ({
 
   setNewSavedLocation: flow(function* setNewSavedLocation(value: LocationType) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))
+
+    if (!valueCopy.timezone) {
+      const { kind, zone } = yield api.getLocationTimeZone(
+        valueCopy.location.lat,
+        valueCopy.location.lng,
+      )
+      if (kind === "ok" && zone) valueCopy.timezone = zone
+      console.log("tz updated!", valueCopy.timezone)
+    }
+
     self.savedLocations = [...self.savedLocations, valueCopy]
     const { data, ok } = yield self.calculateSightings({
       lat: valueCopy.location.lat,
@@ -300,6 +297,7 @@ const RootStoreActions = (self) => ({
           ...valueCopy,
           sightings: dataToSave,
           lastSightingOrbitPointAt: data.lastSightingOrbitPointAt,
+          lastUpdatedAt: new Date().toISOString(),
         },
       ]
 
@@ -333,7 +331,7 @@ const RootStoreActions = (self) => ({
 
   getISSData: flow(function* getISSData(params: { lat: number; lon: number }) {
     try {
-      const { data, ok } = yield* toGenerator(
+      const { data, ok, kind } = yield* toGenerator(
         api.getISSData({
           from: sub(new Date(), { minutes: 100 }).toISOString(),
           to: add(new Date(), { minutes: 100 }).toISOString(),
@@ -345,21 +343,12 @@ const RootStoreActions = (self) => ({
         if (self.initLoading) self.issDataLoaded = true
       } else {
         self.trajectoryError = true
+        self.trajectoryErrorKind = kind
         if (self.initLoading) self.issDataLoaded = true
-        Snackbar.show({
-          text: data as string,
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: translate("snackBar.dismiss"),
-            textColor: "red",
-            onPress: () => {
-              Snackbar.dismiss()
-            },
-          },
-        })
       }
     } catch (e) {
       self.trajectoryError = true
+      self.trajectoryErrorKind = ""
       if (self.initLoading) self.issDataLoaded = true
       console.error(e)
     }

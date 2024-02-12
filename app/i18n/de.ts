@@ -102,6 +102,8 @@ const de = {
         "Station -Daten werden geladen. Dies kann einen Moment dauern, bis es abgeschlossen wird.",
       trajectoryError:
         "Die Station -Trajektoriendaten sind derzeit aufgrund der Serverwartung nicht verfügbar.Bitte schauen Sie später an.",
+      noNetwork:
+        "Die Station -Trajektoriendaten sind derzeit nicht verfügbar aufgrund fehlender Verbindung. Bitte schauen Sie später an.",
     },
     header: {
       firstTimeHead: "LISTE DER NÄCHSTEN SICHTUNGEN",

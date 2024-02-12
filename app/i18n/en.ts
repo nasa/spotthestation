@@ -101,6 +101,8 @@ const en = {
       message: "Station data is loading… This may take a moment to complete.",
       trajectoryError:
         "The Station trajectory data is currently unavailable due to server maintenance. Please check back again later.",
+      noNetwork:
+        "The Station trajectory data is currently unavailable due to no connection. Please check back again later.",
     },
     header: {
       firstTimeHead: "NEXT SIGHTING(S) LIST",
@@ -124,7 +126,7 @@ const en = {
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
       aboveHorizon: "Above the horizon",
-      maxHeight: "max height of",
+      maxHeight: "Max height of",
       today: "Today",
       tomorrow: "Tomorrow",
       appears: "Appears",

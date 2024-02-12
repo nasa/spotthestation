@@ -64,6 +64,7 @@ export const HomeScreen = observer(function HomeScreen() {
     sightingsLoaded,
     issDataLoaded,
     trajectoryError,
+    trajectoryErrorKind,
     setTrajectoryError,
     requestCloseModal,
     requestOpenModal,
@@ -494,6 +495,7 @@ export const HomeScreen = observer(function HomeScreen() {
         style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
       >
         <TrajectoryError
+          kind={trajectoryErrorKind}
           onDismiss={() => {
             setTrajectoryError(false)
           }}

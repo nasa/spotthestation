@@ -102,6 +102,8 @@ const es = {
         "Los datos de la estación se están cargando ... Esto puede tardar un rato en completarse.",
       trajectoryError:
         "Los datos de trayectoria de la estación no están disponibles actualmente debido al mantenimiento del servidor. Por favor, vuelve a comprobar más tarde.",
+      noNetwork:
+        "Los datos de trayectoria de la estación no están disponibles actualmente debido a la falta de conexión. Por favor, vuelve a comprobar más tarde.",
     },
     header: {
       firstTimeHead: "Lista de próximos avistamientos",

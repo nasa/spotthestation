@@ -932,7 +932,7 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined | homeScreen.selectSightings.maxHeight undefined 20°
+                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -966,7 +966,75 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  homeScreen.selectSightings.maxHeight undefined 20°
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View
@@ -1297,7 +1365,7 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined | homeScreen.selectSightings.maxHeight undefined 20°
+                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1331,7 +1399,75 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  homeScreen.selectSightings.maxHeight undefined 20°
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View
@@ -1662,7 +1798,7 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined | homeScreen.selectSightings.maxHeight undefined 20°
+                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
                   allowFontScaling={false}
@@ -1696,7 +1832,75 @@ exports[`Sightings renders correctly 1`] = `
                     ]
                   }
                 >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined | homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  homeScreen.selectSightings.maxHeight undefined 20°
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Helvetica Neue",
+                        "fontSize": 23,
+                        "lineHeight": 27,
+                        "paddingTop": 7,
+                        "width": "95%",
+                      },
+                    ]
+                  }
+                >
+                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
               </View>
               <View

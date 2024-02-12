@@ -241,7 +241,7 @@ export class Api {
 
     if (!response.ok || typeof response.data === "string") {
       const problem = getGeneralApiProblem(response)
-      if (problem) return { ok: false, data: response.data }
+      if (problem) return { ok: false, data: response.data, kind: problem.kind }
       if (response.data === "string") return { ok: false, data: "Data is empty!" }
     }
 

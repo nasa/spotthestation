@@ -14,6 +14,7 @@ export const RootStoreModel = types
     issData: types.optional(types.frozen(), []),
     initLoading: types.optional(types.boolean, false),
     trajectoryError: types.optional(types.boolean, false),
+    trajectoryErrorKind: types.optional(types.string, ""),
     issDataLoaded: types.optional(types.boolean, false),
     sightingsLoaded: types.optional(types.boolean, false),
     currentModal: types.maybeNull(Modal),

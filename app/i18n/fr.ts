@@ -103,6 +103,8 @@ const fr = {
         "Les données Station sont en train de charger… cela peut prendre un moment pour aboutir.",
       trajectoryError:
         "Les données de trajectoire Station sont actuellement indisponibles en raison de la maintenance du serveur. S'il vous plaît, veuillez reessayer plus tard.",
+      noNetwork:
+        "Les données de trajectoire Station sont actuellement indisponibles en raison d'une absence de connexion. S'il vous plaît, veuillez reessayer plus tard.",
     },
     header: {
       firstTimeHead: "LISTE DES PROCHAINES OBSERVATIONS",

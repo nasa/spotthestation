@@ -263,14 +263,16 @@ export function Sightings({
                   selected={sighting.notify}
                   subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
                     sighting.visible
-                  } ${translate("units.minute")} | ${translate(
-                    "homeScreen.selectSightings.maxHeight",
-                  )} ${sighting.maxHeight}°`}
-                  subtitle2={`${translate("homeScreen.selectSightings.appears")}: ${
+                  } ${translate("units.minute")}`}
+                  subtitle2={`${translate("homeScreen.selectSightings.maxHeight")} ${
+                    sighting.maxHeight
+                  }°`}
+                  subtitle3={`${translate("homeScreen.selectSightings.appears")}: ${
                     sighting.minAltitude
                   }° ${translate(
                     `homeScreen.selectSightings.compass.${degToCompass(sighting.minAzimuth)}`,
-                  )} | ${translate("homeScreen.selectSightings.disappears")}: ${
+                  )}`}
+                  subtitle4={`${translate("homeScreen.selectSightings.disappears")}: ${
                     sighting.maxAltitude
                   }° ${translate(
                     `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,

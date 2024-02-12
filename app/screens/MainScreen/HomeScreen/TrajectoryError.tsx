@@ -6,7 +6,7 @@ import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
 
-export function TrajectoryError({ onDismiss }) {
+export function TrajectoryError({ onDismiss, kind = "" }) {
   const { $modalBodyContainer, $title, $nextButton, $nextButtonText } = useStyles(styles)
 
   return (
@@ -17,7 +17,14 @@ export function TrajectoryError({ onDismiss }) {
       accessibilityRole="text"
       style={$modalBodyContainer}
     >
-      <Text tx="homeScreen.initLoader.trajectoryError" style={$title} />
+      <Text
+        tx={
+          kind === "no-network"
+            ? "homeScreen.initLoader.noNetwork"
+            : "homeScreen.initLoader.trajectoryError"
+        }
+        style={$title}
+      />
       <Button
         accessible
         accessibilityLabel="dismiss button"

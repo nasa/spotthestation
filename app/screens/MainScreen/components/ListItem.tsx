@@ -21,6 +21,7 @@ export interface ListItemProps {
   subtitle?: string
   subtitle2?: string
   subtitle3?: string
+  subtitle4?: string
   icon: IconTypes
   secondIcon?: { icon: IconTypes; color: string }
   ctaTx?: TxKeyPath
@@ -38,6 +39,8 @@ export const ListItem = React.memo(function ListItem({
   ctaTx,
   subtitle,
   subtitle2,
+  subtitle3,
+  subtitle4,
   selected = false,
   withSwitch = false,
   icon,
@@ -93,6 +96,12 @@ export const ListItem = React.memo(function ListItem({
           )}
           {Boolean(subtitle2) && (
             <Text text={subtitle2} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(subtitle3) && (
+            <Text text={subtitle3} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(subtitle4) && (
+            <Text text={subtitle4} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
           )}
           {Boolean(ctaTx) && (
             <Pressable onPress={onCtaPress} style={$cta}>

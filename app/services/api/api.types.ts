@@ -40,6 +40,7 @@ export interface LocationType {
   }
   sightings?: ISSSighting[]
   lastSightingOrbitPointAt?: string
+  lastUpdatedAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
   timezone?: string
@@ -53,6 +54,7 @@ export interface RawISSDataResponse {
 export interface ISSDataResponse {
   ok: boolean
   data: { points: SatData[]; shadowIntervals: ShadowInterval[] } | string
+  kind?: string
 }
 
 export interface FeedResponse {

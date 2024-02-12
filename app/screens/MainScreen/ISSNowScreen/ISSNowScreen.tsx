@@ -1,7 +1,7 @@
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
-import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
+import { BackHandler, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import Modal from "react-native-modal"
@@ -16,6 +16,9 @@ import { useStores } from "../../../models"
 import { LocationType, OrbitPoint } from "../../../services/api"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const {
@@ -50,11 +53,23 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     $disabled,
     $modal,
     $bottom0,
+    $popupModal,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
-  const { currentLocation, selectedLocation, issData, getISSData, setSelectedLocation } =
-    useStores()
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSData,
+    setSelectedLocation,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
@@ -157,6 +172,11 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
     return () => backHandler.remove()
   }, [isFullScreen])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const handleChangeLocation = useCallback(
     (location: LocationType) => {
@@ -341,6 +361,21 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -527,6 +562,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     margin: 0,
   }
 
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   const $bottom0: ViewStyle = { bottom: 0 }
 
   return {
@@ -563,5 +600,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $disabled,
     $modal,
     $bottom0,
+    $popupModal,
   }
 }

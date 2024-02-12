@@ -102,6 +102,8 @@ const it = {
         "I dati della Stazione stanno caricando ... Questo potrebbe richiedere un momento per essere completato.",
       trajectoryError:
         "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della manutenzione del server. Si prega di riprovare più tardi.",
+      noNetwork:
+        "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della mancanza di connessione. Si prega di riprovare più tardi.",
     },
     header: {
       firstTimeHead: "ELENCO DEI PROSSIMI AVVISTAMENTI",

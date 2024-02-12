@@ -48,7 +48,9 @@ import {
   watchCalibrationState,
 } from "../../../utils/orientation"
 import { CalibrateCompassModal } from "../SettingsScreen/CalibrateCompassModal"
-import { getCurrentTimeZone } from "../../../utils/formatDate"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -183,11 +185,24 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $row,
     $permissionText,
     $calibrateModal,
+    $popupModal,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const { currentLocation, selectedLocation, issData, getISSSightings, getISSData } = useStores()
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSSightings,
+    getISSData,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
@@ -311,11 +326,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const getSightings = async () => {
-    await getISSSightings({
-      zone: current?.timezone || getCurrentTimeZone(),
-      lat: location[0],
-      lon: location[1],
-    })
+    await getISSSightings(current)
   }
 
   const getData = async () => {
@@ -344,6 +355,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
     return () => clearInterval(interval)
   }, [isRecording])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -767,6 +783,21 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           />
         </Modal>
       )}
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -831,6 +862,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     left: 0,
     margin: 0,
   }
+
+  const $popupModal: ViewStyle = { flex: 1, paddingHorizontal: 18, justifyContent: "flex-start" }
 
   const $calibrateModal: ViewStyle = {
     justifyContent: "center",
@@ -943,5 +976,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $flex,
     $permissionText,
     $calibrateModal,
+    $popupModal,
   }
 }

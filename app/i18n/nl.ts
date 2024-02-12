@@ -100,6 +100,8 @@ const nl = {
       message: "Station-gegevens worden geladen... Dit kan even duren.",
       trajectoryError:
         "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege serveronderhoud. Kom later terug.",
+      noNetwork:
+        "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege geen verbinding. Kom later terug.",
     },
     header: {
       firstTimeHead: "VOLGENDE WAARNEMING(EN) LIJST",
@@ -123,7 +125,7 @@ const nl = {
       selectMessage: "Selecteer gebeurtenissen waarvan u op de hoogte gehouden wilt worden.",
       switch: "Houd mij op de hoogte van alle aankomende gebeurtenissen op deze locatie.",
       aboveHorizon: "Boven de horizon",
-      maxHeight: "maximale hoogte van",
+      maxHeight: "Maximale hoogte van",
       today: "Vandaag",
       tomorrow: "Morgen",
       appears: "Komt naar voren",

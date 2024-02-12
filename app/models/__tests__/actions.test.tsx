@@ -1,3 +1,4 @@
+import MockDate from "mockdate"
 import { RootStoreModel } from "../RootStore"
 import notifications from "../../utils/notifications"
 import { LocationType } from "../../services/api"
@@ -6,338 +7,363 @@ jest.mock("../../utils/notifications", () => ({
   setNotifications: jest.fn().mockResolvedValue(null),
 }))
 
-test("getISSSightings should update the store incorrectly", async () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: {},
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+describe("actions", () => {
+  beforeEach(() => {
+    MockDate.set("12-12-2012 10:10:10")
   })
 
-  const mockParams = { zone: "testZone", lat: 0, lon: 0 }
+  afterEach(() => {
+    MockDate.reset()
+  })
 
-  await rootStore.getISSSightings(mockParams)
+  test("getISSSightings should update the store incorrectly", async () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: {},
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.selectedLocation).toBeNull()
-  expect(rootStore.savedLocations).toEqual([])
-})
-
-test("getISSSightings should update the store correctly", async () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: {
-      title: "Test selected",
-      subtitle: "",
+    const mockParams = {
+      title: "New Location",
       location: { lat: 0, lng: 0 },
       sightings: [],
-    },
-    currentLocation: {},
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
-  })
-
-  const mockParams = { zone: "testZone", lat: 0, lon: 0 }
-
-  await rootStore.getISSSightings(mockParams)
-
-  expect(rootStore.selectedLocation).toEqual({
-    title: "Test selected",
-    subtitle: "",
-    location: { lat: 0, lng: 0 },
-    sightings: [],
-    lastSightingOrbitPointAt: null,
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "",
-  })
-  expect(rootStore.savedLocations).toEqual([
-    {
-      title: "Test selected",
-      subtitle: "",
-      location: { lat: 0, lng: 0 },
-      sightings: [],
-      lastSightingOrbitPointAt: null,
+      subtitle: "sub",
       filterDuration: "",
       filterTimeOfDay: "",
       googlePlaceId: "",
       osmPlaceId: "",
       timezone: "",
-    },
-  ])
-})
+    }
 
-test("setCurrentLocation should update the store correctly", async () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: {},
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    await rootStore.getISSSightings(mockParams)
+
+    expect(rootStore.selectedLocation).toBeNull()
+    expect(rootStore.savedLocations[0]).toMatchObject({
+      ...mockParams,
+      lastUpdatedAt: "2012-12-12T10:10:10.000Z",
+    })
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    sightings: [],
-    subtitle: "sub",
-    lastSightingOrbitPointAt: "2023-12-12",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "US/Central",
-  } as LocationType
+  test("getISSSightings should update the store correctly", async () => {
+    const selectedLocation = {
+      title: "Test selected",
+      subtitle: "",
+      location: { lat: 0, lng: 0 },
+      sightings: [],
+    }
 
-  await rootStore.setCurrentLocation(mockValue)
+    const rootStore = RootStoreModel.create({
+      selectedLocation,
+      currentLocation: {},
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.currentLocation).toEqual({
-    ...mockValue,
-    sightings: [],
+    await rootStore.getISSSightings(selectedLocation)
+
+    expect(rootStore.selectedLocation).toEqual({
+      title: "Test selected",
+      subtitle: "",
+      location: { lat: 0, lng: 0 },
+      sightings: [],
+      lastSightingOrbitPointAt: null,
+      lastUpdatedAt: "2012-12-12T10:10:10.000Z",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "",
+    })
+    expect(rootStore.savedLocations).toEqual([
+      {
+        title: "Test selected",
+        subtitle: "",
+        location: { lat: 0, lng: 0 },
+        sightings: [],
+        lastSightingOrbitPointAt: null,
+        lastUpdatedAt: "2012-12-12T10:10:10.000Z",
+        filterDuration: "",
+        filterTimeOfDay: "",
+        googlePlaceId: "",
+        osmPlaceId: "",
+        timezone: "",
+      },
+    ])
   })
-})
 
-test("setISSSightings should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: {},
-    currentLocation: {},
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+  test("setCurrentLocation should update the store correctly", async () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: {},
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
+
+    const mockValue = {
+      title: "New Location",
+      location: { lat: 0, lng: 0 },
+      sightings: [],
+      subtitle: "sub",
+      lastSightingOrbitPointAt: "2023-12-12",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "US/Central",
+    } as LocationType
+
+    await rootStore.setCurrentLocation(mockValue)
+
+    expect(rootStore.currentLocation).toMatchObject({
+      ...mockValue,
+      sightings: [],
+    })
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
-    sightings: [],
-    subtitle: "sub",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "",
-  } as LocationType
-
-  rootStore.setISSSightings(mockValue)
-
-  expect(rootStore.selectedLocation).toEqual(mockValue)
-})
-
-test("setISSSightings should update the store incorrectly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: {
+  test("setISSSightings should update the store correctly", () => {
+    const mockValue = {
       title: "New Location",
       location: { lat: 0, lng: 0 },
       lastSightingOrbitPointAt: "2023-12-12",
       sightings: [],
       subtitle: "sub",
-    },
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "",
+    } as LocationType
+
+    const rootStore = RootStoreModel.create({
+      selectedLocation: mockValue,
+      currentLocation: {},
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
+
+    rootStore.setISSSightings(mockValue)
+
+    expect(rootStore.selectedLocation).toMatchObject({ ...mockValue })
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
-    sightings: [
-      {
-        maxAltitude: 10,
-        maxAzimuth: 0,
-        minAltitude: 10,
-        minAzimuth: 120,
-        date: "date",
-        dayStage: 1,
-        maxHeight: 12,
-        notify: true,
-        visible: 6,
+  test("setISSSightings should update the store incorrectly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: {
+        title: "New Location",
+        location: { lat: 0, lng: 0 },
+        lastSightingOrbitPointAt: "2023-12-12",
+        sightings: [],
+        subtitle: "sub",
       },
-    ],
-    subtitle: "sub",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "",
-  } as LocationType
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  rootStore.setISSSightings(mockValue)
+    const mockValue = {
+      title: "New Location",
+      location: { lat: 0, lng: 0 },
+      lastSightingOrbitPointAt: "2023-12-12",
+      sightings: [
+        {
+          maxAltitude: 10,
+          maxAzimuth: 0,
+          minAltitude: 10,
+          minAzimuth: 120,
+          date: "date",
+          dayStage: 1,
+          maxHeight: 12,
+          notify: true,
+          visible: 6,
+        },
+      ],
+      subtitle: "sub",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "",
+    } as LocationType
 
-  expect(rootStore.selectedLocation).toEqual(mockValue)
-})
+    rootStore.setISSSightings(mockValue)
 
-test("setSelectedLocation should update the store correctly", async () => {
-  const rootStore = RootStoreModel.create({
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    expect(rootStore.currentLocation).toMatchObject(mockValue)
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    sightings: [],
-    subtitle: "sub",
-    lastSightingOrbitPointAt: "2023-12-12",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "US/Central",
-  } as LocationType
+  test("setSelectedLocation should update the store correctly", async () => {
+    const rootStore = RootStoreModel.create({
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  await rootStore.setSelectedLocation(mockValue)
+    const mockValue = {
+      title: "New Location",
+      location: { lat: 0, lng: 0 },
+      sightings: [],
+      subtitle: "sub",
+      lastSightingOrbitPointAt: "2023-12-12",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "US/Central",
+    } as LocationType
 
-  expect(rootStore.selectedLocation).toEqual({
-    ...mockValue,
-    sightings: [],
-  })
-})
+    await rootStore.setSelectedLocation(mockValue)
 
-test("setNewSavedLocation should update the store correctly", async () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: {},
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
-  })
-
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: null,
-    sightings: [],
-    subtitle: "sub",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "",
-  } as LocationType
-
-  await rootStore.setNewSavedLocation(mockValue)
-
-  expect(rootStore.savedLocations).toEqual([
-    {
+    expect(rootStore.selectedLocation).toMatchObject({
       ...mockValue,
       sightings: [],
-    },
-  ])
-})
-
-test("setSavedLocations should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: {},
-    currentLocation: {},
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    })
   })
 
-  const mockValue = {
-    title: "New Location",
-    location: { lat: 0, lng: 0 },
-    lastSightingOrbitPointAt: "2023-12-12",
-    sightings: [],
-    subtitle: "sub",
-    filterDuration: "",
-    filterTimeOfDay: "",
-    googlePlaceId: "",
-    osmPlaceId: "",
-    timezone: "",
-  } as LocationType
+  test("setNewSavedLocation should update the store correctly", async () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: {},
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  rootStore.setSavedLocations([mockValue])
+    const mockValue = {
+      title: "New Location",
+      location: { lat: 0, lng: 0 },
+      lastSightingOrbitPointAt: null,
+      sightings: [],
+      subtitle: "sub",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "US/Central",
+    } as LocationType
 
-  expect(rootStore.savedLocations).toEqual([mockValue])
-})
+    await rootStore.setNewSavedLocation(mockValue)
 
-test("setInitLoading should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    expect(rootStore.savedLocations).toMatchObject([
+      {
+        ...mockValue,
+        sightings: [],
+      },
+    ])
   })
 
-  rootStore.setInitLoading(false)
+  test("setSavedLocations should update the store correctly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: {},
+      currentLocation: {},
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.initLoading).toBeFalsy()
-})
+    const mockValue = {
+      title: "New Location",
+      location: { lat: 0, lng: 0 },
+      lastSightingOrbitPointAt: "2023-12-12",
+      sightings: [],
+      subtitle: "sub",
+      filterDuration: "",
+      filterTimeOfDay: "",
+      googlePlaceId: "",
+      osmPlaceId: "",
+      timezone: "",
+    } as LocationType
 
-test("setSightingsLoaded should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    rootStore.setSavedLocations([mockValue])
+
+    expect(rootStore.savedLocations[0]).toMatchObject(mockValue)
   })
 
-  rootStore.setSightingsLoaded(true)
+  test("setInitLoading should update the store correctly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.sightingsLoaded).toBeTruthy()
-})
+    rootStore.setInitLoading(false)
 
-test("setIssDataLoaded should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    expect(rootStore.initLoading).toBeFalsy()
   })
 
-  rootStore.setNotifications()
+  test("setSightingsLoaded should update the store correctly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(notifications.setNotifications).toBeCalled()
-})
+    rootStore.setSightingsLoaded(true)
 
-test("setIssDataLoaded should update the store correctly", () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    expect(rootStore.sightingsLoaded).toBeTruthy()
   })
 
-  rootStore.setIssDataLoaded(true)
+  test("setIssDataLoaded should update the store correctly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.issDataLoaded).toBeTruthy()
-})
+    rootStore.setNotifications()
 
-test("setIssDataLoaded should update the store correctly", async () => {
-  const rootStore = RootStoreModel.create({
-    selectedLocation: null,
-    currentLocation: null,
-    savedLocations: [],
-    issData: [],
-    initLoading: false,
-    sightingsLoaded: false,
+    expect(notifications.setNotifications).toBeCalled()
   })
 
-  await rootStore.getISSData({ lat: 0, lon: 0 })
+  test("setIssDataLoaded should update the store correctly", () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
 
-  expect(rootStore.issData).toEqual([])
+    rootStore.setIssDataLoaded(true)
+
+    expect(rootStore.issDataLoaded).toBeTruthy()
+  })
+
+  test("setIssDataLoaded should update the store correctly", async () => {
+    const rootStore = RootStoreModel.create({
+      selectedLocation: null,
+      currentLocation: null,
+      savedLocations: [],
+      issData: [],
+      initLoading: false,
+      sightingsLoaded: false,
+    })
+
+    await rootStore.getISSData({ lat: 0, lon: 0 })
+
+    expect(rootStore.issData).toEqual([])
+  })
 })

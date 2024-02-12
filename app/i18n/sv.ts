@@ -100,6 +100,8 @@ const sv = {
       message: "Stationen data laddas ... det kan ta en stund att slutföra.",
       trajectoryError:
         "Stationen -banan är för närvarande inte tillgänglig på grund av serverunderhåll. Kom tillbaka igen senare.",
+      noNetwork:
+        "Stationen -banan är för närvarande inte tillgänglig på grund av ingen anslutning. Kom tillbaka igen senare.",
     },
     header: {
       firstTimeHead: "NÄSTA IAKTTAGELSE(ER) LISTA",
@@ -123,7 +125,7 @@ const sv = {
       selectMessage: "Välj händelser som du vill bli meddelad för.",
       switch: "Meddela mig för alla kommande händelser på den här platsen.",
       aboveHorizon: "Ovanför horisonten",
-      maxHeight: "maxhöjd av",
+      maxHeight: "Maxhöjd av",
       today: "Idag",
       tomorrow: "Imorgon",
       appears: "Visas",
