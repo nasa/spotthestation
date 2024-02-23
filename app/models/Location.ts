@@ -12,7 +12,10 @@ export const Location = types.model("Location", {
   location: types.optional(Point, {}),
   sightings: types.optional(types.array(Sighting), []),
   lastSightingOrbitPointAt: types.maybeNull(types.string),
+  lastUpdatedAt: types.maybeNull(types.string),
   filterTimeOfDay: types.optional(types.string, ""),
   filterDuration: types.optional(types.string, ""),
   googlePlaceId: types.optional(types.string, ""),
+  osmPlaceId: types.optional(types.string, ""),
+  timezone: types.optional(types.string, ""),
 })

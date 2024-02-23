@@ -101,6 +101,8 @@ const ja = {
       message: "ISSデータは読み込まれています...これには完了するまでに時間がかかる場合があります。",
       trajectoryError:
         "ISS軌道データは、サーバーのメンテナンスにより現在利用できません。後でもう一度確認してください。",
+      noNetwork:
+        "現在、接続がありませんので、駅の軌道データは利用できません。後でもう一度確認してください。",
     },
     header: {
       firstTimeHead: "次の目撃情報リスト",
@@ -124,6 +126,7 @@ const ja = {
       selectMessage: "通知したいイベントを選択します。",
       switch: "この位置での今後の全てのイベントについて私に通知してください。",
       aboveHorizon: "地平線の上",
+      maxHeight: "の最大高さ",
       today: "今日",
       tomorrow: "明日",
       appears: "登場",
@@ -200,6 +203,10 @@ const ja = {
       orbitsPerDay: "軌道/日",
       dimensionsValue: "幅109m x長さ73m x高さ14m",
     },
+    arNotSupported: "このデバイスではARはサポートされていません",
+    noOrientationSensor: "方向センサーは利用できません",
+    noMagnetometerSensor: "磁力計は利用できません",
+    screenshotError: "スクリーンショットのキャプチャができません",
   },
   settings: {
     header: "設定",
@@ -208,8 +215,17 @@ const ja = {
     termsAndConditions: "規約と条件",
     contactUs: "お問い合わせ",
     language: "言語",
+    calibrateCompass: "コンパスのキャリブレーション",
+    calibrateCompassData: {
+      instructions:
+        "コンパスをキャリブレーションするには、デバイスを8の字のパターンで複数回回転させてください。",
+      accuracy: "センサー精度:",
+      low: "低",
+      medium: "中",
+      high: "高",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "設定",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -314,6 +330,8 @@ const ja = {
       upcomingTip: "イベント通知の受信を停止するには、オフになります。",
       notifyMeBefore: "前に私に通知してください",
       turnOffNotifications: "通知をオフにします",
+      rangeInputPlaceholder: "1から120分の間を選択してください",
+      customOption: "カスタム",
       from: "から",
       until: "それまで",
     },
@@ -344,10 +362,14 @@ const ja = {
     searchPlaceholder: "記事、イベントなどを検索...",
     suggestions: "提案",
     searchResults: "の検索結果",
+    liveTitle: "地球の高精細ライブストリーミングビデオ",
+    liveDescription:
+      "現在、地球のライブ映像がISSに取り付けられた外部のHDカメラからストリーミングされています。 カメラは地球の方を向いており、時折太陽パネルが画面を通過します。",
     tabs: {
       news: "ニュース",
       about: "ABOUT",
       details: "詳細",
+      live: "ライブストリーム",
     },
   },
 }

@@ -1,5 +1,5 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import {
   ViewStyle,
   View,
@@ -15,16 +15,17 @@ import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
 import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
-import { getCurrentLocation, getNearbyPlaces, getPlaces } from "../../../utils/geolocation"
+import { getCurrentLocation } from "../../../utils/geolocation"
 import Snackbar from "react-native-snackbar"
+import debounce from "lodash/debounce"
+import { v4 as uuidv4 } from "uuid"
 import { useStores } from "../../../models"
 import { SettingsItem } from "../components/SettingsItem"
 import { useNavigation } from "@react-navigation/native"
 import { RemoveLocationModal } from "../SettingsScreen/RemoveLocationModal"
 import { translate } from "../../../i18n"
-import * as storage from "../../../utils/storage"
 import { RefreshButton } from "./RefreshButton"
-import { LocationType } from "../../../services/api"
+import { api, LocationType, OSMSearchResult, PlaceDetails } from "../../../services/api"
 
 export interface SelectLocationProps {
   /**
@@ -38,12 +39,12 @@ export interface SelectLocationProps {
   /**
    * A function for select new location.
    */
-  onLocationPress?: (value: LocationType) => void
+  onChangeLocation?: (value: LocationType) => void
 }
 
 export function SelectLocation({
   onClose,
-  onLocationPress,
+  onChangeLocation,
   selectedLocation,
 }: SelectLocationProps) {
   const {
@@ -71,11 +72,11 @@ export function SelectLocation({
   const navigation = useNavigation()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
-  const [nearby, setNearby] = useState<LocationType[]>([])
   const [toRemove, setToRemove] = useState<LocationType>(null)
-  const [searchResult, setSearchResult] = useState<LocationType[]>([])
+  const [searchResult, setSearchResult] = useState<OSMSearchResult[]>([])
   const [isRemove, setIsRemove] = useState(false)
   const [isSearchCurrentLocationUpdating, setIsSearchCurrentLocationUpdating] = useState(false)
+  const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
@@ -85,13 +86,12 @@ export function SelectLocation({
 
     if (!location) {
       location = await getCurrentLocation(() => ({}))
-      if (!location) return
+      const isSameLocation =
+        location?.location.lat === currentLocation?.location.lat &&
+        location?.location.lng === currentLocation?.location.lng
+      if (!location || isSameLocation) return
       setCurrentLocation(location).catch((e) => console.log(e))
-      await storage.save("currentLocation", location)
     }
-    const res = await getNearbyPlaces(location.location, 100)
-
-    setNearby(res)
   }
 
   const setSearchToCurrentLocation = async () => {
@@ -108,12 +108,18 @@ export function SelectLocation({
   }
 
   const setPlaces = async (value: string) => {
-    const locations = await getPlaces(value)
+    if (value === "") {
+      setSearchResult([])
+      return
+    }
+
+    const locations = await api.getPlaces(value, autocompleteToken)
+    if (locations.kind !== "ok") return
 
     setSearchResult(
       Object.values(
-        locations.reduce((acc, obj) => {
-          acc[obj.title] = obj
+        locations.places.reduce((acc, obj) => {
+          acc[obj.display_name] = obj
           return acc
         }, {}),
       ),
@@ -124,10 +130,11 @@ export function SelectLocation({
     setIsCurrentLocationUpdating(true)
     try {
       const location = await getCurrentLocation(() => ({}))
-      if (!location) return setIsCurrentLocationUpdating(false)
+      const isSameLocation =
+        location?.location.lat === currentLocation?.location.lat &&
+        location?.location.lng === currentLocation?.location.lng
+      if (!location || isSameLocation) return setIsCurrentLocationUpdating(false)
       await setCurrentLocation(location)
-      await storage.save("currentLocation", location)
-      setNearby(await getNearbyPlaces(location.location, 100))
     } catch (e) {
       setIsCurrentLocationUpdating(false)
       console.log(e)
@@ -143,20 +150,26 @@ export function SelectLocation({
     })
   }, [])
 
-  useEffect(() => {
-    setPlaces(textValue).catch((e: Error) => {
-      Snackbar.show({
-        text: e.message || translate("snackBar.defaultError"),
-        duration: Snackbar.LENGTH_SHORT,
-      })
-    })
-  }, [textValue])
+  const handleTextValue = useMemo(
+    () =>
+      debounce((value: string) => {
+        setPlaces(value).catch((e: Error) => {
+          Snackbar.show({
+            text: e.message || translate("snackBar.defaultError"),
+            duration: Snackbar.LENGTH_SHORT,
+          })
+        })
+      }, 400),
+    [],
+  )
 
-  const isSelected = (value: LocationType) => {
+  useEffect(() => {
+    handleTextValue(textValue)
+  }, [handleTextValue, textValue])
+
+  const isSelected = (lat: number, lon: number) => {
     if (selectedLocation) {
-      const { location: selected } = selectedLocation
-      const { location } = value
-      return selected.lat === location.lat && selected.lng === location.lng
+      return selectedLocation.location.lat === lat && selectedLocation.location.lng === lon
     }
 
     return false
@@ -164,10 +177,55 @@ export function SelectLocation({
 
   const handleRemove = useCallback(
     (location: LocationType) => {
+      if (selectedLocation && location.title === selectedLocation.title) {
+        onChangeLocation(currentLocation)
+      }
       setSavedLocations(savedLocations.filter((item) => item.title !== location.title))
       setIsRemove(false)
     },
     [savedLocations],
+  )
+
+  const handleAutocompleteItemPress = useCallback(
+    async (item: PlaceDetails) => {
+      let details = item
+      if (details.google_place_id) {
+        const res = await api.getGoogleLocationDetails(details.google_place_id, autocompleteToken)
+        setAutocompleteToken(uuidv4())
+
+        if (res.kind !== "ok") {
+          Snackbar.show({
+            text: translate("snackBar.defaultError"),
+            duration: Snackbar.LENGTH_SHORT,
+          })
+          return
+        }
+
+        details = res.place
+      }
+
+      if (savedLocations.find((loc) => loc.title === item.name)) {
+        Snackbar.show({
+          text: translate("snackBar.locationExist"),
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: translate("snackBar.ok"),
+            textColor: "green",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+        return
+      }
+
+      onChangeLocation({
+        title: details.name,
+        subtitle: details.display_name,
+        location: { lat: Number(details.lat), lng: Number(details.lon) },
+      })
+    },
+    [onChangeLocation, autocompleteToken],
   )
 
   const renderLocationAccessory = (style) => {
@@ -248,6 +306,7 @@ export function SelectLocation({
           accessibilityLabel="search location"
           accessibilityHint="type for search location"
           accessibilityRole="scrollbar"
+          keyboardShouldPersistTaps="always"
           style={$scrollContainer}
         >
           {!isFocus && searchResult.length === 0 && (
@@ -268,8 +327,11 @@ export function SelectLocation({
                     icon="pin"
                     title={currentLocation.title}
                     subtitle={currentLocation.subtitle}
-                    selected={isSelected(currentLocation)}
-                    onPress={() => onLocationPress(currentLocation)}
+                    selected={isSelected(
+                      currentLocation.location.lat,
+                      currentLocation.location.lng,
+                    )}
+                    onPress={() => onChangeLocation(currentLocation)}
                   />
                 </ExpandContainer>
               )}
@@ -284,9 +346,9 @@ export function SelectLocation({
                       icon="pin"
                       title={location.title}
                       subtitle={location.subtitle}
-                      selected={isSelected(location)}
+                      selected={isSelected(location.location.lat, location.location.lng)}
                       editable
-                      onPress={() => onLocationPress(location)}
+                      onPress={() => onChangeLocation(location)}
                       onDelete={() => {
                         setIsRemove(true)
                         setToRemove(location)
@@ -302,24 +364,6 @@ export function SelectLocation({
                   ))}
                 </ExpandContainer>
               )}
-              {nearby.length > 0 && (
-                <ExpandContainer
-                  title="homeScreen.selectLocation.nearby"
-                  itemsCount={nearby.length}
-                  defaultValue={false}
-                >
-                  {nearby.map((place: LocationType) => (
-                    <ListItem
-                      key={place.title}
-                      icon="pin"
-                      title={place.title}
-                      subtitle={place.subtitle}
-                      selected={isSelected(place)}
-                      onPress={() => onLocationPress(place)}
-                    />
-                  ))}
-                </ExpandContainer>
-              )}
             </>
           )}
           {(isFocus || searchResult.length > 0) && (
@@ -328,14 +372,13 @@ export function SelectLocation({
               itemsCount={searchResult.length}
               expandble={false}
             >
-              {searchResult.map((place: LocationType) => (
+              {searchResult.map((place) => (
                 <ListItem
-                  key={place.title}
+                  key={place.place_id}
                   icon="pin"
-                  title={place.title}
-                  subtitle={place.subtitle}
-                  selected={isSelected(place)}
-                  onPress={() => onLocationPress(place)}
+                  title={place.display_name}
+                  selected={isSelected(Number(place.lat), Number(place.lon))}
+                  onPress={() => handleAutocompleteItemPress(place)}
                 />
               ))}
             </ExpandContainer>

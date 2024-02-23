@@ -154,6 +154,7 @@ export const iconRegistry = {
   moon: require("../../assets/icons/moon.png"),
   edit: require("../../assets/icons/edit.png"),
   refresh: require("../../assets/icons/refresh.png"),
+  calibration: require("../../assets/icons/calibration.png"),
 }
 
 const styles: StyleFn = () => {

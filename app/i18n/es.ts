@@ -3,53 +3,53 @@ const es = {
   errorScreen: {
     title: "¡Algo salió mal!",
     friendlySubtitle:
-      "Esta es la pantalla que sus usuarios verán en producción cuando se lanza un error.Querrá personalizar este mensaje (ubicado en `APP/I18N/EN.TS`) y probablemente también el diseño (` APP/PROPES/ERRORSCREEN`).Si desea eliminar esto por completo, verifique `app/app.tsx` para ver el componente <ErrorBoundary>.",
-    reset: "Restablecer la aplicación",
+      "Esta es la pantalla que tus usuarios verán en producción cuando se lanza un error. Querrás personalizar este mensaje (situado en `APP/I18N/EN.TS`) y probablemente el diseño también (` APP/PROPES/ERRORSCREEN`). Si deseas eliminarlo completamente, busca en `app/app.tsx` para el componente <ErrorBoundary>.",
+    reset: "Reiniciar la aplicación",
   },
   snackBar: {
-    ok: "DE ACUERDO",
-    dismiss: "Despedir", // <-- "Descartar"
-    sightingsSaved: "¡Avistamientos para la última ubicación guardada cargada!",
-    defaultError: "Ocurrió algún error", // <-- "Ocurrió un error"
+    ok: "De acuerdo",
+    dismiss: "Descartar", // <-- "Descartar"
+    sightingsSaved: "Avistamientos para la última ubicación guardada cargada",
+    defaultError: "Ocurrió un error", // <-- "Ocurrió un error"
     locationSaved: "Ubicación guardada",
-    locationExist: "¡La ubicación con este título ya existe!", // <-- "¡La ubicación con este nombre ya existe!"
-    openSettingsError: "¡No se puede abrir la configuración!",
+    locationExist: "Ya existe una ubicación con este título", // <-- "¡La ubicación con este nombre ya existe!"
+    openSettingsError: "No se pueden abrir los ajustes",
     shared: "¡Compartido con éxito!",
     savedToGallery: "Guardado en la galería",
   },
   permissionsModal: {
-    close: "Cerca", // <-- "Cerrar"
-    openSettings: "Configuración abierta", // <-- "Abrir Configuración."
-    body: "Para usar esta función, debe otorgar permiso para acceder a la galería.",
+    close: "Cerrar", // <-- "Cerrar"
+    openSettings: "Abrir ajustes", // <-- "Abrir Configuración."
+    body: "Para usar esta función, debes dar permiso para acceder a la galería.",
   },
   permissionsAndroid: {
-    title: "Permiso para guardar videos",
-    message: "Esta aplicación necesita permiso para guardar videos en su dispositivo.",
-    buttonNeutral: "Pregúntame Luego", // <-- "Preguntar después"
+    title: "Permiso para guardar los videos",
+    message: "Esta aplicación necesita permiso para guardar videos en tu dispositivo.",
+    buttonNeutral: "Pregúntame después", // <-- "Preguntar después"
     buttonNegative: "Cancelar",
-    buttonPositive: "DE ACUERDO",
+    buttonPositive: "De acuerdo",
   },
   thanksModal: {
-    body: "Thank you for contacting us. We have received your message and will process your request. Please note that this application does not collect user data, so we cannot respond to all messages individually.",
-    dismiss: "Despedir", // <-- "Descartar"
+    body: "Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y procesaremos tu solicitud. Ten en cuenta que esta aplicación no recopila datos de los usarios, por lo que no podemos responder a todos los mensajes individualmente.",
+    dismiss: "Descartar", // <-- "Descartar"
   },
   privacy: {
     title: "Usa tu ubicación",
-    body: "Utilizamos datos de ubicación para calcular los próximos avistamientos en su ubicación actual.Otorgue permisos de ubicación para habilitar esta funcionalidad.",
-    agree: "ACEPTAR",
-    skip: "SALTAR",
-    policy: "política de privacidad",
+    body: "Utilizamos datos de ubicación para calcular los próximos avistamientos en tu ubicación actual. Conceda permisos de ubicación para activar esta funcion.",
+    agree: "Aceptar",
+    skip: "Saltar",
+    policy: "Política de privacidad",
   },
   notifications: {
     push: {
-      title: "¡Detecte la estación ahora!",
-      subTitle: "La estación está pasando por encima de usted en",
+      title: "¡Avista la estación!",
+      subTitle: "La estación va a pasar por encima tuyo a las",
     },
     before: {
-      titleOne: "Detectar la estación en",
-      titleTwo: "¡minutos!",
-      subTitleOne: "La estación está pasando por encima de usted en",
-      subTitleTwo: "intermediario",
+      titleOne: "¡Avista la estación en",
+      titleTwo: "minutos!",
+      subTitleOne: "La estación va a pasar por encima tuyo en",
+      subTitleTwo: "minutos a las",
     },
   },
   units: {
@@ -57,7 +57,7 @@ const es = {
     kilometer: "km",
     kilogram: "kg",
     month: "mes",
-    metersPerSecond: "min/s",
+    metersPerSecond: "m/s",
     time: "H",
   },
   tabNavigator: {
@@ -69,43 +69,45 @@ const es = {
   },
   onboarding: {
     splash: {
-      title: "Detener la estación",
-      subTitle: "Mira al cielo y vea la Estación Espacial Internacional",
+      title: "Avista la estación",
+      subTitle: "Mira al cielo y verás la Estación Espacial Internacional",
     },
     completeProfile: {
       notification: {
-        title: "Ajustes de notficación",
+        title: "Ajustes para notficaciónes",
         label: "Recibir notificaciones push",
         tip: "Recibe alertas cuando la estación espacial se acerque a tu ubicación.",
-        nextButton: "Proxima",
+        nextButton: "Próximo",
       },
       location: {
         title: "Tu ubicación",
         subtitle:
-          "Puedes dejar que la aplicación detecte su ubicación automáticamente o indíquela manualmente.",
+          "Por favor permita que la aplicación detecte tu ubicación automáticamente o indíquela manualmente.",
         detectButton: "Detectar mi ubicación",
         orLabel: "o",
-        selectLocation: "Escriba tu ubicación",
+        selectLocation: "Introduce tu ubicación",
         detecting: "Detección de ubicación ...",
         doneButton: "Listo",
         serviceAlertTitle: "Servicios de ubicación discapacitados",
-        serviceAlertBody: "Pense que sus servicios de ubicación continúen.", // <-- "Permita que sus servicios de ubicación continúen"
+        serviceAlertBody: "Por favor, permite que tus servicios de ubicación continúen.", // <-- "Permita que sus servicios de ubicación continúen"
         permissionAlertTitle: "Permiso no otorgado",
         permissionAlertBody:
-          "Utilizamos datos de ubicación para calcular los próximos avistamientos en su ubicación actual. Otorgue permisos de ubicación para habilitar esta funcionalidad.",
+          "Utilizamos los datos de ubicación para calcular los próximos avistamientos en tu ubicación actual. Por favor, otorga permisos de ubicación para habilitar esta funcionalidad.",
       },
     },
   },
   homeScreen: {
     initLoader: {
       message:
-        "Los datos de estación se están cargando ... Esto puede tardar un momento en completarse.",
+        "Los datos de la estación se están cargando ... Esto puede tardar un rato en completarse.",
       trajectoryError:
-        "Los datos de trayectoria de estación no están disponibles actualmente debido al mantenimiento del servidor. Por favor, vuelva más tarde.",
+        "Los datos de trayectoria de la estación no están disponibles actualmente debido al mantenimiento del servidor. Por favor, vuelve a comprobar más tarde.",
+      noNetwork:
+        "Los datos de trayectoria de la estación no están disponibles actualmente debido a la falta de conexión. Por favor, vuelve a comprobar más tarde.",
     },
     header: {
-      firstTimeHead: "LISTA DE PRÓXIMOS AVISTAMIENTOS",
-      secondTimeHead: "CUENTA REGRESIVA",
+      firstTimeHead: "Lista de próximos avistamientos",
+      secondTimeHead: "Cuenta regresiva",
       timezone: "Zona horaria",
     },
     selectLocation: {
@@ -122,9 +124,10 @@ const es = {
     selectSightings: {
       title: "Próximos avistamientos",
       sightings: "Avistamientos",
-      selectMessage: "Seleccione los eventos de los que desea recibir notificaciones.",
-      switch: "Notifíqueme para todos los próximos eventos en este lugar.",
-      aboveHorizon: "Sobre el horizonte",
+      selectMessage: "Seleccione los eventos de los que deseas recibir notificaciones.",
+      switch: "Notifícame para todos los próximos eventos en esta ubicación.",
+      aboveHorizon: "Encima del horizonte",
+      maxHeight: "Altura máxima de",
       today: "Hoy",
       tomorrow: "Mañana",
       appears: "Aparece",
@@ -137,7 +140,7 @@ const es = {
       shorterThan2: "menos de 2 minutos",
       longerThan2: "2 minutos y más",
       empty:
-        "No hay posibles avistamientos de EII para esta ubicación desde el {{start}} hasta el {{end}}.",
+        "No hay posibles avistamientos de la estación para esta ubicación desde el {{start}} hasta el {{end}}.",
       coach: {
         title: "Descripción de los iconos",
         moon: "Será de noche en la ubicación seleccionada cuando la estación esté por encima del horizonte.",
@@ -164,31 +167,31 @@ const es = {
       },
     },
     coachMarks: {
-      skip: "Saltar la visita",
+      skip: "Omitir la visita",
       next: "Próximo",
       finish: "Finalizar",
       dismiss: "Despedir", // <-- "Descartar"
-      locationTitle: "Cambiar ubicación",
+      locationTitle: "Cambiar la ubicación",
       locationData: "Puedes seleccionar o cambiar tu ubicación directamente desde aquí.",
-      sightingsTitle: "Siguiente avistamiento y cuenta regresiva",
+      sightingsTitle: "Proximo avistamiento y cuenta regresiva",
       sightingsData:
-        "Esta sección te muestra la fecha y un temporizador de cuenta regresiva para el próximo avistamiento de la estación cerca de tu ubicación seleccionada. Puedes tocar el siguiente cuadro de avistamiento para ver una lista completa de los próximos avistamientos.",
+        "Esta sección te muestra la fecha y un temporizador de cuenta regresiva para el próximo avistamiento de la estación cerca de tu ubicación seleccionada. Puedes pulsar la casilla de Proximo avistamiento para ver una lista completa de los próximos avistamientos.",
       globeTitle: "Tierra interactiva",
       globeData:
-        "Mientras deslizando el dedo por la pantalla, puedes ver la posición de la estación en tiempo real. Esto te permite interactuar con la Tierra y rastrear la ubicación de la estación en tiempo real.",
+        "Mientras deslizas el dedo por la pantalla, puedes ver la posición de la estación en tiempo real. Esto te permite interactuar con la Tierra y rastrear la ubicación de la estación en tiempo real.",
       mapTitle: "Vista del mapa 2D",
       mapData:
-        "Esta sección muestra una representación en 2D del camino completo de la estación sobre las regiones de día y noche en la Tierra.",
+        "Esta sección muestra una representación en 2D del camino completo de la estación sobre las regiones nocturnas y diurnas en la Tierra.",
       navigationTitle: "Navegación",
       navigationData:
         "Puedes navegar por diferentes funciones de la aplicación usando el menú de navegación a continuación.",
     },
   },
   issView: {
-    timeHeader: "cuenta regresiva",
+    timeHeader: "Cuenta regresiva",
     cameraPermissionText:
-      "No has permitido el uso de la cámara de su teléfono. Haga clic aquí para permitir.",
-    issCaptured: "Capturar este momento",
+      "No has permitido el uso de la cámara de tu teléfono. Haz clic aquí para permitirlo.",
+    issCaptured: "Captura este momento",
     details: {
       title: "Estación Espacial Internacional - Detalles",
       orbitalSpeed: "Velocidad orbital",
@@ -196,24 +199,37 @@ const es = {
       latitude: "Latitud",
       altitude: "Altitud",
       crewOnboard: "Número típico de tripulantes a bordo",
-      launched: "La asemblea comenzó",
-      launchedValue: "20 noviembre 1998",
+      launched: "El ensamblaje comenzó",
+      launchedValue: "20 de noviembre 1998",
       mass: "Masa estimada",
       dimensions: "Dimensiones estimadas",
       orbitalPeriod: "Periodo orbital",
-      orbitsPerDay: "Orbitas al día",
+      orbitsPerDay: "Órbitas por día",
       dimensionsValue: "109m de ancho x 73m de largo x 14m de alto",
     },
+    arNotSupported: "La realidad aumentada (RA) no es compatible con este dispositivo",
+    noOrientationSensor: "El sensor de orientación no está disponible",
+    noMagnetometerSensor: "El magnetómetro no está disponible",
+    screenshotError: "No se puede capturar la captura de pantalla",
   },
   settings: {
     header: "Ajustes",
     locationSettings: "Ajustes de ubicación",
     notificationSettings: "Ajustes de notificacion",
     termsAndConditions: "Términos y condiciones",
-    contactUs: "Contáctenos",
+    contactUs: "Contáctanos",
     language: "Idioma",
+    calibrateCompass: "Calibración de la brújula",
+    calibrateCompassData: {
+      instructions:
+        "Para calibrar la brújula, gira tu dispositivo varias veces siguiendo un patrón de ocho.",
+      accuracy: "Precisión del sensor:",
+      low: "Baja",
+      medium: "Media",
+      high: "Alta",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Ajustes",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -300,7 +316,7 @@ const es = {
       backButton: "Ajustes",
       title: "Contacto",
       titlePlaceholder: "Elegir título",
-      commentsPlaceholder: "Comentarios de entrada",
+      commentsPlaceholder: "Introducir comentarios",
       sendButton: "Enviar",
       contactUsOptions: {
         reportAnIssue: "Informar de un problema",
@@ -314,44 +330,50 @@ const es = {
       notificationTitle: "Ajustes de notificación",
       privacyTitle: "Ajustes de privacidad",
       upcomingLabel: "Próximos eventos",
-      customizeLabel: "Personalizar notificaciones",
-      upcomingTip: "Apague para dejar de recibir notificaciones de eventos.",
+      customizeLabel: "Personaliza las notificaciones",
+      upcomingTip: "Desactiva para dejar de recibir notificaciones de eventos.",
       notifyMeBefore: "Notificarme antes de",
-      turnOffNotifications: "DESACTIVAR LAS NOTIFICACIONES",
+      turnOffNotifications: "Desactiva las notificaciones",
+      rangeInputPlaceholder: "Elija entre 1 a 120 minutos",
+      customOption: "Personalizado",
       from: "Desde",
       until: "Hasta",
     },
     locationSettingsData: {
       backToSettings: "Ajustes",
-      goBack: "Regresa",
+      goBack: "Regresar",
       generalTitle: "Ajustes de ubicación",
       cta: "Personalizar notificaciones para esta ubicación",
       locationPermission: "Conceder permiso de ubicación",
       addNewLocation: {
-        generalTitleAdd: "Agregar nueva ubicación",
-        generalTitleEdit: "Ubicación de edición",
+        generalTitleAdd: "Agregar una nueva ubicación",
+        generalTitleEdit: "Editar ubicación",
         confirnModalButton: "Confirmar",
-        saveButton: "Guardar dirección",
-        searchInputPlaceholder: "Ingrese a la ciudad, zip o dirección",
-        nameInputPlaceholder: "Guardar el nombre de la ubicación",
+        saveButton: "Guardar ubicación",
+        searchInputPlaceholder: "Introducir la ciudad, código postal o dirección",
+        nameInputPlaceholder: "Guardar el nombre de ubicación",
       },
       removeLocation: {
-        question: "¿Seguro que eliminará esta ubicación?", // <-- "¿Seguro que quiere eliminar esta ubicación?"
+        question: "¿Seguro que quieres eliminar esta ubicación?", // <-- "¿Seguro que quiere eliminar esta ubicación?"
         cancelButton: "Cancelar",
         removeButton: "Borrar",
       },
     },
-    localCalculations: "Cálculos locales",
+    localCalculations: "Cálculos de ubicaciones",
   },
   resources: {
     header: "Recursos",
-    searchPlaceholder: "Artículos de búsqueda, eventos, etc.",
+    searchPlaceholder: "Búsqueda de artículos, eventos, etc.",
     suggestions: "Sugerencias",
     searchResults: "Resultados de la búsqueda",
+    liveTitle: "Video de transmisión en vivo de alta definición de la Tierra",
+    liveDescription:
+      "Actualmente, se está transmitiendo un video en vivo de la Tierra desde una cámara HD externa montada en la ISS. La cámara está mirando hacia la Tierra con un panel solar ocasional pasando por la vista.",
     tabs: {
       news: "Noticias",
       about: "Acerca de la estación",
       details: "Detalles",
+      live: "Transmisión en vivo",
     },
   },
 }

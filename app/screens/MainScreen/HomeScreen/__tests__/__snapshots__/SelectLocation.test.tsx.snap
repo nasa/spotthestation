@@ -560,6 +560,7 @@ exports[`renders correctly 1`] = `
       accessibilityLabel="search location"
       accessibilityRole="scrollbar"
       accessible={true}
+      keyboardShouldPersistTaps="always"
       style={
         {
           "flex": 1,

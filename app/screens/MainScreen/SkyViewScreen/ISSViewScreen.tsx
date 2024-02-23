@@ -1,32 +1,34 @@
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import {
-  View,
-  ViewStyle,
-  TextStyle,
+  ActivityIndicator,
+  Alert,
+  AppState,
+  BackHandler,
   PermissionsAndroid,
   Platform,
   Pressable,
-  BackHandler,
-  AppState,
+  StyleSheet,
+  TextStyle,
+  View,
+  ViewStyle,
 } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
-import { check, request, PERMISSIONS, RESULTS, openSettings } from "react-native-permissions"
+import { check, openSettings, PERMISSIONS, request, RESULTS } from "react-native-permissions"
 import Share from "react-native-share"
 import ViewShot, { captureScreen } from "react-native-view-shot"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { ARView } from "../components/ARView"
-import { intervalToDuration, formatDuration } from "date-fns"
+import { formatDuration, intervalToDuration } from "date-fns"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import Snackbar from "react-native-snackbar"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import { getCurrentTimeZome } from "../../../utils/formatDate"
 import analytics from "@react-native-firebase/analytics"
 import { PermissionsModal } from "../components/PermissionsModal"
 import { translate } from "../../../i18n"
@@ -40,6 +42,15 @@ import {
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { LocationType, OrbitPoint } from "../../../services/api"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
+import {
+  isMagnetometerAvailable,
+  isOrientationAvailable,
+  watchCalibrationState,
+} from "../../../utils/orientation"
+import { CalibrateCompassModal } from "../SettingsScreen/CalibrateCompassModal"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -173,11 +184,25 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $flex,
     $row,
     $permissionText,
+    $calibrateModal,
+    $popupModal,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
-  const { currentLocation, selectedLocation, issData, getISSSightings, getISSData } = useStores()
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSSightings,
+    getISSData,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
@@ -189,6 +214,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [mediaUrl, setMediaUrl] = useState("")
   const [mediaType, setMediaType] = useState("")
   const [still, setStill] = useState(false)
+  const [isSupported, setIsSupported] = useState(false)
+  const [isCalibrated, setIsCalibrated] = useState(false)
+  const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
   const current = useMemo(
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
@@ -251,16 +279,54 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     startCountdown()
   }, [result, startCountdown, timeDiff])
 
-  useEffect(() => {
-    checkCameraPermissions((value: boolean) => {
-      setIsCameraAllowed(value)
-      setIsFullScreen(value)
-    })
+  const handleCameraPermission = useCallback(async (value: boolean) => {
+    setIsCameraAllowed(value)
+    setIsFullScreen(value)
+
+    if (!value) return
+
+    let available = await isMagnetometerAvailable().catch(() => false)
+    if (!available)
+      return Alert.alert(
+        translate("issView.arNotSupported"),
+        translate("issView.noMagnetometerSensor"),
+      )
+
+    available = await isOrientationAvailable().catch(() => false)
+    if (!available)
+      return Alert.alert(
+        translate("issView.arNotSupported"),
+        translate("issView.noOrientationSensor"),
+      )
+
+    setIsSupported(true)
   }, [])
 
+  useEffect(() => {
+    checkCameraPermissions(handleCameraPermission)
+  }, [handleCameraPermission])
+
+  useEffect(() => {
+    if (!isSupported) return undefined
+    const unsub = watchCalibrationState((accuracy) => {
+      if (accuracy === 2) {
+        setIsCalibrated(true)
+      } else {
+        setIsCalibrationModalVisible(true)
+      }
+      unsub()
+    })
+
+    return () => unsub()
+  }, [isSupported])
+
+  const handleCalibrationFinish = () => {
+    setIsCalibrationModalVisible(false)
+    setIsCalibrated(true)
+  }
+
   const getSightings = async () => {
-    const { timeZone } = await getCurrentTimeZome()
-    await getISSSightings({ zone: timeZone, lat: location[0], lon: location[1] })
+    await getISSSightings(current)
   }
 
   const getData = async () => {
@@ -274,11 +340,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [isRecording])
 
   useEffect(() => {
-    if (!location) return
+    if (!location || !isCameraAllowed) return
 
     getSightings().catch((e) => console.log(e))
     getData().catch((e) => console.log(e))
-  }, [location?.[0], location?.[1]])
+  }, [location?.[0], location?.[1], isCameraAllowed])
 
   useEffect(() => {
     if (!isRecording) return undefined
@@ -289,6 +355,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
     return () => clearInterval(interval)
   }, [isRecording])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const onOrientationDidChange = (orientation) => {
     if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
@@ -311,15 +382,24 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }
 
   const completeScreenshot = async () => {
-    const uri = await captureScreen({
-      format: "jpg",
-      quality: 1,
-    })
+    try {
+      const uri = await captureScreen({
+        format: "jpg",
+        quality: 1,
+      })
 
-    setStill(false)
-    await saveToGallery(uri, "photo")
-    setMediaUrl(uri)
-    setMediaType("photo")
+      setStill(false)
+      await saveToGallery(uri, "photo")
+      setMediaUrl(uri)
+      setMediaType("photo")
+    } catch (e) {
+      setStill(false)
+      console.error(e)
+      Snackbar.show({
+        text: translate("issView.screenshotError"),
+        duration: Snackbar.LENGTH_LONG,
+      })
+    }
   }
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
@@ -538,18 +618,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       {!isCameraAllowed ? (
         <Pressable
           style={[$body, bodyStyle]}
-          onPress={() =>
-            requestCameraPermissions((value) => {
-              setIsCameraAllowed(value)
-              setIsFullScreen(value)
-            }, true)
-          }
+          onPress={() => requestCameraPermissions(handleCameraPermission, true)}
         >
           <Text tx="issView.cameraPermissionText" style={[$time, $permissionText]} />
         </Pressable>
       ) : (
         <View style={[$body, bodyStyle]}>
-          {issData?.length > 0 && (
+          {issData?.length > 0 && isSupported && isCalibrated && (
             <ViewShot style={$flex}>
               <ARView
                 still={still}
@@ -563,6 +638,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 location={current}
               />
             </ViewShot>
+          )}
+          {isSupported && (!isCalibrated || !issData?.length) && (
+            <ActivityIndicator style={StyleSheet.absoluteFill} />
           )}
           <View style={[$bottomContainer, bottomContainerStyle]}>
             <View style={[$buttonColumn, isLandscape && $row]}>
@@ -683,6 +761,43 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           }}
         />
       </Modal>
+
+      {isSupported && (
+        <Modal
+          isVisible={isCalibrationModalVisible}
+          onBackdropPress={handleCalibrationFinish}
+          onSwipeComplete={handleCalibrationFinish}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          swipeDirection="down"
+          useNativeDriver
+          useNativeDriverForBackdrop
+          hideModalContentWhileAnimating
+          propagateSwipe
+          backdropOpacity={0.65}
+          style={[$modal, $calibrateModal]}
+        >
+          <CalibrateCompassModal
+            onClose={handleCalibrationFinish}
+            onHighAccuracy={handleCalibrationFinish}
+          />
+        </Modal>
+      )}
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -746,6 +861,13 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     justifyContent: "flex-end",
     left: 0,
     margin: 0,
+  }
+
+  const $popupModal: ViewStyle = { flex: 1, paddingHorizontal: 18, justifyContent: "flex-start" }
+
+  const $calibrateModal: ViewStyle = {
+    justifyContent: "center",
+    marginHorizontal: scale(24),
   }
 
   const $body: ViewStyle = {
@@ -853,5 +975,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $row,
     $flex,
     $permissionText,
+    $calibrateModal,
+    $popupModal,
   }
 }

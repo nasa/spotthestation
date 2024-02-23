@@ -100,6 +100,8 @@ const sv = {
       message: "Stationen data laddas ... det kan ta en stund att slutföra.",
       trajectoryError:
         "Stationen -banan är för närvarande inte tillgänglig på grund av serverunderhåll. Kom tillbaka igen senare.",
+      noNetwork:
+        "Stationen -banan är för närvarande inte tillgänglig på grund av ingen anslutning. Kom tillbaka igen senare.",
     },
     header: {
       firstTimeHead: "NÄSTA IAKTTAGELSE(ER) LISTA",
@@ -123,6 +125,7 @@ const sv = {
       selectMessage: "Välj händelser som du vill bli meddelad för.",
       switch: "Meddela mig för alla kommande händelser på den här platsen.",
       aboveHorizon: "Ovanför horisonten",
+      maxHeight: "Maxhöjd av",
       today: "Idag",
       tomorrow: "Imorgon",
       appears: "Visas",
@@ -200,6 +203,10 @@ const sv = {
       orbitsPerDay: "Omlopp/dag",
       dimensionsValue: "109 m bred x 73 m lång x 14 m lång",
     },
+    arNotSupported: "AR stöds inte på den här enheten",
+    noOrientationSensor: "Orienteringssensor är inte tillgänglig",
+    noMagnetometerSensor: "Magnetometern är inte tillgänglig",
+    screenshotError: "Kan inte ta skärmbild",
   },
   settings: {
     header: "inställningar",
@@ -208,8 +215,16 @@ const sv = {
     termsAndConditions: "Villkor",
     contactUs: "Kontakta oss",
     language: "Språk",
+    calibrateCompass: "Kalibrera kompassen",
+    calibrateCompassData: {
+      instructions: "För att kalibrera kompassen, rotera din enhet flera gånger i ett åttamönster.",
+      accuracy: "Sensornoggrannhet:",
+      low: "Låg",
+      medium: "Medium",
+      high: "Hög",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "inställningar",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -314,6 +329,8 @@ const sv = {
       upcomingTip: "Stäng av för att sluta ta emot notiser om händelser.",
       notifyMeBefore: "Meddela mig innan",
       turnOffNotifications: "Stäng av notiser",
+      rangeInputPlaceholder: "Välj mellan 1 till 120 minuter",
+      customOption: "Anpassad",
       from: "Från",
       until: "Fram tills",
     },
@@ -344,10 +361,14 @@ const sv = {
     searchPlaceholder: "Sökartiklar, händelser osv ...",
     suggestions: "FÖRSLAG",
     searchResults: "sökresultat",
+    liveTitle: "Högupplöst live-strömning av jorden",
+    liveDescription:
+      "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel.",
     tabs: {
       news: "Nyheter",
       about: "Om",
       details: "Information",
+      live: "Live-strömning",
     },
   },
 }

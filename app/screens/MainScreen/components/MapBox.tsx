@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { View, ViewStyle } from "react-native"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL, { MapState } from "@rnmapbox/maps"
 import Config from "../../../config"
 import { LatLng } from "react-native-maps"
@@ -8,6 +8,7 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 import { OrbitPoint } from "../../../services/api"
+import { CameraRef } from "@rnmapbox/maps/lib/typescript/components/Camera"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")
@@ -22,7 +23,21 @@ interface MapBoxProps {
   markers?: LatLng[]
   onCameraChange?: (coords: [number, number]) => void
   defaultCameraPosition?: [number, number]
+  attributionPosition?: "top" | "bottom"
 }
+
+const attributionTop = Platform.select({
+  ios: { top: -10, right: 0 },
+  android: { top: 10, right: 10 },
+})
+
+const attributionBottom = Platform.select({
+  ios: { bottom: 10, right: 5 },
+  android: { bottom: 10, right: 10 },
+})
+
+const logoTop = { top: 10, left: 10 }
+const logoBottom = { bottom: 10, left: 10 }
 
 export function MapBox({
   style,
@@ -34,10 +49,12 @@ export function MapBox({
   markers = [],
   onCameraChange,
   defaultCameraPosition,
+  attributionPosition,
 }: MapBoxProps) {
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
+  const cameraRef = useRef<CameraRef>()
 
   const mapper = useCallback((p: [number, number]) => {
     return new Vector3(p[0], p[1], 0)
@@ -93,6 +110,14 @@ export function MapBox({
     }
   }, [])
 
+  useEffect(() => {
+    if (!cameraRef.current || !defaultCameraPosition) return
+
+    cameraRef.current.setCamera({
+      centerCoordinate: [defaultCameraPosition[1], defaultCameraPosition[0]],
+    })
+  }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1]])
+
   const issPathCoords2D = useMemo(
     () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),
     [curve],
@@ -110,9 +135,11 @@ export function MapBox({
     <MapboxGL.MapView
       onCameraChanged={handleCameraChange}
       style={style}
-      logoEnabled={false}
+      logoEnabled
       styleURL="mapbox://styles/mapbox/satellite-streets-v11"
-      attributionEnabled={false}
+      attributionEnabled
+      attributionPosition={attributionPosition === "top" ? attributionTop : attributionBottom}
+      logoPosition={attributionPosition === "top" ? logoTop : logoBottom}
       zoomEnabled={zoomEnabled}
       scaleBarEnabled={false}
       onPress={onPress}
@@ -130,6 +157,7 @@ export function MapBox({
         </MapboxGL.ShapeSource>
       )}
       <MapboxGL.Camera
+        ref={cameraRef}
         animationDuration={0}
         animationMode="none"
         zoomLevel={zoom}
@@ -145,7 +173,7 @@ export function MapBox({
               }
         }
       />
-      {Boolean(issPathCoords2D?.length) && (
+      {Boolean(issPathCoords2D?.length) && Boolean(issCoords2D) && (
         <>
           <MapboxGL.ShapeSource
             id="myShapeSource"

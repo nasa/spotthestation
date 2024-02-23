@@ -50,7 +50,7 @@ const fr = {
       titleOne: "Repérez la Station dans",
       titleTwo: "minutes!",
       subTitleOne: "La Station passe au-dessus de vous",
-      subTitleTwo: "mintutes à",
+      subTitleTwo: "minutes à",
     },
   },
   units: {
@@ -103,6 +103,8 @@ const fr = {
         "Les données Station sont en train de charger… cela peut prendre un moment pour aboutir.",
       trajectoryError:
         "Les données de trajectoire Station sont actuellement indisponibles en raison de la maintenance du serveur. S'il vous plaît, veuillez reessayer plus tard.",
+      noNetwork:
+        "Les données de trajectoire Station sont actuellement indisponibles en raison d'une absence de connexion. S'il vous plaît, veuillez reessayer plus tard.",
     },
     header: {
       firstTimeHead: "LISTE DES PROCHAINES OBSERVATIONS",
@@ -126,6 +128,7 @@ const fr = {
       selectMessage: "Sélectionnez des événements pour lesquels vous souhaitez être averti.",
       switch: "Me notifier pour tous les événements à venir à cette localisation.",
       aboveHorizon: "Au-dessus de l'horizon",
+      maxHeight: "Hauteur maximale de",
       today: "Aujourd'hui",
       tomorrow: "Demain",
       appears: "Apparaît",
@@ -206,6 +209,10 @@ const fr = {
       orbitsPerDay: "Orbites / jour",
       dimensionsValue: "109 m de large x 73 m de long x 14 m de haut",
     },
+    arNotSupported: "La AR n'est pas prise en charge sur cet appareil",
+    noOrientationSensor: "Capteur d'orientation non disponible",
+    noMagnetometerSensor: "Le magnétomètre n'est pas disponible",
+    screenshotError: "Impossible de capturer la capture d'écran",
   },
   settings: {
     header: "Paramètres",
@@ -214,8 +221,17 @@ const fr = {
     termsAndConditions: "Termes et conditions",
     contactUs: "Contactez-nous",
     language: "Langue",
+    calibrateCompass: "Calibrage de la boussole",
+    calibrateCompassData: {
+      instructions:
+        "Pour calibrer la boussole, faites pivoter votre appareil plusieurs fois en un motif en forme de 8.",
+      accuracy: "Précision du capteur:",
+      low: "Faible",
+      medium: "Moyenne",
+      high: "Élevée",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Paramètres",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -320,6 +336,8 @@ const fr = {
       upcomingTip: "Desactivez pour arrêter de recevoir des notifications d'événements.",
       notifyMeBefore: "Informez-moi avant",
       turnOffNotifications: "DÉSACTIVER LES NOTIFICATIONS",
+      rangeInputPlaceholder: "Choisissez entre 1 à 120 minutes",
+      customOption: "Personnalisé",
       from: "Depuis",
       until: "Jusqu'à",
     },
@@ -350,10 +368,14 @@ const fr = {
     searchPlaceholder: "Recherchez des articles, des événements, etc ...",
     suggestions: "SUGGESTIONS",
     searchResults: "Résultats de recherche",
+    liveTitle: "Vidéo en direct en haute définition de la Terre",
+    liveDescription:
+      "Actuellement, une vidéo en direct de la Terre est diffusée depuis une caméra HD externe montée sur l'ISS. La caméra est orientée vers la Terre avec de temps en temps un panneau solaire passant à travers la vue.",
     tabs: {
       news: "Actualités",
       about: "À propos",
       details: "Détails",
+      live: "Diffusion en direct",
     },
   },
 }

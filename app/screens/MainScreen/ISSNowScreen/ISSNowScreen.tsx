@@ -1,7 +1,7 @@
 import { BlurView } from "expo-blur"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
-import { BackHandler, TextStyle, View, ViewStyle } from "react-native"
+import { BackHandler, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Orientation from "react-native-orientation-locker"
 import Modal from "react-native-modal"
@@ -10,13 +10,15 @@ import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { formatDate } from "../../../utils/formatDate"
-import * as storage from "../../../utils/storage"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { LocationType, OrbitPoint } from "../../../services/api"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const {
@@ -51,11 +53,23 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     $disabled,
     $modal,
     $bottom0,
+    $popupModal,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
-  const { currentLocation, selectedLocation, issData, getISSData, setSelectedLocation } =
-    useStores()
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSData,
+    setSelectedLocation,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const [isGlobe, setIsGlobe] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
@@ -63,7 +77,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
-  const cameraPosition = useRef(null)
+  const [defaultCameraPosition, setDefaultCameraPosition] = useState<[number, number]>([0, 0])
+  const cameraPosition = useRef<[number, number]>([0, 0])
   const current = useMemo(
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
@@ -132,10 +147,15 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [issData])
 
   useEffect(() => {
-    if (!current) return
-
+    if (!current || !current.location) return
     getData().catch((e) => console.log(e))
-  }, [current])
+  }, [current?.location?.lat, current?.location?.lng])
+
+  useEffect(() => {
+    if (!current) return
+    setDefaultCameraPosition([current.location.lat, current.location.lng])
+    cameraPosition.current = [current.location.lat, current.location.lng]
+  }, [current?.location.lat, current?.location.lng])
 
   const { toggleBottomTabs, toggleIsLandscape } = useContext(TabNavigatorContext)
 
@@ -153,11 +173,15 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     return () => backHandler.remove()
   }, [isFullScreen])
 
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
+
   const handleChangeLocation = useCallback(
-    async (location: LocationType) => {
+    (location: LocationType) => {
       setIsLocation(false)
       setSelectedLocation(location).catch(console.error)
-      await storage.save("selectedLocation", location)
     },
     [selectedLocation, currentLocation],
   )
@@ -174,6 +198,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
 
   return (
     <Screen
+      dismissKeyboardOnPress={false}
       preset="fixed"
       contentContainerStyle={[
         $container,
@@ -227,17 +252,18 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             key={isFullScreen.toString() + isLandscape.toString()}
             issPath={issData}
             zoom={zoomLevel + 1}
-            defaultCameraPosition={cameraPosition.current}
+            defaultCameraPosition={defaultCameraPosition}
             marker={current && [current?.location?.lat, current?.location?.lng]}
             onCameraChange={handleCameraChange}
           />
         )}
         {!isGlobe && (
           <MapBox
+            attributionPosition="top"
             issPath={issData}
             style={$flatMap}
             zoom={zoomLevel}
-            defaultCameraPosition={cameraPosition.current}
+            defaultCameraPosition={defaultCameraPosition}
             onCameraChange={handleCameraChange}
             markers={
               current?.location
@@ -266,7 +292,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               accessibilityHint="enable map view"
               text="2D"
               textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-              onPress={() => setIsGlobe(false)}
+              onPress={() => {
+                setIsGlobe(false)
+                setDefaultCameraPosition(cameraPosition.current)
+              }}
               buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
             />
             <IconLinkButton
@@ -275,7 +304,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               accessibilityHint="enable globe view"
               text="3D"
               textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
-              onPress={() => setIsGlobe(true)}
+              onPress={() => {
+                setIsGlobe(true)
+                setDefaultCameraPosition(cameraPosition.current)
+              }}
               buttonStyle={isGlobe ? [$modButton, $active] : $modButton}
             />
           </BlurView>
@@ -325,10 +357,25 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       >
         <SelectLocation
           selectedLocation={current}
-          onLocationPress={handleChangeLocation}
+          onChangeLocation={handleChangeLocation}
           onClose={() => setIsLocation(!isLocation)}
         />
       </Modal>
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -515,6 +562,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     margin: 0,
   }
 
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   const $bottom0: ViewStyle = { bottom: 0 }
 
   return {
@@ -551,5 +600,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $disabled,
     $modal,
     $bottom0,
+    $popupModal,
   }
 }

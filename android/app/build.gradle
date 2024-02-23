@@ -108,8 +108,8 @@ android {
         applicationId project.env.get("APP_BUNDLE_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2023102517
-        versionName "1.2.0"
+        versionCode 2024020709
+        versionName "1.2.3"
     }
 
     splits {

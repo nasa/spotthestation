@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useCallback, useState, useMemo } from "react"
-import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
+import React, { useCallback, useState, useMemo, useEffect } from "react"
+import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -12,15 +12,18 @@ import { getCurrentLocation } from "../../../utils/geolocation"
 import { useStores } from "../../../models"
 import { Sightings } from "../HomeScreen/Sightings"
 import Modal from "react-native-modal/dist/modal"
-import { getCurrentTimeZome } from "../../../utils/formatDate"
 import { RemoveLocationModal } from "./RemoveLocationModal"
 import { SettingsItem } from "../components/SettingsItem"
 import { openSettings } from "react-native-permissions"
-import * as storage from "../../../utils/storage"
 import { RefreshButton } from "../HomeScreen/RefreshButton"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
-import { LocationType } from "../../../services/api"
+import { api, LocationType } from "../../../services/api"
+import { getCurrentTimeZone } from "../../../utils/formatDate"
+import MyModal from "../HomeScreen/MyModal"
+import { InitLoader } from "../HomeScreen/InitLoader"
+import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -40,6 +43,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     $scrollWrapper,
     $addButtonContainer,
     $refreshButton,
+    $popupModal,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -59,11 +63,17 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setSightingsTimeOfDay,
     setSightingsDuration,
     getFilteredSightings,
+    getISSSightings,
+    trajectoryError,
+    trajectoryErrorKind,
+    setTrajectoryError,
+    requestCloseModal,
+    requestOpenModal,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
 
-  const [isSightings, setIsSightings] = useState(false)
   const [currentTitle, setCurrentTitle] = useState<string>(null)
 
   const saved = savedLocations.find((loc) => loc.title === currentTitle)
@@ -74,21 +84,24 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     return saved
   }, [currentTitle, selectedLocation, currentLocation, saved])
 
-  const [currentTimeZone, setCurrentTimeZone] = useState({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
   const [isRemove, setIsRemove] = useState(false)
   const [toRemove, setToRemove] = useState<LocationType>(null)
   const [locationPermission, setLocationPermission] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const getLocation = useCallback(async () => {
     setIsCurrentLocationUpdating(true)
     try {
       const location = await getCurrentLocation(() => ({}), setLocationPermission)
-      if (!location) return setIsCurrentLocationUpdating(false)
+      const isSameLocation =
+        location?.location.lat === currentLocation?.location.lat &&
+        location?.location.lng === currentLocation?.location.lng
+      if (!location || isSameLocation) return setIsCurrentLocationUpdating(false)
       await setCurrentLocation(location)
-      await storage.save("currentLocation", location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
       console.log(e)
@@ -162,28 +175,56 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     [current],
   )
 
-  const handleCtaPress = (item: LocationType) => {
+  const handleCtaPress = async (item: LocationType) => {
+    if (item.title !== selectedLocation?.title && item.title !== currentLocation?.title) {
+      const saved = savedLocations.find((loc) => loc.title === item.title)
+      let tz = null
+
+      try {
+        if (!saved.timezone) {
+          const res = await api.getLocationTimeZone(saved.location.lat, saved.location.lng)
+          if (res.kind === "ok" && res.zone) tz = res.zone
+
+          setSavedLocations(
+            savedLocations.map((l) =>
+              item.title === l.title
+                ? {
+                    ...l,
+                    timezone: tz,
+                  }
+                : l,
+            ),
+          )
+
+          console.log("tz updated!", tz)
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    if (
+      !item.lastUpdatedAt ||
+      new Date().valueOf() - new Date(item.lastUpdatedAt).valueOf() > 24 * 60 * 60 * 1000
+    ) {
+      requestOpenModal("loader")
+      await getISSSightings(item)
+      requestCloseModal("loader")
+    }
+
     setCurrentTitle(item.title)
-    setIsSightings(true)
+    requestOpenModal("sightings")
   }
-
-  const getTimeZone = async (location: LocationType) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome(location)
-    setCurrentTimeZone({ timeZone, regionFormat })
-  }
-
-  useEffect(() => {
-    if (!current) return
-
-    getTimeZone(current).catch((e) => console.log(e))
-  }, [current])
 
   const handleRemove = useCallback(
-    (location: LocationType) => {
+    async (location: LocationType) => {
+      if (selectedLocation && location.title === selectedLocation.title) {
+        await setSelectedLocation(null).catch(console.error)
+      }
       setSavedLocations(savedLocations.filter((item) => item.title !== location.title))
       setIsRemove(false)
     },
-    [savedLocations],
+    [selectedLocation, savedLocations],
   )
 
   const handleChangeTimeOfDay = useCallback(
@@ -322,37 +363,37 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           navigation.navigate("SettingsScreens" as never, { screen: "AddNewLocation" } as never)
         }
       />
-      {isSightings && (
-        <Modal
-          isVisible={isSightings}
-          onBackdropPress={() => setIsSightings(!isSightings)}
-          onSwipeComplete={() => setIsSightings(!isSightings)}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={$modal}
-        >
-          <Sightings
-            onClose={() => setIsSightings(!isSightings)}
-            sightings={current ? getFilteredSightings(current) : []}
-            timeOfDay={current?.filterTimeOfDay || ""}
-            duration={current?.filterDuration || ""}
-            onTimeOfDayChange={handleChangeTimeOfDay}
-            onDurationChange={handleChangeDuration}
-            onToggle={handleSetSightingNotification}
-            onToggleAll={handleSetSightingNotificationToAll}
-            isUS={i18n.locale === "en"}
-            isNotifyAll={current && current.sightings.every((item) => item.notify)}
-            timezone={currentTimeZone?.timeZone}
-            lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
-          />
-        </Modal>
-      )}
+
+      <MyModal
+        onBackdropPress={() => requestCloseModal("sightings")}
+        onSwipeComplete={() => requestCloseModal("sightings")}
+        name="sightings"
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <Sightings
+          onClose={() => requestCloseModal("sightings")}
+          sightings={current ? getFilteredSightings(current) : []}
+          timeOfDay={current?.filterTimeOfDay || ""}
+          duration={current?.filterDuration || ""}
+          onTimeOfDayChange={handleChangeTimeOfDay}
+          onDurationChange={handleChangeDuration}
+          onToggle={handleSetSightingNotification}
+          onToggleAll={handleSetSightingNotificationToAll}
+          isUS={i18n.locale === "en"}
+          isNotifyAll={current && current.sightings.every((item) => item.notify)}
+          timezone={current?.timezone || getCurrentTimeZone()}
+          lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
+        />
+      </MyModal>
+
       <Modal
         isVisible={isRemove}
         onBackdropPress={() => setIsRemove(!isRemove)}
@@ -373,6 +414,31 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           location={toRemove}
         />
       </Modal>
+
+      <MyModal
+        name="loader"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <InitLoader />
+      </MyModal>
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -394,6 +460,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     left: 0,
     margin: 0,
   }
+
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
 
   const $scrollContentContainerStyle: ViewStyle = {
     flexGrow: 1,
@@ -463,5 +531,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $scrollWrapper,
     $addButtonContainer,
     $refreshButton,
+    $popupModal,
   }
 }

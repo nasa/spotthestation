@@ -132,6 +132,7 @@ const de = {
       switch:
         "Über alle bevorstehenden Ereignisse an diesem Ort benachrichtigen.",
       aboveHorizon: "Über dem Horizont",
+      maxHeight: "Maximale Höhe von",
       today: "Heute",
       tomorrow: "Morgen",
       appears: "Erscheint",
@@ -213,6 +214,10 @@ const de = {
       orbitsPerDay: "Umlaufbahnen/Tag",
       dimensionsValue: "109m breit x 73m lang x 14m hoch",
     },
+    arNotSupported: "AR wird auf diesem Gerät nicht unterstützt",
+    noOrientationSensor: "Orientierungssensor nicht verfügbar",
+    noMagnetometerSensor: "Magnetometer ist nicht verfügbar",
+    screenshotError: "Screenshot kann nicht erstellt werden",
   },
   settings: {
     header: "Einstellungen",
@@ -221,6 +226,15 @@ const de = {
     termsAndConditions: "Geschäftsbedingungen",
     contactUs: "Kontaktieren Sie uns",
     language: "Sprache",
+    calibrateCompass: "Kompasskalibrierung",
+    calibrateCompassData: {
+      instructions:
+        "Um den Kompass zu kalibrieren, drehen Sie Ihr Gerät mehrmals in einer Acht-Figur.",
+      accuracy: "Sensorgenauigkeit:",
+      low: "Niedrig",
+      medium: "Mittel",
+      high: "Hoch",
+    },
     termsAndConditionsData: {
       backButton: "Einstellungen",
       ios: {
@@ -328,6 +342,8 @@ const de = {
       upcomingTip: "Ausschalten, um keine Benachrichtungen mehr zu erhalten",
       notifyMeBefore: "VORHER BENACHRICHTIGEN",
       turnOffNotifications: "BENACHRICHTIGUNGEN ABSCHALTEN",
+      rangeInputPlaceholder: "Wählen Sie zwischen 1 bis 120 Minuten",
+      customOption: "Benutzerdefiniert",
       from: "Von",
       until: "Bis",
     },
@@ -359,10 +375,14 @@ const de = {
     searchPlaceholder: "Suchen Sie nach Artikeln, Ereignissen usw.",
     suggestions: "VORSCHLÄGE",
     searchResults: "Suchergebnisse",
+    liveTitle: "Hochauflösendes Live-Streaming-Video der Erde",
+    liveDescription:
+      "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich überquert ein Sonnenkollektor das Bild.",
     tabs: {
       news: "News",
       about: "Über",
       details: "Details",
+      live: "Live-Stream",
     },
   },
 }

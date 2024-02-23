@@ -2,21 +2,20 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View } from "react-native"
-import { Dropdown } from "react-native-element-dropdown"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import DateTimePickerModal from "react-native-modal-datetime-picker"
 import Modal from "react-native-modal"
+import i18n from "i18n-js"
 import * as storage from "../../../utils/storage"
 import { Button, Icon, Screen, Text, Toggle } from "../../../components"
 import { translate } from "../../../i18n"
-import { colors, spacing, typography } from "../../../theme"
+import { colors, typography } from "../../../theme"
 import { ExpandContainer } from "../components/ExpandContainer"
-import { formatDate, getCurrentTimeZome } from "../../../utils/formatDate"
+import { formatDate, getCurrentTimeZone } from "../../../utils/formatDate"
 import { Sightings } from "../HomeScreen/Sightings"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import i18n from "i18n-js"
-import { LocationType } from "../../../services/api"
+import { CustomDropdown } from "../components/CustomDropdown"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const {
@@ -35,13 +34,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     $label,
     $tip,
     $muteButtonLabel,
-    $dropdown,
-    $inputMargin,
-    $dropdownContainer,
-    $dropdownPlaceholder,
-    $dropdownSelected,
-    $dropdownText,
-    $dropdownRightAccessory,
     $timeButtonRightAccessory,
     $button,
     $buttonText,
@@ -85,10 +77,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
   )
-  const [currentTimeZone, setCurrentTimeZone] = useState({
-    timeZone: "US/Central",
-    regionFormat: "US",
-  })
 
   const isNotifyAll = useMemo(() => {
     return (
@@ -197,17 +185,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setIsSightings(true)
   }
 
-  const getTimeZone = async (location: LocationType) => {
-    const { timeZone, regionFormat } = await getCurrentTimeZome(location)
-    setCurrentTimeZone({ timeZone, regionFormat })
-  }
-
-  useEffect(() => {
-    if (!current) return
-
-    getTimeZone(current).catch((e) => console.log(e))
-  }, [current])
-
   const handleChangeTimeOfDay = useCallback(
     (value: string) => {
       setSightingsTimeOfDay(current, value)
@@ -286,34 +263,17 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             expandble={false}
             containerStyle={$notifyBefore}
           >
-            <Dropdown
-              accessibilityLabel="period select"
-              style={[$dropdown, $inputMargin]}
-              placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
-              selectedTextStyle={[$dropdownText, $dropdownSelected]}
-              placeholder={translate("settings.contactUsData.titlePlaceholder")}
+            <CustomDropdown
               data={[
+                { label: `2 ${translate("units.minute")}`, value: 2 },
+                { label: `5 ${translate("units.minute")}`, value: 5 },
+                { label: `10 ${translate("units.minute")}`, value: 10 },
                 { label: `15 ${translate("units.minute")}`, value: 15 },
                 { label: `30 ${translate("units.minute")}`, value: 30 },
+                { label: `60 ${translate("units.minute")}`, value: 60 },
               ]}
-              itemContainerStyle={{
-                backgroundColor: colors.palette.neutral350,
-              }}
-              containerStyle={$dropdownContainer}
-              itemTextStyle={$dropdownText}
-              activeColor={colors.palette.neutral450}
+              onValueChange={(value) => handleChange(value, "notifyBefore")}
               value={settings?.notifyBefore}
-              labelField="label"
-              valueField="value"
-              onChange={({ value }) => handleChange(value, "notifyBefore")}
-              renderRightIcon={() => (
-                <Icon
-                  icon="chevronDown"
-                  size={28}
-                  color={colors.palette.neutral450}
-                  containerStyle={$dropdownRightAccessory}
-                />
-              )}
             />
           </ExpandContainer>
           <View style={[$switchContainer, $privacyContainer]}>
@@ -427,7 +387,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={i18n.locale === "en"}
             isNotifyAll={current && current.sightings.every((item) => item.notify)}
-            timezone={currentTimeZone?.timeZone}
+            timezone={current?.timezone || getCurrentTimeZone()}
             lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
           />
         </Modal>
@@ -535,51 +495,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     marginBottom: scale(10),
   }
 
-  const $dropdown: ViewStyle = {
-    borderRadius: scale(28),
-    height: scale(56),
-    backgroundColor: colors.palette.neutral350,
-    overflow: "hidden",
-  }
-
-  const $inputMargin: ViewStyle = {
-    marginBottom: scale(18),
-  }
-
-  const $dropdownContainer: ViewStyle = {
-    backgroundColor: colors.palette.neutral350,
-    borderRadius: scale(10),
-    marginTop: -scale(40),
-    borderWidth: 0,
-  }
-
-  const $dropdownPlaceholder: TextStyle = {
-    color: colors.palette.neutral450,
-  }
-
-  const $dropdownSelected: TextStyle = {
-    color: colors.palette.neutral250,
-  }
-
-  const $dropdownText: TextStyle = {
-    flex: 1,
-    // alignSelf: "stretch",
-    fontFamily: typography.primary.normal,
-    fontSize: fontSizes[18],
-    paddingVertical: 0,
-    paddingHorizontal: 0,
-    marginHorizontal: scale(spacing.small),
-    textAlignVertical: "center",
-    color: colors.palette.neutral250,
-  }
-
-  const $dropdownRightAccessory: ViewStyle = {
-    marginEnd: scale(spacing.large),
-    height: scale(56),
-    justifyContent: "center",
-    alignItems: "center",
-  }
-
   const $timeButtonRightAccessory: ViewStyle = {
     height: scale(56),
     justifyContent: "center",
@@ -635,13 +550,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $label,
     $tip,
     $muteButtonLabel,
-    $dropdown,
-    $inputMargin,
-    $dropdownContainer,
-    $dropdownPlaceholder,
-    $dropdownSelected,
-    $dropdownText,
-    $dropdownRightAccessory,
     $timeButtonRightAccessory,
     $button,
     $buttonText,

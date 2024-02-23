@@ -89,7 +89,7 @@ jest.mock("react-native-view-shot", () => ({
 jest.mock("react-native-modal-datetime-picker", () => "")
 jest.mock("../app/services/api", () => ({
   api: {
-    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: { timeZoneId: 'US/Central' } }))
+    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: 'US/Central' }))
   },
 }))
 jest.mock("react-native-push-notification", () => ({
@@ -106,9 +106,21 @@ jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))
 jest.mock("@react-native-firebase/analytics", () => ({}))
+
+jest.mock("react-native-sensors", () => ({
+  orientation: { subscribe: jest.fn() },
+  magnetometer: { subscribe: jest.fn() },
+  SensorTypes: { orientation: null, magnetometer: null },
+  setUpdateIntervalForType: jest.fn()
+}))
+
+jest.mock("react-native-sensors/src/rnsensors", () => ({
+  isAvailable: jest.fn().mockResolvedValue(false)
+}))
+
 jest.mock('../app/services/api', () => ({
   api: {
-    getPlaces: jest.fn(),
+    getPlaces: () => new Promise((resolve) => resolve({ kind: 'ok', places: [] })),
     reverseGeocode: jest.fn(),
     getLocationAddress: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),
@@ -128,7 +140,7 @@ jest.mock('../app/services/api', () => ({
         }]
       }})),
     getISSData: () => new Promise((resolve) => resolve({ ok: true, data: { points: [], shadowIntervals: [] } })),
-    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: { timeZoneId: "US/Central" } })),
+    getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: "US/Central" })),
     getFeed: () => new Promise((resolve) => resolve({ ok: true, places: `
       <?xml version="1.0" encoding="UTF-8"?>
       <rss version="2.0"

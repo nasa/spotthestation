@@ -33,9 +33,7 @@ test("clears the text input and sets location value after selecting a place from
       <AddNewLocationScreen />
     </NavigationContainer>,
   )
-  const textInput = getByPlaceholderText(
-    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
-  )
+  const textInput = getByPlaceholderText("homeScreen.selectLocation.inputPlaceholder undefined")
 
   await waitFor(() => {
     expect(textInput.props.value).toBe("")
@@ -59,9 +57,7 @@ test("calls handleSave when Save button is clicked", async () => {
   )
   const { handleSave }: any = useStores()
 
-  const textInput = getByPlaceholderText(
-    "settings.locationSettingsData.addNewLocation.searchInputPlaceholder undefined",
-  )
+  const textInput = getByPlaceholderText("homeScreen.selectLocation.inputPlaceholder undefined")
   fireEvent.changeText(textInput, "Some location")
 
   await waitFor(() => {

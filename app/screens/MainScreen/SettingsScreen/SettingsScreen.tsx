@@ -1,18 +1,21 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import uniqBy from "lodash/uniqBy"
-import React from "react"
-import { View, ViewStyle, TextStyle } from "react-native"
+import React, { useState } from "react"
+import { View, ViewStyle, TextStyle, Alert } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Screen, Text, Icon } from "../../../components"
 import { colors, typography, spacing } from "../../../theme"
 import { SettingsItem } from "../components/SettingsItem"
 import { useStores } from "../../../models"
-import { setLocale } from "../../../i18n"
+import { setLocale, translate } from "../../../i18n"
 import { Dropdown } from "react-native-element-dropdown"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import i18n from "i18n-js"
 import * as storage from "../../../utils/storage"
+import Modal from "react-native-modal"
+import { CalibrateCompassModal } from "./CalibrateCompassModal"
+import { isMagnetometerAvailable } from "../../../utils/orientation"
 
 const languages = uniqBy(
   Object.keys(i18n.translations).map((key) => ({
@@ -35,7 +38,10 @@ export const SettingsScreen = observer(function SettingsScreen() {
     $dropdownSelected,
     $dropdownText,
     $dropdownRightAccessory,
+    $modal,
   } = useStyles(styles)
+
+  const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
   const { setNotifications } = useStores()
@@ -51,6 +57,17 @@ export const SettingsScreen = observer(function SettingsScreen() {
       index: 0,
       routes: [{ name: "Settings" as never }],
     })
+  }
+
+  const handleCalibrate = async () => {
+    const available = await isMagnetometerAvailable().catch(() => false)
+    if (!available)
+      return Alert.alert(
+        translate("issView.arNotSupported"),
+        translate("issView.noMagnetometerSensor"),
+      )
+
+    setIsCalibrationModalVisible(true)
   }
 
   const headerStyle = { ...$headerStyleOverride }
@@ -94,6 +111,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
           title="settings.contactUs"
           onPress={() => handleNavigate("ContactUs")}
         />
+        <SettingsItem icon="compass" title="settings.calibrateCompass" onPress={handleCalibrate} />
         <SettingsItem
           icon="globe"
           title="settings.language"
@@ -126,6 +144,23 @@ export const SettingsScreen = observer(function SettingsScreen() {
           }
         />
       </View>
+
+      <Modal
+        isVisible={isCalibrationModalVisible}
+        onBackdropPress={() => setIsCalibrationModalVisible(false)}
+        onSwipeComplete={() => setIsCalibrationModalVisible(false)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <CalibrateCompassModal onClose={() => setIsCalibrationModalVisible(false)} />
+      </Modal>
     </Screen>
   )
 })
@@ -199,6 +234,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     alignItems: "center",
   }
 
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "center",
+    margin: scale(24),
+  }
+
   return {
     $headerStyleOverride,
     $container,
@@ -211,5 +252,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $dropdownSelected,
     $dropdownText,
     $dropdownRightAccessory,
+    $modal,
   }
 }

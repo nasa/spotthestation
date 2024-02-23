@@ -102,6 +102,8 @@ const it = {
         "I dati della Stazione stanno caricando ... Questo potrebbe richiedere un momento per essere completato.",
       trajectoryError:
         "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della manutenzione del server. Si prega di riprovare più tardi.",
+      noNetwork:
+        "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della mancanza di connessione. Si prega di riprovare più tardi.",
     },
     header: {
       firstTimeHead: "ELENCO DEI PROSSIMI AVVISTAMENTI",
@@ -125,6 +127,7 @@ const it = {
       selectMessage: "Avvisami per tutti i prossimi avvistamenti in questa posizione.",
       switch: "Avvisami per tutti gli eventi imminenti in questa posizione.",
       aboveHorizon: "Sopra l'orizzonte",
+      maxHeight: "Altezza massima di",
       today: "Oggi",
       tomorrow: "Domani",
       appears: "Appare",
@@ -204,6 +207,10 @@ const it = {
       orbitsPerDay: "Orbite/Giorno",
       dimensionsValue: "109m di larghezza x 73m di lunghezza x 14m di altezza",
     },
+    arNotSupported: "AR non è supportato su questo dispositivo",
+    noOrientationSensor: "Sensore di orientamento non disponibile",
+    noMagnetometerSensor: "Il magnetometro non è disponibile",
+    screenshotError: "Impossibile catturare lo screenshot",
   },
   settings: {
     header: "Impostazioni",
@@ -212,8 +219,17 @@ const it = {
     termsAndConditions: "Termini e Condizioni",
     contactUs: "Contattaci",
     language: "Lingua",
+    calibrateCompass: "Calibrazione della bussola",
+    calibrateCompassData: {
+      instructions:
+        "Per calibrare la bussola, ruota il tuo dispositivo più volte in un pattern a forma di 8.",
+      accuracy: "Precisione del sensore:",
+      low: "Bassa",
+      medium: "Media",
+      high: "Alta",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Impostazioni",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -318,6 +334,8 @@ const it = {
       upcomingTip: "Disattiva le notifiche per smettere di ricevere notifiche di eventi.",
       notifyMeBefore: "Avvisami prima",
       turnOffNotifications: "Disattiva le notifiche",
+      rangeInputPlaceholder: "Scegli tra 1 a 120 minuti",
+      customOption: "Personalizzato",
       from: "Da",
       until: "Fino a",
     },
@@ -348,10 +366,14 @@ const it = {
     searchPlaceholder: "Cerca articoli, eventi, ecc ...",
     suggestions: "Suggerimenti",
     searchResults: "Risultati di ricerca",
+    liveTitle: "Video in diretta ad alta definizione della Terra",
+    liveDescription:
+      "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera è rivolta verso la Terra con un pannello solare occasionale che attraversa la vista.",
     tabs: {
       news: "Notizie",
       about: "Informazioni",
       details: "Dettagli",
+      live: "Live Stream",
     },
   },
 }

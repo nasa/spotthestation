@@ -1,4 +1,4 @@
-import { getGeneralApiProblem } from "./apiProblem"
+import { getGeneralApiProblem } from "../apiProblem"
 import { ApiErrorResponse } from "apisauce"
 
 test("handles connection errors", () => {
@@ -10,7 +10,7 @@ test("handles connection errors", () => {
 
 test("handles network errors", () => {
   expect(getGeneralApiProblem({ problem: "NETWORK_ERROR" } as ApiErrorResponse<null>)).toEqual({
-    kind: "cannot-connect",
+    kind: "no-network",
     temporary: true,
   })
 })

@@ -199,10 +199,9 @@ function ScreenWithScrolling(props: ScreenProps) {
 }
 
 const tap = Gesture.Tap().onEnd(Keyboard.dismiss)
-const disabledTap = Gesture.Tap().enabled(false)
 
 export function Screen(props: ScreenProps) {
-  const { $containerStyle, $keyboardAvoidingViewStyle } = useStyles(styles)
+  const { $containerStyle, $keyboardAvoidingViewStyle, $flex } = useStyles(styles)
 
   const {
     backgroundColor = colors.background,
@@ -216,9 +215,10 @@ export function Screen(props: ScreenProps) {
   } = props
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
+  const Wrapper = dismissKeyboardOnPress === false ? View : GestureDetector
 
   return (
-    <GestureDetector gesture={dismissKeyboardOnPress === false ? disabledTap : tap}>
+    <Wrapper style={dismissKeyboardOnPress === false && $flex} gesture={tap}>
       <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
         <OrientationLocker orientation={isPortrait ? PORTRAIT : UNLOCK} />
         <StatusBar style={statusBarStyle} {...StatusBarProps} />
@@ -236,7 +236,7 @@ export function Screen(props: ScreenProps) {
           )}
         </KeyboardAvoidingView>
       </View>
-    </GestureDetector>
+    </Wrapper>
   )
 }
 
@@ -245,6 +245,10 @@ const styles: StyleFn = () => {
     flex: 1,
     height: "100%",
     width: "100%",
+  }
+
+  const $flex: ViewStyle = {
+    flex: 1,
   }
 
   const $keyboardAvoidingViewStyle: ViewStyle = {
@@ -262,5 +266,5 @@ const styles: StyleFn = () => {
     alignItems: "stretch",
   }
 
-  return { $containerStyle, $keyboardAvoidingViewStyle, $outerStyle, $innerStyle }
+  return { $containerStyle, $keyboardAvoidingViewStyle, $outerStyle, $innerStyle, $flex }
 }

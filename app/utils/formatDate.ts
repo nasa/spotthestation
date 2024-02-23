@@ -1,7 +1,7 @@
 import { Locale, format, parseISO } from "date-fns"
 import { formatInTimeZone } from "date-fns-tz"
 import I18n from "i18n-js"
-import { getLocales, getCalendars } from "expo-localization"
+import { getCalendars } from "expo-localization"
 import moment from "moment-timezone"
 
 import en from "date-fns/locale/en-US"
@@ -16,10 +16,7 @@ import sv from "date-fns/locale/sv"
 import hi from "date-fns/locale/hi"
 import de from "date-fns/locale/de"
 import nb from "date-fns/locale/nb"
-import * as storage from "../utils/storage"
-import { getLocationTimeZone } from "./geolocation"
 import { Platform } from "react-native"
-import { LocationType } from "../services/api"
 
 if ((global as any).HermesInternal) {
   if (Platform.OS === "ios") {
@@ -102,32 +99,10 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
   return value >= startValue && value < endValue
 }
 
-const getLocation = async () => {
-  const location: LocationType = await storage.load("selectedLocation")
-  if (!location) return storage.load("currentLocation")
-  return location
-}
-
 export const getShortTZ = (timeZone: string) => {
   return moment.tz(new Date(), timeZone).format("z")
 }
 
-export const getCurrentTimeZome = async (value?: LocationType) => {
-  const currentLocation: LocationType = value || (await getLocation())
-  if (currentLocation) {
-    const { location } = currentLocation
-    const { kind, zone } = await getLocationTimeZone(location, Date.now() / 1000)
-    const timeZone = kind === "ok" ? zone.timeZoneId : "US/Central"
-    const regionFormat = ["US", "America"].includes(timeZone.split("/")[0]) ? "US" : "other"
-
-    return {
-      timeZone,
-      regionFormat,
-    }
-  } else {
-    return {
-      timeZone: getCalendars()[0].timeZone,
-      regionFormat: getLocales()[0].regionCode,
-    }
-  }
+export const getCurrentTimeZone = () => {
+  return getCalendars()?.[0]?.timeZone || "US/Central"
 }

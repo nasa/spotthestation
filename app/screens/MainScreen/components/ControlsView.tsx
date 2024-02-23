@@ -37,6 +37,7 @@ const ControlsView = forwardRef(
     )
 
     const responder = useMemo(() => {
+      if (!controls) return null
       return PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onStartShouldSetPanResponderCapture: () => true,
@@ -67,7 +68,7 @@ const ControlsView = forwardRef(
     return (
       <View
         {...props}
-        {...responder.panHandlers}
+        {...responder?.panHandlers}
         onLayout={(event) => {
           if (props.onLayout) {
             props.onLayout(event)

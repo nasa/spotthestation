@@ -1,17 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ViewStyle, TextStyle, View, Pressable } from "react-native"
+import { ViewStyle, TextStyle, View, Pressable, TextInput } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import Modal from "react-native-modal"
 import { Icon, Screen, Text, Button } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
-import Config from "react-native-config"
-import {
-  GooglePlacesAutocomplete,
-  GooglePlacesAutocompleteRef,
-} from "react-native-google-places-autocomplete"
 import { translate } from "../../../i18n/translate"
 import Snackbar from "react-native-snackbar"
 import { LatLng } from "react-native-maps"
@@ -19,7 +14,7 @@ import { api, LocationType } from "../../../services/api"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import i18n from "i18n-js"
+import { LocationAutocomplete } from "../../../components/LocationAutocomplete"
 
 export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen() {
   const {
@@ -31,8 +26,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     $locations,
     $active,
     $locationsListContainer,
-    $dropdownLeftAccessory,
-    $dropdownRightAccessory,
     $dropdownSelected,
     $locationsRow,
     $locationsRowText,
@@ -48,10 +41,10 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   } = useStyles(styles)
 
   const navigation = useNavigation()
-  const { setNewSavedLocation } = useStores()
+  const { setNewSavedLocation, savedLocations } = useStores()
   const topInset = useSafeAreaInsets().top
 
-  const addressRef = useRef<GooglePlacesAutocompleteRef>()
+  const addressRef = useRef<TextInput>()
   const [isFocus, setIsFocus] = useState(false)
   const [isSave, setIsSave] = useState(false)
   const [textValue, setTextValue] = useState("")
@@ -70,17 +63,13 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         const res = await api.reverseGeocode(marker.latitude, marker.longitude)
         if (res.kind !== "ok") return
 
-        const addrResponse = await api.getLocationAddress(res.googlePlaceId)
-        if (addrResponse.kind !== "ok" || !addrResponse.address) return null
-
         setLocation({
           location: { lat: marker.latitude, lng: marker.longitude },
-          title: addrResponse.name || addrResponse.address || "Location",
-          subtitle: addrResponse.address,
-          googlePlaceId: res.googlePlaceId,
+          title: res.name || res.address || "Location",
+          subtitle: res.address,
         })
 
-        setTextValue(addrResponse.address)
+        setTextValue(res.address)
         setIsSave(true)
       }
     })().catch((e) => console.log(e))
@@ -90,6 +79,21 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
+    if (savedLocations.find((item) => item.title === location.title)) {
+      Snackbar.show({
+        text: translate("snackBar.locationExist"),
+        duration: Snackbar.LENGTH_LONG,
+        action: {
+          text: translate("snackBar.ok"),
+          textColor: "green",
+          onPress: () => {
+            Snackbar.dismiss()
+          },
+        },
+      })
+      return
+    }
+
     setNewSavedLocation(location).catch((error) => {
       Snackbar.show({
         text: error,
@@ -133,7 +137,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         style={$map}
         withNightOverlay={false}
         onPress={({ geometry }) => {
-          console.log("lal", geometry)
           setMarker({ latitude: geometry.coordinates[1], longitude: geometry.coordinates[0] })
         }}
         markers={marker ? [marker] : []}
@@ -149,34 +152,24 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             onPress={() => handleNavigate()}
           />
         </View>
-        <GooglePlacesAutocomplete
+        <LocationAutocomplete
           ref={addressRef}
           placeholder={translate(
             "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
           )}
-          query={{
-            key: Config.GOOGLE_API_TOKEN,
-            language: i18n.locale,
-          }}
-          onPress={(data, details = null) => {
+          onPress={(data) => {
             setLocation({
-              title: details.name,
-              subtitle: details.formatted_address,
-              location: details?.geometry?.location,
-              googlePlaceId: details?.place_id,
+              title: data.name,
+              subtitle: data.display_name,
+              location: { lat: Number(data.lat), lng: Number(data.lon) },
               sightings: [],
             })
             setMarker({
-              latitude: details?.geometry?.location?.lat,
-              longitude: details?.geometry?.location?.lng,
+              latitude: Number(data.lat),
+              longitude: Number(data.lon),
             })
             setIsSave(true)
           }}
-          onFail={(error) => console.error(error)}
-          enablePoweredByContainer={false}
-          isRowScrollable={false}
-          fetchDetails={true}
-          keepResultsAfterBlur={true}
           styles={{
             textInputContainer: isFocus ? [$locations, $active] : $locations,
             textInput: {
@@ -207,22 +200,17 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
               />
             )
           }}
-          renderLeftButton={() => (
-            <Icon
-              icon="pin"
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={$dropdownLeftAccessory}
-            />
+          renderLeftAccessory={({ style }) => (
+            <Icon icon="pin" size={28} color={colors.palette.neutral450} style={style} />
           )}
-          renderRightButton={() =>
+          renderRightAccessory={({ style }) =>
             isFocus &&
             textValue && (
               <Icon
                 icon="xCircle"
                 size={28}
                 color={colors.palette.neutral450}
-                containerStyle={$dropdownRightAccessory}
+                style={style}
                 onPress={handleClear}
               />
             )

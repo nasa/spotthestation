@@ -96,6 +96,7 @@ function App(props: AppProps) {
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
+  const [isTZUpdated, setIsTZUpdated] = useState(false)
   const prevAppState = useRef<string>()
 
   const { rootStore, rehydrated } = useInitialRootStore(() => {
@@ -130,11 +131,11 @@ function App(props: AppProps) {
       subscription.remove()
     }
   }, [rootStore])
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
-  }, [])
+  //
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-empty-function
+  //   if (Config.DISABLE_YELLOWBOX) console.warn = () => {}
+  // }, [])
 
   useEffect(() => {
     ;(async () => {
@@ -161,13 +162,33 @@ function App(props: AppProps) {
     return () => removeLocaleListener(updateLocationAddresses)
   }, [isLocaleLoaded, updateLocationAddresses])
 
+  useEffect(() => {
+    if (!rehydrated || !rootStore) return
+    ;(async () => {
+      if (rootStore.selectedLocation && !rootStore.selectedLocation.timezone) {
+        await rootStore.setSelectedLocation(rootStore.selectedLocation, true).catch(() => null)
+      } else if (rootStore.currentLocation && !rootStore.currentLocation.timezone) {
+        await rootStore.setCurrentLocation(rootStore.currentLocation, true).catch(() => null)
+      }
+
+      setIsTZUpdated(true)
+    })().catch(() => null)
+  }, [rehydrated, rootStore])
+
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
   // color set in native by rootView's background color.
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded || !isLocaleLoaded) return null
+  if (
+    !rehydrated ||
+    !isNavigationStateRestored ||
+    !areFontsLoaded ||
+    !isLocaleLoaded ||
+    !isTZUpdated
+  )
+    return null
 
   const linking = {
     prefixes: [prefix],

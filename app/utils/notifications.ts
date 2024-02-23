@@ -1,4 +1,4 @@
-import { Platform } from "react-native"
+import { PermissionsAndroid, Platform } from "react-native"
 import PushNotification from "react-native-push-notification"
 import PushNotificationIOS from "@react-native-community/push-notification-ios"
 import { ISSSighting, LocationType } from "../services/api"
@@ -26,6 +26,14 @@ class Notifications {
       popInitialNotification: true,
       requestPermissions: Platform.OS === "ios",
     })
+
+    if (Platform.OS === "android") {
+      setTimeout(() => {
+        PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS).catch(
+          console.error,
+        )
+      }, 1000)
+    }
   }
 
   setNotifications = async (locations: LocationType[]) => {

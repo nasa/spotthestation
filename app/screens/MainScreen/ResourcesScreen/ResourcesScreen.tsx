@@ -4,6 +4,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   Pressable,
   ScrollView,
   TextStyle,
@@ -20,13 +21,16 @@ import { FeedItem } from "../components/FeedItem"
 import { FeedSearchResultItem } from "../components/FeedSearchResultItem"
 import { useStores } from "../../../models"
 import { Details } from "../SkyViewScreen/Details"
+import { Live } from "./Live"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 
 const items = [
   {
     tags: [],
-    title: "ISS Overview",
+    title: "International Space Station Overview",
     image:
       "https://www.nasa.gov/wp-content/uploads/2021/08/44911459904-375bc02163-k-0.jpg?resize=1200,800",
     type: "event",
@@ -42,7 +46,7 @@ const items = [
   },
   {
     tags: ["history"],
-    title: "ISS Crews and Expeditions",
+    title: "International Space Station Crews and Expeditions",
     date: "2023-01-04T00:00:00.000000",
     image: "https://www.nasa.gov/wp-content/uploads/2023/05/exp70-portrait.jpg?w=1000",
     type: "event",
@@ -50,7 +54,7 @@ const items = [
   },
   {
     tags: [],
-    title: "ISS International Cooperation",
+    title: "International Space Station International Cooperation",
     date: "2023-01-04T00:00:00.000000",
     image: "https://www.nasa.gov/wp-content/uploads/2023/03/ops-map.png",
     type: "event",
@@ -78,6 +82,7 @@ export const Resources = observer(function HomeScreen() {
     $header,
     $suggestion,
     $scrollContainer,
+    $liveContainer,
     $horizontalScrollContainer,
     $searchField,
     $button,
@@ -87,11 +92,24 @@ export const Resources = observer(function HomeScreen() {
     $searchResultsContainer,
     $searchFieldContainer,
     $justifyCenter,
+    $modal,
+    $popupModal,
   } = useStyles(styles)
 
   const navigation = useNavigation()
-  const { currentLocation, selectedLocation, issData, getISSData } = useStores()
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSData,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+  const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
   const [isSearch, setIsSearch] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -169,6 +187,11 @@ export const Resources = observer(function HomeScreen() {
     if (!location) return
     getData().catch((e) => console.log(e))
   }, [location])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
 
   const { toggleBottomTabs } = useContext(TabNavigatorContext)
 
@@ -326,6 +349,21 @@ export const Resources = observer(function HomeScreen() {
     )
   }, [issData, location])
 
+  const renderLive = useCallback(() => {
+    return (
+      <ScrollView
+        accessible
+        accessibilityLabel="recent results"
+        accessibilityHint="recent results"
+        accessibilityRole="scrollbar"
+        contentContainerStyle={$liveContainer}
+        style={$scrollContainer}
+      >
+        <Live />
+      </ScrollView>
+    )
+  }, [issData, location])
+
   const renderTab = (type: string) => {
     switch (type) {
       case "about":
@@ -334,6 +372,8 @@ export const Resources = observer(function HomeScreen() {
         return renderBody()
       case "details":
         return renderDetails()
+      case "live":
+        return renderLive()
       default:
         return renderStatic()
     }
@@ -341,6 +381,7 @@ export const Resources = observer(function HomeScreen() {
 
   return (
     <Screen
+      dismissKeyboardOnPress={type !== "live"}
       preset="fixed"
       contentContainerStyle={$container}
       style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
@@ -390,13 +431,13 @@ export const Resources = observer(function HomeScreen() {
       </View>
       <View style={$horizontalScrollContainer}>
         <ScrollView horizontal style={$horizontalScrollContainer}>
-          {["news", "about", "details"].map((item) => (
+          {["news", "about", "details", "live"].map((item) => (
             <Button
               key={item}
               accessible
               accessibilityLabel={`${item} button`}
               accessibilityHint={`show ${item} view`}
-              tx={`resources.tabs.${(item as "news") || "about" || "details"}`}
+              tx={`resources.tabs.${(item as "news") || "about" || "details" || "live"}`}
               style={[$button, item === type && $active]}
               textStyle={$buttonText}
               pressedStyle={$button}
@@ -406,6 +447,21 @@ export const Resources = observer(function HomeScreen() {
         </ScrollView>
       </View>
       {renderTab(type)}
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
     </Screen>
   )
 })
@@ -519,6 +575,17 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $justifyCenter: ViewStyle = { justifyContent: "space-between" }
 
+  const $liveContainer: ViewStyle = { flexGrow: 1 }
+
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
+
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   return {
     $container,
     $headerContainer,
@@ -538,5 +605,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $searchResultsContainer,
     $searchFieldContainer,
     $justifyCenter,
+    $liveContainer,
+    $modal,
+    $popupModal,
   }
 }

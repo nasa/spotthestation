@@ -5,25 +5,21 @@ import {
   Alert,
   Platform,
   PressableProps,
+  TextInput,
   TextStyle,
   View,
   ViewStyle,
 } from "react-native"
-import {
-  GooglePlacesAutocomplete,
-  GooglePlacesAutocompleteRef,
-} from "react-native-google-places-autocomplete"
 import Modal from "react-native-modal"
 import { Icon, Text, Button } from "../../components"
-import Config from "../../config"
 import { translate } from "../../i18n"
 import { colors, spacing, typography } from "../../theme"
 import { getCurrentLocation } from "../../utils/geolocation"
 import * as storage from "../../utils/storage"
 import { PrivacyModal } from "./components/PrivacyModal"
-import i18n from "i18n-js"
 import { PositionError } from "react-native-geolocation-service"
-import { LocationType } from "../../services/api"
+import { LocationType, OSMSearchResult } from "../../services/api"
+import { LocationAutocomplete } from "../../components/LocationAutocomplete"
 
 enum Statuses {
   start = "start",
@@ -57,8 +53,6 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     $locations,
     $active,
     $locationsListContainer,
-    $dropdownLeftAccessory,
-    $dropdownRightAccessory,
     $dropdownSelected,
     $locationsRow,
     $locationsRowText,
@@ -74,7 +68,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
     $modal,
   } = useStyles(styles)
 
-  const addressRef = useRef<GooglePlacesAutocompleteRef>()
+  const addressRef = useRef<TextInput>()
   const [isFocus, setIsFocus] = useState(false)
   const [privacyModal, setPrivacyModal] = useState(false)
   const [status, setStatus] = useState(Statuses.start)
@@ -179,26 +173,16 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           tx="onboarding.completeProfile.location.orLabel"
           style={$orLabel}
         />
-        <GooglePlacesAutocomplete
+        <LocationAutocomplete
           ref={addressRef}
           placeholder={translate("onboarding.completeProfile.location.selectLocation")}
-          query={{
-            key: Config.GOOGLE_API_TOKEN,
-            language: i18n.locale,
-          }}
-          onPress={(data, details = null) =>
+          onPress={(data: OSMSearchResult) => {
             onValueChange({
-              title: details.name,
-              subtitle: details.formatted_address,
-              location: details?.geometry?.location,
-              googlePlaceId: details?.place_id,
+              title: data.name,
+              subtitle: data.display_name,
+              location: { lat: Number(data.lat), lng: Number(data.lon) },
             })
-          }
-          onFail={(error) => console.error(error)}
-          enablePoweredByContainer={false}
-          isRowScrollable={false}
-          fetchDetails={true}
-          keepResultsAfterBlur={true}
+          }}
           styles={{
             textInputContainer: isFocus ? [$locations, $active] : $locations,
             textInput: {
@@ -215,7 +199,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             placeholderTextColor: colors.palette.neutral450,
             onFocus: () => setIsFocus(true),
             onBlur: () => setIsFocus(false),
-            onChangeText: (text) => setTextValue(text),
+            onChangeText: (text: string) => setTextValue(text),
           }}
           renderRow={({ description }) => {
             return (
@@ -227,22 +211,17 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
               />
             )
           }}
-          renderLeftButton={() => (
-            <Icon
-              icon="search"
-              size={28}
-              color={colors.palette.neutral450}
-              containerStyle={$dropdownLeftAccessory}
-            />
+          renderLeftAccessory={({ style }) => (
+            <Icon icon="search" size={28} color={colors.palette.neutral450} style={style} />
           )}
-          renderRightButton={() =>
+          renderRightAccessory={({ style }) =>
             isFocus &&
             textValue && (
               <Icon
                 icon="xCircle"
                 size={28}
                 color={colors.palette.neutral450}
-                containerStyle={$dropdownRightAccessory}
+                style={style}
                 onPress={handleClear}
               />
             )

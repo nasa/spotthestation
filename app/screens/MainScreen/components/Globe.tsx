@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ViewStyle } from "react-native"
+import { ActivityIndicator, StyleSheet, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
 import {
@@ -61,6 +61,7 @@ export function Globe({
   const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
 
   const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
+  const [isReady, setIsReady] = useState(false)
   const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
   const pastRef = useRef<Line>(null)
@@ -69,16 +70,30 @@ export function Globe({
   const globeRef = useRef<Mesh>(null)
   const deadRef = useRef<boolean>(false)
   const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
+  const [issMarkerTexture, setIssMarkerTexture] = useState<Texture>(null)
+  const [markerTexture, setMarkerTexture] = useState<Texture>(null)
 
   useEffect(() => {
-    async function updateMarker() {
-      if (!issCoords3D || !sceneRef.current) {
+    copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
+      .then((uri) => loadTextureAsync({ asset: uri }))
+      .then(setIssMarkerTexture)
+      .catch((e) => console.log(e))
+
+    copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
+      .then((uri) => loadTextureAsync({ asset: uri }))
+      .then(setMarkerTexture)
+      .catch((e) => console.log(e))
+  }, [])
+
+  useEffect(() => {
+    function updateMarker() {
+      if (!issCoords3D || !sceneRef.current || !issMarkerTexture) {
         if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
         return
       }
 
       if (!issMarkerRef.current) {
-        issMarkerRef.current = await createISSMarker(issCoords3D)
+        issMarkerRef.current = createISSMarker(issMarkerTexture, issCoords3D)
       } else {
         issMarkerRef.current.position.set(...issCoords3D)
       }
@@ -88,18 +103,18 @@ export function Globe({
         sceneRef.current?.add(issMarkerRef.current)
     }
 
-    updateMarker().catch(() => null)
-  }, [issCoords3D, sceneRef.current])
+    updateMarker()
+  }, [issMarkerTexture, issCoords3D, sceneRef.current])
 
   useEffect(() => {
-    async function updateMarker() {
-      if (!marker || !sceneRef.current) {
+    function updateMarker() {
+      if (!marker || !sceneRef.current || !markerTexture) {
         if (pointRef.current) sceneRef.current.remove(pointRef.current)
         return
       }
 
       if (!pointRef.current) {
-        pointRef.current = await createMarker()
+        pointRef.current = createMarker(markerTexture)
       } else {
         const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
         pointRef.current.position.set(x, y, z)
@@ -110,8 +125,8 @@ export function Globe({
         sceneRef.current?.add(pointRef.current)
     }
 
-    updateMarker().catch(() => null)
-  }, [marker, sceneRef.current])
+    updateMarker()
+  }, [markerTexture, marker, sceneRef.current])
 
   const updateCurveGeometry = useCallback(() => {
     if (!curve || !sceneRef.current) {
@@ -194,12 +209,8 @@ export function Globe({
     }
   }, [])
 
-  const createMarker = async () => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
+  const createMarker = (texture: Texture) => {
     const mesh = new Sprite()
-    const texture: Texture = await loadTextureAsync({
-      asset: uri,
-    })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
@@ -217,12 +228,8 @@ export function Globe({
     return mesh
   }
 
-  const createISSMarker = async (position: [number, number, number] = [0, 0, 0]) => {
-    const uri = await copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
+  const createISSMarker = (texture: Texture, position: [number, number, number] = [0, 0, 0]) => {
     const mesh = new Sprite()
-    const texture: Texture = await loadTextureAsync({
-      asset: uri,
-    })
     texture.needsUpdate = true
     mesh.material = new SpriteMaterial({
       map: texture,
@@ -260,28 +267,6 @@ export function Globe({
   }
 
   const createOrbit = () => {
-    // const pastCurve = new CatmullRomCurve3(
-    //   pastIssPathCoords.map((coords) => {
-    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-    //   }),
-    // )
-    //
-    // const futureCurve = new CatmullRomCurve3(
-    //   futureIssPathCoords.map((coords) => {
-    //     return new Vector3(...coordinatesToPosition(coords, GLOBE_RADIUS + 20))
-    //   }),
-    // )
-    //
-    // const points = curve.getPoints(100)
-    // const [issX, _, issZ] = coordinatesToPosition(issMarkerPosition, GLOBE_RADIUS + 20)
-    // const pastPoints = points
-    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) >= 0)
-    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
-    //
-    // const futurePoints = points
-    //   .filter((pt) => getCrossProduct([pt.x, pt.z], [issX, issZ]) < 0)
-    //   .sort((a, b) => dstSqr([a.x, a.z], [issX, issZ]) - dstSqr([b.x, b.z], [issX, issZ]))
-
     const pastLine = new Line()
     pastLine.material = new LineBasicMaterial({ color: 0x00ff00, linewidth: 6 })
     const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
@@ -339,6 +324,13 @@ export function Globe({
     checkMarkerVisibility()
   }, [globeRef.current, pointRef.current, camera, marker])
 
+  useEffect(() => {
+    if (!camera || !defaultCameraPosition) return
+    const cameraPosition = coordinatesToPosition(defaultCameraPosition, 850)
+    camera.position.set(...cameraPosition)
+    camera.lookAt(new Vector3(0, 0, 0))
+  }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1], camera])
+
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
     sceneRef.current = scene
@@ -377,6 +369,7 @@ export function Globe({
     const render = () => {
       if (deadRef.current) return
 
+      setIsReady(true)
       requestAnimationFrame(render)
       update()
       renderer.render(scene, camera)
@@ -390,6 +383,7 @@ export function Globe({
     <>
       <ControlsView style={$pan} camera={camera} onPositionChange={handleCameraChange}>
         <GLView style={$container} onContextCreate={contextRenderer} key="d" />
+        {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}
       </ControlsView>
     </>
   )

@@ -101,6 +101,8 @@ const en = {
       message: "Station data is loading… This may take a moment to complete.",
       trajectoryError:
         "The Station trajectory data is currently unavailable due to server maintenance. Please check back again later.",
+      noNetwork:
+        "The Station trajectory data is currently unavailable due to no connection. Please check back again later.",
     },
     header: {
       firstTimeHead: "NEXT SIGHTING(S) LIST",
@@ -124,6 +126,7 @@ const en = {
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
       aboveHorizon: "Above the horizon",
+      maxHeight: "Max height of",
       today: "Today",
       tomorrow: "Tomorrow",
       appears: "Appears",
@@ -203,6 +206,10 @@ const en = {
       orbitsPerDay: "Orbits/Day",
       dimensionsValue: "109m wide x 73m long x 14m tall",
     },
+    arNotSupported: "AR is not supported on this device",
+    noOrientationSensor: "Orientation sensor is not available",
+    noMagnetometerSensor: "Magnetometer is not available",
+    screenshotError: "Unable to capture screenshot",
   },
   settings: {
     header: "Settings",
@@ -211,6 +218,15 @@ const en = {
     termsAndConditions: "Terms and Conditions",
     contactUs: "Contact Us",
     language: "Language",
+    calibrateCompass: "Compass Calibration",
+    calibrateCompassData: {
+      instructions:
+        "To calibrate the compass, rotate your device several times in a figure 8 pattern.",
+      accuracy: "Sensor Accuracy:",
+      low: "Low",
+      medium: "Medium",
+      high: "High",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {
@@ -317,6 +333,8 @@ const en = {
       upcomingTip: "Turn off to stop receiving event notifications.",
       notifyMeBefore: "NOTIFY ME BEFORE",
       turnOffNotifications: "TURN OFF NOTIFICATIONS",
+      rangeInputPlaceholder: "Choose between 1 to 120 minutes",
+      customOption: "Custom",
       from: "From",
       until: "Until",
     },
@@ -347,10 +365,14 @@ const en = {
     searchPlaceholder: "Search articles, events, etc...",
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",
+    liveTitle: "High Definition Live Streaming Video of the Earth",
+    liveDescription:
+      "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view.",
     tabs: {
       news: "News",
       about: "About",
       details: "Details",
+      live: "Live Stream",
     },
   },
 }

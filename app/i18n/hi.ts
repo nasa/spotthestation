@@ -101,6 +101,8 @@ const hi = {
       message: "आईएसएस डेटा लोड हो रहा है ... इसे पूरा होने में एक क्षण लग सकता है।",
       trajectoryError:
         "आईएसएस प्रक्षेपवक्र डेटा वर्तमान में सर्वर रखरखाव के कारण अनुपलब्ध है।कृपया कुछ देर बाद फिर से जांच करें।",
+      noNetwork:
+        "स्टेशन का त्राजेक्टरी डेटा वर्तमान में किसी भी कनेक्शन के कारण उपलब्ध नहीं है।कृपया कुछ देर बाद फिर से जांच करें।",
     },
     header: {
       firstTimeHead: "अगली नजर(ओं) की सूची",
@@ -124,6 +126,7 @@ const hi = {
       selectMessage: "उन घटनाओं का चयन करें जिनके लिए आप अधिसूचित होना चाहते हैं।",
       switch: "इस स्थान पर सभी आगामी घटनाओं के लिए मुझे सूचित करें।",
       aboveHorizon: "क्षितिज के ऊपर",
+      maxHeight: "की अधिकतम ऊचाई",
       today: "आज",
       tomorrow: "आने वाला कल",
       appears: "प्रकट होता है",
@@ -201,6 +204,10 @@ const hi = {
       orbitsPerDay: "कक्षाओं/दिन",
       dimensionsValue: "109 मीटर चौड़ा x 73 मीटर लंबा x 14 मीटर ऊँचा",
     },
+    arNotSupported: "इस उपकरण पर AR का समर्थन नहीं है",
+    noOrientationSensor: "ओरिएंटेशन सेंसर उपलब्ध नहीं है",
+    noMagnetometerSensor: "मैग्नेटोमीटर उपलब्ध नहीं है",
+    screenshotError: "स्क्रीनशॉट कैप्चर करने में असमर्थ",
   },
   settings: {
     header: "समायोजन",
@@ -209,8 +216,16 @@ const hi = {
     termsAndConditions: "नियम और शर्तें",
     contactUs: "संपर्क करें",
     language: "भाषा",
+    calibrateCompass: "कंपास कैलिब्रेशन",
+    calibrateCompassData: {
+      instructions: "कंपास को कैलिब्रेट करने के लिए, अपने उपकरण को कई बार आठ के पैटर्न में घुमाएं।",
+      accuracy: "सेंसर शौध्रता:",
+      low: "कम",
+      medium: "मध्यम",
+      high: "उच्च",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "समायोजन",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -315,6 +330,8 @@ const hi = {
       upcomingTip: "घटना सूचना प्राप्त करने से रोकने के लिए बंद करें।",
       notifyMeBefore: "मुझे पहले सूचित करें",
       turnOffNotifications: "सूचनाएं बंद करो",
+      rangeInputPlaceholder: "1 से 120 मिनट के बीच चुनें",
+      customOption: "कस्टम",
       from: "से",
       until: "जब तक",
     },
@@ -345,10 +362,14 @@ const hi = {
     searchPlaceholder: "खोज लेख, घटनाएँ, आदि ...",
     suggestions: "सुझाव",
     searchResults: "खोज के परिणाम",
+    liveTitle: "पृथ्वी का उच्च परिभाषा लाइव स्ट्रीमिंग वीडियो",
+    liveDescription:
+      "वर्तमान में, भूमि का लाइव वीडियो एक आईएसएस पर लगी एक बाह्य HD कैमरे से स्ट्रीम हो रहा है। कैमरा धरती की ओर देख रहा है जिसमें कभी-कभी सोलर पैनल भी आता है।",
     tabs: {
       news: "समाचार",
       about: "के बारे में",
       details: "विवरण",
+      live: "लाइव स्ट्रीम",
     },
   },
 }

@@ -51,7 +51,8 @@ Before you can run this project, you will need to have the following software in
    MAPBOX_DOWNLOADS_TOKEN=YOUR_SECRET_MAPBOX_ACCESS_TOKEN
    ```
    Replace `YOUR_SECRET_MAPBOX_ACCESS_TOKEN` with your Mapbox token.
-7. Install project dependencies:
+7. Run `npx @sentry/wizard@latest -s -i reactNative` to set up Sentry. Feel free to reject updates and/or installation of pods.
+8. Install project dependencies:
     ```
     yarn install
     ```

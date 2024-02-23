@@ -100,6 +100,8 @@ const nl = {
       message: "Station-gegevens worden geladen... Dit kan even duren.",
       trajectoryError:
         "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege serveronderhoud. Kom later terug.",
+      noNetwork:
+        "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege geen verbinding. Kom later terug.",
     },
     header: {
       firstTimeHead: "VOLGENDE WAARNEMING(EN) LIJST",
@@ -123,6 +125,7 @@ const nl = {
       selectMessage: "Selecteer gebeurtenissen waarvan u op de hoogte gehouden wilt worden.",
       switch: "Houd mij op de hoogte van alle aankomende gebeurtenissen op deze locatie.",
       aboveHorizon: "Boven de horizon",
+      maxHeight: "Maximale hoogte van",
       today: "Vandaag",
       tomorrow: "Morgen",
       appears: "Komt naar voren",
@@ -203,6 +206,10 @@ const nl = {
       orbitsPerDay: "Banen/dag",
       dimensionsValue: "109m breed x 73m lang x 14m hoog",
     },
+    arNotSupported: "AR wordt niet ondersteund op dit apparaat",
+    noOrientationSensor: "Orientatiesensor niet beschikbaar",
+    noMagnetometerSensor: "Magnetometer is niet beschikbaar",
+    screenshotError: "Kan geen schermafbeelding maken",
   },
   settings: {
     header: "Instellingen",
@@ -211,8 +218,17 @@ const nl = {
     termsAndConditions: "Voorwaarden",
     contactUs: "Neem contact met ons op",
     language: "Taal",
+    calibrateCompass: "Kalibreer de kompas",
+    calibrateCompassData: {
+      instructions:
+        "Om de kompas te kalibreren, draai uw apparaat meerdere keren in een figuur 8-patroon.",
+      accuracy: "Sensornauwkeurigheid:",
+      low: "Laag",
+      medium: "Gemiddeld",
+      high: "Hoog",
+    },
     termsAndConditionsData: {
-      backButton: "Settings",
+      backButton: "Instellingen",
       ios: {
         title: "LICENSED APPLICATION USAGE AGREEMENT",
         intro1:
@@ -317,6 +333,8 @@ const nl = {
       upcomingTip: "Schakel uit om geen gebeurtenismeldingen meer te ontvangen.",
       notifyMeBefore: "HERINNER MIJ VAN TEVOREN",
       turnOffNotifications: "SCHAKEL MELDINGEN UIT",
+      rangeInputPlaceholder: "Kies tussen 1 tot 120 minuten",
+      customOption: "Aangepast",
       from: "Van",
       until: "Tot",
     },
@@ -347,10 +365,14 @@ const nl = {
     searchPlaceholder: "Zoek naar artikelen, gebeurtenissen, etc...",
     suggestions: "SUGGESTIES",
     searchResults: "Zoekresultaten",
+    liveTitle: "High Definition Live Streaming Video van de Aarde",
+    liveDescription:
+      "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert.",
     tabs: {
       news: "Nieuws",
       about: "Over ons",
       details: "Details",
+      live: "Live Stream",
     },
   },
 }

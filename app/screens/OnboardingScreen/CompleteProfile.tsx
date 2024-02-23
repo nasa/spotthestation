@@ -20,7 +20,7 @@ import { LocationType } from "../../services/api"
 export const CompleteProfile = observer(function CompleteProfile() {
   const { $container, $contentContainer, $back, $step } = useStyles(styles)
   const navigation = useNavigation()
-  const { setCurrentLocation, setInitLoading } = useStores()
+  const { setCurrentLocation, currentLocation, setInitLoading } = useStores()
 
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
@@ -64,11 +64,16 @@ export const CompleteProfile = observer(function CompleteProfile() {
       )
   }
 
-  const handleLocationChange = async (location: LocationType) => {
+  const handleLocationChange = (location: LocationType) => {
+    const isSameLocation =
+      currentLocation &&
+      location?.location.lat === currentLocation?.location.lat &&
+      location?.location.lng === currentLocation?.location.lng
+    if (isSameLocation) return
+
     setLocation(location)
     setInitLoading(true)
     setCurrentLocation(location, true).catch((e) => console.log(e))
-    await storage.save("currentLocation", location)
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {

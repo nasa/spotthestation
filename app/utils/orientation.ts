@@ -1,10 +1,18 @@
-import { orientation, SensorTypes, setUpdateIntervalForType } from "react-native-sensors"
+import {
+  orientation,
+  magnetometer,
+  SensorTypes,
+  setUpdateIntervalForType,
+  SensorAccuracy,
+} from "react-native-sensors"
+import { isAvailable as isSensorAvailable } from "react-native-sensors/src/rnsensors"
 import { Platform } from "react-native"
 import { Subscription } from "rxjs"
 import { Quaternion, Vector3 } from "three"
 import geomagnetism from "geomagnetism"
 
 type WatcherFunc = (rotation: Quaternion) => void
+type AccuracyWatcherFunc = (accuracy: SensorAccuracy) => void
 type Watcher = {
   func: WatcherFunc
   declination: number
@@ -12,8 +20,6 @@ type Watcher = {
 
 const watchers: Watcher[] = []
 let subscription: Subscription = null
-
-setUpdateIntervalForType(SensorTypes.orientation, 50)
 
 const rotateX = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2)
 const rotateY = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI / 2)
@@ -23,6 +29,7 @@ function addWatcher(watcher: Watcher) {
   watchers.push(watcher)
 
   if (wasEmpty) {
+    setUpdateIntervalForType(SensorTypes.orientation, 50)
     subscription = orientation.subscribe(({ qx, qy, qz, qw }) => {
       const sourceRot = new Quaternion(qx, qy, qz, qw)
 
@@ -61,6 +68,22 @@ function removeWatcher(watcher: Watcher) {
 
 const declinationCache = {}
 
+export function isOrientationAvailable(): Promise<boolean> {
+  const fn = isSensorAvailable as (sensor: string) => Promise<any>
+  return fn("orientation").then(
+    () => true,
+    () => false,
+  )
+}
+
+export function isMagnetometerAvailable(): Promise<boolean> {
+  const fn = isSensorAvailable as (sensor: string) => Promise<any>
+  return fn("magnetometer").then(
+    () => true,
+    () => false,
+  )
+}
+
 export default function watchOrientation(func: WatcherFunc, location: [number, number]) {
   if (!declinationCache[location.toString()]) {
     const info = geomagnetism.model().point(location)
@@ -71,4 +94,35 @@ export default function watchOrientation(func: WatcherFunc, location: [number, n
   const watcher = { func, declination: declinationCache[location.toString()] }
   addWatcher(watcher)
   return () => removeWatcher(watcher)
+}
+
+export function watchCalibrationState(func: AccuracyWatcherFunc) {
+  let subscription: Subscription
+  let lastAccuracy: SensorAccuracy
+  let repeat = 0
+
+  const handler = ({ accuracy }: { accuracy: SensorAccuracy }) => {
+    if (lastAccuracy === accuracy) {
+      ++repeat
+    } else {
+      lastAccuracy = accuracy
+      repeat = 0
+    }
+
+    if (repeat === 3) {
+      func(lastAccuracy)
+    }
+  }
+
+  if (Platform.OS === "android") {
+    setUpdateIntervalForType(SensorTypes.magnetometer, 50)
+    subscription = magnetometer.subscribe(handler)
+  } else {
+    setUpdateIntervalForType(SensorTypes.orientation, 50)
+    subscription = orientation.subscribe(handler)
+  }
+
+  return () => {
+    subscription?.unsubscribe()
+  }
 }

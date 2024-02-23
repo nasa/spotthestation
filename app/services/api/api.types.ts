@@ -40,9 +40,10 @@ export interface LocationType {
   }
   sightings?: ISSSighting[]
   lastSightingOrbitPointAt?: string
+  lastUpdatedAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
-  googlePlaceId?: string
+  timezone?: string
 }
 
 export interface RawISSDataResponse {
@@ -53,6 +54,7 @@ export interface RawISSDataResponse {
 export interface ISSDataResponse {
   ok: boolean
   data: { points: SatData[]; shadowIntervals: ShadowInterval[] } | string
+  kind?: string
 }
 
 export interface FeedResponse {
@@ -73,4 +75,22 @@ export interface ApiConfig {
    * Milliseconds before we timeout the request.
    */
   timeout: number
+}
+
+export interface OSMSearchResult {
+  display_name: string
+  place_id: number
+  name: string
+  lat: string
+  lon: string
+  address: Record<string, string>
+  addresstype: string
+}
+
+export interface PlaceDetails {
+  display_name: string
+  name: string
+  lat?: string
+  lon?: string
+  google_place_id?: string
 }
