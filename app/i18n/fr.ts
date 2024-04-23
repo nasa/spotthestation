@@ -29,6 +29,9 @@ const fr = {
     buttonNeutral: "Demandez moi plus tard",
     buttonNegative: "Annuler",
     buttonPositive: "D'accord",
+    alarmPermissionTitle: "Permission requise",
+    alarmPermissionMessage:
+      "Veuillez accorder l'autorisation d'alarmes et de rappels à l'écran suivant afin de recevoir des notifications sur les observations à venir.",
   },
   thanksModal: {
     body: "Merci de nous contacter. Nous avons bien reçu votre message et traiterons votre demande. Veuillez noter que cette application ne collecte pas de données utilisateur, nous ne pouvons donc pas répondre à tous les messages individuellement.",

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return */
 import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add } from "date-fns"
@@ -282,6 +282,36 @@ const RootStoreActions = (self) => ({
 
     notifications.setNotifications(notifyFor).catch(console.error)
   },
+
+  disableAllNotifications: flow(function* updateLocationAddresses() {
+    yield storage.save("upcoming", false)
+    yield self.setCurrentLocation(
+      {
+        ...self.currentLocation,
+        sightings: self.currentLocation.sightings.map((s) => ({ ...s, notify: false })),
+      },
+      true,
+    )
+
+    if (self.selectedLocation) {
+      yield self
+        .setSelectedLocation(
+          {
+            ...self.selectedLocation,
+            sightings: self.selectedLocation.sightings.map((s) => ({ ...s, notify: false })),
+          },
+          true,
+        )
+        .catch((e) => console.log(e))
+    }
+
+    self.setSavedLocations(
+      self.savedLocations.map((item) => ({
+        ...item,
+        sightings: item.sightings.map((s) => ({ ...s, notify: false })),
+      })),
+    )
+  }),
 
   setNewSavedLocation: flow(function* setNewSavedLocation(value: LocationType) {
     const valueCopy: LocationType = JSON.parse(JSON.stringify(value))

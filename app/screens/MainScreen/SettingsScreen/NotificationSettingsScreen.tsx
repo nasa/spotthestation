@@ -16,6 +16,7 @@ import { Sightings } from "../HomeScreen/Sightings"
 import { useStores } from "../../../models"
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { CustomDropdown } from "../components/CustomDropdown"
+import { ensureExactAlarmPermissions } from "../../../utils/notifications"
 
 export const NotificationSettingsScreen = observer(function NotificationSettingsScreen() {
   const {
@@ -107,7 +108,10 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     loadSettings().catch(console.error)
   }, [])
 
-  const handleToggleNotifications = useCallback(() => {
+  const handleToggleNotifications = useCallback(async () => {
+    const permitted = await ensureExactAlarmPermissions()
+    if (!permitted) return
+
     setCurrentLocation(
       {
         ...currentLocation,

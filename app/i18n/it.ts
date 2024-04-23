@@ -28,6 +28,9 @@ const it = {
     buttonNeutral: "Chiedimelo più tardi",
     buttonNegative: "Annulla",
     buttonPositive: "OK",
+    alarmPermissionTitle: "Autorizzazione richiesta",
+    alarmPermissionMessage:
+      "Si prega di concedere l'autorizzazione agli allarmi e ai promemoria nella prossima schermata per ricevere notifiche sugli avvistamenti imminenti.",
   },
   thanksModal: {
     body: "Grazie per averci contattato. Abbiamo ricevuto il tuo messaggio ed elaboreremo la tua richiesta. Si prega di notare che questa applicazione non raccoglie i dati dell'utente, quindi non possiamo rispondere a tutti i messaggi individualmente.",

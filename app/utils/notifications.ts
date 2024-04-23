@@ -1,5 +1,10 @@
-import { PermissionsAndroid, Platform } from "react-native"
-import notifee, { TimestampTrigger, TriggerType, AndroidImportance } from "@notifee/react-native"
+import { Alert, PermissionsAndroid, Platform } from "react-native"
+import notifee, {
+  TimestampTrigger,
+  TriggerType,
+  AndroidImportance,
+  AndroidNotificationSetting,
+} from "@notifee/react-native"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
 import { isDateBetweenHours } from "./formatDate"
@@ -35,7 +40,44 @@ export async function hasInitialNotification() {
   return Boolean(await notifee.getInitialNotification())
 }
 
+export async function hasExactAlarmPermissions(): Promise<boolean | null> {
+  const settings = await notifee.getNotificationSettings()
+  return settings.android.alarm === AndroidNotificationSetting.ENABLED
+}
+
+export async function ensureExactAlarmPermissions(): Promise<boolean | null> {
+  if (Platform.OS !== "android") return true
+  if (await hasExactAlarmPermissions()) {
+    return true
+  } else {
+    return new Promise((resolve) => {
+      Alert.alert(
+        translate("permissionsAndroid.alarmPermissionTitle"),
+        translate("permissionsAndroid.alarmPermissionMessage"),
+        [
+          {
+            text: translate("permissionsAndroid.buttonPositive"),
+            onPress: async () => {
+              await notifee.openAlarmPermissionSettings()
+              resolve(null)
+            },
+          },
+          {
+            text: translate("permissionsAndroid.buttonNegative"),
+            onPress: () => {
+              resolve(false)
+            },
+          },
+        ],
+        { cancelable: false },
+      )
+    })
+  }
+}
+
 export async function setNotifications(locations: LocationType[]) {
+  if (!(await hasExactAlarmPermissions())) return
+
   const start = new Date((await storage.load("muteFrom")) as string)
   const end = new Date((await storage.load("muteUntil")) as string)
   const privacy = await storage.load("privacy")

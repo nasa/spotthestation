@@ -4,6 +4,7 @@ import mas from "@react-native-async-storage/async-storage/jest/async-storage-mo
 import i18n from "i18n-js"
 import React from "react"
 import mockFile from "./mockFile"
+import { AndroidNotificationSetting } from "@notifee/react-native"
 
 (global as any).ReanimatedDataMock = {
   now: () => 0,
@@ -97,7 +98,9 @@ jest.mock("@notifee/react-native", () => ({
   requestPermission: jest.fn(),
   cancelTriggerNotifications: jest.fn(),
   createTriggerNotification: jest.fn(),
+  getNotificationSettings: jest.fn().mockResolvedValue({ android: { alarm: 1 }}),
   TriggerType: { TIMESTAMP: 0 },
+  AndroidNotificationSetting: { ENABLED: 1 }
 }))
 
 jest.mock("react-native-safe-area-context", () => ({

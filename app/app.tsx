@@ -29,6 +29,8 @@ import i18n from "i18n-js"
 import { AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import * as notifications from "./utils/notifications"
+import { ensureExactAlarmPermissions, hasExactAlarmPermissions } from "./utils/notifications"
+import { LocationType } from "./services/api"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -120,23 +122,49 @@ function App(props: AppProps) {
   }, [])
 
   useEffect(() => {
-    if (!rootStore || Platform.OS !== "ios") return undefined
+    if (!rehydrated || !rootStore) return undefined
 
-    rootStore.setNotifications()
+    const handler = async () => {
+      const locations: LocationType[] = [...rootStore.savedLocations, rootStore.currentLocation]
+
+      const hasNotifications = locations.some((location: LocationType) => {
+        return (location?.sightings || []).some(
+          (sighting) => sighting.notify && Date.now() <= new Date(sighting.date).getTime(),
+        )
+      })
+
+      if (hasNotifications && Platform.OS === "android") {
+        const fromAlarmPermissionSettings = await storage.load("fromAlarmPermissionSettings")
+        if (fromAlarmPermissionSettings) {
+          const permitted = await hasExactAlarmPermissions()
+          if (!permitted) await rootStore.disableAllNotifications()
+          await storage.remove("fromAlarmPermissionSettings")
+        } else {
+          const permitted = await ensureExactAlarmPermissions()
+          if (permitted === null) await storage.save("fromAlarmPermissionSettings", true)
+          if (permitted === false) await rootStore.disableAllNotifications()
+        }
+      }
+
+      rootStore.setNotifications()
+    }
+
+    handler().catch(console.error)
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       if (
         nextAppState === "active" &&
         prevAppState.current &&
         prevAppState.current !== nextAppState
       )
-        rootStore.setNotifications()
+        handler().catch(console.error)
       prevAppState.current = nextAppState
     })
 
     return () => {
       subscription.remove()
     }
-  }, [rootStore])
+  }, [rootStore, rehydrated])
+
   //
   // useEffect(() => {
   //   // eslint-disable-next-line @typescript-eslint/no-empty-function

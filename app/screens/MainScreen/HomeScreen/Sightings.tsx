@@ -1,5 +1,5 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 import Modal from "react-native-modal"
 import { Button, Icon, Text, IconTypes, Toggle } from "../../../components"
@@ -17,6 +17,7 @@ import { translate } from "../../../i18n"
 import { degToCompass } from "../../../utils/astro"
 import { SightingsFilterDropdown } from "./SightingsFilterDropdown"
 import i18n from "i18n-js"
+import { ensureExactAlarmPermissions } from "../../../utils/notifications"
 
 export interface SightingsProps {
   sightings: ISSSighting[]
@@ -206,6 +207,15 @@ export function Sightings({
     await storage.save("sightingsCoachVisible", true)
   }
 
+  const handleToggle = useCallback(
+    async (date: string) => {
+      const permitted = await ensureExactAlarmPermissions()
+      if (!permitted) return
+      onToggle(date)
+    },
+    [sightings, onToggle],
+  )
+
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
       <Icon
@@ -243,7 +253,9 @@ export function Sightings({
           accessibilityHint="toggle notifications"
           variant="switch"
           value={isNotifyAll}
-          onValueChange={() => {
+          onValueChange={async () => {
+            const permitted = await ensureExactAlarmPermissions()
+            if (!permitted) return
             onToggleAll(!isNotifyAll)
           }}
         />
@@ -320,7 +332,7 @@ export function Sightings({
                     `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,
                   )}`}
                   withSwitch
-                  onToggle={onToggle}
+                  onToggle={handleToggle}
                 />
               ))
             )}

@@ -17,6 +17,7 @@ import { translate } from "../../i18n"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 import { LocationType } from "../../services/api"
 import { skipOnboarding } from "../../navigators"
+import { ensureExactAlarmPermissions } from "../../utils/notifications"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const { $container, $contentContainer, $back, $step } = useStyles(styles)
@@ -79,6 +80,10 @@ export const CompleteProfile = observer(function CompleteProfile() {
   }
 
   const handleNotificationsChange = async (notifications: boolean) => {
+    if (notifications) {
+      const permitted = await ensureExactAlarmPermissions()
+      if (!permitted) return
+    }
     setNotifications(notifications)
     await storage.save("upcoming", notifications)
   }

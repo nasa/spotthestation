@@ -28,6 +28,9 @@ const ja = {
     buttonNeutral: "後ほど質問してください",
     buttonNegative: "キャンセル",
     buttonPositive: "OK",
+    alarmPermissionTitle: "許可が必要です",
+    alarmPermissionMessage:
+      "次の画面でアラームとリマインダーの許可を付与してください。これにより、今後の観測に関する通知を受け取ることができます。",
   },
   thanksModal: {
     body: "ご連絡いただきありがとうございます。 メッセージを受信し、リクエストを処理させていただきます。 このアプリケーションはユーザーデータを収集しないため、すべてのメッセージに個別に返信することはできないことにご注意ください。",

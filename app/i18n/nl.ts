@@ -28,6 +28,9 @@ const nl = {
     buttonNeutral: "Vraag het me later",
     buttonNegative: "Annuleren",
     buttonPositive: "OK",
+    alarmPermissionTitle: "Toestemming vereist",
+    alarmPermissionMessage:
+      "Verleen alsjeblieft toestemming voor wekkers en herinneringen op het volgende scherm om meldingen te ontvangen over aankomende waarnemingen.",
   },
   thanksModal: {
     body: "Bedankt dat u contact met ons opneemt. We hebben uw bericht ontvangen en zullen uw verzoek verwerken. Houd er rekening mee dat deze applicatie geen gebruikersgegevens verzamelt, dus we kunnen niet op alle berichten afzonderlijk reageren.",

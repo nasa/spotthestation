@@ -28,6 +28,9 @@ const es = {
     buttonNeutral: "Pregúntame después", // <-- "Preguntar después"
     buttonNegative: "Cancelar",
     buttonPositive: "De acuerdo",
+    alarmPermissionTitle: "Permiso requerido",
+    alarmPermissionMessage:
+      "Por favor, otorgue permiso para alarmas y recordatorios en la próxima pantalla para recibir notificaciones sobre avistamientos próximos.",
   },
   thanksModal: {
     body: "Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y procesaremos tu solicitud. Ten en cuenta que esta aplicación no recopila datos de los usarios, por lo que no podemos responder a todos los mensajes individualmente.",

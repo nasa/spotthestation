@@ -24,6 +24,7 @@ import MyModal from "../HomeScreen/MyModal"
 import { InitLoader } from "../HomeScreen/InitLoader"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { ensureExactAlarmPermissions } from "../../../utils/notifications"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -110,7 +111,10 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
   }, [currentLocation])
 
   const handleToggle = useCallback(
-    (location: LocationType, type: string) => {
+    async (location: LocationType, type: string) => {
+      const permitted = await ensureExactAlarmPermissions()
+      if (!permitted) return
+
       const { title } = location
       const isNotifyAll = location.sightings.every((item) => item.notify)
       if (type === "saved") {

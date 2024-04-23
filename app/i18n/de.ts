@@ -28,6 +28,9 @@ const de = {
     buttonNeutral: "Fragen Sie mich später",
     buttonNegative: "Abbrechen",
     buttonPositive: "OK",
+    alarmPermissionTitle: "Berechtigung erforderlich",
+    alarmPermissionMessage:
+      "Bitte erteilen Sie auf dem nächsten Bildschirm die Berechtigung für Wecker und Erinnerungen, um Benachrichtigungen über bevorstehende Sichtungen zu erhalten.",
   },
   thanksModal: {
     body: "Danke, dass Sie uns kontaktiert haben. Wir haben Ihre Nachricht erhalten und werden Ihre Anfrage bearbeiten. Bitte beachten Sie, dass diese Anwendung keine Benutzerdaten sammelt und wir daher nicht auf alle Nachrichten einzeln antworten können.",
