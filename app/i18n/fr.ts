@@ -248,6 +248,17 @@ const fr = {
       videoData:
         "Ce bouton vous permet d'enregistrer une vidéo de la vue AR pour capturer les moments où vous repérez la station.",
     },
+    safetyReminder: {
+      title: "Attention : Rappel de sécurité",
+      subtitle1: "Supervision parentale recommandée :",
+      body1:
+        "Veuillez vous rappeler de l'importance de la supervision parentale lors de l'utilisation de l'écran AR dans cette application. Les enfants doivent utiliser cette fonctionnalité sous la direction d'un adulte responsable pour garantir une expérience sûre et appropriée.",
+      subtitle2: "Restez attentif à votre environnement :",
+      body2:
+        "Pendant que vous profitez de l'expérience de réalité augmentée, restez toujours conscient de votre environnement physique. Faites attention aux obstacles, au terrain irrégulier ou à tout autre danger pouvant présenter un risque pour votre sécurité. Votre sécurité est primordiale, alors veuillez faire preuve de prudence et de vigilance en tout temps.",
+      home: "Retour à l'accueil",
+      ok: "J'ai compris",
+    },
   },
   settings: {
     header: "Paramètres",

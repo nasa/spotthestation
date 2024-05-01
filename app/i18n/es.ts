@@ -246,6 +246,17 @@ const es = {
       videoData:
         "Este botón te permite grabar un video de la vista de RA para capturar los momentos en que localizas la estación.",
     },
+    safetyReminder: {
+      title: "Atención: Recordatorio de seguridad",
+      subtitle1: "Se recomienda supervisión parental:",
+      body1:
+        "Por favor, recuerde la importancia de la supervisión parental al interactuar con la pantalla de RA en esta aplicación. Los niños deben usar esta función bajo la supervisión de un adulto responsable para garantizar una experiencia segura y apropiada.",
+      subtitle2: "Permanezca alerta a su entorno:",
+      body2:
+        "Mientras disfruta de la experiencia de realidad aumentada, manténgase siempre consciente de su entorno físico. Esté atento a obstáculos, terrenos irregulares u otras peligros que puedan representar un riesgo para su seguridad. Su seguridad es primordial, así que por favor, ejerza precaución y atención en todo momento.",
+      home: "Volver a Inicio",
+      ok: "Entendido",
+    },
   },
   settings: {
     header: "Ajustes",

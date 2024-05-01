@@ -242,6 +242,17 @@ const sv = {
       videoData:
         "Denna knapp låter dig spela in en video av AR-vyn för att fånga de ögonblick när du upptäcker stationen.",
     },
+    safetyReminder: {
+      title: "Varning: Säkerhetspåminnelse",
+      subtitle1: "Föräldraskapets övervakning rekommenderas:",
+      body1:
+        "Kom ihåg vikten av föräldrars övervakning när du interagerar med AR-skärmen i den här appen. Barn bör använda den här funktionen under ledning av en ansvarig vuxen för att säkerställa en säker och lämplig upplevelse.",
+      subtitle2: "Var uppmärksam på din omgivning:",
+      body2:
+        "När du njuter av den förstärkta verklighetsupplevelsen, förbli alltid medveten om din fysiska omgivning. Var uppmärksam på hinder, ojämn terräng eller andra faror som kan utgöra en risk för din säkerhet. Din säkerhet är av högsta prioritet, så var vänlig och utöva försiktighet och uppmärksamhet vid alla tillfällen.",
+      home: "Tillbaka till startsidan",
+      ok: "Jag förstår",
+    },
   },
   settings: {
     header: "inställningar",

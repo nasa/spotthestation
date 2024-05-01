@@ -57,6 +57,7 @@ import { DetailsModal } from "./DetailsModal"
 import { useNavigation, useRoute } from "@react-navigation/native"
 import * as storage from "../../../utils/storage"
 import { TutorialItemsLayout, Tutorial, totalStages as totalTutorialStages } from "./Tutorial"
+import { SafetyReminder } from "./SafetyReminder"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -194,6 +195,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $popupModal,
     $infoModal,
     $infoModalLandscape,
+    $safetyModal,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
@@ -230,12 +232,25 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [tutorialItemsLayout, setTutorialItemsLayout] = useState<TutorialItemsLayout>({})
   const [isTutorialFullyVisible, setIsTutorialFullyVisible] = useState(false)
   const [arCoachCompleted, setArCoachCompleted] = useState<boolean | null>(null)
+  const [safetyAcknowledged, setSafetyAcknowledged] = useState<boolean | null>(null)
+  const safetyBackClicked = useRef(false)
 
   useEffect(() => {
     storage
       .load("arCoachCompleted")
       .then((completed) => setArCoachCompleted(Boolean(completed)))
       .catch(() => setArCoachCompleted(true))
+  }, [])
+
+  useEffect(() => {
+    if (Platform.OS !== "android") {
+      setSafetyAcknowledged(true)
+      return
+    }
+    storage
+      .load("safetyAcknowledged")
+      .then((ack) => setSafetyAcknowledged(Boolean(ack)))
+      .catch(() => setSafetyAcknowledged(true))
   }, [])
 
   const current = useMemo(
@@ -328,7 +343,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [handleCameraPermission])
 
   useEffect(() => {
-    if (!isSupported) return undefined
+    if (!isSupported || !safetyAcknowledged) return undefined
     const unsub = watchCalibrationState((accuracy) => {
       if (accuracy === 2) {
         setIsCalibrated(true)
@@ -339,7 +354,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     })
 
     return () => unsub()
-  }, [isSupported])
+  }, [isSupported, safetyAcknowledged])
 
   const handleCalibrationFinish = () => {
     requestCloseModal("calibration")
@@ -621,7 +636,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const bottomContainerStyle = { ...$bottomContainerStyleOverride }
   bottomContainerStyle.bottom = Number(bottomContainerStyle.bottom) + bottomInset
 
-  const isActive = isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated
+  const isActive =
+    isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated && safetyAcknowledged
 
   useEffect(() => {
     if (
@@ -640,10 +656,35 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
   }, [arCoachCompleted, isActive, route.params])
 
+  useEffect(() => {
+    if (isCameraAllowed && isSupported && safetyAcknowledged === false) {
+      requestOpenModal("safetyReminder")
+    }
+  }, [isCameraAllowed, isSupported, safetyAcknowledged])
+
   const handleSetCoachCompleted = async () => {
     requestCloseModal("arCoach")
     await storage.save("arCoachCompleted", true)
     setArCoachCompleted(true)
+  }
+
+  const handleSafetyReminderClose = async () => {
+    requestCloseModal("safetyReminder")
+    await storage.save("safetyAcknowledged", true)
+    setSafetyAcknowledged(true)
+  }
+
+  const handleSafetyReminderBack = () => {
+    safetyBackClicked.current = true
+    requestCloseModal("safetyReminder")
+  }
+
+  const handleSafetyReminderClosed = () => {
+    if (!safetyBackClicked.current) return
+
+    safetyBackClicked.current = false
+    toggleBottomTabs(true)
+    navigation.navigate("Home" as never)
   }
 
   const handleTutorialItemLayout = useCallback(
@@ -918,6 +959,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           <Tutorial itemsLayout={tutorialItemsLayout} onComplete={handleSetCoachCompleted} />
         )}
       </MyModal>
+
+      <MyModal
+        name="safetyReminder"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        onModalHide={handleSafetyReminderClosed}
+        style={[$modal, $safetyModal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <SafetyReminder onClose={handleSafetyReminderClose} onBack={handleSafetyReminderBack} />
+      </MyModal>
     </Screen>
   )
 })
@@ -986,6 +1038,11 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $popupModal: ViewStyle = { flex: 1, paddingHorizontal: 18, justifyContent: "flex-start" }
 
   const $calibrateModal: ViewStyle = {
+    justifyContent: "center",
+    marginHorizontal: scale(24),
+  }
+
+  const $safetyModal: ViewStyle = {
     justifyContent: "center",
     marginHorizontal: scale(24),
   }
@@ -1109,5 +1166,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $popupModal,
     $infoModal,
     $infoModalLandscape,
+    $safetyModal,
   }
 }

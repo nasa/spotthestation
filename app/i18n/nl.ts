@@ -245,6 +245,17 @@ const nl = {
       videoData:
         "Met deze knop kun je een video van de AR-weergave opnemen om de momenten vast te leggen waarop je de station spot.",
     },
+    safetyReminder: {
+      title: "Let op: Veiligheidsreminder",
+      subtitle1: "Ouderlijk toezicht geadviseerd:",
+      body1:
+        "Denk alsjeblieft aan het belang van ouderlijk toezicht bij het gebruik van het AR-scherm in deze app. Kinderen moeten deze functie onder begeleiding van een verantwoordelijke volwassene gebruiken om een veilige en passende ervaring te garanderen.",
+      subtitle2: "Blijf alert op je omgeving:",
+      body2:
+        "Terwijl je geniet van de augmented reality-ervaring, blijf altijd bewust van je fysieke omgeving. Let op obstakels, oneffen terrein of andere gevaren die een risico kunnen vormen voor je veiligheid. Je veiligheid staat voorop, dus wees alsjeblieft altijd voorzichtig en oplettend.",
+      home: "Terug naar start",
+      ok: "Ik begrijp het",
+    },
   },
   settings: {
     header: "Instellingen",

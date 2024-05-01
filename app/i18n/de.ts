@@ -247,6 +247,17 @@ const de = {
       videoData:
         "Mit dieser Schaltfläche können Sie ein Video der AR-Ansicht aufnehmen, um die Momente festzuhalten, in denen Sie die Station entdecken.",
     },
+    safetyReminder: {
+      title: "Achtung: Sicherheitshinweis",
+      subtitle1: "Elterliche Aufsicht empfohlen:",
+      body1:
+        "Bitte denken Sie daran, wie wichtig elterliche Aufsicht beim Umgang mit dem AR-Bildschirm in dieser App ist. Kinder sollten dieses Feature unter Anleitung eines verantwortungsbewussten Erwachsenen verwenden, um ein sicheres und angemessenes Erlebnis zu gewährleisten.",
+      subtitle2: "Bleiben Sie auf Ihre Umgebung aufmerksam:",
+      body2:
+        "Genießen Sie die Augmented-Reality-Erfahrung und bleiben Sie dabei immer auf Ihre physische Umgebung aufmerksam. Achten Sie auf Hindernisse, unebenes Gelände oder andere Gefahren, die Ihre Sicherheit gefährden könnten. Ihre Sicherheit hat oberste Priorität, daher bitte ich Sie, jederzeit Vorsicht und Achtsamkeit walten zu lassen.",
+      home: "Zurück zur Startseite",
+      ok: "Ich verstehe",
+    },
   },
   settings: {
     header: "Einstellungen",

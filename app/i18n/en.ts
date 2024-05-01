@@ -245,6 +245,17 @@ const en = {
       videoData:
         "This button allows you to record a video of the AR view to capture the moments that you spot the station.",
     },
+    safetyReminder: {
+      title: "Attention: Safety Reminder",
+      subtitle1: "Parental Supervision Advised:",
+      body1:
+        "Please remember the importance of parental supervision when engaging with AR screen in this app. Children should use this feature under the guidance of a responsible adult to ensure a safe and appropriate experience.",
+      subtitle2: "Stay Alert to Your Surroundings:",
+      body2:
+        "As you enjoy the augmented reality experience, always remain aware of your physical surroundings. Watch out for obstacles, uneven terrain, or other hazards that may pose a risk to your safety. Your safety is paramount, so please exercise caution and mindfulness at all times.",
+      home: "Back to Home",
+      ok: "I Understand",
+    },
   },
   settings: {
     header: "Settings",

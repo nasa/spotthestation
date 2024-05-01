@@ -1,17 +1,28 @@
 import Modal from "react-native-modal"
-import React from "react"
+import React, { ReactNode, useCallback } from "react"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../../models"
 
-function MyModal({ name, children, ...rest }) {
+export interface MyModalProps {
+  name: string
+  children: ReactNode
+  onModalHide?: () => void
+  [x: string]: any
+}
+
+function MyModal({ name, children, onModalHide = null, ...rest }: MyModalProps) {
   const { currentModal, closeModal } = useStores()
+  const handleCloseModal = useCallback(() => {
+    if (onModalHide) onModalHide()
+    closeModal()
+  }, [closeModal, onModalHide])
   return (
     <Modal
       {...rest}
       isVisible={Boolean(
         currentModal && currentModal.name === name && currentModal.state === "open",
       )}
-      onModalHide={closeModal}
+      onModalHide={handleCloseModal}
     >
       {children}
     </Modal>

@@ -4,7 +4,6 @@ import mas from "@react-native-async-storage/async-storage/jest/async-storage-mo
 import i18n from "i18n-js"
 import React from "react"
 import mockFile from "./mockFile"
-import { AndroidNotificationSetting } from "@notifee/react-native"
 
 (global as any).ReanimatedDataMock = {
   now: () => 0,
