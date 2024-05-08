@@ -651,7 +651,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     if (arCoachCompleted === true && isActive && route.params?.info) {
-      requestOpenModal("details")
+      setTimeout(() => {
+        requestOpenModal("details")
+      }, 500)
       navigation.setParams({ info: undefined } as never)
     }
   }, [arCoachCompleted, isActive, route.params])

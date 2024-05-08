@@ -1,5 +1,5 @@
 import Modal from "react-native-modal"
-import React, { ReactNode, useCallback } from "react"
+import React, { ReactNode, useCallback, useEffect } from "react"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../../models"
 
@@ -14,8 +14,13 @@ function MyModal({ name, children, onModalHide = null, ...rest }: MyModalProps) 
   const { currentModal, closeModal } = useStores()
   const handleCloseModal = useCallback(() => {
     if (onModalHide) onModalHide()
-    closeModal()
+    closeModal(name)
   }, [closeModal, onModalHide])
+
+  useEffect(() => {
+    return () => closeModal(name)
+  }, [name])
+
   return (
     <Modal
       {...rest}

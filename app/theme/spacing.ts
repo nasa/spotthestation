@@ -23,8 +23,8 @@ enum LanguageScaling {
 }
 
 export const scale = (size: number, isFontScale?: boolean) => {
-  const widthScale = SCREEN_WIDTH / BASE_WIDTH
-  const heightScale = SCREEN_HEIGHT / BASE_HEIGHT
+  const widthScale = Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) / BASE_WIDTH
+  const heightScale = Math.max(SCREEN_HEIGHT, SCREEN_WIDTH) / BASE_HEIGHT
   const scale = Math.min(widthScale, heightScale)
 
   const newSize = isFontScale ? size * scale * (LanguageScaling[i18n.locale] ?? 1) : size * scale

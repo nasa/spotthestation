@@ -46,12 +46,12 @@ const es = {
   notifications: {
     push: {
       title: "¡Avista la estación!",
-      subTitle: "La estación va a pasar por encima tuyo a las",
+      subTitle: "La estación va a pasar por encima de ti a las",
     },
     before: {
       titleOne: "¡Avista la estación en",
       titleTwo: "minutos!",
-      subTitleOne: "La estación va a pasar por encima tuyo en",
+      subTitleOne: "La estación va a pasar por encima de ti en",
       subTitleTwo: "minutos a las",
     },
   },

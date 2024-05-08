@@ -423,7 +423,8 @@ const RootStoreActions = (self) => ({
     }
   },
 
-  closeModal: () => {
+  closeModal: (name: string) => {
+    if (self.currentModal && self.currentModal.name !== name) return
     self.currentModal = null
     if (self.modalsQueue.length > 0) {
       self.currentModal = Modal.create({ name: self.modalsQueue[0], state: "open" })
