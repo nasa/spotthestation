@@ -142,6 +142,9 @@ const ja = {
       shorterThan2: "2分未満",
       longerThan2: "2分以上",
       empty: "{{start}} から {{end}} まで、この場所で ISS が目撃される可能性はありません。",
+      shareTitle: "ステーションは{{date}}に{{location}}の上空を通過しています",
+      shareLink:
+        "さらに探索し、拡張現実でステーションを追跡するには、アプリをダウンロードしてください",
       coach: {
         title: "アイコンの説明",
         moon: "ISSが地平線の上にある場合、選択した位置で夜間になります。",

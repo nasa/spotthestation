@@ -9,7 +9,7 @@ import { ListItem } from "../components/ListItem"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { addDays } from "date-fns"
 import { formatDate, formatDateWithTZ, getShortTZ } from "../../../utils/formatDate"
-import { ISSSighting } from "../../../services/api"
+import { ISSSighting, LocationType } from "../../../services/api"
 import { getCalendars } from "expo-localization"
 import * as storage from "../../../utils/storage"
 import { normalizeHeight } from "../../../utils/normalizeHeight"
@@ -18,8 +18,10 @@ import { degToCompass } from "../../../utils/astro"
 import { SightingsFilterDropdown } from "./SightingsFilterDropdown"
 import i18n from "i18n-js"
 import { ensureExactAlarmPermissions } from "../../../utils/notifications"
+import Share from "react-native-share"
 
 export interface SightingsProps {
+  location: LocationType
   sightings: ISSSighting[]
   isUS?: boolean
   isNotifyAll?: boolean
@@ -46,6 +48,7 @@ const stageIcons: { icon: IconTypes; color: string }[] = [
 
 export function Sightings({
   onClose,
+  location,
   sightings,
   onToggle,
   onToggleAll,
@@ -216,6 +219,42 @@ export function Sightings({
     [sightings, onToggle],
   )
 
+  const onShare = useCallback(
+    async (date: string) => {
+      const sighting = sightings.find((s) => s.date === date)
+      if (!sighting) return
+
+      const link = "https://example.com" // TODO
+      const subject = `${translate("homeScreen.selectSightings.shareTitle", {
+        location: location.title,
+        date: formatedDate(sighting.date),
+      })}`
+      const message = `${subject}!
+${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate(
+        "units.minute",
+      )}
+${translate("homeScreen.selectSightings.maxHeight")} ${sighting.maxHeight}°
+${translate("homeScreen.selectSightings.appears")}: ${sighting.minAltitude}° ${translate(
+        `homeScreen.selectSightings.compass.${degToCompass(sighting.minAzimuth)}`,
+      )}
+${translate("homeScreen.selectSightings.disappears")}: ${sighting.maxAltitude}° ${translate(
+        `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,
+      )}
+${translate("homeScreen.selectSightings.shareLink")}: ${link}
+`
+
+      const shareOptions = {
+        message,
+        subject,
+        failOnCancel: false,
+        type: undefined,
+      }
+
+      await Share.open(shareOptions)
+    },
+    [sightings, location],
+  )
+
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
       <Icon
@@ -333,6 +372,8 @@ export function Sightings({
                   )}`}
                   withSwitch
                   onToggle={handleToggle}
+                  withShare
+                  onShare={onShare}
                 />
               ))
             )}

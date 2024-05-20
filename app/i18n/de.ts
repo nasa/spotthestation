@@ -144,6 +144,9 @@ const de = {
       longerThan2: "2 Minuten und länger",
       empty:
         "Von {{start}} bis {{end}} gibt es für diesen Standort keine potenziellen Station-Sichtungen.",
+      shareTitle: "Die Station fliegt über {{location}} am {{date}} vorbei",
+      shareLink:
+        "Um mehr zu erkunden und die Station mittels Augmented Reality zu verfolgen, laden Sie die App herunter unter",
       coach: {
         title: "Symbole Beschreibung",
         moon: "Es wird Nacht am ausgewählten Ort sein, an dem sich die Station über dem Horizont befindet.",

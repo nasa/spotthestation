@@ -142,6 +142,9 @@ const nl = {
       longerThan2: "2 minuten en langer",
       empty:
         "Er zijn geen potentiële Station-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
+      shareTitle: "Het station vliegt boven {{location}} op {{date}}",
+      shareLink:
+        "Om meer te verkennen en het station via augmented reality te volgen, download de app op",
       coach: {
         title: "Beschrijving van pictogrammen",
         moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het Station boven de horizon is.",

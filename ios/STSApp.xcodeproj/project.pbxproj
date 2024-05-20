@@ -30,6 +30,8 @@
 		8435AF3F2A43260500F78BFE /* Config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */; };
 		8435AF412A43268100F78BFE /* Config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8435AF402A43268100F78BFE /* Config.release.xcconfig */; };
 		8473A6472A459D56007C1AE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */; };
+		84C25B392BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */; };
+		84C25B3A2BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */; };
 		84EACF482A9C95FD007D2E3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EACF4B2A9C95FD007D2E3B /* InfoPlist.strings */; };
 		84EACF492A9C95FD007D2E3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EACF4B2A9C95FD007D2E3B /* InfoPlist.strings */; };
 		B11695E39903CBBA008A4C3B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */; };
@@ -75,6 +77,10 @@
 		8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		8435AF402A43268100F78BFE /* Config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.release.xcconfig; sourceTree = "<group>"; };
 		8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84C25B352BFB61EA003DF755 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84C25B362BFB61F3003DF755 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		84C25B372BFB61FA003DF755 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		84EACF4A2A9C95FD007D2E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84EACF4C2A9C96D3007D2E3B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84EACF4D2A9C9D6D007D2E3B /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */,
 				84EACF562A9C9EFA007D2E3B /* Localization */,
 				8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */,
 				8435AF402A43268100F78BFE /* Config.release.xcconfig */,
@@ -380,6 +387,9 @@
 				ja,
 				nl,
 				sv,
+				pl,
+				"pt-BR",
+				tr,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
@@ -414,6 +424,7 @@
 				FCDD02A92976AB0F0094E655 /* SplashScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8435AF3F2A43260500F78BFE /* Config.debug.xcconfig in Resources */,
+				84C25B392BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */,
 				8473A6472A459D56007C1AE5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +439,7 @@
 				496783BA2A46665900FCC42E /* SplashScreen.storyboard in Resources */,
 				496783BB2A46665900FCC42E /* Images.xcassets in Resources */,
 				496783BC2A46665900FCC42E /* Config.debug.xcconfig in Resources */,
+				84C25B3A2BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */,
 				496783BD2A46665900FCC42E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +785,9 @@
 				84EACF532A9C9E90007D2E3B /* ja */,
 				84EACF542A9C9E9D007D2E3B /* nl */,
 				84EACF552A9C9EAA007D2E3B /* sv */,
+				84C25B352BFB61EA003DF755 /* pl */,
+				84C25B362BFB61F3003DF755 /* pt-BR */,
+				84C25B372BFB61FA003DF755 /* tr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

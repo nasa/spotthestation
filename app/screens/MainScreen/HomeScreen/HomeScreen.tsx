@@ -360,6 +360,7 @@ export const HomeScreen = observer(function HomeScreen() {
       >
         <Sightings
           onClose={() => requestCloseModal("sightings")}
+          location={current}
           sightings={current ? getFilteredSightings(current) : []}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}

@@ -389,6 +389,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
           style={$modal}
         >
           <Sightings
+            location={current}
             onClose={() => setIsSightings(!isSightings)}
             sightings={current ? getFilteredSightings(current) : []}
             timeOfDay={current?.filterTimeOfDay || ""}

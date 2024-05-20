@@ -145,6 +145,9 @@ const fr = {
       longerThan2: "2 minutes et plus",
       empty:
         "Il n'y a aucune observation potentielle de la Station pour cet emplacement de {{start}} à {{end}}.",
+      shareTitle: "La station passe au-dessus de {{location}} le {{date}}",
+      shareLink:
+        "Pour explorer plus et suivre la station en réalité augmentée, téléchargez l'application sur",
       coach: {
         title: "Description des icônes",
         moon: "Ce sera la nuit à la localisation sélectionnée lorsque la Station sera au-dessus de l'horizon.",

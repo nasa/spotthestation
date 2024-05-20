@@ -21,6 +21,7 @@ describe("Sightings", () => {
         onDurationChange={jest.fn()}
         onTimeOfDayChange={jest.fn()}
         onMaxHeightChange={jest.fn()}
+        location={{ title: "test", subtitle: "test", location: { lat: 0, lng: 0 } }}
         sightings={[
           {
             date: "2020-12-12T10:10:10",

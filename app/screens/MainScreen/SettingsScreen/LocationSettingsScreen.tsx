@@ -391,6 +391,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         style={$modal}
       >
         <Sightings
+          location={current}
           onClose={() => requestCloseModal("sightings")}
           sightings={current ? getFilteredSightings(current) : []}
           timeOfDay={current?.filterTimeOfDay || ""}

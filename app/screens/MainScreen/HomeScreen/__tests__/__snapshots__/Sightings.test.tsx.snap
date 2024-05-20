@@ -1015,7 +1015,7 @@ exports[`Sightings renders correctly 1`] = `
               style={
                 [
                   {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "borderBottomWidth": 2,
                     "borderColor": "#353739",
                     "flex": 1,
@@ -1211,51 +1211,48 @@ exports[`Sightings renders correctly 1`] = `
                 </Text>
               </View>
               <View
-                accessibilityHint="toggle location alerts"
-                accessibilityLabel="switch button"
-                accessibilityRole="switch"
-                accessibilityState={
-                  {
-                    "busy": undefined,
-                    "checked": true,
-                    "disabled": undefined,
-                    "expanded": undefined,
-                    "selected": undefined,
-                  }
-                }
-                accessibilityValue={
-                  {
-                    "max": undefined,
-                    "min": undefined,
-                    "now": undefined,
-                    "text": undefined,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "opacity": 1,
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
                   }
                 }
               >
                 <View
+                  accessibilityHint="toggle location alerts"
+                  accessibilityLabel="switch button"
+                  accessibilityRole="switch"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": true,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                      },
-                      undefined,
-                    ]
+                    {
+                      "opacity": 1,
+                    }
                   }
                 >
                   <View
@@ -1263,69 +1260,213 @@ exports[`Sightings renders correctly 1`] = `
                       [
                         {
                           "alignItems": "center",
-                          "borderRadius": 23,
-                          "borderWidth": 0,
                           "flexDirection": "row",
-                          "flexGrow": 0,
-                          "flexShrink": 0,
-                          "height": 40,
-                          "justifyContent": "space-between",
-                          "overflow": "hidden",
-                          "width": 66,
-                        },
-                        {
-                          "backgroundColor": "#353739",
                         },
                         undefined,
                       ]
                     }
                   >
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "borderRadius": 23,
+                            "borderWidth": 0,
+                            "flexDirection": "row",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "height": 40,
+                            "justifyContent": "space-between",
+                            "overflow": "hidden",
+                            "width": 66,
+                          },
+                          {
+                            "backgroundColor": "#353739",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "opacity": 1,
+                            },
+                          }
+                        }
+                        collapsable={false}
+                        style={
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#0B3D91",
+                            "borderColor": "rgba(0, 0, 0, 0)",
+                            "height": "100%",
                             "opacity": 1,
-                          },
+                            "overflow": "hidden",
+                            "paddingEnd": 6,
+                            "paddingStart": 6,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
                         }
-                      }
-                      collapsable={false}
-                      style={
-                        {
-                          "alignItems": "center",
-                          "backgroundColor": "#0B3D91",
-                          "borderColor": "rgba(0, 0, 0, 0)",
-                          "height": "100%",
-                          "opacity": 1,
-                          "overflow": "hidden",
-                          "paddingEnd": 6,
-                          "paddingStart": 6,
-                          "position": "absolute",
-                          "width": "100%",
+                      />
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "marginStart": -35,
+                              "start": "100%",
+                            },
+                          }
                         }
-                      }
-                    />
-                    <View
-                      animatedStyle={
-                        {
-                          "value": {
+                        collapsable={false}
+                        style={
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 17,
+                            "height": 29,
                             "marginStart": -35,
+                            "position": "absolute",
                             "start": "100%",
-                          },
+                            "width": 29,
+                          }
                         }
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  accessibilityHint="open share modal"
+                  accessibilityLabel="share"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    animatedStyle={
+                      {
+                        "value": {},
                       }
-                      collapsable={false}
+                    }
+                    collapsable={false}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <View
                       style={
-                        {
-                          "backgroundColor": "#FFFFFF",
-                          "borderRadius": 17,
-                          "height": 29,
-                          "marginStart": -35,
-                          "position": "absolute",
-                          "start": "100%",
-                          "width": 29,
-                        }
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                          },
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "#1E2022",
+                              "borderRadius": 143,
+                              "display": "flex",
+                              "height": 60,
+                              "justifyContent": "center",
+                              "overflow": "hidden",
+                              "position": "relative",
+                              "width": 60,
+                            },
+                            undefined,
+                          ],
+                        ]
                       }
-                    />
+                    >
+                      <ViewManagerAdapter_ExpoBlurView
+                        proxiedProperties={
+                          {
+                            "intensity": 0,
+                            "tint": "default",
+                          }
+                        }
+                        style={
+                          {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      />
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -1448,7 +1589,7 @@ exports[`Sightings renders correctly 1`] = `
               style={
                 [
                   {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "borderBottomWidth": 2,
                     "borderColor": "#353739",
                     "flex": 1,
@@ -1644,51 +1785,48 @@ exports[`Sightings renders correctly 1`] = `
                 </Text>
               </View>
               <View
-                accessibilityHint="toggle location alerts"
-                accessibilityLabel="switch button"
-                accessibilityRole="switch"
-                accessibilityState={
-                  {
-                    "busy": undefined,
-                    "checked": false,
-                    "disabled": undefined,
-                    "expanded": undefined,
-                    "selected": undefined,
-                  }
-                }
-                accessibilityValue={
-                  {
-                    "max": undefined,
-                    "min": undefined,
-                    "now": undefined,
-                    "text": undefined,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "opacity": 1,
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
                   }
                 }
               >
                 <View
+                  accessibilityHint="toggle location alerts"
+                  accessibilityLabel="switch button"
+                  accessibilityRole="switch"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": false,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                      },
-                      undefined,
-                    ]
+                    {
+                      "opacity": 1,
+                    }
                   }
                 >
                   <View
@@ -1696,69 +1834,213 @@ exports[`Sightings renders correctly 1`] = `
                       [
                         {
                           "alignItems": "center",
-                          "borderRadius": 23,
-                          "borderWidth": 0,
                           "flexDirection": "row",
-                          "flexGrow": 0,
-                          "flexShrink": 0,
-                          "height": 40,
-                          "justifyContent": "space-between",
-                          "overflow": "hidden",
-                          "width": 66,
-                        },
-                        {
-                          "backgroundColor": "#353739",
                         },
                         undefined,
                       ]
                     }
                   >
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "borderRadius": 23,
+                            "borderWidth": 0,
+                            "flexDirection": "row",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "height": 40,
+                            "justifyContent": "space-between",
+                            "overflow": "hidden",
+                            "width": 66,
+                          },
+                          {
+                            "backgroundColor": "#353739",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "opacity": 0,
+                            },
+                          }
+                        }
+                        collapsable={false}
+                        style={
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#0B3D91",
+                            "borderColor": "rgba(0, 0, 0, 0)",
+                            "height": "100%",
                             "opacity": 0,
-                          },
+                            "overflow": "hidden",
+                            "paddingEnd": 6,
+                            "paddingStart": 6,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
                         }
-                      }
-                      collapsable={false}
-                      style={
-                        {
-                          "alignItems": "center",
-                          "backgroundColor": "#0B3D91",
-                          "borderColor": "rgba(0, 0, 0, 0)",
-                          "height": "100%",
-                          "opacity": 0,
-                          "overflow": "hidden",
-                          "paddingEnd": 6,
-                          "paddingStart": 6,
-                          "position": "absolute",
-                          "width": "100%",
+                      />
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "marginStart": 6,
+                              "start": "0%",
+                            },
+                          }
                         }
-                      }
-                    />
-                    <View
-                      animatedStyle={
-                        {
-                          "value": {
+                        collapsable={false}
+                        style={
+                          {
+                            "backgroundColor": "#F4F2F1",
+                            "borderRadius": 17,
+                            "height": 29,
                             "marginStart": 6,
+                            "position": "absolute",
                             "start": "0%",
-                          },
+                            "width": 29,
+                          }
                         }
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  accessibilityHint="open share modal"
+                  accessibilityLabel="share"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    animatedStyle={
+                      {
+                        "value": {},
                       }
-                      collapsable={false}
+                    }
+                    collapsable={false}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <View
                       style={
-                        {
-                          "backgroundColor": "#F4F2F1",
-                          "borderRadius": 17,
-                          "height": 29,
-                          "marginStart": 6,
-                          "position": "absolute",
-                          "start": "0%",
-                          "width": 29,
-                        }
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                          },
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "#1E2022",
+                              "borderRadius": 143,
+                              "display": "flex",
+                              "height": 60,
+                              "justifyContent": "center",
+                              "overflow": "hidden",
+                              "position": "relative",
+                              "width": 60,
+                            },
+                            undefined,
+                          ],
+                        ]
                       }
-                    />
+                    >
+                      <ViewManagerAdapter_ExpoBlurView
+                        proxiedProperties={
+                          {
+                            "intensity": 0,
+                            "tint": "default",
+                          }
+                        }
+                        style={
+                          {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      />
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -1881,7 +2163,7 @@ exports[`Sightings renders correctly 1`] = `
               style={
                 [
                   {
-                    "alignItems": "flex-start",
+                    "alignItems": "stretch",
                     "borderBottomWidth": 2,
                     "borderColor": "#353739",
                     "flex": 1,
@@ -2077,51 +2359,48 @@ exports[`Sightings renders correctly 1`] = `
                 </Text>
               </View>
               <View
-                accessibilityHint="toggle location alerts"
-                accessibilityLabel="switch button"
-                accessibilityRole="switch"
-                accessibilityState={
-                  {
-                    "busy": undefined,
-                    "checked": true,
-                    "disabled": undefined,
-                    "expanded": undefined,
-                    "selected": undefined,
-                  }
-                }
-                accessibilityValue={
-                  {
-                    "max": undefined,
-                    "min": undefined,
-                    "now": undefined,
-                    "text": undefined,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "opacity": 1,
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
                   }
                 }
               >
                 <View
+                  accessibilityHint="toggle location alerts"
+                  accessibilityLabel="switch button"
+                  accessibilityRole="switch"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": true,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                      },
-                      undefined,
-                    ]
+                    {
+                      "opacity": 1,
+                    }
                   }
                 >
                   <View
@@ -2129,69 +2408,213 @@ exports[`Sightings renders correctly 1`] = `
                       [
                         {
                           "alignItems": "center",
-                          "borderRadius": 23,
-                          "borderWidth": 0,
                           "flexDirection": "row",
-                          "flexGrow": 0,
-                          "flexShrink": 0,
-                          "height": 40,
-                          "justifyContent": "space-between",
-                          "overflow": "hidden",
-                          "width": 66,
-                        },
-                        {
-                          "backgroundColor": "#353739",
                         },
                         undefined,
                       ]
                     }
                   >
                     <View
-                      animatedStyle={
-                        {
-                          "value": {
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "borderRadius": 23,
+                            "borderWidth": 0,
+                            "flexDirection": "row",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "height": 40,
+                            "justifyContent": "space-between",
+                            "overflow": "hidden",
+                            "width": 66,
+                          },
+                          {
+                            "backgroundColor": "#353739",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "opacity": 1,
+                            },
+                          }
+                        }
+                        collapsable={false}
+                        style={
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#0B3D91",
+                            "borderColor": "rgba(0, 0, 0, 0)",
+                            "height": "100%",
                             "opacity": 1,
-                          },
+                            "overflow": "hidden",
+                            "paddingEnd": 6,
+                            "paddingStart": 6,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
                         }
-                      }
-                      collapsable={false}
-                      style={
-                        {
-                          "alignItems": "center",
-                          "backgroundColor": "#0B3D91",
-                          "borderColor": "rgba(0, 0, 0, 0)",
-                          "height": "100%",
-                          "opacity": 1,
-                          "overflow": "hidden",
-                          "paddingEnd": 6,
-                          "paddingStart": 6,
-                          "position": "absolute",
-                          "width": "100%",
+                      />
+                      <View
+                        animatedStyle={
+                          {
+                            "value": {
+                              "marginStart": -35,
+                              "start": "100%",
+                            },
+                          }
                         }
-                      }
-                    />
-                    <View
-                      animatedStyle={
-                        {
-                          "value": {
+                        collapsable={false}
+                        style={
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 17,
+                            "height": 29,
                             "marginStart": -35,
+                            "position": "absolute",
                             "start": "100%",
-                          },
+                            "width": 29,
+                          }
                         }
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  accessibilityHint="open share modal"
+                  accessibilityLabel="share"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    animatedStyle={
+                      {
+                        "value": {},
                       }
-                      collapsable={false}
+                    }
+                    collapsable={false}
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <View
                       style={
-                        {
-                          "backgroundColor": "#FFFFFF",
-                          "borderRadius": 17,
-                          "height": 29,
-                          "marginStart": -35,
-                          "position": "absolute",
-                          "start": "100%",
-                          "width": 29,
-                        }
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                          },
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "#1E2022",
+                              "borderRadius": 143,
+                              "display": "flex",
+                              "height": 60,
+                              "justifyContent": "center",
+                              "overflow": "hidden",
+                              "position": "relative",
+                              "width": 60,
+                            },
+                            undefined,
+                          ],
+                        ]
                       }
-                    />
+                    >
+                      <ViewManagerAdapter_ExpoBlurView
+                        proxiedProperties={
+                          {
+                            "intensity": 0,
+                            "tint": "default",
+                          }
+                        }
+                        style={
+                          {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      />
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </View>
                   </View>
                 </View>
               </View>

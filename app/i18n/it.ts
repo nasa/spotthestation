@@ -144,6 +144,9 @@ const it = {
       longerThan2: "2 minuti e più",
       empty:
         "Non ci sono potenziali avvistamenti della Stazione per questa località dal {{start}} al {{end}}.",
+      shareTitle: "La stazione sta passando sopra {{location}} il {{date}}",
+      shareLink:
+        "Per esplorare di più e tracciare la stazione tramite realtà aumentata, scarica l'app a",
       coach: {
         title: "Descrizione delle icone",
         moon: "Sarà notte nella posizione selezionata quando la Stazione è al di sopra dell'orizzonte.",

@@ -11,8 +11,11 @@ import hi from "./hi"
 import it from "./it"
 import ja from "./ja"
 import nl from "./nl"
+import pl from "./pl"
+import ptBR from "./pt-BR"
 import ru from "./ru"
 import sv from "./sv"
+import tr from "./tr"
 import uk from "./uk"
 
 i18n.fallbacks = true
@@ -21,7 +24,23 @@ i18n.fallbacks = true
  * the language code is the suffixed with "-US". i.e. if a device is set to English ("en"),
  * if you change to another language and then return to English language code is now "en-US".
  */
-i18n.translations = { en, "en-US": en, de, es, fr, hi, it, ja, nl, ru, sv, uk }
+i18n.translations = {
+  en,
+  "en-US": en,
+  de,
+  es,
+  fr,
+  hi,
+  it,
+  ja,
+  nl,
+  pl,
+  "pt-BR": ptBR,
+  ru,
+  sv,
+  tr,
+  uk,
+}
 
 i18n.locale = Localization.locale.split("-")[0]
 

@@ -142,6 +142,9 @@ const sv = {
       longerThan2: "2 minuter och längre",
       empty:
         "Det finns inga potentiella Stationen-observationer för den här platsen från {{start}} till {{end}}.",
+      shareTitle: "Stationen passerar över {{location}} den {{date}}",
+      shareLink:
+        "För att utforska mer och spåra stationen via förstärkt verklighet, ladda ner appen på",
       coach: {
         title: "Ikoner Beskrivning",
         moon: "Det kommer att vara natt på den valda platsen när Stationen är över horisonten.",

@@ -143,6 +143,8 @@ const en = {
       longerThan2: "2 minutes and longer",
       empty:
         "There are no potential Station sightings for this location from {{start}} through {{end}}.",
+      shareTitle: "The Station is passing above {{location}} on {{date}}",
+      shareLink: "To explore more and track the station via augmented reality, download the app at",
       coach: {
         title: "Icons Description",
         moon: "It will be nighttime at the selected location when the Station is above the horizon.",

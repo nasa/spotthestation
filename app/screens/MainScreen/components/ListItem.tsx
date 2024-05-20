@@ -11,10 +11,12 @@ import {
 import { Text, Icon, IconTypes, Toggle } from "../../../components"
 import { TxKeyPath } from "../../../i18n"
 import { typography, colors } from "../../../theme"
+import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 
 export interface ListItemProps {
   selected?: boolean
   withSwitch?: boolean
+  withShare?: boolean
   editable?: boolean
   disabled?: boolean
   title: string
@@ -26,6 +28,7 @@ export interface ListItemProps {
   secondIcon?: { icon: IconTypes; color: string }
   ctaTx?: TxKeyPath
   onToggle?: (date: string) => void
+  onShare?: (date: string) => void
   onPress?: PressableProps["onPress"]
   onCtaPress?: () => void
   onEdit?: () => void
@@ -43,10 +46,12 @@ export const ListItem = React.memo(function ListItem({
   subtitle4,
   selected = false,
   withSwitch = false,
+  withShare = false,
   icon,
   secondIcon,
   onPress,
   onToggle,
+  onShare,
   onCtaPress,
   onEdit,
   onDelete,
@@ -67,6 +72,9 @@ export const ListItem = React.memo(function ListItem({
     $buttons,
     $mr0,
     $withoutBottomBorder,
+    $button,
+    $buttonContainer,
+    $appendContainer,
   } = useStyles(styles)
 
   return (
@@ -133,29 +141,43 @@ export const ListItem = React.memo(function ListItem({
             </View>
           )}
         </View>
-        {withSwitch && !disabled && (
-          <Toggle
-            accessible
-            accessibilityLabel="switch button"
-            accessibilityHint="toggle location alerts"
-            variant="switch"
-            value={selected}
-            onValueChange={() => onToggle(value)}
-            disabled={disabled}
-          />
-        )}
-        {withSwitch && disabled && (
-          <View style={$spinner}>
-            <ActivityIndicator />
-          </View>
-        )}
-        {!withSwitch && (
-          <Icon
-            icon="check"
-            size={24}
-            color={selected ? colors.palette.green : colors.palette.neutral550}
-          />
-        )}
+        <View style={$appendContainer}>
+          {withSwitch && !disabled && (
+            <Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle location alerts"
+              variant="switch"
+              value={selected}
+              onValueChange={() => onToggle(value)}
+              disabled={disabled}
+            />
+          )}
+          {withSwitch && disabled && (
+            <View style={$spinner}>
+              <ActivityIndicator />
+            </View>
+          )}
+          {!withSwitch && (
+            <Icon
+              icon="check"
+              size={24}
+              color={selected ? colors.palette.green : colors.palette.neutral550}
+            />
+          )}
+
+          {withShare && (
+            <IconLinkButton
+              accessible
+              accessibilityLabel="share"
+              accessibilityHint="open share modal"
+              buttonStyle={$button}
+              icon="share"
+              onPress={() => onShare(value)}
+              viewStyle={$buttonContainer}
+            />
+          )}
+        </View>
       </View>
     </Pressable>
   )
@@ -177,7 +199,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     borderColor: colors.palette.neutral550,
     borderBottomWidth: scale(1),
     paddingBottom: scale(16),
-    alignItems: "flex-start",
+    alignItems: "stretch",
     marginLeft: scale(10),
   }
 
@@ -223,6 +245,18 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $withoutBottomBorder = { borderBottomWidth: 0 }
 
+  const $button: ViewStyle = {
+    backgroundColor: colors.palette.overlayWhite,
+    width: scale(44),
+    height: scale(44),
+  }
+
+  const $buttonContainer: ViewStyle = {
+    backgroundColor: "transparent",
+  }
+
+  const $appendContainer: ViewStyle = { justifyContent: "space-between", alignItems: "center" }
+
   return {
     $container,
     $bodyContainer,
@@ -235,5 +269,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $buttons,
     $mr0,
     $withoutBottomBorder,
+    $button,
+    $buttonContainer,
+    $appendContainer,
   }
 }

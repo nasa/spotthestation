@@ -19,6 +19,9 @@ enum LanguageScaling {
   sv = 0.9,
   hi = 1,
   de = 0.9,
+  pl = 0.9,
+  "pt-BR" = 0.9,
+  tr = 1,
   nb = 1,
 }
 

@@ -1,0 +1,8 @@
+NSAppleMusicUsageDescription = "Kaydedilen görüntüleri ve videoları depolamak için medya kitaplığınıza erişmemiz gerekiyor";
+NSCalendarsUsageDescription = "Yaklaşan gözlemler için bildirimlerin planlanmasını sağlamak amacıyla takviminize erişmemiz gerekiyor";
+NSCameraUsageDescription = "Artırılmış Gerçeklik deneyimini etkinleştirmek için kameranıza erişmemiz gerekiyor";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Bölgenizdeki yaklaşan gözlemleri hesaplamak için konum verilerini kullanıyoruz";
+NSLocationAlwaysUsageDescription = "Bölgenizdeki yaklaşan gözlemleri hesaplamak için konum verilerini kullanıyoruz";
+NSLocationWhenInUseUsageDescription = "Bölgenizdeki yaklaşan gözlemleri hesaplamak için konum verilerini kullanıyoruz";
+NSMicrophoneUsageDescription = "Videolarınızda ses kaydını etkinleştirmek için mikrofonunuza erişmemiz gerekiyor";
+NSPhotoLibraryUsageDescription = "Kaydedilen görüntüleri ve videoları depolamak için medya kitaplığınıza erişmemiz gerekiyor";

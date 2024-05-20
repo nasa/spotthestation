@@ -84,7 +84,7 @@ exports[`ListItem renders correctly 1`] = `
     style={
       [
         {
-          "alignItems": "flex-start",
+          "alignItems": "stretch",
           "borderBottomWidth": 2,
           "borderColor": "#353739",
           "flex": 1,
@@ -177,39 +177,48 @@ exports[`ListItem renders correctly 1`] = `
         Test subtitle
       </Text>
     </View>
-    <View>
-      <RCTImageView
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "justifyContent": "space-between",
         }
-        internal_analyticTag={null}
-        resizeMode="contain"
-        source={
-          [
+      }
+    >
+      <View>
+        <RCTImageView
+          accessibilityState={
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
-            },
-          ]
-        }
-        style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#353739",
-            "width": 35,
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
           }
-        }
-        tintColor="#353739"
-      />
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            [
+              {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            {
+              "height": 35,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "tintColor": "#353739",
+              "width": 35,
+            }
+          }
+          tintColor="#353739"
+        />
+      </View>
     </View>
   </View>
 </View>
