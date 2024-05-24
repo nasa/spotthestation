@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react"
 import { LayoutChangeEvent, TextStyle, View, ViewStyle } from "react-native"
 
 import { colors } from "../../../theme"
@@ -26,7 +26,7 @@ interface ARViewProps {
   onDirectionCircleLayout: (event: LayoutChangeEvent) => void
 }
 
-export const ARView = function ARView({
+export const ARView = memo(function ARView({
   isFullScreen,
   isPathVisible,
   isRecording,
@@ -77,6 +77,7 @@ export const ARView = function ARView({
   useEffect(() => {
     if (!curve) return undefined
 
+    let tick = 0
     const update = () => {
       const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
       let current: Vector3
@@ -87,6 +88,7 @@ export const ARView = function ARView({
         setFutureIssPathCoords([])
         setPastIssPathCoords([])
         setIssMarkerPosition(null)
+        tick = 0
         return
       }
 
@@ -97,24 +99,27 @@ export const ARView = function ARView({
         return
       }
 
-      for (let i = 0; i <= 100; ++i) {
-        const u = i / 100
-        const pt = curve.getPointAt(i / 100)
-        if (t > curve.getUtoTmapping(u, null)) pastPoints.push(pt)
-        else futurePoints.push(pt)
+      if (tick % 10 === 0) {
+        for (let i = 0; i <= 100; ++i) {
+          const u = i / 100
+          const pt = curve.getPointAt(i / 100)
+          if (t > curve.getUtoTmapping(u, null)) pastPoints.push(pt)
+          else futurePoints.push(pt)
+        }
+
+        pastPoints.push(current)
+        futurePoints.unshift(current)
+        setPastIssPathCoords(pastPoints)
+        setFutureIssPathCoords(futurePoints)
       }
 
-      pastPoints.push(current)
-      futurePoints.unshift(current)
-
-      setPastIssPathCoords(pastPoints)
-      setFutureIssPathCoords(futurePoints)
       setIssMarkerPosition(current)
+      tick += 1
     }
 
     update()
 
-    const timeout = setInterval(update, 10000)
+    const timeout = setInterval(update, 1000)
     return () => {
       clearInterval(timeout)
     }
@@ -178,7 +183,7 @@ export const ARView = function ARView({
       </View>
     </View>
   )
-}
+})
 
 const styles: StyleFn = ({ fontSizes }) => {
   const $container: ViewStyle = {

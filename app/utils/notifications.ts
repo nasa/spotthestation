@@ -18,7 +18,7 @@ export function initialize() {
       lights: false,
       vibration: true,
       sound: "default",
-      importance: AndroidImportance.DEFAULT,
+      importance: AndroidImportance.HIGH,
     })
     .then((created) => console.log(`Channel 'default-channel-id' created: ${String(created)}`))
     .catch((e) => console.error(e))

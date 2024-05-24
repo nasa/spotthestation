@@ -405,66 +405,19 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     }
   }
 
-  const flashCameraIcon = () => {
+  const flashCameraIcon = useCallback(() => {
     whiteness.value = withSequence(
       withTiming(1, { duration: 300 }),
       withTiming(0, { duration: 300 }),
     )
-  }
+  }, [whiteness])
 
-  const takeScreenshot = () => {
+  const takeScreenshot = useCallback(() => {
     flashCameraIcon()
     setStill(true)
-  }
+  }, [flashCameraIcon])
 
-  const completeScreenshot = async () => {
-    try {
-      const uri = await captureScreen({
-        format: "jpg",
-        quality: 1,
-      })
-
-      setStill(false)
-      await saveToGallery(uri, "photo")
-      setMediaUrl(uri)
-      setMediaType("photo")
-    } catch (e) {
-      setStill(false)
-      console.error(e)
-      Snackbar.show({
-        text: translate("issView.screenshotError"),
-        duration: Snackbar.LENGTH_LONG,
-      })
-    }
-  }
-
-  const startRecording = async (isMicrophoneAllowed: boolean) => {
-    const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
-      (error: any) => {
-        Snackbar.show({
-          text: error,
-          duration: Snackbar.LENGTH_LONG,
-        })
-        setIsRecording(false)
-        setRecordedSeconds(0)
-      },
-    )
-
-    if (res === RecordingResult.PermissionError) {
-      Snackbar.show({
-        text: res,
-        duration: Snackbar.LENGTH_LONG,
-      })
-      setIsRecording(false)
-      setRecordedSeconds(0)
-      return
-    }
-
-    setIsRecording(true)
-    setRecordedSeconds(0)
-  }
-
-  async function saveToGallery(path: string, type: "photo" | "video" | "auto") {
+  const saveToGallery = useCallback(async (path: string, type: "photo" | "video" | "auto") => {
     if (Platform.OS === "android") {
       let granted: boolean
       if (Platform.Version >= 33) {
@@ -505,6 +458,53 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         }),
       )
       .catch(() => setIsPermissionsModal(true))
+  }, [])
+
+  const completeScreenshot = useCallback(async () => {
+    try {
+      const uri = await captureScreen({
+        format: "jpg",
+        quality: 1,
+      })
+
+      setStill(false)
+      await saveToGallery(uri, "photo")
+      setMediaUrl(uri)
+      setMediaType("photo")
+    } catch (e) {
+      setStill(false)
+      console.error(e)
+      Snackbar.show({
+        text: translate("issView.screenshotError"),
+        duration: Snackbar.LENGTH_LONG,
+      })
+    }
+  }, [saveToGallery])
+
+  const startRecording = async (isMicrophoneAllowed: boolean) => {
+    const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
+      (error: any) => {
+        Snackbar.show({
+          text: error,
+          duration: Snackbar.LENGTH_LONG,
+        })
+        setIsRecording(false)
+        setRecordedSeconds(0)
+      },
+    )
+
+    if (res === RecordingResult.PermissionError) {
+      Snackbar.show({
+        text: res,
+        duration: Snackbar.LENGTH_LONG,
+      })
+      setIsRecording(false)
+      setRecordedSeconds(0)
+      return
+    }
+
+    setIsRecording(true)
+    setRecordedSeconds(0)
   }
 
   const stopRecording = async () => {

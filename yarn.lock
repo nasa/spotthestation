@@ -4457,10 +4457,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
-"@types/suncalc@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@types/suncalc/-/suncalc-1.9.0.tgz#bfd8792efdd74b2c807aba13ba441a78990d73b5"
-  integrity sha512-+c2wOhgyG5ZTtxfC8XG5SGY36HNlXYaPqv/mqBbjXn3iKWx0Lj375AShoKbjF1MCGoXFhSl3jLlmxTksjaGyZQ==
+"@types/suncalc@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@types/suncalc/-/suncalc-1.9.2.tgz#207810e705572c29c3f5519c29004d88a0c3b2b3"
+  integrity sha512-ATAGBHHfA1TlE2tjfidLyTcysjoT2JHHEAmWRULh73SU9UTn++j5fqHEW16X6Y/2Li87jEQXzgu4R/OOdlDqzw==
 
 "@types/tapable@^1", "@types/tapable@^1.0.5":
   version "1.0.8"
