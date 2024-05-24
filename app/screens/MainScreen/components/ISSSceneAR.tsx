@@ -33,6 +33,7 @@ import { cartesianToAzAlt } from "../../../utils/geometry"
 import watchOrientation from "../../../utils/orientation"
 import Orientation from "react-native-orientation-locker"
 import { LocationType } from "../../../services/api"
+import { useIsFocused } from "@react-navigation/native"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -109,6 +110,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   const futureRef = useRef<Line>(null)
   const deadRef = useRef<boolean>(false)
   const realCameraRef = useRef<Camera>(null)
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     copyAssetToCacheAsync(iconRegistry.iss as string, "iss.png")
@@ -376,15 +378,17 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     <View style={StyleSheet.absoluteFill} onLayout={(e) => setLayout(e.nativeEvent.layout)}>
       {Boolean(layout && activeFormat) && (
         <>
-          <Camera
-            ref={realCameraRef}
-            style={StyleSheet.absoluteFill}
-            device={device}
-            isActive={true}
-            format={activeFormat}
-            photo={true}
-            frameProcessor={undefined}
-          />
+          {(isFocused || Platform.OS !== "android") && (
+            <Camera
+              ref={realCameraRef}
+              style={StyleSheet.absoluteFill}
+              device={device}
+              isActive={isFocused}
+              format={activeFormat}
+              photo={true}
+              frameProcessor={undefined}
+            />
+          )}
 
           {stillImage && (
             <Image

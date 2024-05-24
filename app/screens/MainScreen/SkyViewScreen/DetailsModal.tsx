@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { memo } from "react"
-import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView, Pressable } from "react-native"
 import { Icon, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { translate } from "../../../i18n"
@@ -17,12 +17,14 @@ export interface DetailsModalProps {
   onClose?: PressableProps["onPress"]
   issData: OrbitPoint[]
   location: LocationType
+  onLinkPress?: PressableProps["onPress"]
 }
 
 export const DetailsModal = memo(function DetailsModal({
   issData,
   location,
   onClose,
+  onLinkPress,
 }: DetailsModalProps) {
   const {
     $modalBodyContainer,
@@ -40,6 +42,7 @@ export const DetailsModal = memo(function DetailsModal({
     $detailRowValue,
     $center,
     $subtitle,
+    $link,
   } = useStyles(styles)
 
   const currentPosition = useISSPosition(issData)
@@ -279,6 +282,9 @@ export const DetailsModal = memo(function DetailsModal({
             />
           </View>
         </View>
+        <Pressable onPress={onLinkPress}>
+          <Text style={$link} text="How Do I Spot The Station?" />
+        </Pressable>
       </ScrollView>
     </View>
   )
@@ -393,6 +399,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     justifyContent: "center",
   }
 
+  const $link: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[21],
+    textDecorationLine: "underline",
+    textAlign: "center",
+  }
+
   return {
     $modalBodyContainer,
     $modalBody,
@@ -409,5 +423,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $detailRowTitle,
     $detailRowValue,
     $center,
+    $link,
   }
 }

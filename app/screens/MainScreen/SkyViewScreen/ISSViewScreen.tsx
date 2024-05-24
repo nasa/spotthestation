@@ -549,6 +549,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     requestCloseModal("details")
   }, [])
 
+  const onDetailsLinkPress = useCallback(() => {
+    requestCloseModal("details")
+    navigation.navigate(
+      "ResourcesScreens" as never,
+      { screen: "Events", item: "https://spotthestation.nasa.gov/message_example.cfm" } as never,
+    )
+  }, [])
+
   const onShare = async () => {
     try {
       let url = mediaUrl
@@ -942,7 +950,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           Platform.OS === "ios" && $topInsetMargin,
         ]}
       >
-        <DetailsModal issData={issData} location={current} onClose={closeDetails} />
+        <DetailsModal
+          issData={issData}
+          location={current}
+          onClose={closeDetails}
+          onLinkPress={onDetailsLinkPress}
+        />
       </MyModal>
 
       <MyModal

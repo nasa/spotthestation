@@ -30,6 +30,14 @@ import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 const items = [
   {
     tags: [],
+    title: "How Do I Spot The Station?",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://spotthestation.nasa.gov/images/STS_social1.jpg",
+    type: "event",
+    link: "https://spotthestation.nasa.gov/message_example.cfm",
+  },
+  {
+    tags: [],
     title: "International Space Station Overview",
     image:
       "https://www.nasa.gov/wp-content/uploads/2021/08/44911459904-375bc02163-k-0.jpg?resize=1200,800",
@@ -99,14 +107,6 @@ const items = [
     image: "https://www.nasa.gov/wp-content/uploads/2023/03/iss064e015250.jpg",
     type: "event",
     link: "https://www.nasa.gov/international-space-station/space-station-research-and-technology",
-  },
-  {
-    tags: [],
-    title: "How Do I Spot The Station?",
-    date: "2023-01-04T00:00:00.000000",
-    image: "https://spotthestation.nasa.gov/images/STS_social1.jpg",
-    type: "event",
-    link: "https://spotthestation.nasa.gov/message_example.cfm",
   },
 ]
 
