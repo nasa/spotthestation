@@ -224,7 +224,7 @@ export function Sightings({
       const sighting = sightings.find((s) => s.date === date)
       if (!sighting) return
 
-      const link = "https://example.com" // TODO
+      const link = "https://onelink.to/nasa-sts-app"
       const subject = `${translate("homeScreen.selectSightings.shareTitle", {
         location: location.title,
         date: formatedDate(sighting.date),

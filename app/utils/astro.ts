@@ -320,15 +320,15 @@ async function findEvents(
 
 function calculateDayStage(twilight: SunCalc.GetTimesResult, eventTime: Date) {
   if (
-    (!isNaN(twilight.nightEnd.valueOf()) && twilight.nightEnd >= eventTime) ||
-    (!isNaN(twilight.night.valueOf()) && eventTime >= twilight.night)
+    (!isNaN(twilight.nauticalDawn.valueOf()) && twilight.nauticalDawn >= eventTime) ||
+    (!isNaN(twilight.nauticalDusk.valueOf()) && eventTime >= twilight.nauticalDusk)
   ) {
     return 0
   }
   if (
-    ((isNaN(twilight.nightEnd.valueOf()) || twilight.nightEnd < eventTime) &&
+    ((isNaN(twilight.nauticalDawn.valueOf()) || twilight.nauticalDawn < eventTime) &&
       eventTime < twilight.dawn) ||
-    (twilight.dusk < eventTime && (isNaN(twilight.night.valueOf()) || eventTime < twilight.night))
+    (twilight.dusk < eventTime && (isNaN(twilight.nauticalDusk.valueOf()) || eventTime < twilight.nauticalDusk))
   ) {
     return 1
   }

@@ -31,7 +31,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2024052016</string>
+	<string>2024052916</string>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODE_PUSH_IOS_DEPLOYMENT_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
