@@ -328,7 +328,8 @@ function calculateDayStage(twilight: SunCalc.GetTimesResult, eventTime: Date) {
   if (
     ((isNaN(twilight.nauticalDawn.valueOf()) || twilight.nauticalDawn < eventTime) &&
       eventTime < twilight.dawn) ||
-    (twilight.dusk < eventTime && (isNaN(twilight.nauticalDusk.valueOf()) || eventTime < twilight.nauticalDusk))
+    (twilight.dusk < eventTime &&
+      (isNaN(twilight.nauticalDusk.valueOf()) || eventTime < twilight.nauticalDusk))
   ) {
     return 1
   }

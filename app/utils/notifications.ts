@@ -136,6 +136,9 @@ export async function setNotifications(locations: LocationType[]) {
         id: notification.fireDate.valueOf().toString(),
         title: notification.title,
         body: notification.body,
+        ios: {
+          sound: "default",
+        },
         android: {
           smallIcon: "ic_notification",
           channelId: "default-channel-id",
