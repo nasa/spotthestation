@@ -100,14 +100,14 @@ PODS:
   - JWT (3.0.0-beta.14):
     - Base64 (~> 1.1.2)
   - libevent (2.1.12)
-  - MapboxCommon (23.8.3)
-  - MapboxCoreMaps (10.16.1):
-    - MapboxCommon (~> 23.8)
-  - MapboxMaps (10.16.1):
-    - MapboxCommon (= 23.8.3)
-    - MapboxCoreMaps (= 10.16.1)
+  - MapboxCommon (23.9.2)
+  - MapboxCoreMaps (10.17.0):
+    - MapboxCommon (~> 23.9)
+  - MapboxMaps (10.17.0):
+    - MapboxCommon (= 23.9.2)
+    - MapboxCoreMaps (= 10.17.0)
     - MapboxMobileEvents (= 1.0.10)
-    - Turf (~> 2.0)
+    - Turf (= 2.7.0)
   - MapboxMobileEvents (1.0.10)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
@@ -497,13 +497,13 @@ PODS:
   - RNGestureHandler (2.8.0):
     - React-Core
   - rnmapbox-maps (10.0.15):
-    - MapboxMaps (~> 10.16.0)
+    - MapboxMaps (= 10.17.0)
     - React
     - React-Core
     - rnmapbox-maps/DynamicLibrary (= 10.0.15)
     - Turf
   - rnmapbox-maps/DynamicLibrary (10.0.15):
-    - MapboxMaps (~> 10.16.0)
+    - MapboxMaps (= 10.17.0)
     - React
     - React-Core
     - Turf
@@ -559,7 +559,7 @@ PODS:
     - SentryPrivate (= 8.7.3)
   - SentryPrivate (8.7.3)
   - SSZipArchive (2.2.3)
-  - Turf (2.6.1)
+  - Turf (2.7.0)
   - VisionCamera (2.16.5):
     - React
     - React-callinvoker
@@ -855,9 +855,9 @@ SPEC CHECKSUMS:
   hermes-engine: 8b9dc37355d2e12879267382f4256afd356349a1
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  MapboxCommon: b2c348867dfed7d7a23545e6c2024d712bfda10f
-  MapboxCoreMaps: c66f482b5ea983cf873122853c4ee94c159bec43
-  MapboxMaps: fdbe05e3899abd24f31a7f91789586e44e57f7fc
+  MapboxCommon: 768660d6fca8193529ecf82eb6f5f9ae7a5acdf9
+  MapboxCoreMaps: be412ff97b16aa7820922c818115a9a0d8211caa
+  MapboxMaps: 87ef0003e6db46e45e7a16939f29ae87e38e7ce2
   MapboxMobileEvents: de50b3a4de180dd129c326e09cd12c8adaaa46d6
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
@@ -906,7 +906,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: f13089c0af878ab74fba09f5e873c63e3f9de9c8
   RNFBApp: fdbde65110240cd843e644270e974e9b455b0fc1
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
-  rnmapbox-maps: b6219b7432508ae2cea169365116a811f822612e
+  rnmapbox-maps: 1029840f4d781c443887580208f3949c8f3e9a4a
   RNNotifee: 8e2d3df3f0e9ce8f5d1fe4c967431138190b6175
   RNPermissions: 47dbf9a0d3e28ca4190ea471c798efec148e96ed
   RNReanimated: f186e85d9f28c9383d05ca39e11dd194f59093ec
@@ -919,10 +919,10 @@ SPEC CHECKSUMS:
   Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  Turf: 469ce2c3d22e5e8e4818d5a3b254699a5c89efa4
+  Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
   VisionCamera: 99dc0cb2770ab1a4bb0d8dc35d5961bb640767cd
   Yoga: 135109c9b8c5d1a8af3a58d21cd4c7aa7f3bf555
 
-PODFILE CHECKSUM: b9cd39bec1952346f4af0a0660dc1b5416da4007
+PODFILE CHECKSUM: 090828425e521c937042c57d2f55c7a9952255fb
 
 COCOAPODS: 1.12.1

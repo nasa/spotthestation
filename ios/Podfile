@@ -1,4 +1,5 @@
 $RNMapboxMapsImpl = 'mapbox'
+$RNMapboxMapsVersion = '= 10.17.0'
 $RNFirebaseAnalyticsWithoutAdIdSupport=true
 
 pod_folder = Pathname.new(__FILE__).dirname.realpath
