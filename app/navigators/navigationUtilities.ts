@@ -98,7 +98,7 @@ function navigationRestoredDefaultState(persistNavigation: PersistNavigationConf
 /**
  * Custom hook for persisting navigation state.
  */
-export function useNavigationPersistence(persistenceKey: string) {
+export function useNavigationPersistence(persistenceKey: storage.KEYS) {
   const [initialNavigationState, setInitialNavigationState] = useState<NavigationState>()
   const isMounted = useIsMounted()
 

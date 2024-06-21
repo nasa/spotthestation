@@ -153,7 +153,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
               handleDetect().catch((e) => console.log(e))
             } else {
               storage
-                .load("isPrivacyAgree")
+                .load(storage.KEYS.IS_PRIVACY_AGREE)
                 .then((res) => {
                   if (res) handleDetect().catch((e) => console.log(e))
                   else setPrivacyModal(true)
@@ -325,7 +325,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
           <PrivacyModal
             onPressSkip={() => {
               storage
-                .save("isPrivacyAgree", false)
+                .save(storage.KEYS.IS_PRIVACY_AGREE, false)
                 .then(() => {
                   setPrivacyModal(false)
                 })
@@ -333,7 +333,7 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
             }}
             onPressAgree={() => {
               storage
-                .save("isPrivacyAgree", true)
+                .save(storage.KEYS.IS_PRIVACY_AGREE, true)
                 .then(() => {
                   setPrivacyModal(false)
                   handleDetect().catch((e) => console.log(e))

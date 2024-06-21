@@ -170,7 +170,7 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [currentSighting, startCountdown, timeDiff])
 
   const getCoach = async () => {
-    const coachCompleted = await storage.load("coachCompleted")
+    const coachCompleted = await storage.load(storage.KEYS.COACH_COMPLETED)
     if (coachCompleted) requestCloseModal("coach")
     else requestOpenModal("coach")
   }
@@ -224,7 +224,7 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const handleSetCoachCompleted = async () => {
     requestCloseModal("coach")
-    await storage.save("coachCompleted", true)
+    await storage.save(storage.KEYS.COACH_COMPLETED, true)
   }
 
   const handleChangeLocation = useCallback(

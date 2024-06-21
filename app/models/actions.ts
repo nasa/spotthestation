@@ -36,7 +36,7 @@ const RootStoreActions = (self) => ({
         const isCurrentLocation = locationCopy.title === self.currentLocation?.title
         const isSelectedLocation = locationCopy.title === self.selectedLocation?.title
         const locationSightings = locationCopy?.sightings ? [...locationCopy?.sightings] : []
-        const isNotifyAll = Boolean(yield storage.load("upcoming"))
+        const isNotifyAll = Boolean(yield storage.load(storage.KEYS.UPCOMING))
         const dataToSave = data.sightings.map((item: ISSSighting) => {
           const sighting = locationSightings.find(
             ({ date }) => date.substring(0, 17) === item.date.substring(0, 17),
@@ -284,7 +284,7 @@ const RootStoreActions = (self) => ({
   },
 
   disableAllNotifications: flow(function* updateLocationAddresses() {
-    yield storage.save("upcoming", false)
+    yield storage.save(storage.KEYS.UPCOMING, false)
     yield self.setCurrentLocation(
       {
         ...self.currentLocation,
@@ -332,7 +332,7 @@ const RootStoreActions = (self) => ({
     })
 
     if (ok) {
-      const isNotifyAll = Boolean(yield storage.load("upcoming"))
+      const isNotifyAll = Boolean(yield storage.load(storage.KEYS.UPCOMING))
       const locationSightings = valueCopy.sightings ? [...valueCopy.sightings] : []
       const dataToSave = data.sightings.map((item: ISSSighting) => {
         const sighting = locationSightings.find(

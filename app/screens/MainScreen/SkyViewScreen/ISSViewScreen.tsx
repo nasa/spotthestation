@@ -237,7 +237,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   useEffect(() => {
     storage
-      .load("arCoachCompleted")
+      .load(storage.KEYS.AR_COACH_COMPLETED)
       .then((completed) => setArCoachCompleted(Boolean(completed)))
       .catch(() => setArCoachCompleted(true))
   }, [])
@@ -248,7 +248,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       return
     }
     storage
-      .load("safetyAcknowledged")
+      .load(storage.KEYS.SAFETY_ACKNOWLEDGED)
       .then((ack) => setSafetyAcknowledged(Boolean(ack)))
       .catch(() => setSafetyAcknowledged(true))
   }, [])
@@ -674,13 +674,13 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const handleSetCoachCompleted = async () => {
     requestCloseModal("arCoach")
-    await storage.save("arCoachCompleted", true)
+    await storage.save(storage.KEYS.AR_COACH_COMPLETED, true)
     setArCoachCompleted(true)
   }
 
   const handleSafetyReminderClose = async () => {
     requestCloseModal("safetyReminder")
-    await storage.save("safetyAcknowledged", true)
+    await storage.save(storage.KEYS.SAFETY_ACKNOWLEDGED, true)
     setSafetyAcknowledged(true)
   }
 

@@ -65,7 +65,7 @@ export const getCurrentLocation = async (
 
     let prevLocation: LocationType = null
     try {
-      prevLocation = JSON.parse((await storage.load("userCurrentLocation")) as string)
+      prevLocation = JSON.parse((await storage.load(storage.KEYS.USER_CURRENT_LOCATION)) as string)
     } catch {}
 
     if (coords) {
@@ -88,7 +88,7 @@ export const getCurrentLocation = async (
         location: { lat: latitude, lng: longitude },
       }
 
-      await storage.save("userCurrentLocation", JSON.stringify(result))
+      await storage.save(storage.KEYS.USER_CURRENT_LOCATION, JSON.stringify(result))
       return result
     }
 

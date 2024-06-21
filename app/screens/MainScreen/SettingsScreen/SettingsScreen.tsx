@@ -52,7 +52,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
     navigation.navigate("SettingsScreens" as never, { screen } as never)
 
   const onChangeLanguage = async ({ value }) => {
-    await storage.save("locale", value)
+    await storage.save(storage.KEYS.LOCALE, value)
     setLocale(value as string)
     setNotifications()
     navigation.reset({
@@ -79,10 +79,10 @@ export const SettingsScreen = observer(function SettingsScreen() {
   const handleTutorialClose = async (tutorial?: string) => {
     setIsTutorialsModalVisible(false)
     if (tutorial === "home") {
-      await storage.remove("coachCompleted")
+      await storage.remove(storage.KEYS.COACH_COMPLETED)
       navigation.navigate("Home" as never)
     } else if (tutorial === "ar") {
-      await storage.remove("arCoachCompleted")
+      await storage.remove(storage.KEYS.AR_COACH_COMPLETED)
       navigation.navigate("ISSView" as never)
     }
   }

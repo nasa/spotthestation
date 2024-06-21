@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { fireEvent, render } from "@testing-library/react-native"
 import { Splash } from "../Splash"
+import { jest } from "@jest/globals"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({
@@ -10,6 +11,7 @@ jest.mock("@react-navigation/native", () => ({
 }))
 
 jest.mock("../../../utils/storage", () => ({
+  ...jest.requireActual<typeof import("../../../utils/storage")>("../../../utils/storage"),
   load: jest.fn(() => Promise.resolve(null)),
   save: jest.fn(() => Promise.resolve()),
 }))

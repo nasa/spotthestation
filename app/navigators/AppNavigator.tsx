@@ -65,7 +65,10 @@ const AppStack = observer(function AppStack() {
   const prevAppState = useRef<string>()
 
   useEffect(() => {
-    Promise.all([storage.load("isSettingsCompleted"), notifications.hasInitialNotification()])
+    Promise.all([
+      storage.load(storage.KEYS.IS_SETTINGS_COMPLETED),
+      notifications.hasInitialNotification(),
+    ])
       .then(([isSettingsCompleted, hasInitialNotification]) => {
         if (isSettingsCompleted) skipOnboarding()
         if (hasInitialNotification) {

@@ -49,7 +49,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
       .logTutorialComplete()
       .catch(() => null)
     storage
-      .save("isSettingsCompleted", true)
+      .save(storage.KEYS.IS_SETTINGS_COMPLETED, true)
       .then(() => skipOnboarding())
       .catch((err) =>
         Snackbar.show({
@@ -85,7 +85,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
       if (!permitted) return
     }
     setNotifications(notifications)
-    await storage.save("upcoming", notifications)
+    await storage.save(storage.KEYS.UPCOMING, notifications)
   }
 
   const renderBody = useCallback(() => {

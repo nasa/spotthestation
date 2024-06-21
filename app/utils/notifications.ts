@@ -78,10 +78,10 @@ export async function ensureExactAlarmPermissions(): Promise<boolean | null> {
 export async function setNotifications(locations: LocationType[]) {
   if (!(await hasExactAlarmPermissions())) return
 
-  const start = new Date((await storage.load("muteFrom")) as string)
-  const end = new Date((await storage.load("muteUntil")) as string)
-  const privacy = await storage.load("privacy")
-  const notifyBefore: number = (await storage.load("notifyBefore")) || 15
+  const start = new Date((await storage.load(storage.KEYS.MUTE_FROM)) as string)
+  const end = new Date((await storage.load(storage.KEYS.MUTE_UNTIL)) as string)
+  const privacy = await storage.load(storage.KEYS.PRIVACY)
+  const notifyBefore: number = (await storage.load(storage.KEYS.NOTIFY_BEFORE)) || 15
 
   let notifications: { fireDate: Date; title: string; body: string }[] = []
   for await (const location of locations) {

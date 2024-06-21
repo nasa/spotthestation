@@ -14,6 +14,7 @@ jest.mock("mobx-state-tree", () => {
 })
 
 jest.mock("../../../utils/storage", () => ({
+  ...jest.requireActual<typeof import("../../../utils/storage")>("../../../utils/storage"),
   load: jest.fn(),
   save: jest.fn(),
 }))

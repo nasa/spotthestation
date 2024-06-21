@@ -8,6 +8,7 @@ import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { IconLinkButton } from "./components/IconLinkButton"
 import { NasaLogo } from "./components/NasaLogo"
 import * as storage from "../../utils/storage"
+import { KEYS } from "../../utils/storage"
 import { getUserId } from "../../utils/generateUUID"
 import analytics from "@react-native-firebase/analytics"
 import { StyleFn, useStyles } from "../../utils/useStyles"
@@ -33,7 +34,7 @@ export function Splash() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
-    let userId = (await storage.load("userId")) as string
+    let userId = (await storage.load(KEYS.USER_ID)) as string
     if (!userId) {
       userId = getUserId()
       await analytics()
@@ -42,7 +43,7 @@ export function Splash() {
       await analytics()
         .logTutorialBegin()
         .catch(() => null)
-      await storage.save("userId", getUserId())
+      await storage.save(KEYS.USER_ID, getUserId())
       setTimeout(() => {
         handleNavigate()
       }, 3000)

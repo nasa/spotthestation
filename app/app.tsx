@@ -60,8 +60,6 @@ setupReactotron({
   logSnapshots: false,
 })
 
-export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
-
 // Web linking configuration
 const prefix = Linking.createURL("/")
 const config = {
@@ -96,7 +94,7 @@ function App(props: AppProps) {
     initialNavigationState,
     onNavigationStateChange,
     isRestored: isNavigationStateRestored,
-  } = useNavigationPersistence(NAVIGATION_PERSISTENCE_KEY)
+  } = useNavigationPersistence(storage.KEYS.NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
@@ -134,14 +132,17 @@ function App(props: AppProps) {
       })
 
       if (hasNotifications && Platform.OS === "android") {
-        const fromAlarmPermissionSettings = await storage.load("fromAlarmPermissionSettings")
+        const fromAlarmPermissionSettings = await storage.load(
+          storage.KEYS.FROM_ALARM_PERMISSION_SETTINGS,
+        )
         if (fromAlarmPermissionSettings) {
           const permitted = await hasExactAlarmPermissions()
           if (!permitted) await rootStore.disableAllNotifications()
-          await storage.remove("fromAlarmPermissionSettings")
+          await storage.remove(storage.KEYS.FROM_ALARM_PERMISSION_SETTINGS)
         } else {
           const permitted = await ensureExactAlarmPermissions()
-          if (permitted === null) await storage.save("fromAlarmPermissionSettings", true)
+          if (permitted === null)
+            await storage.save(storage.KEYS.FROM_ALARM_PERMISSION_SETTINGS, true)
           if (permitted === false) await rootStore.disableAllNotifications()
         }
       }
@@ -174,14 +175,14 @@ function App(props: AppProps) {
   useEffect(() => {
     ;(async () => {
       try {
-        const locale = await storage.load("locale")
+        const locale = await storage.load(storage.KEYS.LOCALE)
         if (locale) setLocale(locale as string)
         else {
-          const prevSystemLocale = await storage.load("prevSystemLocale")
+          const prevSystemLocale = await storage.load(storage.KEYS.PREV_SYSTEM_LOCALE)
           if (prevSystemLocale && prevSystemLocale !== i18n.locale) updateLocationAddresses()
         }
 
-        await storage.save("prevSystemLocale", i18n.locale)
+        await storage.save(storage.KEYS.PREV_SYSTEM_LOCALE, i18n.locale)
         setIsLocaleLoaded(true)
       } catch {
         setIsLocaleLoaded(true)

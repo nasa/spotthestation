@@ -65,9 +65,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   const [from, setFrom] = useState(false)
   const [until, setUntil] = useState(false)
   const [settings, setSettings] = useState({
-    iisVisible: false,
     upcoming: false,
-    inApp: false,
     notifyBefore: 15,
     privacy: false,
     muteFrom: new Date(),
@@ -88,20 +86,18 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   }, [currentLocation, savedLocations])
 
   const loadSettings = async () => {
-    const start = (await storage.load("muteFrom")) as string
-    const end = (await storage.load("muteUntil")) as string
-    const notifyBefore = await storage.load("notifyBefore")
+    const start = (await storage.load(storage.KEYS.MUTE_FROM)) as string
+    const end = (await storage.load(storage.KEYS.MUTE_UNTIL)) as string
+    const notifyBefore = await storage.load(storage.KEYS.NOTIFY_BEFORE)
 
     setSettings({
-      iisVisible: await storage.load("iisVisible"),
-      upcoming: await storage.load("upcoming"),
-      inApp: await storage.load("inApp"),
+      upcoming: await storage.load(storage.KEYS.UPCOMING),
       notifyBefore: notifyBefore || 15,
-      privacy: await storage.load("privacy"),
+      privacy: await storage.load(storage.KEYS.PRIVACY),
       muteFrom: start ? new Date(start) : new Date(),
       muteUntil: end ? new Date(end) : new Date(),
     })
-    !notifyBefore && (await storage.save("notifyBefore", 15))
+    !notifyBefore && (await storage.save(storage.KEYS.NOTIFY_BEFORE, 15))
   }
 
   useEffect(() => {
@@ -142,13 +138,13 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
       upcoming: !isNotifyAll,
     })
 
-    storage.save("upcoming", !isNotifyAll).catch(console.error)
+    storage.save(storage.KEYS.UPCOMING, !isNotifyAll).catch(console.error)
 
     setNotifications()
   }, [currentLocation, selectedLocation, savedLocations, isNotifyAll, settings])
 
   const handleChange = useCallback(
-    async (value, field: string) => {
+    async (value, field: storage.KEYS) => {
       setSettings({
         ...settings,
         [field]: value,
@@ -284,7 +280,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 { label: `30 ${translate("units.minute")}`, value: 30 },
                 { label: `60 ${translate("units.minute")}`, value: 60 },
               ]}
-              onValueChange={(value) => handleChange(value, "notifyBefore")}
+              onValueChange={(value) => handleChange(value, storage.KEYS.NOTIFY_BEFORE)}
               value={settings?.notifyBefore}
             />
           </ExpandContainer>
@@ -296,7 +292,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
               accessibilityHint="toggle privacy notifications"
               variant="switch"
               value={settings?.privacy}
-              onValueChange={(value) => handleChange(value, "privacy")}
+              onValueChange={(value) => handleChange(value, storage.KEYS.PRIVACY)}
             />
           </View>
           <ExpandContainer
@@ -357,7 +353,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteFrom}
             onConfirm={(date) => {
               setFrom(false)
-              handleChange(date, "muteFrom").catch(console.error)
+              handleChange(date, storage.KEYS.MUTE_FROM).catch(console.error)
             }}
             onCancel={() => setFrom(false)}
           />
@@ -367,7 +363,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             date={settings?.muteUntil}
             onConfirm={(date) => {
               setUntil(false)
-              handleChange(date, "muteUntil").catch(console.error)
+              handleChange(date, storage.KEYS.MUTE_UNTIL).catch(console.error)
             }}
             onCancel={() => setUntil(false)}
           />

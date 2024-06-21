@@ -16,7 +16,6 @@ import * as storage from "../../utils/storage"
 /**
  * The key we'll be saving our state as within async storage.
  */
-const ROOT_STATE_STORAGE_KEY = "root-v1"
 
 /**
  * Setup the root state.
@@ -27,7 +26,7 @@ export async function setupRootStore(rootStore: RootStore) {
 
   try {
     // load the last known state from AsyncStorage
-    restoredState = (await storage.load(ROOT_STATE_STORAGE_KEY)) || {}
+    restoredState = (await storage.load(storage.KEYS.ROOT_STATE_STORAGE_KEY)) || {}
     applySnapshot(rootStore, restoredState)
   } catch (e) {
     // if there's any problems loading, then inform the dev what happened
@@ -40,7 +39,9 @@ export async function setupRootStore(rootStore: RootStore) {
   if (_disposer) _disposer()
 
   // track changes & save to AsyncStorage
-  _disposer = onSnapshot(rootStore, (snapshot) => storage.save(ROOT_STATE_STORAGE_KEY, snapshot))
+  _disposer = onSnapshot(rootStore, (snapshot) =>
+    storage.save(storage.KEYS.ROOT_STATE_STORAGE_KEY, snapshot),
+  )
 
   const unsubscribe = () => {
     _disposer()
