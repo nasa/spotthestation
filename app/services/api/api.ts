@@ -23,6 +23,7 @@ import { SatData } from "../../utils/astro"
 import i18n from "i18n-js"
 import uniqBy from "lodash/uniqBy"
 import { GooglePlaceData, GooglePlaceDetail } from "react-native-google-places-autocomplete"
+import qs from "qs"
 
 /**
  * Configuring the apisauce instance.
@@ -58,11 +59,15 @@ export class Api {
     search: string,
     sessionToken: string = null,
   ): Promise<{ kind: "ok"; places: PlaceDetails[] } | GeneralApiProblem> {
+    const query = qs.stringify({
+      q: search,
+      featureType: ["country", "state", "city"],
+      format: "jsonv2",
+      addressdetails: 1,
+      "accept-language": i18n.locale,
+    })
     const response: ApiResponse<OSMSearchResult[]> = await this.apisauce.get(
-      `https://nominatim.spotthestation.org/search?q=${search.replaceAll(
-        " ",
-        "%20",
-      )}&featureType=city&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
+      `https://nominatim.spotthestation.org/search?${query}`,
       {},
       { baseURL: "", headers: { Accept: "*/*" } },
     )
