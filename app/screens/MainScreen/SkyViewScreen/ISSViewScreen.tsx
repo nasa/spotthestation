@@ -204,6 +204,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const {
     currentLocation,
     selectedLocation,
+    savedLocations,
+    setSelectedLocation,
     issData,
     getISSSightings,
     getISSData,
@@ -216,6 +218,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const route = useRoute<any>()
   const navigation = useNavigation()
 
+  const [isLocationSet, setIsLocationSet] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
@@ -252,6 +255,45 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       .then((ack) => setSafetyAcknowledged(Boolean(ack)))
       .catch(() => setSafetyAcknowledged(true))
   }, [])
+
+  useEffect(() => {
+    const location = route.params?.location
+    if (!location) {
+      setIsLocationSet(true)
+      return
+    }
+
+    let newLocation: LocationType
+    if (
+      currentLocation &&
+      currentLocation.location.lat === location.lat &&
+      currentLocation.location.lng === location.lng
+    ) {
+      newLocation = currentLocation
+    } else {
+      newLocation = savedLocations.find(
+        (sl) => sl.location.lat === location.lat && sl.location.lng === location.lng,
+      )
+    }
+
+    navigation.setParams({ location: undefined } as never)
+    if (!newLocation) {
+      setIsLocationSet(true)
+      return
+    }
+    if (
+      selectedLocation &&
+      selectedLocation.location.lat === newLocation.location.lat &&
+      selectedLocation.location.lng === newLocation.location.lng
+    ) {
+      setIsLocationSet(true)
+      return
+    }
+
+    setSelectedLocation(newLocation, true)
+      .then(() => setIsLocationSet(true))
+      .catch(() => setIsLocationSet(true))
+  }, [route.params?.location])
 
   const current = useMemo(
     () => selectedLocation || currentLocation,
@@ -376,11 +418,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [isRecording])
 
   useEffect(() => {
-    if (!location || !isCameraAllowed) return
+    if (!location || !isCameraAllowed || !isLocationSet) return
 
     getSightings().catch((e) => console.log(e))
     getData().catch((e) => console.log(e))
-  }, [location?.[0], location?.[1], isCameraAllowed])
+  }, [location?.[0], location?.[1], isCameraAllowed, isLocationSet])
 
   useEffect(() => {
     if (!isRecording) return undefined
@@ -664,7 +706,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       }, 500)
       navigation.setParams({ info: undefined } as never)
     }
-  }, [arCoachCompleted, isActive, route.params])
+  }, [arCoachCompleted, isActive, route.params?.info])
 
   useEffect(() => {
     if (isCameraAllowed && isSupported && safetyAcknowledged === false) {
@@ -935,28 +977,30 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         />
       </MyModal>
 
-      <MyModal
-        name="details"
-        onBackdropPress={closeDetails}
-        useNativeDriver={false}
-        useNativeDriverForBackdrop
-        propagateSwipe
-        backdropOpacity={0}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        style={[
-          $modal,
-          isLandscape ? $infoModalLandscape : $infoModal,
-          Platform.OS === "ios" && $topInsetMargin,
-        ]}
-      >
-        <DetailsModal
-          issData={issData}
-          location={current}
-          onClose={closeDetails}
-          onLinkPress={onDetailsLinkPress}
-        />
-      </MyModal>
+      {isLocationSet && (
+        <MyModal
+          name="details"
+          onBackdropPress={closeDetails}
+          useNativeDriver={false}
+          useNativeDriverForBackdrop
+          propagateSwipe
+          backdropOpacity={0}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          style={[
+            $modal,
+            isLandscape ? $infoModalLandscape : $infoModal,
+            Platform.OS === "ios" && $topInsetMargin,
+          ]}
+        >
+          <DetailsModal
+            issData={issData}
+            location={current}
+            onClose={closeDetails}
+            onLinkPress={onDetailsLinkPress}
+          />
+        </MyModal>
+      )}
 
       <MyModal
         name="arCoach"

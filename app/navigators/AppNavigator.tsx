@@ -67,14 +67,17 @@ const AppStack = observer(function AppStack() {
   useEffect(() => {
     Promise.all([
       storage.load(storage.KEYS.IS_SETTINGS_COMPLETED),
-      notifications.hasInitialNotification(),
+      notifications.getInitialNotification(),
     ])
-      .then(([isSettingsCompleted, hasInitialNotification]) => {
+      .then(([isSettingsCompleted, initialNotification]) => {
         if (isSettingsCompleted) skipOnboarding()
-        if (hasInitialNotification) {
+        if (initialNotification) {
           navigationRef.navigate(
             "Main" as never,
-            { screen: "ISSView", params: { info: true } } as never,
+            {
+              screen: "ISSView",
+              params: { info: true, location: initialNotification.notification.data },
+            } as never,
           )
         }
       })
@@ -100,12 +103,15 @@ const AppStack = observer(function AppStack() {
           prevAppState.current !== nextAppState
         )
           notifications
-            .hasInitialNotification()
-            .then((hasInitialNotification) => {
-              if (hasInitialNotification)
+            .getInitialNotification()
+            .then((initialNotification) => {
+              if (initialNotification)
                 navigationRef.navigate(
                   "Main" as never,
-                  { screen: "ISSView", params: { info: true } } as never,
+                  {
+                    screen: "ISSView",
+                    params: { info: true, location: initialNotification.notification.data },
+                  } as never,
                 )
             })
             .catch((e) => console.error(e))
@@ -116,11 +122,14 @@ const AppStack = observer(function AppStack() {
         subscription.remove()
       }
     } else {
-      return notifee.onForegroundEvent(({ type }) => {
+      return notifee.onForegroundEvent(({ type, detail }) => {
         if (type === EventType.PRESS) {
           navigationRef.navigate(
             "Main" as never,
-            { screen: "ISSView", params: { info: true } } as never,
+            {
+              screen: "ISSView",
+              params: { info: true, location: detail?.notification?.data },
+            } as never,
           )
         }
       })

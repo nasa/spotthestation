@@ -36,8 +36,8 @@ export function initialize() {
   }
 }
 
-export async function hasInitialNotification() {
-  return Boolean(await notifee.getInitialNotification())
+export async function getInitialNotification() {
+  return notifee.getInitialNotification()
 }
 
 export async function hasExactAlarmPermissions(): Promise<boolean | null> {
@@ -83,7 +83,12 @@ export async function setNotifications(locations: LocationType[]) {
   const privacy = await storage.load(storage.KEYS.PRIVACY)
   const notifyBefore: number = (await storage.load(storage.KEYS.NOTIFY_BEFORE)) || 15
 
-  let notifications: { fireDate: Date; title: string; body: string }[] = []
+  let notifications: {
+    fireDate: Date
+    title: string
+    body: string
+    data: { lat: number; lng: number }
+  }[] = []
   for await (const location of locations) {
     const events = location?.sightings || []
     const eventsForNotify: ISSSighting[] = events.filter((item) => item.notify)
@@ -104,6 +109,7 @@ export async function setNotifications(locations: LocationType[]) {
             body: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${translate(
               "notifications.before.subTitleTwo",
             )} ${location.title}`,
+            data: { ...location.location },
             fireDate: new Date(eventDate.getTime() - notifyBefore * 60000),
           })
         }
@@ -111,6 +117,7 @@ export async function setNotifications(locations: LocationType[]) {
         notifications.push({
           title: translate("notifications.push.title"),
           body: `${translate("notifications.push.subTitle")} ${location.title}`,
+          data: { ...location.location },
           fireDate: eventDate,
         })
       }
@@ -136,6 +143,7 @@ export async function setNotifications(locations: LocationType[]) {
         id: notification.fireDate.valueOf().toString(),
         title: notification.title,
         body: notification.body,
+        data: notification.data,
         ios: {
           sound: "default",
         },
