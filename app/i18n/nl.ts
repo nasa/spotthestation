@@ -418,6 +418,7 @@ const nl = {
   },
   resources: {
     header: "Bronnen",
+    goBack: "Ga terug",
     searchPlaceholder: "Zoek naar artikelen, gebeurtenissen, etc...",
     suggestions: "SUGGESTIES",
     searchResults: "Zoekresultaten",

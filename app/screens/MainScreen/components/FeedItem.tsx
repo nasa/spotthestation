@@ -9,22 +9,21 @@ import {
   Image,
   ImageStyle,
 } from "react-native"
-import en from "date-fns/locale/en-US"
 import { Text } from "../../../components"
 import { typography, colors } from "../../../theme"
-import { formatDate } from "../../../utils/formatDate"
 import { Tag } from "./Tag"
 
 export interface FeedItemProps {
   title: string
   image: string
-  date?: string
+  subtitle?: string
   tags?: string[]
   onPress?: PressableProps["onPress"]
 }
 
-export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemProps) {
-  const { $container, $tagsContainer, $imageContainer, $titleText, $dateText } = useStyles(styles)
+export function FeedItem({ title, image, subtitle, tags = [], onPress }: FeedItemProps) {
+  const { $container, $tagsContainer, $imageContainer, $titleText, $subtitleText } =
+    useStyles(styles)
 
   return (
     <Pressable
@@ -67,9 +66,7 @@ export function FeedItem({ title, image, date, tags = [], onPress }: FeedItemPro
         text={title}
         style={$titleText}
       />
-      {Boolean(date) && (
-        <Text text={formatDate(date, "MMM d, yyyy", { locale: en })} style={$dateText} />
-      )}
+      {Boolean(subtitle) && <Text text={subtitle} style={$subtitleText} />}
     </Pressable>
   )
 }
@@ -107,12 +104,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingBottom: scale(5),
   }
 
-  const $dateText: TextStyle = {
+  const $subtitleText: TextStyle = {
     fontFamily: typography.primary?.normal,
     fontSize: fontSizes[14],
     lineHeight: lineHeights[17],
     color: colors.palette.neutral450,
   }
 
-  return { $container, $tagsContainer, $imageContainer, $titleText, $dateText }
+  return { $container, $tagsContainer, $imageContainer, $titleText, $subtitleText }
 }

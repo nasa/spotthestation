@@ -415,6 +415,7 @@ const hi = {
   },
   resources: {
     header: "संसाधन",
+    goBack: "वापस जाओ",
     searchPlaceholder: "खोज लेख, घटनाएँ, आदि ...",
     suggestions: "सुझाव",
     searchResults: "खोज के परिणाम",

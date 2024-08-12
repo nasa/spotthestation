@@ -45,6 +45,7 @@ jest.mock('../app/components', () => ({
   Screen: ({children}) => <div>{children}</div>,
 }))
 jest.mock('../app/screens/MainScreen/components/Globe', () => ({ Globe: () => <div /> }))
+jest.mock('../app/screens/MainScreen/components/SatelliteView', () => ({ SatelliteView: () => <div /> }))
 jest.mock('../app/screens/MainScreen/components/ARView', () => ({ ARView: () => <div /> }))
 jest.mock('../app/screens/MainScreen/components/MapBox', () => ({ MapBox: () => <div /> }))
 jest.mock('../app/config', () => ({

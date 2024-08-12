@@ -416,6 +416,7 @@ const tr = {
   },
   resources: {
     header: "Kaynaklar",
+    goBack: "Geri Dön",
     searchPlaceholder: "Makaleler, etkinlikler, vb. ara...",
     suggestions: "ÖNERİLER",
     searchResults: "Arama Sonuçları",

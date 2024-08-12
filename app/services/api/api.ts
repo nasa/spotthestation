@@ -12,13 +12,21 @@ import {
 } from "apisauce"
 import Config from "../../config"
 import { GeneralApiProblem, getGeneralApiProblem } from "./apiProblem" // @demo remove-current-line
-import type { ApiConfig, GetRawISSDataParams, OSMSearchResult } from "./api.types"
 import {
   formatAddress,
   ReverseGeocodeResponse,
   TimeZoneDataResponse,
 } from "../../utils/geolocation"
-import { FeedResponse, ISSDataResponse, PlaceDetails, RawISSDataResponse } from "./api.types"
+import {
+  FeedResponse,
+  ISSDataResponse,
+  PlaceDetails,
+  RawISSDataResponse,
+  ApiConfig,
+  AstronautsResponse,
+  GetRawISSDataParams,
+  OSMSearchResult,
+} from "./api.types"
 import { SatData } from "../../utils/astro"
 import i18n from "i18n-js"
 import uniqBy from "lodash/uniqBy"
@@ -266,6 +274,17 @@ export class Api {
     }
 
     return { ok: true, places: response.data }
+  }
+
+  async getAstronauts(): Promise<AstronautsResponse> {
+    const response: ApiResponse<any> = await this.apisauce.get("/astronauts", {})
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: "" }
+    }
+
+    return { ok: true, data: response.data }
   }
 
   async sendMail(subject: string, body: string) {

@@ -1,4 +1,13 @@
-import { Camera, EventDispatcher, Spherical, TOUCH, Vector2, Vector3, BaseEvent } from "three"
+import {
+  Camera,
+  EventDispatcher,
+  Spherical,
+  TOUCH,
+  Vector2,
+  Vector3,
+  BaseEvent,
+  Quaternion,
+} from "three"
 import { NativeTouchEvent } from "react-native"
 
 const STATE = {
@@ -32,6 +41,7 @@ export class Controls extends EventDispatcher {
   touches: { ONE: TOUCH }
   target0: Vector3
   position0: Vector3
+  quat: Quaternion
   update: () => boolean
   private changeEvent: BaseEvent
   private startEvent: BaseEvent
@@ -44,7 +54,9 @@ export class Controls extends EventDispatcher {
   private rotateStart: Vector2
   private rotateEnd: Vector2
   private rotateDelta: Vector2
+  updateObjectUp: () => void
   saveState: () => void
+  setTarget: (target: Vector3) => void
   reset: () => void
   private rotateLeft: (angle: number) => void
   private rotateUp: (angle: number) => void
@@ -83,6 +95,15 @@ export class Controls extends EventDispatcher {
     this.rotateStart = new Vector2()
     this.rotateEnd = new Vector2()
     this.rotateDelta = new Vector2()
+    this.quat = new Quaternion()
+
+    this.setTarget = (target) => {
+      this.target = target
+    }
+
+    this.updateObjectUp = () => {
+      this.quat = new Quaternion().setFromUnitVectors(this.object.up, new Vector3(0, 1, 0))
+    }
 
     this.saveState = () => {
       this.target0.copy(this.target)
@@ -189,6 +210,7 @@ export class Controls extends EventDispatcher {
       return () => {
         const position = this.object.position
         offset.copy(position).sub(this.target)
+        offset.applyQuaternion(this.quat)
 
         this.spherical.setFromVector3(offset)
 
@@ -213,6 +235,7 @@ export class Controls extends EventDispatcher {
 
         offset.setFromSpherical(this.spherical)
 
+        offset.applyQuaternion(this.quat.clone().invert())
         position.copy(this.target).add(offset)
         this.object.lookAt(this.target)
         this.sphericalDelta.set(0, 0, 0)

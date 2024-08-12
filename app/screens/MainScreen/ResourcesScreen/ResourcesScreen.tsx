@@ -26,8 +26,27 @@ import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 import MyModal from "../HomeScreen/MyModal"
 import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { formatDate } from "../../../utils/formatDate"
+import en from "date-fns/locale/en-US"
 
 const items = [
+  {
+    tags: [],
+    title: "Who is in The Station Now?",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://www.nasa.gov/wp-content/uploads/2023/02/edu_srch_microsofts_hacking_stem.jpg",
+    type: "screen",
+    link: "Astronauts",
+  },
+  {
+    tags: [],
+    title: "The Station Virtual Tour",
+    date: "2023-01-04T00:00:00.000000",
+    image: "https://www.nasa.gov/wp-content/uploads/2023/06/iss-virtual-tour-screenshot.jpg",
+    type: "event",
+    link: "https://esamultimedia.esa.int/multimedia/virtual-tour-iss/",
+    webViewBackButton: true,
+  },
   {
     tags: [],
     title: "How Do I Spot The Station?",
@@ -255,8 +274,20 @@ export const Resources = observer(function HomeScreen() {
     }
   }, [isLoading])
 
-  const link = (item: any) =>
-    navigation.navigate("ResourcesScreens" as never, { screen: "Events", item: item.link } as never)
+  const link = (item: any) => {
+    if (item.type === "screen") {
+      navigation.navigate("ResourcesScreens" as never, { screen: item.link } as never)
+      return
+    }
+    navigation.navigate(
+      "ResourcesScreens" as never,
+      {
+        screen: "Events",
+        item: item.link,
+        webViewBackButton: item.webViewBackButton,
+      } as never,
+    )
+  }
 
   const renderStatic = () => {
     return (
@@ -361,7 +392,9 @@ export const Resources = observer(function HomeScreen() {
               key={item.title}
               onPress={() => link(item)}
               title={item.title}
-              date={new Date(item.pubDate).toISOString()}
+              subtitle={formatDate(new Date(item.pubDate).toISOString(), "MMM d, yyyy", {
+                locale: en,
+              })}
               image={
                 /<img.*?src="([^"]*)"/.exec(item["content:encoded"])
                   ? /<img.*?src="([^"]*)"/.exec(item["content:encoded"])[1]

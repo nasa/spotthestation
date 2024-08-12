@@ -414,6 +414,7 @@ const pl = {
   },
   resources: {
     header: "Zasoby",
+    goBack: "Wróć",
     searchPlaceholder: "Wyszukaj artykuły, wydarzenia itp...",
     suggestions: "SUGESTIE",
     searchResults: "Wyniki wyszukiwania",

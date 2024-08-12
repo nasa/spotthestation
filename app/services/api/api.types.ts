@@ -63,6 +63,18 @@ export interface FeedResponse {
   places: string
 }
 
+export interface AstronautsSuccessResponse {
+  ok: true
+  data: [{ name: string; title: string; image: string; link: string }]
+}
+
+export interface AstronautsFailResponse {
+  ok: false
+  data: string
+}
+
+export type AstronautsResponse = AstronautsSuccessResponse | AstronautsFailResponse
+
 /**
  * The options used to configure apisauce.
  */

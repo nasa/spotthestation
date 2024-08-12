@@ -419,6 +419,7 @@ const ptBR = {
   },
   resources: {
     header: "Recursos",
+    goBack: "Voltar",
     searchPlaceholder: "Pesquisar artigos, eventos, etc...",
     suggestions: "SUGESTÕES",
     searchResults: "Resultados da Pesquisa",

@@ -421,6 +421,7 @@ const fr = {
   },
   resources: {
     header: "Ressources",
+    goBack: "Retour",
     searchPlaceholder: "Recherchez des articles, des événements, etc ...",
     suggestions: "SUGGESTIONS",
     searchResults: "Résultats de recherche",

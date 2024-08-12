@@ -417,6 +417,7 @@ const en = {
   },
   resources: {
     header: "Resources",
+    goBack: "Go Back",
     searchPlaceholder: "Search articles, events, etc...",
     suggestions: "SUGGESTIONS",
     searchResults: "Search Results",

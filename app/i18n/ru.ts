@@ -416,6 +416,7 @@ const ru = {
   },
   resources: {
     header: "Ресурсы",
+    goBack: "Вернуться",
     searchPlaceholder: "Поиск статей, событий и т.д...",
     suggestions: "ПРЕДЛОЖЕНИЯ",
     searchResults: "Результаты поиска",

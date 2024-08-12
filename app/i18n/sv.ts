@@ -413,6 +413,7 @@ const sv = {
   },
   resources: {
     header: "Resurser",
+    goBack: "Gå tillbaka",
     searchPlaceholder: "Sökartiklar, händelser osv ...",
     suggestions: "FÖRSLAG",
     searchResults: "sökresultat",

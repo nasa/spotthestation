@@ -1,4 +1,11 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react"
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from "react"
 import { View, PanResponder, LayoutRectangle, ViewProps } from "react-native"
 import { Camera } from "three"
 import { Controls } from "./Controls"
@@ -8,8 +15,12 @@ export interface ControlsViewProps extends ViewProps {
   onPositionChange?: () => void
 }
 
+export interface ControlsRef {
+  getControls: () => Controls
+}
+
 const ControlsView = forwardRef(
-  ({ camera, onPositionChange, ...props }: ControlsViewProps, ref) => {
+  ({ camera, onPositionChange, ...props }: ControlsViewProps, ref: ForwardedRef<ControlsRef>) => {
     const [size, setSize] = useState<LayoutRectangle | null>(null)
 
     const controls: Controls = useMemo(() => {

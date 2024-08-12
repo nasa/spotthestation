@@ -415,6 +415,7 @@ const uk = {
   },
   resources: {
     header: "Ресурси",
+    goBack: "Повернутися",
     searchPlaceholder: "Пошук статей, подій, тощо...",
     suggestions: "ПРОПОЗИЦІЇ",
     searchResults: "Результати пошуку",

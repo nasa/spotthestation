@@ -415,6 +415,7 @@ const ja = {
   },
   resources: {
     header: "リソース",
+    goBack: "戻る",
     searchPlaceholder: "記事、イベントなどを検索...",
     suggestions: "提案",
     searchResults: "の検索結果",

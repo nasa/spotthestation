@@ -419,6 +419,7 @@ const es = {
   },
   resources: {
     header: "Recursos",
+    goBack: "Regresar",
     searchPlaceholder: "Búsqueda de artículos, eventos, etc.",
     suggestions: "Sugerencias",
     searchResults: "Resultados de la búsqueda",

@@ -9,6 +9,7 @@ import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
+import { SatelliteView } from "../components/SatelliteView"
 import { formatDate } from "../../../utils/formatDate"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
@@ -70,7 +71,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     requestCloseModal,
     setTrajectoryError,
   } = useStores()
-  const [isGlobe, setIsGlobe] = useState(false)
+  const [mode, setMode] = useState("map")
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
   const [isLandscape, setIsLandscape] = useState(false)
@@ -247,7 +248,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             (isFullScreen ? $bodyStyleForLandscapeOverrideFs : $bodyStyleForLandscapeOverride),
         ]}
       >
-        {isGlobe && (
+        {mode === "globe" && (
           <Globe
             key={isFullScreen.toString() + isLandscape.toString()}
             issPath={issData}
@@ -257,7 +258,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             onCameraChange={handleCameraChange}
           />
         )}
-        {!isGlobe && (
+        {mode === "map" && (
           <MapBox
             attributionPosition="top"
             issPath={issData}
@@ -271,6 +272,9 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
                 : []
             }
           />
+        )}
+        {mode === "satellite" && (
+          <SatelliteView key={isFullScreen.toString() + isLandscape.toString()} issPath={issData} />
         )}
         <View
           style={[
@@ -291,55 +295,71 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
               accessibilityLabel="2D button"
               accessibilityHint="enable map view"
               text="2D"
-              textStyle={!isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
+              textStyle={mode === "map" ? [$modButtonText, $modButtonTextActive] : $modButtonText}
               onPress={() => {
-                setIsGlobe(false)
+                setMode("map")
                 setDefaultCameraPosition(cameraPosition.current)
               }}
-              buttonStyle={!isGlobe ? [$modButton, $active] : $modButton}
+              buttonStyle={mode === "map" ? [$modButton, $active] : $modButton}
             />
             <IconLinkButton
               accessible
               accessibilityLabel="3D button"
               accessibilityHint="enable globe view"
               text="3D"
-              textStyle={isGlobe ? [$modButtonText, $modButtonTextActive] : $modButtonText}
+              textStyle={mode === "globe" ? [$modButtonText, $modButtonTextActive] : $modButtonText}
               onPress={() => {
-                setIsGlobe(true)
+                setMode("globe")
                 setDefaultCameraPosition(cameraPosition.current)
               }}
-              buttonStyle={isGlobe ? [$modButton, $active] : $modButton}
+              buttonStyle={mode === "globe" ? [$modButton, $active] : $modButton}
+            />
+            <IconLinkButton
+              accessible
+              accessibilityLabel="satellite button"
+              accessibilityHint="enable satellite view"
+              text="Sat"
+              textStyle={
+                mode === "satellite" ? [$modButtonText, $modButtonTextActive] : $modButtonText
+              }
+              onPress={() => {
+                setMode("satellite")
+                setDefaultCameraPosition(cameraPosition.current)
+              }}
+              buttonStyle={mode === "satellite" ? [$modButton, $active] : $modButton}
             />
           </BlurView>
         </View>
-        <View
-          style={[
-            $zoomButtons,
-            $zoomControl,
-            isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
-          ]}
-        >
-          <IconLinkButton
-            accessible
-            accessibilityLabel="+ button"
-            accessibilityHint="zoom view"
-            text="+"
-            disabled={zoomLevel === 5}
-            onPress={() => setZoomLevel(zoomLevel + 1)}
-            buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
-            blurIntensity={50}
-          />
-          <IconLinkButton
-            accessible
-            accessibilityLabel="- button"
-            accessibilityHint="zoom out view"
-            text="-"
-            disabled={zoomLevel === 0}
-            onPress={() => setZoomLevel(zoomLevel - 1)}
-            buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
-            blurIntensity={50}
-          />
-        </View>
+        {mode !== "satellite" && (
+          <View
+            style={[
+              $zoomButtons,
+              $zoomControl,
+              isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
+            ]}
+          >
+            <IconLinkButton
+              accessible
+              accessibilityLabel="+ button"
+              accessibilityHint="zoom view"
+              text="+"
+              disabled={zoomLevel === 5}
+              onPress={() => setZoomLevel(zoomLevel + 1)}
+              buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
+              blurIntensity={50}
+            />
+            <IconLinkButton
+              accessible
+              accessibilityLabel="- button"
+              accessibilityHint="zoom out view"
+              text="-"
+              disabled={zoomLevel === 0}
+              onPress={() => setZoomLevel(zoomLevel - 1)}
+              buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
+              blurIntensity={50}
+            />
+          </View>
+        )}
       </View>
       <Modal
         isVisible={isLocation}
@@ -523,7 +543,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $modButtons: ViewStyle = {
-    height: scale(90),
+    height: scale(135),
     justifyContent: "space-between",
     padding: scale(2),
     borderRadius: scale(100),

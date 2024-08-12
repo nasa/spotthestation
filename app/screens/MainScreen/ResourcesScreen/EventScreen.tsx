@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import React from "react"
+import React, { useRef, useState } from "react"
 import { ViewStyle, TextStyle, Pressable, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../../../components"
@@ -15,13 +15,21 @@ export interface EventScreenRouteProps {
 export const EventScreen = observer(function EventScreen() {
   const navigation = useNavigation()
   const {
-    params: { item },
+    params: { item, webViewBackButton },
   } = useRoute<any>()
 
   const { $headerStyleOverride, $backButton, $webViewContainer, $backButtonText } =
     useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
+  const [currentUrl, setCurrentUrl] = useState("")
+
+  const webViewRef = useRef<WebView>()
+
+  const back = () => {
+    if (currentUrl === item || !webViewBackButton) navigation.goBack()
+    else webViewRef.current.goBack()
+  }
 
   return (
     <View style={[$headerStyleOverride, { paddingTop: topInset }]}>
@@ -30,13 +38,21 @@ export const EventScreen = observer(function EventScreen() {
         accessibilityLabel="Back button"
         accessibilityHint="Navigates to the previous screen"
         accessibilityRole="button"
-        onPress={() => navigation.goBack()}
+        onPress={back}
         style={$backButton}
       >
         <Icon icon="caretLeft" color={colors.palette.neutral250} size={24} />
-        <Text tx="resources.header" style={$backButtonText} />
+        <Text
+          tx={currentUrl === item || !webViewBackButton ? "resources.header" : "resources.goBack"}
+          style={$backButtonText}
+        />
       </Pressable>
-      <WebView source={{ uri: item }} containerStyle={$webViewContainer} />
+      <WebView
+        ref={webViewRef}
+        source={{ uri: item }}
+        containerStyle={$webViewContainer}
+        onNavigationStateChange={(s) => setCurrentUrl(s.url)}
+      />
     </View>
   )
 })

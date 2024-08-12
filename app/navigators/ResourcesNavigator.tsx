@@ -7,8 +7,14 @@ import {
   EventScreenRouteProps,
 } from "../screens/MainScreen/ResourcesScreen/EventScreen"
 
+import {
+  AstronautsScreen,
+  AstronautsScreenRouteProps,
+} from "../screens/MainScreen/ResourcesScreen/AstonautsScreen"
+
 export type ResourcesParamList = {
   Event: EventScreenRouteProps
+  Astronauts: AstronautsScreenRouteProps
 }
 
 export type ResourcesStackScreenProps<T extends keyof ResourcesParamList> = StackScreenProps<
@@ -23,6 +29,7 @@ export function ResourcesNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Event">
       <Stack.Screen name="Event" component={EventScreen} initialParams={params} />
+      <Stack.Screen name="Astronauts" component={AstronautsScreen} initialParams={params} />
     </Stack.Navigator>
   )
 }
