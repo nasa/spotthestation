@@ -1,15 +1,15 @@
 const ptBR = {
   name: "Português (Brasil)",
   errorScreen: {
-    title: "Algo deu errado!",
+    title: "Algo errado aconteceu!",
     friendlySubtitle:
-      "Esta é a tela que seus usuários verão em produção quando ocorrer um erro. Você vai querer personalizar esta mensagem (localizada em `app/i18n/en.ts`) e provavelmente o layout também (`app/screens/ErrorScreen`). Se você quiser remover isso completamente, verifique `app/app.tsx` para o componente <ErrorBoundary>.",
-    reset: "REINICIAR APP",
+      "Esta é a tela que seus usuários verão em produção quando ocorrer um erro. Você vai querer personalizar esta mensagem (localizada em `app/i18n/en.ts`) e provavelmente o layout também (`app/screens/ErrorScreen`). Se você quiser remover isso completamente, verifique o componente <ErrorBoundary> em `app/app.tsx` para .",
+    reset: "REINICIAR APLICATIVO",
   },
   snackBar: {
     ok: "OK",
     dismiss: "Dispensar",
-    sightingsSaved: "Avistamentos para a última localização salva carregados!",
+    sightingsSaved: "Avistamentos para a última localização salva foram carregados!",
     defaultError: "Ocorreu um erro",
     locationSaved: "Localização salva",
     locationExist: "Localização com este título já existe!",
@@ -31,10 +31,10 @@ const ptBR = {
   permissionsAndroid: {
     title: "Permissão para salvar vídeos",
     message: "Este aplicativo precisa de permissão para salvar vídeos no seu dispositivo.",
-    buttonNeutral: "Perguntar depois",
+    buttonNeutral: "Perguntar-me depois",
     buttonNegative: "Cancelar",
     buttonPositive: "OK",
-    alarmPermissionTitle: "Permissão necessária",
+    alarmPermissionTitle: "Permissão requerida",
     alarmPermissionMessage:
       "Por favor, conceda permissão para alarmes e lembretes na próxima tela para receber notificações sobre os próximos avistamentos.",
   },
@@ -107,7 +107,7 @@ const ptBR = {
   },
   homeScreen: {
     initLoader: {
-      message: "Carregando dados da Estação… Isso pode levar um momento para completar.",
+      message: "Carregando dados da Estação… Isso pode levar um tempo para completar.",
       trajectoryError:
         "Os dados de trajetória da Estação estão atualmente indisponíveis devido à manutenção do servidor. Por favor, verifique novamente mais tarde.",
       noNetwork:
@@ -454,7 +454,7 @@ const ptBR = {
     live: {
       title: "Transmissão ao Vivo",
       description:
-        "Atualmente, um vídeo ao vivo da Terra está sendo transmitido de uma câmera HD externa montada na ISS. A câmera está olhando para a Terra com um painel solar ocasional passando pela vista.",
+        "Atualmente, um vídeo ao vivo da Terra está sendo transmitido de uma câmera HD externa montada na ISS. A câmera está voltada para a Terra, com um painel solar ocasional passando pela visão.",
     },
     tour: {
       title: "Tour Virtual",
