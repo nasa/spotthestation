@@ -17,6 +17,12 @@ const pl = {
     shared: "Pomyślnie udostępniono!",
     savedToGallery: "Zapisano w galerii",
   },
+  outdatedModal: {
+    title: "Aktualizacja dostępna",
+    body: "Nowa wersja aplikacji jest dostępna! Pobierz nową wersję na",
+    buttonNegative: "Anuluj",
+    buttonPositive: "Pobierz",
+  },
   permissionsModal: {
     close: "Zamknij",
     openSettings: "Otwórz ustawienia",
@@ -410,25 +416,49 @@ const pl = {
         removeButton: "Usuń",
       },
     },
+    share: "Udostępnij",
+    shareLink:
+      "Aby śledzić Międzynarodową Stację Kosmiczną za pomocą rozszerzonej rzeczywistości, pobierz aplikację mobilną NASA Spot The Station na",
     localCalculations: "Lokalne obliczenia",
   },
   resources: {
     header: "Zasoby",
     goBack: "Wróć",
-    searchPlaceholder: "Wyszukaj artykuły, wydarzenia itp...",
-    suggestions: "SUGESTIE",
-    searchResults: "Wyniki wyszukiwania",
-    liveTitle: "Transmisja na żywo w wysokiej rozdzielczości Ziemi",
-    liveDescription:
-      "Obecnie na żywo transmitowane jest wideo Ziemi z zewnętrznej kamery HD zamontowanej na ISS. Kamera jest skierowana w stronę Ziemi, a przez widok czasami przechodzi panel słoneczny.",
-    details: {
-      title: "Międzynarodowa Stacja Kosmiczna - Szczegóły",
+    news: {
+      title: "Wiadomości ze Stacji",
+      searchPlaceholder: "Szukaj artykułów, wydarzeń itp...",
+      suggestions: "SUGESTIE",
+      searchResults: "Wyniki wyszukiwania",
     },
-    tabs: {
-      news: "Wiadomości",
-      about: "O nas",
-      details: "Szczegóły",
-      live: "Transmisja na żywo",
+    spotTheStation: {
+      title: "Jak zauważyć stację?",
+    },
+    about: {
+      title: "O Stacji",
+    },
+    details: {
+      title: "Szczegóły Stacji",
+    },
+    faq: {
+      title: "Najczęściej Zadawane Pytania",
+    },
+    astronauts: {
+      title: "Kto jest teraz na Stacji",
+      number: "Liczba osób:",
+    },
+    live: {
+      title: "Transmisja na Żywo",
+      description:
+        "Obecnie na żywo transmitowane jest wideo Ziemi z zewnętrznej kamery HD zamontowanej na ISS. Kamera patrzy na Ziemię, a czasami przez widok przechodzi panel słoneczny.",
+    },
+    tour: {
+      title: "Wirtualna Wycieczka",
+    },
+    videos: {
+      title: "Filmy ze Stacji",
+    },
+    gallery: {
+      title: "Galeria",
     },
   },
 }

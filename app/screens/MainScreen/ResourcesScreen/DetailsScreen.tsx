@@ -1,51 +1,102 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
-import React from "react"
-import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
+import React, { useEffect, useState } from "react"
+import { ViewStyle, View, TextStyle } from "react-native"
 import { translate } from "../../../i18n"
 import { Text } from "../../../components"
-import { OrbitPoint } from "../../../services/api/api.types"
+import { LocationType, OrbitPoint } from "../../../services/api/api.types"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
 import { calculateOrbitalSpeed } from "../components/helpers"
 import { useISSPosition } from "../../../utils/useISSPosition"
+import { useStores } from "../../../models"
+import MyModal from "../HomeScreen/MyModal"
+import { TrajectoryError } from "../HomeScreen/TrajectoryError"
+import { Template } from "./Template"
 
-export interface DetailsProps {
-  /**
-   * A function for closing modal.
-   */
-  onClose?: PressableProps["onPress"]
-  issData: OrbitPoint[]
-  observer: [number, number]
-}
+export interface DetailsScreenRouteProps {}
 
-export function Details({ issData }: DetailsProps) {
+export function DetailsScreen() {
   const {
-    $modalBodyContainer,
     $contentContainer,
     $buttonsContainer,
-    $title,
     $detailBox,
     $detailTitle,
     $detailValue,
     $detailRow,
     $detailRowTitle,
     $detailRowValue,
+    $modal,
+    $popupModal,
   } = useStyles(styles)
 
-  const currentPosition = useISSPosition(issData)
+  const {
+    currentLocation,
+    selectedLocation,
+    issData,
+    getISSData,
+    trajectoryError,
+    trajectoryErrorKind,
+    requestOpenModal,
+    requestCloseModal,
+    setTrajectoryError,
+  } = useStores()
+
+  const [location, setLocation] = useState<[number, number]>(null)
+  const currentPosition = useISSPosition(issData as OrbitPoint[])
+
+  const getLocation = (selectedLocation: LocationType, currentLocation: LocationType) => {
+    let lat: number
+    let lng: number
+    if (selectedLocation) {
+      lat = selectedLocation.location.lat
+      lng = selectedLocation.location.lng
+    } else {
+      if (currentLocation) {
+        lat = currentLocation.location.lat
+        lng = currentLocation.location.lng
+      }
+    }
+    if (lat && lng) setLocation([lat, lng])
+  }
+
+  const getData = async () => {
+    await getISSData({ lat: location[0], lon: location[1] })
+  }
+
+  useEffect(() => {
+    if (!location || !issData?.length) return undefined
+
+    const lastOrbitPoint = issData[issData.length - 1] as OrbitPoint
+    if (!lastOrbitPoint) return undefined
+    const diff = new Date(lastOrbitPoint.date).valueOf() - Date.now()
+    if (diff <= 0) return undefined
+
+    const tmr = setTimeout(() => {
+      getData().catch((e) => console.log(e))
+    }, diff)
+
+    return () => clearTimeout(tmr)
+  }, [issData])
+
+  useEffect(() => {
+    getLocation(selectedLocation, currentLocation)
+  }, [currentLocation, selectedLocation])
+
+  useEffect(() => {
+    if (!location) return
+    getData().catch((e) => console.log(e))
+  }, [location])
+
+  useEffect(() => {
+    if (trajectoryError) requestOpenModal("trajectoryError")
+    else requestCloseModal("trajectoryError")
+  }, [trajectoryError])
+
   if (!currentPosition) return null
 
   return (
-    <View style={$modalBodyContainer}>
+    <Template dismissKeyboardOnPress headerTitleTx="resources.details.title">
       <View style={$contentContainer}>
-        <Text
-          accessible
-          accessibilityLabel="modal title"
-          accessibilityHint="modal title"
-          accessibilityRole="text"
-          tx="resources.details.title"
-          style={$title}
-        />
         <View style={$buttonsContainer}>
           <View
             accessible
@@ -171,20 +222,29 @@ export function Details({ issData }: DetailsProps) {
           </View>
         </View>
       </View>
-    </View>
+
+      <MyModal
+        name="trajectoryError"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={[$modal, $popupModal]}
+      >
+        <TrajectoryError
+          kind={trajectoryErrorKind}
+          onDismiss={() => {
+            setTrajectoryError(false)
+          }}
+        />
+      </MyModal>
+    </Template>
   )
 }
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
-  const $modalBodyContainer: ViewStyle = {
-    backgroundColor: colors.palette.neutral350,
-    borderTopLeftRadius: scale(18),
-    borderTopRightRadius: scale(18),
-  }
-
   const $contentContainer: ViewStyle = {
     width: "100%",
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
     paddingBottom: scale(24),
   }
 
@@ -193,16 +253,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-  }
-
-  const $title: TextStyle = {
-    color: colors.palette.neutral250,
-    width: "95%",
-    fontSize: fontSizes[32],
-    fontFamily: typography.primary.normal,
-    lineHeight: lineHeights[44],
-    paddingBottom: scale(36),
-    marginTop: scale(24),
   }
 
   const $detailBox: ViewStyle = {
@@ -255,16 +305,25 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     maxWidth: scale(155),
   }
 
+  const $modal: ViewStyle = {
+    flex: 1,
+    justifyContent: "flex-end",
+    left: 0,
+    margin: 0,
+  }
+
+  const $popupModal: ViewStyle = { paddingHorizontal: 18, justifyContent: "flex-start" }
+
   return {
-    $modalBodyContainer,
     $contentContainer,
     $buttonsContainer,
-    $title,
     $detailBox,
     $detailTitle,
     $detailValue,
     $detailRow,
     $detailRowTitle,
     $detailRowValue,
+    $modal,
+    $popupModal,
   }
 }

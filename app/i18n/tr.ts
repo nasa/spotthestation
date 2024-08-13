@@ -17,6 +17,12 @@ const tr = {
     shared: "Başarıyla paylaşıldı!",
     savedToGallery: "Galeride kaydedildi",
   },
+  outdatedModal: {
+    title: "Güncelleme Mevcut",
+    body: "Uygulamanın yeni sürümü mevcut! Yeni sürümü indir",
+    buttonNegative: "İptal",
+    buttonPositive: "İndir",
+  },
   permissionsModal: {
     close: "Kapat",
     openSettings: "Ayarları aç",
@@ -412,25 +418,49 @@ const tr = {
         removeButton: "Sil",
       },
     },
+    shareTitle: "Paylaş",
+    shareLink:
+      "Uluslararası Uzay İstasyonu'nu artırılmış gerçeklik ile takip etmek için, NASA Spot The Station mobil uygulamasını indirin",
     localCalculations: "Yerel hesaplamalar",
   },
   resources: {
     header: "Kaynaklar",
     goBack: "Geri Dön",
-    searchPlaceholder: "Makaleler, etkinlikler, vb. ara...",
-    suggestions: "ÖNERİLER",
-    searchResults: "Arama Sonuçları",
-    liveTitle: "Dünyanın Yüksek Çözünürlüklü Canlı Yayın Videosu",
-    liveDescription:
-      "Şu anda, ISS'ye monte edilmiş harici bir HD kameradan Dünya'nın canlı videosu yayınlanıyor. Kamera Dünya'ya bakıyor ve ara sıra bir güneş paneli görüş alanından geçiyor.",
-    details: {
-      title: "Uluslararası Uzay İstasyonu - Detaylar",
+    news: {
+      title: "İstasyon Haberleri",
+      searchPlaceholder: "Makaleler, etkinlikler vb. ara...",
+      suggestions: "ÖNERİLER",
+      searchResults: "Arama Sonuçları",
     },
-    tabs: {
-      news: "Haberler",
-      about: "Hakkında",
-      details: "Detaylar",
-      live: "Canlı Yayın",
+    spotTheStation: {
+      title: "İstasyonu Nasıl Görürüm?",
+    },
+    about: {
+      title: "İstasyon Hakkında",
+    },
+    details: {
+      title: "İstasyon Detayları",
+    },
+    faq: {
+      title: "Sıkça Sorulan Sorular",
+    },
+    astronauts: {
+      title: "Şu Anda İstasyonda Kim Var",
+      number: "Kişi sayısı:",
+    },
+    live: {
+      title: "Canlı Yayın",
+      description:
+        "Şu anda, ISS'ye monte edilmiş bir harici HD kameradan Dünya'nın canlı videosu yayınlanıyor. Kamera Dünya'ya bakıyor ve ara sıra bir güneş paneli görüş alanından geçiyor.",
+    },
+    tour: {
+      title: "Sanal Tur",
+    },
+    videos: {
+      title: "İstasyon Videoları",
+    },
+    gallery: {
+      title: "Galeri",
     },
   },
 }

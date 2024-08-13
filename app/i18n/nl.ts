@@ -17,6 +17,12 @@ const nl = {
     shared: "Delen geslaagd!",
     savedToGallery: "Opgeslagen in galerij",
   },
+  outdatedModal: {
+    title: "Update beschikbaar",
+    body: "Nieuwe versie van de app beschikbaar! Download de nieuwe versie op",
+    buttonNegative: "Annuleren",
+    buttonPositive: "Downloaden",
+  },
   permissionsModal: {
     close: "Sluiten",
     openSettings: "Open instellingen",
@@ -414,25 +420,49 @@ const nl = {
         removeButton: "Verwijderen",
       },
     },
+    share: "Delen",
+    shareLink:
+      "Om het internationale ruimtestation via augmented reality te volgen, download de NASA Spot The Station mobiele app op",
     localCalculations: "Lokale berekeningen",
   },
   resources: {
     header: "Bronnen",
     goBack: "Ga terug",
-    searchPlaceholder: "Zoek naar artikelen, gebeurtenissen, etc...",
-    suggestions: "SUGGESTIES",
-    searchResults: "Zoekresultaten",
-    liveTitle: "High Definition Live Streaming Video van de Aarde",
-    liveDescription:
-      "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert.",
-    details: {
-      title: "International Space Station - Details",
+    news: {
+      title: "Station Nieuws",
+      searchPlaceholder: "Zoek artikelen, evenementen, etc...",
+      suggestions: "SUGGESTIES",
+      searchResults: "Zoekresultaten",
     },
-    tabs: {
-      news: "Nieuws",
-      about: "Over ons",
-      details: "Details",
-      live: "Live Stream",
+    spotTheStation: {
+      title: "Hoe spot ik het station?",
+    },
+    about: {
+      title: "Over het Station",
+    },
+    details: {
+      title: "Station Details",
+    },
+    faq: {
+      title: "Veelgestelde Vragen",
+    },
+    astronauts: {
+      title: "Wie is er nu in het Station",
+      number: "Aantal mensen:",
+    },
+    live: {
+      title: "Live Stream",
+      description:
+        "Momenteel wordt er een live video van de aarde gestreamd vanaf een externe HD-camera die op het ISS is gemonteerd. De camera kijkt naar de aarde met af en toe een zonnepaneel dat door het beeld beweegt.",
+    },
+    tour: {
+      title: "Virtuele Tour",
+    },
+    videos: {
+      title: "Station Video's",
+    },
+    gallery: {
+      title: "Galerij",
     },
   },
 }

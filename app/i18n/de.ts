@@ -17,6 +17,12 @@ const de = {
     shared: "Erfolgreich geteilt",
     savedToGallery: "In der Galerie gespeichert",
   },
+  outdatedModal: {
+    title: "Update verfügbar",
+    body: "Eine neue Version der App ist verfügbar! Laden Sie die neue Version herunter auf",
+    buttonNegative: "Abbrechen",
+    buttonPositive: "Herunterladen",
+  },
   permissionsModal: {
     close: "Schließen",
     openSettings: "Einstellungen öffnen",
@@ -414,25 +420,49 @@ const de = {
         removeButton: "Löschen",
       },
     },
+    share: "Teilen",
+    shareLink:
+      "Um die Internationale Raumstation über Augmented Reality zu verfolgen, laden Sie die NASA Spot The Station Mobile App herunter unter",
     localCalculations: "Lokale Berechnungen",
   },
   resources: {
     header: "Ressourcen",
     goBack: "Zurück",
-    searchPlaceholder: "Suchen in Artikels, Ereignissen usw.",
-    suggestions: "Vorschläge",
-    searchResults: "Suchergebnisse",
-    liveTitle: "Hochauflösendes Live-Streaming-Video der Erde",
-    liveDescription:
-      "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich quert ein Sonnenkollektor das Bild.",
-    details: {
-      title: "Internationale Raumstation - Details",
+    news: {
+      title: "Stationsnachrichten",
+      searchPlaceholder: "Artikel, Veranstaltungen usw. suchen...",
+      suggestions: "VORSCHLÄGE",
+      searchResults: "Suchergebnisse",
     },
-    tabs: {
-      news: "Nachrichten",
-      about: "Über",
-      details: "Einzelheiten",
-      live: "Live-Stream",
+    spotTheStation: {
+      title: "Wie erkenne ich die Station?",
+    },
+    about: {
+      title: "Über die Station",
+    },
+    details: {
+      title: "Stationsdetails",
+    },
+    faq: {
+      title: "Häufig gestellte Fragen",
+    },
+    astronauts: {
+      title: "Wer ist jetzt in der Station",
+      number: "Anzahl der Personen:",
+    },
+    live: {
+      title: "Live-Stream",
+      description:
+        "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich quert ein Sonnenkollektor das Bild.",
+    },
+    tour: {
+      title: "Virtuelle Tour",
+    },
+    videos: {
+      title: "Stationsvideos",
+    },
+    gallery: {
+      title: "Galerie",
     },
   },
 }

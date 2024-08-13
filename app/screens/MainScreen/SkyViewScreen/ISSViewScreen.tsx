@@ -595,7 +595,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     requestCloseModal("details")
     navigation.navigate(
       "ResourcesScreens" as never,
-      { screen: "Events", item: "https://spotthestation.nasa.gov/message_example.cfm" } as never,
+      { screen: "Web", url: "https://spotthestation.nasa.gov/message_example.cfm" } as never,
     )
   }, [])
 

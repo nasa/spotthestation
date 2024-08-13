@@ -8,6 +8,7 @@ import {
   PressableProps,
   Image,
   ImageStyle,
+  StyleProp,
 } from "react-native"
 import { Text } from "../../../components"
 import { typography, colors } from "../../../theme"
@@ -19,9 +20,17 @@ export interface FeedItemProps {
   subtitle?: string
   tags?: string[]
   onPress?: PressableProps["onPress"]
+  imageStyle?: StyleProp<any>
 }
 
-export function FeedItem({ title, image, subtitle, tags = [], onPress }: FeedItemProps) {
+export function FeedItem({
+  title,
+  image,
+  subtitle,
+  tags = [],
+  onPress,
+  imageStyle,
+}: FeedItemProps) {
   const { $container, $tagsContainer, $imageContainer, $titleText, $subtitleText } =
     useStyles(styles)
 
@@ -52,7 +61,7 @@ export function FeedItem({ title, image, subtitle, tags = [], onPress }: FeedIte
           accessibilityHint="image"
           accessibilityRole="image"
           source={{ uri: image }}
-          style={$imageContainer as ImageStyle}
+          style={[$imageContainer as ImageStyle, imageStyle]}
           resizeMode="cover"
         />
       ) : (
@@ -76,7 +85,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     position: "relative",
     width: "47%",
     height: "auto",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "flex-start",
     paddingTop: scale(16),
   }

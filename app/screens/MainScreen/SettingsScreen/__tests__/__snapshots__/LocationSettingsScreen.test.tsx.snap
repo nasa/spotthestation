@@ -269,11 +269,14 @@ exports[`renders correctly 1`] = `
             </View>
             <View
               style={
-                {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "paddingLeft": 26,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "paddingLeft": 26,
+                  },
+                  false,
+                ]
               }
             >
               <Text

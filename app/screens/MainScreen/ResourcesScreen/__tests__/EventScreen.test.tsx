@@ -1,5 +1,5 @@
 import React from "react"
-import { EventScreen } from "../EventScreen"
+import { WebScreen } from "../WebScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { render } from "@testing-library/react-native"
 
@@ -15,7 +15,7 @@ jest.mock("@react-navigation/native", () => ({
 it("renders correctly", () => {
   const tree = render(
     <NavigationContainer>
-      <EventScreen />
+      <WebScreen />
     </NavigationContainer>,
   ).toJSON()
   expect(tree).toMatchSnapshot()

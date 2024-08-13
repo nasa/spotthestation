@@ -17,6 +17,12 @@ const it = {
     shared: "Condiviso con successo!",
     savedToGallery: "Salvato nella galleria",
   },
+  outdatedModal: {
+    title: "Aggiornamento disponibile",
+    body: "Nuova versione dell'app disponibile! Scarica la nuova versione su",
+    buttonNegative: "Annulla",
+    buttonPositive: "Scarica",
+  },
   permissionsModal: {
     close: "Chiudi",
     openSettings: "Apri le impostazioni",
@@ -415,25 +421,49 @@ const it = {
         removeButton: "Elimina",
       },
     },
+    share: "Condividi",
+    shareLink:
+      "Per tracciare la Stazione Spaziale Internazionale tramite realtà aumentata, scarica l'app mobile NASA Spot The Station su",
     localCalculations: "Calcoli locali",
   },
   resources: {
     header: "Risorse",
     goBack: "Torna indietro",
-    searchPlaceholder: "Cerca articoli, eventi, ecc ...",
-    suggestions: "Suggerimenti",
-    searchResults: "Risultati di ricerca",
-    liveTitle: "Video in diretta ad alta definizione della Terra",
-    liveDescription:
-      "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera è rivolta verso la Terra con un pannello solare occasionale che attraversa la vista.",
-    details: {
-      title: "Stazione Spaziale Internazionale - Dettagli",
+    news: {
+      title: "Notizie della Stazione",
+      searchPlaceholder: "Cerca articoli, eventi, ecc...",
+      suggestions: "SUGGERIMENTI",
+      searchResults: "Risultati della ricerca",
     },
-    tabs: {
-      news: "Notizie",
-      about: "Informazioni",
-      details: "Dettagli",
-      live: "Live Stream",
+    spotTheStation: {
+      title: "Come posso vedere la stazione?",
+    },
+    about: {
+      title: "Informazioni sulla Stazione",
+    },
+    details: {
+      title: "Dettagli della Stazione",
+    },
+    faq: {
+      title: "Domande Frequenti",
+    },
+    astronauts: {
+      title: "Chi è nella Stazione ora",
+      number: "Numero di persone:",
+    },
+    live: {
+      title: "Streaming in Diretta",
+      description:
+        "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera guarda verso la Terra con un pannello solare occasionale che passa attraverso la vista.",
+    },
+    tour: {
+      title: "Tour Virtuale",
+    },
+    videos: {
+      title: "Video della Stazione",
+    },
+    gallery: {
+      title: "Galleria",
     },
   },
 }

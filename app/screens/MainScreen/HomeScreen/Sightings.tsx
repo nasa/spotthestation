@@ -19,6 +19,7 @@ import { SightingsFilterDropdown } from "./SightingsFilterDropdown"
 import i18n from "i18n-js"
 import { ensureExactAlarmPermissions } from "../../../utils/notifications"
 import Share from "react-native-share"
+import { APP_UNIVERSAL_LINK } from "../../../utils/unilinks"
 
 export interface SightingsProps {
   location: LocationType
@@ -224,7 +225,6 @@ export function Sightings({
       const sighting = sightings.find((s) => s.date === date)
       if (!sighting) return
 
-      const link = "https://onelink.to/nasa-sts-app"
       const subject = `${translate("homeScreen.selectSightings.shareTitle", {
         location: location.title,
         date: formatedDate(sighting.date),
@@ -240,7 +240,7 @@ ${translate("homeScreen.selectSightings.appears")}: ${sighting.minAltitude}° ${
 ${translate("homeScreen.selectSightings.disappears")}: ${sighting.maxAltitude}° ${translate(
         `homeScreen.selectSightings.compass.${degToCompass(sighting.maxAzimuth)}`,
       )}
-${translate("homeScreen.selectSightings.shareLink")}: ${link}
+${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
 `
 
       const shareOptions = {

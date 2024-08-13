@@ -9,7 +9,7 @@
  * The app navigation resides in ./app/navigators, so head over there
  * if you're interested in adding screens and navigators.
  */
-import { addLocaleListener, removeLocaleListener, setLocale } from "./i18n"
+import { addLocaleListener, removeLocaleListener, setLocale, translate } from "./i18n"
 import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
 import React, { useCallback, useEffect, useRef, useState } from "react"
@@ -26,8 +26,9 @@ import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
 import i18n from "i18n-js"
-import { AppState, Platform, ViewStyle } from "react-native"
+import { Alert, AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
+import VersionCheck from "react-native-version-check"
 import * as notifications from "./utils/notifications"
 import { ensureExactAlarmPermissions, hasExactAlarmPermissions } from "./utils/notifications"
 import { LocationType } from "./services/api"
@@ -209,6 +210,31 @@ function App(props: AppProps) {
       setIsTZUpdated(true)
     })().catch(() => null)
   }, [rehydrated, rootStore])
+
+  useEffect(() => {
+    VersionCheck.needUpdate()
+      .then((res) => {
+        if (!res?.isNeeded) return
+        Alert.alert(
+          translate("outdatedModal.title"),
+          `${translate("outdatedModal.body")} ${
+            Platform.OS === "android" ? "Google Play" : "App Store"
+          }.`,
+          [
+            {
+              text: translate("outdatedModal.buttonPositive"),
+              onPress: () => Linking.openURL(res.storeUrl),
+            },
+            {
+              text: translate("outdatedModal.buttonNegative"),
+              style: "cancel",
+            },
+          ],
+          { cancelable: true },
+        )
+      })
+      .catch(console.error)
+  }, [])
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background

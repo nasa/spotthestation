@@ -17,6 +17,12 @@ const ja = {
     shared: "正常に共有されました！",
     savedToGallery: "ギャラリーに保存されます",
   },
+  outdatedModal: {
+    title: "アップデート利用可能",
+    body: "新しいバージョンのアプリが利用可能です！新しいバージョンをダウンロードしてください",
+    buttonNegative: "キャンセル",
+    buttonPositive: "ダウンロード",
+  },
   permissionsModal: {
     close: "閉じる",
     openSettings: "設定を開く",
@@ -411,25 +417,49 @@ const ja = {
         removeButton: "消去",
       },
     },
+    share: "共有",
+    shareLink:
+      "拡張現実を通じて国際宇宙ステーションを追跡するには、NASA Spot The Stationモバイルアプリをダウンロードしてください",
     localCalculations: "ローカル計算",
   },
   resources: {
     header: "リソース",
     goBack: "戻る",
-    searchPlaceholder: "記事、イベントなどを検索...",
-    suggestions: "提案",
-    searchResults: "の検索結果",
-    liveTitle: "地球の高精細ライブストリーミングビデオ",
-    liveDescription:
-      "現在、地球のライブ映像がISSに取り付けられた外部のHDカメラからストリーミングされています。 カメラは地球の方を向いており、時折太陽パネルが画面を通過します。",
-    details: {
-      title: "国際宇宙ステーション - 詳細",
+    news: {
+      title: "ステーションニュース",
+      searchPlaceholder: "記事、イベントなどを検索...",
+      suggestions: "提案",
+      searchResults: "検索結果",
     },
-    tabs: {
-      news: "ニュース",
-      about: "ABOUT",
-      details: "詳細",
-      live: "ライブストリーム",
+    spotTheStation: {
+      title: "ステーションを見つける方法",
+    },
+    about: {
+      title: "ステーションについて",
+    },
+    details: {
+      title: "ステーションの詳細",
+    },
+    faq: {
+      title: "よくある質問",
+    },
+    astronauts: {
+      title: "今ステーションにいるのは誰",
+      number: "人数：",
+    },
+    live: {
+      title: "ライブストリーム",
+      description:
+        "現在、ISSに取り付けられた外部HDカメラから地球のライブ映像がストリーミングされています。カメラは地球を見ており、時折ソーラーパネルが視界を通過します。",
+    },
+    tour: {
+      title: "バーチャルツアー",
+    },
+    videos: {
+      title: "ステーションビデオ",
+    },
+    gallery: {
+      title: "ギャラリー",
     },
   },
 }

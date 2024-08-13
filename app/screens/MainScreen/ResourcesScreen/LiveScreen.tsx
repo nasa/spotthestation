@@ -5,44 +5,41 @@ import { ViewStyle, View, TextStyle, Text as RNText } from "react-native"
 import { Text } from "../../../components"
 import { typography } from "../../../theme"
 import { colors } from "../../../theme/colors"
+import { Template } from "./Template"
 
 const streamId = "P9C25Un7xaM"
 
-export function Live() {
-  const { $contentContainer, $title, $description, $text, $flex } = useStyles(styles)
+export interface LiveScreenRouteProps {}
+
+export function LiveScreen() {
+  const { $contentContainer, $description, $text, $flex } = useStyles(styles)
+
   const [videoHeight, setVideoHeight] = useState(0)
 
   return (
-    <View style={$contentContainer}>
-      <Text
-        accessible
-        accessibilityLabel="modal title"
-        accessibilityHint="modal title"
-        accessibilityRole="text"
-        tx="resources.liveTitle"
-        style={$title}
-      />
+    <Template headerTitleTx="resources.live.title">
+      <View style={$contentContainer}>
+        <RNText
+          accessible
+          accessibilityLabel="modal text"
+          accessibilityHint="modal text"
+          accessibilityRole="text"
+          style={$description}
+        >
+          <Text style={$text} tx="resources.live.description" />
+        </RNText>
 
-      <RNText
-        accessible
-        accessibilityLabel="modal text"
-        accessibilityHint="modal text"
-        accessibilityRole="text"
-        style={$description}
-      >
-        <Text style={$text} tx="resources.liveDescription" />
-      </RNText>
+        <View style={$flex} />
 
-      <View style={$flex} />
-
-      <View
-        onLayout={(e) => {
-          setVideoHeight((e.nativeEvent.layout.width * 9) / 16)
-        }}
-      >
-        {videoHeight > 0 && <YoutubePlayer height={videoHeight} videoId={streamId} />}
+        <View
+          onLayout={(e) => {
+            setVideoHeight((e.nativeEvent.layout.width * 9) / 16)
+          }}
+        >
+          {videoHeight > 0 && <YoutubePlayer height={videoHeight} videoId={streamId} />}
+        </View>
       </View>
-    </View>
+    </Template>
   )
 }
 
@@ -51,7 +48,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     width: "100%",
     paddingHorizontal: scale(18),
     paddingBottom: scale(24),
-    minHeight: "100%",
   }
 
   const $title: TextStyle = {

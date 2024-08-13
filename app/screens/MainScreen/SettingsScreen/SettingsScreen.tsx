@@ -17,6 +17,8 @@ import Modal from "react-native-modal"
 import { CalibrateCompassModal } from "./CalibrateCompassModal"
 import { TutorialsModal } from "./TutorialsModal"
 import { isMagnetometerAvailable } from "../../../utils/orientation"
+import Share from "react-native-share"
+import { APP_UNIVERSAL_LINK } from "../../../utils/unilinks"
 
 const languages = uniqBy(
   Object.keys(i18n.translations).map((key) => ({
@@ -87,6 +89,17 @@ export const SettingsScreen = observer(function SettingsScreen() {
     }
   }
 
+  const handleShare = async () => {
+    const message = `${translate("settings.shareLink")}: ${APP_UNIVERSAL_LINK}`
+    const shareOptions = {
+      message,
+      failOnCancel: false,
+      type: undefined,
+    }
+
+    await Share.open(shareOptions)
+  }
+
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
 
@@ -130,6 +143,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
         />
         <SettingsItem icon="compass" title="settings.calibrateCompass" onPress={handleCalibrate} />
         <SettingsItem icon="tutorial" title="settings.tutorials" onPress={handleTutorials} />
+        <SettingsItem icon="share" title="settings.share" onPress={handleShare} />
         <SettingsItem
           icon="globe"
           title="settings.language"

@@ -7,7 +7,7 @@ import { typography, colors } from "../../../theme"
 
 export interface SettingsItemProps {
   title: TxKeyPath
-  icon: IconTypes
+  icon?: IconTypes
   withUnderline?: boolean
   onPress?: PressableProps["onPress"]
   rightControl?: ReactNode
@@ -20,7 +20,7 @@ export function SettingsItem({
   rightControl,
   withUnderline = true,
 }: SettingsItemProps) {
-  const { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText } =
+  const { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText, $noPadding } =
     useStyles(styles)
 
   return (
@@ -33,8 +33,8 @@ export function SettingsItem({
       onPress={onPress}
     >
       <View style={[$bodyContainer, !withUnderline && $withoutUnderline]}>
-        <Icon icon={icon} size={24} color={colors.palette.neutral450} />
-        <View style={$titleContainer}>
+        {Boolean(icon) && <Icon icon={icon} size={24} color={colors.palette.neutral450} />}
+        <View style={[$titleContainer, !icon && $noPadding]}>
           <Text
             accessible
             accessibilityLabel="title"
@@ -82,6 +82,10 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingLeft: scale(18),
   }
 
+  const $noPadding: ViewStyle = {
+    paddingLeft: 0,
+  }
+
   const $titleText: TextStyle = {
     width: "95%",
     fontFamily: typography.primary.normal,
@@ -90,5 +94,5 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     color: colors.palette.neutral100,
   }
 
-  return { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText }
+  return { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText, $noPadding }
 }

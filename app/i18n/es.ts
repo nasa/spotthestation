@@ -17,6 +17,12 @@ const es = {
     shared: "¡Compartido con éxito!",
     savedToGallery: "Guardado en la galería",
   },
+  outdatedModal: {
+    title: "Actualización disponible",
+    body: "¡Nueva versión de la aplicación disponible! Descargue la nueva versión en",
+    buttonNegative: "Cancelar",
+    buttonPositive: "Descargar",
+  },
   permissionsModal: {
     close: "Cerrar", // <-- "Cerrar"
     openSettings: "Abrir ajustes", // <-- "Abrir Configuración."
@@ -415,25 +421,49 @@ const es = {
         removeButton: "Borrar",
       },
     },
+    share: "Compartir",
+    shareLink:
+      "Para rastrear la Estación Espacial Internacional a través de la realidad aumentada, descarga la aplicación móvil NASA Spot The Station en",
     localCalculations: "Cálculos de ubicaciones",
   },
   resources: {
     header: "Recursos",
     goBack: "Regresar",
-    searchPlaceholder: "Búsqueda de artículos, eventos, etc.",
-    suggestions: "Sugerencias",
-    searchResults: "Resultados de la búsqueda",
-    liveTitle: "Video de transmisión en vivo de alta definición de la Tierra",
-    liveDescription:
-      "Actualmente, se está transmitiendo un video en vivo de la Tierra desde una cámara HD externa montada en la ISS. La cámara está mirando hacia la Tierra con un panel solar ocasional pasando por la vista.",
-    details: {
-      title: "Estación Espacial Internacional - Detalles",
+    news: {
+      title: "Noticias de la Estación",
+      searchPlaceholder: "Búsqueda de artículos, eventos, etc.",
+      suggestions: "Sugerencias",
+      searchResults: "Resultados de la búsqueda",
     },
-    tabs: {
-      news: "Noticias",
-      about: "Acerca de la estación",
-      details: "Detalles",
-      live: "Transmisión en vivo",
+    spotTheStation: {
+      title: "¿Cómo puedo ver la estación?",
+    },
+    about: {
+      title: "Acerca de la Estación",
+    },
+    details: {
+      title: "Detalles de la Estación",
+    },
+    faq: {
+      title: "Preguntas Frecuentes",
+    },
+    astronauts: {
+      title: "¿Quién está en la Estación ahora?",
+      number: "Número de personas:",
+    },
+    live: {
+      title: "Transmisión en Vivo",
+      description:
+        "Actualmente, se está transmitiendo un video en vivo de la Tierra desde una cámara HD externa montada en la ISS. La cámara está mirando hacia la Tierra con un panel solar ocasional pasando por la vista.",
+    },
+    tour: {
+      title: "Tour Virtual",
+    },
+    videos: {
+      title: "Videos de la Estación",
+    },
+    gallery: {
+      title: "Galería",
     },
   },
 }

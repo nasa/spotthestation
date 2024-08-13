@@ -17,6 +17,12 @@ const en = {
     shared: "Successfully shared!",
     savedToGallery: "Saved to gallery",
   },
+  outdatedModal: {
+    title: "Update Available",
+    body: "New version of the app is available! Download new version on",
+    buttonNegative: "Cancel",
+    buttonPositive: "Download",
+  },
   permissionsModal: {
     close: "Close",
     openSettings: "Open settings",
@@ -413,25 +419,49 @@ const en = {
         removeButton: "Delete",
       },
     },
+    share: "Share",
+    shareLink:
+      "To track the International Space Station via augmented reality, download the NASA Spot The Station Mobile app at",
     localCalculations: "Local calculations",
   },
   resources: {
     header: "Resources",
     goBack: "Go Back",
-    searchPlaceholder: "Search articles, events, etc...",
-    suggestions: "SUGGESTIONS",
-    searchResults: "Search Results",
-    liveTitle: "High Definition Live Streaming Video of the Earth",
-    liveDescription:
-      "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view.",
-    details: {
-      title: "International Space Station - Details",
+    news: {
+      title: "Station News",
+      searchPlaceholder: "Search articles, events, etc...",
+      suggestions: "SUGGESTIONS",
+      searchResults: "Search Results",
     },
-    tabs: {
-      news: "News",
-      about: "About",
-      details: "Details",
-      live: "Live Stream",
+    spotTheStation: {
+      title: "How Do I Spot the Station?",
+    },
+    about: {
+      title: "About the Station",
+    },
+    details: {
+      title: "Station Details",
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+    },
+    astronauts: {
+      title: "Who is in the Station Now",
+      number: "Number of people:",
+    },
+    live: {
+      title: "Live Stream",
+      description:
+        "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view.",
+    },
+    tour: {
+      title: "Virtual Tour",
+    },
+    videos: {
+      title: "Station Videos",
+    },
+    gallery: {
+      title: "Gallery",
     },
   },
 }

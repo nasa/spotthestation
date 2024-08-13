@@ -17,6 +17,12 @@ const sv = {
     shared: "Framgångsrikt delad!",
     savedToGallery: "Sparad till galleri",
   },
+  outdatedModal: {
+    title: "Uppdatering tillgänglig",
+    body: "Ny version av appen tillgänglig! Ladda ner den nya versionen på",
+    buttonNegative: "Avbryt",
+    buttonPositive: "Ladda ner",
+  },
   permissionsModal: {
     close: "Stänga",
     openSettings: "Öppna Inställningar",
@@ -409,25 +415,49 @@ const sv = {
         removeButton: "Radera",
       },
     },
+    share: "Dela",
+    shareLink:
+      "För att spåra den internationella rymdstationen via förstärkt verklighet, ladda ner NASA Spot The Station mobilapp på",
     localCalculations: "Lokala beräkningar",
   },
   resources: {
     header: "Resurser",
     goBack: "Gå tillbaka",
-    searchPlaceholder: "Sökartiklar, händelser osv ...",
-    suggestions: "FÖRSLAG",
-    searchResults: "sökresultat",
-    liveTitle: "Högupplöst live-strömning av jorden",
-    liveDescription:
-      "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel.",
-    details: {
-      title: "Internationella rymdstationen - Detaljer",
+    news: {
+      title: "Stationsnyheter",
+      searchPlaceholder: "Sök artiklar, evenemang, etc...",
+      suggestions: "FÖRSLAG",
+      searchResults: "Sökresultat",
     },
-    tabs: {
-      news: "Nyheter",
-      about: "Om",
-      details: "Information",
-      live: "Live-strömning",
+    spotTheStation: {
+      title: "Hur ser jag stationen?",
+    },
+    about: {
+      title: "Om Stationen",
+    },
+    details: {
+      title: "Stationsdetaljer",
+    },
+    faq: {
+      title: "Vanliga Frågor",
+    },
+    astronauts: {
+      title: "Vem är på stationen nu",
+      number: "Antal personer:",
+    },
+    live: {
+      title: "Direktsändning",
+      description:
+        "För närvarande strömmas en livevideo av jorden från en extern HD-kamera monterad på ISS. Kameran tittar mot jorden med enstaka solpaneler som passerar genom vyn.",
+    },
+    tour: {
+      title: "Virtuell Rundtur",
+    },
+    videos: {
+      title: "Stationsvideor",
+    },
+    gallery: {
+      title: "Galleri",
     },
   },
 }

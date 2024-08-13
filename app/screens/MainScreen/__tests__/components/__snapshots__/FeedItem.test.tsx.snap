@@ -38,7 +38,7 @@ exports[`renders correctly 1`] = `
     {
       "alignItems": "flex-start",
       "height": "auto",
-      "justifyContent": "space-between",
+      "justifyContent": "flex-start",
       "paddingTop": 23,
       "position": "relative",
       "width": "47%",

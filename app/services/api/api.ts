@@ -277,7 +277,7 @@ export class Api {
   }
 
   async getAstronauts(): Promise<AstronautsResponse> {
-    const response: ApiResponse<any> = await this.apisauce.get("/astronauts", {})
+    const response: ApiResponse<any> = await this.apisauce.get("/astronauts/", {})
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
