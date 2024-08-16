@@ -447,7 +447,7 @@ const nl = {
       title: "Veelgestelde Vragen",
     },
     astronauts: {
-      title: "Wie is er nu in het Station",
+      title: "Wie is er nu in het Station?",
       number: "Aantal mensen:",
     },
     live: {

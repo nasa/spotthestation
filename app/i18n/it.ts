@@ -448,7 +448,7 @@ const it = {
       title: "Domande Frequenti",
     },
     astronauts: {
-      title: "Chi è nella Stazione ora",
+      title: "Chi è nella Stazione ora?",
       number: "Numero di persone:",
     },
     live: {

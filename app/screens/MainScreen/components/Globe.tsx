@@ -9,27 +9,20 @@ import {
   Texture,
   AmbientLight,
   Vector3,
-  Line,
-  LineBasicMaterial,
   Mesh,
-  MeshBasicMaterial,
-  BufferGeometry,
   PerspectiveCamera,
   Scene,
-  SphereGeometry,
   WebGLRenderer,
-  LineDashedMaterial,
   Vector2,
 } from "three"
 import { colors } from "../../../theme"
-import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "./constants"
+import { GLOBE_RADIUS } from "./constants"
 import { coordinatesToPosition, positionToCoordinates } from "./helpers"
 import { iconRegistry } from "../../../components/Icon"
 
 import ControlsView from "./ControlsView"
 import { OrbitPoint } from "../../../services/api"
-import { useISSPathCurve } from "../../../utils/useISSPathCurve"
-import { copyAssetToCacheAsync } from "../../../utils/gl"
+import { copyAssetToCacheAsync, createSphere, useTrajectoryLines } from "../../../utils/gl"
 
 const CloudsTexture = require("../../../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../../../assets/images/World-Map.jpg")
@@ -54,31 +47,17 @@ export function Globe({
 }: GlobeProps) {
   const { $container, $pan } = useStyles(styles)
 
-  const mapper = useCallback((p) => {
-    return new Vector3(...coordinatesToPosition([p[0], p[1]], GLOBE_RADIUS + 20))
-  }, [])
-
-  const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
-
   const [camera, setCamera] = React.useState<PerspectiveCamera | null>(null)
   const [isReady, setIsReady] = useState(false)
-  const issMarkerRef = useRef<Sprite>(null)
   const pointRef = useRef<Sprite>(null)
-  const pastRef = useRef<Line>(null)
-  const futurehRef = useRef<Line>(null)
   const sceneRef = useRef<Scene>(null)
   const globeRef = useRef<Mesh>(null)
   const deadRef = useRef<boolean>(false)
-  const [issCoords3D, setIssCoords3D] = useState<[number, number, number]>(null)
-  const [issMarkerTexture, setIssMarkerTexture] = useState<Texture>(null)
   const [markerTexture, setMarkerTexture] = useState<Texture>(null)
 
-  useEffect(() => {
-    copyAssetToCacheAsync(iconRegistry.position as string, "position.png")
-      .then((uri) => loadTextureAsync({ asset: uri }))
-      .then(setIssMarkerTexture)
-      .catch((e) => console.log(e))
+  const { setIsVisible: setTrajectoryVisible } = useTrajectoryLines(sceneRef, issPath, 200, 32)
 
+  useEffect(() => {
     copyAssetToCacheAsync(iconRegistry.fiMapPin as string, "fiMapPin.png")
       .then((uri) => loadTextureAsync({ asset: uri }))
       .then(setMarkerTexture)
@@ -87,38 +66,14 @@ export function Globe({
 
   useEffect(() => {
     function updateMarker() {
-      if (!issCoords3D || !sceneRef.current || !issMarkerTexture) {
-        if (issMarkerRef.current) sceneRef.current.remove(issMarkerRef.current)
-        return
-      }
-
-      if (!issMarkerRef.current) {
-        issMarkerRef.current = createISSMarker(issMarkerTexture, issCoords3D)
-      } else {
-        issMarkerRef.current.position.set(...issCoords3D)
-      }
-
-      if (!sceneRef.current) return
-      if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
-        sceneRef.current?.add(issMarkerRef.current)
-    }
-
-    updateMarker()
-  }, [issMarkerTexture, issCoords3D, sceneRef.current])
-
-  useEffect(() => {
-    function updateMarker() {
       if (!marker || !sceneRef.current || !markerTexture) {
         if (pointRef.current) sceneRef.current.remove(pointRef.current)
         return
       }
 
-      if (!pointRef.current) {
-        pointRef.current = createMarker(markerTexture)
-      } else {
-        const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
-        pointRef.current.position.set(x, y, z)
-      }
+      if (!pointRef.current) pointRef.current = createMarker(markerTexture)
+      const [x, y, z] = coordinatesToPosition(marker, GLOBE_RADIUS)
+      pointRef.current.position.set(x, y, z)
 
       if (!sceneRef.current) return
       if (!sceneRef.current.getObjectById(pointRef.current.id))
@@ -128,44 +83,6 @@ export function Globe({
     updateMarker()
   }, [markerTexture, marker, sceneRef.current])
 
-  const updateCurveGeometry = useCallback(() => {
-    if (!curve || !sceneRef.current) {
-      if (futurehRef.current) sceneRef.current.remove(futurehRef.current)
-      if (pastRef.current) sceneRef.current.remove(pastRef.current)
-      return
-    }
-
-    if (!futurehRef.current || !pastRef.current) createOrbit()
-    else {
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-      if (t > 1) return
-
-      const pastPoints = []
-      for (let i = 0; i <= 100; ++i) {
-        pastPoints.push(curve.getPoint((i * t) / 100))
-      }
-
-      const futurePoints = []
-      for (let i = 0; i <= 100; ++i) {
-        futurePoints.push(curve.getPoint(Math.min(1, t + (i * (1 - t)) / 100)))
-      }
-
-      pastRef.current.geometry = new BufferGeometry().setFromPoints(pastPoints)
-      futurehRef.current.geometry = new BufferGeometry().setFromPoints(futurePoints)
-
-      futurehRef.current.computeLineDistances()
-    }
-
-    if (!sceneRef.current) return
-    if (!sceneRef.current.getObjectById(pastRef.current.id)) sceneRef.current?.add(pastRef.current)
-    if (!sceneRef.current.getObjectById(futurehRef.current.id))
-      sceneRef.current?.add(futurehRef.current)
-  }, [curve, sceneRef.current])
-
-  useEffect(() => {
-    updateCurveGeometry()
-  }, [curve, curveStartsAt, curveEndsAt, sceneRef.current])
-
   useEffect(() => {
     if (camera) {
       camera.zoom = zoom
@@ -174,36 +91,7 @@ export function Globe({
   }, [zoom, camera])
 
   useEffect(() => {
-    if (!curve) {
-      setIssCoords3D(null)
-      return undefined
-    }
-    const update = () => {
-      if (!issPath?.length || new Date(issPath[issPath.length - 1].date) < new Date()) return
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-      if (t > 1) return updateCurve()
-
-      let point: Vector3
-      try {
-        point = curve.getPoint(t)
-      } catch (e) {
-        console.error(e)
-        return
-      }
-
-      setIssCoords3D([point.x, point.y, point.z])
-      updateCurveGeometry()
-    }
-
-    update()
-
-    const timeout = setInterval(update, 10000)
-    return () => {
-      clearInterval(timeout)
-    }
-  }, [curve])
-
-  useEffect(() => {
+    setTrajectoryVisible(true)
     return () => {
       deadRef.current = true
     }
@@ -226,77 +114,6 @@ export function Globe({
     mesh.visible = false
 
     return mesh
-  }
-
-  const createISSMarker = (texture: Texture, position: [number, number, number] = [0, 0, 0]) => {
-    const mesh = new Sprite()
-    texture.needsUpdate = true
-    mesh.material = new SpriteMaterial({
-      map: texture,
-      color: 0xffffff,
-    })
-
-    mesh.scale.set(32, 32, 1)
-    mesh.position.set(...position)
-
-    return mesh
-  }
-
-  const createSphere = async (radius: number, texture, name: string, transparent, depthWrite) => {
-    const sphere = new Mesh()
-    sphere.geometry = new SphereGeometry(radius, GLOBE_SEGMENTS, GLOBE_SEGMENTS)
-    const uri = await copyAssetToCacheAsync(texture as string, `${name}.png`)
-
-    const tx = await loadTextureAsync({
-      asset: uri,
-    })
-
-    if (tx) {
-      sphere.material = new MeshBasicMaterial({
-        map: tx,
-        transparent,
-        depthWrite,
-      })
-    } else {
-      sphere.material = new MeshBasicMaterial({ color: 0xffffff, transparent })
-    }
-
-    sphere.name = name
-
-    return sphere
-  }
-
-  const createOrbit = () => {
-    const pastLine = new Line()
-    pastLine.material = new LineBasicMaterial({ color: 0x00ff00, linewidth: 6 })
-    const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-
-    const pastPoints = []
-    for (let i = 0; i <= 100; ++i) {
-      pastPoints.push(curve.getPoint((i * t) / 100))
-    }
-    pastLine.geometry = new BufferGeometry().setFromPoints(pastPoints)
-
-    const futureLine = new Line()
-    futureLine.material = new LineDashedMaterial({
-      color: 0xadadae,
-      linewidth: 6,
-      dashSize: 5,
-      gapSize: 5,
-    })
-
-    const futurePoints = []
-    for (let i = 0; i <= 100; ++i) {
-      futurePoints.push(curve.getPoint(t + (i * (1 - t)) / 100))
-    }
-    futureLine.geometry = new BufferGeometry().setFromPoints(futurePoints)
-
-    futureLine.computeLineDistances()
-
-    pastRef.current = pastLine
-    futurehRef.current = futureLine
-
-    return [pastLine, futureLine]
   }
 
   const checkMarkerVisibility = useCallback(() => {

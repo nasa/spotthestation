@@ -450,7 +450,7 @@ const fr = {
       title: "Questions Fréquemment Posées",
     },
     astronauts: {
-      title: "Qui est dans la Station maintenant",
+      title: "Qui est dans la Station maintenant?",
       number: "Nombre de personnes :",
     },
     live: {

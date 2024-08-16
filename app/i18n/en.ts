@@ -446,7 +446,7 @@ const en = {
       title: "Frequently Asked Questions",
     },
     astronauts: {
-      title: "Who is in the Station Now",
+      title: "Who is on Station Now?",
       number: "Number of people:",
     },
     live: {

@@ -445,7 +445,7 @@ const tr = {
       title: "Sıkça Sorulan Sorular",
     },
     astronauts: {
-      title: "Şu Anda İstasyonda Kim Var",
+      title: "Şu Anda İstasyonda Kim Var?",
       number: "Kişi sayısı:",
     },
     live: {

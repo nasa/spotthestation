@@ -41,15 +41,15 @@ export const Resources = observer(function HomeScreen() {
           onPress={() => handleNavigate("Astronauts")}
         />
         <SettingsItem title="resources.live.title" onPress={() => handleNavigate("Live")} />
-        <SettingsItem
-          title="resources.tour.title"
-          onPress={() =>
-            handleNavigate("Web", {
-              url: "https://esamultimedia.esa.int/multimedia/virtual-tour-iss/",
-              webViewBackButton: true,
-            })
-          }
-        />
+        {/* <SettingsItem */}
+        {/*   title="resources.tour.title" */}
+        {/*   onPress={() => */}
+        {/*     handleNavigate("Web", { */}
+        {/*       url: "https://esamultimedia.esa.int/multimedia/virtual-tour-iss/", */}
+        {/*       webViewBackButton: true, */}
+        {/*     }) */}
+        {/*   } */}
+        {/* /> */}
         <SettingsItem title="resources.videos.title" onPress={() => handleNavigate("Videos")} />
         <SettingsItem
           title="resources.gallery.title"

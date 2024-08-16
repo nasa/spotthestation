@@ -111,7 +111,7 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     if (!location || !issData?.length) return undefined
 
-    const lastOrbitPoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
+    const lastLongitudePoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
       return (
         new Date().valueOf() < new Date(point.date).valueOf() &&
         idx < issData.length - 1 &&
@@ -120,11 +120,17 @@ export const HomeScreen = observer(function HomeScreen() {
       )
     })
 
-    if (!lastOrbitPoint) return undefined
+    const lastOrbitPoint = issData[issData.length - 1] as OrbitPoint
+
+    // query new data when less than half of orbit available or ISS reached 180 degrees longitude
+    const updateAt = Math.min(
+      lastLongitudePoint ? new Date(lastLongitudePoint.date).valueOf() : Infinity,
+      new Date(lastOrbitPoint.date).valueOf() - 50 * 60 * 1000,
+    )
 
     const tmr = setTimeout(() => {
       getData().catch((e) => console.log(e))
-    }, new Date(lastOrbitPoint.date).valueOf() - Date.now())
+    }, updateAt - Date.now())
 
     return () => clearTimeout(tmr)
   }, [issData])

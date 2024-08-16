@@ -448,7 +448,7 @@ const ptBR = {
       title: "Perguntas Frequentes",
     },
     astronauts: {
-      title: "Quem está na Estação agora",
+      title: "Quem está na Estação agora?",
       number: "Número de pessoas:",
     },
     live: {

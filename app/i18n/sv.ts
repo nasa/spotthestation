@@ -442,7 +442,7 @@ const sv = {
       title: "Vanliga Frågor",
     },
     astronauts: {
-      title: "Vem är på stationen nu",
+      title: "Vem är på stationen nu?",
       number: "Antal personer:",
     },
     live: {

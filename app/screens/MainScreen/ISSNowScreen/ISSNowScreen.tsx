@@ -10,7 +10,6 @@ import { colors, typography } from "../../../theme"
 import { IconLinkButton } from "../../OnboardingScreen/components/IconLinkButton"
 import { Globe } from "../components/Globe"
 import { SatelliteView } from "../components/SatelliteView"
-import { formatDate } from "../../../utils/formatDate"
 import { SelectLocation } from "../HomeScreen/SelectLocation"
 import { MapBox } from "../components/MapBox"
 import { useStores } from "../../../models"
@@ -20,6 +19,7 @@ import { TabNavigatorContext } from "../../../navigators/navigationUtilities"
 import MyModal from "../HomeScreen/MyModal"
 import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { CurrentTime } from "../components/CurrentTime"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const {
@@ -44,7 +44,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     $textContainer,
     $lightIcon,
     $location,
-    $date,
     $zoomButtons,
     $modButtons,
     $modButton,
@@ -74,8 +73,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [mode, setMode] = useState("map")
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
+  const [satZoomLevel, setSatZoomLevel] = useState(2)
   const [isLandscape, setIsLandscape] = useState(false)
-  const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
   const [defaultCameraPosition, setDefaultCameraPosition] = useState<[number, number]>([0, 0])
@@ -109,14 +108,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   }, [])
 
   useEffect(() => {
-    const secTimer = setInterval(() => {
-      setCurrentDateTime(new Date().toISOString())
-    }, 1000)
-
-    return () => clearInterval(secTimer)
-  }, [])
-
-  useEffect(() => {
     if (selectedLocation) setAddress(selectedLocation.subtitle)
     else if (currentLocation) setAddress(currentLocation.subtitle)
     else setAddress("")
@@ -129,7 +120,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     if (!current || !issData?.length) return undefined
 
-    const lastOrbitPoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
+    const lastLongitudePoint = (issData as OrbitPoint[]).find((point: OrbitPoint, idx: number) => {
       return (
         new Date().valueOf() < new Date(point.date).valueOf() &&
         idx < issData.length - 1 &&
@@ -138,11 +129,17 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       )
     })
 
-    if (!lastOrbitPoint) return undefined
+    const lastOrbitPoint = issData[issData.length - 1] as OrbitPoint
+
+    // query new data when less than half of orbit available or ISS reached 180 degrees longitude
+    const updateAt = Math.min(
+      lastLongitudePoint ? new Date(lastLongitudePoint.date).valueOf() : Infinity,
+      new Date(lastOrbitPoint.date).valueOf() - 50 * 60 * 1000,
+    )
 
     const tmr = setTimeout(() => {
       getData().catch((e) => console.log(e))
-    }, new Date(lastOrbitPoint.date).valueOf() - Date.now())
+    }, updateAt - Date.now())
 
     return () => clearTimeout(tmr)
   }, [issData])
@@ -228,7 +225,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
         />
         <View style={$textContainer}>
           <Text text={address} style={$location} ellipsizeMode="tail" numberOfLines={1} />
-          <Text text={`${formatDate(currentDateTime, "dd MMM yyyy k:mm:ss")}`} style={$date} />
+          <CurrentTime />
         </View>
         <IconLinkButton
           accessible
@@ -274,7 +271,11 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           />
         )}
         {mode === "satellite" && (
-          <SatelliteView key={isFullScreen.toString() + isLandscape.toString()} issPath={issData} />
+          <SatelliteView
+            key={isFullScreen.toString() + isLandscape.toString()}
+            issPath={issData}
+            zoom={satZoomLevel}
+          />
         )}
         <View
           style={[
@@ -330,36 +331,61 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             />
           </BlurView>
         </View>
-        {mode !== "satellite" && (
-          <View
-            style={[
-              $zoomButtons,
-              $zoomControl,
-              isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
-            ]}
-          >
-            <IconLinkButton
-              accessible
-              accessibilityLabel="+ button"
-              accessibilityHint="zoom view"
-              text="+"
-              disabled={zoomLevel === 5}
-              onPress={() => setZoomLevel(zoomLevel + 1)}
-              buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
-              blurIntensity={50}
-            />
-            <IconLinkButton
-              accessible
-              accessibilityLabel="- button"
-              accessibilityHint="zoom out view"
-              text="-"
-              disabled={zoomLevel === 0}
-              onPress={() => setZoomLevel(zoomLevel - 1)}
-              buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
-              blurIntensity={50}
-            />
-          </View>
-        )}
+        <View
+          style={[
+            $zoomButtons,
+            $zoomControl,
+            isLandscape && (isFullScreen ? $modButtonsOverloadFs : $modButtonsOverload),
+          ]}
+        >
+          {mode === "satellite" ? (
+            <>
+              <IconLinkButton
+                accessible
+                accessibilityLabel="+ button"
+                accessibilityHint="zoom view"
+                text="+"
+                disabled={satZoomLevel === 2}
+                onPress={() => setSatZoomLevel(satZoomLevel + 1)}
+                buttonStyle={satZoomLevel === 2 ? [$lightIcon, $disabled] : $lightIcon}
+                blurIntensity={50}
+              />
+              <IconLinkButton
+                accessible
+                accessibilityLabel="- button"
+                accessibilityHint="zoom out view"
+                text="-"
+                disabled={satZoomLevel === 0}
+                onPress={() => setSatZoomLevel(satZoomLevel - 1)}
+                buttonStyle={satZoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
+                blurIntensity={50}
+              />
+            </>
+          ) : (
+            <>
+              <IconLinkButton
+                accessible
+                accessibilityLabel="+ button"
+                accessibilityHint="zoom view"
+                text="+"
+                disabled={zoomLevel === 5}
+                onPress={() => setZoomLevel(zoomLevel + 1)}
+                buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
+                blurIntensity={50}
+              />
+              <IconLinkButton
+                accessible
+                accessibilityLabel="- button"
+                accessibilityHint="zoom out view"
+                text="-"
+                disabled={zoomLevel === 0}
+                onPress={() => setZoomLevel(zoomLevel - 1)}
+                buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
+                blurIntensity={50}
+              />
+            </>
+          )}
+        </View>
       </View>
       <Modal
         isVisible={isLocation}
@@ -530,13 +556,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     textAlign: "center",
   }
 
-  const $date: TextStyle = {
-    ...$location,
-    fontSize: fontSizes[13],
-    lineHeight: lineHeights[16],
-    textTransform: "uppercase",
-  }
-
   const $zoomButtons: ViewStyle = {
     height: scale(90),
     justifyContent: "space-between",
@@ -610,7 +629,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $textContainer,
     $lightIcon,
     $location,
-    $date,
     $zoomButtons,
     $modButtons,
     $modButton,

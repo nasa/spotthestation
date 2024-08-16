@@ -119,7 +119,7 @@ export function MapBox({
   }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1]])
 
   const issPathCoords2D = useMemo(
-    () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),
+    () => (curve ? curve.getSpacedPoints(200).map((p) => [p.x, p.y]) : []),
     [curve],
   )
 

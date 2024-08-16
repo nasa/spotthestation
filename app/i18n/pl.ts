@@ -443,7 +443,7 @@ const pl = {
       title: "Najczęściej Zadawane Pytania",
     },
     astronauts: {
-      title: "Kto jest teraz na Stacji",
+      title: "Kto jest teraz na Stacji?",
       number: "Liczba osób:",
     },
     live: {
