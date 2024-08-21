@@ -198,7 +198,7 @@ function ScreenWithScrolling(props: ScreenProps) {
   )
 }
 
-const tap = Gesture.Tap().onEnd(Keyboard.dismiss)
+const tap = Gesture.Tap().onEnd(Keyboard.dismiss).runOnJS(true)
 
 export function Screen(props: ScreenProps) {
   const { $containerStyle, $keyboardAvoidingViewStyle, $flex } = useStyles(styles)

@@ -7,22 +7,22 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 const BASE_WIDTH = 430
 const BASE_HEIGHT = 932
 
-enum LanguageScaling {
-  en = 1,
-  fr = 1,
-  uk = 0.9,
-  ru = 1,
-  ja = 1,
-  es = 0.9,
-  it = 0.9,
-  nl = 1,
-  sv = 0.9,
-  hi = 1,
-  de = 0.9,
-  pl = 0.9,
-  "pt-BR" = 0.9,
-  tr = 1,
-  nb = 1,
+const LanguageScaling = {
+  en: 1,
+  fr: 1,
+  uk: 0.9,
+  ru: 1,
+  ja: 1,
+  es: 0.9,
+  it: 0.9,
+  nl: 1,
+  sv: 0.9,
+  hi: 1,
+  de: 0.9,
+  pl: 0.9,
+  "pt-BR": 0.9,
+  tr: 1,
+  nb: 1,
 }
 
 export const scale = (size: number, isFontScale?: boolean) => {

@@ -31,7 +31,7 @@ import { iconRegistry } from "../../../components"
 import { copyAssetToCacheAsync } from "../../../utils/gl"
 import { cartesianToAzAlt } from "../../../utils/geometry"
 import watchOrientation from "../../../utils/orientation"
-import Orientation from "react-native-orientation-locker"
+import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { LocationType } from "../../../services/api"
 import { useIsFocused } from "@react-navigation/native"
 
@@ -326,9 +326,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     const unsub = watchOrientation(
       (rotation) => {
         const targetRot = rotation
-        if (orientation === "LANDSCAPE-RIGHT") {
+        if (orientation === ("LANDSCAPE-RIGHT" as OrientationType)) {
           targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), Math.PI / 2))
-        } else if (orientation === "LANDSCAPE-LEFT") {
+        } else if (orientation === ("LANDSCAPE-LEFT" as OrientationType)) {
           targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), -Math.PI / 2))
         }
 

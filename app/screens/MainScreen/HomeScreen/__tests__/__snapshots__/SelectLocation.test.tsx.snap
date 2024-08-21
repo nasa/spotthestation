@@ -268,21 +268,23 @@ exports[`renders correctly 1`] = `
           placeholderTextColor="#ADADAE"
           style={
             [
-              {
-                "alignSelf": "stretch",
-                "color": "#DEDDDE",
-                "flex": 1,
-                "fontFamily": "Helvetica Neue",
-                "fontSize": 26,
-                "height": 80,
-                "marginHorizontal": 17,
-                "paddingHorizontal": 0,
-                "paddingVertical": 0,
-                "textAlignVertical": "center",
-              },
-              false,
-              undefined,
-              undefined,
+              [
+                {
+                  "alignSelf": "stretch",
+                  "color": "#DEDDDE",
+                  "flex": 1,
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "height": 80,
+                  "marginHorizontal": 17,
+                  "paddingHorizontal": 0,
+                  "paddingVertical": 0,
+                  "textAlignVertical": "center",
+                },
+                false,
+                undefined,
+                undefined,
+              ],
               {
                 "fontFamily": "Helvetica Neue",
                 "fontSize": 20,
@@ -575,35 +577,5 @@ exports[`renders correctly 1`] = `
       <View />
     </RCTScrollView>
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={true}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    onSwipeComplete={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeDirection="down"
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
 </View>
 `;

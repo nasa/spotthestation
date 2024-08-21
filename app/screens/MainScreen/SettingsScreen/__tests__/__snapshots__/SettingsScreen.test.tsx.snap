@@ -1499,7 +1499,6 @@ exports[`SettingsScreen renders correctly 1`] = `
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 35,
                 "justifyContent": "space-between",
               }
             }
@@ -1510,6 +1509,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   {
                     "flex": 1,
                     "fontSize": 16,
+                    "writingDirection": "ltr",
                   },
                   [
                     {
@@ -1580,65 +1580,5 @@ exports[`SettingsScreen renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={true}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    onSwipeComplete={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeDirection="down"
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={true}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    onSwipeComplete={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeDirection="down"
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
 </div>
 `;

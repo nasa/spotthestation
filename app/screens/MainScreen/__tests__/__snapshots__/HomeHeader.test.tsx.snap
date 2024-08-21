@@ -99,12 +99,12 @@ exports[`renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
     >
       <View
-        animatedStyle={
+        collapsable={false}
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
         style={
           {
             "alignItems": "center",
@@ -119,46 +119,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <View
-          style={
-            [
-              {
-                "backgroundColor": "transparent",
-              },
-              [
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#1E2022",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 60,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 60,
-                },
-                undefined,
-              ],
-            ]
-          }
-        >
-          <ViewManagerAdapter_ExpoBlurView
-            proxiedProperties={
-              {
-                "intensity": 0,
-                "tint": "default",
-              }
-            }
-            style={
-              {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          />
+        <div>
           <View>
             <RCTImageView
               accessibilityState={
@@ -193,7 +154,7 @@ exports[`renders correctly 1`] = `
               tintColor="#FFFFFF"
             />
           </View>
-        </View>
+        </div>
       </View>
     </View>
   </View>

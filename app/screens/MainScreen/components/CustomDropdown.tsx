@@ -8,7 +8,7 @@ import { translate } from "../../../i18n"
 
 export interface CustomDropdownProps {
   data: { label: string; value: number }[]
-  onValueChange: (value: string) => void
+  onValueChange: (value: string | number) => void
   value: number
 }
 
@@ -26,7 +26,7 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
   const [isCustom, setIsCustom] = useState(false)
   const [inputValue, setInputValue] = useState("")
 
-  const options = useMemo(() => {
+  const options = useMemo<{ label: string; value: number | string }[]>(() => {
     const customOption = { label: `${value} ${translate("units.minute")}`, value }
     const updatedOptions = [...data]
 
@@ -40,7 +40,7 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
     ]
   }, [value, data])
 
-  const handleDropdownChange = (value: string) => {
+  const handleDropdownChange = (value: string | number) => {
     if (value === "custom") {
       setIsCustom(true)
     } else {
@@ -109,7 +109,9 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
       ) : (
         <Dropdown
           data={options}
-          onChange={({ value }: { value: string }) => handleDropdownChange(value)}
+          onChange={({ value }: { value: number | string; label: string }) =>
+            handleDropdownChange(value)
+          }
           accessibilityLabel="period select"
           style={[$dropdown, $inputMargin]}
           placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
@@ -121,7 +123,7 @@ export const CustomDropdown = ({ data, onValueChange, value }: CustomDropdownPro
           containerStyle={$dropdownContainer}
           itemTextStyle={$dropdownText}
           activeColor={colors.palette.neutral450}
-          value={value}
+          value={value as any}
           labelField="label"
           valueField="value"
           renderRightIcon={() => (

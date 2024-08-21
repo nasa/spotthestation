@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView, Platform } from "react-native"
 import Modal from "react-native-modal"
 import { Button, Icon, Text, IconTypes, Toggle } from "../../../components"
 import { colors, spacing, typography } from "../../../theme"
@@ -556,7 +556,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $timeOfDayItem: ViewStyle = {
     flexDirection: "row",
     alignItems: "center",
-    paddingTop: scale(6),
+    paddingTop: Platform.OS === "ios" ? scale(6) : 0,
   }
 
   const $timeOfDayText: TextStyle = {

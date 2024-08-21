@@ -104,48 +104,37 @@ const RootStoreActions = (self) => ({
   },
 
   setSightingsTimeOfDay: (location: LocationType, value: string) => {
-    const updated = {
-      ...location,
-      filterTimeOfDay: value,
-    }
+    location.filterTimeOfDay = value
 
-    const filtered = self.getFilteredSightings(updated)
-    updated.sightings.forEach((sighting) => {
+    const filtered = self.getFilteredSightings(location)
+    location.sightings.forEach((sighting) => {
       if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
         sighting.notify = false
     })
 
-    return self.setISSSightings(updated) as LocationType
+    return self.setISSSightings(location) as LocationType
   },
 
   setSightingsDuration: (location: LocationType, value: string) => {
-    const updated = {
-      ...location,
-      filterDuration: value,
-    }
-
-    const filtered = self.getFilteredSightings(updated)
-    updated.sightings.forEach((sighting) => {
+    location.filterDuration = value
+    const filtered = self.getFilteredSightings(location)
+    location.sightings.forEach((sighting) => {
       if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
         sighting.notify = false
     })
 
-    return self.setISSSightings(updated) as LocationType
+    return self.setISSSightings(location) as LocationType
   },
 
   setSightingsMaxHeight: (location: LocationType, value: string) => {
-    const updated = {
-      ...location,
-      filterMaxHeight: value,
-    }
-
-    const filtered = self.getFilteredSightings(updated)
-    updated.sightings.forEach((sighting) => {
+    location.filterMaxHeight = value
+    const filtered = self.getFilteredSightings(location)
+    location.sightings.forEach((sighting) => {
       if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
         sighting.notify = false
     })
 
-    return self.setISSSightings(updated) as LocationType
+    return self.setISSSightings(location) as LocationType
   },
 
   setISSSightings: (value: LocationType): LocationType => {

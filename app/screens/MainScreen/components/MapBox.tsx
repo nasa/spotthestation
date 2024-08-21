@@ -8,7 +8,7 @@ import { computeOld, toGeoJSON } from "../../../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../../../utils/useISSPathCurve"
 import { OrbitPoint } from "../../../services/api"
-import { CameraRef } from "@rnmapbox/maps/lib/typescript/components/Camera"
+import { CameraRef } from "@rnmapbox/maps/lib/typescript/src/components/Camera"
 
 const positionMarker = require("../../../../assets/icons/position.png")
 const pinMarker = require("../../../../assets/icons/fi_map-pin.png")

@@ -57,7 +57,7 @@ export async function saveString(key: KEYS, value: string): Promise<boolean> {
  *
  * @param key The key to fetch.
  */
-export async function load(key: KEYS): Promise<any | null> {
+export async function load(key: KEYS): Promise<any> {
   try {
     const almostThere = await AsyncStorage.getItem(key)
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return

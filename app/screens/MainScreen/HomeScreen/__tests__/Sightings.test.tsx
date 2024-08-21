@@ -1,7 +1,9 @@
 import React from "react"
 import { Sightings } from "../Sightings"
-import { act, render } from "@testing-library/react-native"
+import { render } from "@testing-library/react-native"
 import MockDate from "mockdate"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import * as storage from "../../../../utils/storage"
 
 describe("Sightings", () => {
   beforeEach(() => {
@@ -13,6 +15,7 @@ describe("Sightings", () => {
   })
 
   it("renders correctly", async () => {
+    await AsyncStorage.setItem(storage.KEYS.SIGHTINGS_COACH_VISIBLE, "true")
     const component = render(
       <Sightings
         timeOfDay=""
@@ -59,10 +62,6 @@ describe("Sightings", () => {
         ]}
       />,
     )
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100))
-    })
 
     expect(component.toJSON()).toMatchSnapshot()
   })

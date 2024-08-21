@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import uniqBy from "lodash/uniqBy"
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { View, ViewStyle, TextStyle, Alert } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Screen, Text, Icon } from "../../../components"
@@ -19,14 +19,6 @@ import { TutorialsModal } from "./TutorialsModal"
 import { isMagnetometerAvailable } from "../../../utils/orientation"
 import Share from "react-native-share"
 import { APP_UNIVERSAL_LINK } from "../../../utils/unilinks"
-
-const languages = uniqBy(
-  Object.keys(i18n.translations).map((key) => ({
-    label: (i18n.translations[key] as { name: string }).name,
-    value: key,
-  })),
-  "label",
-)
 
 export const SettingsScreen = observer(function SettingsScreen() {
   const {
@@ -49,13 +41,24 @@ export const SettingsScreen = observer(function SettingsScreen() {
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
   const { setNotifications } = useStores()
+  const languages = useMemo(
+    () =>
+      uniqBy(
+        Object.keys(i18n.translations).map((key) => ({
+          label: (i18n.translations[key] as { name: string }).name,
+          value: key,
+        })),
+        "label",
+      ),
+    [i18n.translations],
+  )
 
   const handleNavigate = (screen) =>
     navigation.navigate("SettingsScreens" as never, { screen } as never)
 
-  const onChangeLanguage = async ({ value }) => {
+  const onChangeLanguage = async ({ value }: { label: string; value: string }) => {
     await storage.save(storage.KEYS.LOCALE, value)
-    setLocale(value as string)
+    setLocale(value)
     setNotifications()
     navigation.reset({
       index: 0,
@@ -97,7 +100,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
       type: undefined,
     }
 
-    await Share.open(shareOptions)
+    await Share.open(shareOptions).catch((e) => console.error(e))
   }
 
   const headerStyle = { ...$headerStyleOverride }

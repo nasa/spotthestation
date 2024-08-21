@@ -238,14 +238,14 @@ exports[`renders correctly 1`] = `
             }
           >
             <View
-              animatedStyle={
+              collapsable={false}
+              jestAnimatedStyle={
                 {
                   "value": {
                     "opacity": 1,
                   },
                 }
               }
-              collapsable={false}
               style={
                 {
                   "alignItems": "center",
@@ -262,7 +262,8 @@ exports[`renders correctly 1`] = `
               }
             />
             <View
-              animatedStyle={
+              collapsable={false}
+              jestAnimatedStyle={
                 {
                   "value": {
                     "marginStart": -35,
@@ -270,7 +271,6 @@ exports[`renders correctly 1`] = `
                   },
                 }
               }
-              collapsable={false}
               style={
                 {
                   "backgroundColor": "#FFFFFF",

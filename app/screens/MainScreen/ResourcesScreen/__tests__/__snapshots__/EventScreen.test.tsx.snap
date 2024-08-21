@@ -113,56 +113,6 @@ exports[`renders correctly 1`] = `
       resources.header undefined
     </Text>
   </View>
-  <View
-    style={
-      [
-        {
-          "flex": 1,
-          "overflow": "hidden",
-        },
-        {
-          "flex": 1,
-        },
-      ]
-    }
-  >
-    <RNCWebView
-      cacheEnabled={true}
-      injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-      injectedJavaScriptForMainFrameOnly={true}
-      javaScriptEnabled={true}
-      messagingEnabled={false}
-      onContentProcessDidTerminate={[Function]}
-      onHttpError={[Function]}
-      onLoadingError={[Function]}
-      onLoadingFinish={[Function]}
-      onLoadingProgress={[Function]}
-      onLoadingStart={[Function]}
-      onMessage={[Function]}
-      onShouldStartLoadWithRequest={[Function]}
-      source={
-        {
-          "height": 100,
-          "scale": 2,
-          "uri": "https://placekitten.com/200/200",
-          "width": 100,
-        }
-      }
-      style={
-        [
-          {
-            "flex": 1,
-            "overflow": "hidden",
-          },
-          {
-            "backgroundColor": "#ffffff",
-          },
-          undefined,
-        ]
-      }
-      textInteractionEnabled={true}
-      useSharedProcessPool={true}
-    />
-  </View>
+  <div />
 </div>
 `;

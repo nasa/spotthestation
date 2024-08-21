@@ -4,14 +4,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 buildscript {
     ext {
-        buildToolsVersion = "33.0.0"
+        buildToolsVersion = "34.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 33
-        targetSdkVersion = 33
-        kotlin_version = "1.7.10" // Update this to your version
-
-        // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
-        ndkVersion = "23.1.7779620"
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        ndkVersion = "26.1.10909125"
+        kotlin_version = "1.9.22"
         RNMapboxMapsImpl = "mapbox"
     }
     repositories {
@@ -19,9 +17,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.3.1")
+        classpath("com.android.tools.build:gradle")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
         classpath("com.google.gms:google-services:4.3.15")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -48,3 +47,5 @@ allprojects {
         // ...even more repos?
     }
 }
+
+apply plugin: "com.facebook.react.rootproject"

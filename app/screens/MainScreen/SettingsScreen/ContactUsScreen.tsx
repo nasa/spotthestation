@@ -180,7 +180,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           labelField="label"
           valueField="value"
           onChange={({ value }) => {
-            setTitle(value as string)
+            setTitle(value)
           }}
           renderRightIcon={() => (
             <Icon

@@ -38,6 +38,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     $title,
     $modalButton,
     $map,
+    $overlay,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -50,6 +51,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
   const [textValue, setTextValue] = useState("")
   const [location, setLocation] = useState<LocationType>(null)
   const [marker, setMarker] = useState<LatLng>(null)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleClear = () => {
     addressRef.current?.clear()
@@ -142,6 +144,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         markers={marker ? [marker] : []}
         zoomEnabled
       />
+      {dropdownOpen && <View style={$overlay} />}
       <View style={[$topContainer, headerStyle]}>
         <View style={$topButtonsContainer}>
           <IconLinkButton
@@ -157,6 +160,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
           placeholder={translate(
             "settings.locationSettingsData.addNewLocation.searchInputPlaceholder",
           )}
+          onToggleDropdown={setDropdownOpen}
           onPress={(data) => {
             setLocation({
               title: data.name,
@@ -408,6 +412,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $map: ViewStyle = { flex: 1 }
 
+  const $overlay: ViewStyle = {
+    flex: 1,
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+  }
+
   return {
     $headerStyleOverride,
     $container,
@@ -431,5 +443,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $title,
     $modalButton,
     $map,
+    $overlay,
   }
 }

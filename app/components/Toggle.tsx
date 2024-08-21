@@ -1,6 +1,7 @@
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { ComponentType, FC, useMemo } from "react"
 import {
+  FlexStyle,
   GestureResponderEvent,
   Image,
   ImageStyle,
@@ -199,7 +200,8 @@ export function Toggle(props: ToggleProps) {
 
   function handlePress(e: GestureResponderEvent) {
     if (disabled) return
-    Boolean(onValueChange) && onValueChange(!value)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (onValueChange) onValueChange(!value)
     onPress?.(e)
   }
 
@@ -489,7 +491,7 @@ function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off"
 
   const shouldLabelBeVisible = (on && role === "on") || (!on && role === "off")
 
-  const $switchAccessibilityStyle = [
+  const $switchAccessibilityStyle: FlexStyle[] = [
     $switchAccessibility,
     role === "off" && { end: "5%" },
     role === "on" && { left: "5%" },

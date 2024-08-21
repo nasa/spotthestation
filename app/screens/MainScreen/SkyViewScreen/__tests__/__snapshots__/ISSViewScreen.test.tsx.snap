@@ -51,12 +51,12 @@ exports[`renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
     >
       <View
-        animatedStyle={
+        collapsable={false}
+        jestAnimatedStyle={
           {
             "value": {},
           }
         }
-        collapsable={false}
         style={
           {
             "alignItems": "center",
@@ -72,46 +72,7 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <View
-          style={
-            [
-              {
-                "backgroundColor": "transparent",
-              },
-              [
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#1E2022",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 60,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 60,
-                },
-                undefined,
-              ],
-            ]
-          }
-        >
-          <ViewManagerAdapter_ExpoBlurView
-            proxiedProperties={
-              {
-                "intensity": 0,
-                "tint": "default",
-              }
-            }
-            style={
-              {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          />
+        <div>
           <View>
             <RCTImageView
               accessibilityState={
@@ -146,7 +107,7 @@ exports[`renders correctly 1`] = `
               tintColor="#FFFFFF"
             />
           </View>
-        </View>
+        </div>
       </View>
     </View>
   </View>
@@ -240,12 +201,12 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -262,46 +223,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -336,7 +258,7 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
         <View
@@ -374,12 +296,12 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -396,46 +318,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -470,7 +353,7 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
         <View
@@ -508,12 +391,12 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -530,46 +413,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -604,7 +448,7 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
       </View>
@@ -728,12 +572,12 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -750,46 +594,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -824,7 +629,7 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
         <View
@@ -862,14 +667,14 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {
                   "backgroundColor": "rgba(255, 255, 255, 0.2)",
                 },
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -886,46 +691,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -960,7 +726,7 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
         <View
@@ -998,12 +764,12 @@ exports[`renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
         >
           <View
-            animatedStyle={
+            collapsable={false}
+            jestAnimatedStyle={
               {
                 "value": {},
               }
             }
-            collapsable={false}
             onLayout={[Function]}
             style={
               {
@@ -1020,46 +786,7 @@ exports[`renders correctly 1`] = `
               }
             }
           >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                  [
-                    {
-                      "alignItems": "center",
-                      "backgroundColor": "#1E2022",
-                      "borderRadius": 143,
-                      "display": "flex",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "overflow": "hidden",
-                      "position": "relative",
-                      "width": 60,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              <ViewManagerAdapter_ExpoBlurView
-                proxiedProperties={
-                  {
-                    "intensity": 0,
-                    "tint": "default",
-                  }
-                }
-                style={
-                  {
-                    "bottom": 0,
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
-                }
-              />
+            <div>
               <View>
                 <RCTImageView
                   accessibilityState={
@@ -1094,183 +821,11 @@ exports[`renders correctly 1`] = `
                   tintColor="#FFFFFF"
                 />
               </View>
-            </View>
+            </div>
           </View>
         </View>
       </View>
     </View>
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={true}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    onSwipeComplete={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeDirection="down"
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={true}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    onSwipeComplete={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeDirection="down"
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    useNativeDriverForBackdrop={true}
-    visible={false}
-  />
 </div>
 `;

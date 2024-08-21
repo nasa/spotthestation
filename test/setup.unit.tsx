@@ -2,8 +2,10 @@
 import * as ReactNative from "react-native"
 import mas from "@react-native-async-storage/async-storage/jest/async-storage-mock"
 import i18n from "i18n-js"
-import React from "react"
+import React, { ForwardedRef, ReactNode } from "react"
 import mockFile from "./mockFile"
+
+const mockForwardRef = React.forwardRef;
 
 (global as any).ReanimatedDataMock = {
   now: () => 0,
@@ -194,6 +196,18 @@ jest.mock("i18n-js", () => ({
 jest.mock("@react-native-firebase/analytics", () => () => ({
   setUserId: jest.fn().mockResolvedValue(null),
   logTutorialBegin: jest.fn().mockResolvedValue(null)
+}))
+
+jest.mock("@expo-google-fonts/space-grotesk", () => ({}))
+
+jest.mock('expo-blur', () => ({
+  BlurView: ({children}) => <div>{children}</div>,
+}))
+
+jest.mock('react-native-webview', () => ({
+  WebView: mockForwardRef(function WebView({ children }: { children: ReactNode }, ref: ForwardedRef<HTMLDivElement>) {
+    return <div ref={ref}>{children}</div>
+  }),
 }))
 
 declare const tron // eslint-disable-line @typescript-eslint/no-unused-vars

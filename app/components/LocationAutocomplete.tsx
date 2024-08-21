@@ -13,6 +13,7 @@ import React, {
   forwardRef,
   ReactNode,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -23,15 +24,16 @@ import { api, PlaceDetails } from "../services/api"
 import { StyleFn, useStyles } from "../utils/useStyles"
 import { Gesture, GestureDetector } from "react-native-gesture-handler"
 
-interface LocationAutocompleteProps extends Omit<TextFieldProps, "ref"> {
+interface LocationAutocompleteProps extends Omit<Omit<TextFieldProps, "ref">, "onPress"> {
   placeholder?: string
   textInputProps: TextInputProps
   styles: any
   renderRow: (item: { description: string }) => ReactNode
   onPress: (item: PlaceDetails) => void
+  onToggleDropdown?: (isOpen: boolean) => void
 }
 
-const tap = Gesture.Tap().onEnd(Keyboard.dismiss)
+const tap = Gesture.Tap().onEnd(Keyboard.dismiss).runOnJS(true)
 
 export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
   {
@@ -42,6 +44,7 @@ export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
     onPress,
     renderLeftAccessory,
     renderRightAccessory,
+    onToggleDropdown,
   }: LocationAutocompleteProps,
   ref,
 ) {
@@ -50,6 +53,10 @@ export const LocationAutocomplete = forwardRef(function LocationAutocomplete(
   const [results, setResults] = useState<PlaceDetails[]>([])
   const inputRef = useRef<TextInput>()
   const [autocompleteToken, setAutocompleteToken] = useState(uuidv4())
+
+  useEffect(() => {
+    if (onToggleDropdown) onToggleDropdown(results.length > 0)
+  }, [onToggleDropdown, results.length > 0])
 
   const handleSearch = useMemo(
     () =>

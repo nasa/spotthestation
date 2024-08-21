@@ -17,7 +17,7 @@ import {
 } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import Orientation from "react-native-orientation-locker"
+import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { check, openSettings, PERMISSIONS, request, RESULTS } from "react-native-permissions"
 import Share from "react-native-share"
 import ViewShot, { captureScreen } from "react-native-view-shot"
@@ -568,7 +568,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     const initial = Orientation.getInitialOrientation()
 
-    if (initial === "LANDSCAPE-LEFT" || initial === "LANDSCAPE-RIGHT") {
+    if (
+      initial === ("LANDSCAPE-LEFT" as OrientationType) ||
+      initial === ("LANDSCAPE-RIGHT" as OrientationType)
+    ) {
       setIsLandscape(true)
     } else {
       setIsLandscape(false)

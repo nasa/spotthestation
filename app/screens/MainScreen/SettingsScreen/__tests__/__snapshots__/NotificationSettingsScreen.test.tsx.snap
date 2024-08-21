@@ -420,14 +420,14 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 }
               >
                 <View
-                  animatedStyle={
+                  collapsable={false}
+                  jestAnimatedStyle={
                     {
                       "value": {
                         "opacity": 0,
                       },
                     }
                   }
-                  collapsable={false}
                   style={
                     {
                       "alignItems": "center",
@@ -444,7 +444,8 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                   }
                 />
                 <View
-                  animatedStyle={
+                  collapsable={false}
+                  jestAnimatedStyle={
                     {
                       "value": {
                         "marginStart": 6,
@@ -452,7 +453,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                       },
                     }
                   }
-                  collapsable={false}
                   style={
                     {
                       "backgroundColor": "#F4F2F1",
@@ -583,7 +583,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                   {
                     "alignItems": "center",
                     "flexDirection": "row",
-                    "height": 35,
                     "justifyContent": "space-between",
                   }
                 }
@@ -594,6 +593,7 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                       {
                         "flex": 1,
                         "fontSize": 16,
+                        "writingDirection": "ltr",
                       },
                       [
                         {
@@ -782,14 +782,14 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 }
               >
                 <View
-                  animatedStyle={
+                  collapsable={false}
+                  jestAnimatedStyle={
                     {
                       "value": {
                         "opacity": 0,
                       },
                     }
                   }
-                  collapsable={false}
                   style={
                     {
                       "alignItems": "center",
@@ -806,7 +806,8 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                   }
                 />
                 <View
-                  animatedStyle={
+                  collapsable={false}
+                  jestAnimatedStyle={
                     {
                       "value": {
                         "marginStart": 6,
@@ -814,7 +815,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                       },
                     }
                   }
-                  collapsable={false}
                   style={
                     {
                       "backgroundColor": "#F4F2F1",

@@ -144,12 +144,11 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
     $inputWrapperStyleOverride,
   ]
 
-  const $inputStyles = [
+  const $inputStyles: TextStyle[] = [
     $inputStyle,
     disabled && { color: colors.textDim },
     isRTL && { textAlign: "right" as TextStyle["textAlign"] },
     TextInputProps.multiline && { height: "auto" },
-    $inputStyleOverride,
   ]
 
   const $helperStyles = [
@@ -196,7 +195,7 @@ export const TextField = forwardRef(function TextField(props: TextFieldProps, re
           placeholderTextColor={colors.palette.neutral450}
           {...TextInputProps}
           editable={!disabled}
-          style={$inputStyles}
+          style={[$inputStyles, $inputStyleOverride]}
         />
 
         {!!renderRightAccessory && renderRightAccessory({ style: $rightAccessoryStyle })}

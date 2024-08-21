@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import Orientation from "react-native-orientation-locker"
+import Orientation, { OrientationType } from "react-native-orientation-locker"
 import Modal from "react-native-modal"
 import { Screen, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
@@ -95,7 +95,10 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   useEffect(() => {
     const initial = Orientation.getInitialOrientation()
 
-    if (initial === "LANDSCAPE-LEFT" || initial === "LANDSCAPE-RIGHT") {
+    if (
+      initial === ("LANDSCAPE-LEFT" as OrientationType) ||
+      initial === ("LANDSCAPE-RIGHT" as OrientationType)
+    ) {
       setIsLandscape(true)
     } else {
       setIsLandscape(false)
