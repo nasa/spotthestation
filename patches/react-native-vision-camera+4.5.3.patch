@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraDeviceDetails.kt b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraDeviceDetails.kt
+index adf84c7..ea49e27 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraDeviceDetails.kt
++++ b/node_modules/react-native-vision-camera/android/src/main/java/com/mrousavy/camera/core/CameraDeviceDetails.kt
+@@ -232,8 +232,16 @@ class CameraDeviceDetails(private val cameraInfo: CameraInfo, extensionsManager:
+     if ((sensorSize.width == 0f) || (sensorSize.height == 0f)) {
+       return 0.0
+     }
+-    val sensorDiagonal = sqrt((sensorSize.width * sensorSize.width + sensorSize.height * sensorSize.height).toDouble())
+-    val fovRadians = 2.0 * atan2(sensorDiagonal, (2.0 * focalLength))
++
++    // we want horizontal FOV like iOS version
++    // val sensorDiagonal = sqrt((sensorSize.width * sensorSize.width + sensorSize.height * sensorSize.height).toDouble())
++    val side = when (sensorOrientation) {
++        Orientation.LANDSCAPE_RIGHT -> sensorSize.height
++        Orientation.LANDSCAPE_LEFT -> sensorSize.height
++        Orientation.PORTRAIT -> sensorSize.width
++        Orientation.PORTRAIT_UPSIDE_DOWN -> sensorSize.width
++    }
++    val fovRadians = 2.0 * atan2(side.toDouble(), (2.0 * focalLength))
+     return Math.toDegrees(fovRadians)
+   }
+ 

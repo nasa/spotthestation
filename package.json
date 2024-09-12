@@ -114,7 +114,7 @@
     "react-native-version": "^4.0.0",
     "react-native-version-check": "^3.4.7",
     "react-native-view-shot": "^3.6.0",
-    "react-native-vision-camera": "^2.16.5",
+    "react-native-vision-camera": "^4.5.3",
     "react-native-web": "~0.18.7",
     "react-native-webview": "^13.10.5",
     "react-native-youtube-iframe": "^2.3.0",

@@ -1505,9 +1505,11 @@ PODS:
   - SocketRocket (0.7.0)
   - SSZipArchive (2.2.3)
   - Turf (2.7.0)
-  - VisionCamera (2.16.5):
-    - React
-    - React-callinvoker
+  - VisionCamera (4.5.3):
+    - VisionCamera/Core (= 4.5.3)
+    - VisionCamera/React (= 4.5.3)
+  - VisionCamera/Core (4.5.3)
+  - VisionCamera/React (4.5.3):
     - React-Core
   - Yoga (0.0.0)
 
@@ -1948,7 +1950,7 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
-  VisionCamera: 7d6b73a014e5c3d5989986809f58c780be9937d8
+  VisionCamera: cb84d0d8485b3e67c91b62931d3aa88f49747c92
   Yoga: 1ab23c1835475da69cf14e211a560e73aab24cb0
 
 PODFILE CHECKSUM: 7dfb3c480f1e84a29771ad853d2a5bff828c3d49

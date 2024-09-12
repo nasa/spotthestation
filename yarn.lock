@@ -14851,10 +14851,10 @@ react-native-view-shot@^3.6.0:
   dependencies:
     html2canvas "^1.4.1"
 
-react-native-vision-camera@^2.16.5:
-  version "2.16.5"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.5.tgz#1d06bde2ca5911b763f8ae18de5f5fa65c30cf9d"
-  integrity sha512-MzXhNd597OyMQSEGhqWI4DufWkdr7PR7U9B30E3gXnln7cnvjMVIp4j3eIW9BIrgvEyUcEeL7nZM5NLhTmO/fA==
+react-native-vision-camera@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.5.3.tgz#9ee05b78ac575cdbd80b34ea37f584ffcf8c95ec"
+  integrity sha512-wulpS6ZY6SwuYMDD8csIFMFJ6lXeQq4bJvaAhwEnr0R9cZ53jDUs0/SFZva6UFEPIw64h0IdrrzuVTEufhDSgQ==
 
 react-native-web@~0.18.7:
   version "0.18.10"

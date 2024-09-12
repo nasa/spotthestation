@@ -25,7 +25,7 @@ import {
 } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { loadTextureAsync, Renderer } from "expo-three"
-import { Camera, CameraDeviceFormat, useCameraDevices } from "react-native-vision-camera"
+import { Camera, CameraDeviceFormat, useCameraDevice } from "react-native-vision-camera"
 import { maxBy, minBy } from "lodash"
 import { iconRegistry } from "../../../components"
 import { copyAssetToCacheAsync } from "../../../utils/gl"
@@ -95,8 +95,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   location,
 }: ISSSceneProps) {
   const [layout, setLayout] = useState<LayoutRectangle>()
-  const devices = useCameraDevices()
-  const device = devices.back
+  const device = useCameraDevice('back', { physicalDevices: ['wide-angle-camera']})
   const [orientation, setOrientation] = useState(Orientation.getInitialOrientation())
 
   const [activeFormat, setActiveFormat] = useState<CameraDeviceFormat>(null)
@@ -381,6 +380,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
           {(isFocused || Platform.OS !== "android") && (
             <Camera
               ref={realCameraRef}
+              lowLightBoost={device.supportsLowLightBoost}
               style={StyleSheet.absoluteFill}
               device={device}
               isActive={isFocused}
