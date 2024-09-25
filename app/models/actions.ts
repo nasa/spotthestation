@@ -7,7 +7,7 @@ import * as notifications from "../utils/notifications"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 import { translate } from "../i18n"
-import { getSatPath, getSightings } from "../utils/astro"
+import { getSatPath, getSightings } from "../utils/satellite"
 import * as storage from "../utils/storage"
 
 const RootStoreActions = (self) => ({

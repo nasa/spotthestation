@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native"
 import debounce from "lodash/debounce"
-import { TextField, TextFieldProps } from "./TextField"
+import { TextField, TextFieldProps } from "."
 import React, {
   forwardRef,
   ReactNode,

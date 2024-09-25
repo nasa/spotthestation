@@ -4,14 +4,11 @@ import React, { useMemo, useState } from "react"
 import { TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon, Text } from "../components"
-import {
-  ISSNowScreen,
-  HomeScreen,
-  HomeScreenRouteProps,
-  ISSViewScreen,
-  Resources,
-  SettingsScreen,
-} from "../screens"
+import { ISSNowScreen } from "../screens/ISSNowScreen"
+import { HomeScreen, HomeScreenRouteProps } from "../screens/HomeScreen"
+import { ResourcesScreen } from "../screens/ResourcesScreen"
+import { ISSViewScreen } from "../screens/ISSViewScreen"
+import { SettingsScreen } from "../screens/SettingsScreen"
 import { colors } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 import { StyleFn, useStyles } from "../utils/useStyles"
@@ -126,7 +123,7 @@ export function TabNavigator() {
 
         <Tab.Screen
           name="Resources"
-          component={Resources}
+          component={ResourcesScreen}
           options={{
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.resourcesTab" style={[$tab, getTabStyle(focused, color)]} />

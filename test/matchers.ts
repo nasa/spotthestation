@@ -1,7 +1,7 @@
 import { expect } from "@jest/globals"
 import { addMinutes, setSeconds, subMinutes } from "date-fns"
-import { formatDateWithTZ } from "../app/utils/formatDate"
-import { compassDirections, degToCompass } from "../app/utils/astro"
+import { formatDateWithTZ } from "../app/utils/datetime"
+import { compassDirections, headingToCompass } from "../app/utils/geometry"
 import { Sighting } from "../app/models/Sightings"
 import { SnapshotIn } from "mobx-state-tree"
 
@@ -58,7 +58,7 @@ expect.extend({
       }
     }
 
-    const appears = degToCompass(found.minAzimuth)
+    const appears = headingToCompass(found.minAzimuth)
     if (appears !== siteSighting.appears
       && appears !== nextCompassDirection(siteSighting.appears)
       && appears !== prevCompassDirection(siteSighting.appears)
@@ -69,7 +69,7 @@ expect.extend({
       }
     }
 
-    const disappears = degToCompass(found.maxAzimuth)
+    const disappears = headingToCompass(found.maxAzimuth)
     if (disappears !== siteSighting.disappears
       && disappears !== nextCompassDirection(siteSighting.disappears)
       && disappears !== prevCompassDirection(siteSighting.disappears)

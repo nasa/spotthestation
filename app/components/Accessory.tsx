@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { PressableProps, StyleProp } from "react-native"
 import { colors } from "../theme"
-import { IconTypes, Icon } from "./Icon"
+import { IconTypes, Icon } from "."
 
 export interface AccessoryProps {
   icon: IconTypes

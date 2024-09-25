@@ -8,6 +8,9 @@ module.exports = {
       babelConfig: true,
     }]
   },
+  moduleNameMapper: {
+    '^[./a-zA-Z0-9$_-]+\\.mtl$': '<rootDir>/test/mockFile.tsx',
+  },
   transformIgnorePatterns: [
     "<rootDir>/node_modules/(?!@react-native|react-native|@expo-.*|expo-.*|@react-navigation)",
   ],

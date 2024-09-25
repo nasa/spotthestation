@@ -1,240 +1,276 @@
+import { Text, Toggle, IconLinkButton, Icon, IconTypes } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
-import React, { ReactElement } from "react"
+import React from "react"
 import {
-  StyleProp,
-  TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
   ViewStyle,
+  View,
+  TextStyle,
+  Pressable,
+  PressableProps,
+  ActivityIndicator,
 } from "react-native"
-import { colors, scale, spacing } from "../theme"
-import { Icon, IconTypes } from "./Icon"
-import { Text, TextProps } from "./Text"
 
-export interface ListItemProps extends TouchableOpacityProps {
-  /**
-   * How tall the list item should be.
-   * Default: 56
-   */
-  height?: number
-  /**
-   * Whether to show the top separator.
-   * Default: false
-   */
-  topSeparator?: boolean
-  /**
-   * Whether to show the bottom separator.
-   * Default: false
-   */
-  bottomSeparator?: boolean
-  /**
-   * Text to display if not using `tx` or nested components.
-   */
-  text?: TextProps["text"]
-  /**
-   * Text which is looked up via i18n.
-   */
-  tx?: TextProps["tx"]
-  /**
-   * Children components.
-   */
-  children?: TextProps["children"]
-  /**
-   * Optional options to pass to i18n. Useful for interpolation
-   * as well as explicitly setting locale or translation fallbacks.
-   */
-  txOptions?: TextProps["txOptions"]
-  /**
-   * Optional text style override.
-   */
-  textStyle?: StyleProp<TextStyle>
-  /**
-   * Pass any additional props directly to the Text component.
-   */
-  TextProps?: TextProps
-  /**
-   * Optional View container style override.
-   */
-  containerStyle?: StyleProp<ViewStyle>
-  /**
-   * Optional TouchableOpacity style override.
-   */
-  style?: StyleProp<ViewStyle>
-  /**
-   * Icon that should appear on the left.
-   */
-  leftIcon?: IconTypes
-  /**
-   * An optional tint color for the left icon
-   */
-  leftIconColor?: string
-  /**
-   * Icon that should appear on the right.
-   */
-  rightIcon?: IconTypes
-  /**
-   * An optional tint color for the right icon
-   */
-  rightIconColor?: string
-  /**
-   * Right action custom ReactElement.
-   * Overrides `rightIcon`.
-   */
-  RightComponent?: ReactElement
-  /**
-   * Left action custom ReactElement.
-   * Overrides `leftIcon`.
-   */
-  LeftComponent?: ReactElement
-}
+import { TxKeyPath } from "../i18n"
+import { typography, colors } from "../theme"
 
-interface ListItemActionProps {
+export interface ListItemProps {
+  selected?: boolean
+  withSwitch?: boolean
+  withShare?: boolean
+  editable?: boolean
+  disabled?: boolean
+  title: string
+  subtitle?: string
+  subtitle2?: string
+  subtitle3?: string
+  subtitle4?: string
   icon: IconTypes
-  iconColor?: string
-  Component?: ReactElement
-  size: number
-  side: "left" | "right"
+  secondIcon?: { icon: IconTypes; color: string }
+  ctaTx?: TxKeyPath
+  onToggle?: (date: string) => void
+  onShare?: (date: string) => void
+  onPress?: PressableProps["onPress"]
+  onCtaPress?: () => void
+  onEdit?: () => void
+  onDelete?: () => void
+  borderless?: boolean
+  value?: string
 }
 
-/**
- * A styled row component that can be used in FlatList, SectionList, or by itself.
- *
- * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-ListItem.md)
- */
-export function ListItem(props: ListItemProps) {
-  const { $separatorTop, $separatorBottom, $textStyle, $touchableStyle } = useStyles(styles)
-
+export const ListItem = React.memo(function ListItem({
+  title,
+  ctaTx,
+  subtitle,
+  subtitle2,
+  subtitle3,
+  subtitle4,
+  selected = false,
+  withSwitch = false,
+  withShare = false,
+  icon,
+  secondIcon,
+  onPress,
+  onToggle,
+  onShare,
+  onCtaPress,
+  onEdit,
+  onDelete,
+  editable,
+  disabled,
+  borderless,
+  value,
+}: ListItemProps) {
   const {
-    bottomSeparator,
-    children,
-    height = 56,
-    LeftComponent,
-    leftIcon,
-    leftIconColor,
-    RightComponent,
-    rightIcon,
-    rightIconColor,
-    style,
-    text,
-    TextProps,
-    topSeparator,
-    tx,
-    txOptions,
-    textStyle: $textStyleOverride,
-    containerStyle: $containerStyleOverride,
-    ...TouchableOpacityProps
-  } = props
-
-  const $textStyles = [$textStyle, $textStyleOverride, TextProps?.style]
-
-  const $containerStyles = [
-    topSeparator && $separatorTop,
-    bottomSeparator && $separatorBottom,
-    $containerStyleOverride,
-  ]
-
-  const $touchableStyles = [$touchableStyle, { minHeight: scale(height) }, style]
+    $container,
+    $bodyContainer,
+    $titleContainer,
+    $titleText,
+    $subtitleText,
+    $tip,
+    $spinner,
+    $cta,
+    $buttons,
+    $mr0,
+    $withoutBottomBorder,
+    $button,
+    $buttonContainer,
+    $appendContainer,
+  } = useStyles(styles)
 
   return (
-    <View style={$containerStyles}>
-      <TouchableOpacity {...TouchableOpacityProps} style={$touchableStyles}>
-        <ListItemAction
-          side="left"
-          size={height}
-          icon={leftIcon}
-          iconColor={leftIconColor}
-          Component={LeftComponent}
-        />
+    <Pressable
+      accessible
+      accessibilityLabel="pressable list item"
+      accessibilityHint="pressable list item"
+      accessibilityRole="button"
+      style={$container}
+      onPress={onPress}
+    >
+      <View>
+        <Icon icon={icon} size={24} color={colors.palette.neutral450} />
+        {secondIcon && <Icon icon={secondIcon.icon} size={24} color={secondIcon.color} />}
+      </View>
+      <View style={[$bodyContainer, borderless && $withoutBottomBorder]}>
+        <View
+          accessible
+          accessibilityLabel="list item body"
+          accessibilityHint="list item body"
+          accessibilityRole="text"
+          style={$titleContainer}
+        >
+          <Text text={title} style={$titleText} ellipsizeMode="tail" numberOfLines={1} />
+          {Boolean(subtitle) && (
+            <Text text={subtitle} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(subtitle2) && (
+            <Text text={subtitle2} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(subtitle3) && (
+            <Text text={subtitle3} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(subtitle4) && (
+            <Text text={subtitle4} style={$subtitleText} ellipsizeMode="tail" numberOfLines={1} />
+          )}
+          {Boolean(ctaTx) && (
+            <Pressable onPress={onCtaPress} style={$cta}>
+              <Text tx={ctaTx} style={[$tip, { color: colors.palette.buttonBlue }]} />
+            </Pressable>
+          )}
+          {editable && (
+            <View
+              accessible
+              accessibilityLabel="list item body"
+              accessibilityHint="list item body"
+              accessibilityRole="text"
+              style={$titleContainer}
+            >
+              <View style={$buttons}>
+                {onEdit && (
+                  <Icon
+                    icon="edit"
+                    size={30}
+                    color={colors.palette.yellow}
+                    onPress={onEdit}
+                    containerStyle={$mr0}
+                  />
+                )}
+                {onDelete && (
+                  <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />
+                )}
+              </View>
+            </View>
+          )}
+        </View>
+        <View style={$appendContainer}>
+          {withSwitch && !disabled && (
+            <Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle location alerts"
+              variant="switch"
+              value={selected}
+              onValueChange={() => onToggle(value)}
+              disabled={disabled}
+            />
+          )}
+          {withSwitch && disabled && (
+            <View style={$spinner}>
+              <ActivityIndicator />
+            </View>
+          )}
+          {!withSwitch && (
+            <Icon
+              icon="check"
+              size={24}
+              color={selected ? colors.palette.green : colors.palette.neutral550}
+            />
+          )}
 
-        <Text {...TextProps} tx={tx} text={text} txOptions={txOptions} style={$textStyles}>
-          {children}
-        </Text>
-
-        <ListItemAction
-          side="right"
-          size={height}
-          icon={rightIcon}
-          iconColor={rightIconColor}
-          Component={RightComponent}
-        />
-      </TouchableOpacity>
-    </View>
+          {withShare && (
+            <IconLinkButton
+              accessible
+              accessibilityLabel="share"
+              accessibilityHint="open share modal"
+              buttonStyle={$button}
+              icon="share"
+              onPress={() => onShare(value)}
+              viewStyle={$buttonContainer}
+            />
+          )}
+        </View>
+      </View>
+    </Pressable>
   )
-}
+})
 
-function ListItemAction(props: ListItemActionProps) {
-  const { $iconContainer, $iconContainerLeft, $iconContainerRight } = useStyles(styles)
-
-  const { icon, Component, iconColor, size, side } = props
-
-  const $iconContainerStyles = [$iconContainer]
-
-  if (Component) return Component
-
-  if (icon) {
-    return (
-      <Icon
-        size={24}
-        icon={icon}
-        color={iconColor}
-        containerStyle={[
-          $iconContainerStyles,
-          side === "left" && $iconContainerLeft,
-          side === "right" && $iconContainerRight,
-          { height: size },
-        ]}
-      />
-    )
-  }
-
-  return null
-}
-
-const styles: StyleFn = ({ scale }) => {
-  const $separatorTop: ViewStyle = {
-    borderTopWidth: 1,
-    borderTopColor: colors.separator,
-  }
-
-  const $separatorBottom: ViewStyle = {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.separator,
-  }
-
-  const $textStyle: TextStyle = {
-    paddingVertical: scale(spacing.extraSmall),
-    alignSelf: "center",
-    flexGrow: 1,
-    flexShrink: 1,
-  }
-
-  const $touchableStyle: ViewStyle = {
+const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $container: ViewStyle = {
+    width: "100%",
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "flex-start",
+    paddingTop: scale(16),
   }
 
-  const $iconContainer: ViewStyle = {
+  const $bodyContainer: ViewStyle = {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderColor: colors.palette.neutral550,
+    borderBottomWidth: scale(1),
+    paddingBottom: scale(16),
+    alignItems: "stretch",
+    marginLeft: scale(10),
+  }
+
+  const $titleContainer: ViewStyle = {
+    flexDirection: "column",
+    flex: 1,
+  }
+
+  const $titleText: TextStyle = {
+    width: "95%",
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[18],
+    lineHeight: lineHeights[22],
+    color: colors.palette.neutral100,
+  }
+
+  const $subtitleText: TextStyle = {
+    ...$titleText,
+    fontSize: fontSizes[16],
+    lineHeight: lineHeights[19],
+    color: colors.palette.neutral100,
+    paddingTop: scale(5),
+  }
+
+  const $tip: TextStyle = {
+    color: colors.palette.neutral450,
+    fontSize: fontSizes[18],
+    fontFamily: typography.primary.light,
+    lineHeight: lineHeights[22],
+  }
+
+  const $spinner: ViewStyle = {
+    width: scale(46),
     justifyContent: "center",
     alignItems: "center",
-    flexGrow: 0,
   }
 
-  const $iconContainerLeft: ViewStyle = {
-    marginEnd: scale(spacing.medium),
+  const $cta: ViewStyle = { marginTop: scale(10) }
+
+  const $buttons: ViewStyle = { flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }
+
+  const $mr0 = { marginRight: 10 }
+
+  const $withoutBottomBorder = { borderBottomWidth: 0 }
+
+  const $button: ViewStyle = {
+    backgroundColor: colors.palette.overlayWhite,
+    width: scale(44),
+    height: scale(44),
   }
 
-  const $iconContainerRight: ViewStyle = {
-    marginStart: scale(spacing.medium),
+  const $buttonContainer: ViewStyle = {
+    backgroundColor: "transparent",
   }
+
+  const $appendContainer: ViewStyle = { justifyContent: "space-between", alignItems: "center" }
 
   return {
-    $separatorTop,
-    $separatorBottom,
-    $textStyle,
-    $touchableStyle,
-    $iconContainer,
-    $iconContainerLeft,
-    $iconContainerRight,
+    $container,
+    $bodyContainer,
+    $titleContainer,
+    $titleText,
+    $subtitleText,
+    $tip,
+    $spinner,
+    $cta,
+    $buttons,
+    $mr0,
+    $withoutBottomBorder,
+    $button,
+    $buttonContainer,
+    $appendContainer,
   }
 }

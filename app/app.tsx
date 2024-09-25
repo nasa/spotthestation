@@ -19,7 +19,7 @@ import * as Linking from "expo-linking"
 import * as Sentry from "@sentry/react-native"
 import { RootStoreProvider, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
-import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
+import { ErrorBoundary } from "./components/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
@@ -32,18 +32,16 @@ import VersionCheck from "react-native-version-check"
 import * as notifications from "./utils/notifications"
 import { ensureExactAlarmPermissions, hasExactAlarmPermissions } from "./utils/notifications"
 import { LocationType } from "./services/api"
+import { initCrashReporting } from "./utils/crashReporting"
+import { initPolyfills } from "./utils/datetime"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
   installMode: codePush.InstallMode.ON_NEXT_RESTART,
 }
 
-Sentry.init({
-  dsn: Config.SENTRY_DSN,
-  environment: Config.SENTRY_ENVIRONMENT,
-  appHangTimeoutInterval: 5,
-})
-
+initPolyfills()
+initCrashReporting()
 enableLatestRenderer()
 
 // Set up Reactotron, which is a free desktop app for inspecting and debugging

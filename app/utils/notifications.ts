@@ -7,7 +7,7 @@ import notifee, {
 } from "@notifee/react-native"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
-import { isDateBetweenHours } from "./formatDate"
+import { isDateBetweenHours } from "./datetime"
 import { translate } from "../i18n"
 
 export function initialize() {

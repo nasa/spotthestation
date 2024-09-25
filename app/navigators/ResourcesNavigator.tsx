@@ -2,31 +2,22 @@ import { useRoute } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import React from "react"
-import { WebScreen, WebScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/WebScreen"
+import { WebScreen, WebScreenRouteProps } from "../screens/ResourcesScreen/WebScreen"
 
 import {
   AstronautsScreen,
   AstronautsScreenRouteProps,
-} from "../screens/MainScreen/ResourcesScreen/AstonautsScreen"
+} from "../screens/ResourcesScreen/AstonautsScreen"
 
-import { NewsScreen, NewsScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/NewsScreen"
+import { NewsScreen, NewsScreenRouteProps } from "../screens/ResourcesScreen/NewsScreen"
 
-import {
-  AboutScreen,
-  AboutScreenRouteProps,
-} from "../screens/MainScreen/ResourcesScreen/AboutScreen"
+import { AboutScreen, AboutScreenRouteProps } from "../screens/ResourcesScreen/AboutScreen"
 
-import {
-  DetailsScreen,
-  DetailsScreenRouteProps,
-} from "../screens/MainScreen/ResourcesScreen/DetailsScreen"
+import { DetailsScreen, DetailsScreenRouteProps } from "../screens/ResourcesScreen/DetailsScreen"
 
-import { LiveScreen, LiveScreenRouteProps } from "../screens/MainScreen/ResourcesScreen/LiveScreen"
+import { LiveScreen, LiveScreenRouteProps } from "../screens/ResourcesScreen/LiveScreen"
 
-import {
-  VideosScreen,
-  VideosScreenRouteProps,
-} from "../screens/MainScreen/ResourcesScreen/VideosScreen"
+import { VideosScreen, VideosScreenRouteProps } from "../screens/ResourcesScreen/VideosScreen"
 
 export type ResourcesParamList = {
   Web: WebScreenRouteProps

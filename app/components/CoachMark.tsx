@@ -1,6 +1,7 @@
+import { Text, Button, Icon, IconTypes } from "."
 import React from "react"
 import { ViewStyle, View, PressableProps, TextStyle, StyleProp } from "react-native"
-import { Button, Icon, IconTypes, Text } from "."
+
 import { TxKeyPath } from "../i18n"
 import { typography } from "../theme"
 import { colors } from "../theme/colors"

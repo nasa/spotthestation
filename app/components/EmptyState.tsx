@@ -2,8 +2,7 @@ import { StyleFn, useStyles } from "../utils/useStyles"
 import React from "react"
 import { Image, ImageProps, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { scale, spacing } from "../theme"
-import { Button, ButtonProps } from "./Button"
-import { Text, TextProps } from "./Text"
+import { Button, ButtonProps, Text, TextProps } from "."
 
 const sadFace = require("../../assets/images/sad-face.png")
 

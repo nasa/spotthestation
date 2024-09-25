@@ -34,6 +34,36 @@ jest.doMock("react-native", () => {
   )
 })
 
+jest.mock("d3-shape", () => ({
+  arc: jest.fn()
+}))
+
+jest.mock("@sentry/react-native", () => ({
+  init: jest.fn()
+}))
+
+jest.mock("expo-gl", () => ({
+  GLView: <div />
+}))
+
+jest.mock("expo-three", () => ({
+  Renderer: jest.fn(),
+  loadTextureAsync: jest.fn(),
+}))
+
+jest.mock("expo-asset", () => ({
+  Asset: jest.fn(),
+}))
+
+jest.mock("react-native-vision-camera", () => ({
+  Camera: <div />,
+  useCameraDevice: jest.fn(),
+}))
+
+jest.mock("@rnmapbox/maps", () => ({
+  MapboxGL: <div />,
+}))
+
 jest.mock("react-native-orientation-locker", () => ({
   PORTRAIT: 'p',
   UNLOCK: 'u',
@@ -42,14 +72,11 @@ jest.mock("react-native-orientation-locker", () => ({
   removeOrientationListener: jest.fn()
 }))
 
-jest.mock('../app/components', () => ({
-  ...Object.assign({}, jest.requireActual('../app/components')),
-  Screen: ({children}) => <div>{children}</div>,
-}))
-jest.mock('../app/screens/MainScreen/components/Globe', () => ({ Globe: () => <div /> }))
-jest.mock('../app/screens/MainScreen/components/SatelliteView', () => ({ SatelliteView: () => <div /> }))
-jest.mock('../app/screens/MainScreen/components/ARView', () => ({ ARView: () => <div /> }))
-jest.mock('../app/screens/MainScreen/components/MapBox', () => ({ MapBox: () => <div /> }))
+jest.mock('../app/components/Screen', () => ({ Screen: ({children}) => <div>{children}</div> }))
+jest.mock('../app/components/Globe', () => ({ Globe: () => <div /> }))
+jest.mock('../app/components/SatelliteView', () => ({ SatelliteView: () => <div /> }))
+jest.mock('../app/components/ARView', () => ({ ARView: () => <div /> }))
+jest.mock('../app/components/MapBox', () => ({ MapBox: () => <div /> }))
 jest.mock('../app/config', () => ({
   GOOGLE_API_TOKEN: 'google'
 }))

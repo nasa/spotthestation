@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import React from "react"
-import { CompleteProfile } from "../screens/OnboardingScreen/CompleteProfile"
-import { Splash } from "../screens/OnboardingScreen/Splash"
+import { CompleteProfileScreen } from "../screens/OnboardingScreen/CompleteProfileScreen"
+import { SplashScreen } from "../screens/OnboardingScreen/SplashScreen"
 
 export type OnboardingParamList = {
   Splash: undefined
@@ -23,8 +23,8 @@ const Stack = createNativeStackNavigator<OnboardingParamList>()
 export function OnboardingNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
-      <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="SignupCompleteProfile" component={CompleteProfile} />
+      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="SignupCompleteProfile" component={CompleteProfileScreen} />
     </Stack.Navigator>
   )
 }

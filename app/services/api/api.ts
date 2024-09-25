@@ -27,7 +27,7 @@ import {
   GetRawISSDataParams,
   OSMSearchResult,
 } from "./api.types"
-import { SatData } from "../../utils/astro"
+import { SatData } from "../../utils/satellite"
 import i18n from "i18n-js"
 import uniqBy from "lodash/uniqBy"
 import { GooglePlaceData, GooglePlaceDetail } from "react-native-google-places-autocomplete"

@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native"
 import { colors, scale, spacing } from "../theme"
-import { Text, TextProps } from "./Text"
+import { Text, TextProps } from "."
 
 type Presets = "default" | "reversed"
 

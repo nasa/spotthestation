@@ -1,6 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
 import { RootStoreModel } from "../app/models"
-import { formatDateWithTZ } from "../app/utils/formatDate"
+import { formatDateWithTZ } from "../app/utils/datetime"
 import { addMinutes, parse } from "date-fns"
 import { zonedTimeToUtc } from "date-fns-tz";
 import "../test/matchers";

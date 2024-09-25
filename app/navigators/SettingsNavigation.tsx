@@ -1,19 +1,19 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import React from "react"
-import { ContactUsScreen } from "../screens/MainScreen/SettingsScreen/ContactUsScreen"
-import { TermsAndConditionsScreen } from "../screens/MainScreen/SettingsScreen/TermsAndConditionsScreen"
-import { NotificationSettingsScreen } from "../screens/MainScreen/SettingsScreen/NotificationSettingsScreen"
+import { ContactUsScreen } from "../screens/SettingsScreen/ContactUsScreen"
+import { TermsAndConditionsScreen } from "../screens/SettingsScreen/TermsAndConditionsScreen"
+import { NotificationSettingsScreen } from "../screens/SettingsScreen/NotificationSettingsScreen"
 import {
   LocationSettingsScreen,
   LocationSettingsScreenParams,
-} from "../screens/MainScreen/SettingsScreen/LocationSettingsScreen"
+} from "../screens/SettingsScreen/LocationSettingsScreen"
 import {
   AddNewLocationScreen,
   AddNewLocationScreenParams,
-} from "../screens/MainScreen/SettingsScreen/AddNewLocationScreen"
+} from "../screens/SettingsScreen/AddNewLocationScreen"
 import { useRoute } from "@react-navigation/native"
-import { AddNewLocationMapScreen } from "../screens/MainScreen/SettingsScreen/AddNewLocationMapScreen"
+import { AddNewLocationMapScreen } from "../screens/SettingsScreen/AddNewLocationMapScreen"
 
 export type SettingsParamList = {
   TermsAndConditions: undefined

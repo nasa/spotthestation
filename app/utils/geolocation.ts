@@ -2,7 +2,7 @@ import Location, { GeoPosition, PositionError } from "react-native-geolocation-s
 import { api, LocationType, OSMSearchResult } from "../services/api"
 import { Platform, PermissionsAndroid } from "react-native"
 import * as storage from "./storage"
-import { degToRad } from "./geometry"
+import { sphericalDistance } from "./geometry"
 
 export interface TimeZoneDataResponse {
   zone: string
@@ -73,8 +73,14 @@ export const getCurrentLocation = async (
 
       if (
         prevLocation &&
-        getDistance(latitude, longitude, prevLocation.location.lat, prevLocation.location.lng) <
-          1000
+        sphericalDistance(
+          latitude,
+          longitude,
+          0,
+          prevLocation.location.lat,
+          prevLocation.location.lng,
+          0,
+        ) < 1000
       ) {
         return prevLocation
       }
@@ -94,19 +100,6 @@ export const getCurrentLocation = async (
 
     return null
   }
-}
-
-function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
-  const R = 6371000
-  const dLat = degToRad(lat2 - lat1)
-  const dLon = degToRad(lon2 - lon1)
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-  const d = R * c
-  return d
 }
 
 export function formatAddress(item: OSMSearchResult) {

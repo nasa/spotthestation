@@ -1,4 +1,4 @@
-import { SatData, ShadowInterval } from "../../utils/astro"
+import { SatData, ShadowInterval } from "../../utils/satellite"
 
 /**
  * These types indicate the shape of the data you expect to receive from your

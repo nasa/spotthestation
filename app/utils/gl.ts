@@ -22,15 +22,17 @@ import {
 } from "three"
 
 import { loadObjAsync, loadTextureAsync } from "expo-three"
-import { GLOBE_RADIUS, GLOBE_SEGMENTS } from "../screens/MainScreen/components/constants"
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { coordinatesToPosition } from "../screens/MainScreen/components/helpers"
 import { OrbitPoint } from "../services/api"
-import { iconRegistry } from "../components"
+import { iconRegistry } from "../components/Icon"
+import { latLonToCartesian } from "./geometry"
 
 const ISSTexture = require("../../assets/models/iss/texture.png")
 const ISSModel = require("../../assets/models/iss/model.obj")
 const ISSMaterial = require("../../assets/models/iss/material.mtl")
+
+export const GLOBE_RADIUS = 300
+export const GLOBE_SEGMENTS = 300
 
 export async function copyAssetToCacheAsync(assetModule: string | number, localFilename: string) {
   if (Platform.OS === "ios") return assetModule
@@ -208,7 +210,7 @@ export const useTrajectoryLines = (
     if (!issPath.length) return undefined
     return new CatmullRomCurve3(
       issPath.map(
-        (p) => new Vector3(...coordinatesToPosition([p.latitude, p.longitude], GLOBE_RADIUS + 20)),
+        (p) => new Vector3(...latLonToCartesian([p.latitude, p.longitude], GLOBE_RADIUS + 20)),
       ),
     )
   }, [issPath])
