@@ -111,15 +111,15 @@ PODS:
   - hermes-engine/Pre-built (0.74.5)
   - JWT (3.0.0-beta.14):
     - Base64 (~> 1.1.2)
-  - MapboxCommon (23.9.2)
-  - MapboxCoreMaps (10.17.0):
-    - MapboxCommon (~> 23.9)
-  - MapboxMaps (10.17.0):
-    - MapboxCommon (= 23.9.2)
-    - MapboxCoreMaps (= 10.17.0)
-    - MapboxMobileEvents (= 1.0.10)
-    - Turf (= 2.7.0)
-  - MapboxMobileEvents (1.0.10)
+  - MapboxCommon (23.11.0)
+  - MapboxCoreMaps (10.19.1):
+    - MapboxCommon (~> 23.11)
+  - MapboxMaps (10.19.0):
+    - MapboxCommon (= 23.11.0)
+    - MapboxCoreMaps (= 10.19.1)
+    - MapboxMobileEvents (= 2.0.0)
+    - Turf (= 2.8.0)
+  - MapboxMobileEvents (2.0.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -1384,13 +1384,13 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - rnmapbox-maps (10.1.29):
-    - MapboxMaps (= 10.17.0)
+    - MapboxMaps (= 10.19.0)
     - React
     - React-Core
     - rnmapbox-maps/DynamicLibrary (= 10.1.29)
     - Turf
   - rnmapbox-maps/DynamicLibrary (10.1.29):
-    - MapboxMaps (= 10.17.0)
+    - MapboxMaps (= 10.19.0)
     - React
     - React-Core
     - Turf
@@ -1504,7 +1504,7 @@ PODS:
   - SentryPrivate (8.7.3)
   - SocketRocket (0.7.0)
   - SSZipArchive (2.2.3)
-  - Turf (2.7.0)
+  - Turf (2.8.0)
   - VisionCamera (4.5.3):
     - VisionCamera/Core (= 4.5.3)
     - VisionCamera/React (= 4.5.3)
@@ -1838,7 +1838,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   CodePush: d892f13c5012e9e2cb36640f4929654b7be21fe5
-  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   EXApplication: c08200c34daca7af7fd76ac4b9d606077410e8ad
   EXConstants: 409690fbfd5afea964e5e9d6c4eb2c2b59222c59
   Expo: a9897504e76db42c472778bc1eeef7895092f3fe
@@ -1858,15 +1858,15 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 9e46c82a14a3b3a25be4e1e151ce6d21536b89c0
   FirebaseInstallations: 2a2c6859354cbec0a228a863d4daf6de7c74ced4
   fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
-  glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
+  glog: fdfdfe5479092de0c4bdbebedd9056951f092c4f
   GoogleAppMeasurement: d3dabccdb336fc0ae44b633c8abaa26559893cd9
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   hermes-engine: 8c1577f3fdb849cbe7729c2e7b5abc4b845e88f8
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
-  MapboxCommon: 768660d6fca8193529ecf82eb6f5f9ae7a5acdf9
-  MapboxCoreMaps: be412ff97b16aa7820922c818115a9a0d8211caa
-  MapboxMaps: 87ef0003e6db46e45e7a16939f29ae87e38e7ce2
-  MapboxMobileEvents: de50b3a4de180dd129c326e09cd12c8adaaa46d6
+  MapboxCommon: 119f3759f7dc9457f0695848108ab323eb643cb4
+  MapboxCoreMaps: ca17f67baced23f8c952166ac6314c35bad3f66c
+  MapboxMaps: b7f29ec7c33f7dc6d2947c1148edce6db81db9a7
+  MapboxMobileEvents: d044b9edbe0ec7df60f6c2c9634fe9a7f449266b
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
@@ -1935,7 +1935,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: f13089c0af878ab74fba09f5e873c63e3f9de9c8
   RNFBApp: fdbde65110240cd843e644270e974e9b455b0fc1
   RNGestureHandler: fc0d83b45872ee937ecc9814012d9b48586b4d7a
-  rnmapbox-maps: 9dac536854c4e00624344ceccdba47a13170542d
+  rnmapbox-maps: fe4ae34ab089c609d36ace3b0aeeefe6a68c3376
   RNNotifee: 8e2d3df3f0e9ce8f5d1fe4c967431138190b6175
   RNPermissions: 47dbf9a0d3e28ca4190ea471c798efec148e96ed
   RNReanimated: 45f0fd1250364dffec9aabd4a0959f2956a5e78b
@@ -1949,10 +1949,10 @@ SPEC CHECKSUMS:
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  Turf: 13d1a92d969ca0311bbc26e8356cca178ce95da2
+  Turf: aa2ede4298009639d10db36aba1a7ebaad072a5e
   VisionCamera: cb84d0d8485b3e67c91b62931d3aa88f49747c92
   Yoga: 33622183a85805e12703cd618b2c16bfd18bfffb
 
-PODFILE CHECKSUM: 7dfb3c480f1e84a29771ad853d2a5bff828c3d49
+PODFILE CHECKSUM: 5b7ca407e77d474e4c2b468245ce896ee9745458
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.13.0
