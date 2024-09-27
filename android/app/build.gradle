@@ -93,6 +93,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2024092510
         versionName "1.4.0"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
     }
 
     signingConfigs {

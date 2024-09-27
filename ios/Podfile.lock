@@ -1490,18 +1490,36 @@ PODS:
     - Yoga
   - RNSensors (7.3.6):
     - React-Core
-  - RNSentry (5.6.0):
+  - RNSentry (5.33.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
     - React-Core
-    - Sentry/HybridSDK (= 8.7.3)
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Sentry/HybridSDK (= 8.36.0)
+    - Yoga
   - RNShare (10.2.1):
     - React-Core
   - RNSnackbar (2.7.1):
     - React-Core
   - RNSVG (15.5.0):
     - React-Core
-  - Sentry/HybridSDK (8.7.3):
-    - SentryPrivate (= 8.7.3)
-  - SentryPrivate (8.7.3)
+  - Sentry/HybridSDK (8.36.0)
   - SocketRocket (0.7.0)
   - SSZipArchive (2.2.3)
   - Turf (2.8.0)
@@ -1632,7 +1650,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Sentry
-    - SentryPrivate
     - SocketRocket
     - SSZipArchive
     - Turf
@@ -1941,18 +1958,17 @@ SPEC CHECKSUMS:
   RNReanimated: 45f0fd1250364dffec9aabd4a0959f2956a5e78b
   RNScreens: db442e7b8c7bc8befec2ce057927305ff8598cc8
   RNSensors: 117ba71c7eeeea0407ea0c0bb79e3495d602049b
-  RNSentry: 9f0447b3ce13806f544903748de423259ead8552
+  RNSentry: d2f4b8dc672fb4e26b50b99e006e52d547e36b3f
   RNShare: 0fad69ae2d71de9d1f7b9a43acf876886a6cb99c
   RNSnackbar: eb4e012514c60433cbe933be0846e8f2abb6d2b6
   RNSVG: b986585e367f4a49d8aa43065066cc9c290b3d9b
-  Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
-  SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
+  Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Turf: aa2ede4298009639d10db36aba1a7ebaad072a5e
   VisionCamera: cb84d0d8485b3e67c91b62931d3aa88f49747c92
-  Yoga: 33622183a85805e12703cd618b2c16bfd18bfffb
+  Yoga: 1ab23c1835475da69cf14e211a560e73aab24cb0
 
 PODFILE CHECKSUM: 5b7ca407e77d474e4c2b468245ce896ee9745458
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.2
