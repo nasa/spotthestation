@@ -78,7 +78,7 @@ const tr = {
   },
   onboarding: {
     splash: {
-      title: "İstasyonu Gözlemle",
+      title: "İstasyonu\nGözlemle",
       subTitle: "Gökyüzüne bakın ve Uluslararası Uzay İstasyonu'nu görün",
     },
     completeProfile: {

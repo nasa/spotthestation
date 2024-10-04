@@ -78,7 +78,7 @@ const ptBR = {
   },
   onboarding: {
     splash: {
-      title: "Veja a Estação",
+      title: "Veja\na Estação",
       subTitle: "Olhe para o céu e veja a Estação Espacial Internacional",
     },
     completeProfile: {

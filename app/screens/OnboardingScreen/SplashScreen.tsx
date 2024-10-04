@@ -129,7 +129,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $title: TextStyle = {
-    width: scale(220),
     marginLeft: scale(36),
     fontSize: fontSizes[48],
     lineHeight: lineHeights[64],

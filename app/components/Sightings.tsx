@@ -92,6 +92,7 @@ export function Sightings({
     $filtersContainer,
     $timeOfDayItem,
     $timeOfDayText,
+    $coachModalScrollContainer,
   } = useStyles(styles)
 
   const timeOfDayOptions = useMemo(
@@ -402,27 +403,32 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
             accessibilityLabel="coach mark"
             accessibilityHint="coach mark"
             accessibilityRole="text"
-            style={[$coachModalBodyContainer, { marginTop: normalizeHeight(0.2) }]}
+            style={{ marginTop: normalizeHeight(0.2) }}
           >
-            <Text tx="homeScreen.selectSightings.coach.title" style={$modalTitle} />
-            <View style={$legend}>
-              <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
-              <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
-            </View>
-            <View style={$legend}>
-              <Icon icon="moon" size={44} color={colors.palette.neutral450} />
-              <Text tx="homeScreen.selectSightings.coach.moon" style={$body} />
-            </View>
-            <Button
-              accessible
-              accessibilityLabel="dismiss button"
-              accessibilityHint="dismiss coach mark"
-              tx="homeScreen.coachMarks.dismiss"
-              textStyle={$nextButtonText}
-              style={$nextButton}
-              pressedStyle={$nextButton}
-              onPress={handleSetSightingsCoachVisible}
-            />
+            <ScrollView
+              style={$coachModalBodyContainer}
+              contentContainerStyle={$coachModalScrollContainer}
+            >
+              <Text tx="homeScreen.selectSightings.coach.title" style={$modalTitle} />
+              <View style={$legend}>
+                <Icon icon="sunset" size={44} color={colors.palette.nasaOrange} />
+                <Text tx="homeScreen.selectSightings.coach.sunset" style={$body} />
+              </View>
+              <View style={$legend}>
+                <Icon icon="moon" size={44} color={colors.palette.neutral450} />
+                <Text tx="homeScreen.selectSightings.coach.moon" style={$body} />
+              </View>
+              <Button
+                accessible
+                accessibilityLabel="dismiss button"
+                accessibilityHint="dismiss coach mark"
+                tx="homeScreen.coachMarks.dismiss"
+                textStyle={$nextButtonText}
+                style={$nextButton}
+                pressedStyle={$nextButton}
+                onPress={handleSetSightingsCoachVisible}
+              />
+            </ScrollView>
           </View>
         </Modal>
       )}
@@ -441,9 +447,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $coachModalBodyContainer: ViewStyle = {
     backgroundColor: colors.palette.buttonBlue,
     borderRadius: scale(16),
+    width: "100%",
+  }
+
+  const $coachModalScrollContainer: ViewStyle = {
     paddingVertical: 36,
     paddingHorizontal: 30,
-    width: "100%",
   }
 
   const $scrollContainer: ViewStyle = {
@@ -505,7 +514,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $modal: ViewStyle = {
-    flex: 1,
     left: 0,
     margin: 0,
     paddingHorizontal: 18,
@@ -596,5 +604,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $filtersContainer,
     $timeOfDayItem,
     $timeOfDayText,
+    $coachModalScrollContainer,
   }
 }

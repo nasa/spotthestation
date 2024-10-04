@@ -68,7 +68,6 @@ exports[`Sightings renders correctly 1`] = `
     accessibilityLabel="title"
     accessibilityRole="text"
     accessible={true}
-    allowFontScaling={false}
     style={
       [
         {},
@@ -105,7 +104,6 @@ exports[`Sightings renders correctly 1`] = `
     accessibilityLabel="title"
     accessibilityRole="text"
     accessible={true}
-    allowFontScaling={false}
     style={
       [
         {},
@@ -148,7 +146,6 @@ exports[`Sightings renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -322,7 +319,6 @@ exports[`Sightings renders correctly 1`] = `
         accessibilityLabel="title"
         accessibilityRole="text"
         accessible={true}
-        allowFontScaling={false}
         style={
           [
             {},
@@ -483,7 +479,6 @@ exports[`Sightings renders correctly 1`] = `
         accessibilityLabel="title"
         accessibilityRole="text"
         accessible={true}
-        allowFontScaling={false}
         style={
           [
             {},
@@ -656,7 +651,6 @@ exports[`Sightings renders correctly 1`] = `
         accessibilityLabel="title"
         accessibilityRole="text"
         accessible={true}
-        allowFontScaling={false}
         style={
           [
             {},
@@ -853,7 +847,6 @@ exports[`Sightings renders correctly 1`] = `
             accessibilityLabel="title"
             accessibilityRole="text"
             accessible={true}
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -1041,7 +1034,6 @@ exports[`Sightings renders correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1074,7 +1066,6 @@ exports[`Sightings renders correctly 1`] = `
                   12 Dec 2020, 10:10 AM UTC
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1108,7 +1099,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1142,7 +1132,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.maxHeight undefined 20°
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1176,7 +1165,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1576,7 +1564,6 @@ exports[`Sightings renders correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1609,7 +1596,6 @@ exports[`Sightings renders correctly 1`] = `
                   13 Dec 2020, 10:15 AM UTC
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1643,7 +1629,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1677,7 +1662,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.maxHeight undefined 20°
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -1711,7 +1695,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -2111,7 +2094,6 @@ exports[`Sightings renders correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -2144,7 +2126,6 @@ exports[`Sightings renders correctly 1`] = `
                   24 Dec 2020, 10:20 AM UTC
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -2178,7 +2159,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -2212,7 +2192,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.maxHeight undefined 20°
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
@@ -2246,7 +2225,6 @@ exports[`Sightings renders correctly 1`] = `
                   homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
                 </Text>
                 <Text
-                  allowFontScaling={false}
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={

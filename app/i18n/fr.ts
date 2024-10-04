@@ -79,7 +79,7 @@ const fr = {
   },
   onboarding: {
     splash: {
-      title: "Repérer la Station",
+      title: "Repérer la\nStation",
       subTitle: "Regardez dans le ciel et voyez la Station spatiale internationale",
     },
     completeProfile: {

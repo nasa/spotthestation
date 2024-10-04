@@ -78,7 +78,7 @@ const de = {
   },
   onboarding: {
     splash: {
-      title: "Entdecken Sie die Station",
+      title: "Entdecken Sie\ndie Station",
       subTitle: "Schauen Sie zum Himmel und entdecken Sie die Internationale Raumstation ISS",
     },
     completeProfile: {

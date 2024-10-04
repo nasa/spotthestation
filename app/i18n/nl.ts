@@ -78,7 +78,7 @@ const nl = {
   },
   onboarding: {
     splash: {
-      title: "Zoek het station",
+      title: "Zoek\nhet station",
       subTitle: "Kijk omhoog in de lucht en bekijk het Internationale Ruimtestation",
     },
     completeProfile: {

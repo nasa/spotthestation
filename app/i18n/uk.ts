@@ -78,7 +78,7 @@ const uk = {
   },
   onboarding: {
     splash: {
-      title: "Побачте станцію",
+      title: "Побачте\nстанцію",
       subTitle: "Погляньте на небо та спостерігайте Міжнародну космічну станцію",
     },
     completeProfile: {

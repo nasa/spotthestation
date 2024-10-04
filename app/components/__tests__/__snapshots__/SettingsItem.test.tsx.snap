@@ -112,9 +112,7 @@ exports[`renders correctly 1`] = `
         accessibilityLabel="title"
         accessibilityRole="text"
         accessible={true}
-        allowFontScaling={false}
         ellipsizeMode="tail"
-        numberOfLines={1}
         style={
           [
             {},

@@ -194,7 +194,6 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             container: { flex: 0 },
           }}
           textInputProps={{
-            allowFontScaling: false,
             placeholderTextColor: colors.palette.neutral450,
             value: location?.subtitle || textValue,
             onFocus: () => setIsFocus(true),

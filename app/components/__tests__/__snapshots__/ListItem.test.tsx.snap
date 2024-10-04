@@ -110,7 +110,6 @@ exports[`ListItem renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -143,7 +142,6 @@ exports[`ListItem renders correctly 1`] = `
         Test title
       </Text>
       <Text
-        allowFontScaling={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={

@@ -1,6 +1,6 @@
 import { Text, Button, Icon, IconTypes } from "."
 import React from "react"
-import { ViewStyle, View, PressableProps, TextStyle, StyleProp } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, StyleProp, ScrollView } from "react-native"
 
 import { TxKeyPath } from "../i18n"
 import { typography } from "../theme"
@@ -33,6 +33,7 @@ export function CoachMark({
   const {
     $modalBodyContainer,
     $buttonsContainer,
+    $scrollContainer,
     $skipButton,
     $skipButtonText,
     $nextButton,
@@ -40,6 +41,7 @@ export function CoachMark({
     $title,
     $body,
     $stage,
+    $wrapper,
   } = useStyles(styles)
 
   const renderArrow = () => {
@@ -51,65 +53,75 @@ export function CoachMark({
   }
 
   return (
-    <View
-      accessible
-      accessibilityLabel="coach mark"
-      accessibilityHint="coach mark"
-      accessibilityRole="text"
-      style={[$modalBodyContainer, style]}
-    >
+    <View style={[$wrapper, style]}>
       {renderArrow()}
-      <Text text={`${stage}/${totalStages}`} style={$stage} />
-      {Boolean(icon) && <Icon icon={icon} size={44} />}
-      <Text tx={title} style={$title} />
-      <Text tx={bodyText} style={$body} />
-      {stage === totalStages ? (
-        <Button
-          accessible
-          accessibilityLabel="finish button"
-          accessibilityHint="finish coach mark"
-          tx="homeScreen.coachMarks.finish"
-          textStyle={$nextButtonText}
-          style={$nextButton}
-          pressedStyle={$nextButton}
-          onPress={onPressFinish}
-        />
-      ) : (
-        <View style={$buttonsContainer}>
+      <ScrollView
+        accessible
+        accessibilityLabel="coach mark"
+        accessibilityHint="coach mark"
+        accessibilityRole="text"
+        contentContainerStyle={$scrollContainer}
+        style={$modalBodyContainer}
+      >
+        <Text text={`${stage}/${totalStages}`} style={$stage} />
+        {Boolean(icon) && <Icon icon={icon} size={44} />}
+        <Text tx={title} style={$title} />
+        <Text tx={bodyText} style={$body} />
+        {stage === totalStages ? (
           <Button
             accessible
-            accessibilityLabel="skip button"
-            accessibilityHint="skip coach mark"
-            tx="homeScreen.coachMarks.skip"
-            textStyle={$skipButtonText}
-            style={$skipButton}
-            pressedStyle={$skipButton}
-            onPress={onPressFinish}
-          />
-          <Button
-            accessible
-            accessibilityLabel="next button"
-            accessibilityHint="next coach mark"
-            tx="homeScreen.coachMarks.next"
+            accessibilityLabel="finish button"
+            accessibilityHint="finish coach mark"
+            tx="homeScreen.coachMarks.finish"
             textStyle={$nextButtonText}
             style={$nextButton}
             pressedStyle={$nextButton}
-            onPress={onPressNext}
+            onPress={onPressFinish}
           />
-        </View>
-      )}
+        ) : (
+          <View style={$buttonsContainer}>
+            <Button
+              accessible
+              accessibilityLabel="skip button"
+              accessibilityHint="skip coach mark"
+              tx="homeScreen.coachMarks.skip"
+              textStyle={$skipButtonText}
+              style={$skipButton}
+              pressedStyle={$skipButton}
+              onPress={onPressFinish}
+            />
+            <Button
+              accessible
+              accessibilityLabel="next button"
+              accessibilityHint="next coach mark"
+              tx="homeScreen.coachMarks.next"
+              textStyle={$nextButtonText}
+              style={$nextButton}
+              pressedStyle={$nextButton}
+              onPress={onPressNext}
+            />
+          </View>
+        )}
+      </ScrollView>
     </View>
   )
 }
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
+  const $wrapper: ViewStyle = {
+    alignItems: "center",
+  }
+
   const $modalBodyContainer: ViewStyle = {
     backgroundColor: colors.palette.buttonBlue,
     borderRadius: scale(16),
-    alignItems: "center",
+    width: "100%",
+  }
+
+  const $scrollContainer: ViewStyle = {
     paddingVertical: 36,
     paddingHorizontal: 30,
-    width: "100%",
+    alignItems: "center",
   }
 
   const $buttonsContainer: ViewStyle = {
@@ -180,6 +192,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   return {
     $modalBodyContainer,
     $buttonsContainer,
+    $scrollContainer,
     $skipButton,
     $skipButtonText,
     $nextButton,
@@ -187,5 +200,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $title,
     $body,
     $stage,
+    $wrapper,
   }
 }

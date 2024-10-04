@@ -33,7 +33,6 @@ exports[`renders correctly 1`] = `
           accessibilityLabel="address"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -220,7 +219,6 @@ exports[`renders correctly 1`] = `
           accessibilityLabel="sighting header"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           style={
             [
               {},
@@ -255,7 +253,6 @@ exports[`renders correctly 1`] = `
           accessibilityLabel="sighting"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           style={
             [
               {},
@@ -290,7 +287,6 @@ exports[`renders correctly 1`] = `
           accessibilityLabel="timezone"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           style={
             [
               {},
@@ -337,7 +333,6 @@ exports[`renders correctly 1`] = `
         }
       >
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -368,7 +363,6 @@ exports[`renders correctly 1`] = `
           homeScreen.header.secondTimeHead undefined
         </Text>
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -399,7 +393,6 @@ exports[`renders correctly 1`] = `
           units.time undefined - 00:00:00:00
         </Text>
         <Text
-          allowFontScaling={false}
           style={
             [
               {},

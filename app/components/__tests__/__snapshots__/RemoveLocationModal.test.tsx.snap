@@ -110,7 +110,6 @@ exports[`renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -142,7 +141,6 @@ exports[`renders correctly 1`] = `
       settings.locationSettingsData.removeLocation.question undefined
     </Text>
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -172,7 +170,6 @@ exports[`renders correctly 1`] = `
       }
     />
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -274,7 +271,6 @@ exports[`renders correctly 1`] = `
         }
       >
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -385,7 +381,6 @@ exports[`renders correctly 1`] = `
         }
       >
         <Text
-          allowFontScaling={false}
           style={
             [
               {},

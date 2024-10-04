@@ -78,7 +78,7 @@ const hi = {
   },
   onboarding: {
     splash: {
-      title: "स्टेशन को स्पॉट करें",
+      title: "स्टेशन को\nस्पॉट करें",
       subTitle: "आकाश में टकटकी लगाएं और अंतर्राष्ट्रीय अंतरिक्ष स्टेशन देखें",
     },
     completeProfile: {

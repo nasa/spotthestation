@@ -128,7 +128,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
             />
           </View>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -162,7 +161,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
           </Text>
         </View>
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -217,7 +215,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
             }
           >
             <Text
-              allowFontScaling={false}
               style={
                 [
                   {},
@@ -247,7 +244,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
               settings.notificationSettingsData.upcomingLabel undefined
             </Text>
             <Text
-              allowFontScaling={false}
               style={
                 [
                   {},
@@ -313,7 +309,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
               }
             >
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -510,7 +505,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 accessibilityLabel="title"
                 accessibilityRole="text"
                 accessible={true}
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -682,7 +676,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
           }
         >
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -870,7 +863,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 accessibilityLabel="title"
                 accessibilityRole="text"
                 accessible={true}
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -921,7 +913,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
               }
             >
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -1022,7 +1013,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={false}
                   style={
                     [
                       {},
@@ -1115,7 +1105,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
               }
             >
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -1216,7 +1205,6 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={false}
                   style={
                     [
                       {},

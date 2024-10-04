@@ -80,7 +80,12 @@ export function TabNavigator() {
           initialParams={params}
           options={{
             tabBarLabel: ({ focused, color }) => (
-              <Text tx="tabNavigator.homeTab" style={[$tab, getTabStyle(focused, color)]} />
+              <Text
+                tx="tabNavigator.homeTab"
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[$tab, getTabStyle(focused, color)]}
+              />
             ),
             tabBarIcon: ({ focused, color, size }) => (
               <Icon icon={focused ? "homeActive" : "homeInactive"} color={color} size={size} />
@@ -94,7 +99,12 @@ export function TabNavigator() {
           component={ISSViewScreen}
           options={{
             tabBarLabel: ({ focused, color }) => (
-              <Text tx="tabNavigator.issViewTab" style={[$tab, getTabStyle(focused, color)]} />
+              <Text
+                tx="tabNavigator.issViewTab"
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[$tab, getTabStyle(focused, color)]}
+              />
             ),
             tabBarIcon: ({ focused, color, size }) => (
               <Icon icon={focused ? "arActive" : "arInactive"} color={color} size={size} />
@@ -108,7 +118,12 @@ export function TabNavigator() {
           component={ISSNowScreen}
           options={{
             tabBarLabel: ({ focused, color }) => (
-              <Text tx="tabNavigator.issNowTab" style={[$tab, getTabStyle(focused, color)]} />
+              <Text
+                tx="tabNavigator.issNowTab"
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[$tab, getTabStyle(focused, color)]}
+              />
             ),
             tabBarIcon: ({ focused, color, size }) => (
               <Icon
@@ -126,7 +141,12 @@ export function TabNavigator() {
           component={ResourcesScreen}
           options={{
             tabBarLabel: ({ focused, color }) => (
-              <Text tx="tabNavigator.resourcesTab" style={[$tab, getTabStyle(focused, color)]} />
+              <Text
+                tx="tabNavigator.resourcesTab"
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[$tab, getTabStyle(focused, color)]}
+              />
             ),
             tabBarIcon: ({ focused, color, size }) => (
               <Icon icon={focused ? "bookActive" : "bookInactive"} color={color} size={size} />
@@ -140,7 +160,12 @@ export function TabNavigator() {
           component={SettingsScreen}
           options={{
             tabBarLabel: ({ focused, color }) => (
-              <Text tx="tabNavigator.settingsTab" style={[$tab, getTabStyle(focused, color)]} />
+              <Text
+                tx="tabNavigator.settingsTab"
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[$tab, getTabStyle(focused, color)]}
+              />
             ),
             tabBarIcon: ({ focused, color, size }) => (
               <Icon

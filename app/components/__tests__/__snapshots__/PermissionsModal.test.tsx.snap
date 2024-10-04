@@ -95,7 +95,6 @@ exports[`PermissionsModal renders correctly 1`] = `
     />
   </View>
   <Text
-    allowFontScaling={false}
     style={
       [
         {},
@@ -199,7 +198,6 @@ exports[`PermissionsModal renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         style={
           [
             {},
@@ -305,7 +303,6 @@ exports[`PermissionsModal renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         style={
           [
             {},

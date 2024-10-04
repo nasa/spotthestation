@@ -106,7 +106,6 @@ exports[`renders correctly 1`] = `
             />
           </View>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -140,7 +139,6 @@ exports[`renders correctly 1`] = `
           </Text>
         </View>
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -284,9 +282,7 @@ exports[`renders correctly 1`] = `
                 accessibilityLabel="title"
                 accessibilityRole="text"
                 accessible={true}
-                allowFontScaling={false}
                 ellipsizeMode="tail"
-                numberOfLines={1}
                 style={
                   [
                     {},

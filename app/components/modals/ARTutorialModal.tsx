@@ -45,7 +45,12 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
             bodyText="issView.coachMarks.circleData"
             style={[
               $mark,
-              { marginTop: itemsLayout.circle.y - containerLayout.y + itemsLayout.circle.height },
+              {
+                marginTop: itemsLayout.circle.y - containerLayout.y + itemsLayout.circle.height,
+                maxHeight:
+                  containerLayout.height -
+                  (itemsLayout.circle.y - containerLayout.y + itemsLayout.circle.height),
+              },
             ]}
             stage={stage}
             arrowStyle={[
@@ -74,6 +79,12 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
                   containerLayout.y +
                   itemsLayout.compass.height +
                   ($scale90.width as number),
+                maxHeight:
+                  containerLayout.height -
+                  (itemsLayout.compass.y -
+                    containerLayout.y +
+                    itemsLayout.compass.height +
+                    ($scale90.width as number)),
               },
             ]}
             arrowStyle={[
@@ -100,6 +111,7 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
                   containerLayout.height -
                   (itemsLayout.info.y - containerLayout.y) +
                   ($scale60.width as number),
+                maxHeight: itemsLayout.info.y - containerLayout.y - ($scale60.width as number),
               },
             ]}
             arrowStyle={[$arrow, $left]}
@@ -121,6 +133,8 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
                   containerLayout.height -
                   (itemsLayout.trajectory.y - containerLayout.y) +
                   ($scale60.width as number),
+                maxHeight:
+                  itemsLayout.trajectory.y - containerLayout.y - ($scale60.width as number),
               },
             ]}
             arrowStyle={[$arrow, $left]}
@@ -142,6 +156,8 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
                   containerLayout.height -
                   (itemsLayout.fullScreen.y - containerLayout.y) +
                   ($scale60.width as number),
+                maxHeight:
+                  itemsLayout.fullScreen.y - containerLayout.y - ($scale60.width as number),
               },
             ]}
             arrowStyle={[$arrow, $left]}

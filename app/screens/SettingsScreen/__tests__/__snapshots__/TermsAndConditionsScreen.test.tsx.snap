@@ -79,7 +79,6 @@ exports[`renders correctly 1`] = `
       />
     </View>
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -169,7 +168,6 @@ exports[`renders correctly 1`] = `
           accessible={true}
         >
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -201,7 +199,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.title undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -233,7 +230,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.intro1 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -270,7 +266,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.appData.line1 undefined Test
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -307,7 +302,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.appData.line2 undefined 0.0.1
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -344,7 +338,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.appData.line3 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -374,7 +367,6 @@ exports[`renders correctly 1`] = `
             }
           />
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -411,7 +403,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.contactData.line1 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -448,7 +439,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.contactData.line2 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -485,7 +475,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.contactData.line3 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -522,7 +511,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.contactData.line4 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -559,7 +547,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.contactData.line5 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -591,7 +578,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.intro2 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -623,7 +609,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.intro3 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -655,7 +640,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line1 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -687,7 +671,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line2 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -719,7 +702,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line3 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -751,7 +733,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line4 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -783,7 +764,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line5 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -815,7 +795,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line6 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -847,7 +826,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line7 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -879,7 +857,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line8 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -911,7 +888,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line9 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -943,7 +919,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line10 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -975,7 +950,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line11 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},
@@ -1007,7 +981,6 @@ exports[`renders correctly 1`] = `
             settings.termsAndConditionsData.ios.body.line12 undefined
           </Text>
           <Text
-            allowFontScaling={false}
             style={
               [
                 {},

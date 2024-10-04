@@ -10,7 +10,7 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import uniqBy from "lodash/uniqBy"
 import React, { useMemo, useState } from "react"
-import { View, ViewStyle, TextStyle, Alert } from "react-native"
+import { View, ViewStyle, TextStyle, Alert, ScrollView } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import { colors, typography, spacing } from "../../theme"
@@ -25,11 +25,13 @@ import Modal from "react-native-modal"
 import { isMagnetometerAvailable } from "../../utils/orientation"
 import Share from "react-native-share"
 import { APP_UNIVERSAL_LINK } from "../../utils/unilinks"
+import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 
 export const SettingsScreen = observer(function SettingsScreen() {
   const {
     $headerStyleOverride,
     $container,
+    $flex,
     $itemsConteiner,
     $headerContainer,
     $header,
@@ -46,6 +48,8 @@ export const SettingsScreen = observer(function SettingsScreen() {
   const [isTutorialsModalVisible, setIsTutorialsModalVisible] = useState(false)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
+  const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
+
   const { setNotifications } = useStores()
   const languages = useMemo(
     () =>
@@ -110,16 +114,16 @@ export const SettingsScreen = observer(function SettingsScreen() {
   }
 
   const headerStyle = { ...$headerStyleOverride }
-  headerStyle.top = Number(headerStyle.top) + topInset
+  headerStyle.paddingTop = Number(headerStyle.paddingTop) + topInset
 
   return (
     <Screen
       preset="fixed"
-      contentContainerStyle={[$container]}
-      style={{ backgroundColor: colors.palette.neutral900 }}
+      style={$container}
+      contentContainerStyle={[$flex, headerStyle]}
       statusBarStyle="light"
     >
-      <View style={[$headerContainer, headerStyle]}>
+      <View style={$headerContainer}>
         <Text
           accessible
           accessibilityLabel="header"
@@ -129,7 +133,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
           style={$header}
         />
       </View>
-      <View style={$itemsConteiner}>
+      <ScrollView style={$itemsConteiner} contentContainerStyle={bottomInset}>
         <SettingsItem
           icon="mapPinOutlined"
           title="settings.locationSettings"
@@ -184,7 +188,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
             />
           }
         />
-      </View>
+      </ScrollView>
 
       <Modal
         isVisible={isCalibrationModalVisible}
@@ -225,32 +229,31 @@ export const SettingsScreen = observer(function SettingsScreen() {
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $headerStyleOverride: TextStyle = {
-    top: scale(24),
+    paddingTop: scale(24),
   }
 
   const $container: ViewStyle = {
     flex: 1,
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.palette.neutral900,
     justifyContent: "space-between",
+    paddingHorizontal: scale(18),
   }
+
+  const $flex = { flex: 1 }
 
   const $itemsConteiner: ViewStyle = {
     flex: 1,
-    marginTop: scale(150),
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(18),
   }
 
-  const $headerContainer: ViewStyle = {
-    position: "absolute",
-    left: scale(18),
-    zIndex: 9,
-  }
+  const $headerContainer: ViewStyle = {}
 
   const $header: TextStyle = {
     fontFamily: typography.primary.normal,
     fontSize: fontSizes[36],
     lineHeight: lineHeights[44],
     color: colors.palette.neutral250,
+    paddingBottom: scale(24),
   }
 
   const $dropdown: ViewStyle = {
@@ -301,6 +304,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   return {
     $headerStyleOverride,
     $container,
+    $flex,
     $itemsConteiner,
     $headerContainer,
     $header,

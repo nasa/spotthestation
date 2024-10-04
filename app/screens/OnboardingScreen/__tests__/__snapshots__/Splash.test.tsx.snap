@@ -110,7 +110,6 @@ exports[`Splash renders correctly 1`] = `
         accessibilityLabel="Splash title"
         accessibilityRole="text"
         accessible={true}
-        allowFontScaling={false}
         style={
           [
             {},
@@ -134,7 +133,6 @@ exports[`Splash renders correctly 1`] = `
               "fontSize": 69,
               "lineHeight": 92,
               "marginLeft": 52,
-              "width": 315,
             },
           ]
         }
@@ -157,7 +155,6 @@ exports[`Splash renders correctly 1`] = `
           accessibilityLabel="Splash subtitle"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           style={
             [
               {},

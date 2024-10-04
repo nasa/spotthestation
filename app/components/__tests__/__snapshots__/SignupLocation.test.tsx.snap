@@ -7,7 +7,6 @@ exports[`renders correctly 1`] = `
     accessibilityLabel="location title"
     accessibilityRole="text"
     accessible={true}
-    allowFontScaling={false}
     style={
       [
         {},
@@ -85,7 +84,6 @@ exports[`renders correctly 1`] = `
       accessibilityLabel="address"
       accessibilityRole="text"
       accessible={true}
-      allowFontScaling={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -252,7 +250,6 @@ exports[`renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},

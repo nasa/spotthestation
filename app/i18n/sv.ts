@@ -78,7 +78,7 @@ const sv = {
   },
   onboarding: {
     splash: {
-      title: "Hitta stationen",
+      title: "Hitta\nstationen",
       subTitle: "Titta upp i skyn och se Internationella rymdstationen",
     },
     completeProfile: {

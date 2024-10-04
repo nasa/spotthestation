@@ -124,7 +124,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -156,7 +155,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
         }
       />
       <Text
-        allowFontScaling={false}
         style={
           [
             {},
@@ -380,7 +378,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
           >
             <div>
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -480,7 +477,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
           >
             <div>
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -575,7 +571,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
           >
             <div>
               <Text
-                allowFontScaling={false}
                 style={
                   [
                     {},
@@ -688,7 +683,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
         >
           <div>
             <Text
-              allowFontScaling={false}
               style={
                 [
                   {},
@@ -780,7 +774,6 @@ exports[`ISSNowScreen renders correctly 1`] = `
         >
           <div>
             <Text
-              allowFontScaling={false}
               style={
                 [
                   {},

@@ -78,7 +78,7 @@ const es = {
   },
   onboarding: {
     splash: {
-      title: "Avista la estación",
+      title: "Avista la\nestación",
       subTitle: "Mira al cielo y verás la Estación Espacial Internacional",
     },
     completeProfile: {

@@ -1,7 +1,7 @@
 import { Text, Button } from ".."
 import { StyleFn, useStyles } from "../../utils/useStyles"
 import React from "react"
-import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 
 import { colors, typography } from "../../theme"
 
@@ -20,11 +20,12 @@ export function SafetyReminderModal({ onClose, onBack }: SafetyReminderModalProp
     $body,
     $nextButtonText,
     $nextButton,
+    $scrollContainer,
   } = useStyles(styles)
 
   return (
     <View style={$modalBodyContainer}>
-      <View style={$contentContainer}>
+      <ScrollView style={$contentContainer} contentContainerStyle={$scrollContainer}>
         <Text tx="issView.safetyReminder.title" style={$title} />
         <Text tx="issView.safetyReminder.subtitle1" style={$subtitle} />
         <Text tx="issView.safetyReminder.body1" style={$body} />
@@ -54,7 +55,7 @@ export function SafetyReminderModal({ onClose, onBack }: SafetyReminderModalProp
             onPress={onClose}
           />
         </View>
-      </View>
+      </ScrollView>
     </View>
   )
 }
@@ -63,10 +64,13 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $modalBodyContainer: ViewStyle = {
     backgroundColor: colors.palette.buttonBlue,
     borderRadius: scale(18),
-    alignItems: "center",
+    width: "100%",
+  }
+
+  const $scrollContainer: ViewStyle = {
     paddingVertical: 36,
     paddingHorizontal: 0,
-    width: "100%",
+    alignItems: "center",
   }
 
   const $buttonsContainer: ViewStyle = {
@@ -174,5 +178,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $buttonText,
     $nextButtonText,
     $nextButton,
+    $scrollContainer,
   }
 }

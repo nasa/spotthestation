@@ -12,6 +12,7 @@ export interface SettingsItemProps {
   withUnderline?: boolean
   onPress?: PressableProps["onPress"]
   rightControl?: ReactNode
+  numberOfLines?: number
 }
 
 export function SettingsItem({
@@ -20,6 +21,7 @@ export function SettingsItem({
   onPress,
   rightControl,
   withUnderline = true,
+  numberOfLines,
 }: SettingsItemProps) {
   const { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText, $noPadding } =
     useStyles(styles)
@@ -44,7 +46,7 @@ export function SettingsItem({
             tx={title}
             style={$titleText}
             ellipsizeMode="tail"
-            numberOfLines={1}
+            numberOfLines={numberOfLines}
           />
         </View>
         {rightControl || <Icon icon="caretRight" size={24} color={colors.palette.neutral550} />}

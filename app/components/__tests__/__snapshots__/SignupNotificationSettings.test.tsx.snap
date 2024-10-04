@@ -7,7 +7,6 @@ exports[`renders correctly 1`] = `
     accessibilityLabel="detecting"
     accessibilityRole="text"
     accessible={true}
-    allowFontScaling={false}
     style={
       [
         {},
@@ -107,7 +106,6 @@ exports[`renders correctly 1`] = `
         }
       >
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -137,7 +135,6 @@ exports[`renders correctly 1`] = `
           onboarding.completeProfile.notification.label undefined
         </Text>
         <Text
-          allowFontScaling={false}
           style={
             [
               {},
@@ -352,7 +349,6 @@ exports[`renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},

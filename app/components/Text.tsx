@@ -88,7 +88,7 @@ export function Text(props: TextProps) {
   ]
 
   return (
-    <RNText allowFontScaling={false} {...rest} style={$styles}>
+    <RNText {...rest} style={$styles}>
       {content}
     </RNText>
   )

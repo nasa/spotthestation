@@ -78,7 +78,7 @@ const ru = {
   },
   onboarding: {
     splash: {
-      title: "Увидьте станцию",
+      title: "Увидьте\nстанцию",
       subTitle: "Взгляните в небо и увидьте Международную космическую станцию",
     },
     completeProfile: {

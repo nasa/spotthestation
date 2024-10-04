@@ -207,7 +207,6 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -353,7 +352,6 @@ exports[`renders correctly 1`] = `
             accessibilityLabel="search location"
             accessibilityRole="search"
             accessible={true}
-            allowFontScaling={false}
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="never"
@@ -516,7 +514,6 @@ exports[`renders correctly 1`] = `
           accessibilityLabel="location title input"
           accessibilityRole="text"
           accessible={true}
-          allowFontScaling={false}
           autoCapitalize="none"
           autoCorrect={false}
           editable={true}
@@ -631,7 +628,6 @@ exports[`renders correctly 1`] = `
         testID="saveButton"
       >
         <Text
-          allowFontScaling={false}
           style={
             [
               {},

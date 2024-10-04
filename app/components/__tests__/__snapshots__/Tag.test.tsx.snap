@@ -2,7 +2,6 @@
 
 exports[`Tag component renders correctly 1`] = `
 <Text
-  allowFontScaling={false}
   style={
     [
       {},

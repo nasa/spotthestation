@@ -78,7 +78,7 @@ const pl = {
   },
   onboarding: {
     splash: {
-      title: "Zobacz Stację",
+      title: "Zobacz\nStację",
       subTitle: "Spójrz w niebo i zobacz Międzynarodową Stację Kosmiczną",
     },
     completeProfile: {

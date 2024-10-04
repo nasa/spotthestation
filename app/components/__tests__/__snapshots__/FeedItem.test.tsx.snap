@@ -61,7 +61,6 @@ exports[`renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
@@ -140,7 +139,6 @@ exports[`renders correctly 1`] = `
     accessibilityLabel="title"
     accessibilityRole="text"
     accessible={true}
-    allowFontScaling={false}
     style={
       [
         {},

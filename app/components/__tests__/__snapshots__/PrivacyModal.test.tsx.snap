@@ -22,7 +22,6 @@ exports[`PrivacyModal renders correctly 1`] = `
   }
 >
   <Text
-    allowFontScaling={false}
     style={
       [
         {},
@@ -53,7 +52,6 @@ exports[`PrivacyModal renders correctly 1`] = `
     privacy.title undefined
   </Text>
   <Text
-    allowFontScaling={false}
     style={
       [
         {},
@@ -188,7 +186,6 @@ exports[`PrivacyModal renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         style={
           [
             {},
@@ -294,7 +291,6 @@ exports[`PrivacyModal renders correctly 1`] = `
       }
     >
       <Text
-        allowFontScaling={false}
         style={
           [
             {},
@@ -375,7 +371,6 @@ exports[`PrivacyModal renders correctly 1`] = `
     }
   >
     <Text
-      allowFontScaling={false}
       style={
         [
           {},
