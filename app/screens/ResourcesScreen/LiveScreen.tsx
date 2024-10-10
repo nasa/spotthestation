@@ -8,7 +8,7 @@ import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { Template } from "./Template"
 
-const streamId = "P9C25Un7xaM"
+const streamId = "O9mYwRlucZY"
 
 export interface LiveScreenRouteProps {}
 
