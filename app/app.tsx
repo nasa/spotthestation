@@ -25,6 +25,7 @@ import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
+import * as StoreReview from 'expo-store-review'
 import i18n from "i18n-js"
 import { Alert, AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
@@ -84,6 +85,11 @@ interface AppProps {
   hideSplashScreen: () => Promise<void>
 }
 
+const MIN_LAUNCH_DURATION = 10000
+const REVIEW_MIN_LAUNCHES = 10
+const REVIEW_MAX_REQUESTS = 3
+const REVIEW_REQUEST_INTERVAL = 14 * 24 * 60 * 60 * 1000
+
 /**
  * This is the root component of our app.
  */
@@ -99,6 +105,7 @@ function App(props: AppProps) {
   const [isLocaleLoaded, setIsLocaleLoaded] = useState(false)
   const [isTZUpdated, setIsTZUpdated] = useState(false)
   const prevAppState = useRef<string>()
+  const launchTimer = useRef<NodeJS.Timeout | null>(null)
 
   const { rootStore, rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.
@@ -112,6 +119,33 @@ function App(props: AppProps) {
 
   const updateLocationAddresses = useCallback(() => {
     rootStore.updateLocationAddresses().catch(console.log)
+  }, [])
+
+  const handleLaunchReview = useCallback(async () => {
+    const reviewRequestedAt = await storage.load(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY) as string | null
+    if (!reviewRequestedAt) {
+      await storage.save(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY, new Date().toISOString())
+      return
+    }
+
+    let launches = Number((await storage.load(storage.KEYS.NUMBER_OF_LAUNCHES_KEY) || 0))
+    const reviewRequests = Number((await storage.load(storage.KEYS.NUMBER_OF_REVIEW_REQUESTS_KEY) || 0))
+
+    if (
+      new Date().getTime() - new Date(reviewRequestedAt).getTime() > REVIEW_REQUEST_INTERVAL
+      && launches > REVIEW_MIN_LAUNCHES
+      && reviewRequests < REVIEW_MAX_REQUESTS
+    ) {
+      if (await StoreReview.hasAction()) {
+        await StoreReview.requestReview()
+        await storage.save(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY, new Date().toISOString())
+        await storage.save(storage.KEYS.NUMBER_OF_REVIEW_REQUESTS_KEY, reviewRequests + 1)
+      }
+      launches = 0
+    }
+
+    // increment number of app launches
+    await storage.save(storage.KEYS.NUMBER_OF_LAUNCHES_KEY, launches + 1)
   }, [])
 
   useEffect(() => {
@@ -150,17 +184,26 @@ function App(props: AppProps) {
     }
 
     handler().catch(console.error)
+    launchTimer.current = setTimeout(handleLaunchReview, MIN_LAUNCH_DURATION)
+
     const subscription = AppState.addEventListener("change", (nextAppState) => {
+      clearTimeout(launchTimer.current)
+      launchTimer.current = null
+
       if (
         nextAppState === "active" &&
         prevAppState.current &&
         prevAppState.current !== nextAppState
-      )
+      ) {
         handler().catch(console.error)
+        launchTimer.current = setTimeout(handleLaunchReview, MIN_LAUNCH_DURATION)
+      }
       prevAppState.current = nextAppState
     })
 
     return () => {
+      clearTimeout(launchTimer.current)
+      launchTimer.current = null
       subscription.remove()
     }
   }, [rootStore, rehydrated])

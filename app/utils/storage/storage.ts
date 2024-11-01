@@ -20,6 +20,9 @@ export enum KEYS {
   FROM_ALARM_PERMISSION_SETTINGS = "fromAlarmPermissionSettings",
   ROOT_STATE_STORAGE_KEY = "root-v1",
   NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE",
+  LAST_REVIEW_REQUESTED_AT_KEY = "lastReviewRequestedAt",
+  NUMBER_OF_LAUNCHES_KEY = "numberOfLaunches",
+  NUMBER_OF_REVIEW_REQUESTS_KEY = "numberOfReviewRequests",
 }
 
 /**
