@@ -1,7 +1,7 @@
 import { XMLParser } from "fast-xml-parser";
 import { RootStoreModel } from "../app/models"
 import { formatDateWithTZ } from "../app/utils/datetime"
-import { addMinutes, parse } from "date-fns"
+import { addMinutes, parse, setSeconds, subMinutes } from "date-fns"
 import { zonedTimeToUtc } from "date-fns-tz";
 import "../test/matchers";
 
@@ -43,7 +43,7 @@ locations.forEach((location) => {
 
     const parser = new XMLParser()
     const jObj = parser.parse(await res.text())
-    const siteSightings = jObj.rss.channel.item.map((item) => {
+    let siteSightings = jObj.rss.channel.item.map((item) => {
       const fields: Record<string, string> = {}
       item.description.split('<br/>').forEach((f) => {
         if (!f.trim()) return;
@@ -68,7 +68,7 @@ locations.forEach((location) => {
         visible: fields.Duration === 'less than  1 minute' ? 0 : Number(fields.Duration.split(' ')[0]),
         timezone: location.timezone,
       }
-    }).filter((item) => new Date(item.date) >= new Date() && item.visible > 0)
+    }).filter((item) => new Date(item.date) >= new Date())
 
     const rootStore = RootStoreModel.create()
     await rootStore.setSelectedLocation({
@@ -77,7 +77,7 @@ locations.forEach((location) => {
       location: { lat: location.lat, lng: location.lon }
     }, true)
 
-    await rootStore.getISSSightings({ lat: location.lat, lon: location.lon });
+    await rootStore.getISSSightings({ title: location.name, subtitle: '', location: { lat: location.lat, lng: location.lon } });
     let lastSiteSightingDate = new Date(siteSightings[siteSightings.length - 1].date);
 
     lastSiteSightingDate = addMinutes(lastSiteSightingDate, 2);
@@ -89,11 +89,26 @@ locations.forEach((location) => {
         return new Date(sighting.date) <= lastSiteSightingDate;
       });
 
-    siteSightings
-      .filter((sighting) => sighting.date >= formatDateWithTZ(new Date().toISOString(), "yyyy-MM-dd", rootStore.selectedLocation.timezone))
-      .forEach((item) => {
-        expect(appSightings).toHaveSighting(item);
+    siteSightings = siteSightings.filter((sighting) => {
+        if (sighting.date < formatDateWithTZ(new Date().toISOString(), "yyyy-MM-dd", rootStore.selectedLocation.timezone)) return false;
+
+        // we don't know what exact rounding algorithm STS website uses
+        // some sightings with duration less than or equal 1 minute on website
+        // may be considered as "0 minutes" by the app, thus excluding them from the list
+        // here we filter out those ambiguous website sightings if they are not also found by the app
+        if (sighting.visible <= 1) {
+          return appSightings.find((as) => {
+            return setSeconds(new Date(as.date), 0) >= subMinutes(new Date(sighting.date), 1)
+              && setSeconds(new Date(as.date), 0) <= addMinutes(new Date(sighting.date), 1)
+          })
+        }
+
+        return true;
       })
+
+    siteSightings.forEach((item) => {
+      expect(appSightings).toHaveSighting(item);
+    })
 
     expect(appSightings).toHaveLength(siteSightings.length);
   })

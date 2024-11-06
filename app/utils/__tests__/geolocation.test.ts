@@ -1,5 +1,5 @@
 import { api } from "../../services/api"
-import { getCurrentLocation } from "../geolocation"
+import { getCurrentLocation, formatAddress } from "../geolocation"
 import { requestAuthorization, getCurrentPosition } from "react-native-geolocation-service"
 import { jest } from "@jest/globals"
 
@@ -55,5 +55,124 @@ describe("getCurrentLocation", () => {
     expect(getCurrentPosition).not.toHaveBeenCalled()
     expect(api.reverseGeocode).not.toHaveBeenCalled()
     expect(location).toBeNull()
+  })
+})
+
+// Import the function if it's in a different module, e.g., import { formatAddress } from './path-to-module'
+
+describe("formatAddress", () => {
+  it("should format address using village if available", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 1,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        village: "Test Village",
+        state: "Test State",
+        country: "Test Country",
+      },
+      addresstype: "village",
+    }
+    expect(formatAddress(item)).toBe("Test Village, Test State, Test Country")
+  })
+
+  it("should format address using town if village is not available", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 2,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        town: "Test Town",
+        state: "Test State",
+        country: "Test Country",
+      },
+      addresstype: "town",
+    }
+    expect(formatAddress(item)).toBe("Test Town, Test State, Test Country")
+  })
+
+  it("should format address using city if village and town are not available", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 3,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        city: "Test City",
+        state: "Test State",
+        country: "Test Country",
+      },
+      addresstype: "city",
+    }
+    expect(formatAddress(item)).toBe("Test City, Test State, Test Country")
+  })
+
+  it("should format address using municipality if village, town, and city are not available", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 4,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        municipality: "Test Municipality",
+        state: "Test State",
+        country: "Test Country",
+      },
+      addresstype: "municipality",
+    }
+    expect(formatAddress(item)).toBe("Test Municipality, Test State, Test Country")
+  })
+
+  it("should return display_name if none of village, town, city, or municipality are available", () => {
+    const item = {
+      display_name: "Fallback Display Name",
+      place_id: 5,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        state: "Test State",
+        country: "Test Country",
+      },
+      addresstype: "unknown",
+    }
+    expect(formatAddress(item)).toBe("Fallback Display Name")
+  })
+
+  it("should handle missing state or country gracefully", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 6,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        city: "Test City",
+        country: "Test Country",
+      },
+      addresstype: "city",
+    }
+    expect(formatAddress(item)).toBe("Test City, Test Country")
+  })
+
+  it("should handle only one available address component (e.g., village only)", () => {
+    const item = {
+      display_name: "Some Display Name",
+      place_id: 7,
+      name: "Place Name",
+      lat: "123.456",
+      lon: "78.910",
+      address: {
+        village: "Lonely Village",
+      },
+      addresstype: "village",
+    }
+    expect(formatAddress(item)).toBe("Lonely Village")
   })
 })

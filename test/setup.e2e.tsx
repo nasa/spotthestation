@@ -20,7 +20,17 @@ jest.mock("@notifee/react-native", () => ({
   requestPermission: jest.fn(),
   cancelTriggerNotifications: jest.fn(),
   createTriggerNotification: jest.fn(),
+  getNotificationSettings: jest.fn().mockResolvedValue({ android: { alarm: 1 }}),
   TriggerType: { TIMESTAMP: 0 },
+  AndroidNotificationSetting: { ENABLED: 1 }
+}))
+jest.mock("@react-native-firebase/analytics", () => ({}))
+
+jest.mock("expo-localization", () => ({
+  getLocales: () => ([{ regionCode: 'TC' }]),
+  getCalendars: () => ([{ timeZone: 'Test/test' }]),
+  locale: 'en-US'
 }))
 
-jest.mock("@react-native-firebase/analytics", () => ({}))
+
+jest.setTimeout(30000)

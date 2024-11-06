@@ -10,7 +10,6 @@ export type SatData = {
   altitude: number
   date: string
   location: [number, number, number]
-  velocity: [number, number, number]
 }
 
 export type ShadowInterval = [number, number]

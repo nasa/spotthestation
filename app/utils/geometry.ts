@@ -107,5 +107,5 @@ export const cartesianToLatLon = (position: [number, number, number]): [number, 
   const hyp = Math.sqrt(x * x + z * z)
   const lat = (Math.atan2(y, hyp) * 180) / Math.PI
 
-  return [lat, long]
+  return [lat, Object.is(long, -0) ? 0 : long]
 }

@@ -25,7 +25,7 @@ import { customFontsToLoad } from "./theme"
 import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
 import { enableLatestRenderer } from "react-native-maps"
-import * as StoreReview from 'expo-store-review'
+import * as StoreReview from "expo-store-review"
 import i18n from "i18n-js"
 import { Alert, AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
@@ -122,19 +122,23 @@ function App(props: AppProps) {
   }, [])
 
   const handleLaunchReview = useCallback(async () => {
-    const reviewRequestedAt = await storage.load(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY) as string | null
+    const reviewRequestedAt = (await storage.load(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY)) as
+      | string
+      | null
     if (!reviewRequestedAt) {
       await storage.save(storage.KEYS.LAST_REVIEW_REQUESTED_AT_KEY, new Date().toISOString())
       return
     }
 
-    let launches = Number((await storage.load(storage.KEYS.NUMBER_OF_LAUNCHES_KEY) || 0))
-    const reviewRequests = Number((await storage.load(storage.KEYS.NUMBER_OF_REVIEW_REQUESTS_KEY) || 0))
+    let launches = Number((await storage.load(storage.KEYS.NUMBER_OF_LAUNCHES_KEY)) || 0)
+    const reviewRequests = Number(
+      (await storage.load(storage.KEYS.NUMBER_OF_REVIEW_REQUESTS_KEY)) || 0,
+    )
 
     if (
-      new Date().getTime() - new Date(reviewRequestedAt).getTime() > REVIEW_REQUEST_INTERVAL
-      && launches > REVIEW_MIN_LAUNCHES
-      && reviewRequests < REVIEW_MAX_REQUESTS
+      new Date().getTime() - new Date(reviewRequestedAt).getTime() > REVIEW_REQUEST_INTERVAL &&
+      launches > REVIEW_MIN_LAUNCHES &&
+      reviewRequests < REVIEW_MAX_REQUESTS
     ) {
       if (await StoreReview.hasAction()) {
         await StoreReview.requestReview()
