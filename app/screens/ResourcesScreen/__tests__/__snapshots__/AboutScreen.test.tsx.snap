@@ -1,0 +1,1031 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutScreen renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.about.title undefined
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    accessibilityHint="recent results"
+    accessibilityLabel="recent results"
+    accessibilityRole="scrollbar"
+    accessible={true}
+    contentContainerStyle={{}}
+  >
+    <View>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "paddingBottom": 86,
+          }
+        }
+      >
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          />
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2021/08/44911459904-375bc02163-k-0.jpg?resize=1200,800",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station Overview"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station Overview
+          </Text>
+        </View>
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "backgroundColor": "#DEDDDE",
+                      "borderRadius": 6,
+                      "color": "#1E2022",
+                      "fontFamily": "HelveticaNeue-Medium",
+                      "fontSize": 17,
+                      "height": 33,
+                      "lineHeight": 22,
+                      "marginRight": 15,
+                      "overflow": "hidden",
+                      "paddingHorizontal": 10,
+                      "paddingVertical": 6,
+                    },
+                    {},
+                  ],
+                ]
+              }
+            >
+              HISTORY
+            </Text>
+          </View>
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2023/05/iss-blowout-updated-view-2023-300.png",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station Facts and Figures"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station Facts and Figures
+          </Text>
+        </View>
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "backgroundColor": "#DEDDDE",
+                      "borderRadius": 6,
+                      "color": "#1E2022",
+                      "fontFamily": "HelveticaNeue-Medium",
+                      "fontSize": 17,
+                      "height": 33,
+                      "lineHeight": 22,
+                      "marginRight": 15,
+                      "overflow": "hidden",
+                      "paddingHorizontal": 10,
+                      "paddingVertical": 6,
+                    },
+                    {},
+                  ],
+                ]
+              }
+            >
+              HISTORY
+            </Text>
+          </View>
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2023/05/exp70-portrait.jpg?w=1000",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station Crews and Expeditions"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station Crews and Expeditions
+          </Text>
+        </View>
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          />
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2023/03/ops-map.png",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station International Cooperation"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station International Cooperation
+          </Text>
+        </View>
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          />
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2023/05/sts102-314-003.jpg",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station Spacewalks"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station Spacewalks
+          </Text>
+        </View>
+        <View
+          accessibilityHint="pressable feed item"
+          accessibilityLabel="pressable feed item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "height": "auto",
+              "justifyContent": "flex-start",
+              "paddingTop": 23,
+              "position": "relative",
+              "width": "47%",
+            }
+          }
+        >
+          <View
+            accessibilityHint="tags"
+            accessibilityLabel="tags"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              {
+                "flexDirection": "row",
+                "left": 26,
+                "position": "absolute",
+                "top": 52,
+                "zIndex": 2,
+              }
+            }
+          />
+          <RCTImageView
+            accessibilityHint="image"
+            accessibilityLabel="image"
+            accessibilityRole="image"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessible={true}
+            internal_analyticTag={null}
+            resizeMode="cover"
+            source={
+              [
+                {
+                  "uri": "https://www.nasa.gov/wp-content/uploads/2023/03/iss064e015250.jpg",
+                },
+              ]
+            }
+            style={
+              {
+                "aspectRatio": 0.7,
+                "borderRadius": 17,
+                "height": undefined,
+                "marginBottom": 17,
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          />
+          <Text
+            accessibilityHint="International Space Station Research and Technology"
+            accessibilityLabel="title"
+            accessibilityRole="text"
+            accessible={true}
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                {
+                  "color": "#DEDDDE",
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "lineHeight": 30,
+                  "paddingBottom": 7,
+                },
+              ]
+            }
+          >
+            International Space Station Research and Technology
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</div>
+`;

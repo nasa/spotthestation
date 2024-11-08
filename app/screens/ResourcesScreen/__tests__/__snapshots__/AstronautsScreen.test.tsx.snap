@@ -1,0 +1,2355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AstronautsScreen renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.astronauts.title undefined
+      </Text>
+      <Text
+        accessibilityHint="subheader"
+        accessibilityLabel="subheader"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 35,
+              "paddingBottom": 35,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        resources.astronauts.number undefined 0
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    ListFooterComponent={[Function]}
+    contentContainerStyle={{}}
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      />
+    </View>
+  </RCTScrollView>
+</div>
+`;
+
+exports[`AstronautsScreen renders correctly with list of astronauts 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.astronauts.title undefined
+      </Text>
+      <Text
+        accessibilityHint="subheader"
+        accessibilityLabel="subheader"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 26,
+              "lineHeight": 35,
+              "paddingBottom": 35,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        resources.astronauts.number undefined 11
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    ListFooterComponent={[Function]}
+    contentContainerStyle={{}}
+    data={
+      [
+        {
+          "image": "https://images-assets.nasa.gov/image/jsc2024e011709/jsc2024e011709~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/matthew-dominick/",
+          "name": "Matthew Dominick",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/02/jsc2024e011710-53510636302-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/michael-barratt/",
+          "name": "Michael Barratt",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/02/spacex-crew-8-mission-specialist-jeanette-epps-53511956485-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/jeanette-j-epps/",
+          "name": "Jeanette Epps",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/02/spacex-crew-8-mission-specialist-alexander-grebenkin-of-roscosmos-53511842654-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/partner-astronauts/",
+          "name": "Alexander Grebenkin",
+          "title": "Roscosmos cosmonaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/02/nasa-astronaut-and-backup-soyuz-ms-25-flight-engineer-don-pettit-53497240100-o-1.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/donald-r-pettit/",
+          "name": "Don Pettit",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://images-assets.nasa.gov/image/NHQ202409110040/NHQ202409110040~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/partner-astronauts/",
+          "name": "Alexey Ovchinin",
+          "title": "Roscosmos cosmonaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/02/roscosmos-cosmonaut-and-backup-soyuz-ms-25-commander-ivan-vagner-53495929452-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/partner-astronauts/",
+          "name": "Ivan Vagner",
+          "title": "Roscosmos cosmonaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://images-assets.nasa.gov/image/jsc2018e067716_alt/jsc2018e067716_alt~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/sunita-williams/",
+          "name": "Suni Williams",
+          "title": "NASA astronaut and Expedition 72 Commander",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2023/05/officaljsc2022e086242-alt.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/barry-e-wilmore/",
+          "name": "Butch Wilmore",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/09/53897746476-08c50b386a-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/tyler-n-hague/",
+          "name": "Nick Hague",
+          "title": "NASA astronaut and Expedition 72 Flight Engineer",
+        },
+        {
+          "image": "https://www.nasa.gov/wp-content/uploads/2024/09/53896830837-b371a98a08-o.jpg?w=700&h=700&crop=1",
+          "link": "https://www.nasa.gov/humans-in-space/astronauts/partner-astronauts/",
+          "name": "Aleksandr Gorbunov",
+          "title": "Roscosmos cosmonaut and Expedition 72 Flight Engineer",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://images-assets.nasa.gov/image/jsc2024e011709/jsc2024e011709~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Matthew Dominick"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Matthew Dominick
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/02/jsc2024e011710-53510636302-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Michael Barratt"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Michael Barratt
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/02/spacex-crew-8-mission-specialist-jeanette-epps-53511956485-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Jeanette Epps"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Jeanette Epps
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/02/spacex-crew-8-mission-specialist-alexander-grebenkin-of-roscosmos-53511842654-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Alexander Grebenkin"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Alexander Grebenkin
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Roscosmos cosmonaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/02/nasa-astronaut-and-backup-soyuz-ms-25-flight-engineer-don-pettit-53497240100-o-1.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Don Pettit"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Don Pettit
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://images-assets.nasa.gov/image/NHQ202409110040/NHQ202409110040~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Alexey Ovchinin"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Alexey Ovchinin
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Roscosmos cosmonaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/02/roscosmos-cosmonaut-and-backup-soyuz-ms-25-commander-ivan-vagner-53495929452-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Ivan Vagner"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Ivan Vagner
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Roscosmos cosmonaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://images-assets.nasa.gov/image/jsc2018e067716_alt/jsc2018e067716_alt~large.jpg?w=700&h=700&fit=clip&crop=faces%2Cfocalpoint",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Suni Williams"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Suni Williams
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Commander
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2023/05/officaljsc2022e086242-alt.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Butch Wilmore"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Butch Wilmore
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/09/53897746476-08c50b386a-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Nick Hague"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Nick Hague
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              NASA astronaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://www.nasa.gov/wp-content/uploads/2024/09/53896830837-b371a98a08-o.jpg?w=700&h=700&crop=1",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Aleksandr Gorbunov"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Aleksandr Gorbunov
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Roscosmos cosmonaut and Expedition 72 Flight Engineer
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      />
+    </View>
+  </RCTScrollView>
+</div>
+`;

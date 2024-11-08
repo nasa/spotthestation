@@ -1,4 +1,5 @@
 // we always make sure 'react-native' gets included first
+import '@testing-library/react-native/extend-expect'
 import * as ReactNative from "react-native"
 import mas from "@react-native-async-storage/async-storage/jest/async-storage-mock"
 import i18n from "i18n-js"
@@ -169,7 +170,8 @@ jest.mock('../app/services/api', () => ({
           visible: 6,
         }]
       }})),
-    getISSData: () => new Promise((resolve) => resolve({ ok: true, data: { points: [], shadowIntervals: [] } })),
+    getISSData: jest.fn().mockResolvedValue({ ok: true, data: { points: [], shadowIntervals: [] }}),
+    getAstronauts: jest.fn().mockResolvedValue({ ok: true, data: [] }),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: "US/Central" })),
     getFeed: () => new Promise((resolve) => resolve({ ok: true, places: `
       <?xml version="1.0" encoding="UTF-8"?>

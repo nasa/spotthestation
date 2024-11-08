@@ -54,7 +54,7 @@
     "@sentry/react-native": "^5.33.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/react-native": "^12.1.2",
+    "@testing-library/react-native": "^12.8.1",
     "@types/rn-fetch-blob": "^1.2.3",
     "@types/suncalc": "^1.9.2",
     "@types/uuid": "^9.0.0",

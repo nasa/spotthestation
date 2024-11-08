@@ -19,6 +19,6 @@ module.exports = {
     "<rootDir>/node_modules/", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron", "<rootDir>/app/navigators", "<rootDir>/app/components"
   ],
   testEnvironment: "node",
-  setupFiles: ["<rootDir>/test/setup.unit.tsx"],
+  setupFilesAfterEnv: ["<rootDir>/test/setup.unit.tsx"],
   workerIdleMemoryLimit: "1GB",
 }
