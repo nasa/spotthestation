@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`HomeScreen renders correctly 1`] = `
 <div>
   <View
     style={
@@ -517,6 +517,668 @@ exports[`renders correctly 1`] = `
         />
       </RNSVGGroup>
     </RNSVGSvgView>
+  </View>
+</div>
+`;
+
+exports[`HomeScreen with ISS data renders correctly 1`] = `
+<div>
+  <View
+    style={
+      {
+        "paddingHorizontal": 18,
+        "paddingTop": 18,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "width": "85%",
+          }
+        }
+      >
+        <Text
+          accessibilityHint="address"
+          accessibilityLabel="address"
+          accessibilityRole="text"
+          accessible={true}
+          ellipsizeMode="tail"
+          numberOfLines={2}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 29,
+                "lineHeight": 37,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        accessibilityHint="open select location modal"
+        accessibilityLabel="pin button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <View>
+              <RCTImageView
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  [
+                    {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "height": 29,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#FFFFFF",
+                    "width": 29,
+                  }
+                }
+                tintColor="#FFFFFF"
+              />
+            </View>
+          </div>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessibilityHint="open sightings modal"
+        accessibilityLabel="next sighting"
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          [
+            {
+              "backgroundColor": "#1E2022",
+              "borderRadius": 15,
+              "borderWidth": 2,
+              "paddingVertical": 8,
+              "width": "48%",
+            },
+            {
+              "borderColor": "#0B3D91",
+            },
+          ]
+        }
+      >
+        <Text
+          accessibilityHint="sighting header"
+          accessibilityLabel="sighting header"
+          accessibilityRole="text"
+          accessible={true}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 17,
+                "lineHeight": 23,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          homeScreen.header.firstTimeHead undefined
+        </Text>
+        <Text
+          accessibilityHint="sighting"
+          accessibilityLabel="sighting"
+          accessibilityRole="text"
+          accessible={true}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 22,
+                "lineHeight": 35,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Nov 06, 5:13 AM CST
+        </Text>
+        <Text
+          accessibilityHint="timezone"
+          accessibilityLabel="timezone"
+          accessibilityRole="text"
+          accessible={true}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 13,
+                "lineHeight": 23,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          homeScreen.header.timezone undefined: US/Central
+        </Text>
+      </View>
+      <View
+        accessibilityHint="countdown to next sighting"
+        accessibilityLabel="countdown"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          {
+            "backgroundColor": "#1E2022",
+            "borderRadius": 15,
+            "borderWidth": 2,
+            "paddingVertical": 8,
+            "width": "48%",
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 20,
+                "lineHeight": 23,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          homeScreen.header.secondTimeHead undefined
+        </Text>
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 22,
+                "lineHeight": 35,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          units.time undefined + 00:00:29:24
+        </Text>
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#ADADAE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 13,
+                "lineHeight": 23,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          DD:HH:MM:SS
+        </Text>
+      </View>
+    </View>
+  </View>
+  <div />
+  <View
+    style={
+      [
+        {
+          "width": "100%",
+        },
+        {
+          "aspectRatio": 2.25,
+        },
+      ]
+    }
+    testID="flat-map"
+  >
+    <RCTImageView
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      internal_analyticTag={null}
+      resizeMode="cover"
+      source={
+        [
+          {
+            "height": undefined,
+            "uri": undefined,
+            "width": undefined,
+          },
+        ]
+      }
+      style={
+        {
+          "height": "100%",
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    />
+    <RNSVGSvgView
+      bbHeight="100%"
+      bbWidth="100%"
+      focusable={false}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "height": "100%",
+            "width": "100%",
+          },
+          {
+            "flex": 0,
+            "height": "100%",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <RNSVGGroup
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+      >
+        <RNSVGPath
+          d="M0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0z"
+          fill={
+            {
+              "payload": 4278926737,
+              "type": 0,
+            }
+          }
+          fillOpacity={0.5}
+          propList={
+            [
+              "fill",
+              "fillOpacity",
+            ]
+          }
+        />
+        <RNSVGPath
+          d="M0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+          fill={
+            {
+              "payload": 0,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4279357033,
+              "type": 0,
+            }
+          }
+          strokeWidth={3}
+          testID="iss-path-polyline"
+        />
+        <RNSVGPath
+          d="M0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+          fill={
+            {
+              "payload": 0,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeDasharray",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4289572270,
+              "type": 0,
+            }
+          }
+          strokeDasharray={
+            [
+              "5",
+              "5",
+            ]
+          }
+          strokeWidth={3}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        {
+          "left": -26,
+          "position": "absolute",
+          "top": -26,
+        }
+      }
+      testID="iss-marker"
+    >
+      <View>
+        <RCTImageView
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            [
+              {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            {
+              "height": 52,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "width": 52,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "left": -10,
+          "position": "absolute",
+          "top": -22,
+        }
+      }
+      testID="current-location-marker"
+    >
+      <View>
+        <RCTImageView
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            [
+              {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            {
+              "height": 22,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "width": 22,
+            }
+          }
+        />
+      </View>
+    </View>
   </View>
 </div>
 `;

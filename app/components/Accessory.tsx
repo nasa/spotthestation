@@ -11,9 +11,17 @@ export interface AccessoryProps {
   onPress?: PressableProps["onPress"]
 
   style: StyleProp<any>
+
+  accessibilityHint?: string
 }
 
-export const Accessory = memo(function Accessory({ icon, color, style, onPress }: AccessoryProps) {
+export const Accessory = memo(function Accessory({
+  accessibilityHint,
+  icon,
+  color,
+  style,
+  onPress,
+}: AccessoryProps) {
   return (
     <Icon
       icon={icon}
@@ -21,6 +29,7 @@ export const Accessory = memo(function Accessory({ icon, color, style, onPress }
       color={color || colors.palette.neutral450}
       containerStyle={style}
       onPress={onPress}
+      accessibilityHint={accessibilityHint}
     />
   )
 })

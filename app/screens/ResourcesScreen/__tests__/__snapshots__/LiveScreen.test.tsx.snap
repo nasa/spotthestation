@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LiveScreen renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.live.title undefined
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "paddingBottom": 35,
+        "paddingHorizontal": 26,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      accessibilityHint="modal text"
+      accessibilityLabel="modal text"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        {
+          "paddingBottom": 52,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontSize": 29,
+              "lineHeight": 40,
+            },
+          ]
+        }
+      >
+        resources.live.description undefined
+      </Text>
+    </Text>
+    <View
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    />
+    <View
+      onLayout={[Function]}
+    />
+  </View>
+</div>
+`;

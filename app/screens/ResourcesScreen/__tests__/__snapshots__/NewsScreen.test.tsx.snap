@@ -1,0 +1,2460 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsScreen renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.news.title undefined
+      </Text>
+    </View>
+    <View
+      accessibilityHint="search"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 35,
+          "height": 60,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 60,
+        }
+      }
+    >
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "width": 35,
+          }
+        }
+      />
+    </View>
+  </View>
+  <RCTScrollView
+    ListFooterComponent={[Function]}
+    contentContainerStyle={{}}
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.5}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      />
+    </View>
+  </RCTScrollView>
+</div>
+`;
+
+exports[`NewsScreen renders correctly with list of articles 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 1)",
+        "flexDirection": "row",
+        "paddingBottom": 16,
+        "width": "100%",
+        "zIndex": 999,
+      }
+    }
+  >
+    <View>
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "tintColor": "#DEDDDE",
+            "width": 35,
+          }
+        }
+        tintColor="#DEDDDE"
+      />
+    </View>
+    <Text
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 35,
+            "paddingLeft": 7,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      resources.header undefined
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        accessibilityHint="header"
+        accessibilityLabel="header"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 52,
+              "lineHeight": 63,
+              "paddingBottom": 35,
+            },
+          ]
+        }
+      >
+        resources.news.title undefined
+      </Text>
+    </View>
+    <View
+      accessibilityHint="search"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 35,
+          "height": 60,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 60,
+        }
+      }
+    >
+      <RCTImageView
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        internal_analyticTag={null}
+        resizeMode="contain"
+        source={
+          [
+            {
+              "height": undefined,
+              "uri": undefined,
+              "width": undefined,
+            },
+          ]
+        }
+        style={
+          {
+            "height": 35,
+            "overflow": "hidden",
+            "resizeMode": "contain",
+            "width": 35,
+          }
+        }
+      />
+    </View>
+  </View>
+  <RCTScrollView
+    ListFooterComponent={[Function]}
+    contentContainerStyle={{}}
+    data={
+      [
+        {
+          "category": [
+            "Expedition 72",
+            "dragon",
+            "International Space Station",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_25623" aria-describedby="caption-attachment-25623" style="width: 840px" class="wp-caption alignnone"><img fetchpriority="high" decoding="async" class="size-full wp-image-25623" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png" alt="The SpaceX Dragon cargo spacecraft is pictured by an external camera attached to the International Space Station. Credit: NASA" width="840" height="628" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png 1143w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png?resize=300,224 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png?resize=768,574 768w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png?resize=1024,766 1024w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /><figcaption id="caption-attachment-25623" class="wp-caption-text">The SpaceX Dragon cargo spacecraft is pictured by an external camera attached to the International Space Station. Credit: NASA</figcaption></figure>
+<p>NASA and SpaceX monitored operations as the company’s Dragon spacecraft performed its first demonstration of reboost capabilities for the International Space Station at 12:50 p.m. EST on Friday. The spacecraft’s Draco thrusters adjusted the station’s orbit through a reboost of altitude by 7/100 of a mile at apogee and 7/10 of a mile at perigee, lasting approximately 12 minutes and 30 seconds.</p>
+<p>By testing the spacecraft’s ability to provide reboost and, eventually, attitude control, NASA’s International Space Station Program will have multiple spacecraft available to provide these capabilities for the orbital complex.</p>
+<p>Currently, the Roscosmos Progress spacecraft and the Northrop Grumman Cygnus spacecraft also provide reboost for the space station.</p>
+<p>The SpaceX Dragon spacecraft recently delivered more than 6,000 pounds of supplies to the orbiting laboratory. The resupply mission lifted off Nov. 4 on the company’s Falcon 9 rocket from Launch Complex 39A at NASA’s Kennedy Space Center in Florida and arrived at the space station on Nov. 5. This launch was the 31st SpaceX commercial resupply services mission for the agency.</p>
+<p>For more than two decades, the <a href="https://www.nasa.gov/international-space-station/">International Space Station</a> has served as a critical testbed for NASA to understand and overcome the challenges of long-duration spaceflight and to expand commercial opportunities in low Earth orbit. The space station is a springboard for developing a <a href="https://www.nasa.gov/humans-in-space/commercial-space/low-earth-orbit-economy/">low Earth economy</a> and NASA’s next great leaps in exploration, including missions to the Moon under Artemis and, ultimately, human exploration of Mars.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get weekly updates from NASA Johnson Space Center at: <a href="https://roundupreads.jsc.nasa.gov/">https://roundupreads.jsc.nasa.gov/</a></p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Abby Graf",
+          "description": "NASA and SpaceX monitored operations as the company’s Dragon spacecraft performed its first demonstration of reboost capabilities for the International Space Station at 12:50 p.m. EST on Friday. The spacecraft’s Draco thrusters adjusted the station’s orbit through a reboost of altitude by 7/100 of a mile at apogee and 7/10 of a mile at perigee, &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25618",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/08/dragon-spacecraft-boosts-station-for-first-time/",
+          "pubDate": "Fri, 08 Nov 2024 18:22:29 +0000",
+          "title": "Dragon Spacecraft Boosts Station for First Time",
+        },
+        {
+          "category": [
+            "Expedition 72",
+            "Canadian Space Agency",
+            "European Space Agency",
+            "International Space Station",
+            "Japan Aerospace Exploration Agency",
+            "JAXA",
+            "NASA",
+            "Roscosmos",
+            "science",
+          ],
+          "content:encoded": "<figure id="attachment_25615" aria-describedby="caption-attachment-25615" style="width: 840px" class="wp-caption alignnone"><a href="https://flic.kr/p/2qpjyyp"><img decoding="async" class="size-full wp-image-25615" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg" alt="NASA astronauts Nick Hague and Suni Williams, Expedition 72 Flight Engineer and Commander respectively, discuss orbital lab maintenance procedures aboard the International Space Station." width="840" height="560" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg 8256w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=300,200 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=768,512 768w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=1024,683 1024w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=1536,1024 1536w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=2048,1365 2048w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg?resize=1200,800 1200w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-25615" class="wp-caption-text">NASA astronauts Nick Hague and Suni Williams, Expedition 72 Flight Engineer and Commander respectively, discuss orbital lab maintenance procedures aboard the International Space Station.</figcaption></figure>
+<p>A host of activities topped Friday’s schedule aboard the orbital outpost as the <a href="https://www.nasa.gov/mission/expedition-72/">Expedition 72</a> crew penned in time for experiment activation, spacesuit work, training, and more.</p>
+<p><a href="https://www.nasa.gov/international-space-station/">International Space Station</a> Commander Suni Williams spent the first half of her day on spacesuit duty, removing the impact shields and inspecting the gear for any leaks. In the afternoon, she serviced biotechnology hardware and installed new cassettes for <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=9212">crystallization research</a>.</p>
+<p>Later on, Williams was joined by her three of her crewmates, NASA Flight Engineers <a href="https://www.nasa.gov/people/nick-hague/">Nick Hague</a> and <a href="https://www.nasa.gov/humans-in-space/astronauts/barry-e-wilmore/">Butch Wilmore</a>, along with Roscosmos cosmonaut Aleksandr Gorbunov, to review medical emergency procedures and hardware.</p>
+<p>Both Hague and Wilmore separately assisted NASA Flight Engineer <a href="https://www.nasa.gov/humans-in-space/astronauts/donald-r-pettit/">Don Pettit</a> throughout the day to <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=8117">illuminate</a> space-induced inflammation changes in organisms. Hague also set up new experiment containers for an investigation that will test how to <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=8907">transplant and grow</a> micro-algae in space.</p>
+<p>Meanwhile, Wilmore continued work that Williams began yesterday and activated additional mixing tubes that contain protein and bacteria for the <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=9299">NanoRacks Module-9</a> investigation, which is a student-led experiment that examines how microgravity affects protein synthesis.</p>
+<p>The orbiting lab’s three cosmonauts completed an array of upkeep tasks throughout the day. Gorbunov and Flight Engineer Ivan Vagner conducted some orbital plumbing, while Flight Engineer Alexey Ovchinin worked some life support systems and electronics tasks before photographing various landmarks on Earth. At the end of the day, the trio was joined by their four NASA crewmates to review Dragon cargo emergency training materials and response.</p>
+<p>On Earth, the four crew members of NASA’s SpaceX Crew-8, who <a href="https://www.nasa.gov/news-release/back-on-earth-nasas-spacex-crew-8-mission-splashes-down-off-florida/">splashed down</a> off the coast of Florida on Oct. 25, will discuss their microgravity science mission during a post-flight <a href="https://www.nasa.gov/news-release/nasas-spacex-crew-8-astronauts-to-discuss-science-mission/">news conference</a> this afternoon, Nov. 8, at 3:15 p.m. EST. Watch the quartet live on <a href="https://plus.nasa.gov/scheduled-video/nasas-spacex-crew-8-post-flight-news-conference/">NASA+</a> and the agency’s <a href="https://plus.nasa.gov/">website</a>.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get weekly updates from NASA Johnson Space Center at: <a href="https://roundupreads.jsc.nasa.gov/">https://roundupreads.jsc.nasa.gov/</a></p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Abby Graf",
+          "description": "A host of activities topped Friday’s schedule aboard the orbital outpost as the Expedition 72 crew penned in time for experiment activation, spacesuit work, training, and more. International Space Station Commander Suni Williams spent the first half of her day on spacesuit duty, removing the impact shields and inspecting the gear for any leaks. In &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25614",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/08/science-activation-and-training-top-fridays-orbital-schedule/",
+          "pubDate": "Fri, 08 Nov 2024 17:46:48 +0000",
+          "title": "Science Activation and Training Top Friday’s Orbital Schedule",
+        },
+        {
+          "category": [
+            "Expedition 72",
+            "Canadian Space Agency",
+            "dragon",
+            "European Space Agency",
+            "International Space Station",
+            "Japan Aerospace Exploration Agency",
+            "JAXA",
+            "NASA",
+            "Roscosmos",
+            "science",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_25611" aria-describedby="caption-attachment-25611" style="width: 840px" class="wp-caption alignnone"><a href="https://flic.kr/p/2qsGWaN"><img decoding="async" class="size-full wp-image-25611" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss072e146315.jpg" alt="Astronaut Nick Hague explores the potential of biomanufacturing using microorganisms and cell cutlures to create food, medicine, and more in space." width="840" height="472" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss072e146315.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss072e146315.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss072e146315.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-25611" class="wp-caption-text">Astronaut Nick Hague explores the potential of biomanufacturing using microorganisms and cell cutlures to create food, medicine, and more in space.</figcaption></figure>
+<p>The <a href="https://www.nasa.gov/mission/expedition-72/">Expedition 72</a> crew began activating new experiments on Thursday following a day of unpacking the SpaceX Dragon cargo spacecraft, installing new science gear, and stowing fresh research samples aboard the <a href="https://www.nasa.gov/international-space-station/">International Space Station</a>.</p>
+<p>Veteran Flight Engineer <a href="https://www.nasa.gov/humans-in-space/astronauts/donald-r-pettit/">Don Pettit</a> spent his shift on <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=9126">DNA research</a> first collecting station water samples to examine for microbes. Next, he extracted DNA from the microbial samples and processed them for analysis and identification. Flight Engineer <a href="https://www.nasa.gov/people/nick-hague/">Nick Hague</a> set up biology hardware inside the <a href="https://www.nasa.gov/international-space-station/kibo-laboratory-module/">Kibo laboratory module</a>’s <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=7676">Life Science Glovebox</a> to <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=8117">illuminate</a> space-caused inflammation changes in organisms. At the end of their shift, Pettit imaged Hague’s eyes using standard medical imaging hardware testing a hypothesis that a <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=8872">B Complex</a> vitamin supplement may prevent space-caused vision issues.</p>
+<p>NASA Flight Engineer <a href="https://www.nasa.gov/humans-in-space/astronauts/barry-e-wilmore/">Butch Wilmore</a> worked in the <a href="https://www.nasa.gov/international-space-station/destiny-laboratory-module/">Destiny laboratory module</a> and installed new physics hardware in the <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=341">Microgravity Science Glovebox</a> that measures particle movements in fluids. The investigation takes advantage of the microgravity environment to learn how to <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=8855">separate viruses from biological fluids</a> for disease detection. Commander <a href="https://www.nasa.gov/humans-in-space/astronauts/sunita-williams/">Suni Williams</a> activated mixing tubes containing proteins and bacteria for a set of student-designed <a href="https://www.nasa.gov/mission/station/research-explorer/search/?#q=%22nanoracks+module-9%22&amp;i=72&amp;p=&amp;c=&amp;g=&amp;s=&amp;a=">NanoRacks Module-9</a> experiments promoting healthy crew members and encouraging future space researchers. Williams also worked on a variety of science maintenance tasks while continuing to unpack the Dragon spacecraft.</p>
+<p>The <a href="https://www.nasa.gov/international-space-station/mobile-servicing-system/">Canadarm2 robotic arm</a> is in position on the <a href="https://www.nasa.gov/international-space-station/harmony-module/">Harmony module</a> to extract experimental hardware to measure the solar wind from the SpaceX Dragon cargo spacecraft’s trunk. Robotic engineers on the ground will remotely command the Canadarm2 and its fine-tuned Dextre robotic hand to gently remove the solar measurement gear from Dragon on Saturday. Then on Monday, the solar experiment will be installed on the port side of the orbital outpost’s <a href="https://www.nasa.gov/international-space-station/integrated-truss-structure/">Integrated Truss Structure</a> where it will soon begin operations. <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=8225">CODEX</a>, or Coronal Diagnostic Experiment, will use a coronagraph to filter out the sun’s bright light to reveal its outer atmosphere, or corona, and examine how solar wind forms.</p>
+<p>Roscosmos Flight Engineer Ivan Vagner started his day servicing a 3D printer in the <a href="https://blogs.nasa.gov/spacestation/2021/07/29/new-module-successfully-docks-to-space-station/">Nauka science module</a> then completed his shift conducting photographic inspections of windows on the <a href="https://www.nasa.gov/international-space-station/zvezda-service-module/">Zvezda service module</a>. Cosmonauts Alexey Ovchinin and Aleksandr Gorbunov worked throughout Thursday maintaining Roscosmos electronics and life support systems.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "The Expedition 72 crew began activating new experiments on Thursday following a day of unpacking the SpaceX Dragon cargo spacecraft, installing new science gear, and stowing fresh research samples aboard the International Space Station. Veteran Flight Engineer Don Pettit spent his shift on DNA research first collecting station water samples to examine for microbes. Next, &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25608",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/07/new-science-experiments-being-activated-aboard-station/",
+          "pubDate": "Thu, 07 Nov 2024 18:43:38 +0000",
+          "title": "New Science Experiments Being Activated Aboard Station",
+        },
+        {
+          "category": [
+            "Expedition 72",
+            "Canadian Space Agency",
+            "dragon",
+            "European Space Agency",
+            "International Space Station",
+            "Japan Aerospace Exploration Agency",
+            "JAXA",
+            "NASA",
+            "Roscosmos",
+            "science",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_25605" aria-describedby="caption-attachment-25605" style="width: 900px" class="wp-caption alignnone"><a href="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg"><img loading="lazy" decoding="async" class="wp-image-25605 size-full" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg" alt="The SpaceX Dragon cargo spacecraft is pictured from an external space station camera approaching the orbital outpost above Argentina on Tuesday, Nov. 5" width="900" height="506" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-25605" class="wp-caption-text">The SpaceX Dragon cargo spacecraft is pictured from an external space station camera approaching the orbital outpost above Argentina on Tuesday, Nov. 5. Credit: NASA+</figcaption></figure>
+<p>New science experiments and research samples delivered aboard the SpaceX Dragon cargo spacecraft on Tuesday are being installed today aboard the <a href="https://www.nasa.gov/international-space-station/">International Space Station</a>. Meanwhile, more science and lab maintenance continued ensuring the upkeep of the orbital outpost.</p>
+<p>The four NASA astronauts representing the <a href="https://www.nasa.gov/mission/expedition-72/">Expedition 72</a> crew, Flight Engineers <a href="https://www.nasa.gov/humans-in-space/astronauts/donald-r-pettit/">Don Pettit</a>, <a href="https://www.nasa.gov/people/nick-hague/">Nick Hague</a>, and <a href="https://www.nasa.gov/humans-in-space/astronauts/barry-e-wilmore/">Butch Wilmore</a>, and Commander <a href="https://www.nasa.gov/humans-in-space/astronauts/sunita-williams/">Suni Williams</a>, spent the day unloading the research-packed Dragon that arrived on <a href="https://blogs.nasa.gov/commercialresupply/2024/11/05/spacex-dragon-cargo-spacecraft-docks-to-harmony-module/">Tuesday, Nov. 5</a>. The quartet quickly transferred the advanced research hardware and temperature-sensitive specimens into the space station and installed them into research racks and cold storage.</p>
+<p>Pettit entered Dragon and removed new space biology hardware to explore space-caused inflammation changes then installed it inside the <a href="https://www.nasa.gov/international-space-station/kibo-laboratory-module/">Kibo laboratory module</a> for activation. Hague partnered together with Wilmore and disconnected Dragon’s <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=1092">portable science freezers</a> containing critical science samples then installed them in station <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=598">EXPRESS racks</a> for upcoming processing and analysis. Williams also participated in the Dragon science hardware transfers before joining Wilmore to unpack <a href="https://www.nasa.gov/mission/station/research-explorer/facility/?#id=8573">frozen research sample bags</a> for stowage in a variety of station science freezers.</p>
+<p>The space station’s three cosmonauts, Alexey Ovchinin, Ivan Vagner, and Aleksandr Gorbunov, spent Wednesday on their task list of Roscosmos science experiments and lab maintenance.</p>
+<p>Ovchinin and Vagner worked together throughout the day in the <a href="https://www.nasa.gov/international-space-station/zvezda-service-module/">Zvezda service module</a> setting up an X-ray spectrometer that was delivered aboard the Progress 89 resupply ship on <a href="https://blogs.nasa.gov/spacestation/2024/08/17/space-delivery-arrives-after-roscosmos-cargo-craft-docks/">Aug. 17</a>. The duo installed cables and electronics components to support the astrophysics observation study that will be installed outside the orbital lab on a later date. Gorbunov closed out an experimental session observing Earth’s nighttime atmosphere in near-ultraviolet wavelengths then spent the rest of his shift servicing electronics and life support systems.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "New science experiments and research samples delivered aboard the SpaceX Dragon cargo spacecraft on Tuesday are being installed today aboard the International Space Station. Meanwhile, more science and lab maintenance continued ensuring the upkeep of the orbital outpost. The four NASA astronauts representing the Expedition 72 crew, Flight Engineers Don Pettit, Nick Hague, and Butch &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25601",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/06/crew-unpacks-new-station-science-delivered-aboard-dragon/",
+          "pubDate": "Wed, 06 Nov 2024 19:08:42 +0000",
+          "title": "Crew Unpacks New Station Science Delivered Aboard Dragon",
+        },
+        {
+          "category": [
+            "Commercial Resupply Services",
+            "Expedition 72",
+            "dragon",
+            "International Space Station",
+            "NASA",
+            "science",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_25599" aria-describedby="caption-attachment-25599" style="width: 840px" class="wp-caption alignnone"><a href="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg"><img loading="lazy" decoding="async" class="wp-image-25599 size-full" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg" alt="The International Space Station is viewed from a camera aboard the approaching SpaceX Dragon cargo spacecraft. The SpaceX Dragon Freedom crew spacecraft is pictured (at center) docked to the Harmony module's space-facing port. Credit: NASA+" width="840" height="472" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-25599" class="wp-caption-text">The International Space Station is viewed from a camera aboard the approaching SpaceX Dragon cargo spacecraft. The SpaceX Dragon Freedom crew spacecraft is pictured (at center) docked to the Harmony module&#8217;s space-facing port. Credit: NASA+</figcaption></figure>
+<p>At 9:52 a.m. EST, the SpaceX Dragon spacecraft docked to the forward port of the International Space Station’s Harmony module.</p>
+<p>The spacecraft carried over 6,000 pounds of scientific investigations and cargo to the orbiting laboratory on SpaceX’s 31st commercial resupply services mission for NASA. The mission launched at 9:29 a.m. Nov. 4 on a SpaceX Falcon 9 rocket from Launch Complex 39A at NASA’s Kennedy Space Center in Florida.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "At 9:52 a.m. EST, the SpaceX Dragon spacecraft docked to the forward port of the International Space Station’s Harmony module. The spacecraft carried over 6,000 pounds of scientific investigations and cargo to the orbiting laboratory on SpaceX’s 31st commercial resupply services mission for NASA. The mission launched at 9:29 a.m. Nov. 4 on a SpaceX &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25547",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/05/spacex-dragon-cargo-spacecraft-docks-to-harmony-module/",
+          "pubDate": "Tue, 05 Nov 2024 15:04:31 +0000",
+          "title": "SpaceX Dragon Cargo Spacecraft Docks to Harmony Module",
+        },
+        {
+          "category": [
+            "Commercial Resupply Services",
+            "Expedition 72",
+            "dragon",
+            "International Space Station",
+            "NASA",
+            "science",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_23842" aria-describedby="caption-attachment-23842" style="width: 840px" class="wp-caption alignnone"><img loading="lazy" decoding="async" class="size-full wp-image-23842" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/04/blog_iss070e129463.jpg" alt="The SpaceX Dragon cargo spacecraft approaches the space station for a docking to the Harmony module's space-facing port on March 23, 2024." width="840" height="472" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/04/blog_iss070e129463.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/04/blog_iss070e129463.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/04/blog_iss070e129463.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /><figcaption id="caption-attachment-23842" class="wp-caption-text">The SpaceX Dragon cargo spacecraft approaches the space station for a docking to the Harmony module&#8217;s space-facing port on March 23, 2024.</figcaption></figure>
+<p>NASA&#8217;s coverage is underway for arrival of the SpaceX Dragon spacecraft to the International Space Station on <a href="https://plus.nasa.gov/scheduled-video/nasas-spacex-31st-cargo-resupply-services-rendezvous-and-docking/">NASA+</a> and the agency’s <a href="https://plus.nasa.gov/">website</a>. Learn how to <a href="https://www.nasa.gov/general/how-to-stream-nasa-tv/">watch NASA content</a> through a variety of platforms, including social media.</p>
+<p>At approximately 9:55 a.m. EST, Dragon will dock autonomously to the forward port of the space station’s Harmony module.</p>
+<p>The spacecraft is carrying<a href="https://www.nasa.gov/missions/station/commercial-resupply/spacex-crs/nasa-spacex-31st-commercial-resupply-mission-overview/"> over 6,000 pounds of scientific investigations and cargo</a> to the orbiting laboratory on SpaceX’s 31st commercial resupply services mission for NASA. The mission launched at <a href="https://blogs.nasa.gov/spacestation/2024/11/04/nasas-spacex-crs-31-dragon-launches-at-929-p-m-est/">9:29 p.m. Nov. 4</a> on a SpaceX Falcon 9 rocket from Launch Complex 39A at NASA’s Kennedy Space Center in Florida.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "NASA&#8217;s coverage is underway for arrival of the SpaceX Dragon spacecraft to the International Space Station on NASA+ and the agency’s website. Learn how to watch NASA content through a variety of platforms, including social media. At approximately 9:55 a.m. EST, Dragon will dock autonomously to the forward port of the space station’s Harmony module. &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25546",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/05/dragon-approaching-station-on-31st-cargo-mission/",
+          "pubDate": "Tue, 05 Nov 2024 13:33:39 +0000",
+          "title": "Dragon Approaching Station on 31st Cargo Mission",
+        },
+        {
+          "category": [
+            "Commercial Resupply Services",
+            "International Space Station",
+            "Kennedy Space Center",
+            "NASA",
+            "Launch Complex 39A",
+            "NASA's SpaceX 31st Resupply Mission",
+          ],
+          "content:encoded": "<figure id="attachment_25580" aria-describedby="caption-attachment-25580" style="width: 840px" class="wp-caption alignleft"><img loading="lazy" decoding="async" class="size-full wp-image-25580" src="https://blogs.nasa.gov/commercialresupply/wp-content/uploads/sites/381/2024/11/CRS-31-Launch.png" alt="" width="840" height="455" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png 2694w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=300,163 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=768,416 768w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=1024,555 1024w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=1536,832 1536w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=2048,1110 2048w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/CRS-31-Launch.png?resize=1200,650 1200w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /><figcaption id="caption-attachment-25580" class="wp-caption-text">The SpaceX Dragon spacecraft, carrying more than 6,000 pounds of supplies to the orbiting laboratory, lifted off at 9:29 p.m. EST Monday, on the company’s Falcon 9 rocket from Launch Complex 39A at NASA’s Kennedy Space Center in Florida. Credits: NASA+</figcaption></figure>
+<p>At 9:29 p.m. EST, over 6,000 pounds of scientific investigations and cargo launched to the International Space Station on the SpaceX Dragon spacecraft for the company’s 31st commercial resupply services mission for NASA. The spacecraft lifted off on a SpaceX Falcon 9 rocket from Launch Complex 39A at NASA&#8217;s Kennedy Space Center in Florida.</p>
+<p><span data-contrast="none">About 9 minutes after launch, Dragon will separate from the rocket’s second stage, open its nosecone, and begin a carefully choreographed series of thruster firings to reach the space station.</span> <span data-ccp-props="{&quot;134233279&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-contrast="none">Dragon will arrive at the orbiting outpost at 10:15 a.m. Tuesday, Nov. 5, and dock autonomously to the forward port of the space station’s Harmony module.</span><span data-ccp-props="{&quot;134233279&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-contrast="none">NASA will provide live coverage of the spacecraft’s arrival beginning at 8:45 a.m. Nov. 5 on </span><a href="https://plus.nasa.gov/scheduled-video/nasas-spacex-31st-cargo-resupply-services-rendezvous-and-docking/"><span data-contrast="none">NASA+</span></a><span data-contrast="none"> and the agency’s </span><a href="https://plus.nasa.gov/"><span data-contrast="none">website</span></a><span data-contrast="none">.</span><span data-contrast="none"> Learn how to </span><a href="https://www.nasa.gov/general/how-to-stream-nasa-tv/"><span data-contrast="none">watch NASA content</span></a><span data-contrast="none"> through a variety of platforms, including social </span><span data-contrast="none">media.</span></p>
+<p><span data-contrast="none">Learn more about station activities by following the </span><a href="https://blogs.nasa.gov/spacestation/"><span data-contrast="none">space station blog</span></a><span data-contrast="none">, </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.twitter.com%2Fspace_station&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=IV%2Fk%2BtrgJqB%2FY3vfFBms%2FzYyFo7NjSY7ZtrCnj8oCvc%3D&amp;reserved=0"><span data-contrast="none">@space_station</span></a><span data-contrast="none"> and </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.twitter.com%2FISS_Research&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=%2BTImkF1bp%2FnuNx0nf1Yt2v7brAheJ%2FKuZqdLGOJdEME%3D&amp;reserved=0"><span data-contrast="none">@ISS_Research</span></a><span data-contrast="none"> on X as well as the </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.facebook.com%2Fiss&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=kd6yViXDt22Nh0QquqXdd7F6%2FzC6ygUOPn2hrClv6FQ%3D&amp;reserved=0"><span data-contrast="none">ISS Facebook</span></a><span data-contrast="none"> and </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.instagram.com%2Fiss&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=tORQzcWS9eXQrG0Y0nXeXlTWgq6nxoPDODMNaHH29aI%3D&amp;reserved=0"><span data-contrast="none">ISS Instagram</span></a><span data-contrast="none"> accounts.</span></p>
+",
+          "dc:creator": "Stephanie Plucinsky",
+          "description": "At 9:29 p.m. EST, over 6,000 pounds of scientific investigations and cargo launched to the International Space Station on the SpaceX Dragon spacecraft for the company’s 31st commercial resupply services mission for NASA. The spacecraft lifted off on a SpaceX Falcon 9 rocket from Launch Complex 39A at NASA&#8217;s Kennedy Space Center in Florida. About &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/2024/11/04/nasas-spacex-crs-31-dragon-launches-at-929-p-m-est/",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/04/nasas-spacex-crs-31-dragon-launches-at-929-p-m-est/",
+          "pubDate": "Tue, 05 Nov 2024 02:39:22 +0000",
+          "title": "NASA’s SpaceX CRS-31: Dragon Launches at 9:29 p.m. EST",
+        },
+        {
+          "category": [
+            "International Space Station",
+            "Kennedy Space Center",
+            "Launch Complex 39A",
+            "NASA's SpaceX 31st Resupply Mission",
+          ],
+          "content:encoded": "<figure id="attachment_25573" aria-describedby="caption-attachment-25573" style="width: 840px" class="wp-caption alignleft"><img loading="lazy" decoding="async" class="size-full wp-image-25573" src="https://blogs.nasa.gov/commercialresupply/wp-content/uploads/sites/381/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg" alt="" width="840" height="560" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg 1280w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg?resize=300,200 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg?resize=768,512 768w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg?resize=1024,682 1024w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg?resize=1200,800 1200w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /><figcaption id="caption-attachment-25573" class="wp-caption-text">A SpaceX Falcon 9 rocket, with the company’s Dragon spacecraft atop, stands in a vertical position at Launch Complex 39A at NASA’s Kennedy Space Center in Florida on Monday, Nov. 4, 2024, in preparation for the 31st commercial resupply services launch to the International Space Station. Photo credit: NASA+</figcaption></figure>
+<p><span data-contrast="none">NASA’s coverage is underway on </span><a href="https://plus.nasa.gov/scheduled-video/nasas-spacex-31st-cargo-resupply-services-launch/"><span data-contrast="none">NASA+</span></a><span data-contrast="none"> and the agency’s </span><a href="https://plus.nasa.gov/"><span data-contrast="none">website</span></a><span data-contrast="none"> for the launch of SpaceX’s 31st commercial resupply services mission to the International Space Station. </span><span data-contrast="none">Learn how to </span><a href="https://www.nasa.gov/general/how-to-stream-nasa-tv/"><span data-contrast="none">watch NASA content</span></a><span data-contrast="none"> through a variety of platforms, including social </span><span data-contrast="none">media.</span><span data-ccp-props="{&quot;134233279&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-contrast="none">The SpaceX Dragon spacecraft is scheduled for liftoff at 9:29 p.m. EST on the company’s Falcon 9 rocket from Launch Complex 39A at NASA’s Kennedy Space Center in Florida.</span><span data-ccp-props="{&quot;134233279&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}"> </span></p>
+<p><span data-contrast="none">Filled with more than 6,000 pounds of scientific investigations, food, supplies, and equipment, Dragon will arrive at the orbiting outpost at 10:15 a.m. Tuesday, Nov. 5, and dock autonomously to the forward port of the space station’s Harmony module.</span></p>
+<p><span data-contrast="none">NASA will provide live coverage of the spacecraft’s arrival beginning at 8:45 a.m. Nov. 5 on </span><a href="https://plus.nasa.gov/scheduled-video/nasas-spacex-31st-cargo-resupply-services-rendezvous-and-docking/"><span data-contrast="none">NASA+</span></a><span data-contrast="none"> and the agency’s </span><a href="https://plus.nasa.gov/"><span data-contrast="none">website</span></a><span data-contrast="none">.</span></p>
+<p><span data-contrast="none">Learn more about station activities by following the </span><a href="https://blogs.nasa.gov/spacestation/"><span data-contrast="none">space station blog</span></a><span data-contrast="none">, </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.twitter.com%2Fspace_station&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=IV%2Fk%2BtrgJqB%2FY3vfFBms%2FzYyFo7NjSY7ZtrCnj8oCvc%3D&amp;reserved=0"><span data-contrast="none">@space_station</span></a><span data-contrast="none"> and </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.twitter.com%2FISS_Research&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=%2BTImkF1bp%2FnuNx0nf1Yt2v7brAheJ%2FKuZqdLGOJdEME%3D&amp;reserved=0"><span data-contrast="none">@ISS_Research</span></a><span data-contrast="none"> on X as well as the </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.facebook.com%2Fiss&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=kd6yViXDt22Nh0QquqXdd7F6%2FzC6ygUOPn2hrClv6FQ%3D&amp;reserved=0"><span data-contrast="none">ISS Facebook</span></a><span data-contrast="none"> and </span><a href="https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.instagram.com%2Fiss&amp;data=05%7C01%7Ckiana.a.raines%40nasa.gov%7C4f8d5ffaaefc458e396c08da9bdab7e6%7C7005d45845be48ae8140d43da96dd17b%7C0%7C0%7C637993660939626940%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=tORQzcWS9eXQrG0Y0nXeXlTWgq6nxoPDODMNaHH29aI%3D&amp;reserved=0"><span data-contrast="none">ISS Instagram</span></a><span data-contrast="none"> accounts.</span></p>
+",
+          "dc:creator": "Stephanie Plucinsky",
+          "description": "NASA’s coverage is underway on NASA+ and the agency’s website for the launch of SpaceX’s 31st commercial resupply services mission to the International Space Station. Learn how to watch NASA content through a variety of platforms, including social media.  The SpaceX Dragon spacecraft is scheduled for liftoff at 9:29 p.m. EST on the company’s Falcon &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/2024/11/04/nasas-spacex-crs-31-launch-coverage-underway/",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/04/nasas-spacex-crs-31-launch-coverage-underway/",
+          "pubDate": "Tue, 05 Nov 2024 02:10:26 +0000",
+          "title": "NASA’s SpaceX CRS-31: Launch Coverage Underway",
+        },
+        {
+          "category": [
+            "Expedition 72",
+            "Canadian Space Agency",
+            "dragon",
+            "European Space Agency",
+            "International Space Station",
+            "Japan Aerospace Exploration Agency",
+            "JAXA",
+            "NASA",
+            "Roscosmos",
+            "science",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_23100" aria-describedby="caption-attachment-23100" style="width: 840px" class="wp-caption alignnone"><a href="https://flic.kr/p/2pfPtbc"><img loading="lazy" decoding="async" class="size-full wp-image-23100" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/12/blog_iss070e022098.jpg" alt="Thrusters on the SpaceX Dragon cargo spacecraft fire adjusting the vehicle's approach toward the station for a docking to the Harmony module's forward port." width="840" height="472" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/12/blog_iss070e022098.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/12/blog_iss070e022098.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/12/blog_iss070e022098.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-23100" class="wp-caption-text">Thrusters on the SpaceX Dragon cargo spacecraft fire adjusting the vehicle&#8217;s approach toward the station for a docking to the Harmony module&#8217;s forward port in November of 2023.</figcaption></figure>
+<p>Four of the seven <a href="https://www.nasa.gov/mission/expedition-72/">Expedition 72</a> crew members aboard the <a href="https://www.nasa.gov/international-space-station/">International Space Station</a> had a light duty day on Monday awaiting a space delivery due to arrive Tuesday morning. However, there was still time aboard the orbital outpost for a heart health study, DNA research, spacesuit work, and more.</p>
+<p>The SpaceX Falcon 9 rocket with the Dragon cargo spacecraft atop is at the Kennedy Space Center in Florida counting down to a <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-spacex-31st-station-resupply-launch-arrival/">lift off at 9:29 p.m. EST today</a>. Dragon is packed with over <a href="https://www.nasa.gov/missions/station/commercial-resupply/spacex-crs/nasa-spacex-31st-commercial-resupply-mission-overview/">6,000 pounds of science, supplies, and hardware</a> to replenish the lab residents. NASA Flight Engineers <a href="https://www.nasa.gov/people/nick-hague/">Nick Hague</a> and <a href="https://www.nasa.gov/humans-in-space/astronauts/barry-e-wilmore/">Butch Wilmore</a> will be on duty monitoring Dragon’s automated rendezvous and docking scheduled for 10:15 a.m. on Tuesday. Afterward, station Commander <a href="https://www.nasa.gov/humans-in-space/astronauts/sunita-williams/">Suni Williams</a> and Flight Engineer <a href="https://www.nasa.gov/humans-in-space/astronauts/donald-r-pettit/">Don Pettit</a>, both NASA astronauts, will join the duo and begin unloading critical research samples and hardware to begin exploring the <a href="https://science.nasa.gov/mission/codex/">solar wind</a>, <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=9228">radiation tolerance in plants</a>, and more aboard the orbital outpost.</p>
+<p>Watch Dragon’s launch and docking live on the NASA+ streaming service via <a href="https://plus.nasa.gov/">the web</a> or the <a href="https://www.nasa.gov/apps/">NASA app</a>. Coverage also will air live on NASA Television, <a href="mailto:a%20href=%22https://www.youtube.com/@NASA">YouTube</a>, and on the agency’s <a href="https://www.nasa.gov/nasatv/">website</a>. Learn how to <a href="https://www.nasa.gov/general/how-to-stream-nasa-tv/">stream NASA TV</a> through a variety of platforms including social media.</p>
+<p>The NASA quartet mostly had an off-duty day on Monday following Sunday morning’s short ride aboard the SpaceX Dragon crew spacecraft to different space station docking port. Hague commanded Williams, Wilmore, and Roscosmos cosmonaut Aleksandr Gorbunov inside Dragon as it undocked from the <a href="https://www.nasa.gov/international-space-station/harmony-module/">Harmony module</a>’s forward port at 6:35 a.m. then redocked to Harmony’s adjacent space-facing port at <a href="https://blogs.nasa.gov/spacestation/2024/11/03/spacex-dragon-redocks-to-station-before-next-cargo-mission/">7:25 a.m</a>. opening it up for Tuesday’s Dragon cargo delivery. Pettit remained inside the space station monitoring the crew’s automated relocation maneuver aboard the Dragon crew spacecraft.</p>
+<p>However, Hague spent about an hour on Monday gathering hardware that will measure his heart and breathing activity during an upcoming exercise session for the <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=8597">Cardiobreath</a> human research study. Wilmore had a quick task setting up a <a href="https://www.nasa.gov/mission/station/research-explorer/investigation/?#id=9126">student-designed DNA experiment</a> that will explore the genetic risks, including cancer, of living and working in space. Williams was on spacesuit duty during the second part of her day inspecting the spacewalking gear for leaks. Pettit spent a few moments logging his daily meals in a space health app for the <a href="space%20health">EveryWear</a> technology demonstration.</p>
+<p>Gorbunov had a full schedule aboard the station on Monday operating a variety of Earth observation gear imaging the nighttime atmosphere and landmarks on the ground in different wavelengths. Flight Engineer Alexey Ovchinin inventoried personal cosmonaut items then worked on ventilation systems in the <a href="https://blogs.nasa.gov/spacestation/2021/07/29/new-module-successfully-docks-to-space-station/">Nauka science module</a>. Flight Engineer Ivan Vagner charged video camera batteries then stowed trash and other discarded items inside the <a href="https://blogs.nasa.gov/spacestation/2024/06/01/cargo-craft-docks-to-station-completes-space-delivery/">Progress 88</a> resupply ship before its departure later this month.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "Four of the seven Expedition 72 crew members aboard the International Space Station had a light duty day on Monday awaiting a space delivery due to arrive Tuesday morning. However, there was still time aboard the orbital outpost for a heart health study, DNA research, spacesuit work, and more. The SpaceX Falcon 9 rocket with &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25567",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/04/astronauts-relax-with-light-science-before-dragon-cargo-mission-arrives/",
+          "pubDate": "Mon, 04 Nov 2024 18:21:00 +0000",
+          "title": "Astronauts Relax with Light Science Before Dragon Cargo Mission Arrives",
+        },
+        {
+          "category": [
+            "Expedition 72",
+            "dragon",
+            "International Space Station",
+            "NASA",
+            "Roscosmos",
+            "SpaceX",
+          ],
+          "content:encoded": "<figure id="attachment_25565" aria-describedby="caption-attachment-25565" style="width: 840px" class="wp-caption alignnone"><a href="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg"><img loading="lazy" decoding="async" class="size-full wp-image-25565" src="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg" alt="The SpaceX Dragon spacecraft with four Expedition 72 crew members aboard is pictured docked to the Harmony module's space-facing port less than an hour after undocking from Harmony's forward port. Credit: NASA TV" width="840" height="472" srcset="https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg 900w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg?resize=300,169 300w, https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg?resize=768,432 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></a><figcaption id="caption-attachment-25565" class="wp-caption-text">The SpaceX Dragon spacecraft with four Expedition 72 crew members aboard is pictured docked to the Harmony module&#8217;s space-facing port less than an hour after undocking from Harmony&#8217;s forward port. Credit: NASA TV</figcaption></figure>
+<p>The SpaceX Dragon spacecraft, with Expedition 72 crew members NASA astronauts Nick Hague, Suni Williams, and Butch Wilmore, as well as Roscosmos cosmonaut Aleksandr Gorbunov, autonomously redocked with the space-facing port of the station’s Harmony module at 7:25 a.m. EST.</p>
+<p>The port relocation frees up Harmony’s forward-facing port for the <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-spacex-31st-station-resupply-launch-arrival/">31st SpaceX commercial resupply services mission</a> to the International Space Station, which is scheduled to launch no earlier than 9:29 p.m., Monday, Nov. 4. This was the fifth port relocation of a Dragon spacecraft with crew aboard following previous moves during the <a href="https://www.nasa.gov/news-release/nasa-tv-to-air-first-us-commercial-crew-port-relocation-on-space-station/">Crew-1</a>, <a href="https://blogs.nasa.gov/spacestation/2021/07/20/nasa-tv-to-air-crew-dragons-port-relocation/">Crew-2</a>, <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-dragon-port-relocation-on-space-station/">Crew-6</a>, and <a href="https://www.nasa.gov/news-release/nasa-sets-coverage-for-dragon-spacecraft-relocation-on-space-station/">Crew-8</a> missions.</p>
+<hr />
+<p>Learn more about station activities by following the <a href="https://blogs.nasa.gov/spacestation/">space station blog</a>, <a href="https://twitter.com/space_station">@space_station</a> and <a href="https://twitter.com/ISS_Research">@ISS_Research</a> on X, as well as the <a href="https://www.facebook.com/ISS">ISS Facebook</a> and <a href="https://www.instagram.com/iss">ISS Instagram</a> accounts.</p>
+<p>Get the latest from NASA delivered every week. Subscribe here: <a href="http://www.nasa.gov/subscribe">www.nasa.gov/subscribe</a></p>
+",
+          "dc:creator": "Mark Garcia",
+          "description": "The SpaceX Dragon spacecraft, with Expedition 72 crew members NASA astronauts Nick Hague, Suni Williams, and Butch Wilmore, as well as Roscosmos cosmonaut Aleksandr Gorbunov, autonomously redocked with the space-facing port of the station’s Harmony module at 7:25 a.m. EST. The port relocation frees up Harmony’s forward-facing port for the 31st SpaceX commercial resupply services &#8230; ",
+          "guid": "https://blogs.nasa.gov/spacestation/?p=25542",
+          "link": "https://blogs.nasa.gov/spacestation/2024/11/03/spacex-dragon-redocks-to-station-before-next-cargo-mission/",
+          "pubDate": "Sun, 03 Nov 2024 12:35:28 +0000",
+          "title": "SpaceX Dragon Redocks to Station Before Next Cargo Mission",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.5}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/Dragon-reboost.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Dragon Spacecraft Boosts Station for First Time"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Dragon Spacecraft Boosts Station for First Time
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 8, 2024
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/54085155927_18e0440936_o.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Science Activation and Training Top Friday’s Orbital Schedule"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Science Activation and Training Top Friday’s Orbital Schedule
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 8, 2024
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss072e146315.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="New Science Experiments Being Activated Aboard Station"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              New Science Experiments Being Activated Aboard Station
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 7, 2024
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_approach_110624.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Crew Unpacks New Station Science Delivered Aboard Dragon"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Crew Unpacks New Station Science Delivered Aboard Dragon
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 6, 2024
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_iss_dragon_110524.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="SpaceX Dragon Cargo Spacecraft Docks to Harmony Module"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              SpaceX Dragon Cargo Spacecraft Docks to Harmony Module
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 5, 2024
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/04/blog_iss070e129463.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Dragon Approaching Station on 31st Cargo Mission"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Dragon Approaching Station on 31st Cargo Mission
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 5, 2024
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/commercialresupply/wp-content/uploads/sites/381/2024/11/CRS-31-Launch.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="NASA’s SpaceX CRS-31: Dragon Launches at 9:29 p.m. EST"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              NASA’s SpaceX CRS-31: Dragon Launches at 9:29 p.m. EST
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 5, 2024
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/commercialresupply/wp-content/uploads/sites/381/2024/11/KSC-20241103-PH-SPX01_0001medium.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="NASA’s SpaceX CRS-31: Launch Coverage Underway"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              NASA’s SpaceX CRS-31: Launch Coverage Underway
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 5, 2024
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2023/12/blog_iss070e022098.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="Astronauts Relax with Light Science Before Dragon Cargo Mission Arrives"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              Astronauts Relax with Light Science Before Dragon Cargo Mission Arrives
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 4, 2024
+            </Text>
+          </View>
+          <View
+            accessibilityHint="pressable feed item"
+            accessibilityLabel="pressable feed item"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "flex-start",
+                "height": "auto",
+                "justifyContent": "flex-start",
+                "paddingTop": 23,
+                "position": "relative",
+                "width": "47%",
+              }
+            }
+          >
+            <View
+              accessibilityHint="tags"
+              accessibilityLabel="tags"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                {
+                  "flexDirection": "row",
+                  "left": 26,
+                  "position": "absolute",
+                  "top": 52,
+                  "zIndex": 2,
+                }
+              }
+            />
+            <RCTImageView
+              accessibilityHint="image"
+              accessibilityLabel="image"
+              accessibilityRole="image"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessible={true}
+              internal_analyticTag={null}
+              resizeMode="cover"
+              source={
+                [
+                  {
+                    "uri": "https://blogs.nasa.gov/spacestation/wp-content/uploads/sites/240/2024/11/blog_dragon_relocation_11024.jpg",
+                  },
+                ]
+              }
+              style={
+                {
+                  "aspectRatio": 0.7,
+                  "borderRadius": 17,
+                  "height": undefined,
+                  "marginBottom": 17,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            />
+            <Text
+              accessibilityHint="SpaceX Dragon Redocks to Station Before Next Cargo Mission"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "lineHeight": 30,
+                    "paddingBottom": 7,
+                  },
+                ]
+              }
+            >
+              SpaceX Dragon Redocks to Station Before Next Cargo Mission
+            </Text>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#ADADAE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 20,
+                    "lineHeight": 25,
+                  },
+                ]
+              }
+            >
+              Nov 3, 2024
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      />
+    </View>
+  </RCTScrollView>
+</div>
+`;

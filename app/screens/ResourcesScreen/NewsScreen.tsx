@@ -194,6 +194,7 @@ export const NewsScreen = function NewsScreen() {
                       <Accessory
                         style={style}
                         icon={"xCircle"}
+                        accessibilityHint="clear"
                         onPress={() => setSearchQuery("")}
                       />
                     )
@@ -208,6 +209,7 @@ export const NewsScreen = function NewsScreen() {
           icon={isSearch ? "x" : "search"}
           size={24}
           containerStyle={[$searchButton, isSearch && $xButton]}
+          accessibilityHint={isSearch ? "cancel" : "search"}
           onPress={() => setIsSearch(!isSearch)}
         />
       )}

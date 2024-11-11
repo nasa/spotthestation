@@ -118,6 +118,24 @@ jest.mock("react-native-view-shot", () => ({
   captureScreen: jest.fn(),
 }))
 jest.mock("react-native-modal-datetime-picker", () => "")
+
+const mockUseEffect = React.useEffect
+const mockUseRef = React.useRef
+// eslint-disable-next-line react/display-name
+jest.mock("react-native-modal", () => ({ children, isVisible, onModalHide }) => {
+  const wasVisible = mockUseRef(false)
+  mockUseEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    if (!isVisible && wasVisible.current) onModalHide()
+    wasVisible.current = isVisible
+  }, [isVisible])
+  return (
+    <>
+      {isVisible && children}
+    </>
+  )
+})
+
 jest.mock("../app/services/api", () => ({
   api: {
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: 'US/Central' }))
@@ -173,7 +191,7 @@ jest.mock('../app/services/api', () => ({
     getISSData: jest.fn().mockResolvedValue({ ok: true, data: { points: [], shadowIntervals: [] }}),
     getAstronauts: jest.fn().mockResolvedValue({ ok: true, data: [] }),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: "US/Central" })),
-    getFeed: () => new Promise((resolve) => resolve({ ok: true, places: `
+    getFeed: jest.fn().mockResolvedValue({ ok: true, places: `
       <?xml version="1.0" encoding="UTF-8"?>
       <rss version="2.0"
        xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -187,7 +205,7 @@ jest.mock('../app/services/api', () => ({
         <item></item>
       </channel>
      </rss>
-    ` }))
+    ` })
   }
 }))
 jest.mock('react-native-geolocation-service', () => ({
