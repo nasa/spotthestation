@@ -16,7 +16,7 @@ Currently includes:
 
 Before you can run this project, you will need to have the following software installed on your machine:
 
-- [Node.js](https://nodejs.org/) (v16.x or higher)
+- [Node.js](https://nodejs.org/) (v20.x or higher)
 - [yarn](https://classic.yarnpkg.com/) (v1.x)
 - [React Native CLI](https://reactnative.dev/docs/environment-setup?guide=native)
 
@@ -148,7 +148,7 @@ This is where your app's models will live. Each model has a directory which will
 This is where your `react-navigation` navigators will live.
 
 **screens**
-This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy. Each screen will have a directory containing the `.tsx` file, along with any assets or other helper files.
+This is where your screen components will live. A screen is a React component which will take up the entire screen and be part of the navigation hierarchy.
 
 **services**
 Any services that interface with the outside world will live here (think REST APIs, Push Notifications, etc.).
