@@ -557,7 +557,6 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
     <RCTScrollView
-      accessibilityHint="type for search location"
       accessibilityLabel="search location"
       accessibilityRole="scrollbar"
       accessible={true}

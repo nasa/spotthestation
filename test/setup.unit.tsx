@@ -66,6 +66,15 @@ jest.mock("@rnmapbox/maps", () => ({
 }))
 
 jest.mock("react-native-orientation-locker", () => ({
+  OrientationType: {
+    "PORTRAIT": "PORTRAIT",
+    "PORTRAIT-UPSIDEDOWN": "PORTRAIT-UPSIDEDOWN",
+    "LANDSCAPE-LEFT": "LANDSCAPE-LEFT",
+    "LANDSCAPE-RIGHT": "LANDSCAPE-RIGHT",
+    "FACE-UP": "FACE-UP",
+    "FACE-DOWN": "FACE-DOWN",
+    "UNKNOWN": "UNKNOWN",
+  },
   PORTRAIT: 'p',
   UNLOCK: 'u',
   getInitialOrientation: jest.fn(),
@@ -126,7 +135,7 @@ jest.mock("react-native-modal", () => ({ children, isVisible, onModalHide }) => 
   const wasVisible = mockUseRef(false)
   mockUseEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    if (!isVisible && wasVisible.current) onModalHide()
+    if (!isVisible && wasVisible.current && onModalHide) onModalHide()
     wasVisible.current = isVisible
   }, [isVisible])
   return (
@@ -169,7 +178,7 @@ jest.mock("react-native-sensors/src/rnsensors", () => ({
 
 jest.mock('../app/services/api', () => ({
   api: {
-    getPlaces: () => new Promise((resolve) => resolve({ kind: 'ok', places: [] })),
+    getPlaces: jest.fn().mockResolvedValue({ kind: 'ok', places: [] }),
     reverseGeocode: jest.fn(),
     getLocationAddress: jest.fn(),
     sendMail: jest.fn(() => new Promise((resolve) => resolve("send"))),

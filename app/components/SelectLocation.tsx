@@ -313,7 +313,6 @@ export function SelectLocation({
         <ScrollView
           accessible
           accessibilityLabel="search location"
-          accessibilityHint="type for search location"
           accessibilityRole="scrollbar"
           keyboardShouldPersistTaps="always"
           style={$scrollContainer}

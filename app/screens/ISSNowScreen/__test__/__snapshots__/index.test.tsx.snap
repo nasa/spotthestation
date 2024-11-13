@@ -124,6 +124,8 @@ exports[`ISSNowScreen renders correctly 1`] = `
       }
     >
       <Text
+        accessibilityHint="address"
+        accessible={true}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -184,7 +186,7 @@ exports[`ISSNowScreen renders correctly 1`] = `
           ]
         }
       >
-        12 Dec 2012 10:10:10
+        06 Nov 2024 11:43:00
       </Text>
     </View>
     <View
@@ -810,4 +812,5735 @@ exports[`ISSNowScreen renders correctly 1`] = `
     </View>
   </View>
 </div>
+`;
+
+exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 0,
+          "paddingHorizontal": 26,
+          "top": 35,
+        },
+        {
+          "left": 0,
+          "paddingHorizontal": 26,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 0,
+        },
+        {
+          "marginBottom": 0,
+          "marginHorizontal": 0,
+          "marginTop": 0,
+        },
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          {
+            "bottom": 49,
+            "flexDirection": "row",
+            "height": "auto",
+          },
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          {
+            "bottom": 49,
+            "flexDirection": "row",
+            "height": "auto",
+          },
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 0,
+          "paddingHorizontal": 26,
+          "top": 35,
+        },
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 0,
+        },
+        false,
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 26,
+          "paddingHorizontal": 0,
+          "top": 35,
+        },
+        {
+          "left": 26,
+          "paddingHorizontal": 78,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 115,
+        },
+        {
+          "marginBottom": 17,
+          "marginHorizontal": 52,
+          "marginTop": 17,
+        },
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          {
+            "bottom": 26,
+            "flexDirection": "row",
+            "height": "auto",
+          },
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          {
+            "bottom": 26,
+            "flexDirection": "row",
+            "height": "auto",
+          },
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen renders globe view correctly 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 26,
+          "paddingHorizontal": 0,
+          "top": 35,
+        },
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 115,
+        },
+        false,
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen renders map view correctly 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 26,
+          "paddingHorizontal": 0,
+          "top": 35,
+        },
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 115,
+        },
+        false,
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen renders satellite view correctly 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        {
+          "left": 26,
+          "paddingHorizontal": 0,
+          "top": 35,
+        },
+        false,
+      ]
+    }
+  >
+    <View
+      accessibilityHint="enable/disable full screen mode"
+      accessibilityLabel="x or maximize button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+          "paddingHorizontal": 15,
+        }
+      }
+    >
+      <Text
+        accessibilityHint="address"
+        accessible={true}
+        ellipsizeMode="tail"
+        numberOfLines={1}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 29,
+              "lineHeight": 35,
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        06 Nov 2024 11:43:00
+      </Text>
+    </View>
+    <View
+      accessibilityHint="change location"
+      accessibilityLabel="pin button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 115,
+        },
+        false,
+      ]
+    }
+  >
+    <div />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "height": 193,
+            "justifyContent": "space-between",
+            "overflow": "hidden",
+            "padding": 3,
+          },
+          {
+            "bottom": 26,
+            "left": 26,
+            "padding": 0,
+            "position": "absolute",
+          },
+          false,
+        ]
+      }
+    >
+      <div>
+        <View
+          accessibilityHint="enable map view"
+          accessibilityLabel="2D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                2D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable globe view"
+          accessibilityLabel="3D button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      {
+                        "fontFamily": "HelveticaNeue-Medium",
+                        "fontSize": 17,
+                        "lineHeight": 20,
+                      },
+                    ],
+                  ]
+                }
+              >
+                3D
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable satellite view"
+          accessibilityLabel="satellite button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 58,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 58,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      [
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "color": "#0B3D91",
+                        },
+                      ],
+                    ],
+                  ]
+                }
+              >
+                Sat
+              </Text>
+            </div>
+          </View>
+        </View>
+      </div>
+    </View>
+    <View
+      style={
+        [
+          {
+            "height": 129,
+            "justifyContent": "space-between",
+          },
+          {
+            "bottom": 26,
+            "position": "absolute",
+            "right": 26,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="zoom view"
+        accessibilityLabel="+ button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "opacity": 0.25,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              +
+            </Text>
+          </div>
+        </View>
+      </View>
+      <View
+        accessibilityHint="zoom out view"
+        accessibilityLabel="- button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <Text
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontSize": 40,
+                      "lineHeight": 40,
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              -
+            </Text>
+          </div>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSNowScreen with ISS data renders correctly 1`] = `
+[
+  <div>
+    <View
+      style={
+        [
+          {
+            "alignItems": "flex-start",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "position": "absolute",
+            "width": "100%",
+            "zIndex": 10,
+          },
+          {
+            "left": 26,
+            "paddingHorizontal": 0,
+            "top": 35,
+          },
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="enable/disable full screen mode"
+        accessibilityLabel="x or maximize button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <View>
+              <RCTImageView
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  [
+                    {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "height": 29,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#FFFFFF",
+                    "width": 29,
+                  }
+                }
+                tintColor="#FFFFFF"
+              />
+            </View>
+          </div>
+        </View>
+      </View>
+      <View
+        style={
+          {
+            "flex": 1,
+            "paddingHorizontal": 15,
+          }
+        }
+      >
+        <Text
+          accessibilityHint="address"
+          accessible={true}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 29,
+                "lineHeight": 35,
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        />
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          06 Nov 2024 11:43:00
+        </Text>
+      </View>
+      <View
+        accessibilityHint="change location"
+        accessibilityLabel="pin button"
+        accessibilityRole="imagebutton"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          collapsable={false}
+          jestAnimatedStyle={
+            {
+              "value": {},
+            }
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            }
+          }
+        >
+          <div>
+            <View>
+              <RCTImageView
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                internal_analyticTag={null}
+                resizeMode="contain"
+                source={
+                  [
+                    {
+                      "height": undefined,
+                      "uri": undefined,
+                      "width": undefined,
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "height": 29,
+                    "overflow": "hidden",
+                    "resizeMode": "contain",
+                    "tintColor": "#FFFFFF",
+                    "width": 29,
+                  }
+                }
+                tintColor="#FFFFFF"
+              />
+            </View>
+          </div>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(0, 0, 0, 1)",
+            "borderRadius": 17,
+            "flex": 1,
+            "overflow": "hidden",
+            "position": "relative",
+          },
+          {
+            "marginTop": 115,
+          },
+          false,
+        ]
+      }
+    >
+      <div />
+      <View
+        style={
+          [
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "borderRadius": 143,
+              "height": 193,
+              "justifyContent": "space-between",
+              "overflow": "hidden",
+              "padding": 3,
+            },
+            {
+              "bottom": 26,
+              "left": 26,
+              "padding": 0,
+              "position": "absolute",
+            },
+            false,
+          ]
+        }
+      >
+        <div>
+          <View
+            accessibilityHint="enable map view"
+            accessibilityLabel="2D button"
+            accessibilityRole="imagebutton"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              collapsable={false}
+              jestAnimatedStyle={
+                {
+                  "value": {},
+                }
+              }
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 58,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 58,
+                }
+              }
+            >
+              <div>
+                <Text
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontSize": 40,
+                          "lineHeight": 40,
+                        },
+                        [
+                          {
+                            "fontFamily": "HelveticaNeue-Medium",
+                            "fontSize": 17,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "color": "#0B3D91",
+                          },
+                        ],
+                      ],
+                    ]
+                  }
+                >
+                  2D
+                </Text>
+              </div>
+            </View>
+          </View>
+          <View
+            accessibilityHint="enable globe view"
+            accessibilityLabel="3D button"
+            accessibilityRole="imagebutton"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              collapsable={false}
+              jestAnimatedStyle={
+                {
+                  "value": {},
+                }
+              }
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 58,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 58,
+                }
+              }
+            >
+              <div>
+                <Text
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontSize": 40,
+                          "lineHeight": 40,
+                        },
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                      ],
+                    ]
+                  }
+                >
+                  3D
+                </Text>
+              </div>
+            </View>
+          </View>
+          <View
+            accessibilityHint="enable satellite view"
+            accessibilityLabel="satellite button"
+            accessibilityRole="imagebutton"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              collapsable={false}
+              jestAnimatedStyle={
+                {
+                  "value": {},
+                }
+              }
+              style={
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 58,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 58,
+                }
+              }
+            >
+              <div>
+                <Text
+                  style={
+                    [
+                      {},
+                      [
+                        {
+                          "fontSize": 23,
+                          "lineHeight": 35,
+                        },
+                        {
+                          "fontFamily": "Helvetica Neue",
+                        },
+                        {
+                          "color": "#191015",
+                        },
+                      ],
+                      undefined,
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontSize": 40,
+                          "lineHeight": 40,
+                        },
+                        {
+                          "fontFamily": "HelveticaNeue-Medium",
+                          "fontSize": 17,
+                          "lineHeight": 20,
+                        },
+                      ],
+                    ]
+                  }
+                >
+                  Sat
+                </Text>
+              </div>
+            </View>
+          </View>
+        </div>
+      </View>
+      <View
+        style={
+          [
+            {
+              "height": 129,
+              "justifyContent": "space-between",
+            },
+            {
+              "bottom": 26,
+              "position": "absolute",
+              "right": 26,
+            },
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="zoom view"
+          accessibilityLabel="+ button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                +
+              </Text>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="zoom out view"
+          accessibilityLabel="- button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": true,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "opacity": 0.25,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              }
+            }
+          >
+            <div>
+              <Text
+                style={
+                  [
+                    {},
+                    [
+                      {
+                        "fontSize": 23,
+                        "lineHeight": 35,
+                      },
+                      {
+                        "fontFamily": "Helvetica Neue",
+                      },
+                      {
+                        "color": "#191015",
+                      },
+                    ],
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontSize": 40,
+                        "lineHeight": 40,
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                -
+              </Text>
+            </div>
+          </View>
+        </View>
+      </View>
+    </View>
+  </div>,
+  ",",
+]
 `;

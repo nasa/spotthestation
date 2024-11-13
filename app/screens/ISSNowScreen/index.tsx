@@ -232,7 +232,14 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
           blurIntensity={50}
         />
         <View style={$textContainer}>
-          <Text text={address} style={$location} ellipsizeMode="tail" numberOfLines={1} />
+          <Text
+            accessible
+            accessibilityHint="address"
+            text={address}
+            style={$location}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+          />
           <CurrentTime />
         </View>
         <IconLinkButton
