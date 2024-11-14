@@ -71,7 +71,7 @@ export const Compass = ({ issPosition, isFullScreen, location, onLayout }: Compa
   if (isFullScreen) container.marginTop = Number(container.marginTop) + topInset
 
   return (
-    <View style={container} onLayout={onLayout}>
+    <View accessible accessibilityHint="compass" style={container} onLayout={onLayout}>
       <Image source={compassLine} style={$line as ImageStyle} />
       {issVisible && (
         <Icon

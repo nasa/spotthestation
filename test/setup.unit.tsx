@@ -14,6 +14,9 @@ const mockForwardRef = React.forwardRef;
 
 i18n.locale = "en"
 
+const mockUseEffect = React.useEffect
+const mockUseRef = React.useRef
+
 // libraries to mock
 jest.doMock("react-native", () => {
   // Extend ReactNative
@@ -36,7 +39,7 @@ jest.doMock("react-native", () => {
 })
 
 jest.mock("d3-shape", () => ({
-  arc: jest.fn()
+  arc: jest.fn(() => jest.fn()),
 }))
 
 jest.mock("@sentry/react-native", () => ({
@@ -85,7 +88,14 @@ jest.mock("react-native-orientation-locker", () => ({
 jest.mock('../app/components/Screen', () => ({ Screen: ({children}) => <div>{children}</div> }))
 jest.mock('../app/components/Globe', () => ({ Globe: () => <div /> }))
 jest.mock('../app/components/SatelliteView', () => ({ SatelliteView: () => <div /> }))
-jest.mock('../app/components/ARView', () => ({ ARView: () => <div /> }))
+jest.mock('../app/components/ISSSceneAR', () => ({ ISSSceneAR: ({ onScreenPositionChange }) => {
+  mockUseEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    if (onScreenPositionChange) onScreenPositionChange([0, 0])
+  }, [])
+
+  return <div />
+} }))
 jest.mock('../app/components/MapBox', () => ({ MapBox: () => <div /> }))
 jest.mock('../app/config', () => ({
   GOOGLE_API_TOKEN: 'google'
@@ -100,7 +110,7 @@ jest.mock('react-native-snackbar', () => ({
 }))
 jest.mock("expo-localization", () => ({
   getLocales: () => ([{ regionCode: 'TC' }]),
-  getCalendars: () => ([{ timeZone: 'Test/test' }]),
+  getCalendars: () => ([{ timeZone: 'UTC' }]),
   locale: 'en-US'
 }))
 jest.mock("react-native-device-info", () => ({
@@ -109,13 +119,15 @@ jest.mock("react-native-device-info", () => ({
 }))
 jest.mock("react-native-permissions", () => ({
   PERMISSIONS: {
-    IOS: { CAMERA: ""}
+    IOS: { CAMERA: "" },
+    ANDROID: { CAMERA: "" }
   },
   RESULTS: {
     GRANTED: "granted"
   },
   request: jest.fn(),
-  check: jest.fn().mockResolvedValue("granted")
+  check: jest.fn().mockResolvedValue("granted"),
+  openSettings: jest.fn()
 }))
 jest.mock("@react-native-camera-roll/camera-roll", () => ({
   Share: jest.fn(),
@@ -125,17 +137,18 @@ jest.mock("react-native-share", () => ({
 }))
 jest.mock("react-native-view-shot", () => ({
   captureScreen: jest.fn(),
+  __esModule: true,
+  default: ({ children }) => <>{children}</>
 }))
 jest.mock("react-native-modal-datetime-picker", () => "")
-
-const mockUseEffect = React.useEffect
-const mockUseRef = React.useRef
 // eslint-disable-next-line react/display-name
-jest.mock("react-native-modal", () => ({ children, isVisible, onModalHide }) => {
+jest.mock("react-native-modal", () => ({ children, isVisible, onModalHide, onModalShow }) => {
   const wasVisible = mockUseRef(false)
   mockUseEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     if (!isVisible && wasVisible.current && onModalHide) onModalHide()
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    if (isVisible && !wasVisible.current && onModalShow) onModalShow()
     wasVisible.current = isVisible
   }, [isVisible])
   return (
@@ -166,8 +179,8 @@ jest.mock("react-native-safe-area-context", () => ({
 jest.mock("@react-native-firebase/analytics", () => ({}))
 
 jest.mock("react-native-sensors", () => ({
-  orientation: { subscribe: jest.fn() },
-  magnetometer: { subscribe: jest.fn() },
+  orientation: { subscribe: jest.fn(() => ({ unsubscribe: jest.fn() })) },
+  magnetometer: { subscribe: jest.fn(() => ({ unsubscribe: jest.fn() })) },
   SensorTypes: { orientation: null, magnetometer: null },
   setUpdateIntervalForType: jest.fn()
 }))

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`ISSViewScreen renders correctly 1`] = `
 <div>
   <View
     style={
@@ -523,6 +523,1672 @@ exports[`renders correctly 1`] = `
           }
         >
           units.time undefined - 00:00:00:00
+        </Text>
+      </View>
+      <View
+        style={
+          [
+            {
+              "justifyContent": "flex-end",
+            },
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="open share modal"
+          accessibilityLabel="share"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="take a photo"
+          accessibilityLabel="capture"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="record a video"
+          accessibilityLabel="video"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "left": 26,
+          "position": "absolute",
+          "zIndex": 9,
+        },
+        {
+          "top": 35,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityHint="disable full screen mode"
+      accessibilityLabel="x button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 63,
+            "justifyContent": "center",
+            "marginTop": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 63,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 0,
+        },
+      ]
+    }
+  >
+    <ActivityIndicator
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "alignItems": "flex-end",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingHorizontal": 35,
+            "position": "absolute",
+            "width": "100%",
+          },
+          {
+            "bottom": NaN,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "justifyContent": "flex-end",
+            },
+            {
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityHint="open information modal"
+          accessibilityLabel="information"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginRight": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable/disable path line"
+          accessibilityLabel="path line"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0B3D91",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginRight": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable full screen"
+          accessibilityLabel="compass"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0B3D91",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginRight": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityHint="countdown to next visibility"
+        accessibilityLabel="countdown"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          issView.timeHeader undefined
+        </Text>
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 56,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          units.time undefined - 00:00:00:00
+        </Text>
+      </View>
+      <View
+        style={
+          [
+            {
+              "justifyContent": "flex-end",
+            },
+            {
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityHint="open share modal"
+          accessibilityLabel="share"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginLeft": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="take a photo"
+          accessibilityLabel="capture"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginLeft": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="record a video"
+          accessibilityLabel="video"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginLeft": 35,
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`ISSViewScreen with ISS data renders correctly 1`] = `
+<div>
+  <View
+    style={
+      [
+        {
+          "left": 26,
+          "position": "absolute",
+          "zIndex": 9,
+        },
+        {
+          "top": 35,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityHint="disable full screen mode"
+      accessibilityLabel="x button"
+      accessibilityRole="imagebutton"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <View
+        collapsable={false}
+        jestAnimatedStyle={
+          {
+            "value": {},
+          }
+        }
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 63,
+            "justifyContent": "center",
+            "marginTop": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 63,
+          }
+        }
+      >
+        <div>
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 29,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#FFFFFF",
+                  "width": 29,
+                }
+              }
+              tintColor="#FFFFFF"
+            />
+          </View>
+        </div>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgba(0, 0, 0, 1)",
+          "borderRadius": 17,
+          "flex": 1,
+          "overflow": "hidden",
+          "position": "relative",
+        },
+        {
+          "marginTop": 0,
+        },
+      ]
+    }
+  >
+    <ActivityIndicator
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "alignItems": "flex-end",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingHorizontal": 35,
+            "position": "absolute",
+            "width": "100%",
+          },
+          {
+            "bottom": NaN,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "justifyContent": "flex-end",
+            },
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="open information modal"
+          accessibilityLabel="information"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable/disable path line"
+          accessibilityLabel="path line"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0B3D91",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+        <View
+          accessibilityHint="enable full screen"
+          accessibilityLabel="compass"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            onLayout={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0B3D91",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 78,
+                "justifyContent": "center",
+                "marginTop": 35,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 78,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityHint="countdown to next visibility"
+        accessibilityLabel="countdown"
+        accessibilityRole="text"
+        accessible={true}
+        style={
+          {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#DEDDDE",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 19,
+                "lineHeight": 23,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          issView.timeHeader undefined
+        </Text>
+        <Text
+          style={
+            [
+              {},
+              [
+                {
+                  "fontSize": 23,
+                  "lineHeight": 35,
+                },
+                {
+                  "fontFamily": "Helvetica Neue",
+                },
+                {
+                  "color": "#191015",
+                },
+              ],
+              undefined,
+              undefined,
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Helvetica Neue",
+                "fontSize": 35,
+                "lineHeight": 56,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          units.time undefined - 00:01:10:36
         </Text>
       </View>
       <View

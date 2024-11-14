@@ -12,7 +12,7 @@ import { Quaternion, Vector3 } from "three"
 import geomagnetism from "geomagnetism"
 
 type WatcherFunc = (rotation: Quaternion) => void
-type AccuracyWatcherFunc = (accuracy: SensorAccuracy) => void
+export type AccuracyWatcherFunc = (accuracy: SensorAccuracy) => void
 type Watcher = {
   func: WatcherFunc
   declination: number

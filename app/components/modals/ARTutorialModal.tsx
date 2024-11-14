@@ -237,6 +237,8 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
 
   return (
     <View
+      accessible
+      accessibilityHint="tutorial modal"
       onLayout={(e) => {
         e.persist()
         setTimeout(() => {

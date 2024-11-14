@@ -314,7 +314,7 @@ exports[`HomeScreen renders correctly 1`] = `
             ]
           }
         >
-          homeScreen.header.timezone undefined: Test/test
+          homeScreen.header.timezone undefined: UTC
         </Text>
       </View>
       <View

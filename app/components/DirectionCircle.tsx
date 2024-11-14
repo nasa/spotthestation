@@ -71,7 +71,7 @@ export const DirectionCircle = ({
   }, [alignDistance, arrowAngle, isSpotted])
 
   return (
-    <View style={$container}>
+    <View accessible accessibilityHint="direction circle" style={$container}>
       {distance > 150 && (
         <Svg
           width={22}
