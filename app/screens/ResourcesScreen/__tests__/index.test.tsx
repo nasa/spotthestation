@@ -66,10 +66,7 @@ it("navigates to correct pages on link press", async () => {
   expect(mockNavigate).toBeCalledWith("ResourcesScreens", { screen: "Details" })
 
   await userEvent.press(await component.findByText("resources.faq.title", { exact: false }))
-  expect(mockNavigate).toBeCalledWith("ResourcesScreens", {
-    screen: "Web",
-    url: "https://www.nasa.gov/international-space-station-frequently-asked-questions",
-  })
+  expect(mockNavigate).toBeCalledWith("ResourcesScreens", { screen: "Faq" })
 
   await userEvent.press(await component.findByText("resources.astronauts.title", { exact: false }))
   expect(mockNavigate).toBeCalledWith("ResourcesScreens", { screen: "Astronauts" })

@@ -441,6 +441,101 @@ const pl = {
     },
     faq: {
       title: "Najczęściej Zadawane Pytania",
+      questions: {
+        question1: "1. Dlaczego Stacja Kosmiczna jest tam na górze?",
+        answer1:
+          "Międzynarodowa Stacja Kosmiczna jest jedynym laboratorium mikrograwitacyjnym na Ziemi. Ta platforma wielkości boiska piłkarskiego gości mnóstwo eksperymentów naukowych i technologicznych, które są ciągle prowadzone przez członków załogi lub są zautomatyzowane. Badania na pokładzie orbitującego laboratorium przynoszą korzyści dla życia na Ziemi, jak również dla przyszłej eksploracji kosmosu. Stacja Kosmiczna służy jako poligon doświadczalny dla technologii i pozwala nam badać wpływ długoterminowych lotów kosmicznych na ludzi, wspierając misję NASA, aby przesunąć obecność człowieka dalej w kosmos. Aby dowiedzieć się więcej o badaniach prowadzonych na Stacji Kosmicznej i możliwościach prowadzenia tam swoich badań, proszę <a href='https://www.nasa.gov/international-space-station/'>kliknij tutaj</a>.",
+        question2: "2. Jak szybko porusza się Stacja Kosmiczna?",
+        answer2:
+          "Stacja okrąża Ziemię co 90 minut. Porusza się z prędkością około 17 500 mil (28 000 km) na godzinę, co daje załodze 16 wschodów i zachodów słońca każdego dnia. W ciągu ponad 15 lat, odkąd ludzie mieszkają na pokładzie, Stacja okrążyła Ziemię dziesiątki tysięcy razy. Więcej faktów o Stacji można zobaczyć na <a href='https://www.nasa.gov/international-space-station/space-station-facts-and-figures/'>tej stronie internetowej</a>.",
+        question3: "3. Jak często mogę spodziewać się zobaczyć Stację Kosmiczną?",
+        answer3:
+          "Stacja Kosmiczna jest widoczna, ponieważ odbija światło Słońca - z tego samego powodu widzimy Księżyc. Jednak w przeciwieństwie do Księżyca, Stacja Kosmiczna nie jest wystarczająco jasna, aby zobaczyć ją w ciągu dnia. Można ją zobaczyć tylko wtedy, gdy jest świt lub zmierzch w twojej lokalizacji. W związku z tym, może to być od jednej możliwości obserwacji w miesiącu do kilku w tygodniu, ponieważ musi być zarówno ciemno tam, gdzie jesteś, jak i Stacja Kosmiczna musi akurat przelatywać nad tobą.",
+        question4: "4. Co to jest aplikacja mobilna Spot the Station?",
+        answer4:
+          "Aplikacja mobilna Spot the Station to oficjalna aplikacja NASA, która pomaga użytkownikom śledzić i otrzymywać powiadomienia o obserwacjach Międzynarodowej Stacji Kosmicznej, gdy przelatuje nad ich lokalizacją. Oferuje śledzenie w czasie rzeczywistym, harmonogramy obserwacji i alerty.",
+        question5: "5. Jak pobrać aplikację mobilną Spot the Station?",
+        answer5:
+          "Możesz pobrać aplikację zarówno z Apple App Store <a href='https://apps.apple.com/us/app/spot-the-station/id6449235044'>tutaj</a>, jak i Google Play Store <a href='https://play.google.com/store/apps/details?id=gov.nasa.hq.SpotTheStation&hl=en_US&pli=1'>tutaj</a>.",
+        question6: "6. Jak aplikacja powiadamia mnie o nadchodzących obserwacjach Stacji?",
+        answer6:
+          "Aplikacja wysyła powiadomienia push, aby ostrzec cię o nadchodzących obserwacjach Stacji, w tym datę, godzinę, czas trwania i warunki widoczności specyficzne dla twojej lokalizacji. Upewnij się, że masz włączone uprawnienia do powiadomień dla tej aplikacji w ustawieniach telefonu.",
+        question7: "7. Czy mogę dostosować powiadomienia w aplikacji?",
+        answer7:
+          "Tak, możesz spersonalizować ustawienia alertów w aplikacji, aby otrzymywać powiadomienia na podstawie preferowanej lokalizacji, warunków obserwacji, a nawet konkretnych godzin, które najlepiej ci odpowiadają.",
+        question8: "8. Co powinienem zrobić, jeśli nie otrzymuję powiadomień?",
+        answer8:
+          "Jeśli nie otrzymujesz alertów, upewnij się, że powiadomienia są włączone w ustawieniach urządzenia. Sprawdź również preferencje powiadomień aplikacji, aby potwierdzić, że ustawiłeś alerty dla wybranej lokalizacji i preferowanego czasu.",
+        question9: "9. Czy aplikacja działa międzynarodowo?",
+        answer9:
+          "Tak, aplikacja Spot the Station jest dostępna na całym świecie i dostarcza informacji o obserwacjach dla większości zamieszkanych lokalizacji, co ułatwia oglądanie Stacji z prawie każdego miejsca.",
+        question10: "10. Dlaczego nie ma możliwości obserwacji dla mojej lokalizacji?",
+        answer10:
+          "Musi być ciemno tam, gdzie jesteś, i Stacja Kosmiczna musi być nad tobą, abyś mógł ją zobaczyć. Ponieważ orbita Stacji Kosmicznej prowadzi ją po całym globie, może przelatywać nad tobą w momentach, gdy nie będzie widoczna - albo w środku dnia, albo w środku nocy. Spot The Station wyśle powiadomienia tylko wtedy, gdy będziesz miał możliwość zobaczenia Stacji Kosmicznej, a nie za każdym razem, gdy będzie nad tobą.",
+        question11: "11. Czy potrzebuję teleskopu, aby zobaczyć Stację Kosmiczną?",
+        answer11:
+          "Nie, możesz zobaczyć Stację Kosmiczną gołym okiem, nie jest potrzebny żaden sprzęt.",
+        question12: "12. Czy Stacja pojawia się i znika z powodu światła Księżyca?",
+        answer12:
+          "Stacja Kosmiczna jest widoczna, ponieważ odbija światło Słońca. To ten sam powód, dla którego Księżyc wydaje się świecić. Nawet gdy Księżyc jeszcze nie wzeszedł, nadal będziesz mógł zobaczyć Stację Kosmiczną.",
+        question13: "13. Jaka strefa czasowa jest używana do powiadomień alertów?",
+        answer13:
+          "Wszystkie informacje Spot The Station są podane w lokalnej strefie czasowej dla wybranej lokalizacji. Spot The Station automatycznie dostosowuje się do czasu letniego.",
+        question14: "14. Jakie informacje dostarcza aplikacja dla każdej obserwacji?",
+        answer14:
+          "Dla każdej obserwacji aplikacja wyświetla czas, czas trwania widoczności, maksymalną wysokość i kierunki, w których Stacja się pojawi i zniknie, pomagając ci dokładnie ją zlokalizować na niebie.",
+        question15:
+          "15. Jak mogę dostrzec Stację podczas każdej obserwacji? Co oznaczają te wszystkie informacje o obserwacjach?",
+        answer15:
+          "Aplikacja dostarcza listę nadchodzących obserwacji, jeśli dotkniesz listy następnych obserwacji na stronie głównej.<br/><strong>Data i czas</strong> to moment, kiedy możliwość obserwacji się rozpocznie w twojej lokalnej strefie czasowej. Wszystkie obserwacje będą miały miejsce w ciągu kilku godzin przed lub po wschodzie lub zachodzie słońca. To optymalny okres obserwacji, ponieważ słońce odbija się od Stacji Kosmicznej i kontrastuje z ciemniejszym niebem.<br/><strong>Powyżej horyzontu</strong> to maksymalny czas, przez jaki Stacja Kosmiczna jest widoczna, zanim ponownie zniknie poniżej horyzontu.<br/><strong>Maksymalna wysokość</strong> jest mierzona w stopniach (znana również jako elewacja). Reprezentuje wysokość Stacji Kosmicznej od horyzontu na nocnym niebie. Horyzont jest na zero stopni, a bezpośrednio nad głową to dziewięćdziesiąt stopni. Jeśli trzymasz pięść na wyciągnięcie ręki i umieścisz pięść na horyzoncie, górna część będzie około 10 stopni.<br/><strong>Pojawia się</strong> to miejsce na niebie, gdzie Stacja będzie widoczna po raz pierwszy. Ta wartość, podobnie jak maksymalna wysokość, jest również mierzona w stopniach od horyzontu. Litery reprezentują kierunki kompasu - N to północ, WNW to zachód-północny-zachód i tak dalej.<br/><strong>Znika</strong> reprezentuje miejsce na nocnym niebie, gdzie Międzynarodowa Stacja Kosmiczna opuści twoje pole widzenia.<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+        question16:
+          "16. Harmonogram przelotów wskazuje, że Stacja Kosmiczna pojawia się i znika z tego samego kierunku, jak to możliwe? Np. - Czas: pon 15 lip 11:57 PM, Widoczność: 2 min, Maksymalna wysokość: 51°, Pojawia się: 51° nad ENE, Znika: 11° nad ENE",
+        answer16:
+          "Oprogramowanie Spot the Station zaokrągla kierunki do najbliższych kierunków kardynalnych i interkardynalnych. Może to spowodować, że wydaje się, że Stacja pojawia się i znika w tym samym kierunku, mimo że przemieszcza się po niebie. Zwykle dzieje się to podczas przelotów z krótkim oknem widoczności, ponieważ Stacja szybko wchodzi (lub wychodzi) z ciemnego cienia Ziemi, gdzie z naszej lokalizacji na ziemi nie możemy obserwować jej pełnego przejścia przez niebo.",
+        question17: "17. Czy mogę zobaczyć mapę na żywo z lokalizacją Stacji?",
+        answer17:
+          "Tak, aplikacja zawiera mapę w czasie rzeczywistym pokazującą aktualną pozycję Stacji, gdy orbituje wokół Ziemi, dając ci wizualne odniesienie do śledzenia jej postępu.",
+        question18: "18. Co to jest funkcja AR w aplikacji Spot the Station?",
+        answer18:
+          "Funkcja Augmented Reality (AR) w aplikacji Spot the Station pozwala użytkownikom zobaczyć wirtualną nakładkę ścieżki Międzynarodowej Stacji Kosmicznej na niebie. Ta funkcja pomaga użytkownikom dokładniej zlokalizować Stację, wyrównując ich urządzenie z rzeczywistą pozycją Stacji w czasie rzeczywistym.",
+        question19: "19. Jak uzyskać dostęp do funkcji AR w aplikacji?",
+        answer19:
+          "Aby uzyskać dostęp do funkcji AR, otwórz aplikację i przejdź do opcji AR View w dolnym menu. Postępuj zgodnie z instrukcjami na ekranie, aby wyrównać kamerę urządzenia z niebem, gdzie aplikacja wyświetli wirtualną nakładkę wskazującą pozycję i trajektorię Stacji.",
+        question20:
+          "20. Czy potrzebuję specjalnego urządzenia lub oprogramowania, aby korzystać z funkcji AR?",
+        answer20:
+          "Funkcja AR wymaga urządzenia, które może określić swoją orientację w przestrzeni 3D. Wymaga to specjalnego wsparcia sprzętowego, takiego jak żyroskop lub koprocesor ruchu. Starsze lub budżetowe urządzenia mogą nie obsługiwać tej funkcjonalności.",
+        question21: "21. Jak działa funkcja AR?",
+        answer21:
+          "Korzystając z kamery i czujników urządzenia, funkcja AR nakłada lokalizację Stacji na niebie na ekranie, dostosowując się w czasie rzeczywistym, gdy poruszasz urządzeniem. Aplikacja prowadzi cię, aby skierować kamerę w odpowiednim kierunku i pokazuje, gdzie Stacja się pojawi i zniknie.",
+        question22: "22. Czy mogę korzystać z funkcji AR zarówno w dzień, jak i w nocy?",
+        answer22:
+          "Tak, możesz korzystać z funkcji AR zarówno w dzień, jak i w nocy; jednak najlepsze doświadczenie jest zazwyczaj podczas zmierzchu lub w nocy, gdy Stacja jest widoczna gołym okiem. Nakładka AR będzie działać niezależnie od warunków oświetleniowych, ale rzeczywiste obserwacje zależą od widoczności.",
+        question23: "23. Czy nakładka AR jest dokładna dla wszystkich lokalizacji?",
+        answer23:
+          "Tak, funkcja AR jest zaprojektowana, aby dostarczać dokładne informacje o pozycji na podstawie twojej lokalizacji GPS. Jednak dokładność może się nieznacznie różnić w zależności od kalibracji kompasu i czujników urządzenia. Jeśli zauważysz rozbieżności, skalibruj kompas urządzenia przez Ustawienia.",
+        question24: "24. Czy funkcja AR może pomóc w dokładnych czasach obserwacji?",
+        answer24:
+          "Funkcja AR wizualnie prowadzi cię do zlokalizowania Stacji w dokładnym momencie, gdy pojawia się na niebie. W połączeniu z alertami obserwacyjnymi aplikacji, zwiększa twoją zdolność do zobaczenia Stacji, dając ci na żywo wizualny kierunek i wskaźnik wysokości, aby dokładnie ją śledzić.",
+        question25: "25. Czy są jakieś wskazówki dotyczące optymalizacji mojego doświadczenia AR?",
+        answer25:
+          "Aby uzyskać najlepsze doświadczenie AR, używaj funkcji na otwartej przestrzeni z wyraźnym widokiem na niebo. Unikaj przeszkód, takich jak wysokie budynki lub drzewa, ponieważ mogą one blokować widoczność. Skalibruj kompas urządzenia i upewnij się, że usługi lokalizacyjne i uprawnienia do kamery są włączone dla płynnego działania.",
+        question26: "26. Czy funkcja AR jest dostępna zarówno na Androidzie, jak i iOS?",
+        answer26:
+          "Tak, funkcja AR jest dostępna zarówno w wersjach iOS, jak i Android aplikacji, o ile twoje urządzenie spełnia wymagania sprzętowe.",
+        question27: "27. Czy aplikacja działa offline?",
+        answer27:
+          "Niektóre podstawowe funkcje, takie jak dostęp do wcześniej pobranych harmonogramów obserwacji lub otrzymywanie zaplanowanych powiadomień, mogą działać offline. Jednak funkcje wymagające danych w czasie rzeczywistym, takie jak śledzenie, wymagają połączenia z internetem.",
+        question28: "28. Czy są jakieś specjalne wymagania dotyczące korzystania z aplikacji?",
+        answer28:
+          "Aplikacja wymaga aktywnego połączenia z internetem do śledzenia w czasie rzeczywistym i alertów. Dodatkowo, aby uzyskać informacje specyficzne dla lokalizacji, upewnij się, że usługi lokalizacyjne twojego urządzenia są włączone dla aplikacji.",
+        question29: "29. Czy aplikacja jest darmowa?",
+        answer29:
+          "Tak, aplikacja Spot the Station jest darmowa do pobrania i używania, bez zakupów w aplikacji ani subskrypcji.",
+        question30: "30. Z kim mogę się skontaktować w sprawie wsparcia aplikacji?",
+        answer30:
+          "W celu uzyskania wsparcia dotyczącego aplikacji Spot the Station, odwiedź stronę wsparcia NASA lub skontaktuj się za pośrednictwem opcji opinii w aplikacji.",
+      },
     },
     astronauts: {
       title: "Kto jest teraz na Stacji?",

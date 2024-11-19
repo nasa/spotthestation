@@ -440,6 +440,129 @@ const sv = {
     },
     faq: {
       title: "Vanliga Frågor",
+      questions: {
+        question1: "1. Varför är rymdstationen där uppe?",
+        answer1:
+          "Den internationella rymdstationen är jordens enda mikrogravitationslaboratorium. Denna plattform i storlek med en fotbollsplan är värd för en mängd vetenskapliga och tekniska experiment som kontinuerligt utförs av besättningsmedlemmar eller är automatiserade. Forskning ombord på det kretsande laboratoriet ger fördelar för livet tillbaka på jorden, såväl som för framtida rymdutforskning. Rymdstationen fungerar som en testbädd för teknologier och låter oss studera effekterna av långvariga rymdfärder på människor, vilket stöder NASAs uppdrag att driva människans närvaro längre ut i rymden. För att lära dig mer om forskningen som sker på rymdstationen och möjligheter att utföra din vetenskap där, vänligen <a href='https://www.nasa.gov/international-space-station/'>klicka här</a>.",
+
+        question2: "2. Hur snabbt färdas rymdstationen?",
+        answer2:
+          "Stationen kretsar runt jorden var 90:e minut. Den färdas med cirka 17 500 miles (28 000 km) per timme, vilket ger besättningen 16 soluppgångar och solnedgångar varje dag. Under de mer än 15 år som människor har bott ombord har stationen kretsat runt jorden tiotusentals gånger. Du kan se fler fakta om stationen på <a href='https://www.nasa.gov/international-space-station/space-station-facts-and-figures/'>denna webbsida</a>.",
+
+        question3: "3. Hur ofta kan jag förvänta mig att se rymdstationen?",
+        answer3:
+          "Rymdstationen är synlig eftersom den reflekterar solens ljus – av samma anledning kan vi se månen. Men till skillnad från månen är rymdstationen inte tillräckligt ljus för att ses under dagen. Den kan bara ses när det är gryning eller skymning på din plats. Som sådan kan det variera från en observationsmöjlighet i månaden till flera i veckan, eftersom det måste vara både mörkt där du är och rymdstationen måste råka passera över.",
+
+        question4: "4. Vad är Spot the Station-mobilappen?",
+        answer4:
+          "Spot the Station-mobilappen är en officiell NASA-app som hjälper användare att spåra och ta emot meddelanden för observationer av den internationella rymdstationen när den passerar över deras plats. Den ger spårning i realtid, observationsscheman och varningar.",
+
+        question5: "5. Hur laddar jag ner Spot the Station-mobilappen?",
+        answer5:
+          "Du kan ladda ner appen från både Apple App Store <a href='https://apps.apple.com/us/app/spot-the-station/id6449235044'>här</a> och Google Play Store <a href='https://play.google.com/store/apps/details?id=gov.nasa.hq.SpotTheStation&hl=en_US&pli=1'>här</a>.",
+
+        question6: "6. Hur meddelar appen mig om kommande observationer av stationen?",
+        answer6:
+          "Appen skickar push-meddelanden för att varna dig om kommande observationer av stationen, inklusive datum, tid, varaktighet och siktförhållanden specifika för din plats. Se till att du har aktiverat meddelandetillstånd för denna app i telefonens inställningar.",
+
+        question7: "7. Kan jag anpassa meddelanden i appen?",
+        answer7:
+          "Ja, du kan anpassa varningsinställningar i appen för att få meddelanden baserat på din föredragna plats, observationsförhållanden och till och med specifika tider som fungerar bäst för dig.",
+
+        question8: "8. Vad ska jag göra om jag inte får meddelanden?",
+        answer8:
+          "Om du inte får varningar, se till att meddelanden är aktiverade i enhetsinställningarna. Kontrollera också appens meddelandeinställningar för att bekräfta att du har ställt in varningar för din valda plats och föredragna tid.",
+
+        question9: "9. Fungerar appen internationellt?",
+        answer9:
+          "Ja, Spot the Station-appen är tillgänglig över hela världen och ger observationsinformation för de flesta bebodda platser, vilket gör det enkelt att se stationen från nästan var som helst.",
+
+        question10: "10. Varför finns det inga observationsmöjligheter för min plats?",
+        answer10:
+          "Det måste vara mörkt där du är och rymdstationen måste vara ovanför för att du ska kunna se den. Eftersom rymdstationens omloppsbana tar den runt hela jorden kan den passera över dig vid tidpunkter då den inte kommer att vara synlig - antingen mitt på dagen eller mitt på natten. Spot The Station kommer bara att skicka ut meddelanden när du har en möjlighet att se rymdstationen, inte varje gång den är ovanför.",
+
+        question11: "11. Behöver jag ett teleskop för att se rymdstationen?",
+        answer11: "Nej, du kan se rymdstationen med blotta ögat, ingen utrustning krävs.",
+
+        question12: "12. Visas och försvinner stationen på grund av månens ljus?",
+        answer12:
+          "Rymdstationen är synlig eftersom den reflekterar ljus från solen. Detta är samma anledning till att månen verkar lysa. Även när månen inte har stigit, kommer du fortfarande att kunna se rymdstationen.",
+
+        question13: "13. Vilken tidszon används för meddelanden?",
+        answer13:
+          "All information i Spot The Station är listad i den lokala tidszonen för den valda platsen. Spot The Station justerar automatiskt för sommartid.",
+
+        question14: "14. Vilken information ger appen för varje observation?",
+        answer14:
+          "För varje observation visar appen tid, siktvaraktighet, maximal höjd och riktningar där stationen kommer att dyka upp och försvinna, vilket hjälper dig att lokalisera den exakt på himlen.",
+
+        question15:
+          "15. Hur kan jag se stationen under varje observation? Vad betyder all denna observationsinformation?",
+        answer15:
+          "Appen ger en lista över kommande observationer om du trycker på Nästa observationslista på startsidan.<br/><strong>Datum och tid</strong> är när observationsmöjligheten börjar i din lokala tidszon. Alla observationer kommer att ske inom några timmar före eller efter soluppgång eller solnedgång. Detta är den optimala visningsperioden eftersom solen reflekteras från rymdstationen och kontrasterar mot den mörkare himlen.<br/><strong>Ovanför horisonten</strong> är den maximala tidsperioden rymdstationen är synlig innan den korsar tillbaka under horisonten.<br/><strong>Maximal höjd</strong> mäts i grader (även känd som elevation). Det representerar höjden på rymdstationen från horisonten på natthimlen. Horisonten är vid noll grader, och direkt ovanför är nittio grader. Om du håller din knytnäve på armlängds avstånd och placerar din knytnäve vilande på horisonten, kommer toppen att vara cirka 10 grader.<br/><strong>Visas</strong> är platsen på himlen där stationen först kommer att synas. Detta värde, liksom maximal höjd, mäts också i grader från horisonten. Bokstäverna representerar kompassriktningar – N är norr, VNV är väst-nordväst och så vidare.<br/><strong>Försvinner</strong> representerar var på natthimlen den internationella rymdstationen kommer att lämna ditt synfält.<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+
+        question16:
+          "16. Flygplansschemat anger att rymdstationen både dyker upp och försvinner från samma riktning, hur är det möjligt? T.ex. - Tid: Mån 15 juli 11:57 PM, Synlig: 2 min, Maximal höjd: 51°, Visas: 51° ovanför ENE, Försvinner: 11° ovanför ENE",
+        answer16:
+          "Spot the Station-programvaran avrundar riktningar till närmaste kardinal- och interkardinalriktningar. Detta kan resultera i att det verkar som om stationen kommer att dyka upp och försvinna i samma riktning även om den rör sig över himlen. Detta händer vanligtvis vid överflygningar med ett kort fönster av synlighet eftersom stationen snabbt rör sig in i (eller ut ur) jordens mörka skugga där, från vår plats på marken, vi inte kan observera dess fulla passage över himlen.",
+
+        question17: "17. Kan jag se en livekarta över stationens plats?",
+        answer17:
+          "Ja, appen inkluderar en karta i realtid som visar stationens aktuella position när den kretsar runt jorden, vilket ger dig en visuell referens för att spåra dess framsteg.",
+
+        question18: "18. Vad är AR-funktionen i Spot the Station-appen?",
+        answer18:
+          "Augmented Reality (AR)-funktionen i Spot the Station-appen låter användare se en virtuell överlagring av den internationella rymdstationens bana på himlen. Denna funktion hjälper användare att lokalisera stationen mer exakt genom att justera deras enhet med stationens position i realtid.",
+
+        question19: "19. Hur får jag tillgång till AR-funktionen i appen?",
+        answer19:
+          "För att få tillgång till AR-funktionen, öppna appen och navigera till AR View-alternativet i den nedre menyn. Följ instruktionerna på skärmen för att justera din enhets kamera med himlen, där appen kommer att visa en virtuell överlagring som indikerar stationens position och bana.",
+
+        question20:
+          "20. Behöver jag en specifik enhet eller programvara för att använda AR-funktionen?",
+        answer20:
+          "AR-funktionen kräver en enhet som kan bestämma sin orientering i 3D-utrymme. Den kräver specifikt hårdvarustöd, såsom en gyroskop eller rörelse-samprocessor. Äldre eller budgetenheter kanske inte stöder denna funktionalitet.",
+
+        question21: "21. Hur fungerar AR-funktionen?",
+        answer21:
+          "Genom att använda din enhets kamera och sensorer överlagrar AR-funktionen stationens plats på himlen på din skärm, justerar i realtid när du flyttar din enhet. Appen guidar dig att rikta din kamera i rätt riktning och visar var stationen kommer att dyka upp och försvinna.",
+
+        question22: "22. Kan jag använda AR-funktionen både dag och natt?",
+        answer22:
+          "Ja, du kan använda AR-funktionen både dag och natt; dock är den bästa upplevelsen vanligtvis under skymning eller natt när stationen är synlig för blotta ögat. AR-överlagringen fungerar oavsett ljusförhållanden, men faktiska observationer beror på synlighet.",
+
+        question23: "23. Är AR-överlagringen exakt för alla platser?",
+        answer23:
+          "Ja, AR-funktionen är utformad för att ge exakt positionsinformation baserat på din GPS-plats. Dock kan noggrannheten variera något beroende på din enhets kompass och sensorkalibrering. Om du märker avvikelser, kalibrera din enhets kompass genom Inställningar.",
+
+        question24: "24. Kan AR-funktionen hjälpa till med exakta observationstider?",
+        answer24:
+          "AR-funktionen guidar dig visuellt för att lokalisera stationen vid den exakta tidpunkt den dyker upp på himlen. I kombination med appens observationsvarningar förbättrar den din förmåga att se stationen genom att ge dig en live, visuell riktning och höjdindikator för att spåra den exakt.",
+
+        question25: "25. Finns det tips för att optimera min AR-upplevelse?",
+        answer25:
+          "För den bästa AR-upplevelsen, använd funktionen i ett öppet område med fri sikt mot himlen. Undvik hinder som höga byggnader eller träd, eftersom dessa kan blockera synligheten. Kalibrera din enhets kompass och se till att plats- och kameratillstånd är aktiverade för smidig funktion.",
+
+        question26: "26. Är AR-funktionen tillgänglig på både Android och iOS?",
+        answer26:
+          "Ja, AR-funktionen är tillgänglig på både iOS- och Android-versioner av appen, så länge din enhet uppfyller hårdvarukraven.",
+
+        question27: "27. Fungerar appen offline?",
+        answer27:
+          "Viss grundläggande funktionalitet, som att komma åt tidigare nedladdade observationsscheman eller ta emot schemalagda meddelanden, kan fungera offline. Men funktioner som kräver realtidsdata, såsom spårning, kräver en internetanslutning.",
+
+        question28: "28. Finns det några speciella krav för att använda appen?",
+        answer28:
+          "Appen kräver en aktiv internetanslutning för spårning i realtid och varningar. Dessutom, för plats-specifik information, se till att din enhets platstjänster är aktiverade för appen.",
+
+        question29: "29. Är appen gratis att använda?",
+        answer29:
+          "Ja, Spot the Station-appen är gratis att ladda ner och använda, utan köp i appen eller prenumerationer.",
+
+        question30: "30. Vem kan jag kontakta för appsupport?",
+        answer30:
+          "För support med Spot the Station-appen, besök NASAs supportsida eller kontakta via feedback-alternativet i appen.",
+      },
     },
     astronauts: {
       title: "Vem är på stationen nu?",

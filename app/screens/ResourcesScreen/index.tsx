@@ -29,14 +29,7 @@ export const ResourcesScreen = observer(function ResourcesScreen() {
         <SettingsItem title="resources.news.title" onPress={() => handleNavigate("News")} />
         <SettingsItem title="resources.about.title" onPress={() => handleNavigate("About")} />
         <SettingsItem title="resources.details.title" onPress={() => handleNavigate("Details")} />
-        <SettingsItem
-          title="resources.faq.title"
-          onPress={() =>
-            handleNavigate("Web", {
-              url: "https://www.nasa.gov/international-space-station-frequently-asked-questions",
-            })
-          }
-        />
+        <SettingsItem title="resources.faq.title" onPress={() => handleNavigate("Faq")} />
         <SettingsItem
           title="resources.astronauts.title"
           onPress={() => handleNavigate("Astronauts")}

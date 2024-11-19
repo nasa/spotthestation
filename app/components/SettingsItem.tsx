@@ -12,6 +12,7 @@ export interface SettingsItemProps {
   withUnderline?: boolean
   onPress?: PressableProps["onPress"]
   rightControl?: ReactNode
+  children?: ReactNode
   numberOfLines?: number
 }
 
@@ -21,21 +22,22 @@ export function SettingsItem({
   onPress,
   rightControl,
   withUnderline = true,
+  children,
   numberOfLines,
 }: SettingsItemProps) {
   const { $container, $bodyContainer, $withoutUnderline, $titleContainer, $titleText, $noPadding } =
     useStyles(styles)
 
   return (
-    <Pressable
-      accessible
-      accessibilityLabel="pressable settings item"
-      accessibilityHint="pressable settings item"
-      accessibilityRole="button"
-      style={$container}
-      onPress={onPress}
-    >
-      <View style={[$bodyContainer, !withUnderline && $withoutUnderline]}>
+    <View style={[$container, !withUnderline && $withoutUnderline]}>
+      <Pressable
+        style={$bodyContainer}
+        accessible
+        accessibilityLabel="pressable settings item"
+        accessibilityHint="pressable settings item"
+        accessibilityRole="button"
+        onPress={onPress}
+      >
         {Boolean(icon) && <Icon icon={icon} size={24} color={colors.palette.neutral450} />}
         <View style={[$titleContainer, !icon && $noPadding]}>
           <Text
@@ -50,26 +52,24 @@ export function SettingsItem({
           />
         </View>
         {rightControl || <Icon icon="caretRight" size={24} color={colors.palette.neutral550} />}
-      </View>
-    </Pressable>
+      </Pressable>
+      {children}
+    </View>
   )
 }
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $container: ViewStyle = {
     width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
     paddingTop: scale(16),
+    borderColor: colors.palette.neutral550,
+    borderBottomWidth: scale(1),
   }
 
   const $bodyContainer: ViewStyle = {
-    flex: 1,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    borderColor: colors.palette.neutral550,
-    borderBottomWidth: scale(1),
     paddingBottom: scale(16),
     alignItems: "flex-start",
     marginLeft: scale(10),

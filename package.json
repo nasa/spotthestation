@@ -78,6 +78,7 @@
     "expo-three": "^8.0.0",
     "fast-xml-parser": "^4.4.1",
     "geomagnetism": "^0.1.1",
+    "htmlparser2": "^9.1.0",
     "i18n-js": "3.9.2",
     "mitt": "^3.0.0",
     "mobx": "6.6.0",

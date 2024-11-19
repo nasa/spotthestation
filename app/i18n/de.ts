@@ -445,6 +445,101 @@ const de = {
     },
     faq: {
       title: "Häufig gestellte Fragen",
+      questions: {
+        question1: "1. Warum ist die Raumstation dort oben?",
+        answer1:
+          "Die Internationale Raumstation ist das einzige Mikrogravitationslabor der Erde. Diese fußballfeldgroße Plattform beherbergt eine Vielzahl von Wissenschafts- und Technologieexperimenten, die kontinuierlich von Besatzungsmitgliedern durchgeführt oder automatisiert werden. Die Forschung an Bord des umlaufenden Labors bietet Vorteile für das Leben auf der Erde sowie für die zukünftige Weltraumforschung. Die Raumstation dient als Testumgebung für Technologien und ermöglicht es uns, die Auswirkungen von Langzeitflügen auf den Menschen zu untersuchen, was die Mission der NASA unterstützt, die menschliche Präsenz weiter in den Weltraum zu bringen. Um mehr über die Forschung auf der Raumstation und die Möglichkeiten, dort Ihre Wissenschaft durchzuführen, zu erfahren, klicken Sie bitte <a href='https://www.nasa.gov/international-space-station/'>hier</a>.",
+        question2: "2. Wie schnell reist die Raumstation?",
+        answer2:
+          "Die Station umkreist die Erde alle 90 Minuten. Sie reist mit etwa 17.500 Meilen (28.000 km) pro Stunde, was der Besatzung 16 Sonnenauf- und -untergänge pro Tag beschert. In den mehr als 15 Jahren, in denen Menschen an Bord leben, hat die Station die Erde zehntausende Male umrundet. Weitere Fakten über die Station finden Sie auf <a href='https://www.nasa.gov/international-space-station/space-station-facts-and-figures/'>dieser Webseite</a>.",
+        question3: "3. Wie oft kann ich erwarten, die Raumstation zu sehen?",
+        answer3:
+          "Die Raumstation ist sichtbar, weil sie das Licht der Sonne reflektiert – aus demselben Grund, warum wir den Mond sehen können. Im Gegensatz zum Mond ist die Raumstation jedoch nicht hell genug, um sie tagsüber zu sehen. Sie kann nur gesehen werden, wenn es an Ihrem Standort Dämmerung oder Morgengrauen ist. Daher kann es von einer Sichtungsmöglichkeit pro Monat bis zu mehreren pro Woche reichen, da es sowohl dunkel sein muss, wo Sie sich befinden, als auch die Raumstation zufällig über Ihnen sein muss.",
+        question4: "4. Was ist die Spot the Station Mobile App?",
+        answer4:
+          "Die Spot the Station Mobile App ist eine offizielle NASA-App, die Benutzern hilft, Sichtungen der Internationalen Raumstation zu verfolgen und Benachrichtigungen zu erhalten, wenn sie über ihren Standort fliegt. Sie bietet Echtzeit-Tracking, Sichtungspläne und Warnungen.",
+        question5: "5. Wie lade ich die Spot the Station Mobile App herunter?",
+        answer5:
+          "Sie können die App sowohl im Apple App Store <a href='https://apps.apple.com/us/app/spot-the-station/id6449235044'>hier</a> als auch im Google Play Store <a href='https://play.google.com/store/apps/details?id=gov.nasa.hq.SpotTheStation&hl=en_US&pli=1'>hier</a> herunterladen.",
+        question6: "6. Wie benachrichtigt mich die App über bevorstehende Sichtungen der Station?",
+        answer6:
+          "Die App sendet Push-Benachrichtigungen, um Sie über bevorstehende Sichtungen der Station zu informieren, einschließlich Datum, Uhrzeit, Dauer und Sichtbarkeitsbedingungen, die für Ihren Standort spezifisch sind. Bitte stellen Sie sicher, dass Sie die Benachrichtigungsberechtigungen für diese App in den Einstellungen Ihres Telefons aktiviert haben.",
+        question7: "7. Kann ich Benachrichtigungen in der App anpassen?",
+        answer7:
+          "Ja, Sie können die Benachrichtigungseinstellungen in der App personalisieren, um Benachrichtigungen basierend auf Ihrem bevorzugten Standort, Sichtungsbedingungen und sogar bestimmten Zeiten zu erhalten, die für Sie am besten geeignet sind.",
+        question8: "8. Was soll ich tun, wenn ich keine Benachrichtigungen erhalte?",
+        answer8:
+          "Wenn Sie keine Benachrichtigungen erhalten, stellen Sie sicher, dass Benachrichtigungen in den Einstellungen Ihres Geräts aktiviert sind. Überprüfen Sie auch die Benachrichtigungseinstellungen der App, um zu bestätigen, dass Sie Benachrichtigungen für Ihren gewählten Standort und Ihre bevorzugte Zeit eingerichtet haben.",
+        question9: "9. Funktioniert die App international?",
+        answer9:
+          "Ja, die Spot the Station App ist weltweit verfügbar und bietet Sichtungsinformationen für die meisten bewohnten Orte, sodass es einfach ist, die Station von fast überall aus zu sehen.",
+        question10: "10. Warum gibt es keine Sichtungsmöglichkeiten für meinen Standort?",
+        answer10:
+          "Es muss dunkel sein, wo Sie sich befinden, und die Raumstation muss über Ihnen sein, damit Sie sie sehen können. Da die Umlaufbahn der Raumstation sie um den gesamten Globus führt, kann sie zu Zeiten über Ihnen vorbeiziehen, in denen sie nicht sichtbar ist – entweder mitten am Tag oder mitten in der Nacht. Spot The Station sendet nur Benachrichtigungen, wenn Sie die Möglichkeit haben, die Raumstation zu sehen, nicht jedes Mal, wenn sie über Ihnen ist.",
+        question11: "11. Brauche ich ein Teleskop, um die Raumstation zu sehen?",
+        answer11:
+          "Nein, Sie können die Raumstation mit bloßem Auge sehen, keine Ausrüstung erforderlich.",
+        question12: "12. Erscheint und verschwindet die Station wegen des Lichts des Mondes?",
+        answer12:
+          "Die Raumstation ist sichtbar, weil sie Licht von der Sonne reflektiert. Dies ist derselbe Grund, warum der Mond zu leuchten scheint. Auch wenn der Mond nicht aufgegangen ist, können Sie die Raumstation trotzdem sehen.",
+        question13: "13. Welche Zeitzone wird für Benachrichtigungen verwendet?",
+        answer13:
+          "Alle Informationen von Spot The Station sind in der lokalen Zeitzone für den ausgewählten Standort angegeben. Spot The Station passt sich automatisch an die Sommerzeit an.",
+        question14: "14. Welche Informationen bietet die App für jede Sichtung?",
+        answer14:
+          "Für jede Sichtung zeigt die App die Uhrzeit, die Sichtbarkeitsdauer, die maximale Höhe und die Richtungen an, in denen die Station erscheinen und verschwinden wird, um Ihnen zu helfen, sie genau am Himmel zu lokalisieren.",
+        question15:
+          "15. Wie erkenne ich die Station bei jeder Sichtung? Was bedeuten all diese Sichtungsinformationen?",
+        answer15:
+          "Die App bietet eine Liste der bevorstehenden Sichtungen, wenn Sie auf der Startseite auf die Liste der nächsten Sichtungen tippen.<br/><strong>Datum und Uhrzeit</strong> ist, wann die Sichtungsmöglichkeit in Ihrer lokalen Zeitzone beginnt. Alle Sichtungen finden innerhalb weniger Stunden vor oder nach Sonnenaufgang oder Sonnenuntergang statt. Dies ist die optimale Beobachtungszeit, da die Sonne von der Raumstation reflektiert wird und sich gegen den dunkleren Himmel abhebt.<br/><strong>Über dem Horizont</strong> ist die maximale Zeitspanne, in der die Raumstation sichtbar ist, bevor sie wieder unter den Horizont zurückkehrt.<br/><strong>Maximale Höhe</strong> wird in Grad gemessen (auch als Elevation bekannt). Sie repräsentiert die Höhe der Raumstation vom Horizont im Nachthimmel. Der Horizont liegt bei null Grad, und direkt über Ihnen sind es neunzig Grad. Wenn Sie Ihre Faust auf Armlänge halten und Ihre Faust auf dem Horizont ruhen lassen, wird die Oberseite etwa 10 Grad betragen.<br/><strong>Erscheint</strong> ist der Ort am Himmel, an dem die Station zuerst sichtbar wird. Dieser Wert wird, wie die maximale Höhe, ebenfalls in Grad vom Horizont gemessen. Die Buchstaben stehen für Himmelsrichtungen – N ist Norden, WNW ist West-Nordwest und so weiter.<br/><strong>Verschwindet</strong> repräsentiert, wo im Nachthimmel die Internationale Raumstation Ihr Sichtfeld verlässt.<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+        question16:
+          "16. Der Überflugplan zeigt an, dass die Raumstation sowohl aus derselben Richtung erscheint als auch verschwindet, wie ist das möglich? Z.B. - Zeit: Mo 15. Juli 23:57 Uhr, Sichtbar: 2 Min, Maximale Höhe: 51°, Erscheint: 51° über ENE, Verschwindet: 11° über ENE",
+        answer16:
+          "Die Spot the Station-Software rundet Richtungen auf die nächsten Haupt- und Zwischenhimmelsrichtungen ab. Dies kann dazu führen, dass es so aussieht, als ob die Station in derselben Richtung erscheint und verschwindet, obwohl sie über den Himmel reist. Dies geschieht typischerweise bei Überflügen mit einem kurzen Sichtfenster, da die Station schnell in (oder aus) den dunklen Schatten der Erde eintritt, wo wir von unserem Standort auf dem Boden aus ihren vollständigen Durchgang über den Himmel nicht beobachten können.",
+        question17: "17. Kann ich eine Live-Karte des Standorts der Station anzeigen?",
+        answer17:
+          "Ja, die App enthält eine Echtzeitkarte, die die aktuelle Position der Station zeigt, während sie die Erde umkreist, und Ihnen eine visuelle Referenz bietet, um ihren Fortschritt zu verfolgen.",
+        question18: "18. Was ist die AR-Funktion in der Spot the Station App?",
+        answer18:
+          "Die Augmented Reality (AR)-Funktion in der Spot the Station App ermöglicht es Benutzern, eine virtuelle Überlagerung des Pfades der Internationalen Raumstation am Himmel zu sehen. Diese Funktion hilft Benutzern, die Station genauer zu lokalisieren, indem sie ihr Gerät mit der Echtzeitposition der Station ausrichten.",
+        question19: "19. Wie greife ich auf die AR-Funktion in der App zu?",
+        answer19:
+          "Um auf die AR-Funktion zuzugreifen, öffnen Sie die App und navigieren Sie zur AR-Ansicht im unteren Menü. Folgen Sie den Anweisungen auf dem Bildschirm, um die Kamera Ihres Geräts mit dem Himmel auszurichten, wo die App eine virtuelle Überlagerung anzeigt, die die Position und den Verlauf der Station anzeigt.",
+        question20:
+          "20. Benötige ich ein bestimmtes Gerät oder eine spezielle Software, um die AR-Funktion zu nutzen?",
+        answer20:
+          "Die AR-Funktion erfordert ein Gerät, das seine Ausrichtung im 3D-Raum bestimmen kann. Es erfordert spezielle Hardwareunterstützung, wie z.B. ein Gyroskop oder einen Bewegungskoprozessor. Ältere oder preisgünstige Geräte unterstützen diese Funktion möglicherweise nicht.",
+        question21: "21. Wie funktioniert die AR-Funktion?",
+        answer21:
+          "Mit der Kamera und den Sensoren Ihres Geräts überlagert die AR-Funktion die Position der Station am Himmel auf Ihrem Bildschirm und passt sich in Echtzeit an, während Sie Ihr Gerät bewegen. Die App führt Sie dazu, Ihre Kamera in die richtige Richtung zu richten und zeigt Ihnen, wo die Station erscheinen und verschwinden wird.",
+        question22: "22. Kann ich die AR-Funktion sowohl tagsüber als auch nachts nutzen?",
+        answer22:
+          "Ja, Sie können die AR-Funktion sowohl tagsüber als auch nachts nutzen; jedoch ist die beste Erfahrung typischerweise während der Dämmerung oder nachts, wenn die Station mit bloßem Auge sichtbar ist. Die AR-Überlagerung funktioniert unabhängig von den Lichtverhältnissen, aber tatsächliche Sichtungen hängen von der Sichtbarkeit ab.",
+        question23: "23. Ist die AR-Überlagerung für alle Standorte genau?",
+        answer23:
+          "Ja, die AR-Funktion ist so konzipiert, dass sie genaue Positionsinformationen basierend auf Ihrem GPS-Standort liefert. Die Genauigkeit kann jedoch leicht variieren, abhängig von der Kalibrierung des Kompasses und der Sensoren Ihres Geräts. Wenn Sie Abweichungen bemerken, kalibrieren Sie den Kompass Ihres Geräts über die Einstellungen neu.",
+        question24: "24. Kann die AR-Funktion bei genauen Sichtungszeiten helfen?",
+        answer24:
+          "Die AR-Funktion führt Sie visuell, um die Station zu dem genauen Zeitpunkt zu lokalisieren, an dem sie am Himmel erscheint. In Kombination mit den Sichtungswarnungen der App verbessert sie Ihre Fähigkeit, die Station zu sehen, indem sie Ihnen eine Live-Visualisierung der Richtung und Höhe bietet, um sie genau zu verfolgen.",
+        question25: "25. Gibt es Tipps zur Optimierung meiner AR-Erfahrung?",
+        answer25:
+          "Für die beste AR-Erfahrung verwenden Sie die Funktion in einem offenen Bereich mit freiem Blick auf den Himmel. Vermeiden Sie Hindernisse wie hohe Gebäude oder Bäume, da diese die Sichtbarkeit blockieren können. Kalibrieren Sie den Kompass Ihres Geräts und stellen Sie sicher, dass Standortdienste und Kameraberechtigungen aktiviert sind, um eine reibungslose Funktion zu gewährleisten.",
+        question26: "26. Ist die AR-Funktion sowohl auf Android als auch auf iOS verfügbar?",
+        answer26:
+          "Ja, die AR-Funktion ist sowohl in den iOS- als auch in den Android-Versionen der App verfügbar, sofern Ihr Gerät die Hardwareanforderungen erfüllt.",
+        question27: "27. Funktioniert die App offline?",
+        answer27:
+          "Einige grundlegende Funktionen, wie der Zugriff auf zuvor heruntergeladene Sichtungspläne oder das Empfangen geplanter Benachrichtigungen, können offline funktionieren. Funktionen, die Echtzeitdaten erfordern, wie das Tracking, benötigen jedoch eine Internetverbindung.",
+        question28: "28. Gibt es besondere Anforderungen für die Nutzung der App?",
+        answer28:
+          "Die App erfordert eine aktive Internetverbindung für Echtzeit-Tracking und Benachrichtigungen. Stellen Sie außerdem sicher, dass die Standortdienste Ihres Geräts für die App aktiviert sind, um standortspezifische Informationen zu erhalten.",
+        question29: "29. Ist die App kostenlos nutzbar?",
+        answer29:
+          "Ja, die Spot the Station App ist kostenlos herunterzuladen und zu nutzen, ohne In-App-Käufe oder Abonnements.",
+        question30: "30. Wen kann ich für App-Support kontaktieren?",
+        answer30:
+          "Für Unterstützung mit der Spot the Station App besuchen Sie die Support-Seite der NASA oder wenden Sie sich über die Feedback-Option innerhalb der App an uns.",
+      },
     },
     astronauts: {
       title: "Wer ist jetzt in der Station?",
