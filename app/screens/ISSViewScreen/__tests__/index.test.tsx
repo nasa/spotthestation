@@ -1,4 +1,5 @@
 import React from "react"
+import { PermissionsAndroid, Alert, MeasureInWindowOnSuccessCallback, Platform } from "react-native"
 import { NavigationContainer, useRoute } from "@react-navigation/native"
 import { ISSViewScreen } from "../index"
 import { act, fireEvent, render, userEvent, waitFor } from "@testing-library/react-native"
@@ -9,13 +10,17 @@ import issData200min from "../../../../test/mockISSData200min.json"
 import issDataFull from "../../../../test/mockISSDataFull.json"
 import { check, openSettings, PERMISSIONS, request, RESULTS } from "react-native-permissions"
 import MockDate from "mockdate"
-import { Alert, MeasureInWindowOnSuccessCallback, Platform } from "react-native"
 import { isAvailable } from "react-native-sensors/src/rnsensors"
 import * as storage from "../../../utils/storage"
 import * as orientation from "../../../utils/orientation"
 import { AccuracyWatcherFunc } from "../../../utils/orientation"
 import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { ReactTestInstance } from "react-test-renderer"
+import { captureScreen } from "react-native-view-shot"
+import { CameraRoll } from "@react-native-camera-roll/camera-roll"
+import Snackbar from "react-native-snackbar"
+import RecordScreen, { RecordingResult } from "react-native-record-screen"
+import Share from "react-native-share"
 
 const mockNavigate = jest.fn()
 jest.mock("@react-navigation/native", () => ({
@@ -46,6 +51,15 @@ const fireLayoutEvent = (element: ReactTestInstance) => {
     },
     persist: jest.fn(),
   })
+}
+
+const completeStartupRequirements = async () => {
+  ;(request as jest.Mock).mockResolvedValue(RESULTS.GRANTED)
+  ;(check as jest.Mock).mockResolvedValue(RESULTS.GRANTED)
+  ;(isAvailable as jest.Mock).mockResolvedValue(true)
+  mockHighAccuracy()
+  await storage.save(storage.KEYS.AR_COACH_COMPLETED, true)
+  await storage.save(storage.KEYS.SAFETY_ACKNOWLEDGED, true)
 }
 
 const renderWithStore = (store: ReturnType<typeof RootStoreModel.create>) => {
@@ -154,6 +168,17 @@ describe("ISSViewScreen", () => {
         await component.findByText("00:01:10:36", { exact: false }, { timeout: 4000 }),
       ).toBeVisible()
       expect(component.toJSON()).toMatchSnapshot()
+    })
+
+    it("renders error modal if api responds with error", async () => {
+      ;(api.getISSData as jest.Mock).mockResolvedValue({ ok: false, data: "error" })
+      const component = renderWithStore(rootStore)
+
+      await waitFor(() => {
+        expect(
+          component.queryByText("homeScreen.initLoader.trajectoryError", { exact: false }),
+        ).not.toBeNull()
+      })
     })
 
     it("switches to selected location if specified in screen params", async () => {
@@ -513,13 +538,7 @@ describe("ISSViewScreen", () => {
     })
 
     describe("info modal", () => {
-      beforeEach(async () => {
-        ;(request as jest.Mock).mockResolvedValue(RESULTS.GRANTED)
-        ;(check as jest.Mock).mockResolvedValue(RESULTS.GRANTED)
-        ;(isAvailable as jest.Mock).mockResolvedValue(true)
-        mockHighAccuracy()
-        await storage.save(storage.KEYS.AR_COACH_COMPLETED, true)
-      })
+      beforeEach(completeStartupRequirements)
 
       it("shows info modal when 'info' = true in screen props", async () => {
         ;(useRoute as jest.Mock).mockReturnValue({ params: { info: true } })
@@ -533,6 +552,311 @@ describe("ISSViewScreen", () => {
         return expect(
           component.findByText("issView.details.title", { exact: false }),
         ).rejects.toBeTruthy()
+      })
+
+      it("shows info modal when info button is pressed", async () => {
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("open information modal"))
+        expect(await component.findByText("issView.details.title", { exact: false })).toBeVisible()
+      })
+
+      it("redirects to FAQ when link is pressed", async () => {
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("open information modal"))
+        expect(await component.findByText("issView.details.title", { exact: false })).toBeVisible()
+        await userEvent.press(await component.findByText("How Do I Spot The Station?"))
+
+        await waitFor(() => {
+          expect(mockNavigate).toBeCalledWith("ResourcesScreens", {
+            screen: "Web",
+            url: "https://spotthestation.nasa.gov/message_example.cfm",
+          })
+        })
+      })
+    })
+
+    describe("take a photo button", () => {
+      beforeEach(completeStartupRequirements)
+
+      afterEach(() => {
+        Platform.OS = "ios"
+      })
+
+      it("captures photo and saves to gallery", async () => {
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "photo" })
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({
+              text: expect.stringContaining("Photo snackBar.savedToGallery"),
+            }),
+          )
+        })
+      })
+
+      it("shows error snackbar if failed to capture", async () => {
+        ;(captureScreen as jest.Mock).mockRejectedValueOnce(false)
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({ text: expect.stringContaining("issView.screenshotError") }),
+          )
+          expect(CameraRoll.save).not.toBeCalled()
+        })
+      })
+
+      it("requests external storage permissions on android", async () => {
+        Platform.OS = "android"
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+        jest
+          .spyOn(PermissionsAndroid, "request")
+          .mockResolvedValueOnce(PermissionsAndroid.RESULTS.GRANTED)
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(PermissionsAndroid.request).toBeCalledWith(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+            expect.anything(),
+          )
+          expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "photo" })
+        })
+      })
+
+      it("requests READ_MEDIA_IMAGES and READ_MEDIA_VIDEO permissions on android SDK >= 33", async () => {
+        jest.spyOn(Platform, "Version", "get").mockReturnValueOnce("33")
+        Platform.OS = "android"
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+        jest.spyOn(PermissionsAndroid, "requestMultiple").mockResolvedValueOnce({
+          [PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES]: PermissionsAndroid.RESULTS.GRANTED,
+          [PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO]: PermissionsAndroid.RESULTS.GRANTED,
+        } as unknown as ReturnType<typeof PermissionsAndroid.requestMultiple>)
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(PermissionsAndroid.requestMultiple).toBeCalledWith([
+            PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
+            PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
+          ])
+
+          expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "photo" })
+        })
+      })
+
+      it("does not save photo to gallery if permissions are denied", async () => {
+        Platform.OS = "android"
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+        jest
+          .spyOn(PermissionsAndroid, "request")
+          .mockResolvedValueOnce(PermissionsAndroid.RESULTS.DENIED)
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(PermissionsAndroid.request).toBeCalledWith(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+            expect.anything(),
+          )
+          expect(CameraRoll.save).not.toBeCalled()
+        })
+      })
+    })
+
+    describe("record a video", () => {
+      beforeEach(completeStartupRequirements)
+      ;["android", "ios"].forEach((platform: "android" | "ios") => {
+        describe(platform, () => {
+          beforeEach(() => {
+            Platform.OS = platform
+            jest
+              .spyOn(PermissionsAndroid, "request")
+              .mockResolvedValue(PermissionsAndroid.RESULTS.GRANTED)
+          })
+
+          it("captures video with audio and saves to gallery", async () => {
+            ;(RecordScreen.startRecording as jest.Mock).mockResolvedValue(true)
+            ;(RecordScreen.stopRecording as jest.Mock).mockResolvedValue({
+              status: "success",
+              result: { outputURL: "file:///whatever" },
+            })
+            ;(CameraRoll.save as jest.Mock).mockResolvedValue(true)
+
+            const component = renderWithStore(rootStore)
+            await userEvent.press(await component.findByAccessibilityHint("record a video"))
+            await userEvent.press(await component.findByAccessibilityHint("stop recording"))
+
+            await waitFor(() => {
+              expect(RecordScreen.startRecording).toBeCalledWith({ mic: true })
+              expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "video" })
+              expect(Snackbar.show).toBeCalledWith(
+                expect.objectContaining({
+                  text: expect.stringContaining("Video snackBar.savedToGallery"),
+                }),
+              )
+            })
+          })
+
+          it("captures video without audio and saves to gallery", async () => {
+            ;(check as jest.Mock).mockImplementation(
+              (permission) =>
+                new Promise((resolve) => {
+                  if (
+                    permission === PERMISSIONS.ANDROID.RECORD_AUDIO ||
+                    permission === PERMISSIONS.IOS.MICROPHONE
+                  )
+                    resolve(RESULTS.DENIED)
+                  else resolve(RESULTS.GRANTED)
+                }),
+            )
+
+            ;(request as jest.Mock).mockImplementation(
+              (permission) =>
+                new Promise((resolve) => {
+                  if (
+                    permission === PERMISSIONS.ANDROID.RECORD_AUDIO ||
+                    permission === PERMISSIONS.IOS.MICROPHONE
+                  )
+                    resolve(RESULTS.DENIED)
+                  else resolve(RESULTS.GRANTED)
+                }),
+            )
+
+            ;(RecordScreen.startRecording as jest.Mock).mockResolvedValue(true)
+            ;(RecordScreen.stopRecording as jest.Mock).mockResolvedValue({
+              status: "success",
+              result: { outputURL: "file:///whatever" },
+            })
+            ;(CameraRoll.save as jest.Mock).mockResolvedValue(true)
+
+            const component = renderWithStore(rootStore)
+            await userEvent.press(await component.findByAccessibilityHint("record a video"))
+            await userEvent.press(await component.findByAccessibilityHint("stop recording"))
+
+            await waitFor(() => {
+              expect(RecordScreen.startRecording).toBeCalledWith({ mic: false })
+              expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "video" })
+              expect(Snackbar.show).toBeCalledWith(
+                expect.objectContaining({
+                  text: expect.stringContaining("Video snackBar.savedToGallery"),
+                }),
+              )
+            })
+          })
+        })
+      })
+
+      it("shows error snackbar if record screen permission is denied", async () => {
+        ;(RecordScreen.startRecording as jest.Mock).mockResolvedValue(
+          RecordingResult.PermissionError,
+        )
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("record a video"))
+
+        await waitFor(() => {
+          expect(RecordScreen.startRecording).toBeCalledWith({ mic: true })
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({ text: RecordingResult.PermissionError }),
+          )
+          expect(component.queryByAccessibilityHint("stop recording")).toBeNull()
+        })
+      })
+
+      it("shows error snackbar if screen recording failed to start", async () => {
+        ;(RecordScreen.startRecording as jest.Mock).mockRejectedValue("error")
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("record a video"))
+
+        await waitFor(() => {
+          expect(RecordScreen.startRecording).toBeCalledWith({ mic: true })
+          expect(Snackbar.show).toBeCalledWith(expect.objectContaining({ text: "error" }))
+          expect(component.queryByAccessibilityHint("stop recording")).toBeNull()
+        })
+      })
+    })
+
+    describe("share button", () => {
+      beforeEach(completeStartupRequirements)
+
+      it("shares screenshot", async () => {
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///photo")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+        ;(Share.open as jest.Mock).mockResolvedValueOnce({ success: true })
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+        await userEvent.press(await component.findByAccessibilityHint("open share modal"))
+
+        await waitFor(() => {
+          expect(Share.open).toBeCalledWith(expect.objectContaining({ url: "file:///photo" }))
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({ text: expect.stringContaining("snackBar.shared") }),
+          )
+        })
+      })
+
+      it("takes new screenshot if user didn't", async () => {
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(Share.open as jest.Mock).mockResolvedValueOnce({ success: true })
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("open share modal"))
+
+        await waitFor(() => {
+          expect(Share.open).toBeCalledWith(expect.objectContaining({ url: "file:///whatever" }))
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({ text: expect.stringContaining("snackBar.shared") }),
+          )
+        })
+      })
+
+      it("shares video", async () => {
+        ;(RecordScreen.startRecording as jest.Mock).mockResolvedValue(true)
+        ;(RecordScreen.stopRecording as jest.Mock).mockResolvedValue({
+          status: "success",
+          result: { outputURL: "file:///video" },
+        })
+        ;(CameraRoll.save as jest.Mock).mockResolvedValue(true)
+        ;(Share.open as jest.Mock).mockResolvedValueOnce({ success: true })
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("record a video"))
+        await userEvent.press(await component.findByAccessibilityHint("stop recording"))
+        await userEvent.press(await component.findByAccessibilityHint("open share modal"))
+
+        await waitFor(() => {
+          expect(Share.open).toBeCalledWith(expect.objectContaining({ url: "file:///video" }))
+          expect(Snackbar.show).toBeCalledWith(
+            expect.objectContaining({ text: expect.stringContaining("snackBar.shared") }),
+          )
+        })
+      })
+
+      it("shows error snackbar failed to share", async () => {
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(Share.open as jest.Mock).mockRejectedValueOnce("error")
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("open share modal"))
+
+        await waitFor(() => {
+          expect(Snackbar.show).toBeCalledWith(expect.objectContaining({ text: "error" }))
+        })
       })
     })
   })

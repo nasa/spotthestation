@@ -1,6 +1,555 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`CompleteProfile location step renders correctly 1`] = `
+<div>
+  <View
+    accessibilityHint="Navigates to the previous screen"
+    accessibilityLabel="Back button"
+    accessibilityRole="imagebutton"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <View
+      collapsable={false}
+      jestAnimatedStyle={
+        {
+          "value": {},
+        }
+      }
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 143,
+          "display": "flex",
+          "height": 60,
+          "justifyContent": "center",
+          "marginLeft": 26,
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 60,
+        }
+      }
+    >
+      <div>
+        <View>
+          <RCTImageView
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            internal_analyticTag={null}
+            resizeMode="contain"
+            source={
+              [
+                {
+                  "height": undefined,
+                  "uri": undefined,
+                  "width": undefined,
+                },
+              ]
+            }
+            style={
+              {
+                "height": 29,
+                "overflow": "hidden",
+                "resizeMode": "contain",
+                "tintColor": "#FFFFFF",
+                "width": 29,
+              }
+            }
+            tintColor="#FFFFFF"
+          />
+        </View>
+      </div>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flex": 1,
+        "paddingBottom": 75,
+        "paddingHorizontal": 52,
+      }
+    }
+  >
+    <Text
+      accessibilityHint="Display current step"
+      accessibilityLabel="Step counter"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 32,
+            "paddingBottom": 26,
+            "paddingTop": 52,
+          },
+        ]
+      }
+    >
+      2 of 2
+    </Text>
+    <Text
+      accessibilityHint="location title"
+      accessibilityLabel="location title"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#DEDDDE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 52,
+            "lineHeight": 63,
+            "paddingBottom": 35,
+          },
+        ]
+      }
+    >
+      onboarding.completeProfile.location.title undefined
+    </Text>
+    <Text
+      accessibilityHint="location subtitle"
+      accessibilityLabel="location subtitle"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 26,
+            "lineHeight": 32,
+            "paddingBottom": 52,
+          },
+        ]
+      }
+    >
+      onboarding.completeProfile.location.subtitle undefined
+    </Text>
+    <View
+      accessibilityHint="detecting current location"
+      accessibilityLabel="detect button"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          [
+            {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "minHeight": 80,
+              "overflow": "hidden",
+              "paddingHorizontal": 17,
+              "paddingVertical": 17,
+            },
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#B6ACA6",
+              "borderWidth": 1,
+            },
+          ],
+          {
+            "backgroundColor": "#0B3D91",
+            "borderRadius": 40,
+            "borderWidth": 0,
+            "height": 80,
+            "width": "100%",
+          },
+          false,
+        ]
+      }
+    >
+      <View>
+        <RCTImageView
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            [
+              {
+                "height": undefined,
+                "uri": undefined,
+                "width": undefined,
+              },
+            ]
+          }
+          style={
+            {
+              "height": 35,
+              "marginEnd": 12,
+              "overflow": "hidden",
+              "resizeMode": "contain",
+              "width": 35,
+              "zIndex": 1,
+            }
+          }
+        />
+      </View>
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            [
+              {
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 23,
+                "lineHeight": 29,
+                "textAlign": "center",
+                "zIndex": 2,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 26,
+                "lineHeight": 30,
+              },
+              false,
+            ],
+          ]
+        }
+      >
+        onboarding.completeProfile.location.detectButton undefined
+      </Text>
+    </View>
+    <Text
+      accessibilityHint="or"
+      accessibilityLabel="or"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {},
+          [
+            {
+              "fontSize": 23,
+              "lineHeight": 35,
+            },
+            {
+              "fontFamily": "Helvetica Neue",
+            },
+            {
+              "color": "#191015",
+            },
+          ],
+          undefined,
+          undefined,
+          {
+            "color": "#ADADAE",
+            "fontFamily": "Helvetica Neue",
+            "fontSize": 23,
+            "lineHeight": 27,
+            "marginVertical": 17,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      onboarding.completeProfile.location.orLabel undefined
+    </Text>
+    <View
+      collapsable={false}
+      style={
+        {
+          "zIndex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "alignItems": "flex-start",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 40,
+                "flexDirection": "row",
+                "height": 80,
+                "overflow": "hidden",
+              },
+              false,
+              undefined,
+              {
+                "paddingStart": 0,
+              },
+              {
+                "paddingEnd": 0,
+              },
+              {
+                "backgroundColor": "#1E2022",
+                "borderColor": "transparent",
+                "borderRadius": 40,
+                "borderWidth": 2,
+                "height": 80,
+                "overflow": "hidden",
+              },
+            ]
+          }
+        >
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "marginStart": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 40,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+          <TextInput
+            accessibilityHint="type for search location"
+            accessibilityLabel="search location"
+            accessibilityRole="search"
+            accessible={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            placeholder="homeScreen.selectLocation.inputPlaceholder undefined"
+            placeholderTextColor="#ADADAE"
+            style={
+              [
+                [
+                  {
+                    "alignSelf": "stretch",
+                    "color": "#DEDDDE",
+                    "flex": 1,
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "height": 80,
+                    "marginHorizontal": 17,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                    "textAlignVertical": "center",
+                  },
+                  false,
+                  undefined,
+                  undefined,
+                ],
+                {
+                  "alignSelf": "stretch",
+                  "backgroundColor": "transparent",
+                  "borderRadius": 0,
+                  "color": "#DEDDDE",
+                  "flex": 1,
+                  "fontFamily": "Helvetica Neue",
+                  "fontSize": 26,
+                  "height": 80,
+                  "lineHeight": 32,
+                  "marginHorizontal": 17,
+                  "paddingHorizontal": 0,
+                  "textAlignVertical": "center",
+                },
+              ]
+            }
+            textAlignVertical="top"
+            underlineColorAndroid="rgba(0, 0, 0, 0)"
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</div>
+`;
+
+exports[`CompleteProfile notifications step renders correctly 1`] = `
 <div>
   <View
     accessibilityHint="Navigates to the previous screen"

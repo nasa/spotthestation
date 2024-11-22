@@ -1,23 +1,16 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { fireEvent, render } from "@testing-library/react-native"
+import { fireEvent, render, waitFor } from "@testing-library/react-native"
+import analytics from "@react-native-firebase/analytics"
 import { SplashScreen } from "../SplashScreen"
-import { jest } from "@jest/globals"
+import * as storage from "../../../utils/storage"
+import { KEYS } from "../../../utils/storage"
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: () => ({
     navigate: jest.fn(),
   }),
   createNavigationContainerRef: jest.fn(),
-}))
-
-jest.mock("../../../utils/storage", () => ({
-  ...jest.requireActual<typeof import("../../../utils/storage")>("../../../utils/storage"),
-  load: jest.fn(() => Promise.resolve(null)),
-  save: jest.fn(() => Promise.resolve()),
-}))
-jest.mock("../../../components/IconLinkButton", () => ({
-  IconLinkButton: ({ icon, onPress }) => <button onClick={onPress}>{icon}</button>,
 }))
 
 describe("Splash", () => {
@@ -34,5 +27,20 @@ describe("Splash", () => {
 
     fireEvent.press(openSettingsButton)
     expect(useNavigation().navigate).not.toHaveBeenCalled()
+  })
+
+  it("sets user id in analytics", async () => {
+    render(<SplashScreen />)
+    await waitFor(() => {
+      expect(analytics().setUserId).toBeCalled()
+    })
+  })
+
+  it("uses existing user id in analytics", async () => {
+    await storage.save(KEYS.USER_ID, "user-id")
+    render(<SplashScreen />)
+    await waitFor(() => {
+      expect(analytics().setUserId).toBeCalledWith("user-id")
+    })
   })
 })

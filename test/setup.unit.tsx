@@ -88,11 +88,16 @@ jest.mock("react-native-orientation-locker", () => ({
 jest.mock('../app/components/Screen', () => ({ Screen: ({children}) => <div>{children}</div> }))
 jest.mock('../app/components/Globe', () => ({ Globe: () => <div /> }))
 jest.mock('../app/components/SatelliteView', () => ({ SatelliteView: () => <div /> }))
-jest.mock('../app/components/ISSSceneAR', () => ({ ISSSceneAR: ({ onScreenPositionChange }) => {
+jest.mock('../app/components/ISSSceneAR', () => ({ ISSSceneAR: ({ onScreenPositionChange, still, onStillReady }) => {
   mockUseEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     if (onScreenPositionChange) onScreenPositionChange([0, 0])
   }, [])
+
+  mockUseEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    if (still && onStillReady) onStillReady()
+  }, [still])
 
   return <div />
 } }))
@@ -104,7 +109,7 @@ jest.mock('../app/utils/useSafeAreaInsetsStyle', () => ({
   useSafeAreaInsetsStyle: () => ({})
 }))
 jest.mock('react-native-snackbar', () => ({
-  show: () => ({}),
+  show: jest.fn(),
   dismiss: () => ({}),
   LENGTH_LONG: 'long',
 }))
@@ -131,14 +136,22 @@ jest.mock("react-native-permissions", () => ({
 }))
 jest.mock("@react-native-camera-roll/camera-roll", () => ({
   Share: jest.fn(),
+  CameraRoll: {
+    save: jest.fn(),
+  }
 }))
 jest.mock("react-native-share", () => ({
-  Share: jest.fn(),
+  open: jest.fn()
 }))
 jest.mock("react-native-view-shot", () => ({
   captureScreen: jest.fn(),
   __esModule: true,
   default: ({ children }) => <>{children}</>
+}))
+jest.mock("react-native-record-screen", () => ({
+  RecordingResult: { PermissionError: 'permissionError' },
+  __esModule: true,
+  default: { startRecording: jest.fn(), stopRecording: jest.fn() },
 }))
 jest.mock("react-native-modal-datetime-picker", () => "")
 // eslint-disable-next-line react/display-name
@@ -176,7 +189,6 @@ jest.mock("@notifee/react-native", () => ({
 jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))
-jest.mock("@react-native-firebase/analytics", () => ({}))
 
 jest.mock("react-native-sensors", () => ({
   orientation: { subscribe: jest.fn(() => ({ unsubscribe: jest.fn() })) },
@@ -262,10 +274,14 @@ jest.mock("i18n-js", () => ({
   },
 }))
 
-jest.mock("@react-native-firebase/analytics", () => () => ({
+const mockAnalytics = {
   setUserId: jest.fn().mockResolvedValue(null),
-  logTutorialBegin: jest.fn().mockResolvedValue(null)
-}))
+  logTutorialBegin: jest.fn().mockResolvedValue(null),
+  logTutorialComplete: jest.fn().mockResolvedValue(null),
+  logShare: jest.fn().mockResolvedValue(null),
+}
+
+jest.mock("@react-native-firebase/analytics", () => () => mockAnalytics)
 
 jest.mock("@expo-google-fonts/space-grotesk", () => ({}))
 

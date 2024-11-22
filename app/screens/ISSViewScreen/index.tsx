@@ -531,16 +531,18 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [saveToGallery])
 
   const startRecording = async (isMicrophoneAllowed: boolean) => {
-    const res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed }).catch(
-      (error: any) => {
-        Snackbar.show({
-          text: error,
-          duration: Snackbar.LENGTH_LONG,
-        })
-        setIsRecording(false)
-        setRecordedSeconds(0)
-      },
-    )
+    let res
+    try {
+      res = await RecordScreen.startRecording({ mic: isMicrophoneAllowed })
+    } catch (error) {
+      Snackbar.show({
+        text: error,
+        duration: Snackbar.LENGTH_LONG,
+      })
+      setIsRecording(false)
+      setRecordedSeconds(0)
+      return
+    }
 
     if (res === RecordingResult.PermissionError) {
       Snackbar.show({

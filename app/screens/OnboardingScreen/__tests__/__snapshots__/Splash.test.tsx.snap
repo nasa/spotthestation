@@ -184,11 +184,104 @@ exports[`Splash renders correctly 1`] = `
         >
           onboarding.splash.subTitle undefined
         </Text>
-        <button
+        <View
+          accessibilityHint="Navigates to the next screen"
+          accessibilityLabel="Arrow right button"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
           onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
         >
-          back
-        </button>
+          <View
+            collapsable={false}
+            jestAnimatedStyle={
+              {
+                "value": {},
+              }
+            }
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 92,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 92,
+              }
+            }
+          >
+            <div>
+              <View>
+                <RCTImageView
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  internal_analyticTag={null}
+                  resizeMode="contain"
+                  source={
+                    [
+                      {
+                        "height": undefined,
+                        "uri": undefined,
+                        "width": undefined,
+                      },
+                    ]
+                  }
+                  style={
+                    {
+                      "height": 29,
+                      "overflow": "hidden",
+                      "resizeMode": "contain",
+                      "tintColor": "#FFFFFF",
+                      "transform": [
+                        {
+                          "rotate": "180deg",
+                        },
+                      ],
+                      "width": 29,
+                    }
+                  }
+                  tintColor="#FFFFFF"
+                />
+              </View>
+            </div>
+          </View>
+        </View>
       </View>
     </View>
   </View>
