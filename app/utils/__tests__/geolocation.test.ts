@@ -1,9 +1,17 @@
 import { api } from "../../services/api"
+import * as storage from "../../utils/storage"
 import { getCurrentLocation, formatAddress } from "../geolocation"
-import { requestAuthorization, getCurrentPosition } from "react-native-geolocation-service"
+import {
+  requestAuthorization,
+  getCurrentPosition,
+  PositionError,
+} from "react-native-geolocation-service"
 import { jest } from "@jest/globals"
 
 describe("getCurrentLocation", () => {
+  beforeEach(async () => {
+    await storage.clear()
+  })
   afterEach(() => {
     jest.clearAllMocks()
   })
@@ -55,6 +63,54 @@ describe("getCurrentLocation", () => {
     expect(getCurrentPosition).not.toHaveBeenCalled()
     expect(api.reverseGeocode).not.toHaveBeenCalled()
     expect(location).toBeNull()
+  })
+
+  it("throws error when permission is not available", async () => {
+    const permission = "disabled"
+
+    jest.mocked(requestAuthorization).mockResolvedValue(permission)
+    await expect(getCurrentLocation()).rejects.toBeTruthy()
+  })
+
+  it("throws error when location service rejects", async () => {
+    jest
+      .mocked(getCurrentPosition)
+      .mockImplementation((_, reject) => reject({ code: -1, message: "" }))
+
+    jest.mocked(requestAuthorization).mockResolvedValue("granted")
+    await expect(getCurrentLocation()).rejects.toBeTruthy()
+  })
+
+  it("throws error when location service times out", async () => {
+    jest
+      .mocked(getCurrentPosition)
+      .mockImplementation((_, reject) => reject({ code: PositionError.TIMEOUT, message: "" }))
+
+    jest.mocked(requestAuthorization).mockResolvedValue("granted")
+    await expect(getCurrentLocation()).rejects.toBeTruthy()
+  })
+
+  it("returns null if reverse geocode fails", async () => {
+    const permission = "granted"
+
+    jest.mocked(requestAuthorization).mockResolvedValue(permission)
+
+    const coords = {
+      latitude: 40.712776,
+      longitude: -74.005974,
+    }
+
+    jest.mocked(api.reverseGeocode).mockResolvedValue({
+      kind: "error",
+    })
+
+    jest
+      .mocked(getCurrentPosition)
+      .mockImplementation((cb: (a: { coords: any; timestamp: number }) => void) =>
+        cb({ coords, timestamp: 0 }),
+      )
+
+    expect(await getCurrentLocation()).toBeNull()
   })
 })
 

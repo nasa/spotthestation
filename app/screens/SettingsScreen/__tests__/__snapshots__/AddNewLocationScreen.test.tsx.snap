@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`AddNewLocationScreen renders correctly 1`] = `
 <div>
   <View
     accessibilityHint="Location settings scrollable us area"

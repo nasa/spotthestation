@@ -24,6 +24,7 @@ interface MapBoxProps {
   onCameraChange?: (coords: [number, number]) => void
   defaultCameraPosition?: [number, number]
   attributionPosition?: "top" | "bottom"
+  testID?: string
 }
 
 const attributionTop = Platform.select({

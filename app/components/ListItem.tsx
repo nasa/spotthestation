@@ -135,7 +135,14 @@ export const ListItem = React.memo(function ListItem({
                   />
                 )}
                 {onDelete && (
-                  <Icon icon="trash" size={30} color={colors.palette.nasaRed} onPress={onDelete} />
+                  <Icon
+                    accessible
+                    accessibilityHint="delete"
+                    icon="trash"
+                    size={30}
+                    color={colors.palette.nasaRed}
+                    onPress={onDelete}
+                  />
                 )}
               </View>
             </View>

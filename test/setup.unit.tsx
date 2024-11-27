@@ -101,7 +101,7 @@ jest.mock('../app/components/ISSSceneAR', () => ({ ISSSceneAR: ({ onScreenPositi
 
   return <div />
 } }))
-jest.mock('../app/components/MapBox', () => ({ MapBox: () => <div /> }))
+jest.mock('../app/components/MapBox', () => ({ MapBox: "" }))
 jest.mock('../app/config', () => ({
   GOOGLE_API_TOKEN: 'google'
 }))
@@ -243,11 +243,14 @@ jest.mock('../app/services/api', () => ({
   }
 }))
 jest.mock('react-native-geolocation-service', () => ({
-  requestAuthorization: jest.fn(),
-  getCurrentPosition: jest.fn(),
-}))
-
-jest.mock('react-native-geolocation-service', () => ({
+  PositionError: {
+    PERMISSION_DENIED: 1,
+    POSITION_UNAVAILABLE: 2,
+    TIMEOUT: 3,
+    PLAY_SERVICE_NOT_AVAILABLE: 4,
+    SETTINGS_NOT_SATISFIED: 5,
+    INTERNAL_ERROR: -1,
+  },
   requestAuthorization: jest.fn(),
   getCurrentPosition: jest.fn(),
 }));

@@ -316,7 +316,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 <Button
                   accessible
                   accessibilityLabel="from picker button"
-                  accessibilityHint="open time picker"
+                  accessibilityHint="open from time picker"
                   textStyle={$buttonText}
                   style={[$button, !settings.privacy && $disabled]}
                   pressedStyle={[$button, !settings.privacy && $disabled]}
@@ -338,7 +338,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 <Button
                   accessible
                   accessibilityLabel="until picker button"
-                  accessibilityHint="open time picker"
+                  accessibilityHint="open until time picker"
                   textStyle={$buttonText}
                   style={[$button, !settings.privacy && $disabled]}
                   pressedStyle={[$button, !settings.privacy && $disabled]}
@@ -358,6 +358,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             </View>
           </ExpandContainer>
           <DateTimePickerModal
+            testID="from picker"
             isVisible={from}
             mode="time"
             date={settings?.muteFrom}
@@ -368,6 +369,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             onCancel={() => setFrom(false)}
           />
           <DateTimePickerModal
+            testID="until picker"
             isVisible={until}
             mode="time"
             date={settings?.muteUntil}

@@ -89,6 +89,10 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
+    const dismissSnackbar = () => {
+      Snackbar.dismiss()
+    }
+
     if (savedLocations.find((item) => item.title === location.title)) {
       Snackbar.show({
         text: translate("snackBar.locationExist"),
@@ -96,9 +100,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         action: {
           text: translate("snackBar.ok"),
           textColor: "green",
-          onPress: () => {
-            Snackbar.dismiss()
-          },
+          onPress: dismissSnackbar,
         },
       })
       return
@@ -111,9 +113,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
         action: {
           text: translate("snackBar.ok"),
           textColor: "green",
-          onPress: () => {
-            Snackbar.dismiss()
-          },
+          onPress: dismissSnackbar,
         },
       })
     })
@@ -124,9 +124,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       action: {
         text: translate("snackBar.ok"),
         textColor: "green",
-        onPress: () => {
-          Snackbar.dismiss()
-        },
+        onPress: dismissSnackbar,
       },
     })
     handleNavigate()
@@ -144,6 +142,7 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
       dismissKeyboardOnPress={false}
     >
       <MapBox
+        testID="map"
         style={$map}
         withNightOverlay={false}
         onPress={({ geometry }) => {
@@ -219,6 +218,8 @@ export const AddNewLocationMapScreen = observer(function AddNewLocationMapScreen
             textValue && (
               <Icon
                 icon="xCircle"
+                accessible
+                accessibilityHint="clear input"
                 size={28}
                 color={colors.palette.neutral450}
                 style={style}

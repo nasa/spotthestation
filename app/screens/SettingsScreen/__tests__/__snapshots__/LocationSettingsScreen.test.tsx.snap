@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`LocationSettingsScreen renders correctly 1`] = `
 <div>
   <View
     style={
@@ -350,6 +350,7 @@ exports[`renders correctly 1`] = `
     </RCTScrollView>
   </View>
   <View
+    accessibilityHint="add new location"
     accessibilityRole="imagebutton"
     accessibilityState={
       {

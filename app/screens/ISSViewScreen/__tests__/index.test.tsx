@@ -722,7 +722,6 @@ describe("ISSViewScreen", () => {
                   else resolve(RESULTS.GRANTED)
                 }),
             )
-
             ;(request as jest.Mock).mockImplementation(
               (permission) =>
                 new Promise((resolve) => {
@@ -734,7 +733,6 @@ describe("ISSViewScreen", () => {
                   else resolve(RESULTS.GRANTED)
                 }),
             )
-
             ;(RecordScreen.startRecording as jest.Mock).mockResolvedValue(true)
             ;(RecordScreen.stopRecording as jest.Mock).mockResolvedValue({
               status: "success",

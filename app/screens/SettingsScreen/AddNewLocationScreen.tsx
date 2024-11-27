@@ -70,6 +70,10 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
 
   const handleSave = useCallback(() => {
+    const dismissSnackbar = () => {
+      Snackbar.dismiss()
+    }
+
     location.title = titleValue || (location?.subtitle ?? "").split(",")[0]
     if (!location.title || !location.location) return
     let res: LocationType[] = [...savedLocations]
@@ -80,9 +84,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
         action: {
           text: translate("snackBar.ok"),
           textColor: "green",
-          onPress: () => {
-            Snackbar.dismiss()
-          },
+          onPress: dismissSnackbar,
         },
       })
       return
@@ -100,9 +102,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
           action: {
             text: translate("snackBar.ok"),
             textColor: "green",
-            onPress: () => {
-              Snackbar.dismiss()
-            },
+            onPress: dismissSnackbar,
           },
         })
       })
@@ -114,9 +114,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
       action: {
         text: translate("snackBar.ok"),
         textColor: "green",
-        onPress: () => {
-          Snackbar.dismiss()
-        },
+        onPress: dismissSnackbar,
       },
     })
     handleNavigate()
@@ -216,6 +214,8 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
             textValue && (
               <Icon
                 icon="xCircle"
+                accessible
+                accessibilityHint="clear input"
                 size={28}
                 color={colors.palette.neutral450}
                 style={style}

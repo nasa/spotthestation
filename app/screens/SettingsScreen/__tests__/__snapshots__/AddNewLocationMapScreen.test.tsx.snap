@@ -1,8 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`AddNewLocationMapScreen renders correctly 1`] = `
 <div>
-  <div />
+  <
+    markers={[]}
+    onPress={[Function]}
+    style={
+      {
+        "flex": 1,
+      }
+    }
+    testID="map"
+    withNightOverlay={false}
+    zoomEnabled={true}
+  />
   <View
     style={
       [

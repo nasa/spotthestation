@@ -375,6 +375,8 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       </View>
       <IconLinkButton
         icon="plusCircle"
+        accessible
+        accessibilityHint="add new location"
         style={addButtonContainer}
         buttonStyle={$addButton}
         viewStyle={$addButton}
