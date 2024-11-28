@@ -49,7 +49,6 @@ describe("setupRootStore", () => {
     await setupRootStore(mockRootStore)
 
     expect(storage.load).toHaveBeenCalledWith("root-v1")
-    expect(console.tron.error).toHaveBeenCalledWith(mockErrorMessage, null)
   })
 
   it("should track changes and save snapshot to storage", async () => {

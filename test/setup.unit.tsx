@@ -22,6 +22,7 @@ jest.doMock("react-native", () => {
   // Extend ReactNative
   return Object.setPrototypeOf(
     {
+      LogBox: { ignoreLogs: jest.fn() },
       Image: {
         ...ReactNative.Image,
         resolveAssetSource: jest.fn((_source) => mockFile), // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -43,7 +44,9 @@ jest.mock("d3-shape", () => ({
 }))
 
 jest.mock("@sentry/react-native", () => ({
-  init: jest.fn()
+  init: jest.fn(),
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  wrap: (p) => p,
 }))
 
 jest.mock("expo-gl", () => ({
@@ -141,7 +144,7 @@ jest.mock("@react-native-camera-roll/camera-roll", () => ({
   }
 }))
 jest.mock("react-native-share", () => ({
-  open: jest.fn()
+  open: jest.fn().mockResolvedValue(null),
 }))
 jest.mock("react-native-view-shot", () => ({
   captureScreen: jest.fn(),
@@ -177,17 +180,19 @@ jest.mock("../app/services/api", () => ({
   },
 }))
 jest.mock("@notifee/react-native", () => ({
-  createChannel: jest.fn(),
-  requestPermission: jest.fn(),
+  createChannel: jest.fn().mockResolvedValue(true),
+  requestPermission: jest.fn().mockResolvedValue(true),
   cancelTriggerNotifications: jest.fn(),
   createTriggerNotification: jest.fn(),
   getNotificationSettings: jest.fn().mockResolvedValue({ android: { alarm: 1 }}),
   TriggerType: { TIMESTAMP: 0 },
-  AndroidNotificationSetting: { ENABLED: 1 }
+  AndroidNotificationSetting: { ENABLED: 1 },
+  AndroidImportance: { HIGH: 4 }
 }))
 
 jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
+  SafeAreaProvider: ({ children }) => <>{children}</>,
 }))
 
 jest.mock("react-native-sensors", () => ({
@@ -298,8 +303,42 @@ jest.mock('react-native-webview', () => ({
   }),
 }))
 
+jest.mock("expo-font", () => ({
+  useFonts: jest.fn(() => [true]),
+}))
+
+jest.mock("expo-linking", () => ({
+  createURL: jest.fn(),
+}))
+
+jest.mock("expo-store-review", () => ({
+  hasAction: jest.fn(),
+  requestReview: jest.fn(),
+}))
+
+jest.mock("react-native-code-push", () => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const fn = () => (p) => p
+  fn.CheckFrequency = {}
+  fn.InstallMode = {}
+  return fn
+})
+
+jest.mock("react-native-version-check", () => ({
+  needUpdate: jest.fn().mockResolvedValue({ isNeeded: false }),
+}))
+
+jest.mock("react-native-gesture-handler", () => ({
+  ...Object.assign({}, jest.requireActual("react-native-gesture-handler")),
+  GestureHandlerRootView: ({ children }) => <>{children}</>,
+}))
+
 declare const tron // eslint-disable-line @typescript-eslint/no-unused-vars
 
 declare global {
   let __TEST__
 }
+
+// @ts-ignore
+global.__DEV__ = false
+

@@ -42,7 +42,6 @@ describe("AddNewLocationMapScreen", () => {
         },
       ],
     })
-
     ;(api.reverseGeocode as jest.Mock).mockResolvedValue({
       kind: "ok",
       name: "Phoenix, AZ",

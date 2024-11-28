@@ -46,26 +46,26 @@ export class CameraControls extends EventDispatcher {
   private changeEvent: BaseEvent
   private startEvent: BaseEvent
   private endEvent: BaseEvent
-  private state
-  private spherical: Spherical
+  state
+  spherical: Spherical
   private sphericalDelta: Spherical
   private scale
   private panOffset: Vector3
-  private rotateStart: Vector2
-  private rotateEnd: Vector2
-  private rotateDelta: Vector2
+  rotateStart: Vector2
+  rotateEnd: Vector2
+  rotateDelta: Vector2
   updateObjectUp: () => void
   saveState: () => void
   setTarget: (target: Vector3) => void
   reset: () => void
-  private rotateLeft: (angle: number) => void
-  private rotateUp: (angle: number) => void
+  rotateLeft: (angle: number) => void
+  rotateUp: (angle: number) => void
   width: number
   getElementWidth: () => number
   height: number
   getElementHeight: () => number
-  private handleTouchStartRotate: (event: NativeTouchEvent) => void
-  private handleTouchMoveRotate: (event: NativeTouchEvent) => void
+  handleTouchStartRotate: (event: NativeTouchEvent) => void
+  handleTouchMoveRotate: (event: NativeTouchEvent) => void
   onTouchStart: (event: NativeTouchEvent) => void
   onTouchMove: (event: NativeTouchEvent) => void
   onTouchEnd: (event: NativeTouchEvent) => void

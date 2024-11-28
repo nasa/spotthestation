@@ -179,7 +179,6 @@ describe("LocationSettingsScreen", () => {
               timestamp: Date.now(),
             }),
         )
-
         ;(api.reverseGeocode as jest.Mock).mockResolvedValue({
           kind: "ok",
           name: "NASA Headquarters, DC",

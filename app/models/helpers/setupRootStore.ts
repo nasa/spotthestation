@@ -44,7 +44,7 @@ export async function setupRootStore(rootStore: RootStore) {
   )
 
   const unsubscribe = () => {
-    _disposer()
+    if (_disposer) _disposer()
     _disposer = undefined
   }
 
