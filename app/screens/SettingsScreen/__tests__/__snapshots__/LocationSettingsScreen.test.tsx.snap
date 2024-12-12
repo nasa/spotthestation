@@ -224,7 +224,6 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
                 "justifyContent": "space-between",
                 "marginLeft": 15,
                 "paddingBottom": 23,
-                "width": "100%",
               }
             }
           >

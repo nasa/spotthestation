@@ -67,7 +67,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $bodyContainer: ViewStyle = {
-    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: scale(16),
