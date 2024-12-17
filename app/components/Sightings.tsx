@@ -9,7 +9,7 @@ import {
   IconTypes,
 } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ViewStyle, View, PressableProps, TextStyle, ScrollView, Platform } from "react-native"
 import Modal from "react-native-modal"
 
@@ -93,7 +93,11 @@ export function Sightings({
     $timeOfDayItem,
     $timeOfDayText,
     $coachModalScrollContainer,
+    $scrollTitle,
+    $flex,
   } = useStyles(styles)
+
+  const scrollViewRef = useRef<ScrollView>()
 
   const timeOfDayOptions = useMemo(
     () => [
@@ -174,6 +178,14 @@ export function Sightings({
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
+
+  useEffect(() => {
+    if (Platform.OS !== "ios") return
+
+    setTimeout(() => {
+      scrollViewRef.current?.flashScrollIndicators()
+    }, 100)
+  }, [])
 
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
@@ -332,17 +344,22 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           onChange={({ value }) => onDurationChange(value)}
         />
       </View>
-      <View style={$scrollContainer}>
+      <View style={$flex}>
         <ExpandContainer
           title="homeScreen.selectSightings.sightings"
           expandble={false}
           reverseTitle
+          titleStyle={$scrollTitle}
         >
           <ScrollView
             accessible
             accessibilityLabel="Sightings scrollable area"
             accessibilityHint="Sightings scrollable area"
             accessibilityRole="scrollbar"
+            contentContainerStyle={$scrollContainer}
+            persistentScrollbar
+            indicatorStyle="white"
+            ref={scrollViewRef}
           >
             {sightings.length === 0 ? (
               <Text
@@ -455,10 +472,16 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingHorizontal: 30,
   }
 
+  const $flex: ViewStyle = {
+    flex: 1,
+  }
+
   const $scrollContainer: ViewStyle = {
     paddingHorizontal: scale(36),
-    flex: 1,
-    paddingBottom: scale(30),
+  }
+
+  const $scrollTitle: ViewStyle = {
+    paddingHorizontal: scale(36),
   }
 
   const $close: ViewStyle = {
@@ -605,5 +628,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $timeOfDayItem,
     $timeOfDayText,
     $coachModalScrollContainer,
+    $scrollTitle,
+    $flex,
   }
 }

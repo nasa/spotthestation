@@ -30,6 +30,7 @@ exports[`ExpandContainer renders correctly 1`] = `
             "flexDirection": "row",
           },
           undefined,
+          undefined,
         ]
       }
     >

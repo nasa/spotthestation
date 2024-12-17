@@ -15,6 +15,7 @@ export interface ExpandContainerProps {
   children?: ReactNode
   actionTitle?: TxKeyPath
   containerStyle?: ViewStyle
+  titleStyle?: ViewStyle
   button?: ReactNode
 }
 
@@ -27,6 +28,7 @@ export function ExpandContainer({
   actionTitle,
   reverseTitle,
   containerStyle,
+  titleStyle,
   button,
 }: ExpandContainerProps) {
   const { $container, $headContainer, $titleContainer, $title, $up } = useStyles(styles)
@@ -39,7 +41,7 @@ export function ExpandContainer({
   return (
     <View style={[$container, containerStyle]}>
       <View style={$headContainer}>
-        <View style={[$titleContainer, $titleContainerOverride]}>
+        <View style={[$titleContainer, $titleContainerOverride, titleStyle]}>
           <Text
             accessible
             accessibilityLabel="title"

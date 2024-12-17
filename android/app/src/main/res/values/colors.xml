@@ -4,4 +4,5 @@
   <color name="colorPrimary">#023c69</color>
   <color name="colorPrimaryDark">#191015</color>
   <color name="splashscreen_background">#000000</color>
+  <color name="scrollbar">#7f8081</color>
 </resources>

@@ -803,8 +803,6 @@ exports[`Sightings renders correctly 1`] = `
     style={
       {
         "flex": 1,
-        "paddingBottom": 43,
-        "paddingHorizontal": 52,
       }
     }
   >
@@ -838,6 +836,9 @@ exports[`Sightings renders correctly 1`] = `
               },
               {
                 "flexDirection": "row-reverse",
+              },
+              {
+                "paddingHorizontal": 52,
               },
             ]
           }
@@ -889,6 +890,13 @@ exports[`Sightings renders correctly 1`] = `
         accessibilityLabel="Sightings scrollable area"
         accessibilityRole="scrollbar"
         accessible={true}
+        contentContainerStyle={
+          {
+            "paddingHorizontal": 52,
+          }
+        }
+        indicatorStyle="white"
+        persistentScrollbar={true}
       >
         <View>
           <View
