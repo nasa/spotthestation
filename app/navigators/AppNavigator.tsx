@@ -61,6 +61,26 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
+const navigateToAR = async (location) => {
+  let retries = 3
+  while (retries > 0) {
+    if (navigationRef.isReady() && navigationRef.current.getRootState()) {
+      navigationRef.navigate(
+        "Main" as never,
+        {
+          screen: "ISSView",
+          params: { info: true, location },
+        } as never,
+      )
+      break
+    }
+
+    console.log("navigator not initialized, retrying in 500ms")
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    --retries
+  }
+}
+
 const AppStack = observer(function AppStack() {
   const prevAppState = useRef<string>()
 
@@ -71,15 +91,8 @@ const AppStack = observer(function AppStack() {
     ])
       .then(([isSettingsCompleted, initialNotification]) => {
         if (isSettingsCompleted) skipOnboarding()
-        if (initialNotification) {
-          navigationRef.navigate(
-            "Main" as never,
-            {
-              screen: "ISSView",
-              params: { info: true, location: initialNotification.notification.data },
-            } as never,
-          )
-        }
+        if (initialNotification) return navigateToAR(initialNotification.notification.data)
+        return undefined
       })
       .catch((err) =>
         Snackbar.show({
@@ -105,14 +118,8 @@ const AppStack = observer(function AppStack() {
           notifications
             .getInitialNotification()
             .then((initialNotification) => {
-              if (initialNotification)
-                navigationRef.navigate(
-                  "Main" as never,
-                  {
-                    screen: "ISSView",
-                    params: { info: true, location: initialNotification.notification.data },
-                  } as never,
-                )
+              if (initialNotification) return navigateToAR(initialNotification.notification.data)
+              return undefined
             })
             .catch((e) => console.error(e))
         prevAppState.current = nextAppState
@@ -124,13 +131,7 @@ const AppStack = observer(function AppStack() {
     } else {
       return notifee.onForegroundEvent(({ type, detail }) => {
         if (type === EventType.PRESS) {
-          navigationRef.navigate(
-            "Main" as never,
-            {
-              screen: "ISSView",
-              params: { info: true, location: detail?.notification?.data },
-            } as never,
-          )
+          navigateToAR(detail?.notification?.data).catch(console.error)
         }
       })
     }
