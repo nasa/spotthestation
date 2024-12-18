@@ -2,6 +2,7 @@
 import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add } from "date-fns"
+import * as Sentry from "@sentry/react-native"
 import { api, ISSSighting, LocationType } from "../services/api"
 import * as notifications from "../utils/notifications"
 import { Location } from "./Location"
@@ -394,31 +395,133 @@ const RootStoreActions = (self) => ({
   }),
 
   requestOpenModal: (name: string) => {
-    if (self.currentModal && self.currentModal.name === name && self.currentModal.state === "open")
+    Sentry.addBreadcrumb({
+      category: "ui",
+      message: `Request Modal Open: ${name}`,
+      data: {
+        queue: JSON.stringify(self.modalsQueue),
+        currentModal: JSON.stringify(self.currentModal),
+      },
+      level: "info",
+    })
+
+    if (
+      self.currentModal &&
+      self.currentModal.name === name &&
+      self.currentModal.state === "open"
+    ) {
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} already open, skipping`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
+
       return
+    }
 
     if (self.currentModal) {
       if (!self.modalsQueue.includes(name)) self.modalsQueue = [...self.modalsQueue, name]
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} added to queue`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
     } else {
       self.currentModal = Modal.create({ name, state: "open" })
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} opened`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
     }
   },
 
   requestCloseModal: (name: string) => {
+    Sentry.addBreadcrumb({
+      category: "ui",
+      message: `Request Modal Close: ${name}`,
+      data: {
+        queue: JSON.stringify(self.modalsQueue),
+        currentModal: JSON.stringify(self.currentModal),
+      },
+      level: "info",
+    })
+
     if (self.currentModal && self.currentModal.name === name) {
       self.currentModal = Modal.create({ name, state: "closing" })
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} closing`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
     } else {
       self.modalsQueue = self.modalsQueue.filter((m) => m !== name)
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} removed from queue`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
     }
   },
 
   closeModal: (name: string) => {
-    if (self.currentModal && self.currentModal.name !== name) return
+    Sentry.addBreadcrumb({
+      category: "ui",
+      message: `Modal Close: ${name}`,
+      data: {
+        queue: JSON.stringify(self.modalsQueue),
+        currentModal: JSON.stringify(self.currentModal),
+      },
+      level: "info",
+    })
+
+    if (self.currentModal && self.currentModal.name !== name) {
+      Sentry.addBreadcrumb({
+        category: "ui",
+        message: `Modal ${name} is not open, skipping`,
+        data: {
+          queue: JSON.stringify(self.modalsQueue),
+          currentModal: JSON.stringify(self.currentModal),
+        },
+        level: "info",
+      })
+      return
+    }
     self.currentModal = null
     if (self.modalsQueue.length > 0) {
       self.currentModal = Modal.create({ name: self.modalsQueue[0], state: "open" })
       self.modalsQueue = self.modalsQueue.slice(1)
     }
+
+    Sentry.addBreadcrumb({
+      category: "ui",
+      message: `Modal ${name} closed`,
+      data: {
+        queue: JSON.stringify(self.modalsQueue),
+        currentModal: JSON.stringify(self.currentModal),
+      },
+      level: "info",
+    })
   },
 })
 

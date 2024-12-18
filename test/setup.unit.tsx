@@ -45,6 +45,8 @@ jest.mock("d3-shape", () => ({
 
 jest.mock("@sentry/react-native", () => ({
   init: jest.fn(),
+  addBreadcrumb: jest.fn(),
+  captureMessage: jest.fn(),
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   wrap: (p) => p,
 }))

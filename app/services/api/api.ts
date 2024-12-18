@@ -115,9 +115,9 @@ export class Api {
           ...d,
           name:
             d.name ||
-            d.address.city ||
-            d.address.town ||
             d.address.village ||
+            d.address.town ||
+            d.address.city ||
             d.address.municipality ||
             d.address.county ||
             formatAddress(d),

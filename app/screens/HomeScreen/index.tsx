@@ -11,6 +11,7 @@ import {
   HomeTutorialModal,
 } from "../../components"
 import { observer } from "mobx-react-lite"
+import * as Sentry from "@sentry/react-native"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, Platform, ViewStyle } from "react-native"
 
@@ -80,8 +81,10 @@ export const HomeScreen = observer(function HomeScreen() {
     setSightingsDuration,
     setSightingsMaxHeight,
     getFilteredSightings,
+    currentModal,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
+  const sightingsModalTimerRef = useRef<NodeJS.Timeout>(null)
   const [globeVisible, setGlobeVisible] = useState(false)
 
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
@@ -316,6 +319,22 @@ export const HomeScreen = observer(function HomeScreen() {
     )} ${shortTZ}`
   }
 
+  const onSightingsPress = () => {
+    if (current) {
+      requestOpenModal("sightings")
+      sightingsModalTimerRef.current = setTimeout(() => {
+        Sentry.captureMessage("Sightings modal is not open after 5 seconds")
+      }, 5000)
+    }
+  }
+
+  useEffect(() => {
+    if (currentModal?.name === "sightings") {
+      clearTimeout(sightingsModalTimerRef.current)
+      sightingsModalTimerRef.current = null
+    }
+  }, [currentModal?.name])
+
   return (
     <Screen
       preset="fixed"
@@ -326,7 +345,7 @@ export const HomeScreen = observer(function HomeScreen() {
       <HomeHeader
         user={{ firstName: "User", address }}
         onLocationPress={() => requestOpenModal("location")}
-        onSightingsPress={() => current && requestOpenModal("sightings")}
+        onSightingsPress={onSightingsPress}
         sighting={currentSighting.date ? formatedDate(currentSighting.date) : "-"}
         countdown={`${translate("units.time")} ${countdown}`}
         timezone={current?.timezone || getCurrentTimeZone()}
