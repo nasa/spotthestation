@@ -153,7 +153,6 @@ export const ISSSceneAR = memo(function ISSSceneAR({
 
     const format = formats.length > 0 ? formats[0] : device.formats[device.formats.length - 1]
 
-    console.log(JSON.stringify(device.formats, null, 2))
     setActiveFormat(format)
   }, [device])
 

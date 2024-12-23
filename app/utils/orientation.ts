@@ -86,7 +86,7 @@ export function isMagnetometerAvailable(): Promise<boolean> {
 
 export default function watchOrientation(func: WatcherFunc, location: [number, number]) {
   if (!declinationCache[location.toString()]) {
-    const info = geomagnetism.model().point(location)
+    const info = geomagnetism.model(null, { allowOutOfBoundsModel: true }).point(location)
     const declination = info.decl
     declinationCache[location.toString()] = declination
   }
