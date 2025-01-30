@@ -1,9 +1,10 @@
 import { Alert, PermissionsAndroid, Platform } from "react-native"
 import notifee, {
-  TimestampTrigger,
-  TriggerType,
+  AlarmType,
   AndroidImportance,
   AndroidNotificationSetting,
+  TimestampTrigger,
+  TriggerType,
 } from "@notifee/react-native"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
@@ -135,7 +136,9 @@ export async function setNotifications(locations: LocationType[]) {
     const trigger: TimestampTrigger = {
       type: TriggerType.TIMESTAMP,
       timestamp: notification.fireDate.getTime(),
-      alarmManager: true,
+      alarmManager: {
+        type: AlarmType.SET_ALARM_CLOCK,
+      },
     }
 
     await notifee.createTriggerNotification(

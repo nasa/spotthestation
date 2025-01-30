@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as notifications from "../../utils/notifications"
-import notifee, { TriggerType } from "@notifee/react-native"
+import notifee, { AlarmType, TriggerType } from "@notifee/react-native"
 import MockDate from "mockdate"
 import { LocationType } from "../../services/api"
 
@@ -42,12 +42,12 @@ describe("setNotifications", () => {
     expect(notifee.createTriggerNotification).toBeCalledWith(expect.anything(), {
       type: TriggerType.TIMESTAMP,
       timestamp: new Date("2024-11-07T09:45:00Z").getTime(),
-      alarmManager: true,
+      alarmManager: { type: AlarmType.SET_ALARM_CLOCK },
     })
     expect(notifee.createTriggerNotification).toBeCalledWith(expect.anything(), {
       type: TriggerType.TIMESTAMP,
       timestamp: new Date("2024-11-07T10:00:00Z").getTime(),
-      alarmManager: true,
+      alarmManager: { type: AlarmType.SET_ALARM_CLOCK },
     })
   })
 
@@ -79,7 +79,7 @@ describe("setNotifications", () => {
     expect(notifee.createTriggerNotification).toBeCalledWith(expect.anything(), {
       type: TriggerType.TIMESTAMP,
       timestamp: new Date("2024-11-07T09:15:00Z").getTime(),
-      alarmManager: true,
+      alarmManager: { type: AlarmType.SET_ALARM_CLOCK },
     })
   })
 
@@ -115,12 +115,12 @@ describe("setNotifications", () => {
     expect(notifee.createTriggerNotification).toBeCalledWith(expect.anything(), {
       type: TriggerType.TIMESTAMP,
       timestamp: new Date("2024-11-07T10:00:00Z").getTime(),
-      alarmManager: true,
+      alarmManager: { type: AlarmType.SET_ALARM_CLOCK },
     })
     expect(notifee.createTriggerNotification).toBeCalledWith(expect.anything(), {
       type: TriggerType.TIMESTAMP,
       timestamp: new Date("2024-11-07T09:45:00Z").getTime(),
-      alarmManager: true,
+      alarmManager: { type: AlarmType.SET_ALARM_CLOCK },
     })
   })
 })

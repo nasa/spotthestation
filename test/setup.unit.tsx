@@ -189,7 +189,8 @@ jest.mock("@notifee/react-native", () => ({
   getNotificationSettings: jest.fn().mockResolvedValue({ android: { alarm: 1 }}),
   TriggerType: { TIMESTAMP: 0 },
   AndroidNotificationSetting: { ENABLED: 1 },
-  AndroidImportance: { HIGH: 4 }
+  AndroidImportance: { HIGH: 4 },
+  AlarmType: { SET_ALARM_CLOCK: 4 },
 }))
 
 jest.mock("react-native-safe-area-context", () => ({
