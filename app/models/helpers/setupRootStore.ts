@@ -10,6 +10,7 @@
  * @refresh reset
  */
 import { applySnapshot, IDisposer, onSnapshot } from "mobx-state-tree"
+import omit from "lodash/omit"
 import type { RootStore } from "../RootStore"
 import * as storage from "../../utils/storage"
 
@@ -40,7 +41,10 @@ export async function setupRootStore(rootStore: RootStore) {
 
   // track changes & save to AsyncStorage
   _disposer = onSnapshot(rootStore, (snapshot) =>
-    storage.save(storage.KEYS.ROOT_STATE_STORAGE_KEY, snapshot),
+    storage.save(
+      storage.KEYS.ROOT_STATE_STORAGE_KEY,
+      omit(snapshot, "modalsQueue", "currentModal"),
+    ),
   )
 
   const unsubscribe = () => {

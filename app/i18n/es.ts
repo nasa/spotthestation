@@ -28,6 +28,17 @@ const es = {
     openSettings: "Abrir ajustes", // <-- "Abrir Configuración."
     body: "Para usar esta función, debes dar permiso para acceder a la galería.",
   },
+  fontSizeModal: {
+    title: "Tamaño de fuente demasiado grande",
+    body1:
+      "Parece que el tamaño de fuente de tu dispositivo está configurado demasiado alto. Esto puede causar que alguna información esencial se recorte o se muestre incorrectamente en la aplicación.",
+    bodyAndroid:
+      "Para ajustar el tamaño de fuente, ve a Configuración → Pantalla → Tamaño y estilo de fuente → Ajusta el control deslizante a un tamaño más pequeño.",
+    bodyIOS:
+      "Para ajustar el tamaño de fuente, ve a Configuración → Accesibilidad → Pantalla y tamaño de texto → Texto más grande → Ajusta el control deslizante a un tamaño más pequeño.",
+    cancel: "Cancelar",
+    settings: "Ir a Configuración",
+  },
   permissionsAndroid: {
     title: "Permiso para guardar los videos",
     message: "Esta aplicación necesita permiso para guardar videos en tu dispositivo.",

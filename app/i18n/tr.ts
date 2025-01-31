@@ -28,6 +28,17 @@ const tr = {
     openSettings: "Ayarları aç",
     body: "Bu özelliği kullanmak için galeriye erişim izni vermeniz gerekiyor.",
   },
+  fontSizeModal: {
+    title: "Yazı Tipi Boyutu Çok Büyük",
+    body1:
+      "Cihazınızın yazı tipi boyutunun çok yüksek ayarlandığı görünüyor. Bu, uygulamada bazı önemli bilgilerin kesilmesine veya yanlış görüntülenmesine neden olabilir.",
+    bodyAndroid:
+      "Yazı tipi boyutunu ayarlamak için Ayarlar → Ekran → Yazı tipi boyutu ve stili → Kaydırıcıyı daha küçük bir boyuta ayarlayın.",
+    bodyIOS:
+      "Yazı tipi boyutunu ayarlamak için Ayarlar → Erişilebilirlik → Ekran ve Metin Boyutu → Daha Büyük Metin → Kaydırıcıyı daha küçük bir boyuta ayarlayın.",
+    cancel: "İptal",
+    settings: "Ayarlar'a Git",
+  },
   permissionsAndroid: {
     title: "Videoları kaydetme izni",
     message: "Bu uygulamanın cihazınıza video kaydetme iznine ihtiyacı var.",

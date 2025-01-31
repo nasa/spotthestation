@@ -28,6 +28,17 @@ const nl = {
     openSettings: "Open instellingen",
     body: "Om deze functie te kunnen gebruiken zult u toegang aan de galerij moeten verlenen.",
   },
+  fontSizeModal: {
+    title: "Lettergrootte te groot",
+    body1:
+      "Het lijkt erop dat de lettergrootte van uw apparaat te hoog is ingesteld. Dit kan ervoor zorgen dat essentiële informatie wordt afgekapt of onjuist wordt weergegeven in de app.",
+    bodyAndroid:
+      "Om uw lettergrootte aan te passen, gaat u naar Instellingen → Weergave → Lettergrootte en stijl → Pas de schuifregelaar aan naar een kleinere grootte.",
+    bodyIOS:
+      "Om uw lettergrootte aan te passen, gaat u naar Instellingen → Toegankelijkheid → Weergave en tekstgrootte → Grotere tekst → Pas de schuifregelaar aan naar een kleinere grootte.",
+    cancel: "Annuleren",
+    settings: "Ga naar Instellingen",
+  },
   permissionsAndroid: {
     title: "Toestemming om video's op te slaan",
     message: "Deze app heeft toestemming nodig om video's op uw apparaat op te kunnen slaan.",

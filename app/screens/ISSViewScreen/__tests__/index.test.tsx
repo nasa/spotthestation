@@ -23,6 +23,7 @@ import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import Share from "react-native-share"
 
 const mockNavigate = jest.fn()
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock("@react-navigation/native", () => ({
   ...Object.assign({}, jest.requireActual("@react-navigation/native")),
   useNavigation: jest.fn(() => ({ navigate: mockNavigate, setParams: jest.fn() })),

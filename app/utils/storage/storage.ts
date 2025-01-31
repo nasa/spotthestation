@@ -23,6 +23,7 @@ export enum KEYS {
   LAST_REVIEW_REQUESTED_AT_KEY = "lastReviewRequestedAt",
   NUMBER_OF_LAUNCHES_KEY = "numberOfLaunches",
   NUMBER_OF_REVIEW_REQUESTS_KEY = "numberOfReviewRequests",
+  FONT_SIZE_MODAL_CLOSED_KEY = "fontSizeModalClosed",
 }
 
 /**

@@ -28,6 +28,17 @@ const en = {
     openSettings: "Open settings",
     body: "To use this feature, you need to grant permission to access the gallery.",
   },
+  fontSizeModal: {
+    title: "Font Size Too Large",
+    body1:
+      "It looks like your device's font size is set too high. This may cause some essential information to be cropped or displayed incorrectly in the app.",
+    bodyAndroid:
+      "To adjust your font size, go to Settings → Display → Font size and style → Adjust the slider to a smaller size.",
+    bodyIOS:
+      "To adjust your font size, go to Settings → Accessibility → Display & Text Size → Larger Text → Adjust the slider to a smaller size.",
+    cancel: "Cancel",
+    settings: "Go to Settings",
+  },
   permissionsAndroid: {
     title: "Permission to save videos",
     message: "This app needs permission to save videos to your device.",

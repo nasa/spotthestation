@@ -28,6 +28,17 @@ const pl = {
     openSettings: "Otwórz ustawienia",
     body: "Aby korzystać z tej funkcji, musisz przyznać uprawnienia do dostępu do galerii.",
   },
+  fontSizeModal: {
+    title: "Rozmiar czcionki za duży",
+    body1:
+      "Wygląda na to, że rozmiar czcionki na Twoim urządzeniu jest ustawiony zbyt wysoko. Może to spowodować, że niektóre istotne informacje zostaną obcięte lub wyświetlone nieprawidłowo w aplikacji.",
+    bodyAndroid:
+      "Aby dostosować rozmiar czcionki, przejdź do Ustawienia → Wyświetlacz → Rozmiar i styl czcionki → Dostosuj suwak do mniejszego rozmiaru.",
+    bodyIOS:
+      "Aby dostosować rozmiar czcionki, przejdź do Ustawienia → Dostępność → Wyświetlacz i rozmiar tekstu → Większy tekst → Dostosuj suwak do mniejszego rozmiaru.",
+    cancel: "Anuluj",
+    settings: "Przejdź do Ustawień",
+  },
   permissionsAndroid: {
     title: "Uprawnienia do zapisywania filmów",
     message: "Ta aplikacja potrzebuje uprawnień do zapisywania filmów na Twoim urządzeniu.",

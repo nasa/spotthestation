@@ -28,6 +28,17 @@ const sv = {
     openSettings: "Öppna Inställningar",
     body: "För att använda den här funktionen måste du ge tillstånd att komma åt galleriet.",
   },
+  fontSizeModal: {
+    title: "Teckenstorlek för stor",
+    body1:
+      "Det verkar som att teckenstorleken på din enhet är inställd för högt. Detta kan orsaka att viss viktig information beskärs eller visas felaktigt i appen.",
+    bodyAndroid:
+      "För att justera teckenstorleken, gå till Inställningar → Skärm → Teckenstorlek och stil → Justera reglaget till en mindre storlek.",
+    bodyIOS:
+      "För att justera teckenstorleken, gå till Inställningar → Tillgänglighet → Skärm och textstorlek → Större text → Justera reglaget till en mindre storlek.",
+    cancel: "Avbryt",
+    settings: "Gå till Inställningar",
+  },
   permissionsAndroid: {
     title: "Tillstånd att spara videor",
     message: "Den här appen behöver tillåtelse för att spara videor på din enhet.",

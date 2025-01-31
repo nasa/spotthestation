@@ -28,6 +28,17 @@ const it = {
     openSettings: "Apri le impostazioni",
     body: "Per utilizzare questa funzione, è necessario concedere l'autorizzazione per accedere alla galleria.",
   },
+  fontSizeModal: {
+    title: "Dimensione del carattere troppo grande",
+    body1:
+      "Sembra che la dimensione del carattere del tuo dispositivo sia impostata troppo alta. Questo potrebbe causare il taglio o la visualizzazione errata di alcune informazioni essenziali nell'app.",
+    bodyAndroid:
+      "Per regolare la dimensione del carattere, vai su Impostazioni → Display → Dimensione e stile del carattere → Regola il cursore su una dimensione più piccola.",
+    bodyIOS:
+      "Per regolare la dimensione del carattere, vai su Impostazioni → Accessibilità → Display e dimensione del testo → Testo più grande → Regola il cursore su una dimensione più piccola.",
+    cancel: "Annulla",
+    settings: "Vai alle Impostazioni",
+  },
   permissionsAndroid: {
     title: "Autorizzazione per salvare i video",
     message: "Questa app richiede l'autorizzazione per salvare i video sul tuo dispositivo.",

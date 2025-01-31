@@ -10,6 +10,7 @@ import { api } from "../../../services/api"
 import issData200min from "../../../../test/mockISSData200min.json"
 import issDataFull from "../../../../test/mockISSDataFull.json"
 import { withRealDate } from "../../../../test/helpers"
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock("@react-navigation/native", () => ({
   ...Object.assign({}, jest.requireActual("@react-navigation/native")),
   useRoute: () => ({

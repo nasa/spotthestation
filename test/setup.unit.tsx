@@ -20,6 +20,7 @@ const mockUseRef = React.useRef
 // libraries to mock
 jest.doMock("react-native", () => {
   // Extend ReactNative
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return Object.setPrototypeOf(
     {
       LogBox: { ignoreLogs: jest.fn() },
@@ -331,6 +332,7 @@ jest.mock("react-native-version-check", () => ({
   needUpdate: jest.fn().mockResolvedValue({ isNeeded: false }),
 }))
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock("react-native-gesture-handler", () => ({
   ...Object.assign({}, jest.requireActual("react-native-gesture-handler")),
   GestureHandlerRootView: ({ children }) => <>{children}</>,

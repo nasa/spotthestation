@@ -28,6 +28,17 @@ const fr = {
     openSettings: "Ouvrir les Paramètres",
     body: "Pour utiliser cette fonctionnalité, vous devez accorder la permission d'accéder à la galerie.",
   },
+  fontSizeModal: {
+    title: "Taille de police trop grande",
+    body1:
+      "Il semble que la taille de la police de votre appareil soit réglée trop haut. Cela peut entraîner une coupure ou un affichage incorrect de certaines informations essentielles dans l'application.",
+    bodyAndroid:
+      "Pour ajuster la taille de votre police, allez dans Paramètres → Affichage → Taille et style de police → Ajustez le curseur à une taille plus petite.",
+    bodyIOS:
+      "Pour ajuster la taille de votre police, allez dans Paramètres → Accessibilité → Affichage et taille du texte → Texte plus grand → Ajustez le curseur à une taille plus petite.",
+    cancel: "Annuler",
+    settings: "Aller aux paramètres",
+  },
   permissionsAndroid: {
     title: "Autorisation pour enregistrer des vidéos",
     message:

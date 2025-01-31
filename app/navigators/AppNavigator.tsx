@@ -13,8 +13,8 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { useEffect, useRef } from "react"
-import { AppState, Platform, useColorScheme } from "react-native"
+import React, { useCallback, useEffect, useRef } from "react"
+import { AppState, PixelRatio, Platform, useColorScheme, ViewStyle } from "react-native"
 import * as storage from "../utils/storage"
 import Config from "../config"
 import { TabNavigator, TabParamList } from "./TabNavigator"
@@ -26,6 +26,10 @@ import Snackbar from "react-native-snackbar"
 import { translate } from "../i18n"
 import * as notifications from "../utils/notifications"
 import notifee, { EventType } from "@notifee/react-native"
+import { FontSizeModal } from "../components/modals/FontSizeModal"
+import { ModalContainer } from "../components"
+import { StyleFn, useStyles } from "../utils/useStyles"
+import { useStores } from "../models"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -82,7 +86,10 @@ const navigateToAR = async (location) => {
 }
 
 const AppStack = observer(function AppStack() {
+  const { $modal } = useStyles(styles)
+
   const prevAppState = useRef<string>()
+  const { requestOpenModal, requestCloseModal } = useStores()
 
   useEffect(() => {
     Promise.all([
@@ -108,13 +115,23 @@ const AppStack = observer(function AppStack() {
         }),
       )
 
-    if (Platform.OS === "android") {
-      const subscription = AppState.addEventListener("change", (nextAppState) => {
-        if (
-          nextAppState === "active" &&
-          prevAppState.current &&
-          prevAppState.current !== nextAppState
-        )
+    const checkFontScale = async () => {
+      if (
+        PixelRatio.getFontScale() > 1.5 &&
+        !(await storage.load(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY))
+      ) {
+        requestOpenModal("fontSize")
+      } else {
+        requestCloseModal("fontSize")
+      }
+    }
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        nextAppState === "active" &&
+        prevAppState.current &&
+        prevAppState.current !== nextAppState
+      ) {
+        if (Platform.OS === "android") {
           notifications
             .getInitialNotification()
             .then((initialNotification) => {
@@ -122,28 +139,53 @@ const AppStack = observer(function AppStack() {
               return undefined
             })
             .catch((e) => console.error(e))
-        prevAppState.current = nextAppState
-      })
-
-      return () => {
-        subscription.remove()
-      }
-    } else {
-      return notifee.onForegroundEvent(({ type, detail }) => {
-        if (type === EventType.PRESS) {
-          navigateToAR(detail?.notification?.data).catch(console.error)
         }
-      })
+
+        checkFontScale().catch(console.error)
+      }
+
+      prevAppState.current = nextAppState
+    })
+
+    checkFontScale().catch(console.error)
+
+    return () => {
+      subscription.remove()
     }
   }, [])
 
+  useEffect(() => {
+    if (Platform.OS !== "ios") return undefined
+    return notifee.onForegroundEvent(({ type, detail }) => {
+      if (type === EventType.PRESS) {
+        navigateToAR(detail?.notification?.data).catch(console.error)
+      }
+    })
+  }, [])
+
+  const handleFontSizeModalClose = useCallback(async () => {
+    requestCloseModal("fontSize")
+    await storage.save(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY, true)
+  }, [])
+
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Onboarding"}>
-      <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
-      <Stack.Screen name="Main" component={TabNavigator} />
-      <Stack.Screen name="SettingsScreens" component={SettingsNavigator} />
-      <Stack.Screen name="ResourcesScreens" component={ResourcesNavigator} />
-    </Stack.Navigator>
+    <>
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Onboarding"}>
+        <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
+        <Stack.Screen name="Main" component={TabNavigator} />
+        <Stack.Screen name="SettingsScreens" component={SettingsNavigator} />
+        <Stack.Screen name="ResourcesScreens" component={ResourcesNavigator} />
+      </Stack.Navigator>
+      <ModalContainer
+        name="fontSize"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.85}
+        style={$modal}
+      >
+        <FontSizeModal onClose={handleFontSizeModalClose} />
+      </ModalContainer>
+    </>
   )
 })
 
@@ -164,3 +206,14 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
     </NavigationContainer>
   )
 })
+
+const styles: StyleFn = ({ scale }) => {
+  const $modal: ViewStyle = {
+    left: 0,
+    margin: 0,
+    justifyContent: "center",
+    marginHorizontal: scale(24),
+  }
+
+  return { $modal }
+}

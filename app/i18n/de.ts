@@ -28,6 +28,17 @@ const de = {
     openSettings: "Einstellungen öffnen",
     body: "Um diese Funktion zu verwenden, müssen Sie die Erlaubnis erteilen, auf die Galerie zuzugreifen.",
   },
+  fontSizeModal: {
+    title: "Schriftgröße zu groß",
+    body1:
+      "Es sieht so aus, als ob die Schriftgröße Ihres Geräts zu hoch eingestellt ist. Dies kann dazu führen, dass einige wichtige Informationen abgeschnitten oder falsch angezeigt werden.",
+    bodyAndroid:
+      "Um Ihre Schriftgröße anzupassen, gehen Sie zu Einstellungen → Anzeige → Schriftgröße und Stil → Schieben Sie den Regler auf eine kleinere Größe.",
+    bodyIOS:
+      "Um Ihre Schriftgröße anzupassen, gehen Sie zu Einstellungen → Bedienungshilfen → Anzeige & Textgröße → Größerer Text → Schieben Sie den Regler auf eine kleinere Größe.",
+    cancel: "Abbrechen",
+    settings: "Zu den Einstellungen",
+  },
   permissionsAndroid: {
     title: "Erlaubnis zum Speichern von Videos",
     message: "Diese App benötigt die Berechtigung, Videos auf Ihrem Gerät zu speichern.",
