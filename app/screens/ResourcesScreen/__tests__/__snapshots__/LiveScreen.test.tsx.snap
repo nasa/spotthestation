@@ -214,8 +214,8 @@ exports[`LiveScreen renders correctly 1`] = `
         }
       }
     />
-    <View
-      onLayout={[Function]}
+    <ActivityIndicator
+      size="large"
     />
   </View>
 </div>

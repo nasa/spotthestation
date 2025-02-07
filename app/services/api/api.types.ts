@@ -75,6 +75,18 @@ export interface AstronautsFailResponse {
 
 export type AstronautsResponse = AstronautsSuccessResponse | AstronautsFailResponse
 
+export interface LivestreamIdSuccessResponse {
+  ok: true
+  data: { id: string }
+}
+
+export interface LivestreamIdFailResponse {
+  ok: false
+  data: string
+}
+
+export type LivestreamIdResponse = LivestreamIdSuccessResponse | LivestreamIdFailResponse
+
 /**
  * The options used to configure apisauce.
  */

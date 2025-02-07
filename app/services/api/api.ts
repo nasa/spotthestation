@@ -25,7 +25,7 @@ import {
   ApiConfig,
   AstronautsResponse,
   GetRawISSDataParams,
-  OSMSearchResult,
+  OSMSearchResult, LivestreamIdResponse,
 } from "./api.types"
 import { SatData } from "../../utils/satellite"
 import i18n from "i18n-js"
@@ -278,6 +278,17 @@ export class Api {
 
   async getAstronauts(): Promise<AstronautsResponse> {
     const response: ApiResponse<any> = await this.apisauce.get("/astronauts/", {})
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: "" }
+    }
+
+    return { ok: true, data: response.data }
+  }
+
+  async getLivestreamId(): Promise<LivestreamIdResponse> {
+    const response: ApiResponse<any> = await this.apisauce.get("/youtube/livestream-id", {})
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)

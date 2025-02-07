@@ -233,6 +233,7 @@ jest.mock('../app/services/api', () => ({
       }})),
     getISSData: jest.fn().mockResolvedValue({ ok: true, data: { points: [], shadowIntervals: [] }}),
     getAstronauts: jest.fn().mockResolvedValue({ ok: true, data: [] }),
+    getLivestreamId: jest.fn().mockResolvedValue({ ok: true, data: { id: "id" } }),
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: 'ok', zone: "US/Central" })),
     getFeed: jest.fn().mockResolvedValue({ ok: true, places: `
       <?xml version="1.0" encoding="UTF-8"?>

@@ -1,14 +1,13 @@
 import { Text } from "../../components"
 import { StyleFn, useStyles } from "../../utils/useStyles"
-import React, { useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import YoutubePlayer from "react-native-youtube-iframe"
-import { ViewStyle, View, TextStyle, Text as RNText } from "react-native"
+import { ViewStyle, View, TextStyle, Text as RNText, ActivityIndicator } from "react-native"
 
 import { typography } from "../../theme"
 import { colors } from "../../theme/colors"
 import { Template } from "./Template"
-
-const streamId = "OCem0E-0Q6Y"
+import { api } from "../../services/api"
 
 export interface LiveScreenRouteProps {}
 
@@ -16,6 +15,26 @@ export function LiveScreen() {
   const { $contentContainer, $description, $text, $flex } = useStyles(styles)
 
   const [videoHeight, setVideoHeight] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const [streamId, setStreamId] = useState(null)
+
+  const fetchData = useCallback(() => {
+    api
+      .getLivestreamId()
+      .then((res) => {
+        if (!res.ok) return setIsLoading(false)
+        setStreamId(res.data.id)
+        setIsLoading(false)
+      })
+      .catch((e) => {
+        setIsLoading(false)
+        console.log(e)
+      })
+  }, [isLoading])
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <Template headerTitleTx="resources.live.title">
@@ -32,13 +51,19 @@ export function LiveScreen() {
 
         <View style={$flex} />
 
-        <View
-          onLayout={(e) => {
-            setVideoHeight((e.nativeEvent.layout.width * 9) / 16)
-          }}
-        >
-          {videoHeight > 0 && <YoutubePlayer height={videoHeight} videoId={streamId} />}
-        </View>
+        { isLoading && (
+          <ActivityIndicator size="large" />
+        )}
+
+        { !isLoading && Boolean(streamId) && (
+          <View
+            onLayout={(e) => {
+              setVideoHeight((e.nativeEvent.layout.width * 9) / 16)
+            }}
+          >
+            {videoHeight > 0 && <YoutubePlayer height={videoHeight} videoId={streamId} />}
+          </View>
+        )}
       </View>
     </Template>
   )
