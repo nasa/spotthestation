@@ -469,17 +469,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const saveToGallery = useCallback(async (path: string, type: "photo" | "video" | "auto") => {
     if (Platform.OS === "android") {
       let granted: boolean
-      if (Platform.Version >= 33) {
-        const statuses = await PermissionsAndroid.requestMultiple([
-          PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
-          PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
-        ])
-
-        granted =
-          statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES] ===
-            PermissionsAndroid.RESULTS.GRANTED &&
-          statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO] ===
-            PermissionsAndroid.RESULTS.GRANTED
+      if (Platform.Version >= 29) {
+        granted = true
       } else {
         granted =
           (await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {

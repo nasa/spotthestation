@@ -25,7 +25,8 @@ import {
   ApiConfig,
   AstronautsResponse,
   GetRawISSDataParams,
-  OSMSearchResult, LivestreamIdResponse,
+  OSMSearchResult,
+  LivestreamIdResponse,
 } from "./api.types"
 import { SatData } from "../../utils/satellite"
 import i18n from "i18n-js"

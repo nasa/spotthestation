@@ -51,11 +51,9 @@ export function LiveScreen() {
 
         <View style={$flex} />
 
-        { isLoading && (
-          <ActivityIndicator size="large" />
-        )}
+        {isLoading && <ActivityIndicator size="large" />}
 
-        { !isLoading && Boolean(streamId) && (
+        {!isLoading && Boolean(streamId) && (
           <View
             onLayout={(e) => {
               setVideoHeight((e.nativeEvent.layout.width * 9) / 16)

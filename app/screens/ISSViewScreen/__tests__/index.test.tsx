@@ -633,29 +633,6 @@ describe("ISSViewScreen", () => {
         })
       })
 
-      it("requests READ_MEDIA_IMAGES and READ_MEDIA_VIDEO permissions on android SDK >= 33", async () => {
-        jest.spyOn(Platform, "Version", "get").mockReturnValueOnce("33")
-        Platform.OS = "android"
-        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
-        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
-        jest.spyOn(PermissionsAndroid, "requestMultiple").mockResolvedValueOnce({
-          [PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES]: PermissionsAndroid.RESULTS.GRANTED,
-          [PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO]: PermissionsAndroid.RESULTS.GRANTED,
-        } as unknown as ReturnType<typeof PermissionsAndroid.requestMultiple>)
-
-        const component = renderWithStore(rootStore)
-        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
-
-        await waitFor(() => {
-          expect(PermissionsAndroid.requestMultiple).toBeCalledWith([
-            PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
-            PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
-          ])
-
-          expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "photo" })
-        })
-      })
-
       it("does not save photo to gallery if permissions are denied", async () => {
         Platform.OS = "android"
         ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
@@ -673,6 +650,24 @@ describe("ISSViewScreen", () => {
             expect.anything(),
           )
           expect(CameraRoll.save).not.toBeCalled()
+        })
+      })
+
+      it("does not request extra permissions on android SDK >= 29", async () => {
+        jest.spyOn(Platform, "Version", "get").mockReturnValueOnce("29")
+        Platform.OS = "android"
+        ;(captureScreen as jest.Mock).mockResolvedValueOnce("file:///whatever")
+        ;(CameraRoll.save as jest.Mock).mockResolvedValueOnce(true)
+        jest
+          .spyOn(PermissionsAndroid, "request")
+          .mockResolvedValueOnce(PermissionsAndroid.RESULTS.GRANTED)
+
+        const component = renderWithStore(rootStore)
+        await userEvent.press(await component.findByAccessibilityHint("take a photo"))
+
+        await waitFor(() => {
+          expect(CameraRoll.save).toBeCalledWith("file:///whatever", { type: "photo" })
+          expect(PermissionsAndroid.request).not.toHaveBeenCalled()
         })
       })
     })
