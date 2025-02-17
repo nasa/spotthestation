@@ -6,7 +6,7 @@ import { ViewStyle, View, TextStyle, ScrollView, Platform, Linking } from "react
 import { colors, typography } from "../../theme"
 
 export interface FontSizeModalProps {
-  onClose?: () => void
+  onClose?: (canceled: boolean) => void
 }
 
 export function FontSizeModal({ onClose }: FontSizeModalProps) {
@@ -21,8 +21,13 @@ export function FontSizeModal({ onClose }: FontSizeModalProps) {
     $scrollContainer,
   } = useStyles(styles)
 
-  const onSettings = () => {
-    if (onClose) onClose()
+  const onSettings = async () => {
+    onClose?.(false)
+    if (Platform.OS === "ios" && (await Linking.canOpenURL("App-prefs:root"))) {
+      Linking.openURL("App-prefs:root").catch(console.error)
+      return
+    }
+
     Linking.openSettings().catch(console.error)
   }
 
@@ -43,7 +48,7 @@ export function FontSizeModal({ onClose }: FontSizeModalProps) {
             textStyle={$nextButtonText}
             style={$nextButton}
             pressedStyle={$nextButton}
-            onPress={onClose}
+            onPress={() => onClose?.(true)}
           />
 
           <Button

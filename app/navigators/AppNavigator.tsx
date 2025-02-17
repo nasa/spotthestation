@@ -116,6 +116,10 @@ const AppStack = observer(function AppStack() {
       )
 
     const checkFontScale = async () => {
+      if ((await storage.load(storage.KEYS.LAST_FONT_SIZE_KEY)) !== PixelRatio.getFontScale()) {
+        await storage.remove(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY)
+      }
+
       if (
         PixelRatio.getFontScale() > 1.5 &&
         !(await storage.load(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY))
@@ -124,6 +128,8 @@ const AppStack = observer(function AppStack() {
       } else {
         requestCloseModal("fontSize")
       }
+
+      await storage.save(storage.KEYS.LAST_FONT_SIZE_KEY, PixelRatio.getFontScale())
     }
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       if (
@@ -163,9 +169,9 @@ const AppStack = observer(function AppStack() {
     })
   }, [])
 
-  const handleFontSizeModalClose = useCallback(async () => {
+  const handleFontSizeModalClose = useCallback(async (canceled: boolean) => {
     requestCloseModal("fontSize")
-    await storage.save(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY, true)
+    if (canceled) await storage.save(storage.KEYS.FONT_SIZE_MODAL_CLOSED_KEY, true)
   }, [])
 
   return (
