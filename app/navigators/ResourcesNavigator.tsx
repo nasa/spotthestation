@@ -21,6 +21,11 @@ import { VideosScreen, VideosScreenRouteProps } from "../screens/ResourcesScreen
 
 import { FaqScreen, FaqScreenRouteProps } from "../screens/ResourcesScreen/FaqScreen"
 
+import {
+  EarthScienceScreen,
+  EarthScienceRouteProps,
+} from "../screens/ResourcesScreen/EarthScienceScreen"
+
 export type ResourcesParamList = {
   Web: WebScreenRouteProps
   Astronauts: AstronautsScreenRouteProps
@@ -30,6 +35,7 @@ export type ResourcesParamList = {
   Live: LiveScreenRouteProps
   Videos: VideosScreenRouteProps
   Faq: FaqScreenRouteProps
+  EarthScience: EarthScienceRouteProps
 }
 
 export type ResourcesStackScreenProps<T extends keyof ResourcesParamList> = StackScreenProps<
@@ -51,6 +57,7 @@ export function ResourcesNavigator() {
       <Stack.Screen name="Live" component={LiveScreen} initialParams={params} />
       <Stack.Screen name="Videos" component={VideosScreen} initialParams={params} />
       <Stack.Screen name="Faq" component={FaqScreen} initialParams={params} />
+      <Stack.Screen name="EarthScience" component={EarthScienceScreen} initialParams={params} />
     </Stack.Navigator>
   )
 }

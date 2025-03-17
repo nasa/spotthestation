@@ -35,6 +35,10 @@ export const ResourcesScreen = observer(function ResourcesScreen() {
           onPress={() => handleNavigate("Astronauts")}
         />
         <SettingsItem title="resources.live.title" onPress={() => handleNavigate("Live")} />
+        <SettingsItem
+          title="resources.earthScience.title"
+          onPress={() => handleNavigate("EarthScience")}
+        />
         {/* <SettingsItem */}
         {/*   title="resources.tour.title" */}
         {/*   onPress={() => */}

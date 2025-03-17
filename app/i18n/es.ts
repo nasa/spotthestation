@@ -458,98 +458,149 @@ const es = {
     faq: {
       title: "Preguntas Frecuentes",
       questions: {
-        question1: "1. ¿Por qué está la Estación Espacial allá arriba?",
+        question1: "1. ¿Por qué está la Estación Espacial Internacional allá arriba?",
         answer1:
-          "La Estación Espacial Internacional es el único laboratorio de microgravedad de la Tierra. Esta plataforma del tamaño de un campo de fútbol alberga una gran cantidad de experimentos científicos y tecnológicos que son realizados continuamente por los miembros de la tripulación o son automatizados. La investigación a bordo del laboratorio en órbita ofrece beneficios para la vida en la Tierra, así como para la futura exploración espacial. La Estación Espacial sirve como banco de pruebas para tecnologías y nos permite estudiar los impactos de los vuelos espaciales de larga duración en los humanos, apoyando la misión de la NASA de llevar la presencia humana más lejos en el espacio. Para obtener más información sobre la investigación que se lleva a cabo en la Estación Espacial y las oportunidades para realizar su ciencia allí, por favor <a href='https://www.nasa.gov/international-space-station/'>haga clic aquí</a>.",
-        question2: "2. ¿A qué velocidad viaja la Estación Espacial?",
+          "La Estación Espacial Internacional es una convergencia de ciencia, tecnología e innovación humana que permite investigaciones imposibles en la Tierra para el beneficio de la humanidad. Durante más de 24 años, la NASA ha apoyado una presencia humana continua de EE.UU. a bordo de la estación, a través de la cual los astronautas han aprendido a vivir y trabajar en el espacio por períodos prolongados.<br/>" +
+          "La estación espacial, que involucra a Estados Unidos, Rusia, Canadá, Japón y los países participantes de la ESA (Agencia Espacial Europea), es una de las colaboraciones internacionales más complejas e interdependientes jamás intentadas. Reúne tripulaciones de vuelo internacionales y múltiples proveedores de transporte espacial, así como equipos de apoyo distribuidos globalmente, instalaciones, redes de comunicación y la comunidad científica mundial.<br/>" +
+          "En los últimos 24 años, la estación espacial se ha transformado en un laboratorio en órbita con capacidades de investigación que permiten a científicos de más de 109 naciones realizar más de 4,000 experimentos innovadores en un entorno de vuelo espacial extremo y único.<br/>" +
+          "La estación espacial sirve como trampolín para desarrollar una economía en órbita baja y los próximos grandes saltos de la NASA en exploración, incluidas misiones a la Luna bajo Artemis y, en última instancia, la exploración humana de Marte.<br/>" +
+          "Obtenga más información sobre la Estación Espacial Internacional, su investigación y su tripulación en:<br/>" +
+          "<a href='https://www.nasa.gov/station'>https://www.nasa.gov/station</a>",
+
+        question2: "2. ¿A qué velocidad viaja la Estación Espacial Internacional?",
         answer2:
-          "La Estación da una vuelta a la Tierra cada 90 minutos. Viaja a aproximadamente 17,500 millas (28,000 km) por hora, lo que le da a la tripulación 16 amaneceres y atardeceres cada día. En los más de 15 años que las personas han estado viviendo a bordo, la Estación ha circunnavegado la Tierra decenas de miles de veces. Puede ver más datos sobre la Estación en <a href='https://www.nasa.gov/international-space-station/space-station-facts-and-figures/'>esta página web</a>.",
-        question3: "3. ¿Con qué frecuencia puedo esperar ver la Estación Espacial?",
+          "La Estación Espacial Internacional orbita la Tierra cada 90 minutos. Viaja a aproximadamente 28,000 kilómetros por hora, lo que permite a la tripulación a bordo ver 16 amaneceres y atardeceres cada día. Las tripulaciones han ocupado la estación espacial continuamente desde noviembre de 2000. En ese tiempo, 280 personas de 23 países han visitado el puesto orbital, y la estación ha circunnavegado la Tierra cientos de miles de veces.",
+
+        question3: "3. ¿Con qué frecuencia puedo esperar ver la Estación Espacial Internacional?",
         answer3:
-          "La Estación Espacial es visible porque refleja la luz del Sol, por la misma razón que podemos ver la Luna. Sin embargo, a diferencia de la Luna, la Estación Espacial no es lo suficientemente brillante como para verla durante el día. Solo se puede ver cuando es amanecer o atardecer en su ubicación. Por lo tanto, puede variar desde una oportunidad de avistamiento al mes hasta varias a la semana, ya que debe estar oscuro donde usted está, y la Estación Espacial debe estar pasando por encima.",
-        question4: "4. ¿Qué es la aplicación móvil Spot the Station?",
+          "La Estación Espacial Internacional es visible porque refleja la luz solar, por la misma razón que podemos ver la Luna. Sin embargo, a diferencia de la Luna, la estación espacial no es lo suficientemente brillante como para verla durante el día. Las oportunidades de visualización pueden variar desde una vez al mes hasta varias veces a la semana, ya que la luz del Sol se refleja en la estación mientras pasa por encima al amanecer y al atardecer en su ubicación.",
+
+        question4: "4. ¿Qué es la aplicación Spot the Station?",
         answer4:
-          "La aplicación móvil Spot the Station es una aplicación oficial de la NASA que ayuda a los usuarios a rastrear y recibir notificaciones de avistamientos de la Estación Espacial Internacional a medida que pasa sobre su ubicación. Proporciona seguimiento en tiempo real, horarios de avistamiento y alertas.",
+          "La aplicación móvil Spot the Station es una aplicación oficial de la NASA que ayuda a los usuarios a rastrear y recibir notificaciones para las visualizaciones de la Estación Espacial Internacional a medida que pasa sobre su ubicación respectiva. También proporciona seguimiento en tiempo real, horarios de sobrevuelo y alertas.",
+
         question5: "5. ¿Cómo descargo la aplicación móvil Spot the Station?",
         answer5:
-          "Puede descargar la aplicación tanto en la Apple App Store <a href='https://apps.apple.com/us/app/spot-the-station/id6449235044'>aquí</a> como en Google Play Store <a href='https://play.google.com/store/apps/details?id=gov.nasa.hq.SpotTheStation&hl=en_US&pli=1'>aquí</a>.",
+          "La aplicación móvil Spot the Station está disponible en dispositivos móviles y tabletas iOS y Android.",
+
         question6:
-          "6. ¿Cómo me notifica la aplicación sobre los próximos avistamientos de la Estación?",
+          "6. ¿Cómo me notifica la aplicación Spot the Station sobre las próximas oportunidades de visualización de la Estación Espacial Internacional?",
         answer6:
-          "La aplicación envía notificaciones push para alertarlo sobre los próximos avistamientos de la Estación, incluyendo la fecha, hora, duración y condiciones de visibilidad específicas para su ubicación. Asegúrese de haber habilitado los permisos de notificaciones para esta aplicación en la configuración de su teléfono.",
-        question7: "7. ¿Puedo personalizar las notificaciones en la aplicación?",
+          "La aplicación Spot the Station envía notificaciones push para alertar a los usuarios sobre los próximos pasos de la Estación Espacial Internacional. Los usuarios deben asegurarse de que los permisos de notificación de la aplicación estén habilitados en la configuración de su dispositivo.",
+
+        question7: "7. ¿Puedo personalizar las notificaciones en la aplicación Spot the Station?",
         answer7:
-          "Sí, puede personalizar la configuración de alertas en la aplicación para recibir notificaciones basadas en su ubicación preferida, condiciones de avistamiento e incluso horarios específicos que funcionen mejor para usted.",
-        question8: "8. ¿Qué debo hacer si no estoy recibiendo notificaciones?",
+          "La aplicación Spot the Station tiene la capacidad de configurar alertas personalizadas para recibir notificaciones push específicas para la ubicación y el momento preferido del usuario. Las configuraciones de notificación se pueden encontrar en la página de configuración de la aplicación, donde los usuarios pueden activar las notificaciones para todos los eventos próximos o personalizar las notificaciones para la ubicación seleccionada actualmente. Los usuarios pueden personalizar las notificaciones para otras ubicaciones a través de la configuración de ubicación.",
+
+        question8: "8. ¿Qué debo hacer si no recibo notificaciones?",
         answer8:
-          "Si no está recibiendo alertas, asegúrese de que las notificaciones estén habilitadas en la configuración de su dispositivo. También verifique las preferencias de notificación de la aplicación para confirmar que ha configurado alertas para su ubicación elegida y el horario preferido.",
-        question9: "9. ¿Funciona la aplicación internacionalmente?",
+          "Los usuarios deben verificar las preferencias de notificación en la aplicación Spot the Station (Configuración de notificaciones en la página de configuración) para confirmar que el dispositivo está configurado para alertas en una ubicación y momento preferidos. Si los usuarios aún no reciben alertas, deben asegurarse de que las notificaciones estén habilitadas en la configuración de su dispositivo.",
+
+        question9: "9. ¿Funciona la aplicación Spot the Station internacionalmente?",
         answer9:
-          "Sí, la aplicación Spot the Station está disponible en todo el mundo y proporciona información de avistamiento para la mayoría de las ubicaciones habitadas, lo que facilita ver la Estación desde casi cualquier lugar.",
-        question10: "10. ¿Por qué no hay oportunidades de avistamiento para mi ubicación?",
+          "La aplicación Spot the Station está disponible en todo el mundo y en varios idiomas, incluidos inglés, neerlandés, francés, alemán, hindi, italiano, japonés, polaco, portugués (Brasil), ruso, español, turco y ucraniano. La aplicación proporciona información de visualización para la mayoría de las ubicaciones habitadas, lo que facilita ver la Estación Espacial Internacional mientras pasa por encima desde casi cualquier lugar.",
+
+        question10: "10. ¿Por qué no hay oportunidades de visualización para mi ubicación?",
         answer10:
-          "Debe estar oscuro donde usted está y la Estación Espacial debe estar sobre usted para que pueda verla. Dado que la órbita de la Estación Espacial la lleva por todo el mundo, puede pasar sobre usted en momentos en que no será visible, ya sea en medio del día o en medio de la noche. Spot The Station solo enviará notificaciones cuando tenga la oportunidad de ver la Estación Espacial, no cada vez que esté sobre usted.",
-        question11: "11. ¿Necesito un telescopio para ver la Estación Espacial?",
-        answer11: "No, puede ver la Estación Espacial a simple vista, no se requiere equipo.",
-        question12: "12. ¿La Estación aparece y luego desaparece debido a la luz de la Luna?",
+          "Debe estar oscuro con buena visibilidad en su ubicación y la estación espacial debe estar sobre usted para verla. Dado que la órbita de la estación espacial la lleva por todo el mundo, puede pasar por encima en momentos en que no será visible, ya sea en medio del día o en medio de la noche. Spot The Station enviará notificaciones solo cuando haya oportunidades de ver la Estación Espacial Internacional en su ubicación, no cada vez que esté sobre usted.",
+
+        question11: "11. ¿Necesito un telescopio para ver la Estación Espacial Internacional?",
+        answer11:
+          "No, los usuarios pueden ver la Estación Espacial Internacional a simple vista, no se requiere equipo adicional.",
+
+        question12:
+          "12. ¿Aparece y desaparece la Estación Espacial Internacional debido a la luz de la Luna?",
         answer12:
-          "La Estación Espacial es visible porque refleja la luz del Sol. Esta es la misma razón por la que la Luna parece brillar. Incluso cuando la Luna no ha salido, aún podrá ver la Estación Espacial.",
+          "La Estación Espacial Internacional es visible porque refleja la luz solar. Esta es la misma razón por la que la Luna parece brillar. Incluso cuando la Luna no ha salido, los usuarios pueden ver la estación.",
+
         question13: "13. ¿Qué zona horaria se utiliza para las notificaciones de alerta?",
         answer13:
-          "Toda la información de Spot The Station está listada en la zona horaria local para la ubicación seleccionada. Spot The Station se ajusta automáticamente al horario de verano.",
-        question14: "14. ¿Qué información proporciona la aplicación para cada avistamiento?",
+          "Todo el contenido dentro de la aplicación Spot the Station está listado en la zona horaria local para la ubicación seleccionada por el usuario. La aplicación se ajusta automáticamente al horario de verano.",
+
+        question14:
+          "14. ¿Qué información proporciona la aplicación Spot the Station para cada avistamiento?",
         answer14:
-          "Para cada avistamiento, la aplicación muestra la hora, la duración de la visibilidad, la altura máxima y las direcciones donde la Estación aparecerá y desaparecerá, ayudándole a localizarla con precisión en el cielo.",
+          "Para cada avistamiento, la aplicación Spot the Station muestra la hora, la duración de la visibilidad, la altura máxima sobre el horizonte y las direcciones donde la Estación Espacial Internacional aparecerá y desaparecerá, ayudando a los usuarios a localizarla con precisión en el cielo.",
+
         question15:
-          "15. ¿Cómo detecto la Estación durante cada avistamiento? ¿Qué significan toda esta información de avistamiento?",
+          "15. ¿Cómo puedo detectar la Estación Espacial Internacional durante una oportunidad de visualización? ¿Qué significan toda esta información?",
         answer15:
-          "La aplicación proporciona una lista de Avistamientos Próximos si toca en la Lista de Próximos Avistamientos en la página de inicio.<br/><strong>Fecha y hora</strong> es cuando comenzará la oportunidad de avistamiento en su zona horaria local. Todos los avistamientos ocurrirán dentro de unas pocas horas antes o después del amanecer o el atardecer. Este es el período de visualización óptimo ya que el sol se refleja en la Estación Espacial y contrasta con el cielo más oscuro.<br/><strong>Sobre el horizonte</strong> es el período máximo de tiempo que la Estación Espacial es visible antes de cruzar de nuevo por debajo del horizonte.<br/><strong>Altura máxima</strong> se mide en grados (también conocido como elevación). Representa la altura de la Estación Espacial desde el horizonte en el cielo nocturno. El horizonte está a cero grados, y directamente sobre usted está a noventa grados. Si sostiene su puño a la longitud del brazo y coloca su puño descansando en el horizonte, la parte superior estará a unos 10 grados.<br/><strong>Aparece</strong> es la ubicación en el cielo donde la Estación será visible por primera vez. Este valor, al igual que la altura máxima, también se mide en grados desde el horizonte. Las letras representan direcciones de la brújula: N es norte, WNW es oeste-noroeste, y así sucesivamente.<br/><strong>Desaparece</strong> representa dónde en el cielo nocturno la Estación Espacial Internacional dejará su campo de visión.<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "La aplicación Spot the Station proporciona una lista de “Avistamientos Próximos” si los usuarios tocan en la “Lista de Próximos Avistamientos” en la página de inicio.<br/>" +
+          "<strong>Fecha y hora</strong> es cuando comenzará la oportunidad de visualización en la zona horaria local. Todos los pasos ocurrirán dentro de unas pocas horas antes o después del amanecer o el atardecer. Este es el período de visualización óptimo, ya que el Sol se refleja en la Estación Espacial Internacional y contrasta con el cielo más oscuro.<br/>" +
+          "<strong>Sobre el horizonte</strong> es el período máximo de tiempo en que la estación es visible antes de cruzar de nuevo por debajo del horizonte.<br/>" +
+          "<strong>Altura máxima</strong> se mide en grados (también conocido como elevación). Representa la altura de la estación desde el horizonte en el cielo nocturno. El horizonte está a cero grados, y directamente sobre la cabeza está a 90 grados. Si los usuarios sostienen su puño a la longitud del brazo y lo colocan descansando en el horizonte, la parte superior será de aproximadamente 10 grados de elevación.<br/>" +
+          "<strong>Aparece</strong> es la ubicación en el cielo donde la estación será visible por primera vez. Este valor, al igual que la altura máxima, también se mide en grados desde el horizonte. Las letras representan direcciones de la brújula: N es norte, WNW es oeste-noroeste, y así sucesivamente.<br/>" +
+          "<strong>Desaparece</strong> representa dónde en el cielo nocturno la estación dejará el campo de visión." +
+          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+
         question16:
-          "16. El horario de sobrevuelo indica que la Estación Espacial aparece y desaparece desde la misma dirección, ¿cómo es eso posible? Ej. - Hora: Lun 15 de julio 11:57 PM, Visible: 2 min, Altura máxima: 51°, Aparece: 51° sobre ENE, Desaparece: 11° sobre ENE",
+          "16. El horario de sobrevuelo indica que la Estación Espacial Internacional aparece y desaparece desde la misma dirección, ¿cómo es eso posible?",
         answer16:
-          "El software Spot the Station redondea las direcciones a las direcciones cardinales e intercardinales más cercanas. Esto puede resultar en que parezca que la Estación aparecerá y desaparecerá en la misma dirección, aunque esté viajando a través del cielo. Esto ocurre típicamente en sobrevuelos con una ventana de visibilidad corta porque la Estación se está moviendo rápidamente hacia (o fuera de) la sombra oscura de la Tierra donde, desde nuestra ubicación en el suelo, no podemos observar su paso completo a través del cielo.",
-        question17: "17. ¿Puedo ver un mapa en vivo de la ubicación de la Estación?",
+          "El software Spot the Station redondea las direcciones a las direcciones cardinales e intercardinales más cercanas. Esto puede resultar en que parezca que la Estación Espacial Internacional aparecerá y desaparecerá en la misma dirección, aunque esté viajando por el cielo. Esto ocurre típicamente en sobrevuelos con una ventana de visibilidad corta porque la estación se mueve rápidamente hacia (o fuera de) la sombra oscura de la Tierra donde, desde la ubicación del usuario en el suelo, no se puede observar un paso completo por el cielo.",
+
+        question17:
+          "17. ¿Puedo ver un mapa en vivo de la ubicación de la Estación Espacial Internacional?",
         answer17:
-          "Sí, la aplicación incluye un mapa en tiempo real que muestra la posición actual de la Estación mientras orbita la Tierra, dándole una referencia visual para rastrear su progreso.",
-        question18: "18. ¿Qué es la función AR en la aplicación Spot the Station?",
+          "Sí, la aplicación Spot the Station incluye un mapa en tiempo real que muestra la posición actual de la Estación Espacial Internacional mientras orbita la Tierra, brindando a los usuarios una referencia visual para rastrear su progreso.",
+
+        question18:
+          "18. ¿Qué es la función de realidad aumentada en la aplicación Spot the Station?",
         answer18:
-          "La función de Realidad Aumentada (AR) en la aplicación Spot the Station permite a los usuarios ver una superposición virtual de la trayectoria de la Estación Espacial Internacional en el cielo. Esta función ayuda a los usuarios a localizar la Estación con mayor precisión al alinear su dispositivo con la posición en tiempo real de la Estación.",
-        question19: "19. ¿Cómo accedo a la función AR en la aplicación?",
+          "La función de realidad aumentada en la aplicación Spot the Station permite a los usuarios ver una superposición virtual de la trayectoria de la Estación Espacial Internacional en el cielo. Esta función ayuda a los usuarios a localizar la estación con mayor precisión al alinear su dispositivo con la posición en tiempo real de la estación.",
+
+        question19:
+          "19. ¿Cómo accedo a la función de realidad aumentada en la aplicación Spot the Station?",
         answer19:
-          "Para acceder a la función AR, abra la aplicación y navegue a la opción de Vista AR en el menú inferior. Siga las indicaciones en pantalla para alinear la cámara de su dispositivo con el cielo, donde la aplicación mostrará una superposición virtual que indica la posición y trayectoria de la Estación.",
-        question20: "20. ¿Necesito un dispositivo o software específico para usar la función AR?",
+          "Para acceder a la función de realidad aumentada, abra la aplicación Spot the Station y navegue a la opción “Vista AR” en el menú inferior. Siga las indicaciones en pantalla para alinear la cámara del dispositivo con el cielo, donde la aplicación mostrará una superposición virtual que indica la posición y trayectoria de la Estación Espacial Internacional.",
+
+        question20:
+          "20. ¿Necesito un dispositivo o software específico para usar la función de realidad aumentada?",
         answer20:
-          "La función AR requiere un dispositivo que pueda determinar su orientación en el espacio 3D. Requiere soporte de hardware específico, como un giroscopio o coprocesador de movimiento. Los dispositivos más antiguos o económicos pueden no soportar esta funcionalidad.",
-        question21: "21. ¿Cómo funciona la función AR?",
+          "La función de realidad aumentada de Spot the Station requiere un dispositivo que pueda determinar su orientación en el espacio 3D. Requiere soporte de hardware específico, como un giroscopio o coprocesador de movimiento. Los dispositivos más antiguos o económicos pueden no admitir esta funcionalidad.",
+
+        question21: "21. ¿Cómo funciona la función de realidad aumentada?",
         answer21:
-          "Usando la cámara y los sensores de su dispositivo, la función AR superpone la ubicación de la Estación en el cielo en su pantalla, ajustándose en tiempo real a medida que mueve su dispositivo. La aplicación le guía para apuntar su cámara en la dirección correcta y le muestra dónde aparecerá y desaparecerá la Estación.",
-        question22: "22. ¿Puedo usar la función AR tanto de día como de noche?",
+          "Usando la cámara y los sensores del dispositivo, la función de realidad aumentada de Spot the Station superpone la ubicación de la Estación Espacial Internacional en el cielo en la pantalla, ajustándose en tiempo real a medida que el usuario mueve el dispositivo. La aplicación guía a los usuarios para apuntar la cámara del dispositivo en la dirección correcta y muestra dónde aparecerá y desaparecerá la estación.",
+
+        question22: "22. ¿Puedo usar la función de realidad aumentada tanto de día como de noche?",
         answer22:
-          "Sí, puede usar la función AR tanto de día como de noche; sin embargo, la mejor experiencia es típicamente durante el crepúsculo o la noche cuando la Estación es visible a simple vista. La superposición AR funcionará independientemente de las condiciones de luz, pero los avistamientos reales dependen de la visibilidad.",
-        question23: "23. ¿Es precisa la superposición AR para todas las ubicaciones?",
+          "Sí, la función de realidad aumentada dentro de la aplicación Spot the Station está disponible tanto de día como de noche; sin embargo, la mejor experiencia de visualización es típicamente durante el crepúsculo o la noche cuando la Estación Espacial Internacional es visible a simple vista. La superposición de realidad aumentada funcionará independientemente de las condiciones de luz, pero las oportunidades de visualización reales dependen de la visibilidad.",
+
+        question23:
+          "23. ¿Es precisa la superposición de realidad aumentada para todas las ubicaciones?",
         answer23:
-          "Sí, la función AR está diseñada para proporcionar información de posición precisa basada en su ubicación GPS. Sin embargo, la precisión puede variar ligeramente dependiendo de la calibración de la brújula y los sensores de su dispositivo. Si nota discrepancias, recalibre la brújula de su dispositivo a través de Configuración.",
-        question24: "24. ¿Puede la función AR ayudar con los tiempos exactos de avistamiento?",
+          "Sí, la función de realidad aumentada dentro de la aplicación Spot the Station está diseñada para proporcionar información de posición precisa basada en la ubicación GPS del dispositivo. Sin embargo, la precisión puede variar ligeramente dependiendo de la calibración de la brújula y los sensores del dispositivo. Si los usuarios notan discrepancias, recalibre la brújula del dispositivo a través de la configuración.",
+
+        question24:
+          "24. ¿Puede la función de realidad aumentada ayudar con los tiempos de avistamiento exactos?",
         answer24:
-          "La función AR le guía visualmente para localizar la Estación en el momento preciso en que aparece en el cielo. Junto con las alertas de avistamiento de la aplicación, mejora su capacidad para ver la Estación al darle una dirección visual en vivo e indicador de altura para rastrearla con precisión.",
-        question25: "25. ¿Hay consejos para optimizar mi experiencia AR?",
+          "La función de realidad aumentada dentro de la aplicación Spot the Station guía visualmente a los usuarios para localizar la Estación Espacial Internacional en el momento preciso en que aparece en el cielo. Junto con las alertas de la aplicación, mejora la capacidad de ver la estación al proporcionar una dirección visual en vivo e indicador de altura para rastrearla con precisión.",
+
+        question25: "25. ¿Hay consejos para optimizar mi experiencia de realidad aumentada?",
         answer25:
-          "Para la mejor experiencia AR, use la función en un área abierta con una vista clara del cielo. Evite obstrucciones como edificios altos o árboles, ya que pueden bloquear la visibilidad. Calibre la brújula de su dispositivo y asegúrese de que los servicios de ubicación y los permisos de cámara estén habilitados para un funcionamiento fluido.",
-        question26: "26. ¿Está disponible la función AR tanto en Android como en iOS?",
+          "Para la mejor experiencia de realidad aumentada en la aplicación Spot the Station, use la función en un área abierta con una vista clara del cielo. Evite obstrucciones como edificios altos o árboles, ya que pueden bloquear la visibilidad. Calibre la brújula del dispositivo y asegúrese de que los servicios de ubicación y los permisos de la cámara estén habilitados para un funcionamiento fluido.",
+
+        question26:
+          "26. ¿Está disponible la función de realidad aumentada en dispositivos iOS y Android?",
         answer26:
-          "Sí, la función AR está disponible en las versiones de iOS y Android de la aplicación, siempre que su dispositivo cumpla con los requisitos de hardware.",
-        question27: "27. ¿Funciona la aplicación sin conexión?",
+          "Sí, la función de realidad aumentada de la aplicación Spot the Station está disponible en dispositivos móviles y tabletas iOS y Android, siempre que su dispositivo cumpla con los requisitos de hardware.",
+
+        question27: "27. ¿Funciona la aplicación Spot the Station sin conexión?",
         answer27:
-          "Algunas funciones básicas, como acceder a horarios de avistamiento previamente descargados o recibir notificaciones programadas, pueden funcionar sin conexión. Sin embargo, las funciones que requieren datos en tiempo real, como el seguimiento, requieren una conexión a Internet.",
-        question28: "28. ¿Hay requisitos especiales para usar la aplicación?",
+          "Algunas funciones básicas, como acceder a horarios de oportunidades de visualización previamente descargados o recibir notificaciones programadas, pueden funcionar sin conexión. Sin embargo, las funciones que requieren datos en tiempo real, como el seguimiento, requieren servicio celular o una conexión a Internet.",
+
+        question28: "28. ¿Hay requisitos especiales para usar la aplicación Spot the Station?",
         answer28:
-          "La aplicación requiere una conexión a Internet activa para el seguimiento en tiempo real y las alertas. Además, para obtener información específica de la ubicación, asegúrese de que los servicios de ubicación de su dispositivo estén habilitados para la aplicación.",
-        question29: "29. ¿Es gratuita la aplicación?",
+          "La aplicación Spot the Station requiere servicio celular activo o una conexión a Internet para el seguimiento en tiempo real y las alertas. Además, para obtener información específica de la ubicación, asegúrese de que los servicios de ubicación del dispositivo estén habilitados para la aplicación.",
+
+        question29: "29. ¿Es gratuita la aplicación Spot the Station?",
         answer29:
           "Sí, la aplicación Spot the Station es gratuita para descargar y usar, sin compras dentro de la aplicación ni suscripciones.",
-        question30: "30. ¿A quién puedo contactar para soporte de la aplicación?",
+
+        question30:
+          "30. ¿A quién puedo contactar para obtener soporte de la aplicación Spot the Station?",
         answer30:
-          "Para soporte con la aplicación Spot the Station, visite la página de soporte de la NASA o comuníquese a través de la opción de comentarios dentro de la aplicación.",
+          "Para obtener soporte con la aplicación Spot the Station, comuníquese a través de la opción de comentarios de la aplicación o <a href='mailto:hq-spotthestation@mail.nasa.gov'>envíe un correo electrónico al equipo de Spot the Station</a>.",
       },
     },
     astronauts: {
@@ -570,6 +621,7 @@ const es = {
     gallery: {
       title: "Galería",
     },
+    earthScience: { title: "Recursos de Datos de Ciencias de la Tierra" },
   },
 }
 
