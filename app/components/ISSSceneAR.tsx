@@ -35,6 +35,13 @@ import watchOrientation from "../utils/orientation"
 import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { LocationType } from "../services/api"
 import { useIsFocused } from "@react-navigation/native"
+import { Gesture, GestureDetector } from "react-native-gesture-handler"
+import Reanimated, {
+  useSharedValue,
+  useAnimatedProps,
+  useDerivedValue,
+  runOnJS,
+} from "react-native-reanimated"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -85,6 +92,11 @@ const getRatio = (d1: number, d2: number) => {
   return Math.max(d1, d2) / Math.min(d1, d2)
 }
 
+const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera)
+Reanimated.addWhitelistedNativeProps({
+  zoom: true,
+})
+
 export const ISSSceneAR = memo(function ISSSceneAR({
   onScreenPositionChange,
   pastIssPathCoords,
@@ -111,6 +123,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   const deadRef = useRef<boolean>(false)
   const realCameraRef = useRef<Camera>(null)
   const isFocused = useIsFocused()
+  const zoom = useSharedValue(1)
+  const previousZoom = useSharedValue(1)
 
   useEffect(() => {
     copyAssetToCacheAsync(iconRegistry.iss as string, "iss.png")
@@ -185,6 +199,18 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       sceneRef.current?.add(futureRef.current)
   }, [isPathVisible, pastIssPathCoords, futureIssPathCoords, sceneRef.current])
 
+  const updateMarkerScale = useCallback(() => {
+    if (issMarkerRef.current && cameraRef.current) {
+      const d = cameraRef.current.getFocalLength()
+      const scale = (4 * (1000 - d)) / d
+      issMarkerRef.current.scale.set(
+        scale / cameraRef.current.zoom,
+        scale / cameraRef.current.zoom,
+        1,
+      )
+    }
+  }, [])
+
   useEffect(() => {
     updateCurveGeometry()
   }, [updateCurveGeometry])
@@ -205,12 +231,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       )
     }
 
-    if (cameraRef.current) {
-      const d = cameraRef.current.getFocalLength()
-      const scale = (4 * (1000 - d)) / d
-      issMarkerRef.current.scale.set(scale, scale, 1)
-    }
-
+    if (cameraRef.current) updateMarkerScale()
     if (!sceneRef.current) return
     if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
       sceneRef.current?.add(issMarkerRef.current)
@@ -375,36 +396,67 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     return () => Orientation.removeOrientationListener(setOrientation)
   }, [])
 
+  const minZoom = device?.minZoom ?? 1
+  const maxZoom = device?.maxZoom ?? 1
+
+  const pinchGesture = Gesture.Pinch()
+    .onStart(() => {
+      previousZoom.value = zoom.value
+    })
+    .onUpdate((event) => {
+      zoom.value = Math.min(Math.max(minZoom, previousZoom.value * event.scale), maxZoom)
+    })
+
+  const updateSceneCameraZoom = useCallback((value) => {
+    if (cameraRef.current) {
+      cameraRef.current.zoom = value
+      cameraRef.current.updateProjectionMatrix()
+      if (issMarkerRef.current) updateMarkerScale()
+    }
+  }, [])
+
+  useDerivedValue(() => {
+    runOnJS(updateSceneCameraZoom)(zoom.value)
+  })
+
+  const animatedProps = useAnimatedProps(() => ({
+    zoom: zoom.value,
+  }))
+
   return (
-    <View style={StyleSheet.absoluteFill} onLayout={(e) => setLayout(e.nativeEvent.layout)}>
-      {Boolean(layout && activeFormat) && (
-        <>
-          {(isFocused || Platform.OS !== "android") && (
-            <Camera
-              ref={realCameraRef}
-              lowLightBoost={device.supportsLowLightBoost}
-              style={StyleSheet.absoluteFill}
-              device={device}
-              isActive={isFocused}
-              format={activeFormat}
-              photo={true}
-              frameProcessor={undefined}
-            />
-          )}
+    <GestureDetector gesture={pinchGesture}>
+      <View style={StyleSheet.absoluteFill} onLayout={(e) => setLayout(e.nativeEvent.layout)}>
+        {Boolean(layout && activeFormat) && (
+          <>
+            {(isFocused || Platform.OS !== "android") && (
+              <ReanimatedCamera
+                ref={realCameraRef}
+                lowLightBoost={device.supportsLowLightBoost}
+                style={StyleSheet.absoluteFill}
+                device={device}
+                isActive={isFocused}
+                format={activeFormat}
+                photo={true}
+                frameProcessor={undefined}
+                enableZoomGesture={false}
+                animatedProps={animatedProps}
+              />
+            )}
 
-          {stillImage && (
-            <Image
-              source={{ uri: stillImage }}
-              style={StyleSheet.absoluteFill}
-              onLoadEnd={onStillReady}
-            />
-          )}
+            {stillImage && (
+              <Image
+                source={{ uri: stillImage }}
+                style={StyleSheet.absoluteFill}
+                onLoadEnd={onStillReady}
+              />
+            )}
 
-          {!isLayoutUpdating && (
-            <GLView style={StyleSheet.absoluteFill} onContextCreate={contextRenderer} />
-          )}
-        </>
-      )}
-    </View>
+            {!isLayoutUpdating && (
+              <GLView style={StyleSheet.absoluteFill} onContextCreate={contextRenderer} />
+            )}
+          </>
+        )}
+      </View>
+    </GestureDetector>
   )
 })

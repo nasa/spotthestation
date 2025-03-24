@@ -202,6 +202,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $infoModal,
     $infoModalLandscape,
     $safetyModal,
+    $left,
+    $right,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
@@ -809,7 +811,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           {isSupported && (!isCalibrated || !issData?.length) && (
             <ActivityIndicator style={StyleSheet.absoluteFill} />
           )}
-          <View style={[$bottomContainer, bottomContainerStyle]}>
+          <View style={[$bottomContainer, bottomContainerStyle, $left]}>
             <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
@@ -847,16 +849,18 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onLayout={handleTutorialItemLayout("fullScreen")}
               />
             </View>
-            <View
-              accessible
-              accessibilityLabel="countdown"
-              accessibilityHint="countdown to next visibility"
-              accessibilityRole="text"
-              style={$timeContainer}
-            >
-              <Text tx="issView.timeHeader" style={$timeHeader} />
-              <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
-            </View>
+          </View>
+          <View
+            accessible
+            accessibilityLabel="countdown"
+            accessibilityHint="countdown to next visibility"
+            accessibilityRole="text"
+            style={[$timeContainer, bottomContainerStyle]}
+          >
+            <Text tx="issView.timeHeader" style={$timeHeader} />
+            <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
+          </View>
+          <View style={[$bottomContainer, bottomContainerStyle, $right]}>
             <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
@@ -1132,8 +1136,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $bottomContainer: ViewStyle = {
     position: "absolute",
-    left: 0,
-    width: "100%",
+    width: "auto",
     paddingHorizontal: scale(24),
     flexDirection: "row",
     justifyContent: "space-between",
@@ -1155,7 +1158,9 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $timeContainer: ViewStyle = {
-    flex: 1,
+    position: "absolute",
+    left: 0,
+    right: 0,
   }
 
   const $timeHeader: TextStyle = {
@@ -1200,6 +1205,9 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     textDecorationLine: "underline",
   }
 
+  const $left = { left: 0 }
+  const $right = { right: 0 }
+
   return {
     $containerStyleOverride,
     $containerStyleOverrideFs,
@@ -1232,5 +1240,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $infoModal,
     $infoModalLandscape,
     $safetyModal,
+    $left,
+    $right,
   }
 }

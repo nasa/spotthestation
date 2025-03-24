@@ -100,6 +100,7 @@ export const DirectionCircle = ({
 
 const styles: StyleFn = ({ scale }) => {
   const $container: ViewStyle = {
+    pointerEvents: "none",
     position: "absolute",
     width: "100%",
     height: "100%",
