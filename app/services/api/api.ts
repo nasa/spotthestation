@@ -42,6 +42,19 @@ export const DEFAULT_API_CONFIG: ApiConfig = {
   timeout: 100000,
 }
 
+async function withRetry(fn: () => Promise<ApiResponse<any, any>>, retries = 3) {
+  let count = retries
+  let response: ApiResponse<any>
+
+  while (count > 0) {
+    response = await fn()
+    if (response.ok) return response
+    count--
+  }
+
+  return response
+}
+
 /**
  * Manages all requests to the API. You can use this class to build out
  * various requests that you need to call from your backend API.
@@ -133,20 +146,20 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<any> = await this.apisauce.get(
+    const response: ApiResponse<any> = await withRetry(() => this.apisauce.get(
       `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`,
       {},
       { baseURL: "" },
-    )
+    ))
 
     if (!response.ok || !response.data?.timeZone) {
-      const responseGmaps: ApiResponse<any> = await this.apisauce.get(
+      const responseGmaps: ApiResponse<any> = await withRetry(() => this.apisauce.get(
         `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
           Date.now() / 1000
         }&key=${Config.GOOGLE_API_TOKEN}`,
         {},
         { baseURL: "" },
-      )
+      ))
       if (!responseGmaps.ok) {
         const problem = getGeneralApiProblem(responseGmaps)
         if (problem) return problem
@@ -289,7 +302,7 @@ export class Api {
   }
 
   async getLivestreamId(): Promise<LivestreamIdResponse> {
-    const response: ApiResponse<any> = await this.apisauce.get("/youtube/livestream-id", {})
+    const response: ApiResponse<any> = await withRetry(() => this.apisauce.get("/youtube/livestream-id", {}))
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
