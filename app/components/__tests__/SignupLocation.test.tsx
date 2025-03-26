@@ -11,6 +11,8 @@ it("renders correctly", () => {
           title: "John",
           subtitle: "Wick",
           location: { lat: 0, lng: 0 },
+          firstHistorySightingOrbitPointAt: null,
+          sightingsHistoryLastUpdatedAt: null,
         }}
         onAction={() => ({})}
         onValueChange={() => ({})}
@@ -25,6 +27,8 @@ describe("SignupLocation", () => {
     title: "Washington",
     subtitle: "Washington, D.C., United States",
     location: { lat: 38.89511, lng: -77.03637 },
+    firstHistorySightingOrbitPointAt: null,
+    sightingsHistoryLastUpdatedAt: null,
   }
 
   it("renders start state correctly", () => {

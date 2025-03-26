@@ -10,7 +10,15 @@ import {
 } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { ViewStyle, View, PressableProps, TextStyle, ScrollView, Platform } from "react-native"
+import {
+  ViewStyle,
+  View,
+  PressableProps,
+  TextStyle,
+  ScrollView,
+  Platform,
+  Pressable,
+} from "react-native"
 import Modal from "react-native-modal"
 
 import { colors, spacing, typography } from "../theme"
@@ -48,6 +56,8 @@ export interface SightingsProps {
   onMaxHeightChange: (value: string) => void
   cloudCover: string
   onCloudCoverChange: (value: string) => void
+  hasPastSightings?: boolean
+  onPastSightings?: () => void
 }
 
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
@@ -76,6 +86,8 @@ export function Sightings({
   onMaxHeightChange,
   cloudCover,
   onCloudCoverChange,
+  hasPastSightings,
+  onPastSightings,
 }: SightingsProps) {
   const {
     $modalBodyContainer,
@@ -99,6 +111,7 @@ export function Sightings({
     $coachModalScrollContainer,
     $scrollTitle,
     $flex,
+    $pastSightings,
   } = useStyles(styles)
 
   const scrollViewRef = useRef<ScrollView>()
@@ -377,6 +390,7 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
         <ExpandContainer
           title="homeScreen.selectSightings.sightings"
           expandble={false}
+          containerStyle={$flex}
           reverseTitle
           titleStyle={$scrollTitle}
         >
@@ -439,6 +453,12 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           </ScrollView>
         </ExpandContainer>
       </View>
+
+      {Boolean(hasPastSightings) && (
+        <Pressable onPress={onPastSightings}>
+          <Text style={$pastSightings} tx="homeScreen.selectSightings.pastSightings" />
+        </Pressable>
+      )}
       {sightingsCoachVisible && (
         <Modal
           isVisible={sightingsCoachVisible}
@@ -621,7 +641,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: scale(36),
-    paddingTop: scale(20),
+    paddingTop: scale(15),
     marginHorizontal: -scale(5),
   }
 
@@ -638,6 +658,17 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingHorizontal: 0,
     marginLeft: scale(spacing.tiny),
     color: colors.palette.neutral250,
+  }
+
+  const $pastSightings: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    color: colors.palette.buttonBlue,
+    textTransform: "uppercase",
+    paddingVertical: scale(16),
+    paddingHorizontal: scale(36),
+    textAlign: "right",
   }
 
   return {
@@ -662,5 +693,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $coachModalScrollContainer,
     $scrollTitle,
     $flex,
+    $pastSightings,
   }
 }

@@ -174,6 +174,7 @@ const nl = {
         low: "Laag (<25%)",
         medium: "Middel (25-50%)",
       },
+      pastSightings: "Eerdere Waarnemingen",
       compass: {
         N: "N",
         NNE: "NNO",

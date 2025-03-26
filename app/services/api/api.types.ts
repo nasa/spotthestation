@@ -40,6 +40,7 @@ export interface LocationType {
     lng: number
   }
   sightings?: ISSSighting[]
+  sightingsHistory?: ISSSighting[]
   lastSightingOrbitPointAt?: string
   lastUpdatedAt?: string
   filterTimeOfDay?: string
@@ -47,6 +48,8 @@ export interface LocationType {
   filterMaxHeight?: string
   timezone?: string
   filterCloudCover?: string
+  firstHistorySightingOrbitPointAt?: string | null
+  sightingsHistoryLastUpdatedAt?: string | null
 }
 
 export interface RawISSDataResponse {

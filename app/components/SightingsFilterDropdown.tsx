@@ -88,7 +88,7 @@ export function SightingsFilterDropdown({
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $dropdown: ViewStyle = {
     borderRadius: scale(28),
-    height: scale(56),
+    height: scale(45),
     backgroundColor: colors.palette.neutral550,
     overflow: "hidden",
     marginTop: scale(10),
@@ -123,7 +123,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $dropdownRightAccessory: ViewStyle = {
-    height: scale(56),
+    height: scale(45),
     marginRight: scale(spacing.small),
     justifyContent: "center",
     alignItems: "center",

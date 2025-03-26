@@ -372,6 +372,7 @@ export async function getSightings(
     sightings: res.filter((s) => s.visible > 0),
     lastSightingOrbitPointAt:
       data.length > 0 ? new Date(data[data.length - 1].date).toISOString() : null,
+    firstSightingOrbitPointAt: data.length > 0 ? new Date(data[0].date).toISOString() : null,
   }
 }
 

@@ -175,6 +175,7 @@ const ptBR = {
         low: "Baixo (<25%)",
         medium: "Médio (25-50%)",
       },
+      pastSightings: "Avistamentos Passados",
       compass: {
         N: "N",
         NNE: "NNE",

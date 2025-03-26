@@ -173,6 +173,7 @@ const tr = {
         low: "Düşük (<25%)",
         medium: "Orta (25-50%)",
       },
+      pastSightings: "Geçmiş Gözlemler",
       compass: {
         N: "K",
         NNE: "KKB",

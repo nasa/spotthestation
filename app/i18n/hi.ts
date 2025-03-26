@@ -173,6 +173,7 @@ const hi = {
         low: "कम (<25%)",
         medium: "मध्यम (25-50%)",
       },
+      pastSightings: "पिछले दर्शन",
       compass: {
         N: "उ",
         NNE: "उपू",

@@ -176,6 +176,7 @@ const it = {
         low: "Basso (<25%)",
         medium: "Medio (25-50%)",
       },
+      pastSightings: "Avvistamenti Passati",
       compass: {
         N: "N",
         NNE: "NNE",

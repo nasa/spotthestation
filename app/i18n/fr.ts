@@ -177,6 +177,7 @@ const fr = {
         low: "Faible (<25%)",
         medium: "Moyenne (25-50%)",
       },
+      pastSightings: "Observations Passées",
       compass: {
         N: "N",
         NNE: "NNE",

@@ -174,6 +174,7 @@ const ru = {
         low: "Низкая (<25%)",
         medium: "Средняя (25-50%)",
       },
+      pastSightings: "Прошлые наблюдения",
       compass: {
         N: "С",
         NNE: "ССВ",

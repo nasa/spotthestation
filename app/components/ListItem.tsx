@@ -46,7 +46,7 @@ export const ListItem = React.memo(function ListItem({
   subtitle3,
   subtitle4,
   subtitle5,
-  selected = false,
+  selected,
   withSwitch = false,
   withShare = false,
   icon,
@@ -170,7 +170,7 @@ export const ListItem = React.memo(function ListItem({
               <ActivityIndicator />
             </View>
           )}
-          {!withSwitch && (
+          {!withSwitch && selected !== undefined && (
             <Icon
               icon="check"
               size={24}

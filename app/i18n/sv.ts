@@ -173,6 +173,7 @@ const sv = {
         low: "Låg (<25%)",
         medium: "Medel (25-50%)",
       },
+      pastSightings: "Tidigare Iakttagelser",
       compass: {
         N: "N",
         NNE: "NNO",

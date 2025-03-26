@@ -12,6 +12,7 @@ import { getSatPath, getSightings } from "../utils/satellite"
 import * as storage from "../utils/storage"
 
 const CACHE_DURATION = 24 * 60 * 60 * 1000
+const SIGHTINGS_HISTORY_CACHE_DURATION = 60 * 60 * 1000
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params: { lat: number; lon: number }) {
@@ -35,6 +36,86 @@ const RootStoreActions = (self) => ({
     }
 
     return { ok: true, data: sightings }
+  }),
+
+  getISSSightingsHistory: flow(function* getISSSightingsHistory(location: LocationType) {
+    const isStaleData =
+      !location.sightingsHistoryLastUpdatedAt ||
+      Date.now() - new Date(location.sightingsHistoryLastUpdatedAt).getTime() >=
+        SIGHTINGS_HISTORY_CACHE_DURATION
+    let sightingsHistory: ISSSighting[] = JSON.parse(JSON.stringify(location.sightingsHistory))
+    let firstOrbitPointAt = location.firstHistorySightingOrbitPointAt
+    let lastUpdatedAt = location.sightingsHistoryLastUpdatedAt
+
+    if (isStaleData) {
+      // get fresh history data from api
+      self.sightingsHistoryLoading = true
+      const { data, ok } = yield* toGenerator(
+        api.getISSData({
+          from: sub(new Date(), { days: 14 }).toISOString(),
+          to: new Date().toISOString(),
+        }),
+      )
+
+      if (ok && typeof data !== "string") {
+        const { sightings: newSightings, firstSightingOrbitPointAt } = yield getSightings(
+          data.points,
+          data.shadowIntervals,
+          location.location.lat,
+          location.location.lng,
+        )
+        firstOrbitPointAt = firstSightingOrbitPointAt
+        sightingsHistory = newSightings
+        lastUpdatedAt = new Date().toISOString()
+      }
+    }
+
+    const isCurrentLocation = location.title === self.currentLocation?.title
+    const isSelectedLocation = location.title === self.selectedLocation?.title
+
+    // check if current sightings list has past sightings
+    location.sightings.forEach((sighting) => {
+      if (
+        new Date(sighting.date) >
+        new Date(new Date().getTime() - Math.max(sighting.visible, 30) * 60 * 1000)
+      )
+        return
+      // account for potential sightings time change because of NASA updating trajectory file
+      // if sightings are within 5 minutes from each other - it is the same sighting
+      if (
+        sightingsHistory.find(
+          (s) =>
+            Math.abs(new Date(s.date).getTime() - new Date(sighting.date).getTime()) <
+            5 * 60 * 1000,
+        )
+      )
+        return
+
+      sightingsHistory.push(sighting)
+    })
+
+    if (isSelectedLocation) {
+      self.selectedLocation.sightingsHistory = sightingsHistory.map((s) => ({ ...s }))
+      self.selectedLocation.firstHistorySightingOrbitPointAt = firstOrbitPointAt
+      self.selectedLocation.sightingsHistoryLastUpdatedAt = lastUpdatedAt
+    }
+
+    if (isCurrentLocation) {
+      self.currentLocation.sightingsHistory = sightingsHistory.map((s) => ({ ...s }))
+      self.currentLocation.firstHistorySightingOrbitPointAt = firstOrbitPointAt
+      self.currentLocation.sightingsHistoryLastUpdatedAt = lastUpdatedAt
+    }
+
+    if (!isCurrentLocation) {
+      const savedLocation = self.savedLocations.find(({ title }) => title === location.title)
+      if (savedLocation) {
+        savedLocation.sightingsHistory = sightingsHistory.map((s) => ({ ...s }))
+        savedLocation.firstHistorySightingOrbitPointAt = firstOrbitPointAt
+        savedLocation.sightingsHistoryLastUpdatedAt = lastUpdatedAt
+      }
+    }
+
+    self.sightingsHistoryLoading = false
   }),
 
   getISSSightings: flow(function* getISSSightings(location: LocationType) {

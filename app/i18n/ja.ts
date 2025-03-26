@@ -173,6 +173,7 @@ const ja = {
         low: "低い (<25%)",
         medium: "中程度 (25-50%)",
       },
+      pastSightings: "過去の目撃情報",
       compass: {
         N: "北",
         NNE: "北北東",

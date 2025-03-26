@@ -22,6 +22,7 @@ export const RootStoreModel = types
     trajectoryErrorKind: types.optional(types.string, ""),
     issDataLoaded: types.optional(types.boolean, false),
     sightingsLoaded: types.optional(types.boolean, false),
+    sightingsHistoryLoading: types.optional(types.boolean, false),
     currentModal: types.maybeNull(Modal),
     modalsQueue: types.optional(types.array(types.string), []),
     isCurrentLocationUpdating: types.optional(types.boolean, false),

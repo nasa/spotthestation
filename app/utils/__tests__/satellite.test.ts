@@ -47,6 +47,7 @@ describe("getSightings", () => {
         maxAzimuth: expect.closeTo(122.55012853993368, 12),
         visible: 4,
         dayStage: 0,
+        cloudCover: null,
       },
       {
         date: "2024-11-07T10:26:36.000Z",
@@ -57,6 +58,7 @@ describe("getSightings", () => {
         maxAzimuth: expect.closeTo(99.92076969936295, 12),
         visible: 1,
         dayStage: 0,
+        cloudCover: null,
       },
       {
         date: "2024-11-07T11:59:31.000Z",
@@ -67,6 +69,7 @@ describe("getSightings", () => {
         maxAzimuth: expect.closeTo(187.9949070577351, 12),
         visible: 4,
         dayStage: 1,
+        cloudCover: null,
       },
       {
         date: "2024-11-08T11:12:36.000Z",
@@ -77,6 +80,7 @@ describe("getSightings", () => {
         maxAzimuth: expect.closeTo(160.73420395746138, 12),
         visible: 2,
         dayStage: 0,
+        cloudCover: null,
       },
       {
         date: "2024-11-10T01:19:56.000Z",
@@ -87,6 +91,7 @@ describe("getSightings", () => {
         maxAzimuth: expect.closeTo(202.55564969987685, 12),
         visible: 1,
         dayStage: 0,
+        cloudCover: null,
       },
     ])
 

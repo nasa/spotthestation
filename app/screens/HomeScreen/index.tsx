@@ -34,7 +34,10 @@ import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { getCalendars } from "expo-localization"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
+import { PastSightings } from "../../components/PastSightings"
+import Config from "../../config"
 
+console.log(Config.API_URL)
 export interface HomeScreenRouteProps {
   showSightings: boolean
 }
@@ -81,8 +84,10 @@ export const HomeScreen = observer(function HomeScreen() {
     setSightingsDuration,
     setSightingsMaxHeight,
     getFilteredSightings,
+    getISSSightingsHistory,
     currentModal,
     setSightingsCloudCover,
+    sightingsHistoryLoading,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const sightingsModalTimerRef = useRef<NodeJS.Timeout>(null)
@@ -336,6 +341,15 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }
 
+  const onPastSightingsPress = () => {
+    if (!current) return
+
+    requestCloseModal("sightings")
+    requestOpenModal("pastSightings")
+
+    getISSSightingsHistory(current).catch(console.error)
+  }
+
   useEffect(() => {
     if (currentModal?.name === "sightings") {
       clearTimeout(sightingsModalTimerRef.current)
@@ -414,6 +428,32 @@ export const HomeScreen = observer(function HomeScreen() {
           isNotifyAll={current && current?.sightings.every((item) => item.notify)}
           timezone={current?.timezone || getCurrentTimeZone()}
           lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
+          hasPastSightings
+          onPastSightings={onPastSightingsPress}
+        />
+      </ModalContainer>
+
+      <ModalContainer
+        name="pastSightings"
+        onBackdropPress={() => requestCloseModal("pastSightings")}
+        onSwipeComplete={() => requestCloseModal("pastSightings")}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <PastSightings
+          onClose={() => requestCloseModal("pastSightings")}
+          isLoading={sightingsHistoryLoading}
+          sightings={current ? current.sightingsHistory : []}
+          isUS={i18n.locale === "en"}
+          timezone={current?.timezone || getCurrentTimeZone()}
+          firstSightingOrbitPointAt={current?.firstHistorySightingOrbitPointAt}
         />
       </ModalContainer>
       <ModalContainer

@@ -182,42 +182,7 @@ exports[`ListItem renders correctly 1`] = `
           "justifyContent": "space-between",
         }
       }
-    >
-      <View>
-        <RCTImageView
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          internal_analyticTag={null}
-          resizeMode="contain"
-          source={
-            [
-              {
-                "height": undefined,
-                "uri": undefined,
-                "width": undefined,
-              },
-            ]
-          }
-          style={
-            {
-              "height": 35,
-              "overflow": "hidden",
-              "resizeMode": "contain",
-              "tintColor": "#353739",
-              "width": 35,
-            }
-          }
-          tintColor="#353739"
-        />
-      </View>
-    </View>
+    />
   </View>
 </View>
 `;
