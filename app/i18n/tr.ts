@@ -167,6 +167,12 @@ const tr = {
         moon: "İstasyon ufkun üzerinde olduğunda seçilen konumda gece olacak.",
         sunset: "İstasyon ufkun üzerinde olduğunda seçilen konumda alacakaranlık olacak.",
       },
+      cloudCover: {
+        title: "Bulut Örtüsü",
+        any: "Herhangi",
+        low: "Düşük (<25%)",
+        medium: "Orta (25-50%)",
+      },
       compass: {
         N: "K",
         NNE: "KKB",

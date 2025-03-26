@@ -168,6 +168,12 @@ const nl = {
         sunset:
           "Er zal schemering zijn op de geselecteerde locatie wanneer het Station boven de horizon is.",
       },
+      cloudCover: {
+        title: "Wolkenbedekking",
+        any: "Elke",
+        low: "Laag (<25%)",
+        medium: "Middel (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNO",

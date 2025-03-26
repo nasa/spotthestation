@@ -170,6 +170,12 @@ const it = {
         sunset:
           "Ci sarà il crepuscolo nella posizione selezionata quando la Stazione è al di sopra dell'orizzonte.",
       },
+      cloudCover: {
+        title: "Copertura nuvolosa",
+        any: "Qualsiasi",
+        low: "Basso (<25%)",
+        medium: "Medio (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

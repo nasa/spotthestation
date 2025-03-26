@@ -34,6 +34,7 @@ type Sighting = {
   maxAltitude: number
   visible: number
   dayStage: number
+  cloudCover: number
 }
 
 type StepperProps = {
@@ -361,6 +362,7 @@ export async function getSightings(
         maxAzimuth: event.maxAzimuth,
         visible: Math.round((ti2.valueOf() - ti0.valueOf()) / 60000.0),
         dayStage,
+        cloudCover: null,
       }
       res.push(item)
     }

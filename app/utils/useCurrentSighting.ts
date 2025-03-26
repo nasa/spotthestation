@@ -32,7 +32,7 @@ export function useCurrentSighting(location?: LocationType) {
       eventsList.length > currentSightingIdx && eventsList[currentSightingIdx]
         ? eventsList[currentSightingIdx]
         : {
-            date: null,
+            date: null as string | null,
             visible: 0,
             maxHeight: 0,
             minAzimuth: 0,

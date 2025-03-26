@@ -191,6 +191,7 @@ describe("actions", () => {
           maxHeight: 12,
           notify: true,
           visible: 6,
+          cloudCover: 0,
         },
       ],
       subtitle: "sub",

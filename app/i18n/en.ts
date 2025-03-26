@@ -168,6 +168,12 @@ const en = {
         sunset:
           "There will be twilight at the selected location when the Station is above the horizon.",
       },
+      cloudCover: {
+        title: "Cloud Cover",
+        any: "Any",
+        low: "Low (<25%)",
+        medium: "Medium (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

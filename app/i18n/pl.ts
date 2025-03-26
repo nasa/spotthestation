@@ -167,6 +167,12 @@ const pl = {
         moon: "Będzie noc w wybranej lokalizacji, gdy stacja będzie nad horyzontem.",
         sunset: "Będzie zmierzch w wybranej lokalizacji, gdy stacja będzie nad horyzontem.",
       },
+      cloudCover: {
+        title: "Pokrycie chmur",
+        any: "Dowolny",
+        low: "Niskie (<25%)",
+        medium: "Średnie (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

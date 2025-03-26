@@ -170,6 +170,12 @@ const es = {
         sunset:
           "Habrá crepúsculo en la ubicación seleccionada cuando la estación esté por encima del horizonte.",
       },
+      cloudCover: {
+        title: "Cobertura de nubes",
+        any: "Cualquiera",
+        low: "Bajo (<25%)",
+        medium: "Medio (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

@@ -3,6 +3,11 @@ import RootStoreActions from "./actions"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
 
+const WeatherData = types.model("WeatherData", {
+  timestamp: types.number,
+  data: types.frozen(),
+})
+
 /**
  * A RootStore model.
  */
@@ -20,6 +25,7 @@ export const RootStoreModel = types
     currentModal: types.maybeNull(Modal),
     modalsQueue: types.optional(types.array(types.string), []),
     isCurrentLocationUpdating: types.optional(types.boolean, false),
+    weatherCache: types.optional(types.map(WeatherData), {}),
   })
   .props({})
   .actions(RootStoreActions)

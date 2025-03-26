@@ -46,6 +46,8 @@ export interface SightingsProps {
   onTimeOfDayChange: (value: string) => void
   onDurationChange: (value: string) => void
   onMaxHeightChange: (value: string) => void
+  cloudCover: string
+  onCloudCoverChange: (value: string) => void
 }
 
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
@@ -72,6 +74,8 @@ export function Sightings({
   onTimeOfDayChange,
   onDurationChange,
   onMaxHeightChange,
+  cloudCover,
+  onCloudCoverChange,
 }: SightingsProps) {
   const {
     $modalBodyContainer,
@@ -173,6 +177,24 @@ export function Sightings({
       },
     ],
     [],
+  )
+
+  const cloudCoverOptions = useMemo(
+    () => [
+      {
+        label: translate("homeScreen.selectSightings.cloudCover.any"),
+        value: "",
+      },
+      {
+        label: translate("homeScreen.selectSightings.cloudCover.low"),
+        value: "low",
+      },
+      {
+        label: translate("homeScreen.selectSightings.cloudCover.medium"),
+        value: "medium",
+      },
+    ],
+    [i18n.locale],
   )
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
@@ -343,6 +365,13 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           value={duration}
           onChange={({ value }) => onDurationChange(value)}
         />
+
+        <SightingsFilterDropdown
+          title="homeScreen.selectSightings.cloudCover.title"
+          options={cloudCoverOptions}
+          value={cloudCover || ""}
+          onChange={({ value }) => onCloudCoverChange?.(value)}
+        />
       </View>
       <View style={$flex}>
         <ExpandContainer
@@ -397,6 +426,9 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
                   }° ${translate(
                     `homeScreen.selectSightings.compass.${headingToCompass(sighting.maxAzimuth)}`,
                   )}`}
+                  subtitle5={`${translate("homeScreen.selectSightings.cloudCover.title")}: ${
+                    sighting.cloudCover === null ? "-" : `${sighting.cloudCover}%`
+                  }`}
                   withSwitch
                   onToggle={handleToggle}
                   withShare

@@ -169,6 +169,12 @@ const ptBR = {
         sunset:
           "Haverá crepúsculo na localização selecionada quando a Estação estiver acima do horizonte.",
       },
+      cloudCover: {
+        title: "Cobertura de nuvens",
+        any: "Qualquer",
+        low: "Baixo (<25%)",
+        medium: "Médio (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

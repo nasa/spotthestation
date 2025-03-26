@@ -171,6 +171,12 @@ const fr = {
         sunset:
           "Ce sera le crépuscule à la localisation sélectionnée lorsque la Station sera au-dessus de l'horizon.",
       },
+      cloudCover: {
+        title: "Couverture nuageuse",
+        any: "N'importe quel",
+        low: "Faible (<25%)",
+        medium: "Moyenne (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNE",

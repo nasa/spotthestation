@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return */
 import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
-import { sub, add } from "date-fns"
+import { sub, add, isSameHour } from "date-fns"
 import * as Sentry from "@sentry/react-native"
 import { api, ISSSighting, LocationType } from "../services/api"
 import * as notifications from "../utils/notifications"
@@ -10,6 +10,8 @@ import { Modal } from "./Modal"
 import { translate } from "../i18n"
 import { getSatPath, getSightings } from "../utils/satellite"
 import * as storage from "../utils/storage"
+
+const CACHE_DURATION = 24 * 60 * 60 * 1000
 
 const RootStoreActions = (self) => ({
   calculateSightings: flow(function* calculateSightings(params: { lat: number; lon: number }) {
@@ -21,6 +23,16 @@ const RootStoreActions = (self) => ({
 
     if (!ok || typeof data === "string") return { ok: false, data, kind }
     const sightings = yield getSightings(data.points, data.shadowIntervals, params.lat, params.lon)
+
+    if (sightings.sightings.length > 0) {
+      const dates: string[] = sightings.sightings.map((s) => s.date)
+      const weatherData = yield self.getWeatherForecast(params.lat, params.lon, dates)
+      if (weatherData) {
+        sightings.sightings.forEach((sighting) => {
+          sighting.cloudCover = self.getCloudCoverForDate(weatherData, sighting.date)
+        })
+      }
+    }
 
     return { ok: true, data: sightings }
   }),
@@ -93,13 +105,21 @@ const RootStoreActions = (self) => ({
       return item.maxHeight >= Number(maxHeight)
     }
 
+    const hasCloudCover = (item: ISSSighting, cloudCover: string) => {
+      if (cloudCover === "low") return item.cloudCover !== null && item.cloudCover < 25
+      if (cloudCover === "medium")
+        return item.cloudCover !== null && item.cloudCover >= 25 && item.cloudCover <= 50
+      return true
+    }
+
     return location.sightings.filter((item) => {
       return (
         new Date(item.date) >
           new Date(new Date().getTime() - Math.max(item.visible, 30) * 60 * 1000) &&
         (location.filterTimeOfDay === "" || String(item.dayStage) === location.filterTimeOfDay) &&
         (location.filterDuration === "" || hasDuration(item, location.filterDuration)) &&
-        (location.filterMaxHeight === "" || hasMaxHeight(item, location.filterMaxHeight))
+        (location.filterMaxHeight === "" || hasMaxHeight(item, location.filterMaxHeight)) &&
+        (location.filterCloudCover === "" || hasCloudCover(item, location.filterCloudCover))
       )
     })
   },
@@ -129,6 +149,17 @@ const RootStoreActions = (self) => ({
 
   setSightingsMaxHeight: (location: LocationType, value: string) => {
     location.filterMaxHeight = value
+    const filtered = self.getFilteredSightings(location)
+    location.sightings.forEach((sighting) => {
+      if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
+        sighting.notify = false
+    })
+
+    return self.setISSSightings(location) as LocationType
+  },
+
+  setSightingsCloudCover: (location: LocationType, value: string) => {
+    location.filterCloudCover = value
     const filtered = self.getFilteredSightings(location)
     location.sightings.forEach((sighting) => {
       if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
@@ -522,6 +553,48 @@ const RootStoreActions = (self) => ({
       },
       level: "info",
     })
+  },
+
+  getWeatherForecast: flow(function* getWeatherForecast(lat: number, lon: number, dates: string[]) {
+    const roundedLat = Math.round(lat * 10000) / 10000
+    const roundedLon = Math.round(lon * 10000) / 10000
+    const cacheKey = `${roundedLat},${roundedLon}`
+
+    const locationCache = self.weatherCache.get(cacheKey)
+
+    if (locationCache && Date.now() - locationCache.timestamp < CACHE_DURATION) {
+      return locationCache.data
+    }
+
+    const startDate = new Date(Math.min(...dates.map((d) => new Date(d).getTime())))
+    const endDate = new Date(Math.max(...dates.map((d) => new Date(d).getTime())))
+
+    const { ok, data } = yield api.getWeatherForecast({
+      lat,
+      lon,
+      from: startDate,
+      to: endDate,
+    })
+
+    if (ok) {
+      self.weatherCache.set(cacheKey, {
+        timestamp: Date.now(),
+        data,
+      })
+
+      return data
+    }
+
+    return null
+  }),
+
+  getCloudCoverForDate(weatherData: any, date: string) {
+    if (!weatherData) return 0
+
+    const targetTime = new Date(date)
+    const idx = weatherData.time.findIndex((t: string) => isSameHour(new Date(t), targetTime))
+
+    return idx >= 0 ? weatherData.cloudcover[idx] : 0
   },
 })
 

@@ -20,6 +20,7 @@ export interface ISSSighting {
   visible: number
   dayStage: number
   notify?: boolean
+  cloudCover: number | null
 }
 
 export interface OrbitPoint {
@@ -45,6 +46,7 @@ export interface LocationType {
   filterDuration?: string
   filterMaxHeight?: string
   timezone?: string
+  filterCloudCover?: string
 }
 
 export interface RawISSDataResponse {
@@ -118,4 +120,17 @@ export interface PlaceDetails {
   lat?: string
   lon?: string
   google_place_id?: string
+}
+
+export interface GetWeatherForecastParams {
+  lat: number
+  lon: number
+  from: Date
+  to: Date
+}
+
+export interface WeatherForecastResult {
+  latitude: number
+  longitude: number
+  hourly: { time: string[]; cloudcover: number[] }
 }

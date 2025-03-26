@@ -10,4 +10,5 @@ export const Sighting = types.model("Sighting", {
   visible: types.maybeNull(types.number),
   notify: types.maybeNull(types.boolean),
   dayStage: types.maybeNull(types.number),
+  cloudCover: types.maybeNull(types.number),
 })

@@ -27,6 +27,8 @@ import {
   GetRawISSDataParams,
   OSMSearchResult,
   LivestreamIdResponse,
+  GetWeatherForecastParams,
+  WeatherForecastResult,
 } from "./api.types"
 import { SatData } from "../../utils/satellite"
 import i18n from "i18n-js"
@@ -41,6 +43,8 @@ export const DEFAULT_API_CONFIG: ApiConfig = {
   url: Config.API_URL,
   timeout: 100000,
 }
+
+const OPENMETEO_API_URL = "https://api.open-meteo.com/v1/forecast"
 
 async function withRetry(fn: () => Promise<ApiResponse<any, any>>, retries = 3) {
   let count = retries
@@ -146,20 +150,24 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<any> = await withRetry(() => this.apisauce.get(
-      `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`,
-      {},
-      { baseURL: "" },
-    ))
-
-    if (!response.ok || !response.data?.timeZone) {
-      const responseGmaps: ApiResponse<any> = await withRetry(() => this.apisauce.get(
-        `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
-          Date.now() / 1000
-        }&key=${Config.GOOGLE_API_TOKEN}`,
+    const response: ApiResponse<any> = await withRetry(() =>
+      this.apisauce.get(
+        `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`,
         {},
         { baseURL: "" },
-      ))
+      ),
+    )
+
+    if (!response.ok || !response.data?.timeZone) {
+      const responseGmaps: ApiResponse<any> = await withRetry(() =>
+        this.apisauce.get(
+          `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
+            Date.now() / 1000
+          }&key=${Config.GOOGLE_API_TOKEN}`,
+          {},
+          { baseURL: "" },
+        ),
+      )
       if (!responseGmaps.ok) {
         const problem = getGeneralApiProblem(responseGmaps)
         if (problem) return problem
@@ -302,7 +310,9 @@ export class Api {
   }
 
   async getLivestreamId(): Promise<LivestreamIdResponse> {
-    const response: ApiResponse<any> = await withRetry(() => this.apisauce.get("/youtube/livestream-id", {}))
+    const response: ApiResponse<any> = await withRetry(() =>
+      this.apisauce.get("/youtube/livestream-id", {}),
+    )
 
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)
@@ -326,6 +336,27 @@ export class Api {
     }
 
     return response.data as string
+  }
+
+  async getWeatherForecast({ lat, lon, from, to }: GetWeatherForecastParams) {
+    const response: ApiResponse<WeatherForecastResult> = await this.apisauce.get(
+      `${OPENMETEO_API_URL}?latitude=${lat}&longitude=${lon}&hourly=cloudcover&start_date=${
+        from.toISOString().split("T")[0]
+      }&end_date=${to.toISOString().split("T")[0]}`,
+    )
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: response.data }
+    }
+
+    return {
+      ok: true,
+      data: {
+        ...response.data.hourly,
+        time: response.data.hourly.time.map((t) => `${t}:00Z`),
+      },
+    }
   }
 }
 

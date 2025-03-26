@@ -167,6 +167,12 @@ const sv = {
         moon: "Det kommer att vara natt på den valda platsen när Stationen är över horisonten.",
         sunset: "Det kommer vara skymning vid den valda platsen när Stationen passerar horisonten",
       },
+      cloudCover: {
+        title: "Molntäcke",
+        any: "Vilken som helst",
+        low: "Låg (<25%)",
+        medium: "Medel (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNO",

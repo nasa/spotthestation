@@ -21,9 +21,11 @@ describe("Sightings", () => {
         timeOfDay=""
         duration=""
         maxHeight=""
+        cloudCover=""
         onDurationChange={jest.fn()}
         onTimeOfDayChange={jest.fn()}
         onMaxHeightChange={jest.fn()}
+        onCloudCoverChange={jest.fn()}
         location={{ title: "test", subtitle: "test", location: { lat: 0, lng: 0 } }}
         sightings={[
           {
@@ -36,6 +38,7 @@ describe("Sightings", () => {
             maxAzimuth: 0,
             minAltitude: 0,
             maxAltitude: 0,
+            cloudCover: 0,
           },
           {
             date: "2020-12-13T10:15:10",
@@ -47,6 +50,7 @@ describe("Sightings", () => {
             visible: 5,
             dayStage: 1,
             notify: false,
+            cloudCover: 0,
           },
           {
             date: "2020-12-24T10:20:10",
@@ -58,6 +62,7 @@ describe("Sightings", () => {
             visible: 5,
             dayStage: 2,
             notify: true,
+            cloudCover: 0,
           },
         ]}
       />,

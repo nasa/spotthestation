@@ -68,6 +68,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setSightingsTimeOfDay,
     setSightingsDuration,
     setSightingsMaxHeight,
+    setSightingsCloudCover,
     getFilteredSightings,
   } = useStores()
   const topInset = useSafeAreaInsets().top
@@ -213,6 +214,13 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   const handleChangeMaxHeight = useCallback(
     (value: string) => {
       setSightingsMaxHeight(current, value)
+    },
+    [current],
+  )
+
+  const handleChangeCloudCover = useCallback(
+    (value: string) => {
+      setSightingsCloudCover(current, value)
     },
     [current],
   )
@@ -403,9 +411,11 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             timeOfDay={current?.filterTimeOfDay || ""}
             duration={current?.filterDuration || ""}
             maxHeight={current?.filterMaxHeight || ""}
+            cloudCover={current?.filterCloudCover || ""}
             onTimeOfDayChange={handleChangeTimeOfDay}
             onDurationChange={handleChangeDuration}
             onMaxHeightChange={handleChangeMaxHeight}
+            onCloudCoverChange={handleChangeCloudCover}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={i18n.locale === "en"}

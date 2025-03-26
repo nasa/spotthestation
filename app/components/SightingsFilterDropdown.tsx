@@ -12,11 +12,12 @@ type Option = {
   label: ReactNode | string
 }
 
-type SightingsFilterDropdownProps = {
+export interface SightingsFilterDropdownProps {
   title: TxKeyPath
   options: Option[]
   value?: any
   onChange: (value: Option) => void
+  placeholder?: string
 }
 
 export function SightingsFilterDropdown({

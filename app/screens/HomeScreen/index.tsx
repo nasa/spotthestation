@@ -82,6 +82,7 @@ export const HomeScreen = observer(function HomeScreen() {
     setSightingsMaxHeight,
     getFilteredSightings,
     currentModal,
+    setSightingsCloudCover,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const sightingsModalTimerRef = useRef<NodeJS.Timeout>(null)
@@ -308,6 +309,13 @@ export const HomeScreen = observer(function HomeScreen() {
     [current],
   )
 
+  const handleChangeCloudCover = useCallback(
+    (value: string) => {
+      setSightingsCloudCover(current, value)
+    },
+    [current],
+  )
+
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
     const timezone = current?.timezone || getCurrentTimeZone()
@@ -395,6 +403,8 @@ export const HomeScreen = observer(function HomeScreen() {
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
           maxHeight={current?.filterMaxHeight || ""}
+          cloudCover={current?.filterCloudCover || ""}
+          onCloudCoverChange={handleChangeCloudCover}
           onTimeOfDayChange={handleChangeTimeOfDay}
           onDurationChange={handleChangeDuration}
           onMaxHeightChange={handleChangeMaxHeight}

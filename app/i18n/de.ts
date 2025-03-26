@@ -169,6 +169,12 @@ const de = {
         sunset:
           "Es wird dämmern am ausgewählten Ort, wenn sich die Station über dem Horizont befindet.",
       },
+      cloudCover: {
+        title: "Wolkenbedeckung",
+        any: "Beliebig",
+        low: "Niedrig (<25%)",
+        medium: "Mittel (25-50%)",
+      },
       compass: {
         N: "N",
         NNE: "NNO",
