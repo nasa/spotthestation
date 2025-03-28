@@ -63,13 +63,15 @@ const tr = {
   notifications: {
     push: {
       title: "İstasyonu şimdi gözlemleyin!",
-      subTitle: "İstasyon üzerinizden geçiyor",
+      subTitleIos: "İstasyon üzerinizden geçiyor",
+      subTitleAndroid: "İstasyon şu anda üzerinizden geçiyor ({{time}}) de",
     },
     before: {
       titleOne: "İstasyonu gözlemleyin",
       titleTwo: "dakika içinde!",
       subTitleOne: "İstasyon üzerinizden geçiyor",
-      subTitleTwo: "dakika içinde",
+      subTitleTwoIos: "dakika içinde",
+      subTitleTwoAndroid: "dakika ({{time}}) içinde",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const tr = {
     month: "ay",
     metersPerSecond: "M/S",
     time: "Z",
+    hour: "sa",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Ana Sayfa",
@@ -162,6 +168,9 @@ const tr = {
       shareTitle: "İstasyon {{location}} üzerinde {{date}} tarihinde geçiyor",
       shareLink:
         "Daha fazla keşfetmek ve istasyonu artırılmış gerçeklik ile izlemek için uygulamayı indirin",
+      calendarEventTitle: "{{location}}'da İstasyonu Görün!",
+      calendarSuccess: "Takvim etkinliği başarıyla oluşturuldu",
+      calendarError: "Takvim etkinliği oluşturulamadı",
       coach: {
         title: "Simgelerin Açıklaması",
         moon: "İstasyon ufkun üzerinde olduğunda seçilen konumda gece olacak.",
@@ -289,6 +298,10 @@ const tr = {
     termsAndConditions: "Şartlar ve Koşullar",
     contactUs: "Bize Ulaşın",
     language: "Dil",
+    timeFormat: "Zaman Formatı",
+    unitsOfMeasurement: "Birimler",
+    metric: "Metrik",
+    imperial: "İmparatorluk (ABD)",
     calibrateCompass: "Pusula Kalibrasyonu",
     calibrateCompassData: {
       instructions:

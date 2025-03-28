@@ -8,8 +8,9 @@ import notifee, {
 } from "@notifee/react-native"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
-import { isDateBetweenHours } from "./datetime"
+import { formatDate, isDateBetweenHours } from "./datetime"
 import { translate } from "../i18n"
+import i18n from "i18n-js"
 
 export function initialize() {
   notifee
@@ -76,7 +77,15 @@ export async function ensureExactAlarmPermissions(): Promise<boolean | null> {
   }
 }
 
-export async function setNotifications(locations: LocationType[]) {
+const formatedDate = (date: string, timeFormat: string): string => {
+  const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
+  return formatDate(date, `${i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`)
+}
+
+export async function setNotifications(
+  locations: LocationType[],
+  timeFormat: string,
+): Promise<void> {
   if (!(await hasExactAlarmPermissions())) return
 
   const start = new Date((await storage.load(storage.KEYS.MUTE_FROM)) as string)
@@ -107,9 +116,13 @@ export async function setNotifications(locations: LocationType[]) {
             title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
               "notifications.before.titleTwo",
             )}`,
-            body: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${translate(
-              "notifications.before.subTitleTwo",
-            )} ${location.title}`,
+            body: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${
+              Platform.OS === "ios"
+                ? translate("notifications.before.subTitleTwoIos")
+                : translate("notifications.before.subTitleTwoAndroid", {
+                    time: formatedDate(date, timeFormat),
+                  })
+            } ${location.title}`,
             data: { ...location.location },
             fireDate: new Date(eventDate.getTime() - notifyBefore * 60000),
           })
@@ -117,7 +130,13 @@ export async function setNotifications(locations: LocationType[]) {
 
         notifications.push({
           title: translate("notifications.push.title"),
-          body: `${translate("notifications.push.subTitle")} ${location.title}`,
+          body: `${
+            Platform.OS === "ios"
+              ? translate("notifications.push.subTitleIos")
+              : translate("notifications.push.subTitleAndroid", {
+                  time: formatedDate(date, timeFormat),
+                })
+          } ${location.title}`,
           data: { ...location.location },
           fireDate: eventDate,
         })

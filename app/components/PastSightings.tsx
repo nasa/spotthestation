@@ -17,7 +17,6 @@ import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 import { addDays } from "date-fns"
 import { formatDate, formatDateWithTZ, getShortTZ } from "../utils/datetime"
 import { ISSSighting } from "../services/api"
-import { getCalendars } from "expo-localization"
 import { translate } from "../i18n"
 
 import { headingToCompass } from "../utils/geometry"
@@ -26,6 +25,7 @@ export interface PastSightingsProps {
   sightings: ISSSighting[]
   isUS?: boolean
   timezone?: string
+  timeFormat: string
   onClose?: PressableProps["onPress"]
   firstSightingOrbitPointAt?: string
   isLoading: boolean
@@ -41,6 +41,7 @@ export function PastSightings({
   onClose,
   sightings,
   isUS,
+  timeFormat,
   timezone,
   firstSightingOrbitPointAt,
   isLoading,
@@ -62,7 +63,7 @@ export function PastSightings({
   }, [])
 
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
     const shortTZ = getShortTZ(timezone)
     if (
       formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
@@ -70,7 +71,7 @@ export function PastSightings({
     )
       return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(
         date,
-        timeFormat,
+        tf,
         timezone,
       )} ${shortTZ}`
     if (
@@ -79,12 +80,12 @@ export function PastSightings({
     )
       return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(
         date,
-        timeFormat,
+        tf,
         timezone,
       )} ${shortTZ}`
     return `${formatDateWithTZ(
       date,
-      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`,
+      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`,
       timezone,
     )} ${shortTZ}`
   }

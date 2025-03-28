@@ -81,6 +81,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setTrajectoryError,
     requestCloseModal,
     requestOpenModal,
+    timeFormat,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -413,6 +414,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           location={current}
           onClose={() => requestCloseModal("sightings")}
           sightings={current ? getFilteredSightings(current) : []}
+          timeFormat={timeFormat}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
           maxHeight={current?.filterMaxHeight || ""}

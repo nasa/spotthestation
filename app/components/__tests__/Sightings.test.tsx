@@ -22,6 +22,7 @@ describe("Sightings", () => {
         duration=""
         maxHeight=""
         cloudCover=""
+        timeFormat="12hr"
         onDurationChange={jest.fn()}
         onTimeOfDayChange={jest.fn()}
         onMaxHeightChange={jest.fn()}

@@ -63,13 +63,15 @@ const nl = {
   notifications: {
     push: {
       title: "Aanschouw nu het station!",
-      subTitle: "Het station passeert nu boven u met",
+      subTitleIos: "Het station passeert nu boven u met",
+      subTitleAndroid: "Het station passeert nu boven u ({{time}}) met",
     },
     before: {
       titleOne: "Zie het station over",
       titleTwo: "minuten!",
       subTitleOne: "Het station passeert u over",
-      subTitleTwo: "minuten met",
+      subTitleTwoIos: "minuten met",
+      subTitleTwoAndroid: "minuten ({{time}}) met",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const nl = {
     month: "maand",
     metersPerSecond: "M/S",
     time: "T",
+    hour: "uur",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Thuis",
@@ -162,6 +168,9 @@ const nl = {
       shareTitle: "Het station vliegt boven {{location}} op {{date}}",
       shareLink:
         "Om meer te verkennen en het station via augmented reality te volgen, download de app op",
+      calendarEventTitle: "Spot het station in {{location}}!",
+      calendarSuccess: "Kalendergebeurtenis succesvol aangemaakt",
+      calendarError: "Kan kalendergebeurtenis niet maken",
       coach: {
         title: "Beschrijving van pictogrammen",
         moon: "Het zal nacht zijn op de geselecteerde locatie wanneer het Station boven de horizon is.",
@@ -291,6 +300,10 @@ const nl = {
     termsAndConditions: "Voorwaarden",
     contactUs: "Neem contact met ons op",
     language: "Taal",
+    timeFormat: "Tijdnotatie",
+    unitsOfMeasurement: "Eenheden",
+    metric: "Metrisch",
+    imperial: "Imperiaal (VS)",
     calibrateCompass: "Kalibreer de kompas",
     calibrateCompassData: {
       instructions:

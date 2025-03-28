@@ -1407,18 +1407,186 @@ exports[`SettingsScreen renders correctly 1`] = `
             </Text>
           </View>
           <View
-            onLayout={[Function]}
             style={
               {
                 "flex": 1,
-                "height": 43,
-                "justifyContent": "center",
-                "overflow": "hidden",
               }
             }
           >
             <View
-              accessibilityLabel="language select"
+              onLayout={[Function]}
+              style={
+                {
+                  "flex": 1,
+                  "height": 43,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View
+                accessibilityLabel="language select"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "fontSize": 16,
+                        "writingDirection": "ltr",
+                      },
+                      [
+                        {
+                          "color": "#DEDDDE",
+                          "flex": 1,
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "marginHorizontal": 17,
+                          "paddingHorizontal": 0,
+                          "paddingVertical": 0,
+                          "textAlign": "right",
+                          "textAlignVertical": "center",
+                        },
+                        {
+                          "color": "#DEDDDE",
+                        },
+                      ],
+                      {},
+                    ]
+                  }
+                >
+                  English
+                </Text>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      [
+                        {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#ADADAE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "paddingTop": 23,
+              "width": "100%",
+            },
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="pressable settings item"
+          accessibilityLabel="pressable settings item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            }
+          }
+        >
+          <View>
+            <RCTImageView
               accessibilityState={
                 {
                   "busy": undefined,
@@ -1428,94 +1596,456 @@ exports[`SettingsScreen renders correctly 1`] = `
                   "selected": undefined,
                 }
               }
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
               style={
                 {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
+                  "height": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 35,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "paddingLeft": 26,
+                },
+                false,
+              ]
+            }
+          >
+            <Text
+              accessibilityHint="settings.timeFormat"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              ellipsizeMode="tail"
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 35,
+                    "lineHeight": 42,
+                    "width": "95%",
+                  },
+                ]
+              }
+            >
+              settings.timeFormat undefined
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                {
+                  "flex": 1,
+                  "height": 43,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
                 }
               }
             >
-              <Text
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "fontSize": 16,
-                      "writingDirection": "ltr",
-                    },
-                    [
-                      {
-                        "color": "#DEDDDE",
-                        "flex": 1,
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 26,
-                        "marginHorizontal": 17,
-                        "paddingHorizontal": 0,
-                        "paddingVertical": 0,
-                        "textAlign": "right",
-                        "textAlignVertical": "center",
-                      },
-                      {
-                        "color": "#DEDDDE",
-                      },
-                    ],
-                    {},
-                  ]
-                }
-              >
-                English
-              </Text>
               <View
+                accessibilityLabel="time format select"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
                   {
                     "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
                   }
                 }
               >
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
+                <Text
+                  style={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "flex": 1,
+                        "fontSize": 16,
+                        "writingDirection": "ltr",
                       },
+                      [
+                        {
+                          "color": "#DEDDDE",
+                          "flex": 1,
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "marginHorizontal": 17,
+                          "paddingHorizontal": 0,
+                          "paddingVertical": 0,
+                          "textAlign": "right",
+                          "textAlignVertical": "center",
+                        },
+                        {
+                          "color": "#DEDDDE",
+                        },
+                      ],
+                      {},
                     ]
                   }
+                >
+                  12units.hour undefined
+                </Text>
+                <View
                   style={
                     {
-                      "height": 40,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 40,
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
                     }
                   }
-                  tintColor="#ADADAE"
-                />
+                >
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      [
+                        {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#ADADAE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 2,
+              "borderColor": "#353739",
+              "paddingTop": 23,
+              "width": "100%",
+            },
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="pressable settings item"
+          accessibilityLabel="pressable settings item"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginLeft": 15,
+              "paddingBottom": 23,
+            }
+          }
+        >
+          <View>
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 35,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 35,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "paddingLeft": 26,
+                },
+                false,
+              ]
+            }
+          >
+            <Text
+              accessibilityHint="settings.unitsOfMeasurement"
+              accessibilityLabel="title"
+              accessibilityRole="text"
+              accessible={true}
+              ellipsizeMode="tail"
+              style={
+                [
+                  {},
+                  [
+                    {
+                      "fontSize": 23,
+                      "lineHeight": 35,
+                    },
+                    {
+                      "fontFamily": "Helvetica Neue",
+                    },
+                    {
+                      "color": "#191015",
+                    },
+                  ],
+                  undefined,
+                  undefined,
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 35,
+                    "lineHeight": 42,
+                    "width": "95%",
+                  },
+                ]
+              }
+            >
+              settings.unitsOfMeasurement undefined
+            </Text>
+          </View>
+          <View
+            style={
+              {
+                "flex": 1,
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                {
+                  "flex": 1,
+                  "height": 43,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View
+                accessibilityLabel="units of measurement select"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "fontSize": 16,
+                        "writingDirection": "ltr",
+                      },
+                      [
+                        {
+                          "color": "#DEDDDE",
+                          "flex": 1,
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "marginHorizontal": 17,
+                          "paddingHorizontal": 0,
+                          "paddingVertical": 0,
+                          "textAlign": "right",
+                          "textAlignVertical": "center",
+                        },
+                        {
+                          "color": "#DEDDDE",
+                        },
+                      ],
+                      {},
+                    ]
+                  }
+                >
+                  settings.metric undefined
+                </Text>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
+                      [
+                        {
+                          "height": undefined,
+                          "uri": undefined,
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 40,
+                        "overflow": "hidden",
+                        "resizeMode": "contain",
+                        "tintColor": "#ADADAE",
+                        "width": 40,
+                      }
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
               </View>
             </View>
           </View>

@@ -9,21 +9,25 @@ import { useISSPosition } from "../../utils/useISSPosition"
 import { LocationType, OrbitPoint } from "../../services/api"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
 import { formatDateWithTZ, getCurrentTimeZone, getShortTZ } from "../../utils/datetime"
-import { getCalendars } from "expo-localization"
 import i18n from "i18n-js"
 import { getOrbitalSpeed } from "../../utils/satellite"
 import { headingToCompass, sphericalDistance } from "../../utils/geometry"
+import { kmToMiles, msToMph } from "../../utils/units"
 
 export interface ISSDetailsModalProps {
   onClose?: PressableProps["onPress"]
   issData: OrbitPoint[]
   location: LocationType
   onLinkPress?: PressableProps["onPress"]
+  timeFormat: string
+  units: string
 }
 
 export const ISSDetailsModal = memo(function DetailsModal({
   issData,
   location,
+  timeFormat,
+  units,
   onClose,
   onLinkPress,
 }: ISSDetailsModalProps) {
@@ -66,13 +70,44 @@ export const ISSDetailsModal = memo(function DetailsModal({
   }
 
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
     const shortTZ = getShortTZ(location.timezone || getCurrentTimeZone())
     return `${formatDateWithTZ(
       date,
-      `${i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`,
+      `${i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`,
       location.timezone || getCurrentTimeZone(),
     )} ${shortTZ}`
+  }
+
+  const formatAltitude = () => {
+    if (!currentPosition) return "-"
+    const uom = units === "imperial" ? translate("units.mile") : translate("units.kilometer")
+    const altitude =
+      units === "imperial" ? kmToMiles(currentPosition.altitude) : currentPosition.altitude
+    return `${altitude.toFixed(2)} ${uom}`
+  }
+
+  const formatDistance = () => {
+    if (!currentPosition) return "-"
+
+    const uom = units === "imperial" ? translate("units.mile") : translate("units.kilometer")
+    const kmDistance = distance(currentPosition)
+    return `${(units === "imperial" ? kmToMiles(kmDistance) : kmDistance).toFixed(2)} ${uom}`
+  }
+
+  const formatOrbitalSpeed = () => {
+    if (!currentPosition) return "-"
+
+    const uom =
+      units === "imperial" ? translate("units.milesPerHour") : translate("units.metersPerSecond")
+    const msSpeed = getOrbitalSpeed(
+      currentPosition.latitude,
+      currentPosition.azimuth,
+      currentPosition.elevation,
+    )
+
+    const speed = units === "imperial" ? msToMph(msSpeed) : msSpeed
+    return `${speed.toFixed(2)} ${uom}`
   }
 
   return (
@@ -134,14 +169,7 @@ export const ISSDetailsModal = memo(function DetailsModal({
             style={$detailBox}
           >
             <Text tx="issView.details.altitude" style={$detailTitle} />
-            <Text
-              text={
-                currentPosition?.altitude
-                  ? `${currentPosition.altitude.toFixed(2)} ${translate("units.kilometer")}`
-                  : `"0 ${translate("units.kilometer")}"`
-              }
-              style={$detailValue}
-            />
+            <Text text={formatAltitude()} style={$detailValue} />
           </View>
           <View
             accessible
@@ -151,14 +179,7 @@ export const ISSDetailsModal = memo(function DetailsModal({
             style={$detailBox}
           >
             <Text tx="issView.details.distance" style={$detailTitle} />
-            <Text
-              text={
-                currentPosition
-                  ? `${distance(currentPosition).toFixed(2)} ${translate("units.kilometer")}`
-                  : `"0 ${translate("units.kilometer")}"`
-              }
-              style={$detailValue}
-            />
+            <Text text={formatDistance()} style={$detailValue} />
           </View>
         </View>
         <View style={[$buttonsContainer, $center]}>
@@ -170,18 +191,7 @@ export const ISSDetailsModal = memo(function DetailsModal({
             style={$detailBox}
           >
             <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-            <Text
-              text={
-                currentPosition
-                  ? `${getOrbitalSpeed(
-                      currentPosition.latitude,
-                      currentPosition.azimuth,
-                      currentPosition.elevation,
-                    )} ${translate("units.metersPerSecond")}`
-                  : "-"
-              }
-              style={$detailValue}
-            />
+            <Text text={formatOrbitalSpeed()} style={$detailValue} />
           </View>
         </View>
         <Text

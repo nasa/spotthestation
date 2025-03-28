@@ -2,6 +2,7 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import RootStoreActions from "./actions"
 import { Location } from "./Location"
 import { Modal } from "./Modal"
+import { getCalendars } from "expo-localization"
 
 const WeatherData = types.model("WeatherData", {
   timestamp: types.number,
@@ -27,6 +28,11 @@ export const RootStoreModel = types
     modalsQueue: types.optional(types.array(types.string), []),
     isCurrentLocationUpdating: types.optional(types.boolean, false),
     weatherCache: types.optional(types.map(WeatherData), {}),
+    timeFormat: types.optional(
+      types.enumeration(["24hour", "12hour"]),
+      getCalendars()[0].uses24hourClock ? "24hour" : "12hour",
+    ),
+    units: types.optional(types.enumeration(["metric", "imperial"]), "metric"),
   })
   .props({})
   .actions(RootStoreActions)

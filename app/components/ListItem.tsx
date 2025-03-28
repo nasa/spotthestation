@@ -17,6 +17,7 @@ export interface ListItemProps {
   selected?: boolean
   withSwitch?: boolean
   withShare?: boolean
+  withCalendar?: boolean
   editable?: boolean
   disabled?: boolean
   title: string
@@ -30,6 +31,7 @@ export interface ListItemProps {
   ctaTx?: TxKeyPath
   onToggle?: (date: string) => void
   onShare?: (date: string) => void
+  onCalendar?: (date: string) => void
   onPress?: PressableProps["onPress"]
   onCtaPress?: () => void
   onEdit?: () => void
@@ -49,11 +51,13 @@ export const ListItem = React.memo(function ListItem({
   selected,
   withSwitch = false,
   withShare = false,
+  withCalendar = false,
   icon,
   secondIcon,
   onPress,
   onToggle,
   onShare,
+  onCalendar,
   onCtaPress,
   onEdit,
   onDelete,
@@ -186,6 +190,18 @@ export const ListItem = React.memo(function ListItem({
               buttonStyle={$button}
               icon="share"
               onPress={() => onShare(value)}
+              viewStyle={$buttonContainer}
+            />
+          )}
+
+          {withCalendar && (
+            <IconLinkButton
+              accessible
+              accessibilityLabel="add to calendar"
+              accessibilityHint="add to calendar"
+              buttonStyle={$button}
+              icon="calendar"
+              onPress={() => onCalendar(value)}
               viewStyle={$buttonContainer}
             />
           )}

@@ -63,13 +63,15 @@ const it = {
   notifications: {
     push: {
       title: "Individua la Stazione ora!",
-      subTitle: "La Stazione sta passando sopra di te alle",
+      subTitleIos: "La Stazione sta passando sopra di te alle",
+      subTitleAndroid: "La Stazione sta passando sopra di te ({{time}}) alle",
     },
     before: {
       titleOne: "Individua la Stazione",
       titleTwo: "minuti!",
       subTitleOne: "La Stazione sta passando sopra di te tra",
-      subTitleTwo: "minuti alle",
+      subTitleTwoIos: "minuti alle",
+      subTitleTwoAndroid: "minuti ({{time}}) alle",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const it = {
     month: "mese",
     metersPerSecond: "m/s",
     time: "T",
+    hour: "ora",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Home",
@@ -164,6 +170,9 @@ const it = {
       shareTitle: "La stazione sta passando sopra {{location}} il {{date}}",
       shareLink:
         "Per esplorare di più e tracciare la stazione tramite realtà aumentata, scarica l'app a",
+      calendarEventTitle: "Individua la Stazione a {{location}}!",
+      calendarSuccess: "Evento del calendario creato con successo",
+      calendarError: "Impossibile creare l'evento del calendario",
       coach: {
         title: "Descrizione delle icone",
         moon: "Sarà notte nella posizione selezionata quando la Stazione è al di sopra dell'orizzonte.",
@@ -292,6 +301,10 @@ const it = {
     termsAndConditions: "Termini e Condizioni",
     contactUs: "Contattaci",
     language: "Lingua",
+    timeFormat: "Formato orario",
+    unitsOfMeasurement: "Unità",
+    metric: "Metrico",
+    imperial: "Imperiale (US)",
     calibrateCompass: "Calibrazione della bussola",
     calibrateCompassData: {
       instructions:

@@ -63,13 +63,15 @@ const ru = {
   notifications: {
     push: {
       title: "Посмотрите на станцию сейчас!",
-      subTitle: "Станция проходит над вами в",
+      subTitleIos: "Станция проходит над вами в",
+      subTitleAndroid: "Станция проходит над вами сейчас ({{time}}) в",
     },
     before: {
       titleOne: "Посмотрите на станцию через",
       titleTwo: "минут!",
       subTitleOne: "Станция будет проходить над вами через",
-      subTitleTwo: "минут в",
+      subTitleTwoIos: "минут в",
+      subTitleTwoAndroid: "минут ({{time}}) в",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const ru = {
     month: "месяц",
     metersPerSecond: "м/с",
     time: "T",
+    hour: "ч",
+    mile: "миль",
+    pound: "фунтов",
+    milesPerHour: "миль/ч",
   },
   tabNavigator: {
     homeTab: "Главная",
@@ -163,6 +169,9 @@ const ru = {
       shareTitle: "Станция проходит над {{location}} {{date}}",
       shareLink:
         "Чтобы узнать больше и отслеживать станцию с помощью дополненной реальности, скачайте приложение по ссылке",
+      calendarEventTitle: "Наблюдайте за станцией в {{location}}!",
+      calendarSuccess: "Событие в календаре успешно создано",
+      calendarError: "Не удалось создать событие в календаре",
       coach: {
         title: "Описание значков",
         moon: "Станция проходит над горизонтом в выбранном местоположении в ночное время.",
@@ -290,6 +299,10 @@ const ru = {
     termsAndConditions: "Условия использования",
     contactUs: "Свяжитесь с нами",
     language: "Язык",
+    timeFormat: "Формат времени",
+    unitsOfMeasurement: "Система измерения",
+    metric: "Метрическая",
+    imperial: "Имперская (США)",
     calibrateCompass: "Калибровка компаса",
     calibrateCompassData: {
       instructions: "Для калибровки компаса поверните устройство восьмёркой несколько раз.",

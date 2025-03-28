@@ -74,6 +74,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     requestOpenModal,
     requestCloseModal,
     setTrajectoryError,
+    timeFormat,
   } = useStores()
   const [mode, setMode] = useState("map")
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -240,7 +241,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             ellipsizeMode="tail"
             numberOfLines={1}
           />
-          <CurrentTime />
+          <CurrentTime timeFormat={timeFormat} />
         </View>
         <IconLinkButton
           accessible

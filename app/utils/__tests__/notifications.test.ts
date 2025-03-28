@@ -35,7 +35,7 @@ describe("setNotifications", () => {
           },
         ],
       },
-    ] as LocationType[])
+    ] as LocationType[], "12hr")
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)
@@ -72,7 +72,7 @@ describe("setNotifications", () => {
           },
         ],
       },
-    ] as LocationType[])
+    ] as LocationType[], "12hr")
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)
@@ -108,7 +108,7 @@ describe("setNotifications", () => {
           },
         ],
       },
-    ] as LocationType[])
+    ] as LocationType[], "12hr")
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)

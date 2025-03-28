@@ -63,13 +63,15 @@ const es = {
   notifications: {
     push: {
       title: "¡Avista la estación!",
-      subTitle: "La estación va a pasar por encima de ti a las",
+      subTitleIos: "La estación va a pasar por encima de ti a las",
+      subTitleAndroid: "La estación va a pasar por encima de ti ({{time}}) a las",
     },
     before: {
       titleOne: "¡Avista la estación en",
       titleTwo: "minutos!",
       subTitleOne: "La estación va a pasar por encima de ti en",
-      subTitleTwo: "minutos a las",
+      subTitleTwoIos: "minutos a las",
+      subTitleTwoAndroid: "minutos ({{time}}) a las",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const es = {
     month: "mes",
     metersPerSecond: "m/s",
     time: "H",
+    hour: "h",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Inicio",
@@ -164,6 +170,9 @@ const es = {
       shareTitle: "La estación está pasando sobre {{location}} el {{date}}",
       shareLink:
         "Para explorar más y rastrear la estación mediante realidad aumentada, descarga la aplicación en",
+      calendarEventTitle: "¡Avista la estación en {{location}}!",
+      calendarSuccess: "Evento de calendario creado con éxito",
+      calendarError: "No se pudo crear el evento de calendario",
       coach: {
         title: "Descripción de los iconos",
         moon: "Será de noche en la ubicación seleccionada cuando la estación esté por encima del horizonte.",
@@ -292,6 +301,10 @@ const es = {
     termsAndConditions: "Términos y condiciones",
     contactUs: "Contáctanos",
     language: "Idioma",
+    timeFormat: "Formato de hora",
+    unitsOfMeasurement: "Unidades",
+    metric: "Métrico",
+    imperial: "Imperial (EE. UU.)",
     calibrateCompass: "Calibración de la brújula",
     calibrateCompassData: {
       instructions:

@@ -50,7 +50,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
 
-  const { setNotifications } = useStores()
+  const { setNotifications, timeFormat, setTimeFormat, units, setUnits } = useStores()
   const languages = useMemo(
     () =>
       uniqBy(
@@ -61,6 +61,22 @@ export const SettingsScreen = observer(function SettingsScreen() {
         "label",
       ),
     [i18n.translations],
+  )
+
+  const timeFormats = useMemo(
+    () => [
+      { label: `12${translate("units.hour")}`, value: "12hour" },
+      { label: `24${translate("units.hour")}`, value: "24hour" },
+    ],
+    [],
+  )
+
+  const unitsOptions = useMemo(
+    () => [
+      { label: translate("settings.metric"), value: "metric" },
+      { label: translate("settings.imperial"), value: "imperial" },
+    ],
+    [],
   )
 
   const handleNavigate = (screen) =>
@@ -74,6 +90,14 @@ export const SettingsScreen = observer(function SettingsScreen() {
       index: 0,
       routes: [{ name: "Settings" as never }],
     })
+  }
+
+  const onChangeTimeFormat = ({ value }: { label: string; value: string }) => {
+    setTimeFormat(value)
+  }
+
+  const onChangeUnits = ({ value }: { label: string; value: string }) => {
+    setUnits(value)
   }
 
   const handleCalibrate = async () => {
@@ -161,31 +185,101 @@ export const SettingsScreen = observer(function SettingsScreen() {
           icon="globe"
           title="settings.language"
           rightControl={
-            <Dropdown
-              accessibilityLabel="language select"
-              style={$dropdown}
-              placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
-              selectedTextStyle={[$dropdownText, $dropdownSelected]}
-              data={languages}
-              itemContainerStyle={{
-                backgroundColor: colors.palette.neutral350,
-              }}
-              containerStyle={$dropdownContainer}
-              itemTextStyle={$dropdownText}
-              activeColor={colors.palette.neutral450}
-              value={i18n.locale}
-              labelField="label"
-              valueField="value"
-              onChange={onChangeLanguage}
-              renderRightIcon={() => (
-                <Icon
-                  icon="chevronDown"
-                  size={28}
-                  color={colors.palette.neutral450}
-                  containerStyle={$dropdownRightAccessory}
-                />
-              )}
-            />
+            <View style={$flex}>
+              <Dropdown
+                accessibilityLabel="language select"
+                style={$dropdown}
+                placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
+                selectedTextStyle={[$dropdownText, $dropdownSelected]}
+                data={languages}
+                itemContainerStyle={{
+                  backgroundColor: colors.palette.neutral350,
+                }}
+                containerStyle={$dropdownContainer}
+                itemTextStyle={$dropdownText}
+                activeColor={colors.palette.neutral450}
+                value={i18n.locale}
+                labelField="label"
+                valueField="value"
+                onChange={onChangeLanguage}
+                renderRightIcon={() => (
+                  <Icon
+                    icon="chevronDown"
+                    size={28}
+                    color={colors.palette.neutral450}
+                    containerStyle={$dropdownRightAccessory}
+                  />
+                )}
+              />
+            </View>
+          }
+        />
+
+        <SettingsItem
+          icon="clock"
+          title="settings.timeFormat"
+          rightControl={
+            <View style={$flex}>
+              <Dropdown
+                accessibilityLabel="time format select"
+                style={$dropdown}
+                placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
+                selectedTextStyle={[$dropdownText, $dropdownSelected]}
+                data={timeFormats}
+                itemContainerStyle={{
+                  backgroundColor: colors.palette.neutral350,
+                }}
+                containerStyle={$dropdownContainer}
+                itemTextStyle={$dropdownText}
+                activeColor={colors.palette.neutral450}
+                value={timeFormat}
+                labelField="label"
+                valueField="value"
+                onChange={onChangeTimeFormat}
+                renderRightIcon={() => (
+                  <Icon
+                    icon="chevronDown"
+                    size={28}
+                    color={colors.palette.neutral450}
+                    containerStyle={$dropdownRightAccessory}
+                  />
+                )}
+              />
+            </View>
+          }
+        />
+
+        <SettingsItem
+          icon="maximize"
+          title="settings.unitsOfMeasurement"
+          rightControl={
+            <View style={$flex}>
+              <Dropdown
+                accessibilityLabel="units of measurement select"
+                style={$dropdown}
+                placeholderStyle={[$dropdownText, $dropdownPlaceholder]}
+                selectedTextStyle={[$dropdownText, $dropdownSelected]}
+                data={unitsOptions}
+                itemContainerStyle={{
+                  backgroundColor: colors.palette.neutral350,
+                }}
+                containerStyle={$dropdownContainer}
+                itemTextStyle={$dropdownText}
+                activeColor={colors.palette.neutral450}
+                value={units}
+                labelField="label"
+                valueField="value"
+                onChange={onChangeUnits}
+                renderRightIcon={() => (
+                  <Icon
+                    icon="chevronDown"
+                    size={28}
+                    color={colors.palette.neutral450}
+                    containerStyle={$dropdownRightAccessory}
+                  />
+                )}
+              />
+            </View>
           }
         />
       </ScrollView>

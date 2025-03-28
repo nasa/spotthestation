@@ -322,6 +322,8 @@ jest.mock("expo-store-review", () => ({
   requestReview: jest.fn(),
 }))
 
+jest.mock("expo-calendar", () => ({}))
+
 jest.mock("react-native-code-push", () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const fn = () => (p) => p

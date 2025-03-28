@@ -63,13 +63,15 @@ const hi = {
   notifications: {
     push: {
       title: "अब स्टेशन को स्पॉट करें!",
-      subTitle: "स्टेशन आपके ऊपर से गुजर रहा है",
+      subTitleIos: "स्टेशन आपके ऊपर से गुजर रहा है",
+      subTitleAndroid: "स्टेशन अब आपके ऊपर से गुजर रहा है ({{time}}) पर",
     },
     before: {
       titleOne: "स्टेशन को स्पॉट करें",
       titleTwo: "मिनट!",
       subTitleOne: "स्टेशन आपके ऊपर से गुजर रहा है",
-      subTitleTwo: "मिनटों में",
+      subTitleTwoIos: "मिनटों में",
+      subTitleTwoAndroid: "मिनट ({{time}}) पर",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const hi = {
     month: "महीना",
     metersPerSecond: "एम/एस",
     time: "T",
+    hour: "घंटा",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "घर",
@@ -162,6 +168,9 @@ const hi = {
       shareTitle: "{{date}} को {{location}} के ऊपर से स्टेशन गुजर रहा है",
       shareLink:
         "और अधिक जानने और संवर्धित वास्तविकता के माध्यम से स्टेशन को ट्रैक करने के लिए, ऐप डाउनलोड करें",
+      calendarEventTitle: "{{location}} में स्टेशन को देखें!",
+      calendarSuccess: "कैलेंडर इवेंट सफलतापूर्वक बनाया गया",
+      calendarError: "कैलेंडर इवेंट बनाने में असमर्थ",
       coach: {
         title: "प्रतीक विवरण",
         moon: "यह चयनित स्थान पर रात का समय होगा जब आईएसएस क्षितिज से ऊपर होगा।",
@@ -289,6 +298,10 @@ const hi = {
     termsAndConditions: "नियम और शर्तें",
     contactUs: "संपर्क करें",
     language: "भाषा",
+    timeFormat: "समय प्रारूप",
+    unitsOfMeasurement: "माप की इकाइयाँ",
+    metric: "मीट्रिक",
+    imperial: "इम्पीरियल (यूएस)",
     calibrateCompass: "कंपास कैलिब्रेशन",
     calibrateCompassData: {
       instructions: "कंपास को कैलिब्रेट करने के लिए, अपने उपकरण को कई बार आठ के पैटर्न में घुमाएं।",

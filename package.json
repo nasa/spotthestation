@@ -65,6 +65,7 @@
     "expo": "^51.0.28",
     "expo-application": "^5.9.1",
     "expo-blur": "^13.0.2",
+    "expo-calendar": "~13.0.5",
     "expo-constants": "^16.0.2",
     "expo-device": "^6.0.2",
     "expo-file-system": "^17.0.1",

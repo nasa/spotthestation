@@ -1621,6 +1621,99 @@ exports[`Sightings renders correctly 1`] = `
                     </div>
                   </View>
                 </View>
+                <View
+                  accessibilityHint="add to calendar"
+                  accessibilityLabel="add to calendar"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    collapsable={false}
+                    jestAnimatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <div>
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </div>
+                  </View>
+                </View>
               </View>
             </View>
           </View>
@@ -2184,6 +2277,99 @@ exports[`Sightings renders correctly 1`] = `
                     </div>
                   </View>
                 </View>
+                <View
+                  accessibilityHint="add to calendar"
+                  accessibilityLabel="add to calendar"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    collapsable={false}
+                    jestAnimatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <div>
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </div>
+                  </View>
+                </View>
               </View>
             </View>
           </View>
@@ -2657,6 +2843,99 @@ exports[`Sightings renders correctly 1`] = `
                 <View
                   accessibilityHint="open share modal"
                   accessibilityLabel="share"
+                  accessibilityRole="imagebutton"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                >
+                  <View
+                    collapsable={false}
+                    jestAnimatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                        "borderRadius": 143,
+                        "display": "flex",
+                        "height": 63,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                        "position": "relative",
+                        "width": 63,
+                      }
+                    }
+                  >
+                    <div>
+                      <View>
+                        <RCTImageView
+                          accessibilityState={
+                            {
+                              "busy": undefined,
+                              "checked": undefined,
+                              "disabled": undefined,
+                              "expanded": undefined,
+                              "selected": undefined,
+                            }
+                          }
+                          internal_analyticTag={null}
+                          resizeMode="contain"
+                          source={
+                            [
+                              {
+                                "height": undefined,
+                                "uri": undefined,
+                                "width": undefined,
+                              },
+                            ]
+                          }
+                          style={
+                            {
+                              "height": 29,
+                              "overflow": "hidden",
+                              "resizeMode": "contain",
+                              "tintColor": "#FFFFFF",
+                              "width": 29,
+                            }
+                          }
+                          tintColor="#FFFFFF"
+                        />
+                      </View>
+                    </div>
+                  </View>
+                </View>
+                <View
+                  accessibilityHint="add to calendar"
+                  accessibilityLabel="add to calendar"
                   accessibilityRole="imagebutton"
                   accessibilityState={
                     {

@@ -12,6 +12,7 @@ import { useISSPosition } from "../../utils/useISSPosition"
 import { useStores } from "../../models"
 import { Template } from "./Template"
 import { getOrbitalSpeed } from "../../utils/satellite"
+import { kgToLbs, kmToMiles, msToMph } from "../../utils/units"
 
 export interface DetailsScreenRouteProps {}
 
@@ -39,6 +40,7 @@ export const DetailsScreen = observer(function DetailsScreen() {
     requestOpenModal,
     requestCloseModal,
     setTrajectoryError,
+    units,
   } = useStores()
 
   const [location, setLocation] = useState<[number, number]>(null)
@@ -92,6 +94,35 @@ export const DetailsScreen = observer(function DetailsScreen() {
     else requestCloseModal("trajectoryError")
   }, [trajectoryError])
 
+  const formatAltitude = () => {
+    const uom = units === "imperial" ? translate("units.mile") : translate("units.kilometer")
+    const altitude =
+      units === "imperial"
+        ? kmToMiles(currentPosition.altitude || 0)
+        : currentPosition.altitude || 0
+    return `${altitude.toFixed(2)} ${uom}`
+  }
+
+  const formatOrbitalSpeed = () => {
+    const uom =
+      units === "imperial" ? translate("units.milesPerHour") : translate("units.metersPerSecond")
+    const msSpeed = getOrbitalSpeed(
+      currentPosition.latitude,
+      currentPosition.azimuth,
+      currentPosition.elevation,
+    )
+
+    const speed = units === "imperial" ? msToMph(msSpeed) : msSpeed
+    return `${speed.toFixed(2)} ${uom}`
+  }
+
+  const formatMass = () => {
+    const uom = units === "imperial" ? translate("units.pound") : translate("units.kilogram")
+    const kgMass = 462000
+    const mass = units === "imperial" ? Math.round(kgToLbs(kgMass)) : kgMass
+    return `${mass.toLocaleString("en-US")} ${uom}`
+  }
+
   return (
     <Template dismissKeyboardOnPress headerTitleTx="resources.details.title">
       {!currentPosition ? (
@@ -133,14 +164,7 @@ export const DetailsScreen = observer(function DetailsScreen() {
               style={$detailBox}
             >
               <Text tx="issView.details.altitude" style={$detailTitle} />
-              <Text
-                text={
-                  currentPosition.altitude
-                    ? `${currentPosition.altitude.toFixed(2)} ${translate("units.kilometer")}`
-                    : `"0 ${translate("units.kilometer")}"`
-                }
-                style={$detailValue}
-              />
+              <Text text={formatAltitude()} style={$detailValue} />
             </View>
             <View
               accessible
@@ -150,14 +174,7 @@ export const DetailsScreen = observer(function DetailsScreen() {
               style={$detailBox}
             >
               <Text tx="issView.details.orbitalSpeed" style={$detailTitle} />
-              <Text
-                text={`${getOrbitalSpeed(
-                  currentPosition.latitude,
-                  currentPosition.azimuth,
-                  currentPosition.elevation,
-                )} ${translate("units.metersPerSecond")}`}
-                style={$detailValue}
-              />
+              <Text text={formatOrbitalSpeed()} style={$detailValue} />
             </View>
           </View>
           <View style={$buttonsContainer}>
@@ -189,7 +206,7 @@ export const DetailsScreen = observer(function DetailsScreen() {
               style={$detailRow}
             >
               <Text tx="issView.details.mass" style={$detailRowTitle} />
-              <Text text={`462,000 ${translate("units.kilogram")}`} style={$detailRowValue} />
+              <Text text={formatMass()} style={$detailRowValue} />
             </View>
             <View
               accessible

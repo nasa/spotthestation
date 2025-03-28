@@ -63,13 +63,15 @@ const ja = {
   notifications: {
     push: {
       title: "今すぐステーションを見つけてください!",
-      subTitle: "駅があなたの上を通り過ぎていきます",
+      subTitleIos: "駅があなたの上を通り過ぎていきます",
+      subTitleAndroid: "ステーションが現在あなたの上を通過しています ({{time}}) に",
     },
     before: {
       titleOne: "駅を見つける",
       titleTwo: "数分以内に！",
       subTitleOne: "駅があなたの上を通り過ぎていきます",
-      subTitleTwo: "数分の間",
+      subTitleTwoIos: "数分の間",
+      subTitleTwoAndroid: "分 ({{time}}) に",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const ja = {
     month: "月",
     metersPerSecond: "MS",
     time: "T",
+    hour: "時間",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "家",
@@ -162,6 +168,9 @@ const ja = {
       shareTitle: "ステーションは{{date}}に{{location}}の上空を通過しています",
       shareLink:
         "さらに探索し、拡張現実でステーションを追跡するには、アプリをダウンロードしてください",
+      calendarEventTitle: "{{location}}でステーションを見つけよう！",
+      calendarSuccess: "カレンダーイベントが正常に作成されました",
+      calendarError: "カレンダーイベントを作成できません",
       coach: {
         title: "アイコンの説明",
         moon: "ISSが地平線の上にある場合、選択した位置で夜間になります。",
@@ -288,6 +297,10 @@ const ja = {
     termsAndConditions: "規約と条件",
     contactUs: "お問い合わせ",
     language: "言語",
+    timeFormat: "時間形式",
+    unitsOfMeasurement: "単位",
+    metric: "メートル法",
+    imperial: "インペリアル（米国）",
     calibrateCompass: "コンパスのキャリブレーション",
     calibrateCompassData: {
       instructions:

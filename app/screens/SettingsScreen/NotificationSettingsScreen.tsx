@@ -70,6 +70,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setSightingsMaxHeight,
     setSightingsCloudCover,
     getFilteredSightings,
+    timeFormat,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -297,6 +298,9 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 { label: `15 ${translate("units.minute")}`, value: 15 },
                 { label: `30 ${translate("units.minute")}`, value: 30 },
                 { label: `60 ${translate("units.minute")}`, value: 60 },
+                { label: `120 ${translate("units.minute")}`, value: 120 },
+                { label: `24 ${translate("units.hour")}`, value: 1440 },
+                { label: `48 ${translate("units.hour")}`, value: 2880 },
               ]}
               onValueChange={(value) => handleChange(value, storage.KEYS.NOTIFY_BEFORE)}
               value={settings?.notifyBefore}
@@ -408,6 +412,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             location={current}
             onClose={() => setIsSightings(!isSightings)}
             sightings={current ? getFilteredSightings(current) : []}
+            timeFormat={timeFormat}
             timeOfDay={current?.filterTimeOfDay || ""}
             duration={current?.filterDuration || ""}
             maxHeight={current?.filterMaxHeight || ""}

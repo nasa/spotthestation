@@ -32,5 +32,7 @@ jest.mock("expo-localization", () => ({
   locale: 'en-US'
 }))
 
+jest.mock("expo-calendar", () => ({}))
+
 
 jest.setTimeout(30000)

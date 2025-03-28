@@ -158,7 +158,9 @@ const RootStoreActions = (self) => ({
           isCurrentLocation ? locationCopy : self.currentLocation,
         ]
         if (self.initLoading) self.sightingsLoaded = true
-        notifications.setNotifications(notifyFor as LocationType[]).catch(console.error)
+        notifications
+          .setNotifications(notifyFor as LocationType[], self.timeFormat as string)
+          .catch(console.error)
         self.setIsCurrentLocationUpdating(false)
       } else {
         self.trajectoryError = true
@@ -274,7 +276,7 @@ const RootStoreActions = (self) => ({
       isCurrentLocation ? valueCopy : self.currentLocation,
     ]
 
-    notifications.setNotifications(notifyFor).catch(console.error)
+    notifications.setNotifications(notifyFor, self.timeFormat as string).catch(console.error)
     return valueCopy
   },
 
@@ -382,7 +384,7 @@ const RootStoreActions = (self) => ({
   setNotifications: () => {
     const notifyFor: LocationType[] = [...self.savedLocations, self.currentLocation]
 
-    notifications.setNotifications(notifyFor).catch(console.error)
+    notifications.setNotifications(notifyFor, self.timeFormat as string).catch(console.error)
   },
 
   disableAllNotifications: flow(function* updateLocationAddresses() {
@@ -676,6 +678,14 @@ const RootStoreActions = (self) => ({
     const idx = weatherData.time.findIndex((t: string) => isSameHour(new Date(t), targetTime))
 
     return idx >= 0 ? weatherData.cloudcover[idx] : 0
+  },
+
+  setTimeFormat(timeFormat: string) {
+    self.timeFormat = timeFormat
+  },
+
+  setUnits(units: string) {
+    self.units = units
   },
 })
 

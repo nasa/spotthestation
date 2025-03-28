@@ -61,6 +61,8 @@
 	<string>We need access to your media library to store recorded images and videos</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We need access to your calendar to enable scheduling of notifications for upcoming sightings</string>
+	<key>NSRemindersUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to access your reminders</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera to enable Augmented Reality experience</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

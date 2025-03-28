@@ -32,7 +32,6 @@ import { StyleFn, useStyles } from "../../utils/useStyles"
 import { translate } from "../../i18n"
 import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
-import { getCalendars } from "expo-localization"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
 import { PastSightings } from "../../components/PastSightings"
 import Config from "../../config"
@@ -88,6 +87,7 @@ export const HomeScreen = observer(function HomeScreen() {
     currentModal,
     setSightingsCloudCover,
     sightingsHistoryLoading,
+    timeFormat,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const sightingsModalTimerRef = useRef<NodeJS.Timeout>(null)
@@ -322,12 +322,12 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
     const timezone = current?.timezone || getCurrentTimeZone()
     const shortTZ = getShortTZ(current?.timezone || getCurrentTimeZone())
     return `${formatDateWithTZ(
       date,
-      `${i18n.locale === "en" ? "MMM dd" : "dd MMM"}, ${timeFormat}`,
+      `${i18n.locale === "en" ? "MMM dd" : "dd MMM"}, ${tf}`,
       timezone,
     )} ${shortTZ}`
   }
@@ -413,6 +413,7 @@ export const HomeScreen = observer(function HomeScreen() {
         <Sightings
           onClose={() => requestCloseModal("sightings")}
           location={current}
+          timeFormat={timeFormat}
           sightings={current ? getFilteredSightings(current) : []}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
@@ -450,6 +451,7 @@ export const HomeScreen = observer(function HomeScreen() {
         <PastSightings
           onClose={() => requestCloseModal("pastSightings")}
           isLoading={sightingsHistoryLoading}
+          timeFormat={timeFormat}
           sightings={current ? current.sightingsHistory : []}
           isUS={i18n.locale === "en"}
           timezone={current?.timezone || getCurrentTimeZone()}

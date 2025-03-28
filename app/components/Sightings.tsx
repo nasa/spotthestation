@@ -27,7 +27,6 @@ import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 import { addDays } from "date-fns"
 import { formatDate, formatDateWithTZ, getShortTZ } from "../utils/datetime"
 import { ISSSighting, LocationType } from "../services/api"
-import { getCalendars } from "expo-localization"
 import * as storage from "../utils/storage"
 import { normalizeHeight } from "../utils/normalizeHeight"
 import { translate } from "../i18n"
@@ -37,12 +36,15 @@ import { ensureExactAlarmPermissions } from "../utils/notifications"
 import Share from "react-native-share"
 import { APP_UNIVERSAL_LINK } from "../utils/unilinks"
 import { headingToCompass } from "../utils/geometry"
+import { createSightingEvent } from "../utils/calendar"
+import Snackbar from "react-native-snackbar"
 
 export interface SightingsProps {
   location: LocationType
   sightings: ISSSighting[]
   isUS?: boolean
   isNotifyAll?: boolean
+  timeFormat: string
   timezone?: string
   onClose?: PressableProps["onPress"]
   onToggle?: (date: string) => void
@@ -75,6 +77,7 @@ export function Sightings({
   onToggle,
   onToggleAll,
   isUS,
+  timeFormat,
   isNotifyAll,
   timezone,
   lastSightingOrbitPointAt,
@@ -223,7 +226,7 @@ export function Sightings({
   }, [])
 
   const formatedDate = (date: string): string => {
-    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
     const shortTZ = getShortTZ(timezone)
     if (
       formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
@@ -231,7 +234,7 @@ export function Sightings({
     )
       return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(
         date,
-        timeFormat,
+        tf,
         timezone,
       )} ${shortTZ}`
     if (
@@ -240,12 +243,12 @@ export function Sightings({
     )
       return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(
         date,
-        timeFormat,
+        tf,
         timezone,
       )} ${shortTZ}`
     return `${formatDateWithTZ(
       date,
-      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${timeFormat}`,
+      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`,
       timezone,
     )} ${shortTZ}`
   }
@@ -308,6 +311,42 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
       }
 
       await Share.open(shareOptions)
+    },
+    [sightings, location],
+  )
+
+  const onCalendar = useCallback(
+    async (date: string) => {
+      const sighting = sightings.find((s) => s.date === date)
+      if (!sighting) return
+
+      try {
+        await createSightingEvent(location, sighting)
+        Snackbar.show({
+          text: translate("homeScreen.selectSightings.calendarSuccess"),
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: translate("snackBar.dismiss"),
+            textColor: "green",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      } catch (e) {
+        console.error(e)
+        Snackbar.show({
+          text: translate("homeScreen.selectSightings.calendarError"),
+          duration: Snackbar.LENGTH_LONG,
+          action: {
+            text: translate("snackBar.dismiss"),
+            textColor: "red",
+            onPress: () => {
+              Snackbar.dismiss()
+            },
+          },
+        })
+      }
     },
     [sightings, location],
   )
@@ -447,6 +486,8 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
                   onToggle={handleToggle}
                   withShare
                   onShare={onShare}
+                  withCalendar
+                  onCalendar={onCalendar}
                 />
               ))
             )}

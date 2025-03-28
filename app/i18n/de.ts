@@ -63,13 +63,15 @@ const de = {
   notifications: {
     push: {
       title: "Finden Sie die Station jetzt!",
-      subTitle: "Die Station zieht gerade über Ihnen vorbei",
+      subTitleIos: "Die Station zieht gerade über Ihnen vorbei",
+      subTitleAndroid: "Die Station zieht gerade über Ihnen ({{time}}) vorbei",
     },
     before: {
       titleOne: "Entdecken Sie die Station in",
       titleTwo: "Minuten",
       subTitleOne: "Die Station wird in ",
-      subTitleTwo: "Minuten vorbeiziehen",
+      subTitleTwoIos: "Minuten vorbeiziehen",
+      subTitleTwoAndroid: "Minuten ({{time}}) vorbeiziehen",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const de = {
     month: "Monat",
     metersPerSecond: "m/sek",
     time: "T",
+    hour: "Std",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Home",
@@ -163,6 +169,9 @@ const de = {
       shareTitle: "Die Station fliegt über {{location}} am {{date}} vorbei",
       shareLink:
         "Um mehr zu erkunden und die Station mittels Augmented Reality zu verfolgen, laden Sie bitte die App herunter unter",
+      calendarEventTitle: "Entdecken Sie die Station in {{location}}!",
+      calendarSuccess: "Kalenderereignis erfolgreich erstellt",
+      calendarError: "Kalenderereignis konnte nicht erstellt werden",
       coach: {
         title: "Symbolbeschreibung",
         moon: "Es wird Nacht am ausgewählten Ort sein, wenn sich die Station über dem Horizont befindet.",
@@ -291,6 +300,10 @@ const de = {
     termsAndConditions: "Geschäftsbedingungen",
     contactUs: "Kontaktieren Sie uns",
     language: "Sprache",
+    timeFormat: "Zeitformat",
+    unitsOfMeasurement: "Einheiten",
+    metric: "Metrisch",
+    imperial: "Imperial (US)",
     calibrateCompass: "Kompasskalibrierung",
     calibrateCompassData: {
       instructions:

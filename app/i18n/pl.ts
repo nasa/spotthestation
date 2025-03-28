@@ -63,13 +63,15 @@ const pl = {
   notifications: {
     push: {
       title: "Zobacz Stację teraz!",
-      subTitle: "Stacja przechodzi nad Tobą o",
+      subTitleIos: "Stacja przechodzi nad Tobą o",
+      subTitleAndroid: "Stacja przechodzi nad Tobą ({{time}}) o",
     },
     before: {
       titleOne: "Zobacz Stację za",
       titleTwo: "minut!",
       subTitleOne: "Stacja przechodzi nad Tobą za",
-      subTitleTwo: "minut o",
+      subTitleTwoIos: "minut o",
+      subTitleTwoAndroid: "minut ({{time}}) o",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const pl = {
     month: "miesiąc",
     metersPerSecond: "M/S",
     time: "T",
+    hour: "godz",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Strona główna",
@@ -162,6 +168,9 @@ const pl = {
       shareTitle: "Stacja przechodzi nad {{location}} w dniu {{date}}",
       shareLink:
         "Aby dowiedzieć się więcej i śledzić stację za pomocą rozszerzonej rzeczywistości, pobierz aplikację na",
+      calendarEventTitle: "Zobacz stację w {{location}}!",
+      calendarSuccess: "Wydarzenie w kalendarzu utworzone pomyślnie",
+      calendarError: "Nie można utworzyć wydarzenia w kalendarzu",
       coach: {
         title: "Opis ikon",
         moon: "Będzie noc w wybranej lokalizacji, gdy stacja będzie nad horyzontem.",
@@ -288,6 +297,10 @@ const pl = {
     termsAndConditions: "Warunki i zasady",
     contactUs: "Skontaktuj się z nami",
     language: "Język",
+    timeFormat: "Format czasu",
+    unitsOfMeasurement: "Jednostki",
+    metric: "Metryczny",
+    imperial: "Imperialny (US)",
     calibrateCompass: "Kalibracja kompasu",
     calibrateCompassData: {
       instructions: "Aby skalibrować kompas, obróć urządzenie kilka razy w kształcie ósemki.",

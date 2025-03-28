@@ -63,13 +63,15 @@ const sv = {
   notifications: {
     push: {
       title: "Hitta stationen nu!",
-      subTitle: "Stationen passerar ovanför dig vid",
+      subTitleIos: "Stationen passerar ovanför dig vid",
+      subTitleAndroid: "Stationen passerar ovanför dig nu ({{time}}) kl",
     },
     before: {
       titleOne: "Hitta stationen i",
       titleTwo: "minuter!",
       subTitleOne: "Stationen passerar ovanför dig",
-      subTitleTwo: "protokoll vid",
+      subTitleTwoIos: "minuter kl",
+      subTitleTwoAndroid: "minuter ({{time}}) kl",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const sv = {
     month: "månad",
     metersPerSecond: "m/s",
     time: "T",
+    hour: "tim",
+    mile: "mi",
+    pound: "lbs",
+    milesPerHour: "mph",
   },
   tabNavigator: {
     homeTab: "Hem",
@@ -162,6 +168,9 @@ const sv = {
       shareTitle: "Stationen passerar över {{location}} den {{date}}",
       shareLink:
         "För att utforska mer och spåra stationen via förstärkt verklighet, ladda ner appen på",
+      calendarEventTitle: "Se stationen i {{location}}!",
+      calendarSuccess: "Kalenderhändelse skapad framgångsrikt",
+      calendarError: "Det gick inte att skapa kalenderhändelse",
       coach: {
         title: "Ikoner Beskrivning",
         moon: "Det kommer att vara natt på den valda platsen när Stationen är över horisonten.",
@@ -288,6 +297,10 @@ const sv = {
     termsAndConditions: "Villkor",
     contactUs: "Kontakta oss",
     language: "Språk",
+    timeFormat: "Tidsformat",
+    unitsOfMeasurement: "Enheter",
+    metric: "Metrisk",
+    imperial: "Imperial (US)",
     calibrateCompass: "Kalibrera kompassen",
     calibrateCompassData: {
       instructions: "För att kalibrera kompassen, rotera din enhet flera gånger i ett åttamönster.",

@@ -186,7 +186,7 @@ exports[`ISSNowScreen renders correctly 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -1020,7 +1020,7 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -1863,7 +1863,7 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -2697,7 +2697,7 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -3540,7 +3540,7 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -4354,7 +4354,7 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -5185,7 +5185,7 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
           ]
         }
       >
-        06 Nov 2024 11:43:00
+        06 Nov 2024 11:43:00 AM
       </Text>
     </View>
     <View
@@ -6000,7 +6000,7 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
             ]
           }
         >
-          06 Nov 2024 11:43:00
+          06 Nov 2024 11:43:00 AM
         </Text>
       </View>
       <View

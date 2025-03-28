@@ -222,6 +222,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     requestOpenModal,
     requestCloseModal,
     setTrajectoryError,
+    timeFormat,
+    units,
   } = useStores()
   const route = useRoute<any>()
   const navigation = useNavigation()
@@ -1005,6 +1007,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             location={current}
             onClose={closeDetails}
             onLinkPress={onDetailsLinkPress}
+            timeFormat={timeFormat}
+            units={units}
           />
         </ModalContainer>
       )}

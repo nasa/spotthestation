@@ -63,13 +63,15 @@ const uk = {
   notifications: {
     push: {
       title: "Побачте станцію зараз!",
-      subTitle: "Станція проходить над вами у",
+      subTitleIos: "Станція проходить над вами у",
+      subTitleAndroid: "Станція проходить над вами зараз ({{time}}) у",
     },
     before: {
       titleOne: "Побачте станцію через",
       titleTwo: "хвилин!",
       subTitleOne: "Станція проходить над вами через",
-      subTitleTwo: "хвилин у",
+      subTitleTwoIos: "хвилин у",
+      subTitleTwoAndroid: "хвилин ({{time}}) у",
     },
   },
   units: {
@@ -79,6 +81,10 @@ const uk = {
     month: "місяць",
     metersPerSecond: "м/с",
     time: "T",
+    hour: "год",
+    mile: "миль",
+    pound: "фунтів",
+    milesPerHour: "миль/год",
   },
   tabNavigator: {
     homeTab: "Головна",
@@ -162,6 +168,9 @@ const uk = {
       shareTitle: "Станція проходить над {{location}} {{date}}",
       shareLink:
         "Щоб дізнатись більше і відстежувати станцію за допомогою доповненої реальності, завантажте додаток за посиланням",
+      calendarEventTitle: "Спостерігайте за станцією в {{location}}!",
+      calendarSuccess: "Подію в календарі успішно створено",
+      calendarError: "Не вдалося створити подію в календарі",
       coach: {
         title: "Пояснення до іконок",
         moon: "Коли станція буде над горизонтом у обраній локації, там буде ніч.",
@@ -289,6 +298,10 @@ const uk = {
     termsAndConditions: "Умови та положення",
     contactUs: "Зв'яжіться з нами",
     language: "Мова",
+    timeFormat: "Формат часу",
+    unitsOfMeasurement: "Система виміру",
+    metric: "Метрична",
+    imperial: "Імперська (США)",
     calibrateCompass: "Калібрування компасу",
     calibrateCompassData: {
       instructions: "Для калібрування компасу оберніть пристрій вісімкою декілька разів.",

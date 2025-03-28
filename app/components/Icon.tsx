@@ -93,6 +93,7 @@ export const iconRegistry = {
   arInactive: require("../../assets/icons/ar-active.png"),
   back: require("../../assets/icons/back.png"),
   bell: require("../../assets/icons/bell.png"),
+  calendar: require("../../assets/icons/calendar.png"),
   caretLeft: require("../../assets/icons/caretLeft.png"),
   caretRight: require("../../assets/icons/caretRight.png"),
   caretDown: require("../../assets/icons/caretDown.png"),

@@ -6,9 +6,10 @@ import { StyleFn, useStyles } from "../utils/useStyles"
 import { TextStyle } from "react-native"
 import { colors, typography } from "../theme"
 
-export function CurrentTime() {
+export function CurrentTime({ timeFormat }: { timeFormat: string }) {
   const { $date } = useStyles(styles)
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toISOString())
+  const tf = timeFormat === "24hour" ? "k:mm:ss" : "h:mm:ss aa"
 
   useEffect(() => {
     const secTimer = setInterval(() => {
@@ -18,7 +19,7 @@ export function CurrentTime() {
     return () => clearInterval(secTimer)
   }, [])
 
-  return <Text text={`${formatDate(currentDateTime, "dd MMM yyyy k:mm:ss")}`} style={$date} />
+  return <Text text={`${formatDate(currentDateTime, `dd MMM yyyy ${tf}`)}`} style={$date} />
 }
 const styles: StyleFn = ({ fontSizes, lineHeights }) => {
   const $date: TextStyle = {
