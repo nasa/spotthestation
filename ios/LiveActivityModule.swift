@@ -12,14 +12,20 @@ import ActivityKit
 
 @objc(LiveActivityModule)
 class LiveActivityModule: NSObject {
-  @objc(startLiveActivity:)
-  func startLiveActivity(interval: Double) {
-    if #available(iOS 16.1, *) {
+  @objc(startLiveActivity:interval:)
+  func startLiveActivity(_ location: String, interval: Double) {
+    if #available(iOS 16.2, *) {
       let initialContentState = NotificationAttributes.ContentState(intervalInMinutes: interval)
-      let activityAttributes = NotificationAttributes(title: "Spot the ISS now!", subtitle: "ISS is passing above you...")
+      let activityAttributes = NotificationAttributes(
+        title: "Spot the ISS now!",
+        subtitle: "ISS is passing above you in \(location)"
+      )
 
       do {
-          _ = try Activity.request(attributes: activityAttributes, contentState: initialContentState)
+          _ = try Activity.request(
+            attributes: activityAttributes,
+            content: .init(state: initialContentState, staleDate: nil)
+          )
           print("Requested a motification Live Activity.")
       } catch (let error) {
           print("Error requesting motification delivery Live Activity \(error.localizedDescription).")
@@ -30,7 +36,7 @@ class LiveActivityModule: NSObject {
 
   @objc(updateLiveActivity:)
   func updateLiveActivity(interval: Double) {
-    if #available(iOS 16.1, *) {
+    if #available(iOS 16.2, *) {
 
       let notificationStatus = NotificationAttributes.NotificationStatus(intervalInMinutes: interval)
       let alertConfiguration = AlertConfiguration(title: "Notification Update", body: "Notification update.", sound: .default)
@@ -44,16 +50,20 @@ class LiveActivityModule: NSObject {
 
   }
 
-  @objc
-  func endLiveActivity() {
-    if #available(iOS 16.1, *) {
+  @objc(endLiveActivity:rejecter:)
+  func endLiveActivity(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject:RCTPromiseRejectBlock) {
+    if #available(iOS 16.2, *) {
+      let state = NotificationAttributes.ContentState(intervalInMinutes: 0)
       let notificationStatus = NotificationAttributes.NotificationStatus(intervalInMinutes: 0)
 
 
       Task {
           for activity in Activity<NotificationAttributes>.activities {
-              await activity.end(using:notificationStatus, dismissalPolicy: .default)
+            let content = ActivityContent(state: state, staleDate: .now)
+            await activity.end(content, dismissalPolicy: .immediate)
           }
+
+          resolve(true)
       }
     } else {
 

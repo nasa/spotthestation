@@ -34,6 +34,8 @@ struct ContentView: View {
         Text(context.attributes.subtitle)
           .foregroundColor(.init(red: 255/255, green: 255/255, blue: 255/255, opacity: 0.6))
           .font(.system(size: 17))
+          .fixedSize(horizontal: false, vertical: true)
+          .multilineTextAlignment(.center)
       }
       .frame(maxWidth: .infinity)
     }

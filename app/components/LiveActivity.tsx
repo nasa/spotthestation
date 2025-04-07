@@ -5,12 +5,12 @@ import { NativeModules } from 'react-native'
 
 const { LiveActivityModule } = NativeModules
 
-export function startActivity(interval: number) {
-  return LiveActivityModule?.startLiveActivity(interval)
+export function startActivity(location: string, interval: number) {
+  return LiveActivityModule?.startLiveActivity(location, interval)
 }
 
-export function endActivity() {
-  return LiveActivityModule?.endLiveActivity()
+export async function endActivity() {
+  await LiveActivityModule?.endLiveActivity()
 }
 
 export function updateActivity(interval: number) {

@@ -109,6 +109,7 @@
 		496783C72A46665900FCC42E /* STSApp-staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "STSApp-staging-Info.plist"; path = "/Users/andrew/nasa-iss-app-mobile/ios/STSApp-staging-Info.plist"; sourceTree = "<absolute>"; };
 		61E4FCE6FECC04C5FABC44A5 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-STSApp-STSAppTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		7975EAE3E85B2B488A389268 /* Pods-STSApp-STSApp-staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSApp-STSApp-staging.debug.xcconfig"; path = "Target Support Files/Pods-STSApp-STSApp-staging/Pods-STSApp-STSApp-staging.debug.xcconfig"; sourceTree = "<group>"; };
+		840710E72DA3F4670007756D /* NasaIssApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NasaIssApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		84182DE92AC32B29006B23CF /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		8435AF402A43268100F78BFE /* Config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.release.xcconfig; sourceTree = "<group>"; };
@@ -271,6 +272,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				840710E72DA3F4670007756D /* NasaIssApp-Bridging-Header.h */,
 				84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */,
 				84EACF562A9C9EFA007D2E3B /* Localization */,
 				8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */,
@@ -1080,6 +1082,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nasa.hq.SpotTheStation;
 				PRODUCT_NAME = STSApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "NasaIssApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1114,6 +1117,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gov.nasa.hq.SpotTheStation;
 				PRODUCT_NAME = STSApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "NasaIssApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1151,6 +1155,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nasa-development";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "NasaIssApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1188,6 +1193,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nasa-development";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "NasaIssApp-Bridging-Header.h\n";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1276,10 +1282,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -1360,10 +1363,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

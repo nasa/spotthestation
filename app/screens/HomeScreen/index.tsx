@@ -34,7 +34,7 @@ import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
 import { PastSightings } from "../../components/PastSightings"
-import { startActivity, updateActivity } from '../../components/LiveActivity'
+import { startActivity, endActivity } from '../../components/LiveActivity'
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -90,6 +90,7 @@ export const HomeScreen = observer(function HomeScreen() {
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
   const sightingsModalTimerRef = useRef<NodeJS.Timeout>(null)
+  const liveActivityTimerRef = useRef<NodeJS.Timeout>(null)
   const [globeVisible, setGlobeVisible] = useState(false)
 
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
@@ -189,10 +190,42 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [currentSighting, startCountdown, timeDiff])
 
   useEffect(() => {
-    if (Platform.OS === 'ios') {
-      startActivity(60)
+    if (Platform.OS !== 'ios') return undefined
+
+    const date = currentSighting?.date
+
+    const stop = async () => {
+      clearTimeout(liveActivityTimerRef.current)
+      await endActivity()
     }
-  }, [])
+
+    const start = async () => {
+      await stop()
+      const timeDiff = new Date(date).getTime() - Date.now()
+      startActivity(current.title, timeDiff / 1000)
+      liveActivityTimerRef.current = setTimeout(stop, timeDiff)
+    }
+
+    if (!date) {
+      stop().catch(console.error)
+      return undefined
+    }
+
+    const timeDiff = new Date(date).getTime() - Date.now()
+    if (timeDiff < 0) {
+      stop().catch(console.error)
+      return undefined
+    }
+
+    if (timeDiff < 3 * 60 * 60 * 1000) {
+      start().catch(console.error)
+      return undefined
+    }
+
+    stop().catch(console.error)
+    const tmr = setTimeout(start, timeDiff - 3 * 60 * 60 * 1000)
+    return () => clearTimeout(tmr)
+  }, [currentSighting?.date])
 
   const getCoach = async () => {
     const coachCompleted = await storage.load(storage.KEYS.COACH_COMPLETED)
