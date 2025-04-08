@@ -74,6 +74,7 @@ const de = {
       subTitleTwoIos: "Minuten vorbeiziehen",
       subTitleTwoAndroid: "Minuten ({{time}}) vorbeiziehen",
     },
+    timeLeft: "ÜBRIGE ZEIT",
   },
   units: {
     minute: "Min",

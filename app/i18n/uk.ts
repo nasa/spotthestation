@@ -74,6 +74,7 @@ const uk = {
       subTitleTwoIos: "хвилин у",
       subTitleTwoAndroid: "хвилин ({{time}}) у",
     },
+    timeLeft: "ЗАЛИШИЛОСЬ ЧАСУ",
   },
   units: {
     minute: "хв",

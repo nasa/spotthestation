@@ -74,6 +74,7 @@ const sv = {
       subTitleTwoIos: "minuter kl",
       subTitleTwoAndroid: "minuter ({{time}}) kl",
     },
+    timeLeft: "TID KVAR",
   },
   units: {
     minute: "min",

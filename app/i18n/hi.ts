@@ -74,6 +74,7 @@ const hi = {
       subTitleTwoIos: "मिनटों में",
       subTitleTwoAndroid: "मिनट ({{time}}) पर",
     },
+    timeLeft: "शेष समय",
   },
   units: {
     minute: "मिन",

@@ -74,6 +74,7 @@ const ru = {
       subTitleTwoIos: "минут в",
       subTitleTwoAndroid: "минут ({{time}}) в",
     },
+    timeLeft: "ОСТАВШЕЕСЯ ВРЕМЯ",
   },
   units: {
     minute: "мин",

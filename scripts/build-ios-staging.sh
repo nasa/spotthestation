@@ -15,12 +15,12 @@ switchToSystemRuby() {
 echo "[spot-the-station-app.staging]: Building iOS version..."
 ./scripts/config-env.sh staging
 
-yarn run update-build
+#yarn run update-build
 switchToSystemRuby
-yarn
+#yarn
 
 cd ios
-pod install
+#pod install
 export RCT_NO_LAUNCH_PACKAGER=1
 xcodebuild -workspace STSApp.xcworkspace -scheme "STSApp-staging" clean
 xcodebuild -workspace STSApp.xcworkspace -scheme "STSApp-staging" -configuration Release -destination generic/platform=iOS -archivePath ./STSApp-staging.xcarchive  archive | xcpretty
@@ -31,7 +31,7 @@ xcodebuild -exportArchive -archivePath ./STSApp-staging.xcarchive -exportPath ./
 # Upload to Firebase App Distribution
 IPA_PATH="./IPA/STSApp-staging.ipa"
 GOOGLE_APP_ID=$(defaults read $(pwd)/GoogleService-Info GOOGLE_APP_ID)
-firebase appdistribution:distribute $IPA_PATH --app $GOOGLE_APP_ID --groups "ios-testers"
+#firebase appdistribution:distribute $IPA_PATH --app $GOOGLE_APP_ID --groups "ios-testers"
 cd ..
 
 # Send Slack message

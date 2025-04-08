@@ -74,6 +74,7 @@ const nl = {
       subTitleTwoIos: "minuten met",
       subTitleTwoAndroid: "minuten ({{time}}) met",
     },
+    timeLeft: "TIJD OVER",
   },
   units: {
     minute: "min",

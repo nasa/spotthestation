@@ -34,7 +34,7 @@ import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
 import { PastSightings } from "../../components/PastSightings"
-import { startActivity, endActivity } from '../../components/LiveActivity'
+import { startActivity, endActivity } from "../../components/LiveActivity"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -190,7 +190,7 @@ export const HomeScreen = observer(function HomeScreen() {
   }, [currentSighting, startCountdown, timeDiff])
 
   useEffect(() => {
-    if (Platform.OS !== 'ios') return undefined
+    if (Platform.OS !== "ios") return undefined
 
     const date = currentSighting?.date
 
@@ -202,7 +202,12 @@ export const HomeScreen = observer(function HomeScreen() {
     const start = async () => {
       await stop()
       const timeDiff = new Date(date).getTime() - Date.now()
-      startActivity(current.title, timeDiff / 1000)
+      startActivity(
+        translate("notifications.push.title"),
+        `${translate("notifications.push.subTitleIos")} ${current.title}`,
+        translate("notifications.timeLeft"),
+        timeDiff / 1000,
+      )
       liveActivityTimerRef.current = setTimeout(stop, timeDiff)
     }
 

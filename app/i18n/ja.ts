@@ -74,6 +74,7 @@ const ja = {
       subTitleTwoIos: "数分の間",
       subTitleTwoAndroid: "分 ({{time}}) に",
     },
+    timeLeft: "残り時間",
   },
   units: {
     minute: "分",

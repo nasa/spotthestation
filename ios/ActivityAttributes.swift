@@ -17,4 +17,5 @@ struct NotificationAttributes: ActivityAttributes {
 
   var title: String
   var subtitle: String
+  var timeLeftTitle: String
 }

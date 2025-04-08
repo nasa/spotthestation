@@ -12,13 +12,14 @@ import ActivityKit
 
 @objc(LiveActivityModule)
 class LiveActivityModule: NSObject {
-  @objc(startLiveActivity:interval:)
-  func startLiveActivity(_ location: String, interval: Double) {
+  @objc(startLiveActivity:subtitle:timeLeftTitle:interval:)
+  func startLiveActivity(_ title: String, subtitle: String, timeLeftTitle: String, interval: Double) {
     if #available(iOS 16.2, *) {
       let initialContentState = NotificationAttributes.ContentState(intervalInMinutes: interval)
       let activityAttributes = NotificationAttributes(
-        title: "Spot the ISS now!",
-        subtitle: "ISS is passing above you in \(location)"
+        title: title,
+        subtitle: subtitle,
+        timeLeftTitle: timeLeftTitle
       )
 
       do {

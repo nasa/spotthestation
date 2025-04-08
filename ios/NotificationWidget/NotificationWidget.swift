@@ -88,7 +88,7 @@ struct ActionButtontView: View {
   var body: some View {
     HStack {
       VStack(alignment: .center) {
-        Text("TIME LEFT")
+        Text(context.attributes.timeLeftTitle)
           .foregroundColor(.init(red: 173/255, green: 173/255, blue: 174/255))
           .font(.system(size: 12))
           .bold()

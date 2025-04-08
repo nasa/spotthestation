@@ -74,6 +74,7 @@ const es = {
       subTitleTwoIos: "minutos a las",
       subTitleTwoAndroid: "minutos ({{time}}) a las",
     },
+    timeLeft: "TIEMPO RESTANTE",
   },
   units: {
     minute: "minutos",

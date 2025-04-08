@@ -74,6 +74,7 @@ const tr = {
       subTitleTwoIos: "dakika içinde",
       subTitleTwoAndroid: "dakika ({{time}}) içinde",
     },
+    timeLeft: "KALAN ZAMAN",
   },
   units: {
     minute: "dak",
