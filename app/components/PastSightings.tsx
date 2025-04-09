@@ -9,6 +9,7 @@ import {
   ScrollView,
   Platform,
   ActivityIndicator,
+  Pressable,
 } from "react-native"
 
 import { colors, typography } from "../theme"
@@ -29,6 +30,7 @@ export interface PastSightingsProps {
   onClose?: PressableProps["onPress"]
   firstSightingOrbitPointAt?: string
   isLoading: boolean
+  onUpcomingSightings: () => void
 }
 
 const stageIcons: { icon: IconTypes; color: string }[] = [
@@ -45,9 +47,18 @@ export function PastSightings({
   timezone,
   firstSightingOrbitPointAt,
   isLoading,
+  onUpcomingSightings,
 }: PastSightingsProps) {
-  const { $modalBodyContainer, $scrollContainer, $close, $title, $emptyText, $scrollTitle, $flex } =
-    useStyles(styles)
+  const {
+    $modalBodyContainer,
+    $scrollContainer,
+    $close,
+    $title,
+    $emptyText,
+    $scrollTitle,
+    $flex,
+    $upcomingSightings,
+  } = useStyles(styles)
 
   const scrollViewRef = useRef<ScrollView>()
 
@@ -178,6 +189,10 @@ export function PastSightings({
           </ScrollView>
         </ExpandContainer>
       </View>
+
+      <Pressable onPress={onUpcomingSightings}>
+        <Text style={$upcomingSightings} tx="homeScreen.selectSightings.title" />
+      </Pressable>
     </View>
   )
 }
@@ -229,6 +244,17 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     textAlign: "center",
   }
 
+  const $upcomingSightings: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    fontSize: fontSizes[13],
+    lineHeight: lineHeights[16],
+    color: colors.palette.buttonBlue,
+    textTransform: "uppercase",
+    paddingVertical: scale(16),
+    paddingHorizontal: scale(36),
+    textAlign: "right",
+  }
+
   return {
     $modalBodyContainer,
     $scrollContainer,
@@ -237,5 +263,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $emptyText,
     $scrollTitle,
     $flex,
+    $upcomingSightings,
   }
 }

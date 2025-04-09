@@ -350,6 +350,13 @@ export const HomeScreen = observer(function HomeScreen() {
     getISSSightingsHistory(current).catch(console.error)
   }
 
+  const onUpcomingSightingsPress = () => {
+    if (!current) return
+
+    requestCloseModal("pastSightings")
+    onSightingsPress()
+  }
+
   useEffect(() => {
     if (currentModal?.name === "sightings") {
       clearTimeout(sightingsModalTimerRef.current)
@@ -456,6 +463,7 @@ export const HomeScreen = observer(function HomeScreen() {
           isUS={i18n.locale === "en"}
           timezone={current?.timezone || getCurrentTimeZone()}
           firstSightingOrbitPointAt={current?.firstHistorySightingOrbitPointAt}
+          onUpcomingSightings={onUpcomingSightingsPress}
         />
       </ModalContainer>
       <ModalContainer
