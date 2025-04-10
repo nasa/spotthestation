@@ -34,9 +34,8 @@ import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
 import { PastSightings } from "../../components/PastSightings"
-import Config from "../../config"
+import { startActivity, updateActivity } from '../../components/LiveActivity'
 
-console.log(Config.API_URL)
 export interface HomeScreenRouteProps {
   showSightings: boolean
 }
@@ -188,6 +187,12 @@ export const HomeScreen = observer(function HomeScreen() {
   useEffect(() => {
     startCountdown()
   }, [currentSighting, startCountdown, timeDiff])
+
+  useEffect(() => {
+    if (Platform.OS === 'ios') {
+      startActivity(60)
+    }
+  }, [])
 
   const getCoach = async () => {
     const coachCompleted = await storage.load(storage.KEYS.COACH_COMPLETED)
