@@ -50,8 +50,9 @@ const tr = {
       "Yaklaşan gözlemler hakkında bildirim almak için bir sonraki ekranda alarm ve hatırlatıcı izni verin.",
   },
   thanksModal: {
-    body: "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve talebinizi işleme alacağız. Bu uygulamanın kullanıcı verilerini toplamadığını lütfen unutmayın, bu nedenle tüm mesajlara bireysel olarak yanıt veremeyiz.",
+    body: "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve talebinizi işleme alacağız. Bu uygulamanın kullanıcı verilerini toplamadığını lütfen unutmayın, bu nedenle tüm mesajlara bireysel olarak yanıt veremeyiz. Sorunuza bir yanıt olup olmadığını görmek için lütfen Sıkça Sorulan Sorular sayfasını ziyaret edin.",
     dismiss: "Kapat",
+    faq: "SSS",
   },
   privacy: {
     title: "Konumunuzu kullanın",

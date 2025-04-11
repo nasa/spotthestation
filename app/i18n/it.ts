@@ -50,8 +50,9 @@ const it = {
       "Si prega di concedere l'autorizzazione agli allarmi e ai promemoria nella prossima schermata per ricevere notifiche sugli avvistamenti imminenti.",
   },
   thanksModal: {
-    body: "Grazie per averci contattato. Abbiamo ricevuto il tuo messaggio ed elaboreremo la tua richiesta. Si prega di notare che questa applicazione non raccoglie i dati dell'utente, quindi non possiamo rispondere a tutti i messaggi individualmente.",
+    body: "Grazie per averci contattato. Abbiamo ricevuto il tuo messaggio ed elaboreremo la tua richiesta. Si prega di notare che questa applicazione non raccoglie i dati dell'utente, quindi non possiamo rispondere a tutti i messaggi individualmente. Si prega di visitare la pagina delle Domande Frequenti per vedere se c'è una risposta alla tua domanda.",
     dismiss: "Ignora",
+    faq: "Domande Frequenti",
   },
   privacy: {
     title: "Usa la tua posizione",

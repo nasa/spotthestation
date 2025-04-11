@@ -51,8 +51,9 @@ const fr = {
       "Veuillez accorder l'autorisation d'alarmes et de rappels à l'écran suivant afin de recevoir des notifications sur les observations à venir.",
   },
   thanksModal: {
-    body: "Merci de nous contacter. Nous avons bien reçu votre message et traiterons votre demande. Veuillez noter que cette application ne collecte pas de données utilisateur, nous ne pouvons donc pas répondre à tous les messages individuellement.",
+    body: "Merci de nous contacter. Nous avons bien reçu votre message et traiterons votre demande. Veuillez noter que cette application ne collecte pas de données utilisateur, nous ne pouvons donc pas répondre à tous les messages individuellement. Veuillez visiter la page des Questions Fréquemment Posées pour voir s'il y a une réponse à votre question.",
     dismiss: "Rejeter",
+    faq: "FAQ",
   },
   privacy: {
     title: "Utilisez votre localisation",

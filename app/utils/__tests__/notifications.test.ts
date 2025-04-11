@@ -17,25 +17,28 @@ describe("setNotifications", () => {
 
   it("should schedule notifications for enabled sightings", async () => {
     await AsyncStorage.setItem("privacy", JSON.stringify(true))
-    await notifications.setNotifications([
-      {
-        title: "Test",
-        sightings: [
-          {
-            notify: false,
-            date: "2024-11-06T10:00:00Z",
-          },
-          {
-            notify: true,
-            date: "2024-11-07T10:00:00Z",
-          },
-          {
-            notify: false,
-            date: "2024-11-08T10:00:00Z",
-          },
-        ],
-      },
-    ] as LocationType[], "12hr")
+    await notifications.setNotifications(
+      [
+        {
+          title: "Test",
+          sightings: [
+            {
+              notify: false,
+              date: "2024-11-06T10:00:00Z",
+            },
+            {
+              notify: true,
+              date: "2024-11-07T10:00:00Z",
+            },
+            {
+              notify: false,
+              date: "2024-11-08T10:00:00Z",
+            },
+          ],
+        },
+      ] as LocationType[],
+      "12hr",
+    )
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)
@@ -54,25 +57,28 @@ describe("setNotifications", () => {
   it("should schedule reminder notifications with custom interval", async () => {
     await AsyncStorage.setItem("privacy", JSON.stringify(true))
     await AsyncStorage.setItem("notifyBefore", JSON.stringify(45))
-    await notifications.setNotifications([
-      {
-        title: "Test",
-        sightings: [
-          {
-            notify: false,
-            date: "2024-11-06T10:00:00Z",
-          },
-          {
-            notify: true,
-            date: "2024-11-07T10:00:00Z",
-          },
-          {
-            notify: false,
-            date: "2024-11-08T10:00:00Z",
-          },
-        ],
-      },
-    ] as LocationType[], "12hr")
+    await notifications.setNotifications(
+      [
+        {
+          title: "Test",
+          sightings: [
+            {
+              notify: false,
+              date: "2024-11-06T10:00:00Z",
+            },
+            {
+              notify: true,
+              date: "2024-11-07T10:00:00Z",
+            },
+            {
+              notify: false,
+              date: "2024-11-08T10:00:00Z",
+            },
+          ],
+        },
+      ] as LocationType[],
+      "12hr",
+    )
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)
@@ -90,25 +96,28 @@ describe("setNotifications", () => {
     await AsyncStorage.setItem("muteFrom", JSON.stringify("1970-01-01T22:00:00Z"))
     await AsyncStorage.setItem("muteUntil", JSON.stringify("1970-01-01T03:00:00Z"))
 
-    await notifications.setNotifications([
-      {
-        title: "Test",
-        sightings: [
-          {
-            notify: true,
-            date: "2024-11-06T02:00:00Z",
-          },
-          {
-            notify: true,
-            date: "2024-11-07T10:00:00Z",
-          },
-          {
-            notify: true,
-            date: "2024-11-08T23:00:00Z",
-          },
-        ],
-      },
-    ] as LocationType[], "12hr")
+    await notifications.setNotifications(
+      [
+        {
+          title: "Test",
+          sightings: [
+            {
+              notify: true,
+              date: "2024-11-06T02:00:00Z",
+            },
+            {
+              notify: true,
+              date: "2024-11-07T10:00:00Z",
+            },
+            {
+              notify: true,
+              date: "2024-11-08T23:00:00Z",
+            },
+          ],
+        },
+      ] as LocationType[],
+      "12hr",
+    )
 
     expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
     expect(notifee.createTriggerNotification).toBeCalledTimes(2)

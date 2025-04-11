@@ -50,8 +50,9 @@ const en = {
       "Please grant alarms and reminders permission on the next screen in order to receive notifications about upcoming sightings.",
   },
   thanksModal: {
-    body: "Thank you for contacting us. We have received your message and will process your request. Please note that this application does not collect user data, so we cannot respond to all messages individually.",
+    body: "Thank you for contacting us. We have received your message and will process your request. Please note that this application does not collect user data, so we cannot respond to messages individually. Please visit the Frequently Asked Questions page to see if there is a response to your question.",
     dismiss: "Dismiss",
+    faq: "FAQs",
   },
   privacy: {
     title: "Use your location",

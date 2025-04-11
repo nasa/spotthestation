@@ -50,8 +50,9 @@ const ptBR = {
       "Por favor, conceda permissão para alarmes e lembretes na próxima tela para receber notificações sobre os próximos avistamentos.",
   },
   thanksModal: {
-    body: "Obrigado por nos contatar. Recebemos sua mensagem e processaremos sua solicitação. Observe que este aplicativo não coleta dados do usuário, então não podemos responder a todas as mensagens individualmente.",
+    body: "Obrigado por nos contatar. Recebemos sua mensagem e processaremos sua solicitação. Observe que este aplicativo não coleta dados do usuário, então não podemos responder a todas as mensagens individualmente. Por favor, visite a página de Perguntas Frequentes para ver se há uma resposta para sua pergunta.",
     dismiss: "Dispensar",
+    faq: "Perguntas Frequentes",
   },
   privacy: {
     title: "Use sua localização",

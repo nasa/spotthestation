@@ -50,8 +50,9 @@ const sv = {
       "Vänligen bevilja tillstånd för larm och påminnelser på nästa skärm för att få meddelanden om kommande observationer.",
   },
   thanksModal: {
-    body: "Tack för att du kontaktar oss. Vi har tagit emot ditt meddelande och kommer att behandla din förfrågan. Observera att denna applikation inte samlar in användardata, så vi kan inte svara på alla meddelanden individuellt.",
+    body: "Tack för att du kontaktar oss. Vi har tagit emot ditt meddelande och kommer att behandla din förfrågan. Observera att denna applikation inte samlar in användardata, så vi kan inte svara på alla meddelanden individuellt. Vänligen besök sidan med Vanliga Frågor för att se om det finns ett svar på din fråga.",
     dismiss: "Avfärda",
+    faq: "Vanliga Frågor",
   },
   privacy: {
     title: "Använd din plats",

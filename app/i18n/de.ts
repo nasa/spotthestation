@@ -50,8 +50,9 @@ const de = {
       "Bitte erteilen Sie auf dem nächsten Bildschirm die Berechtigung für Alarme und Erinnerungen, um Benachrichtigungen über bevorstehende Sichtungen zu erhalten.",
   },
   thanksModal: {
-    body: "Danke, dass Sie uns kontaktiert haben. Wir haben Ihre Nachricht erhalten und werden Ihre Anfrage bearbeiten. Bitte beachten Sie, dass diese Anwendung keine Benutzerdaten sammelt und wir daher nicht auf alle Nachrichten einzeln antworten können.",
+    body: "Danke, dass Sie uns kontaktiert haben. Wir haben Ihre Nachricht erhalten und werden Ihre Anfrage bearbeiten. Bitte beachten Sie, dass diese Anwendung keine Benutzerdaten sammelt und wir daher nicht auf alle Nachrichten einzeln antworten können. Bitte besuchen Sie die Seite mit den Häufig gestellten Fragen, um zu sehen, ob es eine Antwort auf Ihre Frage gibt.",
     dismiss: "Ablehnen",
+    faq: "FAQs",
   },
   privacy: {
     title: "Aktuellen Standort verwenden",

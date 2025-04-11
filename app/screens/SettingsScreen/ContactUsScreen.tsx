@@ -50,6 +50,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     $nextButton,
     $nextButtonText,
     $loader,
+    $buttonsContainer,
   } = useStyles(styles)
 
   const navigation = useNavigation()
@@ -236,20 +237,38 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           style={$modalBodyContainer}
         >
           <Text tx="thanksModal.body" style={$modalText} />
-          <Button
-            accessible
-            accessibilityLabel="dismiss button"
-            accessibilityHint="dismiss coach mark"
-            tx="thanksModal.dismiss"
-            textStyle={$nextButtonText}
-            style={$nextButton}
-            pressedStyle={$nextButton}
-            onPress={() => {
-              setThanksModal(false)
-              setComments("")
-              setTitle("")
-            }}
-          />
+
+          <View style={$buttonsContainer}>
+            <Button
+              accessible
+              accessibilityLabel="dismiss button"
+              accessibilityHint="dismiss coach mark"
+              tx="thanksModal.dismiss"
+              textStyle={$nextButtonText}
+              style={$nextButton}
+              pressedStyle={$nextButton}
+              onPress={() => {
+                setThanksModal(false)
+                setComments("")
+                setTitle("")
+              }}
+            />
+
+            <Button
+              accessible
+              accessibilityLabel="faq button"
+              tx="thanksModal.faq"
+              textStyle={$nextButtonText}
+              style={$nextButton}
+              pressedStyle={$nextButton}
+              onPress={() => {
+                setThanksModal(false)
+                setComments("")
+                setTitle("")
+                navigation.navigate("ResourcesScreens" as never, { screen: "Faq" } as never)
+              }}
+            />
+          </View>
         </View>
       </Modal>
     </Screen>
@@ -372,6 +391,11 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     alignItems: "center",
   }
 
+  const $buttonsContainer: ViewStyle = {
+    flexDirection: "row",
+    gap: scale(15),
+  }
+
   const $button: ViewStyle = {
     width: "100%",
     height: scale(64),
@@ -415,13 +439,11 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $nextButton: ViewStyle = {
-    height: scale(56),
     backgroundColor: colors.palette.neutral100,
     borderRadius: scale(28),
     borderWidth: 0,
-    width: scale(140),
-    alignSelf: "center",
     marginTop: 24,
+    flex: 1,
   }
 
   const $nextButtonText: TextStyle = {
@@ -458,5 +480,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $nextButton,
     $nextButtonText,
     $loader,
+    $buttonsContainer,
   }
 }

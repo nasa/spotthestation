@@ -50,8 +50,9 @@ const es = {
       "Por favor, otorgue permiso para alarmas y recordatorios en la próxima pantalla para recibir notificaciones sobre avistamientos próximos.",
   },
   thanksModal: {
-    body: "Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y procesaremos tu solicitud. Ten en cuenta que esta aplicación no recopila datos de los usarios, por lo que no podemos responder a todos los mensajes individualmente.",
+    body: "Gracias por ponerte en contacto con nosotros. Hemos recibido tu mensaje y procesaremos tu solicitud. Ten en cuenta que esta aplicación no recopila datos de los usarios, por lo que no podemos responder a todos los mensajes individualmente. Por favor, visite la página de Preguntas Frecuentes para ver si hay una respuesta a su pregunta.",
     dismiss: "Descartar", // <-- "Descartar"
+    faq: "Preguntas Frecuentes",
   },
   privacy: {
     title: "Usa tu ubicación",

@@ -50,8 +50,9 @@ const nl = {
       "Verleen alsjeblieft toestemming voor wekkers en herinneringen op het volgende scherm om meldingen te ontvangen over aankomende waarnemingen.",
   },
   thanksModal: {
-    body: "Bedankt dat u contact met ons opneemt. We hebben uw bericht ontvangen en zullen uw verzoek verwerken. Houd er rekening mee dat deze applicatie geen gebruikersgegevens verzamelt, dus we kunnen niet op alle berichten afzonderlijk reageren.",
+    body: "Bedankt dat u contact met ons opneemt. We hebben uw bericht ontvangen en zullen uw verzoek verwerken. Houd er rekening mee dat deze applicatie geen gebruikersgegevens verzamelt, dus we kunnen niet op alle berichten afzonderlijk reageren. Bezoek de pagina met Veelgestelde Vragen om te zien of er een antwoord op uw vraag is.",
     dismiss: "Sluiten",
+    faq: "Veelgestelde Vragen",
   },
   privacy: {
     title: "Gebruik uw locatie",

@@ -50,8 +50,9 @@ const pl = {
       "Proszę przyznać uprawnienia do alarmów i przypomnień na następnym ekranie, aby otrzymywać powiadomienia o nadchodzących obserwacjach.",
   },
   thanksModal: {
-    body: "Dziękujemy za kontakt z nami. Otrzymaliśmy Twoją wiadomość i przetworzymy Twoje zgłoszenie. Proszę pamiętać, że ta aplikacja nie zbiera danych użytkowników, więc nie możemy odpowiadać na wszystkie wiadomości indywidualnie.",
+    body: "Dziękujemy za kontakt z nami. Otrzymaliśmy Twoją wiadomość i przetworzymy Twoje zgłoszenie. Proszę pamiętać, że ta aplikacja nie zbiera danych użytkowników, więc nie możemy odpowiadać na wszystkie wiadomości indywidualnie. Proszę odwiedzić stronę z Najczęściej Zadawanymi Pytaniami, aby sprawdzić, czy jest odpowiedź na Twoje pytanie.",
     dismiss: "Odrzuć",
+    faq: "Najczęściej Zadawane Pytania",
   },
   privacy: {
     title: "Użyj swojej lokalizacji",
