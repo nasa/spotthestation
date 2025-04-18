@@ -7,13 +7,15 @@
         <key>method</key>
         <string>development</string>
         <key>teamID</key>
-        <string>J234K424W5</string>
+        <string>3XT6J4N8Y3</string>
         <key>signingStyle</key>
         <string>manual</string>
         <key>provisioningProfiles</key>
         <dict>
-                <key>com.nasaissapp</key>
-                <string>nasa-development</string>
+            <key>com.nasaissapp</key>
+            <string>nasa-development</string>
+            <key>com.nasaissapp.NotificationWidget</key>
+            <string>nasa-development-notification-widget</string>
         </dict>
         <key>uploadBitcode</key>
         <false/>

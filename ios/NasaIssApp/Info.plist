@@ -49,20 +49,18 @@
 		<string>protonmail</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
-	<true />
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<false />
+		<false/>
 		<key>NSAllowsLocalNetworking</key>
-		<true />
+		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>We need access to your media library to store recorded images and videos</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>We need access to your calendar to enable scheduling of notifications for upcoming sightings</string>
-	<key>NSRemindersUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to access your reminders</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to your camera to enable Augmented Reality experience</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -75,12 +73,16 @@
 	<string>We need access to your microphone to enable audio recording in your videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your media library to store recorded images and videos</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to access your reminders</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false />
+		<false/>
 		<key>UISceneConfigurations</key>
-		<dict />
+		<dict/>
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -94,7 +96,7 @@
 		<string>arm64</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<false />
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -112,7 +114,5 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSSupportsLiveActivities</key>
-	<true/>
 </dict>
 </plist>

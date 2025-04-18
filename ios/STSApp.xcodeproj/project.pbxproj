@@ -30,7 +30,17 @@
 		843BAF302D68884D00823194 /* NotificationWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFE2A14FE7D00C18AF3 /* NotificationWidget.intentdefinition */; };
 		843BAF322D68898E00823194 /* LiveActivityBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FC668BE42A152D6500FB517A /* LiveActivityBridge.m */; };
 		843BAF332D68899600823194 /* LiveActivityModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC668BE22A152C6F00FB517A /* LiveActivityModule.swift */; };
+		8452CE7D2DB247FF008031D6 /* NotificationWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DF82A14FE7D00C18AF3 /* NotificationWidgetBundle.swift */; };
+		8452CE7E2DB247FF008031D6 /* NotificationWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFA2A14FE7D00C18AF3 /* NotificationWidgetLiveActivity.swift */; };
+		8452CE7F2DB247FF008031D6 /* ActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5E0A2A1501AF00C18AF3 /* ActivityAttributes.swift */; };
+		8452CE802DB247FF008031D6 /* NotificationWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFC2A14FE7D00C18AF3 /* NotificationWidget.swift */; };
+		8452CE812DB247FF008031D6 /* NotificationWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFE2A14FE7D00C18AF3 /* NotificationWidget.intentdefinition */; };
+		8452CE832DB247FF008031D6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCAD61972A02C52400E599B1 /* SwiftUI.framework */; };
+		8452CE842DB247FF008031D6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCAD61952A02C52400E599B1 /* WidgetKit.framework */; };
+		8452CE862DB247FF008031D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8E5DFF2A14FE7F00C18AF3 /* Assets.xcassets */; };
 		8473A6472A459D56007C1AE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */; };
+		84A4A7732DB24ACE00DD2A84 /* NotificationWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8452CE8A2DB247FF008031D6 /* NotificationWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84A4A7752DB24B1B00DD2A84 /* NotificationWidgetExtension-staging.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension-staging.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		84C25B392BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */; };
 		84C25B3A2BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 84C25B382BFB66B1003DF755 /* PrivacyInfo.xcprivacy */; };
 		84EACF482A9C95FD007D2E3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EACF4B2A9C95FD007D2E3B /* InfoPlist.strings */; };
@@ -51,7 +61,6 @@
 		FC8E5E002A14FE7F00C18AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8E5DFF2A14FE7F00C18AF3 /* Assets.xcassets */; };
 		FC8E5E022A14FE7F00C18AF3 /* NotificationWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFE2A14FE7D00C18AF3 /* NotificationWidget.intentdefinition */; };
 		FC8E5E032A14FE7F00C18AF3 /* NotificationWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5DFE2A14FE7D00C18AF3 /* NotificationWidget.intentdefinition */; };
-		FC8E5E062A14FE7F00C18AF3 /* NotificationWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FC8E5E0B2A1501AF00C18AF3 /* ActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5E0A2A1501AF00C18AF3 /* ActivityAttributes.swift */; };
 		FC8E5E0E2A150DD600C18AF3 /* ActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E5E0A2A1501AF00C18AF3 /* ActivityAttributes.swift */; };
 		FCDD02A92976AB0F0094E655 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDD02A82976AB0F0094E655 /* SplashScreen.storyboard */; };
@@ -68,6 +77,20 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = NasaIssApp;
 		};
+		8452CE8D2DB24931008031D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8452CE7B2DB247FF008031D6;
+			remoteInfo = NotificationWidgetExtension;
+		};
+		84A4A76F2DB24A2F00DD2A84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC8E5DF32A14FE7D00C18AF3;
+			remoteInfo = "NotificationWidgetExtension-staging";
+		};
 		FC8E5E042A14FE7F00C18AF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -78,13 +101,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		84A4A7742DB24AEE00DD2A84 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				84A4A7752DB24B1B00DD2A84 /* NotificationWidgetExtension-staging.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCAD61AC2A02C52600E599B1 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FC8E5E062A14FE7F00C18AF3 /* NotificationWidgetExtension.appex in Embed Foundation Extensions */,
+				84A4A7732DB24ACE00DD2A84 /* NotificationWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +146,8 @@
 		84182DE92AC32B29006B23CF /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		8435AF3E2A43260500F78BFE /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		8435AF402A43268100F78BFE /* Config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.release.xcconfig; sourceTree = "<group>"; };
+		8452CE8A2DB247FF008031D6 /* NotificationWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8452CE8B2DB24800008031D6 /* NotificationWidgetExtension-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NotificationWidgetExtension-Info.plist"; path = "/Users/solwey/projects/nasa-iss-app-mobile/ios/NotificationWidgetExtension-Info.plist"; sourceTree = "<absolute>"; };
 		8473A6462A459D56007C1AE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8493619E2DA5159900ED3A55 /* STSApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "STSApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		84C25B352BFB61EA003DF755 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -139,7 +175,7 @@
 		F9AAFEA4F7D96D922941955F /* Pods_STSApp_STSApp_staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_STSApp_STSApp_staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC668BE22A152C6F00FB517A /* LiveActivityModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModule.swift; sourceTree = "<group>"; };
 		FC668BE42A152D6500FB517A /* LiveActivityBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveActivityBridge.m; sourceTree = "<group>"; };
-		FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension-staging.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "NotificationWidgetExtension-staging.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8E5DF82A14FE7D00C18AF3 /* NotificationWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationWidgetBundle.swift; sourceTree = "<group>"; };
 		FC8E5DFA2A14FE7D00C18AF3 /* NotificationWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		FC8E5DFC2A14FE7D00C18AF3 /* NotificationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationWidget.swift; sourceTree = "<group>"; };
@@ -180,6 +216,15 @@
 				84182DEA2AC32B29006B23CF /* ReplayKit.framework in Frameworks */,
 				496783B52A46665900FCC42E /* Mapbox in Frameworks */,
 				AFF4B8B3A1FEAC61FE79E4E5 /* Pods_STSApp_STSApp_staging.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8452CE822DB247FF008031D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8452CE832DB247FF008031D6 /* SwiftUI.framework in Frameworks */,
+				8452CE842DB247FF008031D6 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +332,7 @@
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				547A8E9E9663ECB3355FB756 /* ExpoModulesProviders */,
 				496783C72A46665900FCC42E /* STSApp-staging-Info.plist */,
+				8452CE8B2DB24800008031D6 /* NotificationWidgetExtension-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -299,7 +345,8 @@
 				13B07F961A680F5B00A75B9A /* STSApp.app */,
 				00E356EE1AD99517003FC87E /* STSAppTests.xctest */,
 				496783C62A46665900FCC42E /* STSApp-staging.app */,
-				FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension.appex */,
+				FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension-staging.appex */,
+				8452CE8A2DB247FF008031D6 /* NotificationWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -403,6 +450,7 @@
 			);
 			dependencies = (
 				FC8E5E052A14FE7F00C18AF3 /* PBXTargetDependency */,
+				8452CE8E2DB24931008031D6 /* PBXTargetDependency */,
 			);
 			name = STSApp;
 			packageProductDependencies = (
@@ -426,12 +474,13 @@
 				496783C12A46665900FCC42E /* Upload Debug Symbols to Sentry */,
 				F60D31CED76C1A5557907A9B /* [CP] Embed Pods Frameworks */,
 				9E2D7DAE0B9752920808FE3B /* [CP] Copy Pods Resources */,
-				FCAD61AC2A02C52600E599B1 /* Embed Foundation Extensions */,
+				84A4A7742DB24AEE00DD2A84 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				FC8E5E052A14FE7F00C18AF3 /* PBXTargetDependency */,
+				84A4A7702DB24A2F00DD2A84 /* PBXTargetDependency */,
 			);
 			name = "STSApp-staging";
 			packageProductDependencies = (
@@ -441,9 +490,26 @@
 			productReference = 496783C62A46665900FCC42E /* STSApp-staging.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension */ = {
+		8452CE7B2DB247FF008031D6 /* NotificationWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC8E5E072A14FE7F00C18AF3 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension" */;
+			buildConfigurationList = 8452CE872DB247FF008031D6 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension" */;
+			buildPhases = (
+				8452CE7C2DB247FF008031D6 /* Sources */,
+				8452CE822DB247FF008031D6 /* Frameworks */,
+				8452CE852DB247FF008031D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationWidgetExtension;
+			productName = NotificationWidgetExtension;
+			productReference = 8452CE8A2DB247FF008031D6 /* NotificationWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension-staging */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC8E5E072A14FE7F00C18AF3 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension-staging" */;
 			buildPhases = (
 				FC8E5DF02A14FE7D00C18AF3 /* Sources */,
 				FC8E5DF12A14FE7D00C18AF3 /* Frameworks */,
@@ -453,9 +519,9 @@
 			);
 			dependencies = (
 			);
-			name = NotificationWidgetExtension;
+			name = "NotificationWidgetExtension-staging";
 			productName = NotificationWidgetExtension;
-			productReference = FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension.appex */;
+			productReference = FC8E5DF42A14FE7D00C18AF3 /* NotificationWidgetExtension-staging.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -511,7 +577,8 @@
 				13B07F861A680F5B00A75B9A /* STSApp */,
 				00E356ED1AD99517003FC87E /* STSAppTests */,
 				496783AA2A46665900FCC42E /* STSApp-staging */,
-				FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension */,
+				FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension-staging */,
+				8452CE7B2DB247FF008031D6 /* NotificationWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -551,6 +618,14 @@
 				496783BC2A46665900FCC42E /* Config.debug.xcconfig in Resources */,
 				84C25B3A2BFB66B1003DF755 /* PrivacyInfo.xcprivacy in Resources */,
 				496783BD2A46665900FCC42E /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8452CE852DB247FF008031D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8452CE862DB247FF008031D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +1018,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8452CE7C2DB247FF008031D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8452CE7D2DB247FF008031D6 /* NotificationWidgetBundle.swift in Sources */,
+				8452CE7E2DB247FF008031D6 /* NotificationWidgetLiveActivity.swift in Sources */,
+				8452CE7F2DB247FF008031D6 /* ActivityAttributes.swift in Sources */,
+				8452CE802DB247FF008031D6 /* NotificationWidget.swift in Sources */,
+				8452CE812DB247FF008031D6 /* NotificationWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC8E5DF02A14FE7D00C18AF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -963,9 +1050,19 @@
 			target = 13B07F861A680F5B00A75B9A /* STSApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		8452CE8E2DB24931008031D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8452CE7B2DB247FF008031D6 /* NotificationWidgetExtension */;
+			targetProxy = 8452CE8D2DB24931008031D6 /* PBXContainerItemProxy */;
+		};
+		84A4A7702DB24A2F00DD2A84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension-staging */;
+			targetProxy = 84A4A76F2DB24A2F00DD2A84 /* PBXContainerItemProxy */;
+		};
 		FC8E5E052A14FE7F00C18AF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension */;
+			target = FC8E5DF32A14FE7D00C18AF3 /* NotificationWidgetExtension-staging */;
 			targetProxy = FC8E5E042A14FE7F00C18AF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1137,7 +1234,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = J234K424W5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3XT6J4N8Y3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "STSApp-staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1176,7 +1273,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = J234K424W5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3XT6J4N8Y3;
 				INFOPLIST_FILE = "STSApp-staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1374,7 +1471,7 @@
 			};
 			name = Release;
 		};
-		FC8E5E082A14FE7F00C18AF3 /* Debug */ = {
+		8452CE882DB247FF008031D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1389,7 +1486,94 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = J234K424W5;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NotificationWidgetExtension-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nasa.hq.SpotTheStation.NotificationWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8452CE892DB247FF008031D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NotificationWidgetExtension-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.nasa.hq.SpotTheStation.NotificationWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FC8E5E082A14FE7F00C18AF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3XT6J4N8Y3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationWidget/Info.plist;
@@ -1408,6 +1592,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nasaissapp.NotificationWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nasa-development-notification-widget";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1429,11 +1614,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = J234K424W5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3XT6J4N8Y3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationWidget/Info.plist;
@@ -1451,6 +1638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nasaissapp.NotificationWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "nasa-development-notification-widget";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1498,7 +1686,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC8E5E072A14FE7F00C18AF3 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension" */ = {
+		8452CE872DB247FF008031D6 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8452CE882DB247FF008031D6 /* Debug */,
+				8452CE892DB247FF008031D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC8E5E072A14FE7F00C18AF3 /* Build configuration list for PBXNativeTarget "NotificationWidgetExtension-staging" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC8E5E082A14FE7F00C18AF3 /* Debug */,
