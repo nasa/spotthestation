@@ -1,5 +1,6 @@
 NSAppleMusicUsageDescription = "We hebben toegang tot uw mediabibliotheek nodig om opgenomen afbeeldingen en video's op te slaan";
 NSCalendarsUsageDescription = "We hebben toegang tot uw agenda nodig om het plannen van meldingen voor aanstaande waarnemingen mogelijk te maken";
+NSCalendarsFullAccessUsageDescription = "We hebben toegang tot uw agenda nodig om het plannen van meldingen voor aanstaande waarnemingen mogelijk te maken";
 NSCameraUsageDescription = "We hebben toegang tot uw camera nodig om de augmented reality-ervaring mogelijk te maken";
 NSLocationAlwaysAndWhenInUseUsageDescription = "We gebruiken locatiegegevens om aanstaande waarnemingen in uw omgeving te berekenen";
 NSLocationAlwaysUsageDescription = "We gebruiken locatiegegevens om aanstaande waarnemingen in uw omgeving te berekenen";

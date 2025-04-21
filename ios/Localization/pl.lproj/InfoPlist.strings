@@ -1,5 +1,6 @@
 NSAppleMusicUsageDescription = "Potrzebujemy dostępu do Twojej biblioteki multimediów, aby zapisywać nagrane obrazy i filmy";
 NSCalendarsUsageDescription = "Potrzebujemy dostępu do Twojego kalendarza, aby umożliwić planowanie powiadomień o nadchodzących obserwacjach";
+NSCalendarsFullAccessUsageDescription = "Potrzebujemy dostępu do Twojego kalendarza, aby umożliwić planowanie powiadomień o nadchodzących obserwacjach";
 NSCameraUsageDescription = "Potrzebujemy dostępu do Twojego aparatu, aby umożliwić korzystanie z rzeczywistości rozszerzonej";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Używamy danych lokalizacyjnych, aby obliczyć nadchodzące obserwacje w Twojej okolicy";
 NSLocationAlwaysUsageDescription = "Używamy danych lokalizacyjnych, aby obliczyć nadchodzące obserwacje w Twojej okolicy";

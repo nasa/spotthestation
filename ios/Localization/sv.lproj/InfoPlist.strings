@@ -1,5 +1,6 @@
 NSAppleMusicUsageDescription = "Vi behöver åtkomst till din mediebibliotek för att spara inspelade bilder och videor";
 NSCalendarsUsageDescription = "Vi behöver åtkomst till din kalender för att möjliggöra schemaläggning av aviseringar för kommande observationer";
+NSCalendarsFullAccessUsageDescription = "Vi behöver åtkomst till din kalender för att möjliggöra schemaläggning av aviseringar för kommande observationer";
 NSCameraUsageDescription = "Vi behöver åtkomst till din kamera för att möjliggöra augmented reality-upplevelsen";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Vi använder platsdata för att beräkna kommande observationer i ditt område";
 NSLocationAlwaysUsageDescription = "Vi använder platsdata för att beräkna kommande observationer i ditt område";
