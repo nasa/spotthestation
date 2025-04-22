@@ -139,6 +139,86 @@ exports[`ISSViewScreen renders correctly 1`] = `
       }
     />
     <View
+      accessibilityHint="countdown to next visibility"
+      accessibilityLabel="countdown"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          },
+          {
+            "bottom": NaN,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        issView.timeHeader undefined
+      </Text>
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 35,
+              "lineHeight": 56,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        units.time undefined - 00:00:00:00
+      </Text>
+    </View>
+    <View
       style={
         [
           {
@@ -454,86 +534,6 @@ exports[`ISSViewScreen renders correctly 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityHint="countdown to next visibility"
-      accessibilityLabel="countdown"
-      accessibilityRole="text"
-      accessible={true}
-      style={
-        [
-          {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          },
-          {
-            "bottom": NaN,
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            },
-          ]
-        }
-      >
-        issView.timeHeader undefined
-      </Text>
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 35,
-              "lineHeight": 56,
-              "textAlign": "center",
-            },
-          ]
-        }
-      >
-        units.time undefined - 00:00:00:00
-      </Text>
     </View>
     <View
       style={
@@ -997,6 +997,86 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
       }
     />
     <View
+      accessibilityHint="countdown to next visibility"
+      accessibilityLabel="countdown"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          },
+          {
+            "bottom": NaN,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        issView.timeHeader undefined
+      </Text>
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 35,
+              "lineHeight": 56,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        units.time undefined - 00:00:00:00
+      </Text>
+    </View>
+    <View
       style={
         [
           {
@@ -1317,86 +1397,6 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityHint="countdown to next visibility"
-      accessibilityLabel="countdown"
-      accessibilityRole="text"
-      accessible={true}
-      style={
-        [
-          {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          },
-          {
-            "bottom": NaN,
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            },
-          ]
-        }
-      >
-        issView.timeHeader undefined
-      </Text>
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 35,
-              "lineHeight": 56,
-              "textAlign": "center",
-            },
-          ]
-        }
-      >
-        units.time undefined - 00:00:00:00
-      </Text>
     </View>
     <View
       style={
@@ -1865,6 +1865,86 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
       }
     />
     <View
+      accessibilityHint="countdown to next visibility"
+      accessibilityLabel="countdown"
+      accessibilityRole="text"
+      accessible={true}
+      style={
+        [
+          {
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          },
+          {
+            "bottom": NaN,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#DEDDDE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textAlign": "center",
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        issView.timeHeader undefined
+      </Text>
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 35,
+              "lineHeight": 56,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        units.time undefined - 00:01:10:36
+      </Text>
+    </View>
+    <View
       style={
         [
           {
@@ -2180,86 +2260,6 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityHint="countdown to next visibility"
-      accessibilityLabel="countdown"
-      accessibilityRole="text"
-      accessible={true}
-      style={
-        [
-          {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          },
-          {
-            "bottom": NaN,
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#DEDDDE",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            },
-          ]
-        }
-      >
-        issView.timeHeader undefined
-      </Text>
-      <Text
-        style={
-          [
-            {},
-            [
-              {
-                "fontSize": 23,
-                "lineHeight": 35,
-              },
-              {
-                "fontFamily": "Helvetica Neue",
-              },
-              {
-                "color": "#191015",
-              },
-            ],
-            undefined,
-            undefined,
-            {
-              "color": "#FFFFFF",
-              "fontFamily": "Helvetica Neue",
-              "fontSize": 35,
-              "lineHeight": 56,
-              "textAlign": "center",
-            },
-          ]
-        }
-      >
-        units.time undefined - 00:01:10:36
-      </Text>
     </View>
     <View
       style={

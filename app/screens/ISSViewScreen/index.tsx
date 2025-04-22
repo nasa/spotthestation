@@ -813,6 +813,16 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           {isSupported && (!isCalibrated || !issData?.length) && (
             <ActivityIndicator style={StyleSheet.absoluteFill} />
           )}
+          <View
+            accessible
+            accessibilityLabel="countdown"
+            accessibilityHint="countdown to next visibility"
+            accessibilityRole="text"
+            style={[$timeContainer, bottomContainerStyle]}
+          >
+            <Text tx="issView.timeHeader" style={$timeHeader} />
+            <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
+          </View>
           <View style={[$bottomContainer, bottomContainerStyle, $left]}>
             <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
@@ -851,16 +861,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onLayout={handleTutorialItemLayout("fullScreen")}
               />
             </View>
-          </View>
-          <View
-            accessible
-            accessibilityLabel="countdown"
-            accessibilityHint="countdown to next visibility"
-            accessibilityRole="text"
-            style={[$timeContainer, bottomContainerStyle]}
-          >
-            <Text tx="issView.timeHeader" style={$timeHeader} />
-            <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
           </View>
           <View style={[$bottomContainer, bottomContainerStyle, $right]}>
             <View style={[$buttonColumn, isLandscape && $row]}>

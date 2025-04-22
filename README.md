@@ -30,6 +30,7 @@ Before you can run this project, you will need to have the following software in
    - `API_URL` - url of your backend, for example: http://localhost:5000/.
    - `GOOGLE_API_TOKEN` - your Google Maps API token. Learn how to obtain it [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
    - `MAPBOX_API_TOKEN` - your Mapbox token. Learn how to obtain it [here](#how-to-obtain-mapbox-token).
+   - `TIMEZONEDB_API_KEY` - your TimezoneDB API key. Learn how to obtain it [here](https://timezonedb.com/api).
    - You can leave other variables unchanged
 3. Run `config-env.sh` script
     ```

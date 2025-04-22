@@ -2,6 +2,7 @@ import {
   API_URL,
   GOOGLE_API_TOKEN,
   MAPBOX_API_TOKEN,
+  TIMEZONEDB_API_KEY,
   SENTRY_DSN,
   SENTRY_ENVIRONMENT,
   DISABLE_YELLOWBOX,
@@ -13,6 +14,7 @@ export interface ConfigBaseProps {
   exitRoutes: string[]
   GOOGLE_API_TOKEN: string
   MAPBOX_API_TOKEN: string
+  TIMEZONEDB_API_KEY: string
   API_URL: string
   SENTRY_DSN: string
   SENTRY_ENVIRONMENT: string
@@ -39,6 +41,7 @@ const BaseConfig: ConfigBaseProps = {
 
   GOOGLE_API_TOKEN,
   MAPBOX_API_TOKEN,
+  TIMEZONEDB_API_KEY,
   API_URL,
   SENTRY_DSN,
   SENTRY_ENVIRONMENT,

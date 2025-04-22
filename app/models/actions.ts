@@ -656,7 +656,7 @@ const RootStoreActions = (self) => ({
       lat,
       lon,
       from: startDate,
-      to: endDate,
+      to: add(endDate, { hours: 1 }),
     })
 
     if (ok) {
@@ -676,8 +676,13 @@ const RootStoreActions = (self) => ({
 
     const targetTime = new Date(date)
     const idx = weatherData.time.findIndex((t: string) => isSameHour(new Date(t), targetTime))
+    if (idx === -1) return 0
+    if (idx === weatherData.cloudcover.length - 1) return weatherData.cloudcover[idx]
 
-    return idx >= 0 ? weatherData.cloudcover[idx] : 0
+    const diff = weatherData.cloudcover[idx + 1] - weatherData.cloudcover[idx]
+    return Math.round(
+      (weatherData.cloudcover[idx] as number) + (diff * targetTime.getMinutes()) / 60,
+    )
   },
 
   setTimeFormat(timeFormat: string) {

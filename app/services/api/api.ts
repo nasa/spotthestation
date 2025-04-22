@@ -52,7 +52,7 @@ async function withRetry(fn: () => Promise<ApiResponse<any, any>>, retries = 3) 
 
   while (count > 0) {
     response = await fn()
-    if (response.ok) return response
+    if (response.ok || response.problem === "TIMEOUT_ERROR") return response
     count--
   }
 
@@ -150,33 +150,40 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
-    const response: ApiResponse<any> = await withRetry(() =>
+    let response: ApiResponse<any> = await withRetry(() =>
+      this.apisauce.get(
+        `https://api.timezonedb.com/v2.1/get-time-zone?key=${Config.TIMEZONEDB_API_KEY}&format=json&fields=zoneName&by=position&lat=${lat}&lng=${lon}`,
+        {},
+        { baseURL: "", timeout: 10000 },
+      ),
+    )
+
+    if (response.ok && response.data?.zoneName) return { kind: "ok", zone: response.data.zoneName }
+    response = await withRetry(() =>
       this.apisauce.get(
         `https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`,
+        {},
+        { baseURL: "", timeout: 10000 },
+      ),
+    )
+
+    if (response.ok && !response.data?.timeZone) return { kind: "ok", zone: response.data.timeZone }
+
+    const responseGmaps: ApiResponse<any> = await withRetry(() =>
+      this.apisauce.get(
+        `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
+          Date.now() / 1000
+        }&key=${Config.GOOGLE_API_TOKEN}`,
         {},
         { baseURL: "" },
       ),
     )
-
-    if (!response.ok || !response.data?.timeZone) {
-      const responseGmaps: ApiResponse<any> = await withRetry(() =>
-        this.apisauce.get(
-          `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
-            Date.now() / 1000
-          }&key=${Config.GOOGLE_API_TOKEN}`,
-          {},
-          { baseURL: "" },
-        ),
-      )
-      if (!responseGmaps.ok) {
-        const problem = getGeneralApiProblem(responseGmaps)
-        if (problem) return problem
-      }
-
-      return { kind: "ok", zone: responseGmaps.data.timeZoneId }
+    if (!responseGmaps.ok) {
+      const problem = getGeneralApiProblem(responseGmaps)
+      if (problem) return problem
     }
 
-    return { kind: "ok", zone: response.data.timeZone }
+    return { kind: "ok", zone: responseGmaps.data.timeZoneId }
   }
 
   async getGoogleLocationDetails(
