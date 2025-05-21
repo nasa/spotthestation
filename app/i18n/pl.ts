@@ -548,7 +548,7 @@ const pl = {
           "<strong>Maksymalna wysokość</strong> jest mierzona w stopniach (znana również jako elewacja). Reprezentuje wysokość stacji od horyzontu na nocnym niebie. Horyzont jest na zero stopni, a bezpośrednio nad głową jest 90 stopni. Jeśli użytkownicy trzymają pięść na długość ramienia i umieszczą ją na horyzoncie, górna część będzie miała około 10 stopni elewacji.<br/>" +
           "<strong>Pojawia się</strong> to miejsce na niebie, gdzie stacja będzie widoczna jako pierwsza. Ta wartość, podobnie jak maksymalna wysokość, jest również mierzona w stopniach od horyzontu. Litery reprezentują kierunki kompasu – N to północ, WNW to zachód-północny-zachód i tak dalej.<br/>" +
           "<strong>Znika</strong> reprezentuje miejsce na nocnym niebie, gdzie stacja opuści pole widzenia." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Harmonogram przelotów wskazuje, że Międzynarodowa Stacja Kosmiczna pojawia się i znika z tego samego kierunku, jak to możliwe?",

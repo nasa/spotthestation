@@ -54,7 +54,7 @@ it("navigates to correct pages on link press", async () => {
   )
   expect(mockNavigate).toBeCalledWith("ResourcesScreens", {
     screen: "Web",
-    url: "https://spotthestation.nasa.gov/message_example.cfm",
+    url: "https://www.nasa.gov/spot-the-station/#SPOT",
   })
 
   await userEvent.press(await component.findByText("resources.news.title", { exact: false }))

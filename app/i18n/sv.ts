@@ -547,7 +547,7 @@ const sv = {
           "<strong>Maximal höjd</strong> mäts i grader (även känd som elevation). Det representerar stationens höjd från horisonten på natthimlen. Horisonten är vid noll grader, och rakt ovanför är 90 grader. Om användare håller sin knytnäve på armlängds avstånd och placerar den på horisonten, kommer toppen att vara cirka 10 grader i höjd.<br/>" +
           "<strong>Visas</strong> är platsen på himlen där stationen först kommer att synas. Detta värde, liksom maximal höjd, mäts också i grader från horisonten. Bokstäverna representerar kompassriktningar – N är norr, VNV är väst-nordväst, och så vidare.<br/>" +
           "<strong>Försvinner</strong> representerar var på natthimlen stationen kommer att lämna synfältet." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Flygplansschemat anger att den internationella rymdstationen både visas och försvinner från samma riktning, hur är det möjligt?",

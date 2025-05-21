@@ -547,7 +547,7 @@ const ja = {
           "<strong>最大高度</strong>は度で測定されます（高度とも呼ばれます）。これは、夜空での地平線からのステーションの高さを表します。地平線は0度で、真上は90度です。ユーザーが腕を伸ばして拳を持ち、地平線に置くと、上部は約10度の高度になります。<br/>" +
           "<strong>現れる</strong>は、ステーションが最初に見える空の位置です。この値は、最大高度と同様に、地平線からの度で測定されます。文字はコンパスの方向を表します – Nは北、WNWは西北西などです。<br/>" +
           "<strong>消える</strong>は、夜空でステーションが視界から消える場所を表します。" +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. フライオーバースケジュールは、国際宇宙ステーションが同じ方向から現れ、消えると示していますが、どうして可能ですか？",

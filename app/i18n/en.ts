@@ -536,7 +536,7 @@ const en = {
           "<strong>Max height</strong> is measured in degrees (also known as elevation). It represents the height of the station from the horizon in the night sky. The horizon is at zero degrees, and directly overhead is 90 degrees. If users hold their fist at arm's length and place it resting on the horizon, the top will be about 10 degrees of elevation.<br/>" +
           "<strong>Appears</strong> is the location in the sky where the station will be visible first. This value, like maximum height, also is measured in degrees from the horizon. The letters represent compass directions — N is north, WNW is west by northwest, and so on.<br/>" +
           "<strong>Disappears</strong> represents where in the night sky the station will leave the field of view." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
         question16:
           "16. The flyover schedule indicates the International Space Station is both appearing and disappearing from the same direction, how is that possible?",
         answer16:

@@ -570,7 +570,7 @@ describe("ISSViewScreen", () => {
         await waitFor(() => {
           expect(mockNavigate).toBeCalledWith("ResourcesScreens", {
             screen: "Web",
-            url: "https://spotthestation.nasa.gov/message_example.cfm",
+            url: "https://www.nasa.gov/spot-the-station/#SPOT",
           })
         })
       })

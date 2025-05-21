@@ -548,7 +548,7 @@ const tr = {
           "<strong>Maksimum yükseklik</strong>, derece cinsinden ölçülür (aynı zamanda yükseklik olarak da bilinir). Bu, gece gökyüzünde ufuktan istasyonun yüksekliğini temsil eder. Ufuk sıfır derecedir ve doğrudan yukarıda 90 derecedir. Kullanıcılar yumruklarını kol mesafesinde tutup ufka yerleştirirse, üst kısmı yaklaşık 10 derece yükseklikte olacaktır.<br/>" +
           "<strong>Görünür</strong>, istasyonun ilk olarak görüneceği gökyüzündeki konumdur. Bu değer, maksimum yükseklik gibi, ufuktan derece cinsinden de ölçülür. Harfler pusula yönlerini temsil eder – N kuzeydir, WNW batı-kuzeybatıdır ve bu şekilde devam eder.<br/>" +
           "<strong>Kaybolur</strong>, istasyonun gece gökyüzünde görüş alanından çıkacağı yeri temsil eder." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Uçuş programı, Uluslararası Uzay İstasyonu'nun aynı yönden görünüp kaybolduğunu belirtiyor, bu nasıl mümkün olabilir?",

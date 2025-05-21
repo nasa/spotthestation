@@ -553,7 +553,7 @@ const ptBR = {
           "<strong>Altura máxima</strong> é medida em graus (também conhecida como elevação). Representa a altura da estação em relação ao horizonte no céu noturno. O horizonte está a zero graus, e diretamente acima está a 90 graus. Se os usuários segurarem o punho à distância do braço e o colocarem no horizonte, a parte superior terá cerca de 10 graus de elevação.<br/>" +
           "<strong>Aparece</strong> é a localização no céu onde a estação será visível pela primeira vez. Este valor, assim como a altura máxima, também é medido em graus a partir do horizonte. As letras representam direções da bússola – N é norte, WNW é oeste-noroeste, e assim por diante.<br/>" +
           "<strong>Desaparece</strong> representa onde no céu noturno a estação sairá do campo de visão." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. O cronograma de sobrevoo indica que a Estação Espacial Internacional está aparecendo e desaparecendo da mesma direção, como isso é possível?",

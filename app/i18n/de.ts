@@ -551,7 +551,7 @@ const de = {
           "<strong>Maximale Höhe</strong> wird in Grad gemessen (auch als Elevation bekannt). Sie repräsentiert die Höhe der Station vom Horizont im Nachthimmel. Der Horizont liegt bei null Grad, und direkt über dem Kopf sind 90 Grad. Wenn Benutzer ihre Faust auf Armlänge halten und sie auf dem Horizont ruhen lassen, wird die Oberseite etwa 10 Grad Elevation betragen.<br/>" +
           "<strong>Erscheint</strong> ist der Ort am Himmel, an dem die Station zuerst sichtbar wird. Dieser Wert, wie die maximale Höhe, wird ebenfalls in Grad vom Horizont gemessen. Die Buchstaben repräsentieren Himmelsrichtungen – N ist Norden, WNW ist West-Nordwest und so weiter.<br/>" +
           "<strong>Verschwindet</strong> repräsentiert, wo im Nachthimmel die Station das Sichtfeld verlässt." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Der Überflugplan zeigt an, dass die Internationale Raumstation sowohl aus derselben Richtung erscheint als auch verschwindet, wie ist das möglich?",

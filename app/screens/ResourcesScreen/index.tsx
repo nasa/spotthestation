@@ -23,7 +23,7 @@ export const ResourcesScreen = observer(function ResourcesScreen() {
         <SettingsItem
           title="resources.spotTheStation.title"
           onPress={() =>
-            handleNavigate("Web", { url: "https://spotthestation.nasa.gov/message_example.cfm" })
+            handleNavigate("Web", { url: "https://www.nasa.gov/spot-the-station/#SPOT" })
           }
         />
         <SettingsItem title="resources.news.title" onPress={() => handleNavigate("News")} />

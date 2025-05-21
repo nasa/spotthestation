@@ -553,7 +553,7 @@ const es = {
           "<strong>Altura máxima</strong> se mide en grados (también conocido como elevación). Representa la altura de la estación desde el horizonte en el cielo nocturno. El horizonte está a cero grados, y directamente sobre la cabeza está a 90 grados. Si los usuarios sostienen su puño a la longitud del brazo y lo colocan descansando en el horizonte, la parte superior será de aproximadamente 10 grados de elevación.<br/>" +
           "<strong>Aparece</strong> es la ubicación en el cielo donde la estación será visible por primera vez. Este valor, al igual que la altura máxima, también se mide en grados desde el horizonte. Las letras representan direcciones de la brújula: N es norte, WNW es oeste-noroeste, y así sucesivamente.<br/>" +
           "<strong>Desaparece</strong> representa dónde en el cielo nocturno la estación dejará el campo de visión." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. El horario de sobrevuelo indica que la Estación Espacial Internacional aparece y desaparece desde la misma dirección, ¿cómo es eso posible?",

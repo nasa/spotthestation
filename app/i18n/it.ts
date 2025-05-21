@@ -554,7 +554,7 @@ const it = {
           "<strong>Altezza massima</strong> è misurata in gradi (nota anche come elevazione). Rappresenta l'altezza della stazione dall'orizzonte nel cielo notturno. L'orizzonte è a zero gradi, e direttamente sopra la testa è a 90 gradi. Se gli utenti tengono il pugno a braccio teso e lo posizionano sull'orizzonte, la parte superiore sarà di circa 10 gradi di elevazione.<br/>" +
           "<strong>Appare</strong> è la posizione nel cielo dove la stazione sarà visibile per prima. Questo valore, come l'altezza massima, è misurato anche in gradi dall'orizzonte. Le lettere rappresentano le direzioni della bussola – N è nord, ONO è ovest-nord-ovest, e così via.<br/>" +
           "<strong>Scompare</strong> rappresenta dove nel cielo notturno la stazione lascerà il campo visivo." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Il programma di sorvolo indica che la Stazione Spaziale Internazionale appare e scompare dalla stessa direzione, come è possibile?",

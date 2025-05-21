@@ -552,7 +552,7 @@ const nl = {
           "<strong>Maximale hoogte</strong> wordt gemeten in graden (ook bekend als elevatie). Het vertegenwoordigt de hoogte van het station vanaf de horizon in de nachtelijke hemel. De horizon is op nul graden, en direct boven is 90 graden. Als gebruikers hun vuist op armlengte houden en deze op de horizon plaatsen, zal de bovenkant ongeveer 10 graden elevatie zijn.<br/>" +
           "<strong>Verschijnt</strong> is de locatie in de lucht waar het station eerst zichtbaar zal zijn. Deze waarde, net als de maximale hoogte, wordt ook gemeten in graden vanaf de horizon. De letters vertegenwoordigen kompasrichtingen – N is noord, WNW is west-noordwest, enzovoort.<br/>" +
           "<strong>Verdwijnt</strong> vertegenwoordigt waar in de nachtelijke hemel het station het gezichtsveld zal verlaten." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Het overvliegschema geeft aan dat het Internationaal Ruimtestation zowel verschijnt als verdwijnt vanuit dezelfde richting, hoe is dat mogelijk?",

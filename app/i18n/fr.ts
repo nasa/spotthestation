@@ -559,7 +559,7 @@ const fr = {
           "<strong>Hauteur maximale</strong> est mesurée en degrés (également connue sous le nom d'élévation). Elle représente la hauteur de la station par rapport à l'horizon dans le ciel nocturne. L'horizon est à zéro degré, et directement au-dessus de la tête est à 90 degrés. Si les utilisateurs tiennent leur poing à bout de bras et le placent reposant sur l'horizon, le sommet sera d'environ 10 degrés d'élévation.<br/>" +
           "<strong>Apparaît</strong> est l'endroit dans le ciel où la station sera visible en premier. Cette valeur, comme la hauteur maximale, est également mesurée en degrés par rapport à l'horizon. Les lettres représentent les directions de la boussole – N est nord, ONO est ouest-nord-ouest, et ainsi de suite.<br/>" +
           "<strong>Disparaît</strong> représente où dans le ciel nocturne la station quittera le champ de vision." +
-          "<img src='https://spotthestation.nasa.gov/images/astro_horizon.png' />",
+          "<img src='https://sts-app-resources.s3.us-east-1.amazonaws.com/astro_horizon.png' />",
 
         question16:
           "16. Le calendrier de survol indique que la Station spatiale internationale apparaît et disparaît de la même direction, comment est-ce possible ?",
