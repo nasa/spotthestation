@@ -35,23 +35,53 @@ exports[`renders correctly 1`] = `
 >
   <View
     collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
     jestAnimatedStyle={
       {
         "value": {},
       }
     }
+    jestInlineStyle={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 143,
+          "display": "flex",
+          "height": 60,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 60,
+        },
+        undefined,
+        {
+          "backgroundColor": "red",
+        },
+      ]
+    }
     style={
-      {
-        "alignItems": "center",
-        "backgroundColor": "red",
-        "borderRadius": 143,
-        "display": "flex",
-        "height": 60,
-        "justifyContent": "center",
-        "overflow": "hidden",
-        "position": "relative",
-        "width": 60,
-      }
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#1E2022",
+          "borderRadius": 143,
+          "display": "flex",
+          "height": 60,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": 60,
+        },
+        undefined,
+        {
+          "backgroundColor": "red",
+        },
+      ]
     }
   >
     <div>
@@ -71,20 +101,33 @@ exports[`renders correctly 1`] = `
           source={
             [
               {
-                "height": undefined,
-                "uri": undefined,
-                "width": undefined,
+                "testUri": "../../../assets/icons/back.png",
               },
             ]
           }
           style={
-            {
-              "height": 29,
-              "overflow": "hidden",
-              "resizeMode": "contain",
-              "tintColor": "#FFFFFF",
-              "width": 29,
-            }
+            [
+              {
+                "height": undefined,
+                "width": undefined,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "resizeMode": "contain",
+                },
+                {
+                  "tintColor": "#FFFFFF",
+                },
+                {
+                  "height": 29,
+                  "width": 29,
+                },
+                undefined,
+              ],
+            ]
           }
           tintColor="#FFFFFF"
         />

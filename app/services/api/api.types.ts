@@ -137,3 +137,31 @@ export interface WeatherForecastResult {
   longitude: number
   hourly: { time: string[]; cloudcover: number[] }
 }
+
+export interface GooglePlaceData {
+  description: string
+  id: string
+  place_id: string
+  reference: string
+}
+
+interface AddressComponent {
+  long_name: string
+  short_name: string
+}
+
+export interface GooglePlaceDetail {
+  address_components: AddressComponent[]
+  adr_address: string
+  formatted_address: string
+  icon: string
+  id: string
+  name: string
+  place_id: string
+  reference: string
+  scope: "GOOGLE"
+  types: string[]
+  url: string
+  utc_offset: number
+  vicinity: string
+}

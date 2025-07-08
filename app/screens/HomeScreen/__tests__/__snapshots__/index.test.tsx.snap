@@ -98,23 +98,49 @@ exports[`HomeScreen renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#1E2022",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ]
           }
         >
           <div>
@@ -134,20 +160,33 @@ exports[`HomeScreen renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/pin.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#FFFFFF",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#FFFFFF",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#FFFFFF"
               />
@@ -453,19 +492,25 @@ exports[`HomeScreen renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/images/World-Map.jpg",
           },
         ]
       }
       style={
-        {
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "absolute",
-          "width": "100%",
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          {
+            "height": "100%",
+            "position": "absolute",
+            "width": "100%",
+          },
+        ]
       }
     />
     <RNSVGSvgView
@@ -619,23 +664,49 @@ exports[`HomeScreen with ISS data renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#1E2022",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              undefined,
+              undefined,
+            ]
           }
         >
           <div>
@@ -655,20 +726,33 @@ exports[`HomeScreen with ISS data renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/pin.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#FFFFFF",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#FFFFFF",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#FFFFFF"
               />
@@ -975,19 +1059,25 @@ exports[`HomeScreen with ISS data renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/images/World-Map.jpg",
           },
         ]
       }
       style={
-        {
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "absolute",
-          "width": "100%",
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          {
+            "height": "100%",
+            "position": "absolute",
+            "width": "100%",
+          },
+        ]
       }
     />
     <RNSVGSvgView
@@ -1119,19 +1209,31 @@ exports[`HomeScreen with ISS data renders correctly 1`] = `
           source={
             [
               {
-                "height": undefined,
-                "uri": undefined,
-                "width": undefined,
+                "testUri": "../../../assets/icons/position.png",
               },
             ]
           }
           style={
-            {
-              "height": 52,
-              "overflow": "hidden",
-              "resizeMode": "contain",
-              "width": 52,
-            }
+            [
+              {
+                "height": undefined,
+                "width": undefined,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "resizeMode": "contain",
+                },
+                undefined,
+                {
+                  "height": 52,
+                  "width": 52,
+                },
+                undefined,
+              ],
+            ]
           }
         />
       </View>
@@ -1162,19 +1264,31 @@ exports[`HomeScreen with ISS data renders correctly 1`] = `
           source={
             [
               {
-                "height": undefined,
-                "uri": undefined,
-                "width": undefined,
+                "testUri": "../../../assets/icons/fi_map-pin.png",
               },
             ]
           }
           style={
-            {
-              "height": 22,
-              "overflow": "hidden",
-              "resizeMode": "contain",
-              "width": 22,
-            }
+            [
+              {
+                "height": undefined,
+                "width": undefined,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "resizeMode": "contain",
+                },
+                undefined,
+                {
+                  "height": 22,
+                  "width": 22,
+                },
+                undefined,
+              ],
+            ]
           }
         />
       </View>

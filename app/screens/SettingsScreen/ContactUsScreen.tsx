@@ -1,5 +1,5 @@
 import { Button, Icon, Screen, Text, TextField } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState } from "react"
 import {
@@ -53,7 +53,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     $buttonsContainer,
   } = useStyles(styles)
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const topInset = useSafeAreaInsets().top
   const [title, setTitle] = useState("")
   const [comments, setComments] = useState("")
@@ -182,7 +182,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           labelField="label"
           valueField="value"
           onChange={({ value }) => {
-            setTitle(value)
+            setTitle(value as string)
           }}
           renderRightIcon={() => (
             <Icon
@@ -265,7 +265,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
                 setThanksModal(false)
                 setComments("")
                 setTitle("")
-                navigation.navigate("ResourcesScreens" as never, { screen: "Faq" } as never)
+                navigation.navigate("ResourcesScreens", { screen: "Faq" })
               }}
             />
           </View>

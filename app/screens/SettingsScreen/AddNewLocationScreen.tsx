@@ -8,7 +8,7 @@ import {
   IconLinkButton,
   LocationAutocomplete,
 } from "../../components"
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { NavigationProp, useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useRef, useState } from "react"
 import { ViewStyle, TextStyle, View, TextInput } from "react-native"
@@ -47,7 +47,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     $saveDisabled,
   } = useStyles(styles)
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const { savedLocations, setSavedLocations, setNewSavedLocation } = useStores()
   const topInset = useSafeAreaInsets().top
   const { defaultLocation } = useRoute().params as AddNewLocationScreenParams
@@ -66,8 +66,7 @@ export const AddNewLocationScreen = observer(function AddNewLocationScreen() {
     setLocation(null)
   }
 
-  const handleNavigate = () =>
-    navigation.navigate("LocationSettings" as never, { update: Date.now() } as never)
+  const handleNavigate = () => navigation.navigate("LocationSettings", { update: Date.now() })
 
   const handleSave = useCallback(() => {
     const dismissSnackbar = () => {

@@ -12,9 +12,14 @@ import { useISSPosition } from "../../utils/useISSPosition"
 import { useStores } from "../../models"
 import { Template } from "./Template"
 import { getOrbitalSpeed } from "../../utils/satellite"
-import { kgToLbs, kmToMiles, msToMph } from "../../utils/units"
+import { kgToLbs, kmToMiles, msToMph, mToFt } from "../../utils/units"
 
 export interface DetailsScreenRouteProps {}
+
+const ISS_WIDTH = 109
+const ISS_LENGTH = 73
+const ISS_HEIGHT = 14
+const ISS_WEIGHT = 462000
 
 export const DetailsScreen = observer(function DetailsScreen() {
   const {
@@ -118,8 +123,13 @@ export const DetailsScreen = observer(function DetailsScreen() {
 
   const formatMass = () => {
     const uom = units === "imperial" ? translate("units.pound") : translate("units.kilogram")
-    const kgMass = 462000
-    const mass = units === "imperial" ? Math.round(kgToLbs(kgMass)) : kgMass
+    const mass = units === "imperial" ? Math.round(kgToLbs(ISS_WEIGHT)) : ISS_WEIGHT
+    return `${mass.toLocaleString("en-US")} ${uom}`
+  }
+
+  const formatDimension = (dimension: number) => {
+    const uom = units === "imperial" ? translate("units.foot") : translate("units.meter")
+    const mass = units === "imperial" ? Math.round(mToFt(dimension)) : dimension
     return `${mass.toLocaleString("en-US")} ${uom}`
   }
 
@@ -216,7 +226,15 @@ export const DetailsScreen = observer(function DetailsScreen() {
               style={$detailRow}
             >
               <Text tx="issView.details.dimensions" style={$detailRowTitle} />
-              <Text tx="issView.details.dimensionsValue" style={$detailRowValue} />
+              <Text
+                tx="issView.details.dimensionsValue"
+                txOptions={{
+                  width: formatDimension(ISS_WIDTH),
+                  length: formatDimension(ISS_LENGTH),
+                  height: formatDimension(ISS_HEIGHT),
+                }}
+                style={$detailRowValue}
+              />
             </View>
             <View
               accessible

@@ -5,7 +5,7 @@ import {
   NavigationState,
   createNavigationContainerRef,
 } from "@react-navigation/native"
-import analytics from "@react-native-firebase/analytics"
+import { getAnalytics, logScreenView } from "@react-native-firebase/analytics"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
@@ -17,7 +17,7 @@ type TabNavigatorContextType = {
 }
 export const TabNavigatorContext = createContext<TabNavigatorContextType>(null)
 
-export const navigationRef = createNavigationContainerRef()
+export const navigationRef = createNavigationContainerRef<any>()
 
 /**
  * Gets the current screen from any navigation state.
@@ -78,6 +78,8 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
     BackHandler.addEventListener("hardwareBackPress", onBackPress)
 
     // Unsubscribe when we're done
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return
     return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
   }, [])
 }
@@ -114,15 +116,13 @@ export function useNavigationPersistence(persistenceKey: storage.KEYS) {
     if (previousRouteName !== currentRouteName) {
       // track screens.
       if (__DEV__) {
-        console.tron.log(currentRouteName)
+        // console.tron.log(currentRouteName)
       }
 
-      analytics()
-        .logScreenView({
-          screen_name: currentRouteName,
-          screen_class: currentRouteName,
-        })
-        .catch(() => null)
+      logScreenView(getAnalytics(), {
+        screen_name: currentRouteName,
+        screen_class: currentRouteName,
+      }).catch(() => null)
     }
 
     // Save the current route name for later comparision
@@ -155,7 +155,8 @@ export function useNavigationPersistence(persistenceKey: storage.KEYS) {
  */
 export function navigate(name: any, params?: any) {
   if (navigationRef.isReady()) {
-    navigationRef.navigate(name as never, params as never)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    navigationRef.navigate(name, params)
   }
 }
 

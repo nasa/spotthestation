@@ -57,23 +57,57 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "#353739",
+                "height": 60,
+                "width": 60,
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#353739",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "#353739",
+                "height": 60,
+                "width": 60,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -93,20 +127,33 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/x.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#DEDDDE",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#DEDDDE",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#DEDDDE"
               />
@@ -148,23 +195,57 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "#353739",
+                "height": 60,
+                "width": 60,
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#353739",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "#353739",
+                "height": 60,
+                "width": 60,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -184,20 +265,33 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/map.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#DEDDDE",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#DEDDDE",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#DEDDDE"
               />
@@ -326,23 +420,38 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "alignItems": "center",
-                  "height": 80,
-                  "justifyContent": "center",
-                  "marginStart": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 40,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    {
+                      "alignItems": "center",
+                      "height": 80,
+                      "justifyContent": "center",
+                      "marginStart": 35,
+                    },
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -491,20 +600,33 @@ exports[`AddNewLocationScreen renders correctly 1`] = `
             source={
               [
                 {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "testUri": "../../../assets/icons/save.png",
                 },
               ]
             }
             style={
-              {
-                "height": 40,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#ADADAE",
-                "width": 40,
-              }
+              [
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                {
+                  "overflow": "hidden",
+                },
+                [
+                  {
+                    "resizeMode": "contain",
+                  },
+                  {
+                    "tintColor": "#ADADAE",
+                  },
+                  {
+                    "height": 40,
+                    "width": 40,
+                  },
+                  undefined,
+                ],
+              ]
             }
             tintColor="#ADADAE"
           />

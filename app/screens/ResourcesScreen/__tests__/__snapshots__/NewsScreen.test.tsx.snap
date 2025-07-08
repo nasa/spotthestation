@@ -62,20 +62,33 @@ exports[`NewsScreen renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/caretLeft.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#DEDDDE",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#DEDDDE",
+              },
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#DEDDDE"
       />
@@ -214,19 +227,31 @@ exports[`NewsScreen renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/search.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              undefined,
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
       />
     </View>
@@ -324,20 +349,33 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/caretLeft.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#DEDDDE",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#DEDDDE",
+              },
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#DEDDDE"
       />
@@ -476,19 +514,31 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/search.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              undefined,
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
       />
     </View>
@@ -886,14 +936,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1043,14 +1103,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1219,14 +1289,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1376,14 +1456,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1552,14 +1642,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1709,14 +1809,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -1885,14 +1995,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -2042,14 +2162,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -2218,14 +2348,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text
@@ -2375,14 +2515,24 @@ exports[`NewsScreen renders correctly with list of articles 1`] = `
                 ]
               }
               style={
-                {
-                  "aspectRatio": 0.7,
-                  "borderRadius": 17,
-                  "height": undefined,
-                  "marginBottom": 17,
-                  "overflow": "hidden",
-                  "width": "100%",
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "aspectRatio": 0.7,
+                      "borderRadius": 17,
+                      "marginBottom": 17,
+                      "width": "100%",
+                    },
+                    undefined,
+                  ],
+                ]
               }
             />
             <Text

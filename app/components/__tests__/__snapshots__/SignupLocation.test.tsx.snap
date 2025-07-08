@@ -61,20 +61,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/pin.png",
             },
           ]
         }
         style={
-          {
-            "height": 40,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#ADADAE",
-            "width": 40,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#ADADAE",
+              },
+              {
+                "height": 40,
+                "width": 40,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#ADADAE"
       />
@@ -167,20 +180,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/trash.png",
             },
           ]
         }
         style={
-          {
-            "height": 40,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#ADADAE",
-            "width": 40,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#ADADAE",
+              },
+              {
+                "height": 40,
+                "width": 40,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#ADADAE"
       />

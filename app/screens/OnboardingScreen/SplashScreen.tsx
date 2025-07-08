@@ -10,7 +10,7 @@ import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../utils/storage"
 import { KEYS } from "../../utils/storage"
 import { getUserId } from "../../utils/user"
-import analytics from "@react-native-firebase/analytics"
+import { getAnalytics, logTutorialBegin, setUserId } from "@react-native-firebase/analytics"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 
 const background = require("../../../assets/images/bg.png")
@@ -34,23 +34,18 @@ export function SplashScreen() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
+    const analytics = getAnalytics()
     let userId = (await storage.load(KEYS.USER_ID)) as string
     if (!userId) {
       userId = getUserId()
-      await analytics()
-        .setUserId(userId)
-        .catch(() => null)
-      await analytics()
-        .logTutorialBegin()
-        .catch(() => null)
+      await setUserId(analytics, userId).catch(() => null)
+      await logTutorialBegin(analytics).catch(() => null)
       await storage.save(KEYS.USER_ID, getUserId())
       setTimeout(() => {
         handleNavigate()
       }, 3000)
     } else {
-      await analytics()
-        .setUserId(userId)
-        .catch(() => null)
+      await setUserId(analytics, userId).catch(() => null)
     }
   }
 

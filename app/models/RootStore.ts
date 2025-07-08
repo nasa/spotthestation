@@ -36,6 +36,14 @@ export const RootStoreModel = types
   })
   .props({})
   .actions(RootStoreActions)
+  .views((self) => ({
+    get isNotifyAll() {
+      return (
+        self.currentLocation?.sightings.every((item) => item.notify) &&
+        self.savedLocations.every((location) => location.sightings.every((item) => item.notify))
+      )
+    },
+  }))
 
 /**
  * The RootStore instance.

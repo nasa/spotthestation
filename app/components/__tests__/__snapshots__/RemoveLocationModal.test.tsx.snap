@@ -40,20 +40,33 @@ exports[`renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/icons/x.png",
           },
         ]
       }
       style={
-        {
-          "height": 52,
-          "overflow": "hidden",
-          "resizeMode": "contain",
-          "tintColor": "#ADADAE",
-          "width": 52,
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          [
+            {
+              "resizeMode": "contain",
+            },
+            {
+              "tintColor": "#ADADAE",
+            },
+            {
+              "height": 52,
+              "width": 52,
+            },
+            undefined,
+          ],
+        ]
       }
       tintColor="#ADADAE"
     />
@@ -83,19 +96,31 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/remove-location.png",
             },
           ]
         }
         style={
-          {
-            "height": 86,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "width": 86,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              undefined,
+              {
+                "height": 86,
+                "width": 86,
+              },
+              undefined,
+            ],
+          ]
         }
       />
     </View>

@@ -32,7 +32,7 @@ export async function setupRootStore(rootStore: RootStore) {
   } catch (e) {
     // if there's any problems loading, then inform the dev what happened
     if (__DEV__) {
-      console.tron.error(e.message, null)
+      // console.tron.error(e.message, null)
     }
   }
 

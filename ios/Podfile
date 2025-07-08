@@ -1,3 +1,6 @@
+# Disable New Architecture
+ENV['RCT_NEW_ARCH_ENABLED'] = '0'
+
 $RNMapboxMapsImpl = 'mapbox'
 $RNMapboxMapsVersion = '= 10.19.0'
 $RNFirebaseAnalyticsWithoutAdIdSupport=true
@@ -5,15 +8,34 @@ $RNFirebaseAnalyticsWithoutAdIdSupport=true
 pod_folder = Pathname.new(__FILE__).dirname.realpath
 
 require File.join(File.dirname(`cd #{pod_folder} && node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
-# Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
 
-platform :ios, min_ios_version_supported
+def node_require(script)
+   # Resolve script with node to allow for hoisting
+  require Pod::Executable.execute_command('node', ['-p',
+   "require.resolve(
+     '#{script}',
+     {paths: [process.argv[1]]},
+   )", __dir__]).strip
+end
+
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
+
+platform :ios, '15.5'
 prepare_react_native_project!
+
+setup_permissions([
+  "Camera",
+  "LocationAccuracy",
+  "LocationAlways",
+  "LocationWhenInUse",
+  "MediaLibrary",
+  "Microphone",
+  "Notifications",
+  "PhotoLibrary",
+  "PhotoLibraryAddOnly",
+  "Reminders"
+])
 
 Pod::UI.puts "Configuring Pod with statically linked Frameworks".green
 use_frameworks! :linkage => :static
@@ -55,13 +77,12 @@ target 'STSApp' do
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
     )
     $RNMapboxMaps.post_install(installer)
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings["ONLY_ACTIVE_ARCH"] = "NO"
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['VISION_CAMERA_DISABLE_FRAME_PROCESSORS=1', '$(inherited)']
       end
       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"

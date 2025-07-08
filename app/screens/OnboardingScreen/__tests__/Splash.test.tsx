@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { fireEvent, render, waitFor } from "@testing-library/react-native"
-import analytics from "@react-native-firebase/analytics"
+import { setUserId, getAnalytics } from "@react-native-firebase/analytics"
 import { SplashScreen } from "../SplashScreen"
 import * as storage from "../../../utils/storage"
 import { KEYS } from "../../../utils/storage"
@@ -32,7 +32,7 @@ describe("Splash", () => {
   it("sets user id in analytics", async () => {
     render(<SplashScreen />)
     await waitFor(() => {
-      expect(analytics().setUserId).toBeCalled()
+      expect(setUserId).toBeCalled()
     })
   })
 
@@ -40,7 +40,7 @@ describe("Splash", () => {
     await storage.save(KEYS.USER_ID, "user-id")
     render(<SplashScreen />)
     await waitFor(() => {
-      expect(analytics().setUserId).toBeCalledWith("user-id")
+      expect(setUserId).toBeCalledWith(getAnalytics(), "user-id")
     })
   })
 })

@@ -97,20 +97,26 @@ exports[`PrivacyModal renders correctly 1`] = `
     source={
       [
         {
-          "height": undefined,
-          "uri": undefined,
-          "width": undefined,
+          "testUri": "../../../assets/images/image.png",
         },
       ]
     }
     style={
-      {
-        "alignSelf": "center",
-        "height": 266.8,
-        "marginVertical": 35,
-        "overflow": "hidden",
-        "width": "100%",
-      }
+      [
+        {
+          "height": undefined,
+          "width": undefined,
+        },
+        {
+          "overflow": "hidden",
+        },
+        {
+          "alignSelf": "center",
+          "height": 266.8,
+          "marginVertical": 35,
+          "width": "100%",
+        },
+      ]
     }
   />
   <View

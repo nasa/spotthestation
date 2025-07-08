@@ -6,7 +6,7 @@ import {
   CalibrateCompassModal,
   TutorialsModal,
 } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import uniqBy from "lodash/uniqBy"
 import React, { useMemo, useState } from "react"
@@ -46,7 +46,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
 
   const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
   const [isTutorialsModalVisible, setIsTutorialsModalVisible] = useState(false)
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
 
@@ -79,8 +79,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
     [],
   )
 
-  const handleNavigate = (screen) =>
-    navigation.navigate("SettingsScreens" as never, { screen } as never)
+  const handleNavigate = (screen) => navigation.navigate("SettingsScreens", { screen })
 
   const onChangeLanguage = async ({ value }: { label: string; value: string }) => {
     await storage.save(storage.KEYS.LOCALE, value)

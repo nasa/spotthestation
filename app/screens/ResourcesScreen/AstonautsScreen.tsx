@@ -1,5 +1,5 @@
 import { FeedItem } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle, View, FlatList, ActivityIndicator } from "react-native"
 import { StyleFn, useStyles } from "../../utils/useStyles"
@@ -12,7 +12,7 @@ import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 export interface AstronautsScreenRouteProps {}
 
 export const AstronautsScreen = function Astonauts() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const { $justifyCenter, $footer } = useStyles(styles)
@@ -21,7 +21,7 @@ export const AstronautsScreen = function Astonauts() {
   const [astronauts, setAstronauts] = useState([])
 
   const link = (item: any) => {
-    navigation.navigate("ResourcesScreens" as never, { screen: "Web", url: item.link } as never)
+    navigation.navigate("ResourcesScreens", { screen: "Web", url: item.link })
   }
 
   const fetchData = useCallback(() => {

@@ -7,7 +7,7 @@ import {
   ExpandContainer,
   FeedSearchResultItem,
 } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import React, { useCallback, useEffect, useState } from "react"
 import { ViewStyle, TextStyle, View, FlatList, ActivityIndicator, ScrollView } from "react-native"
 
@@ -17,7 +17,7 @@ import { StyleFn, useStyles } from "../../utils/useStyles"
 import { api } from "../../services/api"
 import { XMLParser } from "fast-xml-parser"
 import { formatDate } from "../../utils/datetime"
-import en from "date-fns/locale/en-US"
+import { enUS } from "date-fns/locale"
 
 import { Template } from "./Template"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
@@ -34,7 +34,7 @@ const suggestions = ["NASA Upcoming Missions", "Interviews of the Week", "ARTEMI
 export interface NewsScreenRouteProps {}
 
 export const NewsScreen = function NewsScreen() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
 
   const {
     $justifyCenter,
@@ -58,7 +58,7 @@ export const NewsScreen = function NewsScreen() {
   const [isFocus, setIsFocus] = useState(false)
 
   const link = (item: any) => {
-    navigation.navigate("ResourcesScreens" as never, { screen: "Web", url: item.link } as never)
+    navigation.navigate("ResourcesScreens", { screen: "Web", url: item.link })
   }
 
   const fetchData = useCallback(
@@ -225,7 +225,7 @@ export const NewsScreen = function NewsScreen() {
               onPress={() => link(item)}
               title={item.title}
               subtitle={formatDate(new Date(item.pubDate).toISOString(), "MMM d, yyyy", {
-                locale: en,
+                locale: enUS,
               })}
               image={
                 /<img.*?src="([^"]*)"/.exec(item["content:encoded"])

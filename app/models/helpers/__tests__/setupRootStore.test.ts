@@ -44,7 +44,6 @@ describe("setupRootStore", () => {
     ;(storage.load as unknown as jest.Mock<typeof storage.load>).mockRejectedValue(
       mockError as never,
     )
-    console.tron = { error: jest.fn() } as any
 
     await setupRootStore(mockRootStore)
 

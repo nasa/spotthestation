@@ -71,6 +71,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setSightingsCloudCover,
     getFilteredSightings,
     timeFormat,
+    isNotifyAll,
   } = useStores()
   const topInset = useSafeAreaInsets().top
   const bottomInset = useSafeAreaInsets().bottom
@@ -89,13 +90,6 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
   )
-
-  const isNotifyAll = useMemo(() => {
-    return (
-      currentLocation?.sightings.every((item) => item.notify) &&
-      savedLocations?.every((location) => location.sightings.every((item) => item.notify))
-    )
-  }, [currentLocation, savedLocations])
 
   const loadSettings = async () => {
     const start = (await storage.load(storage.KEYS.MUTE_FROM)) as string

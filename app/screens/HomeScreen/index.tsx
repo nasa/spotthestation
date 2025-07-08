@@ -384,21 +384,21 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }
 
-  const onPastSightingsPress = () => {
+  const onPastSightingsPress = useCallback(() => {
     if (!current) return
 
     requestCloseModal("sightings")
     requestOpenModal("pastSightings")
 
     getISSSightingsHistory(current).catch(console.error)
-  }
+  }, [current])
 
-  const onUpcomingSightingsPress = () => {
+  const onUpcomingSightingsPress = useCallback(() => {
     if (!current) return
 
     requestCloseModal("pastSightings")
     onSightingsPress()
-  }
+  }, [current])
 
   useEffect(() => {
     if (currentModal?.name === "sightings") {
@@ -407,12 +407,23 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }, [currentModal?.name])
 
+  const onSightingsClose = useCallback(() => {
+    requestCloseModal("sightings")
+  }, [])
+
+  const onPastSightingsClose = useCallback(() => {
+    requestCloseModal("pastSightings")
+  }, [])
+
+  const filteredSightings = useMemo(() => (current ? getFilteredSightings(current) : []), [current])
+
   return (
     <Screen
       preset="fixed"
       contentContainerStyle={$container}
       style={[$topInset, { backgroundColor: colors.palette.neutral900 }]}
       statusBarStyle="light"
+      KeyboardAvoidingViewProps={{ behavior: undefined }} // kbd avoiding view messes with 3d globe, and we don't really need it here
     >
       <HomeHeader
         user={{ firstName: "User", address }}
@@ -461,10 +472,10 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <Sightings
-          onClose={() => requestCloseModal("sightings")}
+          onClose={onSightingsClose}
           location={current}
           timeFormat={timeFormat}
-          sightings={current ? getFilteredSightings(current) : []}
+          sightings={filteredSightings}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
           maxHeight={current?.filterMaxHeight || ""}
@@ -499,7 +510,7 @@ export const HomeScreen = observer(function HomeScreen() {
         style={$modal}
       >
         <PastSightings
-          onClose={() => requestCloseModal("pastSightings")}
+          onClose={onPastSightingsClose}
           isLoading={sightingsHistoryLoading}
           timeFormat={timeFormat}
           sightings={current ? current.sightingsHistory : []}

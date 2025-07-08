@@ -83,14 +83,21 @@ exports[`FeedSearchResultItem renders correctly 1`] = `
       ]
     }
     style={
-      {
-        "aspectRatio": 0.7,
-        "borderRadius": 17,
-        "height": undefined,
-        "marginBottom": 17,
-        "overflow": "hidden",
-        "width": "100%",
-      }
+      [
+        {
+          "height": undefined,
+          "width": undefined,
+        },
+        {
+          "overflow": "hidden",
+        },
+        {
+          "aspectRatio": 0.7,
+          "borderRadius": 17,
+          "marginBottom": 17,
+          "width": "100%",
+        },
+      ]
     }
   />
   <Text
@@ -245,14 +252,21 @@ exports[`renders correctly 1`] = `
       ]
     }
     style={
-      {
-        "aspectRatio": 0.7,
-        "borderRadius": 17,
-        "height": undefined,
-        "marginBottom": 17,
-        "overflow": "hidden",
-        "width": "100%",
-      }
+      [
+        {
+          "height": undefined,
+          "width": undefined,
+        },
+        {
+          "overflow": "hidden",
+        },
+        {
+          "aspectRatio": 0.7,
+          "borderRadius": 17,
+          "marginBottom": 17,
+          "width": "100%",
+        },
+      ]
     }
   />
   <Text

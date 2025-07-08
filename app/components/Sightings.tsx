@@ -18,14 +18,14 @@ import {
   ScrollView,
   Platform,
   Pressable,
+  FlatList,
 } from "react-native"
 import Modal from "react-native-modal"
 
 import { colors, spacing, typography } from "../theme"
 
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
-import { addDays } from "date-fns"
-import { formatDate, formatDateWithTZ, getShortTZ } from "../utils/datetime"
+import { formatDate, formatSightingDateTime } from "../utils/datetime"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
 import { normalizeHeight } from "../utils/normalizeHeight"
@@ -62,6 +62,16 @@ export interface SightingsProps {
   onPastSightings?: () => void
 }
 
+interface SightingListItemProps {
+  sighting: ISSSighting
+  timezone?: string
+  isUS?: boolean
+  timeFormat: string
+  handleToggle: (date: string) => void
+  onShare: (date: string) => void
+  onCalendar: (date: string) => void
+}
+
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
 
 const stageIcons: { icon: IconTypes; color: string }[] = [
@@ -70,7 +80,61 @@ const stageIcons: { icon: IconTypes; color: string }[] = [
   { icon: "sun", color: colors.palette.yellow },
 ]
 
-export function Sightings({
+const SightingListItem = React.memo(function SightingListItem({
+  sighting,
+  timezone,
+  isUS,
+  timeFormat,
+  handleToggle,
+  onShare,
+  onCalendar,
+}: SightingListItemProps) {
+  const setStageIcon = (stage): { icon: IconTypes; color: string } => {
+    if (stage >= 0 && stage <= 2) return stageIcons[stage]
+    return stageIcons[1]
+  }
+
+  const title = useMemo(
+    () => formatSightingDateTime(sighting.date, timeFormat, timezone, isUS),
+    [sighting.date, timeFormat, timezone, isUS],
+  )
+
+  return (
+    <ListItem
+      key={sighting.date}
+      value={sighting.date}
+      icon="clock"
+      secondIcon={setStageIcon(sighting.dayStage)}
+      title={title}
+      selected={sighting.notify}
+      subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
+        sighting.visible
+      } ${translate("units.minute")}`}
+      subtitle2={`${translate("homeScreen.selectSightings.maxHeight")} ${sighting.maxHeight}°`}
+      subtitle3={`${translate("homeScreen.selectSightings.appears")}: ${
+        sighting.minAltitude
+      }° ${translate(
+        `homeScreen.selectSightings.compass.${headingToCompass(sighting.minAzimuth)}`,
+      )}`}
+      subtitle4={`${translate("homeScreen.selectSightings.disappears")}: ${
+        sighting.maxAltitude
+      }° ${translate(
+        `homeScreen.selectSightings.compass.${headingToCompass(sighting.maxAzimuth)}`,
+      )}`}
+      subtitle5={`${translate("homeScreen.selectSightings.cloudCover.title")}: ${
+        sighting.cloudCover === null ? "-" : `${sighting.cloudCover}%`
+      }`}
+      withSwitch
+      onToggle={handleToggle}
+      withShare
+      onShare={onShare}
+      withCalendar
+      onCalendar={onCalendar}
+    />
+  )
+})
+
+export const Sightings = React.memo(function Sightings({
   onClose,
   location,
   sightings,
@@ -117,7 +181,7 @@ export function Sightings({
     $pastSightings,
   } = useStyles(styles)
 
-  const scrollViewRef = useRef<ScrollView>()
+  const scrollViewRef = useRef<FlatList<ISSSighting>>()
 
   const timeOfDayOptions = useMemo(
     () => [
@@ -225,39 +289,6 @@ export function Sightings({
     }, 100)
   }, [])
 
-  const formatedDate = (date: string): string => {
-    const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
-    const shortTZ = getShortTZ(timezone)
-    if (
-      formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
-      formatDateWithTZ(new Date().toISOString(), `yyyy-MM-dd`, timezone)
-    )
-      return `${translate("homeScreen.selectSightings.today")}, ${formatDateWithTZ(
-        date,
-        tf,
-        timezone,
-      )} ${shortTZ}`
-    if (
-      formatDateWithTZ(date, `yyyy-MM-dd`, timezone) ===
-      formatDateWithTZ(addDays(new Date(), 1).toISOString(), `yyyy-MM-dd`, timezone)
-    )
-      return `${translate("homeScreen.selectSightings.tomorrow")}, ${formatDateWithTZ(
-        date,
-        tf,
-        timezone,
-      )} ${shortTZ}`
-    return `${formatDateWithTZ(
-      date,
-      `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`,
-      timezone,
-    )} ${shortTZ}`
-  }
-
-  const setStageIcon = (stage): { icon: IconTypes; color: string } => {
-    if (stage >= 0 && stage <= 2) return stageIcons[stage]
-    return stageIcons[1]
-  }
-
   const getCoach = async () => {
     setSightingsCoachVisible(!(await storage.load(storage.KEYS.SIGHTINGS_COACH_VISIBLE)))
   }
@@ -287,7 +318,7 @@ export function Sightings({
 
       const subject = `${translate("homeScreen.selectSightings.shareTitle", {
         location: location.title,
-        date: formatedDate(sighting.date),
+        date: formatSightingDateTime(sighting.date, timeFormat, timezone, isUS),
       })}`
       const message = `${subject}!
 ${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate(
@@ -433,65 +464,43 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           reverseTitle
           titleStyle={$scrollTitle}
         >
-          <ScrollView
-            accessible
-            accessibilityLabel="Sightings scrollable area"
-            accessibilityHint="Sightings scrollable area"
-            accessibilityRole="scrollbar"
-            contentContainerStyle={$scrollContainer}
-            persistentScrollbar
-            indicatorStyle="white"
-            ref={scrollViewRef}
-          >
-            {sightings.length === 0 ? (
-              <Text
-                style={$emptyText}
-                tx="homeScreen.selectSightings.empty"
-                txOptions={{
-                  start: formatDate(new Date().toISOString()),
-                  end: lastSightingOrbitPointAt
-                    ? formatDate(new Date(lastSightingOrbitPointAt).toISOString())
-                    : "-",
-                }}
-              />
-            ) : (
-              sightings.map((sighting: ISSSighting) => (
-                <ListItem
-                  key={sighting.date}
-                  value={sighting.date}
-                  icon="clock"
-                  secondIcon={setStageIcon(sighting.dayStage)}
-                  title={formatedDate(sighting.date)}
-                  selected={sighting.notify}
-                  subtitle={`${translate("homeScreen.selectSightings.aboveHorizon")} ${
-                    sighting.visible
-                  } ${translate("units.minute")}`}
-                  subtitle2={`${translate("homeScreen.selectSightings.maxHeight")} ${
-                    sighting.maxHeight
-                  }°`}
-                  subtitle3={`${translate("homeScreen.selectSightings.appears")}: ${
-                    sighting.minAltitude
-                  }° ${translate(
-                    `homeScreen.selectSightings.compass.${headingToCompass(sighting.minAzimuth)}`,
-                  )}`}
-                  subtitle4={`${translate("homeScreen.selectSightings.disappears")}: ${
-                    sighting.maxAltitude
-                  }° ${translate(
-                    `homeScreen.selectSightings.compass.${headingToCompass(sighting.maxAzimuth)}`,
-                  )}`}
-                  subtitle5={`${translate("homeScreen.selectSightings.cloudCover.title")}: ${
-                    sighting.cloudCover === null ? "-" : `${sighting.cloudCover}%`
-                  }`}
-                  withSwitch
-                  onToggle={handleToggle}
-                  withShare
+          {sightings.length === 0 ? (
+            <Text
+              style={$emptyText}
+              tx="homeScreen.selectSightings.empty"
+              txOptions={{
+                start: formatDate(new Date().toISOString()),
+                end: lastSightingOrbitPointAt
+                  ? formatDate(new Date(lastSightingOrbitPointAt).toISOString())
+                  : "-",
+              }}
+            />
+          ) : (
+            <FlatList
+              accessible
+              accessibilityLabel="Sightings scrollable area"
+              accessibilityHint="Sightings scrollable area"
+              accessibilityRole="scrollbar"
+              contentContainerStyle={$scrollContainer}
+              persistentScrollbar
+              indicatorStyle="white"
+              initialNumToRender={5}
+              ref={scrollViewRef}
+              data={sightings}
+              keyExtractor={(item) => item.date}
+              renderItem={({ item: sighting }) => (
+                <SightingListItem
+                  sighting={sighting}
+                  timezone={timezone}
+                  isUS={isUS}
+                  timeFormat={timeFormat}
+                  handleToggle={handleToggle}
                   onShare={onShare}
-                  withCalendar
                   onCalendar={onCalendar}
                 />
-              ))
-            )}
-          </ScrollView>
+              )}
+            />
+          )}
         </ExpandContainer>
       </View>
 
@@ -544,7 +553,7 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
       )}
     </View>
   )
-}
+})
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $modalBodyContainer: ViewStyle = {
@@ -676,6 +685,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     fontFamily: typography.primary.normal,
     lineHeight: lineHeights[24],
     textAlign: "center",
+    paddingHorizontal: scale(36),
   }
 
   const $filtersContainer: ViewStyle = {

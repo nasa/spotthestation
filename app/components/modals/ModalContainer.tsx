@@ -19,7 +19,7 @@ export const ModalContainer = observer(function ModalContainer({
   const { currentModal, closeModal } = useStores()
   const handleCloseModal = useCallback(() => {
     if (onModalHide) onModalHide()
-    closeModal(name)
+    requestAnimationFrame(() => closeModal(name))
   }, [closeModal, onModalHide])
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { FeedItem } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import React from "react"
 import { ViewStyle, View, ScrollView, ImageStyle } from "react-native"
 import { StyleFn, useStyles } from "../../utils/useStyles"
@@ -27,13 +27,13 @@ const items = [
 export interface EarthScienceRouteProps {}
 
 export const EarthScienceScreen = function EarthScienceScreen() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const { $bodyContainer, $imageStyle } = useStyles(styles)
 
   const link = (item: any) => {
-    navigation.navigate("ResourcesScreens" as never, { screen: "Web", url: item.link } as never)
+    navigation.navigate("ResourcesScreens", { screen: "Web", url: item.link })
   }
 
   return (

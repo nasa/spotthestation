@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-gesture-handler/lib/commonjs/handlers/gestures/nativeGesture.ts b/node_modules/react-native-gesture-handler/lib/commonjs/handlers/gestures/nativeGesture.ts
+index b8b00ab..5dfc116 100644
+--- a/node_modules/react-native-gesture-handler/lib/commonjs/handlers/gestures/nativeGesture.ts
++++ b/node_modules/react-native-gesture-handler/lib/commonjs/handlers/gestures/nativeGesture.ts
+@@ -8,6 +8,7 @@ export class NativeGesture extends BaseGesture<NativeViewGestureHandlerPayload>
+   constructor() {
+     super();
+ 
++    // @ts-ignore
+     this.handlerName = 'NativeViewGestureHandler';
+   }
+ 

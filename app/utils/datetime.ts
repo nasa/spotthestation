@@ -1,49 +1,18 @@
-import {
-  Locale,
-  format,
-  parseISO,
-  formatDuration as formatDurationFns,
-  intervalToDuration,
-} from "date-fns"
+import { Locale, format, parseISO, intervalToDuration, addDays } from "date-fns"
 import { formatInTimeZone } from "date-fns-tz"
 import I18n from "i18n-js"
 import { getCalendars } from "expo-localization"
 import moment from "moment-timezone"
-
-import en from "date-fns/locale/en-US"
-import fr from "date-fns/locale/fr"
-import uk from "date-fns/locale/uk"
-import ja from "date-fns/locale/ja"
-import es from "date-fns/locale/es"
-import it from "date-fns/locale/it"
-import nl from "date-fns/locale/nl"
-import ru from "date-fns/locale/ru"
-import sv from "date-fns/locale/sv"
-import hi from "date-fns/locale/hi"
-import de from "date-fns/locale/de"
-import nb from "date-fns/locale/nb"
-import { Platform } from "react-native"
+import { enUS, fr, uk, ja, es, it, nl, ru, sv, hi, de, nb } from "date-fns/locale"
+import { translate } from "../i18n"
 
 export const initPolyfills = () => {
   if ((global as any).HermesInternal) {
-    if (Platform.OS === "ios") {
-      // Polyfills required to use Intl with Hermes engine
-      require("@formatjs/intl-getcanonicallocales/polyfill").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-locale/polyfill").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-pluralrules/polyfill").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-pluralrules/locale-data/en").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-numberformat/polyfill").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-numberformat/locale-data/en").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-datetimeformat/polyfill").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-datetimeformat/locale-data/en").default // eslint-disable-line no-unused-expressions
-      require("@formatjs/intl-datetimeformat/add-all-tz").default // eslint-disable-line no-unused-expressions
-    } else {
-      require("@formatjs/intl-getcanonicallocales/polyfill")
-      require("@formatjs/intl-locale/polyfill")
-      require("@formatjs/intl-datetimeformat/polyfill")
-      require("@formatjs/intl-datetimeformat/locale-data/en")
-      require("@formatjs/intl-datetimeformat/add-all-tz")
-    }
+    require("@formatjs/intl-getcanonicallocales/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-locale/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/polyfill").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/locale-data/en").default // eslint-disable-line no-unused-expressions
+    require("@formatjs/intl-datetimeformat/add-all-tz").default // eslint-disable-line no-unused-expressions
   }
 }
 
@@ -74,7 +43,7 @@ const getLocale = (): Locale => {
     case "nb":
       return nb
     default:
-      return en
+      return enUS
   }
 }
 
@@ -104,22 +73,42 @@ export const formatDuration = (
     end,
   })
 
-  const diff = formatDurationFns(duration, { delimiter: "," })
-  if (!diff) return `${prefix}00:00:00:00`
-  const diffArray = diff.split(",")
-  if (!diff.includes("second")) diffArray.push("00 seconds")
-  if (!diff.includes("minute")) diffArray.splice(diffArray.length - 1, 0, "00 minutes")
-  if (!diff.includes("hour")) diffArray.splice(diffArray.length - 2, 0, "00 hours")
-  if (!diff.includes("day")) diffArray.splice(diffArray.length - 3, 0, "00 days")
+  const formatNumber = (num: number | undefined) =>
+    Math.abs(num || 0)
+      .toString()
+      .padStart(2, "0")
+  return `${prefix}${formatNumber(duration.days)}:${formatNumber(duration.hours)}:${formatNumber(
+    duration.minutes,
+  )}:${formatNumber(duration.seconds)}`
+}
 
-  const result = diffArray
-    .map((item) => {
-      const value = item.trim().split(" ")[0]
-      return value.length === 1 ? `0${value}` : value
-    })
-    .join(":")
+export const formatSightingDateTime = (
+  date: string,
+  timeFormat: string,
+  timezone: string,
+  isUS: boolean,
+) => {
+  const today = formatDateWithTZ(
+    new Date().toISOString(),
+    `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}`,
+    timezone,
+  )
+  const yesterday = formatDateWithTZ(
+    addDays(new Date(), 1).toISOString(),
+    `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}`,
+    timezone,
+  )
 
-  return `${prefix}${result}`
+  const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
+  const formatted = formatDateWithTZ(date, isUS ? "MMM dd, yyyy" : "dd MMM yyyy", timezone)
+  const shortTZ = getShortTZ(timezone)
+  const formattedTime = formatDateWithTZ(date, tf, timezone)
+
+  if (formatted === today)
+    return `${translate("homeScreen.selectSightings.today")}, ${formattedTime} ${shortTZ}`
+  if (formatted === yesterday)
+    return `${translate("homeScreen.selectSightings.tomorrow")}, ${formattedTime} ${shortTZ}`
+  return `${formatted}, ${formattedTime} ${shortTZ}`
 }
 
 export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {

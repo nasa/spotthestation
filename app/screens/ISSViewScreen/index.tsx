@@ -43,7 +43,7 @@ import { useStores } from "../../models"
 import Snackbar from "react-native-snackbar"
 import RecordScreen, { RecordingResult } from "react-native-record-screen"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
-import analytics from "@react-native-firebase/analytics"
+import { logShare, getAnalytics } from "@react-native-firebase/analytics"
 import { translate } from "../../i18n"
 import {
   interpolateColor,
@@ -62,7 +62,7 @@ import {
   watchCalibrationState,
 } from "../../utils/orientation"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { NavigationProp, useNavigation, useRoute } from "@react-navigation/native"
 import * as storage from "../../utils/storage"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
@@ -226,7 +226,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     units,
   } = useStores()
   const route = useRoute<any>()
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
 
   const [isLocationSet, setIsLocationSet] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(true)
@@ -600,10 +600,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const onDetailsLinkPress = useCallback(() => {
     requestCloseModal("details")
-    navigation.navigate(
-      "ResourcesScreens" as never,
-      { screen: "Web", url: "https://www.nasa.gov/spot-the-station/#SPOT" } as never,
-    )
+    navigation.navigate("ResourcesScreens", {
+      screen: "Web",
+      url: "https://www.nasa.gov/spot-the-station/#SPOT",
+    })
   }, [])
 
   const onShare = async () => {
@@ -629,9 +629,11 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
       const { success } = await Share.open(shareOptions)
       if (success) {
-        analytics()
-          .logShare({ content_type: mediaType, item_id: "iss_capture_moment", method: "" })
-          .catch(() => null)
+        logShare(getAnalytics(), {
+          content_type: mediaType,
+          item_id: "iss_capture_moment",
+          method: "",
+        }).catch(() => null)
 
         Snackbar.show({
           text: translate("snackBar.shared"),

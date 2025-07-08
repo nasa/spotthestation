@@ -31,7 +31,7 @@ import debounce from "lodash/debounce"
 import { v4 as uuidv4 } from "uuid"
 import { useStores } from "../models"
 
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { translate } from "../i18n"
 
 import { api, LocationType, OSMSearchResult, PlaceDetails } from "../services/api"
@@ -78,7 +78,7 @@ export function SelectLocation({
     setIsCurrentLocationUpdating,
     isCurrentLocationUpdating,
   } = useStores()
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const [isFocus, setIsFocus] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [toRemove, setToRemove] = useState<LocationType>(null)
@@ -301,10 +301,10 @@ export function SelectLocation({
             icon="settings"
             title="settings.locationSettings"
             onPress={() => {
-              navigation.navigate(
-                "SettingsScreens" as never,
-                { screen: "LocationSettings", fromHomeScreen: true } as never,
-              )
+              navigation.navigate("SettingsScreens", {
+                screen: "LocationSettings",
+                fromHomeScreen: true,
+              })
               onClose()
             }}
             withUnderline={false}
@@ -362,10 +362,10 @@ export function SelectLocation({
                         setToRemove(location)
                       }}
                       onEdit={() => {
-                        navigation.navigate(
-                          "SettingsScreens" as never,
-                          { screen: "AddNewLocation", defaultLocation: location } as never,
-                        )
+                        navigation.navigate("SettingsScreens", {
+                          screen: "AddNewLocation",
+                          defaultLocation: location,
+                        })
                         onClose()
                       }}
                     />

@@ -1,5 +1,4 @@
 // we always make sure 'react-native' gets included first
-import '@testing-library/react-native/extend-expect'
 import * as ReactNative from "react-native"
 import mas from "@react-native-async-storage/async-storage/jest/async-storage-mock"
 import i18n from "i18n-js"
@@ -289,13 +288,14 @@ jest.mock("i18n-js", () => ({
 }))
 
 const mockAnalytics = {
+  getAnalytics: jest.fn(() => 'analytics'),
   setUserId: jest.fn().mockResolvedValue(null),
   logTutorialBegin: jest.fn().mockResolvedValue(null),
   logTutorialComplete: jest.fn().mockResolvedValue(null),
   logShare: jest.fn().mockResolvedValue(null),
 }
 
-jest.mock("@react-native-firebase/analytics", () => () => mockAnalytics)
+jest.mock("@react-native-firebase/analytics", () => mockAnalytics)
 
 jest.mock("@expo-google-fonts/space-grotesk", () => ({}))
 
@@ -341,8 +341,6 @@ jest.mock("react-native-gesture-handler", () => ({
   ...Object.assign({}, jest.requireActual("react-native-gesture-handler")),
   GestureHandlerRootView: ({ children }) => <>{children}</>,
 }))
-
-declare const tron // eslint-disable-line @typescript-eslint/no-unused-vars
 
 declare global {
   let __TEST__

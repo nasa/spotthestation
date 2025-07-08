@@ -4,3 +4,5 @@
 
 #import <React/RCTBridgeModule.h>
 #import <React/RCTViewManager.h>
+#import "Orientation.h"
+#import "RNCConfig.h"

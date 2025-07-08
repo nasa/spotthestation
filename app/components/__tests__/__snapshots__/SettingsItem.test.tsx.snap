@@ -73,20 +73,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/settings.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#ADADAE",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#ADADAE",
+              },
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#ADADAE"
       />
@@ -155,20 +168,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/caretRight.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#353739",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#353739",
+              },
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#353739"
       />

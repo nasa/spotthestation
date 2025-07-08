@@ -214,6 +214,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
       style={{ backgroundColor: colors.palette.neutral900 }}
       statusBarStyle="light"
       isPortrait={false}
+      KeyboardAvoidingViewProps={{ behavior: undefined }}
     >
       <View
         style={[

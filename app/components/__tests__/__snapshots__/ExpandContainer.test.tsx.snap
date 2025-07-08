@@ -122,24 +122,37 @@ exports[`ExpandContainer renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/chevron-down.png",
             },
           ]
         }
         style={
-          {
-            "height": 26,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "transform": [
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
               {
-                "rotate": "180deg",
+                "resizeMode": "contain",
+              },
+              undefined,
+              {
+                "height": 26,
+                "width": 26,
+              },
+              {
+                "transform": [
+                  {
+                    "rotate": "180deg",
+                  },
+                ],
               },
             ],
-            "width": 26,
-          }
+          ]
         }
       />
     </View>

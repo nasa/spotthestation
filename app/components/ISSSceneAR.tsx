@@ -42,6 +42,7 @@ import Reanimated, {
   useDerivedValue,
   runOnJS,
 } from "react-native-reanimated"
+import { useIsForeground } from "../utils/useIsForeground"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -123,6 +124,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   const deadRef = useRef<boolean>(false)
   const realCameraRef = useRef<Camera>(null)
   const isFocused = useIsFocused()
+  const isForeground = useIsForeground()
   const zoom = useSharedValue(1)
   const previousZoom = useSharedValue(1)
 
@@ -367,7 +369,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   const [stillImage, setStillImage] = useState(null)
 
   useEffect(() => {
-    if (Platform.OS === "android") setIsLayoutUpdating(true)
+    setIsLayoutUpdating(true)
   }, [layout])
 
   useEffect(() => {
@@ -434,7 +436,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
                 lowLightBoost={device.supportsLowLightBoost}
                 style={StyleSheet.absoluteFill}
                 device={device}
-                isActive={isFocused}
+                isActive={isFocused && isForeground}
                 format={activeFormat}
                 photo={true}
                 frameProcessor={undefined}

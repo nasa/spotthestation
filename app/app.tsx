@@ -22,9 +22,7 @@ import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./components/ErrorBoundary"
 import * as storage from "./utils/storage"
 import { customFontsToLoad } from "./theme"
-import { setupReactotron } from "./services/reactotron"
 import Config from "./config"
-import { enableLatestRenderer } from "react-native-maps"
 import * as StoreReview from "expo-store-review"
 import i18n from "i18n-js"
 import { Alert, AppState, Platform, ViewStyle } from "react-native"
@@ -43,22 +41,6 @@ const codePushConfig = {
 
 initPolyfills()
 initCrashReporting()
-enableLatestRenderer()
-
-// Set up Reactotron, which is a free desktop app for inspecting and debugging
-// React Native apps. Learn more here: https://github.com/infinitered/reactotron
-setupReactotron({
-  // clear the Reactotron window when the app loads/reloads
-  clearOnLoad: true,
-  // generally going to be localhost
-  host: "localhost",
-  // Reactotron can monitor AsyncStorage for you
-  useAsyncStorage: true,
-  // log the initial restored state from AsyncStorage
-  logInitialState: true,
-  // log out any snapshots as they happen (this is useful for debugging but slow)
-  logSnapshots: false,
-})
 
 // Web linking configuration
 const prefix = Linking.createURL("/")
@@ -287,6 +269,7 @@ function App(props: AppProps) {
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
+
   if (
     !rehydrated ||
     !isNavigationStateRestored ||

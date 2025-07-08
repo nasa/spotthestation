@@ -5,7 +5,7 @@
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,

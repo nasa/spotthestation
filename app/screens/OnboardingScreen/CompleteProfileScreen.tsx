@@ -17,7 +17,7 @@ import * as storage from "../../utils/storage"
 import Snackbar from "react-native-snackbar"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
-import analytics from "@react-native-firebase/analytics"
+import { getAnalytics, logTutorialComplete } from "@react-native-firebase/analytics"
 import { translate } from "../../i18n"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 import { LocationType } from "../../services/api"
@@ -50,9 +50,7 @@ export const CompleteProfileScreen = observer(function CompleteProfileScreen() {
   const handleNext = useCallback(() => setStep(step + 1), [step])
 
   const handleDone = () => {
-    analytics()
-      .logTutorialComplete()
-      .catch(() => null)
+    logTutorialComplete(getAnalytics()).catch(() => null)
     storage
       .save(storage.KEYS.IS_SETTINGS_COMPLETED, true)
       .then(() => skipOnboarding())

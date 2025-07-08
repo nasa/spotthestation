@@ -27,19 +27,25 @@ exports[`FlatMap renders without issues 1`] = `
     source={
       [
         {
-          "height": undefined,
-          "uri": undefined,
-          "width": undefined,
+          "testUri": "../../../assets/images/World-Map.jpg",
         },
       ]
     }
     style={
-      {
-        "height": "100%",
-        "overflow": "hidden",
-        "position": "absolute",
-        "width": "100%",
-      }
+      [
+        {
+          "height": undefined,
+          "width": undefined,
+        },
+        {
+          "overflow": "hidden",
+        },
+        {
+          "height": "100%",
+          "position": "absolute",
+          "width": "100%",
+        },
+      ]
     }
   />
   <RNSVGSvgView

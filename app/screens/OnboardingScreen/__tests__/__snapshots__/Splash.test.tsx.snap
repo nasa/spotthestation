@@ -17,7 +17,11 @@ exports[`Splash renders correctly 1`] = `
   >
     <Image
       resizeMode="cover"
-      source={1}
+      source={
+        {
+          "testUri": "../../../assets/images/bg.png",
+        }
+      }
       style={
         [
           {
@@ -50,20 +54,26 @@ exports[`Splash renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/images/nasa-logo.png",
           },
         ]
       }
       style={
-        {
-          "height": 158,
-          "marginLeft": 52,
-          "marginTop": 52,
-          "overflow": "hidden",
-          "width": 158,
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          {
+            "height": 158,
+            "marginLeft": 52,
+            "marginTop": 52,
+            "width": 158,
+          },
+        ]
       }
     />
     <RCTImageView
@@ -81,20 +91,24 @@ exports[`Splash renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/images/iss-with-path.png",
           },
         ]
       }
       style={
-        {
-          "height": undefined,
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": "26%",
-          "width": undefined,
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          {
+            "position": "absolute",
+            "top": "26%",
+          },
+        ]
       }
     />
     <View
@@ -220,23 +234,55 @@ exports[`Splash renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "height": 92,
+                  "width": 92,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#1E2022",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 92,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 92,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "height": 92,
+                  "width": 92,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -256,25 +302,39 @@ exports[`Splash renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/back.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "transform": [
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
                         {
-                          "rotate": "180deg",
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        {
+                          "transform": [
+                            {
+                              "rotate": "180deg",
+                            },
+                          ],
                         },
                       ],
-                      "width": 29,
-                    }
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />

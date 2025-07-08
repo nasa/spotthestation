@@ -1,0 +1,45 @@
+diff --git a/node_modules/react-native-record-screen/android/src/main/java/com/recordscreen/RecordScreenPackage.kt b/node_modules/react-native-record-screen/android/src/main/java/com/recordscreen/RecordScreenPackage.kt
+index 6e8c32b..b34014d 100644
+--- a/node_modules/react-native-record-screen/android/src/main/java/com/recordscreen/RecordScreenPackage.kt
++++ b/node_modules/react-native-record-screen/android/src/main/java/com/recordscreen/RecordScreenPackage.kt
+@@ -1,7 +1,6 @@
+ package com.recordscreen
+ 
+ import android.os.Bundle
+-import androidx.appcompat.app.AppCompatActivity
+ import com.facebook.react.ReactActivity
+ import java.util.Arrays
+ import java.util.Collections
+@@ -12,7 +11,7 @@ import com.facebook.react.bridge.ReactApplicationContext
+ import com.facebook.react.uimanager.ViewManager
+ import com.facebook.react.bridge.JavaScriptModule
+ 
+-class RecordScreenPackage : ReactPackage, AppCompatActivity() {
++class RecordScreenPackage : ReactPackage {
+   override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
+     return Arrays.asList<NativeModule>(RecordScreenModule(reactContext))
+   }
+diff --git a/node_modules/react-native-record-screen/ios/RecordScreen.mm b/node_modules/react-native-record-screen/ios/RecordScreen.mm
+index 67ac51f..a23778e 100644
+--- a/node_modules/react-native-record-screen/ios/RecordScreen.mm
++++ b/node_modules/react-native-record-screen/ios/RecordScreen.mm
+@@ -290,12 +290,12 @@ - (int) adjustMultipleOf2:(int)value;
+ }
+ 
+ // Don't compile this code when we build for the old architecture.
+-#ifdef RCT_NEW_ARCH_ENABLED
+-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+-    (const facebook::react::ObjCTurboModule::InitParams &)params
+-{
+-    return std::make_shared<facebook::react::NativeRecordScreenSpecJSI>(params);
+-}
+-#endif
++// #ifdef RCT_NEW_ARCH_ENABLED
++// - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
++//     (const facebook::react::ObjCTurboModule::InitParams &)params
++// {
++//     return std::make_shared<facebook::react::NativeRecordScreenSpecJSI>(params);
++// }
++// #endif
+ 
+ @end

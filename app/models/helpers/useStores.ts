@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { setReactotronRootStore } from "../../services/reactotron"
 import { RootStore, RootStoreModel } from "../RootStore"
 import { setupRootStore } from "./setupRootStore"
 
@@ -45,8 +44,7 @@ export const useStores = () => useContext(RootStoreContext)
 
 /**
  * Used only in the app.tsx file, this hook sets up the RootStore
- * and then rehydrates it. It connects everything with Reactotron
- * and then lets the app know that everything is ready to go.
+ * and then rehydrates it. It lets the app know that everything is ready to go.
  */
 export const useInitialRootStore = (callback: () => void | Promise<void>) => {
   const rootStore = useStores()
@@ -57,18 +55,15 @@ export const useInitialRootStore = (callback: () => void | Promise<void>) => {
     let _unsubscribe: () => void
     ;(async () => {
       // set up the RootStore (returns the state restored from AsyncStorage)
-      const { restoredState, unsubscribe } = await setupRootStore(rootStore)
+      const { unsubscribe } = await setupRootStore(rootStore)
       _unsubscribe = unsubscribe
-
-      // reactotron integration with the MST root store (DEV only)
-      setReactotronRootStore(rootStore, restoredState)
 
       // let the app know we've finished rehydrating
       setRehydrated(true)
 
       // invoke the callback, if provided
       if (callback) await callback()
-    })().catch((e) => console.tron.log(e))
+    })().catch((e) => console.error(e))
 
     return () => {
       // cleanup

@@ -9,3 +9,7 @@ export function msToMph(ms: number) {
 export function kgToLbs(kg: number) {
   return kg * 2.20462
 }
+
+export function mToFt(m: number) {
+  return m * 3.28084
+}

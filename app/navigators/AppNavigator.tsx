@@ -69,13 +69,10 @@ const navigateToAR = async (location) => {
   let retries = 3
   while (retries > 0) {
     if (navigationRef.isReady() && navigationRef.current.getRootState()) {
-      navigationRef.navigate(
-        "Main" as never,
-        {
-          screen: "ISSView",
-          params: { info: true, location },
-        } as never,
-      )
+      navigationRef.navigate("Main", {
+        screen: "ISSView",
+        params: { info: true, location },
+      })
       break
     }
 

@@ -58,23 +58,49 @@ exports[`ISSNowScreen renders correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -94,20 +120,33 @@ exports[`ISSNowScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -225,23 +264,49 @@ exports[`ISSNowScreen renders correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -261,20 +326,33 @@ exports[`ISSNowScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -376,23 +454,65 @@ exports[`ISSNowScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -475,23 +595,57 @@ exports[`ISSNowScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -569,23 +723,57 @@ exports[`ISSNowScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -681,23 +869,53 @@ exports[`ISSNowScreen renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -771,24 +989,61 @@ exports[`ISSNowScreen renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -892,23 +1147,53 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -928,20 +1213,33 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/x.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -1059,23 +1357,53 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -1095,20 +1423,33 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -1218,23 +1559,65 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1317,23 +1700,57 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1411,23 +1828,57 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1527,23 +1978,53 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -1617,24 +2098,61 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -1735,23 +2253,53 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -1771,20 +2319,33 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/x.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -1902,23 +2463,53 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -1938,20 +2529,33 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -2053,23 +2657,65 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -2152,23 +2798,57 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -2246,23 +2926,57 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -2358,23 +3072,53 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -2448,24 +3192,61 @@ exports[`ISSNowScreen renders correctly in fullscreen mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -2569,23 +3350,49 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -2605,20 +3412,33 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -2736,23 +3556,49 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -2772,20 +3618,33 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -2895,23 +3754,65 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -2994,23 +3895,57 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -3088,23 +4023,57 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -3204,23 +4173,53 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -3294,24 +4293,61 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -3412,23 +4448,49 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -3448,20 +4510,33 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -3579,23 +4654,49 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -3615,20 +4716,33 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -3713,23 +4827,57 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -3807,23 +4955,65 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -3906,23 +5096,57 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -4018,23 +5242,53 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -4108,24 +5362,61 @@ exports[`ISSNowScreen renders globe view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -4226,23 +5517,49 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -4262,20 +5579,33 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -4393,23 +5723,49 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -4429,20 +5785,33 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -4544,23 +5913,65 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -4643,23 +6054,57 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -4737,23 +6182,57 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -4849,23 +6328,53 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -4939,24 +6448,61 @@ exports[`ISSNowScreen renders map view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -5057,23 +6603,49 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -5093,20 +6665,33 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -5224,23 +6809,49 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#1E2022",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 60,
-            "justifyContent": "center",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 60,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            false,
+            undefined,
+          ]
         }
       >
         <div>
@@ -5260,20 +6871,33 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/pin.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -5358,23 +6982,57 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -5452,23 +7110,57 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -5546,23 +7238,65 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 58,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 58,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "transparent",
+                  "height": 58,
+                  "width": 58,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -5663,24 +7397,61 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              [
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+              ],
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "opacity": 0.25,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              {
+                "opacity": 0.25,
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -5754,23 +7525,53 @@ exports[`ISSNowScreen renders satellite view correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "rgba(255, 255, 255, 0.2)",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              },
+              undefined,
+            ]
           }
         >
           <div>
@@ -5872,23 +7673,49 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              false,
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#1E2022",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              false,
+              undefined,
+            ]
           }
         >
           <div>
@@ -5908,20 +7735,33 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/maximize.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#FFFFFF",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#FFFFFF",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#FFFFFF"
               />
@@ -6039,23 +7879,49 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
       >
         <View
           collapsable={false}
+          jestAnimatedProps={
+            {
+              "value": {},
+            }
+          }
           jestAnimatedStyle={
             {
               "value": {},
             }
           }
+          jestInlineStyle={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              false,
+              undefined,
+            ]
+          }
           style={
-            {
-              "alignItems": "center",
-              "backgroundColor": "#1E2022",
-              "borderRadius": 143,
-              "display": "flex",
-              "height": 60,
-              "justifyContent": "center",
-              "overflow": "hidden",
-              "position": "relative",
-              "width": 60,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#1E2022",
+                "borderRadius": 143,
+                "display": "flex",
+                "height": 60,
+                "justifyContent": "center",
+                "overflow": "hidden",
+                "position": "relative",
+                "width": 60,
+              },
+              false,
+              undefined,
+            ]
           }
         >
           <div>
@@ -6075,20 +7941,33 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/pin.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 29,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#FFFFFF",
-                    "width": 29,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#FFFFFF",
+                      },
+                      {
+                        "height": 29,
+                        "width": 29,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#FFFFFF"
               />
@@ -6608,23 +8487,65 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
           >
             <View
               collapsable={false}
+              jestAnimatedProps={
+                {
+                  "value": {},
+                }
+              }
               jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
+              jestInlineStyle={
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  [
+                    {
+                      "backgroundColor": "transparent",
+                      "height": 58,
+                      "width": 58,
+                    },
+                    {
+                      "backgroundColor": "#FFFFFF",
+                    },
+                  ],
+                  undefined,
+                ]
+              }
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 58,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 58,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                  undefined,
+                ]
               }
             >
               <div>
@@ -6707,23 +8628,57 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
           >
             <View
               collapsable={false}
+              jestAnimatedProps={
+                {
+                  "value": {},
+                }
+              }
               jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
+              jestInlineStyle={
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  undefined,
+                ]
+              }
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 58,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 58,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  undefined,
+                ]
               }
             >
               <div>
@@ -6801,23 +8756,57 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
           >
             <View
               collapsable={false}
+              jestAnimatedProps={
+                {
+                  "value": {},
+                }
+              }
               jestAnimatedStyle={
                 {
                   "value": {},
                 }
               }
+              jestInlineStyle={
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  undefined,
+                ]
+              }
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "borderRadius": 143,
-                  "display": "flex",
-                  "height": 58,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "position": "relative",
-                  "width": 58,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#1E2022",
+                    "borderRadius": 143,
+                    "display": "flex",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "width": 60,
+                  },
+                  {
+                    "backgroundColor": "transparent",
+                    "height": 58,
+                    "width": 58,
+                  },
+                  undefined,
+                ]
               }
             >
               <div>
@@ -6913,23 +8902,53 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -7003,24 +9022,61 @@ exports[`ISSNowScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  },
+                  {
+                    "opacity": 0.25,
+                  },
+                ],
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 60,
-                "justifyContent": "center",
-                "opacity": 0.25,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 60,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "opacity": 0.25,
+                },
+                undefined,
+              ]
             }
           >
             <div>

@@ -122,20 +122,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/map-pin-outlined.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -204,20 +217,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -296,20 +322,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/bell-ringing.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -378,20 +417,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -470,20 +522,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/shield.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -552,20 +617,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -644,20 +722,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/mail.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -726,20 +817,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -818,20 +922,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/compass.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -900,20 +1017,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -992,20 +1122,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/tutorial.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -1074,20 +1217,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -1166,20 +1322,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/share.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -1248,20 +1417,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />
@@ -1340,20 +1522,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/globe.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -1506,20 +1701,33 @@ exports[`SettingsScreen renders correctly 1`] = `
                     source={
                       [
                         {
-                          "height": undefined,
-                          "uri": undefined,
-                          "width": undefined,
+                          "testUri": "../../../assets/icons/chevron-down.png",
                         },
                       ]
                     }
                     style={
-                      {
-                        "height": 40,
-                        "overflow": "hidden",
-                        "resizeMode": "contain",
-                        "tintColor": "#ADADAE",
-                        "width": 40,
-                      }
+                      [
+                        {
+                          "height": undefined,
+                          "width": undefined,
+                        },
+                        {
+                          "overflow": "hidden",
+                        },
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 40,
+                            "width": 40,
+                          },
+                          undefined,
+                        ],
+                      ]
                     }
                     tintColor="#ADADAE"
                   />
@@ -1601,20 +1809,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/clock.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -1767,20 +1988,33 @@ exports[`SettingsScreen renders correctly 1`] = `
                     source={
                       [
                         {
-                          "height": undefined,
-                          "uri": undefined,
-                          "width": undefined,
+                          "testUri": "../../../assets/icons/chevron-down.png",
                         },
                       ]
                     }
                     style={
-                      {
-                        "height": 40,
-                        "overflow": "hidden",
-                        "resizeMode": "contain",
-                        "tintColor": "#ADADAE",
-                        "width": 40,
-                      }
+                      [
+                        {
+                          "height": undefined,
+                          "width": undefined,
+                        },
+                        {
+                          "overflow": "hidden",
+                        },
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 40,
+                            "width": 40,
+                          },
+                          undefined,
+                        ],
+                      ]
                     }
                     tintColor="#ADADAE"
                   />
@@ -1862,20 +2096,33 @@ exports[`SettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/maximize.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -2028,20 +2275,33 @@ exports[`SettingsScreen renders correctly 1`] = `
                     source={
                       [
                         {
-                          "height": undefined,
-                          "uri": undefined,
-                          "width": undefined,
+                          "testUri": "../../../assets/icons/chevron-down.png",
                         },
                       ]
                     }
                     style={
-                      {
-                        "height": 40,
-                        "overflow": "hidden",
-                        "resizeMode": "contain",
-                        "tintColor": "#ADADAE",
-                        "width": 40,
-                      }
+                      [
+                        {
+                          "height": undefined,
+                          "width": undefined,
+                        },
+                        {
+                          "overflow": "hidden",
+                        },
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 40,
+                            "width": 40,
+                          },
+                          undefined,
+                        ],
+                      ]
                     }
                     tintColor="#ADADAE"
                   />

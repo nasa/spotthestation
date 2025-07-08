@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL, { MapState } from "@rnmapbox/maps"
 import Config from "../config"
-import { LatLng } from "react-native-maps"
 import { colors } from "../theme"
 import { computeOld, toGeoJSON } from "../utils/terminator"
 import { Vector3 } from "three"
@@ -12,6 +11,11 @@ import { CameraRef } from "@rnmapbox/maps/lib/typescript/src/components/Camera"
 
 const positionMarker = require("../../assets/icons/position.png")
 const pinMarker = require("../../assets/icons/fi_map-pin.png")
+
+interface LatLng {
+  latitude: number
+  longitude: number
+}
 
 interface MapBoxProps {
   style?: ViewStyle

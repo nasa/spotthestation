@@ -87,20 +87,33 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretLeft.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#DEDDDE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#DEDDDE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#DEDDDE"
             />
@@ -243,20 +256,33 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/pin.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 35,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#ADADAE",
-                    "width": 35,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#ADADAE",
+                      },
+                      {
+                        "height": 35,
+                        "width": 35,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#ADADAE"
               />
@@ -325,20 +351,33 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
                 source={
                   [
                     {
-                      "height": undefined,
-                      "uri": undefined,
-                      "width": undefined,
+                      "testUri": "../../../assets/icons/caretRight.png",
                     },
                   ]
                 }
                 style={
-                  {
-                    "height": 35,
-                    "overflow": "hidden",
-                    "resizeMode": "contain",
-                    "tintColor": "#353739",
-                    "width": 35,
-                  }
+                  [
+                    {
+                      "height": undefined,
+                      "width": undefined,
+                    },
+                    {
+                      "overflow": "hidden",
+                    },
+                    [
+                      {
+                        "resizeMode": "contain",
+                      },
+                      {
+                        "tintColor": "#353739",
+                      },
+                      {
+                        "height": 35,
+                        "width": 35,
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
                 tintColor="#353739"
               />
@@ -390,23 +429,57 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
   >
     <View
       collapsable={false}
+      jestAnimatedProps={
+        {
+          "value": {},
+        }
+      }
       jestAnimatedStyle={
         {
           "value": {},
         }
       }
+      jestInlineStyle={
+        [
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          },
+          {
+            "backgroundColor": "#0B3D91",
+            "height": 92,
+            "width": 92,
+          },
+          undefined,
+        ]
+      }
       style={
-        {
-          "alignItems": "center",
-          "backgroundColor": "#0B3D91",
-          "borderRadius": 143,
-          "display": "flex",
-          "height": 92,
-          "justifyContent": "center",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": 92,
-        }
+        [
+          {
+            "alignItems": "center",
+            "backgroundColor": "#1E2022",
+            "borderRadius": 143,
+            "display": "flex",
+            "height": 60,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 60,
+          },
+          {
+            "backgroundColor": "#0B3D91",
+            "height": 92,
+            "width": 92,
+          },
+          undefined,
+        ]
       }
     >
       <div>
@@ -426,20 +499,33 @@ exports[`LocationSettingsScreen renders correctly 1`] = `
             source={
               [
                 {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "testUri": "../../../assets/icons/plus-circle.png",
                 },
               ]
             }
             style={
-              {
-                "height": 40,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#DEDDDE",
-                "width": 40,
-              }
+              [
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                {
+                  "overflow": "hidden",
+                },
+                [
+                  {
+                    "resizeMode": "contain",
+                  },
+                  {
+                    "tintColor": "#DEDDDE",
+                  },
+                  {
+                    "height": 40,
+                    "width": 40,
+                  },
+                  undefined,
+                ],
+              ]
             }
             tintColor="#DEDDDE"
           />

@@ -12,7 +12,7 @@ module.exports = {
     '^[./a-zA-Z0-9$_-]+\\.mtl$': '<rootDir>/test/mockFile.tsx',
   },
   transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!@react-native|react-native|@expo-.*|expo-.*|@react-navigation)",
+    "<rootDir>/node_modules/(?!@react-native|react-native|@expo-.*|expo-.*|expo|@react-navigation)",
   ],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/e2e", "/detox", "@react-native", "<rootDir>/test", "<rootDir>/assets", "<rootDir>/app/services/reactotron"],
   coveragePathIgnorePatterns: [

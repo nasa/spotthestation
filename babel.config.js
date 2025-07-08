@@ -6,6 +6,7 @@ const plugins = [
     },
   ],
   ["@babel/plugin-proposal-optional-catch-binding"],
+  ["@babel/plugin-transform-export-namespace-from"],
   ["module:react-native-dotenv",
     {
       moduleName: "react-native-dotenv",

@@ -16,20 +16,26 @@ exports[`renders correctly 1`] = `
   source={
     [
       {
-        "height": undefined,
-        "uri": undefined,
-        "width": undefined,
+        "testUri": "../../../assets/images/nasa-logo.png",
       },
     ]
   }
   style={
-    {
-      "height": 158,
-      "marginLeft": 52,
-      "marginTop": 52,
-      "overflow": "hidden",
-      "width": 158,
-    }
+    [
+      {
+        "height": undefined,
+        "width": undefined,
+      },
+      {
+        "overflow": "hidden",
+      },
+      {
+        "height": 158,
+        "marginLeft": 52,
+        "marginTop": 52,
+        "width": 158,
+      },
+    ]
   }
 />
 `;

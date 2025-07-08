@@ -60,20 +60,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/caretLeft.png",
             },
           ]
         }
         style={
-          {
-            "height": 35,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#DEDDDE",
-            "width": 35,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#DEDDDE",
+              },
+              {
+                "height": 35,
+                "width": 35,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#DEDDDE"
       />

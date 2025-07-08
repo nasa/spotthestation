@@ -45,20 +45,33 @@ exports[`Sightings renders correctly 1`] = `
       source={
         [
           {
-            "height": undefined,
-            "uri": undefined,
-            "width": undefined,
+            "testUri": "../../../assets/icons/x.png",
           },
         ]
       }
       style={
-        {
-          "height": 52,
-          "overflow": "hidden",
-          "resizeMode": "contain",
-          "tintColor": "#ADADAE",
-          "width": 52,
-        }
+        [
+          {
+            "height": undefined,
+            "width": undefined,
+          },
+          {
+            "overflow": "hidden",
+          },
+          [
+            {
+              "resizeMode": "contain",
+            },
+            {
+              "tintColor": "#ADADAE",
+            },
+            {
+              "height": 52,
+              "width": 52,
+            },
+            undefined,
+          ],
+        ]
       }
       tintColor="#ADADAE"
     />
@@ -247,6 +260,11 @@ exports[`Sightings renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {
@@ -254,23 +272,53 @@ exports[`Sightings renders correctly 1`] = `
                 },
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "borderColor": "rgba(0, 0, 0, 0)",
+                  "height": "100%",
+                  "overflow": "hidden",
+                  "paddingEnd": 6,
+                  "paddingStart": 6,
+                  "position": "absolute",
+                  "width": "100%",
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                undefined,
+              ]
+            }
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderColor": "rgba(0, 0, 0, 0)",
-                "height": "100%",
-                "opacity": 0,
-                "overflow": "hidden",
-                "paddingEnd": 6,
-                "paddingStart": 6,
-                "position": "absolute",
-                "width": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "borderColor": "rgba(0, 0, 0, 0)",
+                  "height": "100%",
+                  "overflow": "hidden",
+                  "paddingEnd": 6,
+                  "paddingStart": 6,
+                  "position": "absolute",
+                  "width": "100%",
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                undefined,
+                {
+                  "opacity": 0,
+                },
+              ]
             }
           />
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {
@@ -279,16 +327,45 @@ exports[`Sightings renders correctly 1`] = `
                 },
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "borderRadius": 17,
+                  "height": 29,
+                  "position": "absolute",
+                  "width": 29,
+                },
+                undefined,
+                {
+                  "height": 29,
+                  "width": 29,
+                },
+                {
+                  "backgroundColor": "#F4F2F1",
+                },
+              ]
+            }
             style={
-              {
-                "backgroundColor": "#F4F2F1",
-                "borderRadius": 17,
-                "height": 29,
-                "marginStart": 6,
-                "position": "absolute",
-                "start": "0%",
-                "width": 29,
-              }
+              [
+                {
+                  "borderRadius": 17,
+                  "height": 29,
+                  "position": "absolute",
+                  "width": 29,
+                },
+                undefined,
+                {
+                  "marginStart": 6,
+                  "start": "0%",
+                },
+                {
+                  "height": 29,
+                  "width": 29,
+                },
+                {
+                  "backgroundColor": "#F4F2F1",
+                },
+              ]
             }
           />
         </View>
@@ -445,20 +522,33 @@ exports[`Sightings renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/chevron-down.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 40,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 40,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -605,20 +695,33 @@ exports[`Sightings renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/chevron-down.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 40,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 40,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -777,20 +880,33 @@ exports[`Sightings renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/chevron-down.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 40,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 40,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -937,20 +1053,33 @@ exports[`Sightings renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/chevron-down.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 40,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 40,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -1057,404 +1186,480 @@ exports[`Sightings renders correctly 1`] = `
             "paddingHorizontal": 52,
           }
         }
+        data={
+          [
+            {
+              "cloudCover": 0,
+              "date": "2020-12-12T10:10:10",
+              "dayStage": 0,
+              "maxAltitude": 0,
+              "maxAzimuth": 0,
+              "maxHeight": 20,
+              "minAltitude": 0,
+              "minAzimuth": 0,
+              "notify": true,
+              "visible": 5,
+            },
+            {
+              "cloudCover": 0,
+              "date": "2020-12-13T10:15:10",
+              "dayStage": 1,
+              "maxAltitude": 0,
+              "maxAzimuth": 0,
+              "maxHeight": 20,
+              "minAltitude": 0,
+              "minAzimuth": 0,
+              "notify": false,
+              "visible": 5,
+            },
+            {
+              "cloudCover": 0,
+              "date": "2020-12-24T10:20:10",
+              "dayStage": 2,
+              "maxAltitude": 0,
+              "maxAzimuth": 0,
+              "maxHeight": 20,
+              "minAltitude": 0,
+              "minAzimuth": 0,
+              "notify": true,
+              "visible": 5,
+            },
+          ]
+        }
+        getItem={[Function]}
+        getItemCount={[Function]}
         indicatorStyle="white"
+        initialNumToRender={5}
+        keyExtractor={[Function]}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
         persistentScrollbar={true}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={0.0001}
+        stickyHeaderIndices={[]}
+        viewabilityConfigCallbackPairs={[]}
       >
         <View>
           <View
-            accessibilityHint="pressable list item"
-            accessibilityLabel="pressable list item"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "flex-start",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingTop": 23,
-                "width": "100%",
-              }
-            }
+            onFocusCapture={[Function]}
+            onLayout={[Function]}
+            style={null}
           >
-            <View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="#ADADAE"
-                />
-              </View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="#ADADAE"
-                />
-              </View>
-            </View>
             <View
+              accessibilityHint="pressable list item"
+              accessibilityLabel="pressable list item"
+              accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                [
-                  {
-                    "alignItems": "stretch",
-                    "borderBottomWidth": 2,
-                    "borderColor": "#353739",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "marginLeft": 15,
-                    "paddingBottom": 23,
-                  },
-                  undefined,
-                ]
+                {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingTop": 23,
+                  "width": "100%",
+                }
               }
             >
-              <View
-                accessibilityHint="list item body"
-                accessibilityLabel="list item body"
-                accessibilityRole="text"
-                accessible={true}
-                style={
-                  {
-                    "flex": 1,
-                    "flexDirection": "column",
-                  }
-                }
-              >
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+              <View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/clock.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 26,
-                        "lineHeight": 32,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  12 Dec 2020, 10:10 AM UTC
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
                       {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/moon.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.maxHeight undefined 20°
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.cloudCover.title undefined: 0%
-                </Text>
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "justifyContent": "space-between",
-                  }
+                  [
+                    {
+                      "alignItems": "stretch",
+                      "borderBottomWidth": 2,
+                      "borderColor": "#353739",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginLeft": 15,
+                      "paddingBottom": 23,
+                    },
+                    undefined,
+                  ]
                 }
               >
                 <View
-                  accessibilityHint="toggle location alerts"
-                  accessibilityLabel="switch button"
-                  accessibilityRole="switch"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": true,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
+                  accessibilityHint="list item body"
+                  accessibilityLabel="list item body"
+                  accessibilityRole="text"
                   accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onClick={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
                   style={
                     {
-                      "opacity": 1,
+                      "flex": 1,
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "lineHeight": 32,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    12 Dec 2020, 10:10 AM UTC
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.maxHeight undefined 20°
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.cloudCover.title undefined: 0%
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
                     }
                   }
                 >
                   <View
+                    accessibilityHint="toggle location alerts"
+                    accessibilityLabel="switch button"
+                    accessibilityRole="switch"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": true,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        },
-                        undefined,
-                      ]
+                      {
+                        "opacity": 1,
+                      }
                     }
                   >
                     <View
@@ -1462,655 +1667,845 @@ exports[`Sightings renders correctly 1`] = `
                         [
                           {
                             "alignItems": "center",
-                            "borderRadius": 23,
-                            "borderWidth": 0,
                             "flexDirection": "row",
-                            "flexGrow": 0,
-                            "flexShrink": 0,
-                            "height": 40,
-                            "justifyContent": "space-between",
-                            "overflow": "hidden",
-                            "width": 66,
-                          },
-                          {
-                            "backgroundColor": "#353739",
                           },
                           undefined,
                         ]
                       }
                     >
                       <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "opacity": 1,
-                            },
-                          }
-                        }
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "#0B3D91",
-                            "borderColor": "rgba(0, 0, 0, 0)",
-                            "height": "100%",
-                            "opacity": 1,
-                            "overflow": "hidden",
-                            "paddingEnd": 6,
-                            "paddingStart": 6,
-                            "position": "absolute",
-                            "width": "100%",
-                          }
-                        }
-                      />
-                      <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "marginStart": -35,
-                              "start": "100%",
+                          [
+                            {
+                              "alignItems": "center",
+                              "borderRadius": 23,
+                              "borderWidth": 0,
+                              "flexDirection": "row",
+                              "flexGrow": 0,
+                              "flexShrink": 0,
+                              "height": 40,
+                              "justifyContent": "space-between",
+                              "overflow": "hidden",
+                              "width": 66,
                             },
-                          }
+                            {
+                              "backgroundColor": "#353739",
+                            },
+                            undefined,
+                          ]
                         }
-                        style={
-                          {
-                            "backgroundColor": "#FFFFFF",
-                            "borderRadius": 17,
-                            "height": 29,
-                            "marginStart": -35,
-                            "position": "absolute",
-                            "start": "100%",
-                            "width": 29,
+                      >
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
                           }
-                        }
-                      />
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "opacity": 1,
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                              {
+                                "opacity": 1,
+                              },
+                            ]
+                          }
+                        />
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
+                          }
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "marginStart": -35,
+                                "start": "100%",
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#FFFFFF",
+                              },
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "marginStart": -35,
+                                "start": "100%",
+                              },
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#FFFFFF",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="open share modal"
-                  accessibilityLabel="share"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="open share modal"
+                    accessibilityLabel="share"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/share.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="add to calendar"
-                  accessibilityLabel="add to calendar"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="add to calendar"
+                    accessibilityLabel="add to calendar"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/calendar.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
                 </View>
               </View>
             </View>
           </View>
           <View
-            accessibilityHint="pressable list item"
-            accessibilityLabel="pressable list item"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "flex-start",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingTop": 23,
-                "width": "100%",
-              }
-            }
+            onFocusCapture={[Function]}
+            onLayout={[Function]}
+            style={null}
           >
-            <View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="#ADADAE"
-                />
-              </View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FD9C1F",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="#FD9C1F"
-                />
-              </View>
-            </View>
             <View
+              accessibilityHint="pressable list item"
+              accessibilityLabel="pressable list item"
+              accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                [
-                  {
-                    "alignItems": "stretch",
-                    "borderBottomWidth": 2,
-                    "borderColor": "#353739",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "marginLeft": 15,
-                    "paddingBottom": 23,
-                  },
-                  undefined,
-                ]
+                {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingTop": 23,
+                  "width": "100%",
+                }
               }
             >
-              <View
-                accessibilityHint="list item body"
-                accessibilityLabel="list item body"
-                accessibilityRole="text"
-                accessible={true}
-                style={
-                  {
-                    "flex": 1,
-                    "flexDirection": "column",
-                  }
-                }
-              >
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+              <View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/clock.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 26,
-                        "lineHeight": 32,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  13 Dec 2020, 10:15 AM UTC
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
                       {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/sunset.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.maxHeight undefined 20°
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.cloudCover.title undefined: 0%
-                </Text>
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#FD9C1F",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="#FD9C1F"
+                  />
+                </View>
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "justifyContent": "space-between",
-                  }
+                  [
+                    {
+                      "alignItems": "stretch",
+                      "borderBottomWidth": 2,
+                      "borderColor": "#353739",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginLeft": 15,
+                      "paddingBottom": 23,
+                    },
+                    undefined,
+                  ]
                 }
               >
                 <View
-                  accessibilityHint="toggle location alerts"
-                  accessibilityLabel="switch button"
-                  accessibilityRole="switch"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": false,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
+                  accessibilityHint="list item body"
+                  accessibilityLabel="list item body"
+                  accessibilityRole="text"
                   accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onClick={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
                   style={
                     {
-                      "opacity": 1,
+                      "flex": 1,
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "lineHeight": 32,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    13 Dec 2020, 10:15 AM UTC
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.maxHeight undefined 20°
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.cloudCover.title undefined: 0%
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
                     }
                   }
                 >
                   <View
+                    accessibilityHint="toggle location alerts"
+                    accessibilityLabel="switch button"
+                    accessibilityRole="switch"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": false,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        },
-                        undefined,
-                      ]
+                      {
+                        "opacity": 1,
+                      }
                     }
                   >
                     <View
@@ -2118,655 +2513,845 @@ exports[`Sightings renders correctly 1`] = `
                         [
                           {
                             "alignItems": "center",
-                            "borderRadius": 23,
-                            "borderWidth": 0,
                             "flexDirection": "row",
-                            "flexGrow": 0,
-                            "flexShrink": 0,
-                            "height": 40,
-                            "justifyContent": "space-between",
-                            "overflow": "hidden",
-                            "width": 66,
-                          },
-                          {
-                            "backgroundColor": "#353739",
                           },
                           undefined,
                         ]
                       }
                     >
                       <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "opacity": 0,
-                            },
-                          }
-                        }
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "#0B3D91",
-                            "borderColor": "rgba(0, 0, 0, 0)",
-                            "height": "100%",
-                            "opacity": 0,
-                            "overflow": "hidden",
-                            "paddingEnd": 6,
-                            "paddingStart": 6,
-                            "position": "absolute",
-                            "width": "100%",
-                          }
-                        }
-                      />
-                      <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "marginStart": 6,
-                              "start": "0%",
+                          [
+                            {
+                              "alignItems": "center",
+                              "borderRadius": 23,
+                              "borderWidth": 0,
+                              "flexDirection": "row",
+                              "flexGrow": 0,
+                              "flexShrink": 0,
+                              "height": 40,
+                              "justifyContent": "space-between",
+                              "overflow": "hidden",
+                              "width": 66,
                             },
-                          }
+                            {
+                              "backgroundColor": "#353739",
+                            },
+                            undefined,
+                          ]
                         }
-                        style={
-                          {
-                            "backgroundColor": "#F4F2F1",
-                            "borderRadius": 17,
-                            "height": 29,
-                            "marginStart": 6,
-                            "position": "absolute",
-                            "start": "0%",
-                            "width": 29,
+                      >
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
                           }
-                        }
-                      />
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "opacity": 0,
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                              {
+                                "opacity": 0,
+                              },
+                            ]
+                          }
+                        />
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
+                          }
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "marginStart": 6,
+                                "start": "0%",
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#F4F2F1",
+                              },
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "marginStart": 6,
+                                "start": "0%",
+                              },
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#F4F2F1",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="open share modal"
-                  accessibilityLabel="share"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="open share modal"
+                    accessibilityLabel="share"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/share.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="add to calendar"
-                  accessibilityLabel="add to calendar"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="add to calendar"
+                    accessibilityLabel="add to calendar"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/calendar.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
                 </View>
               </View>
             </View>
           </View>
           <View
-            accessibilityHint="pressable list item"
-            accessibilityLabel="pressable list item"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "flex-start",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingTop": 23,
-                "width": "100%",
-              }
-            }
+            onFocusCapture={[Function]}
+            onLayout={[Function]}
+            style={null}
           >
-            <View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#ADADAE",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="#ADADAE"
-                />
-              </View>
-              <View>
-                <RCTImageView
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  internal_analyticTag={null}
-                  resizeMode="contain"
-                  source={
-                    [
-                      {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
-                      },
-                    ]
-                  }
-                  style={
-                    {
-                      "height": 35,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "yellow",
-                      "width": 35,
-                    }
-                  }
-                  tintColor="yellow"
-                />
-              </View>
-            </View>
             <View
+              accessibilityHint="pressable list item"
+              accessibilityLabel="pressable list item"
+              accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                [
-                  {
-                    "alignItems": "stretch",
-                    "borderBottomWidth": 2,
-                    "borderColor": "#353739",
-                    "flex": 1,
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "marginLeft": 15,
-                    "paddingBottom": 23,
-                  },
-                  undefined,
-                ]
+                {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingTop": 23,
+                  "width": "100%",
+                }
               }
             >
-              <View
-                accessibilityHint="list item body"
-                accessibilityLabel="list item body"
-                accessibilityRole="text"
-                accessible={true}
-                style={
-                  {
-                    "flex": 1,
-                    "flexDirection": "column",
-                  }
-                }
-              >
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+              <View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/clock.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 26,
-                        "lineHeight": 32,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  24 Dec 2020, 10:20 AM UTC
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "#ADADAE",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="#ADADAE"
+                  />
+                </View>
+                <View>
+                  <RCTImageView
+                    accessibilityState={
                       {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    internal_analyticTag={null}
+                    resizeMode="contain"
+                    source={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "testUri": "../../../assets/icons/sun.png",
                         },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.maxHeight undefined 20°
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
+                      ]
+                    }
+                    style={
                       [
                         {
-                          "fontSize": 23,
-                          "lineHeight": 35,
+                          "height": undefined,
+                          "width": undefined,
                         },
                         {
-                          "fontFamily": "Helvetica Neue",
+                          "overflow": "hidden",
                         },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={
-                    [
-                      {},
-                      [
-                        {
-                          "fontSize": 23,
-                          "lineHeight": 35,
-                        },
-                        {
-                          "fontFamily": "Helvetica Neue",
-                        },
-                        {
-                          "color": "#191015",
-                        },
-                      ],
-                      undefined,
-                      undefined,
-                      {
-                        "color": "#FFFFFF",
-                        "fontFamily": "Helvetica Neue",
-                        "fontSize": 23,
-                        "lineHeight": 27,
-                        "paddingTop": 7,
-                        "width": "95%",
-                      },
-                    ]
-                  }
-                >
-                  homeScreen.selectSightings.cloudCover.title undefined: 0%
-                </Text>
+                        [
+                          {
+                            "resizeMode": "contain",
+                          },
+                          {
+                            "tintColor": "yellow",
+                          },
+                          {
+                            "height": 35,
+                            "width": 35,
+                          },
+                          undefined,
+                        ],
+                      ]
+                    }
+                    tintColor="yellow"
+                  />
+                </View>
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "justifyContent": "space-between",
-                  }
+                  [
+                    {
+                      "alignItems": "stretch",
+                      "borderBottomWidth": 2,
+                      "borderColor": "#353739",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginLeft": 15,
+                      "paddingBottom": 23,
+                    },
+                    undefined,
+                  ]
                 }
               >
                 <View
-                  accessibilityHint="toggle location alerts"
-                  accessibilityLabel="switch button"
-                  accessibilityRole="switch"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": true,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
+                  accessibilityHint="list item body"
+                  accessibilityLabel="list item body"
+                  accessibilityRole="text"
                   accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onClick={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
                   style={
                     {
-                      "opacity": 1,
+                      "flex": 1,
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 26,
+                          "lineHeight": 32,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    24 Dec 2020, 10:20 AM UTC
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.aboveHorizon undefined 5 units.minute undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.maxHeight undefined 20°
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.appears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.disappears undefined: 0° homeScreen.selectSightings.compass.N undefined
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={
+                      [
+                        {},
+                        [
+                          {
+                            "fontSize": 23,
+                            "lineHeight": 35,
+                          },
+                          {
+                            "fontFamily": "Helvetica Neue",
+                          },
+                          {
+                            "color": "#191015",
+                          },
+                        ],
+                        undefined,
+                        undefined,
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Helvetica Neue",
+                          "fontSize": 23,
+                          "lineHeight": 27,
+                          "paddingTop": 7,
+                          "width": "95%",
+                        },
+                      ]
+                    }
+                  >
+                    homeScreen.selectSightings.cloudCover.title undefined: 0%
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
                     }
                   }
                 >
                   <View
+                    accessibilityHint="toggle location alerts"
+                    accessibilityLabel="switch button"
+                    accessibilityRole="switch"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": true,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        },
-                        undefined,
-                      ]
+                      {
+                        "opacity": 1,
+                      }
                     }
                   >
                     <View
@@ -2774,256 +3359,426 @@ exports[`Sightings renders correctly 1`] = `
                         [
                           {
                             "alignItems": "center",
-                            "borderRadius": 23,
-                            "borderWidth": 0,
                             "flexDirection": "row",
-                            "flexGrow": 0,
-                            "flexShrink": 0,
-                            "height": 40,
-                            "justifyContent": "space-between",
-                            "overflow": "hidden",
-                            "width": 66,
-                          },
-                          {
-                            "backgroundColor": "#353739",
                           },
                           undefined,
                         ]
                       }
                     >
                       <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "opacity": 1,
-                            },
-                          }
-                        }
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "#0B3D91",
-                            "borderColor": "rgba(0, 0, 0, 0)",
-                            "height": "100%",
-                            "opacity": 1,
-                            "overflow": "hidden",
-                            "paddingEnd": 6,
-                            "paddingStart": 6,
-                            "position": "absolute",
-                            "width": "100%",
-                          }
-                        }
-                      />
-                      <View
-                        collapsable={false}
-                        jestAnimatedStyle={
-                          {
-                            "value": {
-                              "marginStart": -35,
-                              "start": "100%",
+                          [
+                            {
+                              "alignItems": "center",
+                              "borderRadius": 23,
+                              "borderWidth": 0,
+                              "flexDirection": "row",
+                              "flexGrow": 0,
+                              "flexShrink": 0,
+                              "height": 40,
+                              "justifyContent": "space-between",
+                              "overflow": "hidden",
+                              "width": 66,
                             },
-                          }
+                            {
+                              "backgroundColor": "#353739",
+                            },
+                            undefined,
+                          ]
                         }
-                        style={
-                          {
-                            "backgroundColor": "#FFFFFF",
-                            "borderRadius": 17,
-                            "height": 29,
-                            "marginStart": -35,
-                            "position": "absolute",
-                            "start": "100%",
-                            "width": 29,
+                      >
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
                           }
-                        }
-                      />
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "opacity": 1,
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "alignItems": "center",
+                                "borderColor": "rgba(0, 0, 0, 0)",
+                                "height": "100%",
+                                "overflow": "hidden",
+                                "paddingEnd": 6,
+                                "paddingStart": 6,
+                                "position": "absolute",
+                                "width": "100%",
+                              },
+                              {
+                                "backgroundColor": "#0B3D91",
+                              },
+                              undefined,
+                              {
+                                "opacity": 1,
+                              },
+                            ]
+                          }
+                        />
+                        <View
+                          collapsable={false}
+                          jestAnimatedProps={
+                            {
+                              "value": {},
+                            }
+                          }
+                          jestAnimatedStyle={
+                            {
+                              "value": {
+                                "marginStart": -35,
+                                "start": "100%",
+                              },
+                            }
+                          }
+                          jestInlineStyle={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#FFFFFF",
+                              },
+                            ]
+                          }
+                          style={
+                            [
+                              {
+                                "borderRadius": 17,
+                                "height": 29,
+                                "position": "absolute",
+                                "width": 29,
+                              },
+                              undefined,
+                              {
+                                "marginStart": -35,
+                                "start": "100%",
+                              },
+                              {
+                                "height": 29,
+                                "width": 29,
+                              },
+                              {
+                                "backgroundColor": "#FFFFFF",
+                              },
+                            ]
+                          }
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="open share modal"
-                  accessibilityLabel="share"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="open share modal"
+                    accessibilityLabel="share"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/share.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
-                </View>
-                <View
-                  accessibilityHint="add to calendar"
-                  accessibilityLabel="add to calendar"
-                  accessibilityRole="imagebutton"
-                  accessibilityState={
-                    {
-                      "busy": undefined,
-                      "checked": undefined,
-                      "disabled": undefined,
-                      "expanded": undefined,
-                      "selected": undefined,
-                    }
-                  }
-                  accessibilityValue={
-                    {
-                      "max": undefined,
-                      "min": undefined,
-                      "now": undefined,
-                      "text": undefined,
-                    }
-                  }
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
                   <View
+                    accessibilityHint="add to calendar"
+                    accessibilityLabel="add to calendar"
+                    accessibilityRole="imagebutton"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
+                    accessible={true}
                     collapsable={false}
-                    jestAnimatedStyle={
-                      {
-                        "value": {},
-                      }
-                    }
-                    style={
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                        "borderRadius": 143,
-                        "display": "flex",
-                        "height": 63,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "width": 63,
-                      }
-                    }
+                    focusable={true}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
                   >
-                    <div>
-                      <View>
-                        <RCTImageView
-                          accessibilityState={
-                            {
-                              "busy": undefined,
-                              "checked": undefined,
-                              "disabled": undefined,
-                              "expanded": undefined,
-                              "selected": undefined,
-                            }
-                          }
-                          internal_analyticTag={null}
-                          resizeMode="contain"
-                          source={
-                            [
+                    <View
+                      collapsable={false}
+                      jestAnimatedProps={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestAnimatedStyle={
+                        {
+                          "value": {},
+                        }
+                      }
+                      jestInlineStyle={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                      style={
+                        [
+                          {
+                            "alignItems": "center",
+                            "backgroundColor": "#1E2022",
+                            "borderRadius": 143,
+                            "display": "flex",
+                            "height": 60,
+                            "justifyContent": "center",
+                            "overflow": "hidden",
+                            "position": "relative",
+                            "width": 60,
+                          },
+                          {
+                            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                            "height": 63,
+                            "width": 63,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <div>
+                        <View>
+                          <RCTImageView
+                            accessibilityState={
                               {
-                                "height": undefined,
-                                "uri": undefined,
-                                "width": undefined,
-                              },
-                            ]
-                          }
-                          style={
-                            {
-                              "height": 29,
-                              "overflow": "hidden",
-                              "resizeMode": "contain",
-                              "tintColor": "#FFFFFF",
-                              "width": 29,
+                                "busy": undefined,
+                                "checked": undefined,
+                                "disabled": undefined,
+                                "expanded": undefined,
+                                "selected": undefined,
+                              }
                             }
-                          }
-                          tintColor="#FFFFFF"
-                        />
-                      </View>
-                    </div>
+                            internal_analyticTag={null}
+                            resizeMode="contain"
+                            source={
+                              [
+                                {
+                                  "testUri": "../../../assets/icons/calendar.png",
+                                },
+                              ]
+                            }
+                            style={
+                              [
+                                {
+                                  "height": undefined,
+                                  "width": undefined,
+                                },
+                                {
+                                  "overflow": "hidden",
+                                },
+                                [
+                                  {
+                                    "resizeMode": "contain",
+                                  },
+                                  {
+                                    "tintColor": "#FFFFFF",
+                                  },
+                                  {
+                                    "height": 29,
+                                    "width": 29,
+                                  },
+                                  undefined,
+                                ],
+                              ]
+                            }
+                            tintColor="#FFFFFF"
+                          />
+                        </View>
+                      </div>
+                    </View>
                   </View>
                 </View>
               </View>

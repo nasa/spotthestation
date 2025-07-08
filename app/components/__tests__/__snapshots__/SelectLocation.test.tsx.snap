@@ -89,20 +89,33 @@ exports[`renders correctly 1`] = `
         source={
           [
             {
-              "height": undefined,
-              "uri": undefined,
-              "width": undefined,
+              "testUri": "../../../assets/icons/x.png",
             },
           ]
         }
         style={
-          {
-            "height": 52,
-            "overflow": "hidden",
-            "resizeMode": "contain",
-            "tintColor": "#ADADAE",
-            "width": 52,
-          }
+          [
+            {
+              "height": undefined,
+              "width": undefined,
+            },
+            {
+              "overflow": "hidden",
+            },
+            [
+              {
+                "resizeMode": "contain",
+              },
+              {
+                "tintColor": "#ADADAE",
+              },
+              {
+                "height": 52,
+                "width": 52,
+              },
+              undefined,
+            ],
+          ]
         }
         tintColor="#ADADAE"
       />
@@ -233,20 +246,33 @@ exports[`renders correctly 1`] = `
             source={
               [
                 {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "testUri": "../../../assets/icons/search.png",
                 },
               ]
             }
             style={
-              {
-                "height": 40,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#ADADAE",
-                "width": 40,
-              }
+              [
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                {
+                  "overflow": "hidden",
+                },
+                [
+                  {
+                    "resizeMode": "contain",
+                  },
+                  {
+                    "tintColor": "#ADADAE",
+                  },
+                  {
+                    "height": 40,
+                    "width": 40,
+                  },
+                  undefined,
+                ],
+              ]
             }
             tintColor="#ADADAE"
           />
@@ -347,20 +373,33 @@ exports[`renders correctly 1`] = `
             source={
               [
                 {
-                  "height": undefined,
-                  "uri": undefined,
-                  "width": undefined,
+                  "testUri": "../../../assets/icons/current-location.png",
                 },
               ]
             }
             style={
-              {
-                "height": 40,
-                "overflow": "hidden",
-                "resizeMode": "contain",
-                "tintColor": "#ADADAE",
-                "width": 40,
-              }
+              [
+                {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                {
+                  "overflow": "hidden",
+                },
+                [
+                  {
+                    "resizeMode": "contain",
+                  },
+                  {
+                    "tintColor": "#ADADAE",
+                  },
+                  {
+                    "height": 40,
+                    "width": 40,
+                  },
+                  undefined,
+                ],
+              ]
             }
             tintColor="#ADADAE"
           />
@@ -449,20 +488,33 @@ exports[`renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/settings.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#ADADAE",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#ADADAE",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#ADADAE"
             />
@@ -531,20 +583,33 @@ exports[`renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/caretRight.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 35,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#353739",
-                  "width": 35,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#353739",
+                    },
+                    {
+                      "height": 35,
+                      "width": 35,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#353739"
             />

@@ -1,5 +1,5 @@
 import { SettingsItem } from "../../components"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { ScrollView, ViewStyle } from "react-native"
@@ -11,11 +11,11 @@ import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 export const ResourcesScreen = observer(function ResourcesScreen() {
   const { $container, $itemsContainer } = useStyles(styles)
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const bottomInset = useSafeAreaInsetsStyle(["bottom"], "padding")
 
   const handleNavigate = (screen, params = {}) =>
-    navigation.navigate("ResourcesScreens" as never, { screen, ...params } as never)
+    navigation.navigate("ResourcesScreens", { screen, ...params })
 
   return (
     <Template style={$container} hasBackButton={false} headerTitleTx="resources.header">

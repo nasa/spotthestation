@@ -13,7 +13,7 @@ import {
   InitLoaderModal,
   TrajectoryErrorModal,
 } from "../../components"
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { NavigationProp, useNavigation, useRoute } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import React, { useCallback, useState, useMemo, useEffect } from "react"
 import { ViewStyle, TextStyle, ScrollView, Pressable, View, Platform } from "react-native"
@@ -56,7 +56,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     $popupModal,
   } = useStyles(styles)
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<any>>()
   const route = useRoute()
   const routeParams = route.params as LocationSettingsScreenParams
   const {
@@ -371,10 +371,10 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
                     setToRemove(location)
                   }}
                   onEdit={() => {
-                    navigation.navigate(
-                      "SettingsScreens" as never,
-                      { screen: "AddNewLocation", defaultLocation: location } as never,
-                    )
+                    navigation.navigate("SettingsScreens", {
+                      screen: "AddNewLocation",
+                      defaultLocation: location,
+                    })
                   }}
                 />
               ))}
@@ -391,9 +391,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
         viewStyle={$addButton}
         iconColor={colors.palette.neutral250}
         iconSize={28}
-        onPress={() =>
-          navigation.navigate("SettingsScreens" as never, { screen: "AddNewLocation" } as never)
-        }
+        onPress={() => navigation.navigate("SettingsScreens", { screen: "AddNewLocation" })}
       />
 
       <ModalContainer

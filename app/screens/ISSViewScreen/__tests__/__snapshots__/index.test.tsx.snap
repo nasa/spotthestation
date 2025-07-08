@@ -52,24 +52,71 @@ exports[`ISSViewScreen renders correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            [
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "height": 78,
+                "marginTop": 35,
+                "width": 78,
+              },
+              {
+                "height": 63,
+                "marginTop": 0,
+                "width": 63,
+              },
+            ],
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 63,
-            "justifyContent": "center",
-            "marginTop": 0,
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 63,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "height": 78,
+              "marginTop": 35,
+              "width": 78,
+            },
+            {
+              "height": 63,
+              "marginTop": 0,
+              "width": 63,
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -89,20 +136,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/x.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -284,25 +344,64 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -322,20 +421,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/information.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -379,25 +491,70 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -417,20 +574,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/line.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -474,25 +644,70 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -512,20 +727,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/compass.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -601,25 +829,64 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -639,20 +906,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/share.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -696,6 +976,11 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {
@@ -703,20 +988,57 @@ exports[`ISSViewScreen renders correctly 1`] = `
                 },
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -736,20 +1058,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/capture.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -793,25 +1128,64 @@ exports[`ISSViewScreen renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -831,20 +1205,33 @@ exports[`ISSViewScreen renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/video.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -910,24 +1297,71 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            [
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "height": 78,
+                "marginTop": 35,
+                "width": 78,
+              },
+              {
+                "height": 63,
+                "marginTop": 0,
+                "width": 63,
+              },
+            ],
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 63,
-            "justifyContent": "center",
-            "marginTop": 0,
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 63,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "height": 78,
+              "marginTop": 35,
+              "width": 78,
+            },
+            {
+              "height": 63,
+              "marginTop": 0,
+              "width": 63,
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -947,20 +1381,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/x.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -1144,26 +1591,68 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "marginRight": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginRight": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "marginRight": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1183,20 +1672,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/information.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1240,26 +1742,74 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  {
+                    "marginRight": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginRight": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                {
+                  "marginRight": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1279,20 +1829,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/line.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1336,26 +1899,74 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  {
+                    "marginRight": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginRight": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                {
+                  "marginRight": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1375,20 +1986,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/compass.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1466,26 +2090,68 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "marginLeft": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginLeft": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "marginLeft": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1505,20 +2171,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/share.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1562,6 +2241,11 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {
@@ -1569,21 +2253,61 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                 },
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "marginLeft": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginLeft": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                {
+                  "marginLeft": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1603,20 +2327,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/capture.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1660,26 +2397,68 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "marginLeft": 35,
+                  },
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginLeft": 35,
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "marginLeft": 35,
+                },
+                undefined,
+              ]
             }
           >
             <div>
@@ -1699,20 +2478,33 @@ exports[`ISSViewScreen renders correctly in landscape mode 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/video.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -1778,24 +2570,71 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
     >
       <View
         collapsable={false}
+        jestAnimatedProps={
+          {
+            "value": {},
+          }
+        }
         jestAnimatedStyle={
           {
             "value": {},
           }
         }
+        jestInlineStyle={
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            [
+              {
+                "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                "height": 78,
+                "marginTop": 35,
+                "width": 78,
+              },
+              {
+                "height": 63,
+                "marginTop": 0,
+                "width": 63,
+              },
+            ],
+            undefined,
+          ]
+        }
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "rgba(255, 255, 255, 0.2)",
-            "borderRadius": 143,
-            "display": "flex",
-            "height": 63,
-            "justifyContent": "center",
-            "marginTop": 0,
-            "overflow": "hidden",
-            "position": "relative",
-            "width": 63,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#1E2022",
+              "borderRadius": 143,
+              "display": "flex",
+              "height": 60,
+              "justifyContent": "center",
+              "overflow": "hidden",
+              "position": "relative",
+              "width": 60,
+            },
+            {
+              "backgroundColor": "rgba(255, 255, 255, 0.2)",
+              "height": 78,
+              "marginTop": 35,
+              "width": 78,
+            },
+            {
+              "height": 63,
+              "marginTop": 0,
+              "width": 63,
+            },
+            undefined,
+          ]
         }
       >
         <div>
@@ -1815,20 +2654,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
               source={
                 [
                   {
-                    "height": undefined,
-                    "uri": undefined,
-                    "width": undefined,
+                    "testUri": "../../../assets/icons/x.png",
                   },
                 ]
               }
               style={
-                {
-                  "height": 29,
-                  "overflow": "hidden",
-                  "resizeMode": "contain",
-                  "tintColor": "#FFFFFF",
-                  "width": 29,
-                }
+                [
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  {
+                    "overflow": "hidden",
+                  },
+                  [
+                    {
+                      "resizeMode": "contain",
+                    },
+                    {
+                      "tintColor": "#FFFFFF",
+                    },
+                    {
+                      "height": 29,
+                      "width": 29,
+                    },
+                    undefined,
+                  ],
+                ]
               }
               tintColor="#FFFFFF"
             />
@@ -2010,25 +2862,64 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2048,20 +2939,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/information.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -2105,25 +3009,70 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2143,20 +3092,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/line.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -2200,25 +3162,70 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  {
+                    "backgroundColor": "#0B3D91",
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B3D91",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "#0B3D91",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2238,20 +3245,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/compass.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -2327,25 +3347,64 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2365,20 +3424,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/share.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -2422,6 +3494,11 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {
@@ -2429,20 +3506,57 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                 },
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2462,20 +3576,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/capture.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
@@ -2519,25 +3646,64 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
         >
           <View
             collapsable={false}
+            jestAnimatedProps={
+              {
+                "value": {},
+              }
+            }
             jestAnimatedStyle={
               {
                 "value": {},
               }
             }
+            jestInlineStyle={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                [
+                  {
+                    "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                    "height": 78,
+                    "marginTop": 35,
+                    "width": 78,
+                  },
+                  false,
+                ],
+                undefined,
+              ]
+            }
             onLayout={[Function]}
             style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "rgba(255, 255, 255, 0.2)",
-                "borderRadius": 143,
-                "display": "flex",
-                "height": 78,
-                "justifyContent": "center",
-                "marginTop": 35,
-                "overflow": "hidden",
-                "position": "relative",
-                "width": 78,
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#1E2022",
+                  "borderRadius": 143,
+                  "display": "flex",
+                  "height": 60,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "position": "relative",
+                  "width": 60,
+                },
+                {
+                  "backgroundColor": "rgba(255, 255, 255, 0.2)",
+                  "height": 78,
+                  "marginTop": 35,
+                  "width": 78,
+                },
+                false,
+                undefined,
+              ]
             }
           >
             <div>
@@ -2557,20 +3723,33 @@ exports[`ISSViewScreen with ISS data renders correctly 1`] = `
                   source={
                     [
                       {
-                        "height": undefined,
-                        "uri": undefined,
-                        "width": undefined,
+                        "testUri": "../../../assets/icons/video.png",
                       },
                     ]
                   }
                   style={
-                    {
-                      "height": 29,
-                      "overflow": "hidden",
-                      "resizeMode": "contain",
-                      "tintColor": "#FFFFFF",
-                      "width": 29,
-                    }
+                    [
+                      {
+                        "height": undefined,
+                        "width": undefined,
+                      },
+                      {
+                        "overflow": "hidden",
+                      },
+                      [
+                        {
+                          "resizeMode": "contain",
+                        },
+                        {
+                          "tintColor": "#FFFFFF",
+                        },
+                        {
+                          "height": 29,
+                          "width": 29,
+                        },
+                        undefined,
+                      ],
+                    ]
                   }
                   tintColor="#FFFFFF"
                 />
