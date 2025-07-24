@@ -112,17 +112,25 @@ export async function setNotifications(
           notifyBefore &&
           new Date(eventDate.getTime() - notifyBefore * 60000).valueOf() > Date.now()
         ) {
+          const units = notifyBefore >= 24 * 60 ? "hours" : "minutes"
+          const amount = notifyBefore >= 24 * 60 ? notifyBefore / 60 : notifyBefore
+
           notifications.push({
-            title: `${translate("notifications.before.titleOne")} ${notifyBefore} ${translate(
-              "notifications.before.titleTwo",
-            )}`,
-            body: `${translate("notifications.before.subTitleOne")} ${notifyBefore} ${
+            title: translate("notifications.before.title", {
+              amount,
+              units: translate(`notifications.before.${units}`),
+            }),
+            body: translate(
               Platform.OS === "ios"
-                ? translate("notifications.before.subTitleTwoIos")
-                : translate("notifications.before.subTitleTwoAndroid", {
-                    time: formatedDate(date, timeFormat),
-                  })
-            } ${location.title}`,
+                ? "notifications.before.subTitleIos"
+                : "notifications.before.subTitleAndroid",
+              {
+                amount,
+                units: translate(`notifications.before.${units}`),
+                location: location.title,
+                time: formatedDate(date, timeFormat),
+              },
+            ),
             data: { ...location.location },
             fireDate: new Date(eventDate.getTime() - notifyBefore * 60000),
           })

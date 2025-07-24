@@ -68,11 +68,12 @@ const ptBR = {
       subTitleAndroid: "A Estação está passando acima de você ({{time}}) em",
     },
     before: {
-      titleOne: "Veja a Estação em",
-      titleTwo: "minutos!",
-      subTitleOne: "A Estação está passando acima de você em",
-      subTitleTwoIos: "minutos às",
-      subTitleTwoAndroid: "minutos ({{time}}) às",
+      title: "Veja a Estação em {{amount}} {{units}}!",
+      subTitleIos: "A Estação passará sobre você em {{amount}} {{units}} em {{location}}",
+      subTitleAndroid:
+        "A Estação passará sobre você em {{amount}} {{units}} ({{time}}) em {{location}}",
+      minutes: "minutos",
+      hours: "horas",
     },
     timeLeft: "TEMPO RESTANTE",
   },

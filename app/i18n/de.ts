@@ -68,11 +68,12 @@ const de = {
       subTitleAndroid: "Die Station zieht gerade über Ihnen ({{time}}) vorbei",
     },
     before: {
-      titleOne: "Entdecken Sie die Station in",
-      titleTwo: "Minuten",
-      subTitleOne: "Die Station wird in ",
-      subTitleTwoIos: "Minuten vorbeiziehen",
-      subTitleTwoAndroid: "Minuten ({{time}}) vorbeiziehen",
+      title: "Entdecke die Station in {{amount}} {{units}}!",
+      subTitleIos: "Die Station fliegt in {{amount}} {{units}} über dich hinweg bei {{location}}",
+      subTitleAndroid:
+        "Die Station fliegt in {{amount}} {{units}} ({{time}}) über dich hinweg bei {{location}}",
+      minutes: "Minuten",
+      hours: "Stunden",
     },
     timeLeft: "ÜBRIGE ZEIT",
   },

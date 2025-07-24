@@ -68,11 +68,12 @@ const hi = {
       subTitleAndroid: "स्टेशन अब आपके ऊपर से गुजर रहा है ({{time}}) पर",
     },
     before: {
-      titleOne: "स्टेशन को स्पॉट करें",
-      titleTwo: "मिनट!",
-      subTitleOne: "स्टेशन आपके ऊपर से गुजर रहा है",
-      subTitleTwoIos: "मिनटों में",
-      subTitleTwoAndroid: "मिनट ({{time}}) पर",
+      title: "{{amount}} {{units}} में स्टेशन को देखें!",
+      subTitleIos: "स्टेशन {{amount}} {{units}} में आपके ऊपर से गुजरेगा {{location}} पर",
+      subTitleAndroid:
+        "स्टेशन {{amount}} {{units}} ({{time}}) में आपके ऊपर से गुजरेगा {{location}} पर",
+      minutes: "मिनटों",
+      hours: "घंटों",
     },
     timeLeft: "शेष समय",
   },

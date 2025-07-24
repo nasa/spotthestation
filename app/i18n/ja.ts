@@ -68,11 +68,12 @@ const ja = {
       subTitleAndroid: "ステーションが現在あなたの上を通過しています ({{time}}) に",
     },
     before: {
-      titleOne: "駅を見つける",
-      titleTwo: "数分以内に！",
-      subTitleOne: "駅があなたの上を通り過ぎていきます",
-      subTitleTwoIos: "数分の間",
-      subTitleTwoAndroid: "分 ({{time}}) に",
+      title: "{{amount}}{{units}}でステーションを見つけよう！",
+      subTitleIos: "ステーションは{{amount}}{{units}}で{{location}}の上空を通過します",
+      subTitleAndroid:
+        "ステーションは{{amount}}{{units}}（{{time}}）で{{location}}の上空を通過します",
+      minutes: "分間",
+      hours: "時間",
     },
     timeLeft: "残り時間",
   },

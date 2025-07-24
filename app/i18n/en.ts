@@ -68,11 +68,12 @@ const en = {
       subTitleAndroid: "The Station is passing above you now ({{time}}) at",
     },
     before: {
-      titleOne: "Spot the Station in",
-      titleTwo: "minutes!",
-      subTitleOne: "The Station is passing above you in",
-      subTitleTwoIos: "minutes at",
-      subTitleTwoAndroid: "minutes ({{time}}) at",
+      title: "Spot the Station in {{amount}} {{units}}!",
+      subTitleIos: "The Station is passing above you in {{amount}} {{units}} at {{location}}",
+      subTitleAndroid:
+        "The Station is passing above you in {{amount}} {{units}} ({{time}}) at {{location}}",
+      minutes: "minutes",
+      hours: "hours",
     },
     timeLeft: "TIME LEFT",
   },

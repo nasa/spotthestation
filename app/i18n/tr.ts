@@ -68,11 +68,12 @@ const tr = {
       subTitleAndroid: "İstasyon şu anda üzerinizden geçiyor ({{time}}) de",
     },
     before: {
-      titleOne: "İstasyonu gözlemleyin",
-      titleTwo: "dakika içinde!",
-      subTitleOne: "İstasyon üzerinizden geçiyor",
-      subTitleTwoIos: "dakika içinde",
-      subTitleTwoAndroid: "dakika ({{time}}) içinde",
+      title: "{{amount}} {{units}} içinde İstasyonu gözlemle!",
+      subTitleIos: "İstasyon {{amount}} {{units}} içinde {{location}} üzerinden geçecek",
+      subTitleAndroid:
+        "İstasyon {{amount}} {{units}} ({{time}}) içinde {{location}} üzerinden geçecek",
+      minutes: "dakika",
+      hours: "saat",
     },
     timeLeft: "KALAN ZAMAN",
   },

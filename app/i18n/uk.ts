@@ -68,11 +68,12 @@ const uk = {
       subTitleAndroid: "Станція проходить над вами зараз ({{time}}) у",
     },
     before: {
-      titleOne: "Побачте станцію через",
-      titleTwo: "хвилин!",
-      subTitleOne: "Станція проходить над вами через",
-      subTitleTwoIos: "хвилин у",
-      subTitleTwoAndroid: "хвилин ({{time}}) у",
+      title: "Побачте станцію через {{amount}} {{units}}!",
+      subTitleIos: "Станція проходить над вами через {{amount}} {{units}} у {{location}}",
+      subTitleAndroid:
+        "Станція проходить над вами через {{amount}} {{units}} ({{time}}) у {{location}}",
+      minutes: "хвилин",
+      hours: "годин",
     },
     timeLeft: "ЗАЛИШИЛОСЬ ЧАСУ",
   },

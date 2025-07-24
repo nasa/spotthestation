@@ -68,11 +68,12 @@ const nl = {
       subTitleAndroid: "Het station passeert nu boven u ({{time}}) met",
     },
     before: {
-      titleOne: "Zie het station over",
-      titleTwo: "minuten!",
-      subTitleOne: "Het station passeert u over",
-      subTitleTwoIos: "minuten met",
-      subTitleTwoAndroid: "minuten ({{time}}) met",
+      title: "Spot het station over {{amount}} {{units}}!",
+      subTitleIos: "Het station komt over je heen in {{amount}} {{units}} bij {{location}}",
+      subTitleAndroid:
+        "Het station komt over je heen in {{amount}} {{units}} ({{time}}) bij {{location}}",
+      minutes: "minuten",
+      hours: "uren",
     },
     timeLeft: "TIJD OVER",
   },

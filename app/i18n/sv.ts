@@ -68,11 +68,12 @@ const sv = {
       subTitleAndroid: "Stationen passerar ovanför dig nu ({{time}}) kl",
     },
     before: {
-      titleOne: "Hitta stationen i",
-      titleTwo: "minuter!",
-      subTitleOne: "Stationen passerar ovanför dig",
-      subTitleTwoIos: "minuter kl",
-      subTitleTwoAndroid: "minuter ({{time}}) kl",
+      title: "Upptäck stationen om {{amount}} {{units}}!",
+      subTitleIos: "Stationen passerar ovanför dig om {{amount}} {{units}} vid {{location}}",
+      subTitleAndroid:
+        "Stationen passerar ovanför dig om {{amount}} {{units}} ({{time}}) vid {{location}}",
+      minutes: "minuter",
+      hours: "timmar",
     },
     timeLeft: "TID KVAR",
   },
