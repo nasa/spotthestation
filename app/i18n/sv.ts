@@ -26,7 +26,9 @@ const sv = {
   permissionsModal: {
     close: "Stänga",
     openSettings: "Öppna Inställningar",
-    body: "För att använda den här funktionen måste du ge tillstånd att komma åt galleriet.",
+    bodyGallery: "För att använda den här funktionen måste du ge tillstånd att komma åt galleriet.",
+    bodyCalendar:
+      "För att använda den här funktionen måste du ge tillåtelse att få åtkomst till kalendern.",
   },
   fontSizeModal: {
     title: "Teckenstorlek för stor",
@@ -167,7 +169,8 @@ const sv = {
       twilight: "Skymning",
       duration: "Varaktighet",
       shorterThan2: "kortare än 2 minuter",
-      longerThan2: "2 minuter och längre",
+      between2And4: "mellan 2 och 4 minuter",
+      longerThan4: "4 minuter och längre",
       empty:
         "Det finns inga potentiella Stationen-observationer för den här platsen från {{start}} till {{end}}.",
       shareTitle: "Stationen passerar över {{location}} den {{date}}",

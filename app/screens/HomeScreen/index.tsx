@@ -58,7 +58,7 @@ function calcAddress(selectedLocation: LocationType, currentLocation: LocationTy
 export const HomeScreen = observer(function HomeScreen() {
   const { $container, $modal, $popupModal, $flatMap } = useStyles(styles)
   const navigation = useNavigation()
-  const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
+  const $topInset = useSafeAreaInsetsStyle(["top"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
   const {
     issData,

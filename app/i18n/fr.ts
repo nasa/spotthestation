@@ -26,7 +26,9 @@ const fr = {
   permissionsModal: {
     close: "Fermer",
     openSettings: "Ouvrir les Paramètres",
-    body: "Pour utiliser cette fonctionnalité, vous devez accorder la permission d'accéder à la galerie.",
+    bodyGallery:
+      "Pour utiliser cette fonctionnalité, vous devez accorder la permission d'accéder à la galerie.",
+    bodyCalendar: "Pour utiliser cette fonctionnalité, vous devez autoriser l'accès au calendrier.",
   },
   fontSizeModal: {
     title: "Taille de police trop grande",
@@ -170,7 +172,8 @@ const fr = {
       twilight: "Crépuscule",
       duration: "Durée",
       shorterThan2: "moins de 2 minutes",
-      longerThan2: "2 minutes et plus",
+      between2And4: "entre 2 et 4 minutes",
+      longerThan4: "4 minutes et plus",
       empty:
         "Il n'y a aucune observation potentielle de la Station pour cet emplacement de {{start}} à {{end}}.",
       shareTitle: "La station passe au-dessus de {{location}} le {{date}}",

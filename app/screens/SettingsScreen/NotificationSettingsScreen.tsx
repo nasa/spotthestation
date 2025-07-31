@@ -293,6 +293,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
                 { label: `30 ${translate("units.minute")}`, value: 30 },
                 { label: `60 ${translate("units.minute")}`, value: 60 },
                 { label: `120 ${translate("units.minute")}`, value: 120 },
+                { label: `12 ${translate("units.hour")}`, value: 720 },
                 { label: `24 ${translate("units.hour")}`, value: 1440 },
                 { label: `48 ${translate("units.hour")}`, value: 2880 },
               ]}

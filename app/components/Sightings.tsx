@@ -7,6 +7,7 @@ import {
   SightingsFilterDropdown,
   Icon,
   IconTypes,
+  PermissionsModal,
 } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -36,8 +37,9 @@ import { ensureExactAlarmPermissions } from "../utils/notifications"
 import Share from "react-native-share"
 import { APP_UNIVERSAL_LINK } from "../utils/unilinks"
 import { headingToCompass } from "../utils/geometry"
-import { createSightingEvent } from "../utils/calendar"
+import { CalendarPermissionError, createSightingEvent } from "../utils/calendar"
 import Snackbar from "react-native-snackbar"
+import { openSettings } from "react-native-permissions"
 
 export interface SightingsProps {
   location: LocationType
@@ -222,8 +224,12 @@ export const Sightings = React.memo(function Sightings({
         value: "shorterThan2",
       },
       {
-        label: translate("homeScreen.selectSightings.longerThan2"),
-        value: "longerThan2",
+        label: translate("homeScreen.selectSightings.between2And4"),
+        value: "between2And4",
+      },
+      {
+        label: translate("homeScreen.selectSightings.longerThan4"),
+        value: "longerThan4",
       },
     ],
     [i18n.locale],
@@ -280,6 +286,7 @@ export const Sightings = React.memo(function Sightings({
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
+  const [isPermissionsModal, setIsPermissionsModal] = useState(false)
 
   useEffect(() => {
     if (Platform.OS !== "ios") return
@@ -365,18 +372,22 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           },
         })
       } catch (e) {
-        console.error(e)
-        Snackbar.show({
-          text: translate("homeScreen.selectSightings.calendarError"),
-          duration: Snackbar.LENGTH_LONG,
-          action: {
-            text: translate("snackBar.dismiss"),
-            textColor: "red",
-            onPress: () => {
-              Snackbar.dismiss()
+        if (e instanceof CalendarPermissionError) {
+          setIsPermissionsModal(true)
+        } else {
+          console.error(e)
+          Snackbar.show({
+            text: translate("homeScreen.selectSightings.calendarError"),
+            duration: Snackbar.LENGTH_LONG,
+            action: {
+              text: translate("snackBar.dismiss"),
+              textColor: "red",
+              onPress: () => {
+                Snackbar.dismiss()
+              },
             },
-          },
-        })
+          })
+        }
       }
     },
     [sightings, location],
@@ -551,6 +562,35 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
           </View>
         </Modal>
       )}
+
+      <Modal
+        isVisible={isPermissionsModal}
+        onBackdropPress={() => setIsPermissionsModal(!isPermissionsModal)}
+        onSwipeComplete={() => setIsPermissionsModal(!isPermissionsModal)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <PermissionsModal
+          body={translate("permissionsModal.bodyCalendar")}
+          onClose={() => setIsPermissionsModal(!isPermissionsModal)}
+          onSuccess={() => {
+            setIsPermissionsModal(!isPermissionsModal)
+            openSettings().catch(() =>
+              Snackbar.show({
+                text: translate("snackBar.openSettingsError"),
+                duration: Snackbar.LENGTH_LONG,
+              }),
+            )
+          }}
+        />
+      </Modal>
     </View>
   )
 })

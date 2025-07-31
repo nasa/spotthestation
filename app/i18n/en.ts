@@ -26,7 +26,8 @@ const en = {
   permissionsModal: {
     close: "Close",
     openSettings: "Open settings",
-    body: "To use this feature, you need to grant permission to access the gallery.",
+    bodyGallery: "To use this feature, you need to grant permission to access the gallery.",
+    bodyCalendar: "To use this feature, you need to grant permission to access the calendar.",
   },
   fontSizeModal: {
     title: "Font Size Too Large",
@@ -168,7 +169,8 @@ const en = {
       twilight: "Twilight",
       duration: "Duration",
       shorterThan2: "shorter than 2 minutes",
-      longerThan2: "2 minutes and longer",
+      between2And4: "between 2 and 4 minutes",
+      longerThan4: "4 minutes and longer",
       empty:
         "There are no potential Station sightings for this location from {{start}} through {{end}}.",
       shareTitle: "The Station is passing above {{location}} on {{date}}",

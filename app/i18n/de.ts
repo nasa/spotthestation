@@ -26,7 +26,10 @@ const de = {
   permissionsModal: {
     close: "Schließen",
     openSettings: "Einstellungen öffnen",
-    body: "Um diese Funktion zu verwenden, müssen Sie die Erlaubnis erteilen, auf die Galerie zuzugreifen.",
+    bodyGallery:
+      "Um diese Funktion zu verwenden, müssen Sie die Erlaubnis erteilen, auf die Galerie zuzugreifen.",
+    bodyCalendar:
+      "Um diese Funktion zu nutzen, musst du die Berechtigung zum Zugriff auf den Kalender erteilen.",
   },
   fontSizeModal: {
     title: "Schriftgröße zu groß",
@@ -168,7 +171,8 @@ const de = {
       twilight: "Dämmerung",
       duration: "Dauer",
       shorterThan2: "kürzer als 2 Minuten",
-      longerThan2: "2 Minuten und länger",
+      between2And4: "zwischen 2 und 4 Minuten",
+      longerThan4: "4 Minuten und länger",
       empty:
         "Von {{start}} bis {{end}} gibt es für diesen Standort keine potenziellen Stations-Sichtungen.",
       shareTitle: "Die Station fliegt über {{location}} am {{date}} vorbei",

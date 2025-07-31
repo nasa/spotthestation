@@ -26,7 +26,9 @@ const ptBR = {
   permissionsModal: {
     close: "Fechar",
     openSettings: "Abrir configurações",
-    body: "Para usar este recurso, você precisa conceder permissão para acessar a galeria.",
+    bodyGallery: "Para usar este recurso, você precisa conceder permissão para acessar a galeria.",
+    bodyCalendar:
+      "Para usar este recurso, você precisa conceder permissão para acessar o calendário.",
   },
   fontSizeModal: {
     title: "Tamanho da fonte muito grande",
@@ -168,7 +170,8 @@ const ptBR = {
       twilight: "Crepúsculo",
       duration: "Duração",
       shorterThan2: "menor que 2 minutos",
-      longerThan2: "2 minutos ou mais",
+      between2And4: "entre 2 e 4 minutos",
+      longerThan4: "4 minutos ou mais",
       empty:
         "Não há avistamentos potenciais da Estação para esta localização de {{start}} até {{end}}.",
       shareTitle: "A Estação está passando acima de {{location}} em {{date}}",

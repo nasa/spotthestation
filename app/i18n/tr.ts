@@ -26,7 +26,8 @@ const tr = {
   permissionsModal: {
     close: "Kapat",
     openSettings: "Ayarları aç",
-    body: "Bu özelliği kullanmak için galeriye erişim izni vermeniz gerekiyor.",
+    bodyGallery: "Bu özelliği kullanmak için galeriye erişim izni vermeniz gerekiyor.",
+    bodyCalendar: "Bu özelliği kullanmak için takvime erişim izni vermeniz gerekir.",
   },
   fontSizeModal: {
     title: "Yazı Tipi Boyutu Çok Büyük",
@@ -168,7 +169,8 @@ const tr = {
       twilight: "Alacakaranlık",
       duration: "Süre",
       shorterThan2: "2 dakikadan kısa",
-      longerThan2: "2 dakika ve daha uzun",
+      between2And4: "2 ile 4 dakika arasında",
+      longerThan4: "4 dakika ve daha uzun",
       empty: "{{start}} ile {{end}} arasında bu konum için potansiyel İstasyon gözlemi yok.",
       shareTitle: "İstasyon {{location}} üzerinde {{date}} tarihinde geçiyor",
       shareLink:

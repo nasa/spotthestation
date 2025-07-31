@@ -26,7 +26,8 @@ const ja = {
   permissionsModal: {
     close: "閉じる",
     openSettings: "設定を開く",
-    body: "この機能を使用するには、ギャラリーにアクセスする許可を付与する必要があります。",
+    bodyGallery: "この機能を使用するには、ギャラリーにアクセスする許可を付与する必要があります。",
+    bodyCalendar: "この機能を使用するには、カレンダーへのアクセス許可を与える必要があります。",
   },
   fontSizeModal: {
     title: "フォントサイズが大きすぎます",
@@ -168,7 +169,8 @@ const ja = {
       twilight: "トワイライト",
       duration: "間隔",
       shorterThan2: "2分未満",
-      longerThan2: "2分以上",
+      between2And4: "2分から4分の間",
+      longerThan4: "4分以上",
       empty: "{{start}} から {{end}} まで、この場所で ISS が目撃される可能性はありません。",
       shareTitle: "ステーションは{{date}}に{{location}}の上空を通過しています",
       shareLink:

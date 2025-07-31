@@ -26,7 +26,8 @@ const pl = {
   permissionsModal: {
     close: "Zamknij",
     openSettings: "Otwórz ustawienia",
-    body: "Aby korzystać z tej funkcji, musisz przyznać uprawnienia do dostępu do galerii.",
+    bodyGallery: "Aby korzystać z tej funkcji, musisz przyznać uprawnienia do dostępu do galerii.",
+    bodyCalendar: "Aby skorzystać z tej funkcji, musisz zezwolić na dostęp do kalendarza.",
   },
   fontSizeModal: {
     title: "Rozmiar czcionki za duży",
@@ -167,7 +168,8 @@ const pl = {
       twilight: "Zmierzch",
       duration: "Czas trwania",
       shorterThan2: "krótsze niż 2 minuty",
-      longerThan2: "2 minuty i dłużej",
+      between2And4: "między 2 a 4 minutami",
+      longerThan4: "4 minuty i dłużej",
       empty: "Brak potencjalnych obserwacji stacji dla tej lokalizacji od {{start}} do {{end}}.",
       shareTitle: "Stacja przechodzi nad {{location}} w dniu {{date}}",
       shareLink:

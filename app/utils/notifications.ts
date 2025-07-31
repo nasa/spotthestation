@@ -112,8 +112,8 @@ export async function setNotifications(
           notifyBefore &&
           new Date(eventDate.getTime() - notifyBefore * 60000).valueOf() > Date.now()
         ) {
-          const units = notifyBefore >= 24 * 60 ? "hours" : "minutes"
-          const amount = notifyBefore >= 24 * 60 ? notifyBefore / 60 : notifyBefore
+          const units = notifyBefore >= 12 * 60 ? "hours" : "minutes"
+          const amount = notifyBefore >= 12 * 60 ? notifyBefore / 60 : notifyBefore
 
           notifications.push({
             title: translate("notifications.before.title", {

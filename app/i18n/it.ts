@@ -26,7 +26,10 @@ const it = {
   permissionsModal: {
     close: "Chiudi",
     openSettings: "Apri le impostazioni",
-    body: "Per utilizzare questa funzione, è necessario concedere l'autorizzazione per accedere alla galleria.",
+    bodyGallery:
+      "Per utilizzare questa funzione, è necessario concedere l'autorizzazione per accedere alla galleria.",
+    bodyCalendar:
+      "Per utilizzare questa funzione, devi concedere il permesso di accedere al calendario.",
   },
   fontSizeModal: {
     title: "Dimensione del carattere troppo grande",
@@ -169,7 +172,8 @@ const it = {
       twilight: "Twilight",
       duration: "Crepuscolo",
       shorterThan2: "inferiore a 2 minuti",
-      longerThan2: "2 minuti e più",
+      between2And4: "tra 2 e 4 minuti",
+      longerThan4: "4 minuti e più",
       empty:
         "Non ci sono potenziali avvistamenti della Stazione per questa località dal {{start}} al {{end}}.",
       shareTitle: "La stazione sta passando sopra {{location}} il {{date}}",

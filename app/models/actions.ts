@@ -179,7 +179,8 @@ const RootStoreActions = (self) => ({
 
   getFilteredSightings: (location: LocationType) => {
     const hasDuration = (item: ISSSighting, duration: string) => {
-      if (duration === "longerThan2") return item.visible >= 2
+      if (duration === "longerThan4") return item.visible >= 4
+      if (duration === "between2And4") return item.visible >= 2 && item.visible < 4
       if (duration === "shorterThan2") return item.visible < 2
       return true
     }

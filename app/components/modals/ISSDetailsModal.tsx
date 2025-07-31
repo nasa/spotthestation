@@ -74,7 +74,7 @@ export const ISSDetailsModal = memo(function DetailsModal({
     const shortTZ = getShortTZ(location.timezone || getCurrentTimeZone())
     return `${formatDateWithTZ(
       date,
-      `${i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy"}, ${tf}`,
+      `${i18n.locale === "en" ? "MMM dd" : "dd MMM"}, ${tf}`,
       location.timezone || getCurrentTimeZone(),
     )} ${shortTZ}`
   }
@@ -310,7 +310,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $modalHeader: ViewStyle = {
     flexDirection: "row",
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
     paddingBottom: scale(15),
   }
 
@@ -321,7 +321,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $contentContainer: ViewStyle = {
     paddingBottom: scale(24),
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $close: ViewStyle = {
@@ -384,7 +384,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $detailRow: ViewStyle = {
     width: "100%",
-    marginBottom: scale(18),
+    marginBottom: scale(12),
     flexDirection: "row",
     justifyContent: "space-between",
   }
@@ -392,8 +392,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $detailRowTitle: TextStyle = {
     fontFamily: typography.primary.normal,
     color: colors.palette.neutral450,
-    fontSize: fontSizes[18],
-    lineHeight: lineHeights[21],
+    fontSize: fontSizes[17],
+    lineHeight: lineHeights[20],
     maxWidth: "80%",
     textAlign: "left",
   }
@@ -401,8 +401,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $detailRowValue: TextStyle = {
     fontFamily: typography.primary.normal,
     color: colors.palette.neutral100,
-    fontSize: fontSizes[18],
-    lineHeight: lineHeights[21],
+    fontSize: fontSizes[17],
+    lineHeight: lineHeights[20],
     textAlign: "right",
   }
 

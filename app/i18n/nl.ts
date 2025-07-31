@@ -26,7 +26,10 @@ const nl = {
   permissionsModal: {
     close: "Sluiten",
     openSettings: "Open instellingen",
-    body: "Om deze functie te kunnen gebruiken zult u toegang aan de galerij moeten verlenen.",
+    bodyGallery:
+      "Om deze functie te kunnen gebruiken zult u toegang aan de galerij moeten verlenen.",
+    bodyCalendar:
+      "Om deze functie te gebruiken, moet je toestemming geven om toegang te krijgen tot de agenda.",
   },
   fontSizeModal: {
     title: "Lettergrootte te groot",
@@ -167,7 +170,8 @@ const nl = {
       twilight: "Schemering",
       duration: "Duur",
       shorterThan2: "korter dan 2 minuten",
-      longerThan2: "2 minuten en langer",
+      between2And4: "tussen 2 en 4 minuten",
+      longerThan4: "4 minuten en langer",
       empty:
         "Er zijn geen potentiële Station-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
       shareTitle: "Het station vliegt boven {{location}} op {{date}}",

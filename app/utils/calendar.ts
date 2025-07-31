@@ -9,10 +9,12 @@ import { AlarmMethod, getEventsAsync } from "expo-calendar"
 
 const CALENDAR_NAME = "SpotTheStation"
 
+export class CalendarPermissionError extends Error {}
+
 async function getCalendarPermissions() {
   const { status } = await Calendar.requestCalendarPermissionsAsync()
   if (status !== Calendar.PermissionStatus.GRANTED) {
-    throw new Error("Calendar permission not granted")
+    throw new CalendarPermissionError("Calendar permission not granted")
   }
 }
 

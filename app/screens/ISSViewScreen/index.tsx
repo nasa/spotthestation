@@ -937,7 +937,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         style={$modal}
       >
         <PermissionsModal
-          body={translate("permissionsModal.body")}
+          body={translate("permissionsModal.bodyGallery")}
           onClose={() => setIsPermissionsModal(!isPermissionsModal)}
           onSuccess={() => {
             setIsPermissionsModal(!isPermissionsModal)
