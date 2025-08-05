@@ -154,8 +154,8 @@ const hi = {
       refresh: "ताज़ा करना",
     },
     selectSightings: {
-      title: "आगामी दृष्टि",
-      sightings: "साइटिंग्स",
+      upcomingSightings: "आगामी दृष्टि",
+      pastSightings: "पिछले दर्शन",
       selectMessage: "उन घटनाओं का चयन करें जिनके लिए आप अधिसूचित होना चाहते हैं।",
       switch: "इस स्थान पर सभी आगामी घटनाओं के लिए मुझे सूचित करें।",
       aboveHorizon: "क्षितिज के ऊपर",
@@ -174,6 +174,7 @@ const hi = {
       longerThan4: "4 मिनट और अधिक",
       empty: "इस स्थान पर {{start}} से {{end}} तक आईएसएस देखे जाने की कोई संभावना नहीं है।",
       shareTitle: "{{date}} को {{location}} के ऊपर से स्टेशन गुजर रहा है",
+      shareAllTitle: "{{location}} के ऊपर से स्टेशन गुजर रही है:",
       shareLink:
         "और अधिक जानने और संवर्धित वास्तविकता के माध्यम से स्टेशन को ट्रैक करने के लिए, ऐप डाउनलोड करें",
       calendarEventTitle: "{{location}} में स्टेशन को देखें!",
@@ -190,7 +191,7 @@ const hi = {
         low: "कम (<25%)",
         medium: "मध्यम (25-50%)",
       },
-      pastSightings: "पिछले दर्शन",
+      shareAll: "दृश्य सूची साझा करें",
       compass: {
         N: "उ",
         NNE: "उपू",
@@ -464,6 +465,9 @@ const hi = {
   resources: {
     header: "संसाधन",
     goBack: "वापस जाओ",
+    sightings: {
+      title: "आगामी दृष्टि",
+    },
     news: {
       title: "स्टेशन समाचार",
       searchPlaceholder: "लेख, घटनाएँ आदि खोजें...",

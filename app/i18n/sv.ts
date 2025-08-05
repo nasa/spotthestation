@@ -153,7 +153,8 @@ const sv = {
       refresh: "Uppdatera",
     },
     selectSightings: {
-      title: "Kommande observationer",
+      upcomingSightings: "Kommande observationer",
+      pastSightings: "Tidigare observationer",
       sightings: "Observationer",
       selectMessage: "Välj händelser som du vill bli meddelad för.",
       switch: "Meddela mig för alla kommande händelser på den här platsen.",
@@ -174,6 +175,7 @@ const sv = {
       empty:
         "Det finns inga potentiella Stationen-observationer för den här platsen från {{start}} till {{end}}.",
       shareTitle: "Stationen passerar över {{location}} den {{date}}",
+      shareAllTitle: "Stationen passerar över {{location}}:",
       shareLink:
         "För att utforska mer och spåra stationen via förstärkt verklighet, ladda ner appen på",
       calendarEventTitle: "Se stationen i {{location}}!",
@@ -190,7 +192,7 @@ const sv = {
         low: "Låg (<25%)",
         medium: "Medel (25-50%)",
       },
-      pastSightings: "Tidigare Iakttagelser",
+      shareAll: "Dela observationslistan",
       compass: {
         N: "N",
         NNE: "NNO",
@@ -462,6 +464,9 @@ const sv = {
   resources: {
     header: "Resurser",
     goBack: "Gå tillbaka",
+    sightings: {
+      title: "Kommande observationer",
+    },
     news: {
       title: "Stationsnyheter",
       searchPlaceholder: "Sök artiklar, evenemang, etc...",

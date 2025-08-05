@@ -156,8 +156,8 @@ const fr = {
       refresh: "Rafraîchir",
     },
     selectSightings: {
-      title: "Observations à venir",
-      sightings: "Observations",
+      upcomingSightings: "Observations à venir",
+      pastSightings: "Observations Passées",
       selectMessage: "Sélectionnez des événements pour lesquels vous souhaitez être averti.",
       switch: "Me notifier pour tous les événements à venir à cette localisation.",
       aboveHorizon: "Au-dessus de l'horizon",
@@ -177,6 +177,7 @@ const fr = {
       empty:
         "Il n'y a aucune observation potentielle de la Station pour cet emplacement de {{start}} à {{end}}.",
       shareTitle: "La station passe au-dessus de {{location}} le {{date}}",
+      shareAllTitle: "La Station passe au-dessus de {{location}} :",
       shareLink:
         "Pour explorer plus et suivre la station en réalité augmentée, téléchargez l'application sur",
       calendarEventTitle: "Repérez la station à {{location}} !",
@@ -194,7 +195,7 @@ const fr = {
         low: "Faible (<25%)",
         medium: "Moyenne (25-50%)",
       },
-      pastSightings: "Observations Passées",
+      shareAll: "Partager la liste des observations",
       compass: {
         N: "N",
         NNE: "NNE",
@@ -470,6 +471,9 @@ const fr = {
   resources: {
     header: "Ressources",
     goBack: "Retour",
+    sightings: {
+      title: "Observations à venir",
+    },
     news: {
       title: "Nouvelles de la Station",
       searchPlaceholder: "Rechercher des articles, événements, etc...",

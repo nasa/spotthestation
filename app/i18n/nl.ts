@@ -154,7 +154,8 @@ const nl = {
       refresh: "Vernieuwen",
     },
     selectSightings: {
-      title: "Eerstvolgende waarnemingen",
+      upcomingSightings: "Eerstvolgende waarnemingen",
+      pastSightings: "Eerdere Waarnemingen",
       sightings: "Waarnemingen",
       selectMessage: "Selecteer gebeurtenissen waarvan u op de hoogte gehouden wilt worden.",
       switch: "Houd mij op de hoogte van alle aankomende gebeurtenissen op deze locatie.",
@@ -175,6 +176,7 @@ const nl = {
       empty:
         "Er zijn geen potentiële Station-waarnemingen voor deze locatie van {{start}} tot en met {{end}}.",
       shareTitle: "Het station vliegt boven {{location}} op {{date}}",
+      shareAllTitle: "Het station komt over {{location}} heen:",
       shareLink:
         "Om meer te verkennen en het station via augmented reality te volgen, download de app op",
       calendarEventTitle: "Spot het station in {{location}}!",
@@ -192,7 +194,7 @@ const nl = {
         low: "Laag (<25%)",
         medium: "Middel (25-50%)",
       },
-      pastSightings: "Eerdere Waarnemingen",
+      shareAll: "Waarnemingenlijst delen",
       compass: {
         N: "N",
         NNE: "NNO",
@@ -468,6 +470,9 @@ const nl = {
   resources: {
     header: "Bronnen",
     goBack: "Ga terug",
+    sightings: {
+      title: "Eerstvolgende waarnemingen",
+    },
     news: {
       title: "Station Nieuws",
       searchPlaceholder: "Zoek artikelen, evenementen, etc...",

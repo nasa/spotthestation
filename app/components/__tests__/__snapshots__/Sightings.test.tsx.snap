@@ -12,6 +12,7 @@ exports[`Sightings renders correctly 1`] = `
       },
       {},
       {},
+      undefined,
     ]
   }
 >
@@ -76,42 +77,139 @@ exports[`Sightings renders correctly 1`] = `
       tintColor="#ADADAE"
     />
   </View>
-  <Text
-    accessibilityHint="title"
-    accessibilityLabel="title"
-    accessibilityRole="text"
-    accessible={true}
+  <View
     style={
       [
-        {},
-        [
-          {
-            "fontSize": 23,
-            "lineHeight": 35,
-          },
-          {
-            "fontFamily": "Helvetica Neue",
-          },
-          {
-            "color": "#191015",
-          },
-        ],
-        undefined,
-        undefined,
         {
-          "color": "#DEDDDE",
-          "fontFamily": "Helvetica Neue",
-          "fontSize": 40,
-          "lineHeight": 63,
-          "marginBottom": 15,
-          "marginTop": 15,
-          "paddingHorizontal": 52,
+          "height": 86,
+          "marginTop": 23,
+          "paddingLeft": 29,
+          "paddingRight": 29,
+        },
+        {
+          "paddingRight": 86,
         },
       ]
     }
   >
-    homeScreen.selectSightings.title undefined
-  </Text>
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View>
+        <View
+          accessibilityHint="show upcomingSightings view"
+          accessibilityLabel="upcomingSightings button"
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              [
+                {
+                  "alignItems": "center",
+                  "borderRadius": 6,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "minHeight": 80,
+                  "overflow": "hidden",
+                  "paddingHorizontal": 17,
+                  "paddingVertical": 17,
+                },
+                {
+                  "backgroundColor": "#FFFFFF",
+                  "borderColor": "#B6ACA6",
+                  "borderWidth": 1,
+                },
+              ],
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "borderRadius": 40,
+                  "borderWidth": 0,
+                  "height": 62,
+                  "minHeight": 62,
+                  "paddingHorizontal": 29,
+                  "width": "auto",
+                },
+                {
+                  "backgroundColor": "#353739",
+                },
+              ],
+              false,
+            ]
+          }
+        >
+          <Text
+            style={
+              [
+                {},
+                [
+                  {
+                    "fontSize": 23,
+                    "lineHeight": 35,
+                  },
+                  {
+                    "fontFamily": "Helvetica Neue",
+                  },
+                  {
+                    "color": "#191015",
+                  },
+                ],
+                undefined,
+                undefined,
+                [
+                  {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                    "fontFamily": "HelveticaNeue-Medium",
+                    "fontSize": 23,
+                    "lineHeight": 29,
+                    "textAlign": "center",
+                    "zIndex": 2,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "HelveticaNeue-Medium",
+                    "fontSize": 23,
+                  },
+                  false,
+                ],
+              ]
+            }
+          >
+            homeScreen.selectSightings.upcomingSightings undefined
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
   <Text
     accessibilityHint="title"
     accessibilityLabel="title"
@@ -139,7 +237,7 @@ exports[`Sightings renders correctly 1`] = `
           "fontFamily": "Helvetica Neue",
           "fontSize": 26,
           "lineHeight": 32,
-          "paddingHorizontal": 52,
+          "paddingHorizontal": 35,
           "width": "95%",
         },
       ]
@@ -153,7 +251,7 @@ exports[`Sightings renders correctly 1`] = `
         "borderBottomColor": "#1E2022",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingHorizontal": 52,
+        "paddingHorizontal": 35,
         "paddingTop": 22,
       }
     }
@@ -378,8 +476,8 @@ exports[`Sightings renders correctly 1`] = `
         "flexDirection": "row",
         "justifyContent": "space-between",
         "marginHorizontal": -7,
-        "paddingHorizontal": 52,
-        "paddingTop": 22,
+        "paddingHorizontal": 35,
+        "paddingTop": 15,
       }
     }
   >
@@ -416,8 +514,8 @@ exports[`Sightings renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
+              "fontSize": 17,
+              "lineHeight": 20,
               "textTransform": "uppercase",
             },
           ]
@@ -431,9 +529,9 @@ exports[`Sightings renders correctly 1`] = `
           {
             "backgroundColor": "#353739",
             "borderRadius": 40,
-            "height": 65,
+            "height": 50,
             "justifyContent": "center",
-            "marginTop": 15,
+            "marginTop": 7,
             "overflow": "hidden",
           }
         }
@@ -478,7 +576,7 @@ exports[`Sightings renders correctly 1`] = `
                   {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
-                    "fontSize": 26,
+                    "fontSize": 23,
                     "paddingHorizontal": 0,
                     "paddingVertical": 0,
                   },
@@ -501,7 +599,7 @@ exports[`Sightings renders correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "height": 65,
+                "height": 50,
                 "justifyContent": "center",
                 "marginRight": 17,
               }
@@ -589,8 +687,8 @@ exports[`Sightings renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
+              "fontSize": 17,
+              "lineHeight": 20,
               "textTransform": "uppercase",
             },
           ]
@@ -604,9 +702,9 @@ exports[`Sightings renders correctly 1`] = `
           {
             "backgroundColor": "#353739",
             "borderRadius": 40,
-            "height": 65,
+            "height": 50,
             "justifyContent": "center",
-            "marginTop": 15,
+            "marginTop": 7,
             "overflow": "hidden",
           }
         }
@@ -651,7 +749,7 @@ exports[`Sightings renders correctly 1`] = `
                   {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
-                    "fontSize": 26,
+                    "fontSize": 23,
                     "paddingHorizontal": 0,
                     "paddingVertical": 0,
                   },
@@ -674,7 +772,7 @@ exports[`Sightings renders correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "height": 65,
+                "height": 50,
                 "justifyContent": "center",
                 "marginRight": 17,
               }
@@ -736,8 +834,8 @@ exports[`Sightings renders correctly 1`] = `
         "flexDirection": "row",
         "justifyContent": "space-between",
         "marginHorizontal": -7,
-        "paddingHorizontal": 52,
-        "paddingTop": 22,
+        "paddingHorizontal": 35,
+        "paddingTop": 15,
       }
     }
   >
@@ -774,8 +872,8 @@ exports[`Sightings renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
+              "fontSize": 17,
+              "lineHeight": 20,
               "textTransform": "uppercase",
             },
           ]
@@ -789,9 +887,9 @@ exports[`Sightings renders correctly 1`] = `
           {
             "backgroundColor": "#353739",
             "borderRadius": 40,
-            "height": 65,
+            "height": 50,
             "justifyContent": "center",
-            "marginTop": 15,
+            "marginTop": 7,
             "overflow": "hidden",
           }
         }
@@ -836,7 +934,7 @@ exports[`Sightings renders correctly 1`] = `
                   {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
-                    "fontSize": 26,
+                    "fontSize": 23,
                     "paddingHorizontal": 0,
                     "paddingVertical": 0,
                   },
@@ -859,7 +957,7 @@ exports[`Sightings renders correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "height": 65,
+                "height": 50,
                 "justifyContent": "center",
                 "marginRight": 17,
               }
@@ -947,8 +1045,8 @@ exports[`Sightings renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 19,
-              "lineHeight": 23,
+              "fontSize": 17,
+              "lineHeight": 20,
               "textTransform": "uppercase",
             },
           ]
@@ -962,9 +1060,9 @@ exports[`Sightings renders correctly 1`] = `
           {
             "backgroundColor": "#353739",
             "borderRadius": 40,
-            "height": 65,
+            "height": 50,
             "justifyContent": "center",
-            "marginTop": 15,
+            "marginTop": 7,
             "overflow": "hidden",
           }
         }
@@ -1009,7 +1107,7 @@ exports[`Sightings renders correctly 1`] = `
                   {
                     "color": "#DEDDDE",
                     "fontFamily": "Helvetica Neue",
-                    "fontSize": 26,
+                    "fontSize": 23,
                     "paddingHorizontal": 0,
                     "paddingVertical": 0,
                   },
@@ -1032,7 +1130,7 @@ exports[`Sightings renders correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "height": 65,
+                "height": 50,
                 "justifyContent": "center",
                 "marginRight": 17,
               }
@@ -1102,9 +1200,14 @@ exports[`Sightings renders correctly 1`] = `
             "marginTop": 52,
             "width": "100%",
           },
-          {
-            "flex": 1,
-          },
+          [
+            {
+              "flex": 1,
+            },
+            {
+              "marginTop": -17,
+            },
+          ],
         ]
       }
     >
@@ -1116,66 +1219,7 @@ exports[`Sightings renders correctly 1`] = `
             "marginBottom": 26,
           }
         }
-      >
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "row",
-              },
-              {
-                "flexDirection": "row-reverse",
-              },
-              {
-                "paddingHorizontal": 52,
-              },
-            ]
-          }
-        >
-          <Text
-            accessibilityHint="homeScreen.selectSightings.sightings"
-            accessibilityLabel="title"
-            accessibilityRole="text"
-            accessible={true}
-            style={
-              [
-                {},
-                [
-                  {
-                    "fontSize": 23,
-                    "lineHeight": 35,
-                  },
-                  {
-                    "fontFamily": "Helvetica Neue",
-                  },
-                  {
-                    "color": "#191015",
-                  },
-                ],
-                undefined,
-                undefined,
-                [
-                  {
-                    "color": "#ADADAE",
-                    "fontFamily": "Helvetica Neue",
-                    "fontSize": 19,
-                    "lineHeight": 23,
-                    "textTransform": "uppercase",
-                  },
-                  {
-                    "textAlign": "right",
-                    "width": "100%",
-                  },
-                ],
-              ]
-            }
-          >
-            homeScreen.selectSightings.sightings undefined
-          </Text>
-        </View>
-      </View>
+      />
       <RCTScrollView
         accessibilityHint="Sightings scrollable area"
         accessibilityLabel="Sightings scrollable area"
@@ -1183,7 +1227,7 @@ exports[`Sightings renders correctly 1`] = `
         accessible={true}
         contentContainerStyle={
           {
-            "paddingHorizontal": 52,
+            "paddingHorizontal": 35,
           }
         }
         data={
@@ -3786,6 +3830,182 @@ exports[`Sightings renders correctly 1`] = `
           </View>
         </View>
       </RCTScrollView>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "marginHorizontal": 17,
+        "marginTop": 17,
+      }
+    }
+  >
+    <View
+      accessibilityHint="Navigates to the mail app"
+      accessibilityLabel="send button"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          [
+            {
+              "alignItems": "center",
+              "borderRadius": 6,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "minHeight": 80,
+              "overflow": "hidden",
+              "paddingHorizontal": 17,
+              "paddingVertical": 17,
+            },
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#B6ACA6",
+              "borderWidth": 1,
+            },
+          ],
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderRadius": 40,
+              "borderWidth": 0,
+              "height": 62,
+              "minHeight": 62,
+              "paddingHorizontal": 29,
+              "width": "auto",
+            },
+            {
+              "backgroundColor": "#353739",
+              "fontFamily": "Helvetica Neue",
+              "height": 58,
+              "minHeight": 58,
+              "paddingHorizontal": 35,
+              "paddingVertical": 12,
+            },
+          ],
+          false,
+        ]
+      }
+    >
+      <View
+        accessibilityHint="share"
+        accessible={true}
+      >
+        <RCTImageView
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          internal_analyticTag={null}
+          resizeMode="contain"
+          source={
+            [
+              {
+                "testUri": "../../../assets/icons/share.png",
+              },
+            ]
+          }
+          style={
+            [
+              {
+                "height": undefined,
+                "width": undefined,
+              },
+              {
+                "overflow": "hidden",
+              },
+              [
+                {
+                  "resizeMode": "contain",
+                },
+                undefined,
+                {
+                  "height": 29,
+                  "width": 29,
+                },
+                {
+                  "marginRight": 5,
+                },
+              ],
+            ]
+          }
+        />
+      </View>
+      <Text
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            [
+              {
+                "flexGrow": 0,
+                "flexShrink": 1,
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 23,
+                "lineHeight": 29,
+                "textAlign": "center",
+                "zIndex": 2,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "HelveticaNeue-Medium",
+                "fontSize": 23,
+              },
+              false,
+            ],
+          ]
+        }
+      >
+        homeScreen.selectSightings.shareAll undefined
+      </Text>
     </View>
   </View>
 </View>

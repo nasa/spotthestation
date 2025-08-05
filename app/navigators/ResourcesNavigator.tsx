@@ -5,6 +5,11 @@ import React from "react"
 import { WebScreen, WebScreenRouteProps } from "../screens/ResourcesScreen/WebScreen"
 
 import {
+  SightingsScreen,
+  SightingsScreenRouteProps,
+} from "../screens/ResourcesScreen/SightingsScreen"
+
+import {
   AstronautsScreen,
   AstronautsScreenRouteProps,
 } from "../screens/ResourcesScreen/AstonautsScreen"
@@ -28,6 +33,7 @@ import {
 
 export type ResourcesParamList = {
   Web: WebScreenRouteProps
+  Sightings: SightingsScreenRouteProps
   Astronauts: AstronautsScreenRouteProps
   News: NewsScreenRouteProps
   About: AboutScreenRouteProps
@@ -50,6 +56,7 @@ export function ResourcesNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Web">
       <Stack.Screen name="Web" component={WebScreen} initialParams={params} />
+      <Stack.Screen name="Sightings" component={SightingsScreen} initialParams={params} />
       <Stack.Screen name="Astronauts" component={AstronautsScreen} initialParams={params} />
       <Stack.Screen name="News" component={NewsScreen} initialParams={params} />
       <Stack.Screen name="About" component={AboutScreen} initialParams={params} />

@@ -152,8 +152,8 @@ const pl = {
       refresh: "Odśwież",
     },
     selectSightings: {
-      title: "Nadchodzące obserwacje",
-      sightings: "Obserwacje",
+      upcomingSightings: "Nadchodzące Obserwacje",
+      pastSightings: "Przeszłe Obserwacje",
       selectMessage: "Wybierz wydarzenia, o których chcesz być powiadamiany.",
       switch: "Powiadom mnie o wszystkich nadchodzących wydarzeniach w tej lokalizacji.",
       aboveHorizon: "Nad horyzontem",
@@ -172,6 +172,7 @@ const pl = {
       longerThan4: "4 minuty i dłużej",
       empty: "Brak potencjalnych obserwacji stacji dla tej lokalizacji od {{start}} do {{end}}.",
       shareTitle: "Stacja przechodzi nad {{location}} w dniu {{date}}",
+      shareAllTitle: "Stacja przelatuje nad {{location}}:",
       shareLink:
         "Aby dowiedzieć się więcej i śledzić stację za pomocą rozszerzonej rzeczywistości, pobierz aplikację na",
       calendarEventTitle: "Zobacz stację w {{location}}!",
@@ -188,7 +189,7 @@ const pl = {
         low: "Niskie (<25%)",
         medium: "Średnie (25-50%)",
       },
-      pastSightings: "Przeszłe Obserwacje",
+      shareAll: "Udostępnij listę obserwacji",
       compass: {
         N: "N",
         NNE: "NNE",
@@ -461,6 +462,9 @@ const pl = {
   resources: {
     header: "Zasoby",
     goBack: "Wróć",
+    sightings: {
+      title: "Nadchodzące Obserwacje",
+    },
     news: {
       title: "Wiadomości ze Stacji",
       searchPlaceholder: "Szukaj artykułów, wydarzeń itp...",

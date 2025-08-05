@@ -33,7 +33,6 @@ import { translate } from "../../i18n"
 import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
-import { PastSightings } from "../../components/PastSightings"
 import { startActivity, endActivity } from "../../components/LiveActivity"
 
 export interface HomeScreenRouteProps {
@@ -82,10 +81,8 @@ export const HomeScreen = observer(function HomeScreen() {
     setSightingsDuration,
     setSightingsMaxHeight,
     getFilteredSightings,
-    getISSSightingsHistory,
     currentModal,
     setSightingsCloudCover,
-    sightingsHistoryLoading,
     timeFormat,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -384,22 +381,6 @@ export const HomeScreen = observer(function HomeScreen() {
     }
   }
 
-  const onPastSightingsPress = useCallback(() => {
-    if (!current) return
-
-    requestCloseModal("sightings")
-    requestOpenModal("pastSightings")
-
-    getISSSightingsHistory(current).catch(console.error)
-  }, [current])
-
-  const onUpcomingSightingsPress = useCallback(() => {
-    if (!current) return
-
-    requestCloseModal("pastSightings")
-    onSightingsPress()
-  }, [current])
-
   useEffect(() => {
     if (currentModal?.name === "sightings") {
       clearTimeout(sightingsModalTimerRef.current)
@@ -409,10 +390,6 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const onSightingsClose = useCallback(() => {
     requestCloseModal("sightings")
-  }, [])
-
-  const onPastSightingsClose = useCallback(() => {
-    requestCloseModal("pastSightings")
   }, [])
 
   const filteredSightings = useMemo(() => (current ? getFilteredSightings(current) : []), [current])
@@ -491,33 +468,6 @@ export const HomeScreen = observer(function HomeScreen() {
           timezone={current?.timezone || getCurrentTimeZone()}
           lastSightingOrbitPointAt={current?.lastSightingOrbitPointAt}
           hasPastSightings
-          onPastSightings={onPastSightingsPress}
-        />
-      </ModalContainer>
-
-      <ModalContainer
-        name="pastSightings"
-        onBackdropPress={() => requestCloseModal("pastSightings")}
-        onSwipeComplete={() => requestCloseModal("pastSightings")}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        swipeDirection="down"
-        useNativeDriver
-        useNativeDriverForBackdrop
-        hideModalContentWhileAnimating
-        propagateSwipe
-        backdropOpacity={0.65}
-        style={$modal}
-      >
-        <PastSightings
-          onClose={onPastSightingsClose}
-          isLoading={sightingsHistoryLoading}
-          timeFormat={timeFormat}
-          sightings={current ? current.sightingsHistory : []}
-          isUS={i18n.locale === "en"}
-          timezone={current?.timezone || getCurrentTimeZone()}
-          firstSightingOrbitPointAt={current?.firstHistorySightingOrbitPointAt}
-          onUpcomingSightings={onUpcomingSightingsPress}
         />
       </ModalContainer>
       <ModalContainer

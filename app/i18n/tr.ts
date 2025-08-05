@@ -153,7 +153,8 @@ const tr = {
       refresh: "Yenile",
     },
     selectSightings: {
-      title: "Yaklaşan Gözlemler",
+      upcomingSightings: "Yaklaşan Gözlemler",
+      pastSightings: "Geçmiş Gözlemler",
       sightings: "Gözlemler",
       selectMessage: "Bildirim almak istediğiniz etkinlikleri seçin.",
       switch: "Bu konumdaki tüm yaklaşan etkinlikler için beni bilgilendir.",
@@ -173,6 +174,7 @@ const tr = {
       longerThan4: "4 dakika ve daha uzun",
       empty: "{{start}} ile {{end}} arasında bu konum için potansiyel İstasyon gözlemi yok.",
       shareTitle: "İstasyon {{location}} üzerinde {{date}} tarihinde geçiyor",
+      shareAllTitle: "İstasyon {{location}} üzerinden geçiyor:",
       shareLink:
         "Daha fazla keşfetmek ve istasyonu artırılmış gerçeklik ile izlemek için uygulamayı indirin",
       calendarEventTitle: "{{location}}'da İstasyonu Görün!",
@@ -189,7 +191,7 @@ const tr = {
         low: "Düşük (<25%)",
         medium: "Orta (25-50%)",
       },
-      pastSightings: "Geçmiş Gözlemler",
+      shareAll: "Gözlem listesini paylaş",
       compass: {
         N: "K",
         NNE: "KKB",
@@ -464,6 +466,9 @@ const tr = {
   resources: {
     header: "Kaynaklar",
     goBack: "Geri Dön",
+    sightings: {
+      title: "Yaklaşan Gözlemler",
+    },
     news: {
       title: "İstasyon Haberleri",
       searchPlaceholder: "Makaleler, etkinlikler vb. ara...",

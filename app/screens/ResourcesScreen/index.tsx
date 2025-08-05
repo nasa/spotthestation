@@ -21,6 +21,10 @@ export const ResourcesScreen = observer(function ResourcesScreen() {
     <Template style={$container} hasBackButton={false} headerTitleTx="resources.header">
       <ScrollView style={$itemsContainer} contentContainerStyle={bottomInset}>
         <SettingsItem
+          title="resources.sightings.title"
+          onPress={() => handleNavigate("Sightings")}
+        />
+        <SettingsItem
           title="resources.spotTheStation.title"
           onPress={() =>
             handleNavigate("Web", { url: "https://www.nasa.gov/spot-the-station/#SPOT" })

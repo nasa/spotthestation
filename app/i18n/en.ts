@@ -153,7 +153,8 @@ const en = {
       refresh: "Refresh",
     },
     selectSightings: {
-      title: "Upcoming Sightings",
+      upcomingSightings: "Upcoming Sightings",
+      pastSightings: "Past Sightings",
       sightings: "Sightings",
       selectMessage: "Select events for which you would like to be notified.",
       switch: "Notify me for all upcoming events at this location.",
@@ -174,6 +175,7 @@ const en = {
       empty:
         "There are no potential Station sightings for this location from {{start}} through {{end}}.",
       shareTitle: "The Station is passing above {{location}} on {{date}}",
+      shareAllTitle: "The Station is passing above {{location}}:",
       shareLink: "To explore more and track the station via augmented reality, download the app at",
       calendarEventTitle: "Spot the Station in {{location}}!",
       calendarSuccess: "Calendar event created successfully",
@@ -190,7 +192,7 @@ const en = {
         low: "Low (<25%)",
         medium: "Medium (25-50%)",
       },
-      pastSightings: "Past Sightings",
+      shareAll: "Share Sightings List",
       compass: {
         N: "N",
         NNE: "NNE",
@@ -465,6 +467,9 @@ const en = {
   resources: {
     header: "Resources",
     goBack: "Go Back",
+    sightings: {
+      title: "Upcoming Sightings",
+    },
     news: {
       title: "Station News",
       searchPlaceholder: "Search articles, events, etc...",

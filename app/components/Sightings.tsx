@@ -18,8 +18,8 @@ import {
   TextStyle,
   ScrollView,
   Platform,
-  Pressable,
   FlatList,
+  ImageStyle,
 } from "react-native"
 import Modal from "react-native-modal"
 
@@ -30,7 +30,7 @@ import { formatDate, formatSightingDateTime } from "../utils/datetime"
 import { ISSSighting, LocationType } from "../services/api"
 import * as storage from "../utils/storage"
 import { normalizeHeight } from "../utils/normalizeHeight"
-import { translate } from "../i18n"
+import { translate, TxKeyPath } from "../i18n"
 
 import i18n from "i18n-js"
 import { ensureExactAlarmPermissions } from "../utils/notifications"
@@ -40,6 +40,7 @@ import { headingToCompass } from "../utils/geometry"
 import { CalendarPermissionError, createSightingEvent } from "../utils/calendar"
 import Snackbar from "react-native-snackbar"
 import { openSettings } from "react-native-permissions"
+import { PastSightings } from "./PastSightings"
 
 export interface SightingsProps {
   location: LocationType
@@ -61,7 +62,8 @@ export interface SightingsProps {
   cloudCover: string
   onCloudCoverChange: (value: string) => void
   hasPastSightings?: boolean
-  onPastSightings?: () => void
+  hasCloseButton?: boolean
+  style?: any
 }
 
 interface SightingListItemProps {
@@ -81,6 +83,19 @@ const stageIcons: { icon: IconTypes; color: string }[] = [
   { icon: "sunset", color: colors.palette.nasaOrange },
   { icon: "sun", color: colors.palette.yellow },
 ]
+
+const getSightingDescription = (sighting: ISSSighting) => {
+  return `${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate(
+    "units.minute",
+  )}
+${translate("homeScreen.selectSightings.maxHeight")} ${sighting.maxHeight}°
+${translate("homeScreen.selectSightings.appears")}: ${sighting.minAltitude}° ${translate(
+    `homeScreen.selectSightings.compass.${headingToCompass(sighting.minAzimuth)}`,
+  )}
+${translate("homeScreen.selectSightings.disappears")}: ${sighting.maxAltitude}° ${translate(
+    `homeScreen.selectSightings.compass.${headingToCompass(sighting.maxAzimuth)}`,
+  )}`
+}
 
 const SightingListItem = React.memo(function SightingListItem({
   sighting,
@@ -156,14 +171,14 @@ export const Sightings = React.memo(function Sightings({
   cloudCover,
   onCloudCoverChange,
   hasPastSightings,
-  onPastSightings,
+  hasCloseButton = true,
+  style,
 }: SightingsProps) {
   const {
     $modalBodyContainer,
     $coachModalBodyContainer,
     $scrollContainer,
     $close,
-    $title,
     $modalTitle,
     $selectMessageText,
     $switchContainer,
@@ -180,10 +195,19 @@ export const Sightings = React.memo(function Sightings({
     $coachModalScrollContainer,
     $scrollTitle,
     $flex,
-    $pastSightings,
+    $shareAll,
+    $expandContainer,
+    $button,
+    $buttonText,
+    $horizontalScrollContainer,
+    $active,
+    $bottomButtons,
+    $buttonIcon,
+    $paddingRight,
   } = useStyles(styles)
 
   const scrollViewRef = useRef<FlatList<ISSSighting>>()
+  const tabsScrollViewRef = useRef<ScrollView>()
 
   const timeOfDayOptions = useMemo(
     () => [
@@ -287,6 +311,7 @@ export const Sightings = React.memo(function Sightings({
   const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
   const [sightingsCoachVisible, setSightingsCoachVisible] = useState(false)
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
+  const [type, setType] = useState("upcomingSightings")
 
   useEffect(() => {
     if (Platform.OS !== "ios") return
@@ -295,6 +320,11 @@ export const Sightings = React.memo(function Sightings({
       scrollViewRef.current?.flashScrollIndicators()
     }, 100)
   }, [])
+
+  useEffect(() => {
+    if (type === "upcomingSightings") tabsScrollViewRef.current.scrollTo(0)
+    if (type === "pastSightings") tabsScrollViewRef.current.scrollToEnd({ animated: true })
+  }, [type])
 
   const getCoach = async () => {
     setSightingsCoachVisible(!(await storage.load(storage.KEYS.SIGHTINGS_COACH_VISIBLE)))
@@ -328,16 +358,7 @@ export const Sightings = React.memo(function Sightings({
         date: formatSightingDateTime(sighting.date, timeFormat, timezone, isUS),
       })}`
       const message = `${subject}!
-${translate("homeScreen.selectSightings.aboveHorizon")} ${sighting.visible} ${translate(
-        "units.minute",
-      )}
-${translate("homeScreen.selectSightings.maxHeight")} ${sighting.maxHeight}°
-${translate("homeScreen.selectSightings.appears")}: ${sighting.minAltitude}° ${translate(
-        `homeScreen.selectSightings.compass.${headingToCompass(sighting.minAzimuth)}`,
-      )}
-${translate("homeScreen.selectSightings.disappears")}: ${sighting.maxAltitude}° ${translate(
-        `homeScreen.selectSightings.compass.${headingToCompass(sighting.maxAzimuth)}`,
-      )}
+${getSightingDescription(sighting)}
 ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
 `
 
@@ -352,6 +373,35 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
     },
     [sightings, location],
   )
+
+  const onShareAll = useCallback(async () => {
+    const subject = `${translate("homeScreen.selectSightings.shareAllTitle", {
+      location: location.title,
+    })}`
+
+    const messageBody = sightings
+      .map(
+        (sighting) =>
+          `${formatSightingDateTime(sighting.date, timeFormat, timezone, isUS)}!
+${getSightingDescription(sighting)}`,
+      )
+      .join("\n\n")
+
+    const message = `${subject}
+${messageBody}
+
+${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
+`
+
+    const shareOptions = {
+      message,
+      subject,
+      failOnCancel: false,
+      type: undefined,
+    }
+
+    await Share.open(shareOptions)
+  }, [sightings, location])
 
   const onCalendar = useCallback(
     async (date: string) => {
@@ -394,132 +444,177 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
   )
 
   return (
-    <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Icon
-        icon="x"
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        color={colors.palette.neutral450}
-        onPress={onClose}
-        containerStyle={$close}
-        size={36}
-      />
-      <Text
-        accessible
-        accessibilityLabel="title"
-        accessibilityHint="title"
-        accessibilityRole="text"
-        tx="homeScreen.selectSightings.title"
-        style={$title}
-      />
-      <Text
-        accessible
-        accessibilityLabel="title"
-        accessibilityHint="title"
-        accessibilityRole="text"
-        tx="homeScreen.selectSightings.selectMessage"
-        style={$selectMessageText}
-      />
-      <View style={$switchContainer}>
-        <Text tx="homeScreen.selectSightings.switch" style={$label} />
-        <Toggle
+    <View style={[$modalBodyContainer, $marginTop, $paddingBottom, style]}>
+      {hasCloseButton && (
+        <Icon
+          icon="x"
           accessible
-          accessibilityLabel="switch button"
-          accessibilityHint="toggle notifications"
-          variant="switch"
-          value={isNotifyAll}
-          onValueChange={async () => {
-            const permitted = await ensureExactAlarmPermissions()
-            if (!permitted) return
-            onToggleAll(!isNotifyAll)
-          }}
+          accessibilityLabel="x button"
+          accessibilityHint="close modal"
+          accessibilityRole="button"
+          color={colors.palette.neutral450}
+          onPress={onClose}
+          containerStyle={$close}
+          size={36}
         />
+      )}
+      <View style={[$horizontalScrollContainer, hasCloseButton && $paddingRight]}>
+        <ScrollView horizontal ref={tabsScrollViewRef}>
+          {["upcomingSightings", hasPastSightings && "pastSightings"]
+            .filter(Boolean)
+            .map((item) => (
+              <Button
+                key={item}
+                accessible
+                accessibilityLabel={`${item} button`}
+                accessibilityHint={`show ${item} view`}
+                tx={`homeScreen.selectSightings.${item}` as TxKeyPath}
+                style={[$button, type === item && $active]}
+                textStyle={$buttonText}
+                pressedStyle={$button}
+                onPress={() => setType(item)}
+              />
+            ))}
+        </ScrollView>
       </View>
 
-      <View style={$filtersContainer}>
-        <SightingsFilterDropdown
-          title="homeScreen.selectSightings.timeOfDay"
-          options={timeOfDayOptions}
-          value={timeOfDay}
-          onChange={({ value }) => onTimeOfDayChange(value)}
-        />
-        <SightingsFilterDropdown
-          title="homeScreen.selectSightings.maxHeight"
-          options={heightOptions}
-          value={maxHeight}
-          onChange={({ value }) => onMaxHeightChange(value)}
-        />
-      </View>
-      <View style={$filtersContainer}>
-        <SightingsFilterDropdown
-          title="homeScreen.selectSightings.duration"
-          options={durationOptions}
-          value={duration}
-          onChange={({ value }) => onDurationChange(value)}
-        />
-
-        <SightingsFilterDropdown
-          title="homeScreen.selectSightings.cloudCover.title"
-          options={cloudCoverOptions}
-          value={cloudCover || ""}
-          onChange={({ value }) => onCloudCoverChange?.(value)}
-        />
-      </View>
-      <View style={$flex}>
-        <ExpandContainer
-          title="homeScreen.selectSightings.sightings"
-          expandble={false}
-          containerStyle={$flex}
-          reverseTitle
-          titleStyle={$scrollTitle}
-        >
-          {sightings.length === 0 ? (
-            <Text
-              style={$emptyText}
-              tx="homeScreen.selectSightings.empty"
-              txOptions={{
-                start: formatDate(new Date().toISOString()),
-                end: lastSightingOrbitPointAt
-                  ? formatDate(new Date(lastSightingOrbitPointAt).toISOString())
-                  : "-",
+      {type === "upcomingSightings" && (
+        <>
+          <Text
+            accessible
+            accessibilityLabel="title"
+            accessibilityHint="title"
+            accessibilityRole="text"
+            tx="homeScreen.selectSightings.selectMessage"
+            style={$selectMessageText}
+          />
+          <View style={$switchContainer}>
+            <Text tx="homeScreen.selectSightings.switch" style={$label} />
+            <Toggle
+              accessible
+              accessibilityLabel="switch button"
+              accessibilityHint="toggle notifications"
+              variant="switch"
+              value={isNotifyAll}
+              onValueChange={async () => {
+                const permitted = await ensureExactAlarmPermissions()
+                if (!permitted) return
+                onToggleAll(!isNotifyAll)
               }}
             />
-          ) : (
-            <FlatList
-              accessible
-              accessibilityLabel="Sightings scrollable area"
-              accessibilityHint="Sightings scrollable area"
-              accessibilityRole="scrollbar"
-              contentContainerStyle={$scrollContainer}
-              persistentScrollbar
-              indicatorStyle="white"
-              initialNumToRender={5}
-              ref={scrollViewRef}
-              data={sightings}
-              keyExtractor={(item) => item.date}
-              renderItem={({ item: sighting }) => (
-                <SightingListItem
-                  sighting={sighting}
-                  timezone={timezone}
-                  isUS={isUS}
-                  timeFormat={timeFormat}
-                  handleToggle={handleToggle}
-                  onShare={onShare}
-                  onCalendar={onCalendar}
+          </View>
+
+          <View style={$filtersContainer}>
+            <SightingsFilterDropdown
+              title="homeScreen.selectSightings.timeOfDay"
+              options={timeOfDayOptions}
+              value={timeOfDay}
+              onChange={({ value }) => onTimeOfDayChange(value)}
+            />
+            <SightingsFilterDropdown
+              title="homeScreen.selectSightings.maxHeight"
+              options={heightOptions}
+              value={maxHeight}
+              onChange={({ value }) => onMaxHeightChange(value)}
+            />
+          </View>
+          <View style={$filtersContainer}>
+            <SightingsFilterDropdown
+              title="homeScreen.selectSightings.duration"
+              options={durationOptions}
+              value={duration}
+              onChange={({ value }) => onDurationChange(value)}
+            />
+
+            <SightingsFilterDropdown
+              title="homeScreen.selectSightings.cloudCover.title"
+              options={cloudCoverOptions}
+              value={cloudCover || ""}
+              onChange={({ value }) => onCloudCoverChange?.(value)}
+            />
+          </View>
+          <View style={$flex}>
+            <ExpandContainer
+              hasTitle={false}
+              expandble={false}
+              containerStyle={[$flex, $expandContainer]}
+              reverseTitle
+              titleStyle={$scrollTitle}
+            >
+              {sightings.length === 0 ? (
+                <Text
+                  style={$emptyText}
+                  tx="homeScreen.selectSightings.empty"
+                  txOptions={{
+                    start: formatDate(new Date().toISOString()),
+                    end: lastSightingOrbitPointAt
+                      ? formatDate(new Date(lastSightingOrbitPointAt).toISOString())
+                      : "-",
+                  }}
+                />
+              ) : (
+                <FlatList
+                  accessible
+                  accessibilityLabel="Sightings scrollable area"
+                  accessibilityHint="Sightings scrollable area"
+                  accessibilityRole="scrollbar"
+                  contentContainerStyle={$scrollContainer}
+                  persistentScrollbar
+                  indicatorStyle="white"
+                  initialNumToRender={5}
+                  ref={scrollViewRef}
+                  data={sightings}
+                  keyExtractor={(item) => item.date}
+                  renderItem={({ item: sighting }) => (
+                    <SightingListItem
+                      sighting={sighting}
+                      timezone={timezone}
+                      isUS={isUS}
+                      timeFormat={timeFormat}
+                      handleToggle={handleToggle}
+                      onShare={onShare}
+                      onCalendar={onCalendar}
+                    />
+                  )}
                 />
               )}
-            />
+            </ExpandContainer>
+          </View>
+          {sightings.length > 0 && (
+            <View style={$bottomButtons}>
+              <Button
+                accessible
+                accessibilityLabel="send button"
+                accessibilityHint="Navigates to the mail app"
+                tx="homeScreen.selectSightings.shareAll"
+                onPress={onShareAll}
+                style={[$button, $shareAll]}
+                pressedStyle={[$button, $shareAll]}
+                textStyle={$buttonText}
+                renderLeftAccessory={() => (
+                  <Icon
+                    accessible
+                    accessibilityHint="share"
+                    icon="share"
+                    size={20}
+                    style={$buttonIcon as ImageStyle}
+                  />
+                )}
+              ></Button>
+            </View>
           )}
-        </ExpandContainer>
-      </View>
-
-      {Boolean(hasPastSightings) && (
-        <Pressable onPress={onPastSightings}>
-          <Text style={$pastSightings} tx="homeScreen.selectSightings.pastSightings" />
-        </Pressable>
+        </>
       )}
+
+      {type === "pastSightings" && (
+        <PastSightings
+          location={location}
+          timeFormat={timeFormat}
+          isUS={isUS}
+          timezone={timezone}
+        />
+      )}
+
       {sightingsCoachVisible && (
         <Modal
           isVisible={sightingsCoachVisible}
@@ -619,11 +714,11 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $scrollContainer: ViewStyle = {
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $scrollTitle: ViewStyle = {
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $close: ViewStyle = {
@@ -634,23 +729,13 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     zIndex: 5,
   }
 
-  const $title: TextStyle = {
-    marginTop: scale(10),
-    marginBottom: scale(10),
-    fontFamily: typography.primary?.normal,
-    fontSize: fontSizes[28],
-    lineHeight: lineHeights[44],
-    color: colors.palette.neutral250,
-    paddingHorizontal: scale(36),
-  }
-
   const $modalTitle: TextStyle = {
     marginBottom: scale(20),
     fontFamily: typography.primary?.normal,
     fontSize: fontSizes[28],
     lineHeight: lineHeights[30],
     color: colors.palette.neutral250,
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $selectMessageText: TextStyle = {
@@ -659,14 +744,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     fontSize: fontSizes[18],
     lineHeight: lineHeights[22],
     color: colors.palette.neutral100,
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $switchContainer: ViewStyle = {
     flexDirection: "row",
     justifyContent: "space-between",
     borderBottomColor: colors.palette.neutral350,
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
     paddingTop: scale(15),
   }
 
@@ -725,14 +810,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     fontFamily: typography.primary.normal,
     lineHeight: lineHeights[24],
     textAlign: "center",
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
   }
 
   const $filtersContainer: ViewStyle = {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: scale(36),
-    paddingTop: scale(15),
+    paddingHorizontal: scale(24),
+    paddingTop: scale(10),
     marginHorizontal: -scale(5),
   }
 
@@ -751,6 +836,15 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     color: colors.palette.neutral250,
   }
 
+  const $shareAll: TextStyle = {
+    fontFamily: typography.primary?.normal,
+    paddingVertical: scale(8),
+    paddingHorizontal: scale(24),
+    minHeight: scale(40),
+    height: scale(40),
+    backgroundColor: colors.palette.neutral550,
+  }
+
   const $pastSightings: TextStyle = {
     fontFamily: typography.primary?.normal,
     fontSize: fontSizes[13],
@@ -758,8 +852,54 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     color: colors.palette.buttonBlue,
     textTransform: "uppercase",
     paddingVertical: scale(16),
-    paddingHorizontal: scale(36),
+    paddingHorizontal: scale(24),
     textAlign: "right",
+  }
+
+  const $expandContainer: ViewStyle = {
+    marginTop: -scale(12),
+  }
+
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral100,
+    fontSize: fontSizes[16],
+    fontFamily: typography.primary.medium,
+  }
+
+  const $button: ViewStyle = {
+    width: "auto",
+    height: scale(43),
+    minHeight: scale(43),
+    backgroundColor: "transparent",
+    borderRadius: scale(28),
+    borderWidth: 0,
+    paddingHorizontal: scale(20),
+  }
+
+  const $horizontalScrollContainer: ViewStyle = {
+    height: scale(60),
+    paddingLeft: scale(20),
+    paddingRight: scale(20),
+    marginTop: scale(16),
+  }
+
+  const $paddingRight: ViewStyle = {
+    paddingRight: scale(60),
+  }
+
+  const $active: ViewStyle = {
+    backgroundColor: colors.palette.neutral550,
+  }
+
+  const $bottomButtons: ViewStyle = {
+    marginTop: scale(12),
+    marginHorizontal: scale(12),
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  }
+
+  const $buttonIcon = {
+    marginRight: 5,
   }
 
   return {
@@ -767,7 +907,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $coachModalBodyContainer,
     $scrollContainer,
     $close,
-    $title,
     $modalTitle,
     $selectMessageText,
     $switchContainer,
@@ -784,6 +923,15 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $coachModalScrollContainer,
     $scrollTitle,
     $flex,
+    $shareAll,
     $pastSightings,
+    $expandContainer,
+    $buttonText,
+    $button,
+    $horizontalScrollContainer,
+    $active,
+    $bottomButtons,
+    $buttonIcon,
+    $paddingRight,
   }
 }

@@ -1,35 +1,23 @@
-import { Text, ExpandContainer, ListItem, Icon, IconTypes } from "."
+import { Text, ExpandContainer, ListItem, IconTypes } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { useEffect, useMemo, useRef } from "react"
-import {
-  ViewStyle,
-  View,
-  PressableProps,
-  TextStyle,
-  Platform,
-  ActivityIndicator,
-  Pressable,
-  FlatList,
-} from "react-native"
+import { ViewStyle, View, TextStyle, Platform, ActivityIndicator, FlatList } from "react-native"
 
 import { colors, typography } from "../theme"
 
-import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 import { formatDate, formatSightingDateTime } from "../utils/datetime"
-import { ISSSighting } from "../services/api"
+import { ISSSighting, LocationType } from "../services/api"
 import { translate } from "../i18n"
 
 import { headingToCompass } from "../utils/geometry"
+import { useStores } from "../models"
+import { observer } from "mobx-react-lite"
 
 export interface PastSightingsProps {
-  sightings: ISSSighting[]
+  location: LocationType
   isUS?: boolean
   timezone?: string
   timeFormat: string
-  onClose?: PressableProps["onPress"]
-  firstSightingOrbitPointAt?: string
-  isLoading: boolean
-  onUpcomingSightings: () => void
 }
 
 interface SightingListItemProps {
@@ -86,31 +74,21 @@ const SightingListItem = React.memo(function SightingListItem({
   )
 })
 
-export const PastSightings = React.memo(function PastSightings({
-  onClose,
-  sightings,
+export const PastSightings = observer(function PastSightings({
+  location,
   isUS,
   timeFormat,
   timezone,
-  firstSightingOrbitPointAt,
-  isLoading,
-  onUpcomingSightings,
 }: PastSightingsProps) {
-  const {
-    $modalBodyContainer,
-    $scrollContainer,
-    $close,
-    $title,
-    $emptyText,
-    $scrollTitle,
-    $flex,
-    $upcomingSightings,
-  } = useStyles(styles)
+  const { $scrollContainer, $emptyText, $scrollTitle, $flex, $expandContainer } = useStyles(styles)
 
   const scrollViewRef = useRef<FlatList<ISSSighting>>()
 
-  const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
-  const $paddingBottom = useSafeAreaInsetsStyle(["bottom"], "padding")
+  const { getISSSightingsHistory, sightingsHistoryLoading } = useStores()
+
+  useEffect(() => {
+    getISSSightingsHistory(location).catch(console.error)
+  }, [])
 
   useEffect(() => {
     if (Platform.OS !== "ios") return
@@ -120,90 +98,59 @@ export const PastSightings = React.memo(function PastSightings({
     }, 100)
   }, [])
 
+  const sightings = location ? location.sightingsHistory : []
+
   return (
-    <View style={[$modalBodyContainer, $marginTop, $paddingBottom]}>
-      <Icon
-        icon="x"
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        color={colors.palette.neutral450}
-        onPress={onClose}
-        containerStyle={$close}
-        size={36}
-      />
-      <Text
-        accessible
-        accessibilityLabel="title"
-        accessibilityHint="title"
-        accessibilityRole="text"
-        tx="homeScreen.selectSightings.pastSightings"
-        style={$title}
-      />
-
-      <View style={$flex}>
-        <ExpandContainer
-          title="homeScreen.selectSightings.sightings"
-          expandble={false}
-          containerStyle={$flex}
-          reverseTitle
-          titleStyle={$scrollTitle}
-        >
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : sightings.length === 0 && !isLoading ? (
-            <Text
-              style={$emptyText}
-              tx="homeScreen.selectSightings.empty"
-              txOptions={{
-                start: firstSightingOrbitPointAt
-                  ? formatDate(new Date(firstSightingOrbitPointAt).toISOString())
-                  : "-",
-                end: formatDate(new Date().toISOString()),
-              }}
-            />
-          ) : (
-            <FlatList
-              accessible
-              accessibilityLabel="Sightings scrollable area"
-              accessibilityHint="Sightings scrollable area"
-              accessibilityRole="scrollbar"
-              contentContainerStyle={$scrollContainer}
-              persistentScrollbar
-              indicatorStyle="white"
-              initialNumToRender={3}
-              ref={scrollViewRef}
-              data={sightings}
-              keyExtractor={(item) => item.date}
-              renderItem={({ item: sighting }) => (
-                <SightingListItem
-                  sighting={sighting}
-                  timezone={timezone}
-                  isUS={isUS}
-                  timeFormat={timeFormat}
-                />
-              )}
-            />
-          )}
-        </ExpandContainer>
-      </View>
-
-      <Pressable onPress={onUpcomingSightings}>
-        <Text style={$upcomingSightings} tx="homeScreen.selectSightings.title" />
-      </Pressable>
+    <View style={$flex}>
+      <ExpandContainer
+        hasTitle={false}
+        expandble={false}
+        containerStyle={[$flex, $expandContainer]}
+        reverseTitle
+        titleStyle={$scrollTitle}
+      >
+        {sightingsHistoryLoading ? (
+          <ActivityIndicator />
+        ) : sightings.length === 0 && !sightingsHistoryLoading ? (
+          <Text
+            style={$emptyText}
+            tx="homeScreen.selectSightings.empty"
+            txOptions={{
+              start: location.firstHistorySightingOrbitPointAt
+                ? formatDate(new Date(location.firstHistorySightingOrbitPointAt).toISOString())
+                : "-",
+              end: formatDate(new Date().toISOString()),
+            }}
+          />
+        ) : (
+          <FlatList
+            accessible
+            accessibilityLabel="Sightings scrollable area"
+            accessibilityHint="Sightings scrollable area"
+            accessibilityRole="scrollbar"
+            contentContainerStyle={$scrollContainer}
+            persistentScrollbar
+            indicatorStyle="white"
+            initialNumToRender={3}
+            ref={scrollViewRef}
+            data={sightings}
+            keyExtractor={(item) => item.date}
+            renderItem={({ item: sighting }) => (
+              <SightingListItem
+                sighting={sighting}
+                timezone={timezone}
+                isUS={isUS}
+                timeFormat={timeFormat}
+              />
+            )}
+          />
+        )}
+      </ExpandContainer>
     </View>
   )
 })
 
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
-  const $modalBodyContainer: ViewStyle = {
-    backgroundColor: colors.palette.neutral350,
-    borderTopLeftRadius: scale(18),
-    borderTopRightRadius: scale(18),
-    flex: 1,
-  }
-
   const $flex: ViewStyle = {
     flex: 1,
   }
@@ -213,24 +160,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $scrollTitle: ViewStyle = {
-    paddingHorizontal: scale(36),
-  }
-
-  const $close: ViewStyle = {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: scale(18),
-    zIndex: 5,
-  }
-
-  const $title: TextStyle = {
-    marginTop: scale(10),
-    marginBottom: scale(10),
-    fontFamily: typography.primary?.normal,
-    fontSize: fontSizes[28],
-    lineHeight: lineHeights[44],
-    color: colors.palette.neutral250,
     paddingHorizontal: scale(36),
   }
 
@@ -244,25 +173,15 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingHorizontal: scale(36),
   }
 
-  const $upcomingSightings: TextStyle = {
-    fontFamily: typography.primary?.normal,
-    fontSize: fontSizes[13],
-    lineHeight: lineHeights[16],
-    color: colors.palette.buttonBlue,
-    textTransform: "uppercase",
-    paddingVertical: scale(16),
-    paddingHorizontal: scale(36),
-    textAlign: "right",
+  const $expandContainer: ViewStyle = {
+    marginTop: -scale(25),
   }
 
   return {
-    $modalBodyContainer,
     $scrollContainer,
-    $close,
-    $title,
     $emptyText,
     $scrollTitle,
     $flex,
-    $upcomingSightings,
+    $expandContainer,
   }
 }

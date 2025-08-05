@@ -9,18 +9,20 @@ import { typography, colors } from "../theme"
 export interface ExpandContainerProps {
   defaultValue?: boolean
   itemsCount?: number
-  title: TxKeyPath
+  hasTitle?: boolean
+  title?: TxKeyPath
   expandble?: boolean
   reverseTitle?: boolean
   children?: ReactNode
   actionTitle?: TxKeyPath
-  containerStyle?: ViewStyle
+  containerStyle?: any
   titleStyle?: ViewStyle
   button?: ReactNode
 }
 
 export function ExpandContainer({
   defaultValue = true,
+  hasTitle = true,
   title,
   expandble = true,
   children,
@@ -41,18 +43,20 @@ export function ExpandContainer({
   return (
     <View style={[$container, containerStyle]}>
       <View style={$headContainer}>
-        <View style={[$titleContainer, $titleContainerOverride, titleStyle]}>
-          <Text
-            accessible
-            accessibilityLabel="title"
-            accessibilityHint={title}
-            accessibilityRole="text"
-            tx={title}
-            style={[$title, $titleOverride]}
-          />
-          {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
-          {button}
-        </View>
+        {hasTitle && (
+          <View style={[$titleContainer, $titleContainerOverride, titleStyle]}>
+            <Text
+              accessible
+              accessibilityLabel="title"
+              accessibilityHint={title}
+              accessibilityRole="text"
+              tx={title}
+              style={[$title, $titleOverride]}
+            />
+            {itemsCount > 1 && <Text text={` (${itemsCount})`} style={$title} />}
+            {button}
+          </View>
+        )}
         {expandble && (
           <Icon
             icon="chevronDown"

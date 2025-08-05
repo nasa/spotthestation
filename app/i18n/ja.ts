@@ -153,8 +153,8 @@ const ja = {
       refresh: "リフレッシュ",
     },
     selectSightings: {
-      title: "今後の発見情報",
-      sightings: "発見情報",
+      upcomingSightings: "今後の発見情報",
+      pastSightings: "過去の目撃情報",
       selectMessage: "通知したいイベントを選択します。",
       switch: "この位置での今後の全てのイベントについて私に通知してください。",
       aboveHorizon: "地平線の上",
@@ -173,6 +173,7 @@ const ja = {
       longerThan4: "4分以上",
       empty: "{{start}} から {{end}} まで、この場所で ISS が目撃される可能性はありません。",
       shareTitle: "ステーションは{{date}}に{{location}}の上空を通過しています",
+      shareAllTitle: "宇宙ステーションが{{location}}の上空を通過中です：",
       shareLink:
         "さらに探索し、拡張現実でステーションを追跡するには、アプリをダウンロードしてください",
       calendarEventTitle: "{{location}}でステーションを見つけよう！",
@@ -189,7 +190,7 @@ const ja = {
         low: "低い (<25%)",
         medium: "中程度 (25-50%)",
       },
-      pastSightings: "過去の目撃情報",
+      shareAll: "目撃情報リストを共有",
       compass: {
         N: "北",
         NNE: "北北東",
@@ -463,6 +464,9 @@ const ja = {
   resources: {
     header: "リソース",
     goBack: "戻る",
+    sightings: {
+      title: "今後の発見情報",
+    },
     news: {
       title: "ステーションニュース",
       searchPlaceholder: "記事、イベントなどを検索...",

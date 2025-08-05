@@ -88,16 +88,16 @@ export function SightingsFilterDropdown({
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $dropdown: ViewStyle = {
     borderRadius: scale(28),
-    height: scale(45),
+    height: scale(35),
     backgroundColor: colors.palette.neutral550,
     overflow: "hidden",
-    marginTop: scale(10),
+    marginTop: scale(5),
   }
 
   const $dropdownContainer: ViewStyle = {
     backgroundColor: colors.palette.neutral350,
     borderRadius: scale(10),
-    marginTop: -scale(40),
+    marginTop: -scale(43),
     borderWidth: 0,
   }
 
@@ -116,14 +116,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $dropdownText: TextStyle = {
     fontFamily: typography.primary.normal,
-    fontSize: fontSizes[18],
+    fontSize: fontSizes[16],
     paddingVertical: 0,
     paddingHorizontal: 0,
     color: colors.palette.neutral250,
   }
 
   const $dropdownRightAccessory: ViewStyle = {
-    height: scale(45),
+    height: scale(35),
     marginRight: scale(spacing.small),
     justifyContent: "center",
     alignItems: "center",
@@ -131,14 +131,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $title: TextStyle = {
     fontFamily: typography.primary?.normal,
-    fontSize: fontSizes[13],
-    lineHeight: lineHeights[16],
+    fontSize: fontSizes[12],
+    lineHeight: lineHeights[14],
     color: colors.palette.neutral450,
     textTransform: "uppercase",
   }
 
   const $dropdownItemContainer: ViewStyle = {
-    height: scale(56),
+    height: scale(46),
     justifyContent: "center",
     marginHorizontal: scale(spacing.small),
   }

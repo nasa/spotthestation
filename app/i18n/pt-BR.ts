@@ -154,8 +154,8 @@ const ptBR = {
       refresh: "Atualizar",
     },
     selectSightings: {
-      title: "Próximos Avistamentos",
-      sightings: "Avistamentos",
+      upcomingSightings: "Próximos Avistamentos",
+      pastSightings: "Avistamentos Passados",
       selectMessage: "Selecione os eventos para os quais você gostaria de ser notificado.",
       switch: "Notificar-me para todos os próximos eventos nesta localização.",
       aboveHorizon: "Acima do horizonte",
@@ -175,6 +175,7 @@ const ptBR = {
       empty:
         "Não há avistamentos potenciais da Estação para esta localização de {{start}} até {{end}}.",
       shareTitle: "A Estação está passando acima de {{location}} em {{date}}",
+      shareAllTitle: "A Estação Espacial está passando sobre {{location}}:",
       shareLink:
         "Para explorar mais e rastrear a estação via realidade aumentada, baixe o aplicativo em",
       calendarEventTitle: "Veja a estação em {{location}}!",
@@ -192,7 +193,7 @@ const ptBR = {
         low: "Baixo (<25%)",
         medium: "Médio (25-50%)",
       },
-      pastSightings: "Avistamentos Passados",
+      shareAll: "Compartilhar lista de avistamentos",
       compass: {
         N: "N",
         NNE: "NNE",
@@ -468,6 +469,9 @@ const ptBR = {
   resources: {
     header: "Recursos",
     goBack: "Voltar",
+    sightings: {
+      title: "Próximos Avistamentos",
+    },
     news: {
       title: "Notícias da Estação",
       searchPlaceholder: "Pesquisar artigos, eventos, etc...",
