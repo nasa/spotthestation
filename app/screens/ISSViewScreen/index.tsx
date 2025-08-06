@@ -690,10 +690,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   headerStyle.top = Number(headerStyle.top) + topInset
 
   const bodyStyle = { ...(isFullScreen ? $bodyStyleOverrideFs : $bodyStyleOverride) }
-  if (!isFullScreen) bodyStyle.marginTop = Number(bodyStyle.marginTop) + topInset
+  if (!isFullScreen) bodyStyle.marginTop = topInset
 
   const bottomContainerStyle = { ...$bottomContainerStyleOverride }
-  bottomContainerStyle.bottom = Number(bottomContainerStyle.bottom) + bottomInset
+  bottomContainerStyle.bottom = isFullScreen
+    ? Number(bottomContainerStyle.bottom) + bottomInset
+    : 10
 
   const isActive =
     isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated && safetyAcknowledged
@@ -786,56 +788,55 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
           />
         )}
       </View>
-      {!isCameraAllowed ? (
-        <Pressable
-          style={[$body, bodyStyle]}
-          onPress={() => requestCameraPermissions(handleCameraPermission, true)}
+      <View style={[$body, bodyStyle]}>
+        {!isCameraAllowed && (
+          <Pressable onPress={() => requestCameraPermissions(handleCameraPermission, true)}>
+            <Text tx="issView.cameraPermissionText" style={[$time, $permissionText]} />
+          </Pressable>
+        )}
+
+        {isActive && (
+          <ViewShot style={$flex}>
+            <ARView
+              still={still}
+              onStillReady={completeScreenshot}
+              isFullScreen={isFullScreen}
+              isPathVisible={isPathVisible}
+              isRecording={isRecording}
+              recordedSeconds={recordedSeconds}
+              issPath={issPath}
+              onTakeScreenshot={takeScreenshot}
+              location={current}
+              onDirectionCircleLayout={handleTutorialItemLayout("circle")}
+              onCompassLayout={handleTutorialItemLayout("compass")}
+            />
+          </ViewShot>
+        )}
+        {isCameraAllowed && isSupported && (!isCalibrated || !issData?.length) && (
+          <ActivityIndicator style={StyleSheet.absoluteFill} />
+        )}
+        <View
+          accessible
+          accessibilityLabel="countdown"
+          accessibilityHint="countdown to next visibility"
+          accessibilityRole="text"
+          style={[$timeContainer, bottomContainerStyle]}
         >
-          <Text tx="issView.cameraPermissionText" style={[$time, $permissionText]} />
-        </Pressable>
-      ) : (
-        <View style={[$body, bodyStyle]}>
-          {isActive && (
-            <ViewShot style={$flex}>
-              <ARView
-                still={still}
-                onStillReady={completeScreenshot}
-                isFullScreen={isFullScreen}
-                isPathVisible={isPathVisible}
-                isRecording={isRecording}
-                recordedSeconds={recordedSeconds}
-                issPath={issPath}
-                onTakeScreenshot={takeScreenshot}
-                location={current}
-                onDirectionCircleLayout={handleTutorialItemLayout("circle")}
-                onCompassLayout={handleTutorialItemLayout("compass")}
-              />
-            </ViewShot>
-          )}
-          {isSupported && (!isCalibrated || !issData?.length) && (
-            <ActivityIndicator style={StyleSheet.absoluteFill} />
-          )}
-          <View
-            accessible
-            accessibilityLabel="countdown"
-            accessibilityHint="countdown to next visibility"
-            accessibilityRole="text"
-            style={[$timeContainer, bottomContainerStyle]}
-          >
-            <Text tx="issView.timeHeader" style={$timeHeader} />
-            <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
-          </View>
-          <View style={[$bottomContainer, bottomContainerStyle, $left]}>
-            <View style={[$buttonColumn, isLandscape && $row]}>
-              <IconLinkButton
-                accessible
-                accessibilityLabel="information"
-                accessibilityHint="open information modal"
-                icon="information"
-                buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $mr24]}
-                onPress={onDetails}
-                onLayout={handleTutorialItemLayout("info")}
-              />
+          <Text tx="issView.timeHeader" style={$timeHeader} />
+          <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
+        </View>
+        <View style={[$bottomContainer, bottomContainerStyle, $left]}>
+          <View style={[$buttonColumn, isLandscape && $row]}>
+            <IconLinkButton
+              accessible
+              accessibilityLabel="information"
+              accessibilityHint="open information modal"
+              icon="information"
+              buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $mr24]}
+              onPress={onDetails}
+              onLayout={handleTutorialItemLayout("info")}
+            />
+            {isCameraAllowed && (
               <IconLinkButton
                 accessible
                 accessibilityLabel="path line"
@@ -849,6 +850,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onPress={() => setIsPathVisible(!isPathVisible)}
                 onLayout={handleTutorialItemLayout("trajectory")}
               />
+            )}
+
+            {isCameraAllowed && (
               <IconLinkButton
                 accessible
                 accessibilityLabel="compass"
@@ -862,10 +866,12 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onPress={() => setIsFullScreen(!isFullScreen)}
                 onLayout={handleTutorialItemLayout("fullScreen")}
               />
-            </View>
+            )}
           </View>
-          <View style={[$bottomContainer, bottomContainerStyle, $right]}>
-            <View style={[$buttonColumn, isLandscape && $row]}>
+        </View>
+        <View style={[$bottomContainer, bottomContainerStyle, $right]}>
+          <View style={[$buttonColumn, isLandscape && $row]}>
+            {isCameraAllowed && (
               <IconLinkButton
                 accessible
                 accessibilityLabel="share"
@@ -875,6 +881,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onPress={onShare}
                 onLayout={handleTutorialItemLayout("share")}
               />
+            )}
+            {isCameraAllowed && (
               <IconLinkButton
                 accessible
                 accessibilityLabel="capture"
@@ -888,7 +896,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 onPress={takeScreenshot}
                 onLayout={handleTutorialItemLayout("screenshot")}
               />
-              {isRecording ? (
+            )}
+            {isCameraAllowed &&
+              (isRecording ? (
                 <>
                   <View>
                     <IconLinkButton
@@ -917,11 +927,10 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                   onLayout={handleTutorialItemLayout("video")}
                 />
-              )}
-            </View>
+              ))}
           </View>
         </View>
-      )}
+      </View>
       <Modal
         isVisible={isPermissionsModal}
         onBackdropPress={() => setIsPermissionsModal(!isPermissionsModal)}

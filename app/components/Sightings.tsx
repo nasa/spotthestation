@@ -443,6 +443,12 @@ ${translate("homeScreen.selectSightings.shareLink")}: ${APP_UNIVERSAL_LINK}
     [sightings, location],
   )
 
+  const safeAreaPaddingBottom = Number($paddingBottom.paddingBottom)
+  $paddingBottom.paddingBottom = Math.max(
+    Number.isNaN(safeAreaPaddingBottom) ? 0 : safeAreaPaddingBottom,
+    12,
+  )
+
   return (
     <View style={[$modalBodyContainer, $marginTop, $paddingBottom, style]}>
       {hasCloseButton && (
