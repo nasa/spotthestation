@@ -83,8 +83,7 @@ exports[`Sightings renders correctly 1`] = `
     style={
       [
         {
-          "height": 86,
-          "marginTop": 23,
+          "marginVertical": 23,
           "paddingLeft": 29,
           "paddingRight": 29,
         },
@@ -155,8 +154,7 @@ exports[`Sightings renders correctly 1`] = `
                   "backgroundColor": "transparent",
                   "borderRadius": 40,
                   "borderWidth": 0,
-                  "height": 62,
-                  "minHeight": 62,
+                  "minHeight": 0,
                   "paddingHorizontal": 29,
                   "width": "auto",
                 },
@@ -3901,8 +3899,7 @@ exports[`Sightings renders correctly 1`] = `
               "backgroundColor": "transparent",
               "borderRadius": 40,
               "borderWidth": 0,
-              "height": 62,
-              "minHeight": 62,
+              "minHeight": 0,
               "paddingHorizontal": 29,
               "width": "auto",
             },

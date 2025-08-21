@@ -1,7 +1,7 @@
 import { iconRegistry, ControlsView } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { ActivityIndicator, StyleSheet, ViewStyle } from "react-native"
+import { ActivityIndicator, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
 import {
@@ -52,6 +52,8 @@ export function Globe({
   const globeRef = useRef<Mesh>(null)
   const deadRef = useRef<boolean>(false)
   const [markerTexture, setMarkerTexture] = useState<Texture>(null)
+  const [initialHeight, setInitialHeight] = React.useState<number | null>(null)
+  const [height, setHeight] = React.useState<number | null>(null)
 
   const { setIsVisible: setTrajectoryVisible } = useTrajectoryLines(sceneRef, issPath, 200, 32)
 
@@ -190,13 +192,24 @@ export function Globe({
     render()
   }
 
+  const handleLayoutChange = (e: LayoutChangeEvent) => {
+    if (initialHeight === null) setInitialHeight(e.nativeEvent.layout.height)
+    setHeight(e.nativeEvent.layout.height)
+  }
+
   return (
-    <>
-      <ControlsView style={$pan} camera={camera} onPositionChange={handleCameraChange}>
-        <GLView style={$container} onContextCreate={contextRenderer} key="d" />
-        {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}
-      </ControlsView>
-    </>
+    <View style={$pan} onLayout={handleLayoutChange}>
+      {initialHeight !== null && (
+        <ControlsView
+          style={{ height: initialHeight, transform: `scale(${height / initialHeight})` }}
+          camera={camera}
+          onPositionChange={handleCameraChange}
+        >
+          <GLView style={$container} onContextCreate={contextRenderer} key="d" />
+          {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}
+        </ControlsView>
+      )}
+    </View>
   )
 }
 
@@ -208,6 +221,7 @@ const styles: StyleFn = () => {
 
   const $pan: ViewStyle = {
     flex: 1,
+    justifyContent: "center",
   }
 
   return { $container, $pan }

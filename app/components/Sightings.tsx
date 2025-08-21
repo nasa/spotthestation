@@ -874,8 +874,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $button: ViewStyle = {
     width: "auto",
-    height: scale(43),
-    minHeight: scale(43),
+    minHeight: 0,
     backgroundColor: "transparent",
     borderRadius: scale(28),
     borderWidth: 0,
@@ -883,10 +882,9 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $horizontalScrollContainer: ViewStyle = {
-    height: scale(60),
     paddingLeft: scale(20),
     paddingRight: scale(20),
-    marginTop: scale(16),
+    marginVertical: scale(16),
   }
 
   const $paddingRight: ViewStyle = {
