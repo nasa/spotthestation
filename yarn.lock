@@ -4235,10 +4235,10 @@
     color "^4.2.3"
     warn-once "^0.1.0"
 
-"@rnmapbox/maps@^10.1.39":
-  version "10.1.39"
-  resolved "https://registry.yarnpkg.com/@rnmapbox/maps/-/maps-10.1.39.tgz#20673c90eadc976e7fb3877ee4ad137845610ff5"
-  integrity sha512-h96h/wPwmuJ6Je/qDL8KTh3QSVvlX41SNVAZpEUtPpIos/n/3eDzERvBxNd/8FGZYZVR/3FcZnv4razaNCFksg==
+"@rnmapbox/maps@^10.1.43":
+  version "10.1.43"
+  resolved "https://registry.yarnpkg.com/@rnmapbox/maps/-/maps-10.1.43.tgz#123fb90849c172578dd354df5923fb99b55d75af"
+  integrity sha512-9dS5oxsTpAdSz4Lsed7/M/e7DmcPf3Z8uWxP4TjFj9pgMqyZ9GWxV8L094Z5Lms7APC8VB5pZufvxMf7b4JAmA==
   dependencies:
     "@turf/along" "6.5.0"
     "@turf/distance" "6.5.0"
@@ -4246,7 +4246,7 @@
     "@turf/length" "6.5.0"
     "@turf/nearest-point-on-line" "6.5.0"
     "@types/geojson" "^7946.0.7"
-    debounce "^1.2.0"
+    debounce "^2.2.0"
 
 "@sentry-internal/browser-utils@8.54.0":
   version "8.54.0"
@@ -7447,10 +7447,10 @@ dayjs@^1.8.15:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
   integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
 
-debounce@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
-  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
+debounce@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-2.2.0.tgz#f895fa2fbdb579a0f0d3dcf5dde19657e50eaad5"
+  integrity sha512-Xks6RUDLZFdz8LIdR6q0MTH44k7FikOmnh5xkSjMig6ch45afc8sjTjRQf3P6ax8dMgcQrYO/AR2RGWURrruqw==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -8711,10 +8711,10 @@ expo-font@^13.3.1, expo-font@~13.3.1:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-gl@^15.1.6:
-  version "15.1.6"
-  resolved "https://registry.yarnpkg.com/expo-gl/-/expo-gl-15.1.6.tgz#0f3a44500cb55b484c47eae85ae1a1de38aa9ae3"
-  integrity sha512-DZn4c23BN4TvhmUC82/Gb3Z6qokQTbg+1QPYoefvlZU6+2JxFwfsBYD6JeX05KkmpEkrKtkWNeOOF33DZF80ag==
+expo-gl@^15.1.7:
+  version "15.1.7"
+  resolved "https://registry.yarnpkg.com/expo-gl/-/expo-gl-15.1.7.tgz#55f24a000b890ae670b74018509e30436c4e487b"
+  integrity sha512-ozvaQn3Ev1oZ3lraOpp6PJpSCbb5DRxu29K/prtfUdygrNJbCFhhxG7zgpEcPaFZXj4b1Yc7jzn1UzOylfUdaw==
   dependencies:
     invariant "^2.2.4"
 
@@ -8765,10 +8765,17 @@ expo-modules-autolinking@^2.0.8:
     require-from-string "^2.0.2"
     resolve-from "^5.0.0"
 
-expo-modules-core@2.4.0, expo-modules-core@^2.4.0:
+expo-modules-core@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-2.4.0.tgz#3081d62fadff913090cc5abfe46d9ec6b0e75789"
   integrity sha512-Ko5eHBdvuMykjw9P9C9PF54/wBSsGOxaOjx92I5BwgKvEmUwN3UrXFV4CXzlLVbLfSYUQaLcB220xmPfgvT7Fg==
+  dependencies:
+    invariant "^2.2.4"
+
+expo-modules-core@^2.4.1:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-2.5.0.tgz#cc098607c9b0665e0cbd0a423c9542253caab58a"
+  integrity sha512-aIbQxZE2vdCKsolQUl6Q9Farlf8tjh/ROR4hfN1qT7QBGPl1XrJGnaOKkcgYaGrlzCPg/7IBe0Np67GzKMZKKQ==
   dependencies:
     invariant "^2.2.4"
 
@@ -14695,10 +14702,10 @@ react-native-view-shot@^4.0.3:
   dependencies:
     html2canvas "^1.4.1"
 
-react-native-vision-camera@^4.6.4:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.6.4.tgz#f1c51dda2c5d558ea0ec235e2401abf5efa46875"
-  integrity sha512-d998uTHsGJ9bTlsClgT37RK1sK7ZQekv5y6ylynds3vmdK6YbFQJUoi2cvMrFN4dp9qvSlCjEfwekjMIz3guQA==
+react-native-vision-camera@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.7.2.tgz#e4bd8f3d893a3f5fa9d8224ce28b8ef00d171bc1"
+  integrity sha512-C+5PvlSunN6I4aYplSask+v3jfhgduZumIVw6H6lG+Afpf8boIcG3uFSsSfVgj+hxI7fx6qM6bsciEhzgxEUYg==
 
 react-native-web@~0.18.7:
   version "0.18.10"

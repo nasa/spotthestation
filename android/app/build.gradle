@@ -100,6 +100,13 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
+
+        externalNativeBuild {
+            cmake {
+                // Passes optional arguments to CMake.
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+            }
+        }
     }
 
     signingConfigs {
@@ -139,24 +146,17 @@ dependencies {
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
 
-    // If your app supports Android versions before Ice Cream Sandwich (API level 14)
-    // All fresco packages should use the same version
-    if (isGifEnabled || isWebpEnabled) {
-        implementation 'com.facebook.fresco:fresco:2.0.0'
-        implementation 'com.facebook.fresco:imagepipeline-okhttp3:2.0.0'
-    }
-
     if (isGifEnabled) {
         // For animated gif support
-        implementation 'com.facebook.fresco:animated-gif:2.0.0'
+        implementation("com.facebook.fresco:animated-gif:3.6.0")
     }
 
     if (isWebpEnabled) {
         // For webp support
-        implementation 'com.facebook.fresco:webpsupport:2.0.0'
+        implementation("com.facebook.fresco:webpsupport:3.6.0")
         if (isWebpAnimatedEnabled) {
             // Animated webp support
-            implementation 'com.facebook.fresco:animated-webp:2.0.0'
+            implementation("com.facebook.fresco:animated-webp:3.6.0")
         }
     }
 

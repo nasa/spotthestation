@@ -50,7 +50,7 @@ PODS:
     - ExpoModulesCore
   - ExpoFont (13.3.1):
     - ExpoModulesCore
-  - ExpoGL (15.1.6):
+  - ExpoGL (15.1.7):
     - ExpoModulesCore
     - ReactCommon/turbomodule/core
   - ExpoKeepAwake (14.1.4):
@@ -59,7 +59,7 @@ PODS:
     - ExpoModulesCore
   - ExpoLocalization (16.1.5):
     - ExpoModulesCore
-  - ExpoModulesCore (2.4.0):
+  - ExpoModulesCore (2.5.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1963,13 +1963,13 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - rnmapbox-maps (10.1.39):
+  - rnmapbox-maps (10.1.43):
     - MapboxMaps (= 10.19.0)
     - React
     - React-Core
-    - rnmapbox-maps/DynamicLibrary (= 10.1.39)
+    - rnmapbox-maps/DynamicLibrary (= 10.1.43)
     - Turf
-  - rnmapbox-maps/DynamicLibrary (10.1.39):
+  - rnmapbox-maps/DynamicLibrary (10.1.43):
     - MapboxMaps (= 10.19.0)
     - React
     - React-Core
@@ -2189,11 +2189,11 @@ PODS:
   - SocketRocket (0.7.1)
   - SSZipArchive (2.5.5)
   - Turf (2.8.0)
-  - VisionCamera (4.6.4):
-    - VisionCamera/Core (= 4.6.4)
-    - VisionCamera/React (= 4.6.4)
-  - VisionCamera/Core (4.6.4)
-  - VisionCamera/React (4.6.4):
+  - VisionCamera (4.7.2):
+    - VisionCamera/Core (= 4.7.2)
+    - VisionCamera/React (= 4.7.2)
+  - VisionCamera/Core (4.7.2)
+  - VisionCamera/React (4.7.2):
     - React-Core
   - Yoga (0.0.0)
 
@@ -2582,11 +2582,11 @@ SPEC CHECKSUMS:
   ExpoDevice: 7a961caede6638aa0d37d0d3aa884ab957a2e3d3
   ExpoFileSystem: 3a98ca2a6f13674ecfd97327d1b44a8ace444cbd
   ExpoFont: 312c73403bbd4f98e1d6a5330641a56292583cd2
-  ExpoGL: 7feb84bfc9b11fd5eccfddfa40cd2cc333efa956
+  ExpoGL: b4324d3a28d01d7664ed450333919ae336701146
   ExpoKeepAwake: e8dedc115d9f6f24b153ccd2d1d8efcdfd68a527
   ExpoLinking: 5d151d4a497d7e375308602f0a89b4e8acf7b5f8
   ExpoLocalization: 7cd94f24bc3ff2f263cb4258fe1e86a97bc1ea64
-  ExpoModulesCore: 6865a36c84f8a955dc533af5034b5f71447a3e14
+  ExpoModulesCore: 8030601b6028c50a3adf8864dabf43c84c913f43
   ExpoStoreReview: bed43bea90a5876a6a480504f95fea1521dacaa7
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: 15c28682af535aa55b9b31e64deff54b7ed7d453
@@ -2686,7 +2686,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: 9e013537d8aa83f9b46971bb15d43c0ed9eabec2
   RNFBApp: fda4a8b08fe31bea8492808106aa638d1bb595b7
   RNGestureHandler: 57990734aadd7d828ceeba8bec11f965b772ff86
-  rnmapbox-maps: 30f599bcd8490b758238f7392dfa5e5b78b6c9a0
+  rnmapbox-maps: 3778146e16fe84bfe04a4ba9aaab696ecf445cf6
   RNNotifee: 4a6ee5c7deaf00e005050052d73ee6315dff7ec9
   RNPermissions: d926727ebd31c2539ceb1f1b783779d2a6473288
   RNReanimated: e363cb3f5e5e2fdc7bd7d880f26363e7b1747cd0
@@ -2700,8 +2700,8 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SSZipArchive: c69881e8ac5521f0e622291387add5f60f30f3c4
   Turf: aa2ede4298009639d10db36aba1a7ebaad072a5e
-  VisionCamera: b5c2b3c45e641102902a5194af11dc532805221e
-  Yoga: 2a3a4c38a8441b6359d5e5914d35db7b2b67aebd
+  VisionCamera: 2230ecfd78a1f6cddd8be0fe4e6589f21a6385e1
+  Yoga: dfabf1234ccd5ac41d1b1d43179f024366ae9831
 
 PODFILE CHECKSUM: 7700755930ef4cdaa28652578f7bf0e7ebf50f14
 
