@@ -137,9 +137,10 @@ const ja = {
         "現在、接続がありませんので、駅の軌道データは利用できません。後でもう一度確認してください。",
     },
     header: {
-      firstTimeHead: "次の目撃情報リスト",
+      firstTimeHead: "次の目撃情報",
       secondTimeHead: "カウントダウン",
       timezone: "タイムゾーン",
+      opportunities: "目撃機会",
     },
     selectLocation: {
       title: "[位置]を選択します",

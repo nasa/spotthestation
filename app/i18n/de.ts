@@ -139,9 +139,10 @@ const de = {
         "Die Flugbahndaten sind derzeit wegen fehlender Netzverbindung nicht verfügbar. Bitte prüfen Sie die Netzverbindung oder versuchen Sie es später noch einmal.",
     },
     header: {
-      firstTimeHead: "LISTE DER NÄCHSTEN SICHTUNGEN",
+      firstTimeHead: "NÄCHSTE SICHTUNG",
       secondTimeHead: "COUNTDOWN",
       timezone: "Zeitzone",
+      opportunities: "Sichtungsmöglichkeiten",
     },
     selectLocation: {
       title: "Ort auswählen",

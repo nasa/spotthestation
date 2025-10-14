@@ -139,9 +139,10 @@ const es = {
         "Los datos de trayectoria de la estación no están disponibles actualmente debido a la falta de conexión. Por favor, vuelve a comprobar más tarde.",
     },
     header: {
-      firstTimeHead: "Lista de próximos avistamientos",
+      firstTimeHead: "PRÓXIMO AVISTAMIENTO",
       secondTimeHead: "Cuenta regresiva",
       timezone: "Zona horaria",
+      opportunities: "Oportunidades de avistamiento",
     },
     selectLocation: {
       title: "Seleccionar ubicación",

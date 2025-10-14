@@ -11,7 +11,7 @@ const LanguageScaling = {
   en: 1,
   fr: 1,
   uk: 0.9,
-  ru: 1,
+  ru: 0.9,
   ja: 1,
   es: 0.9,
   it: 0.9,

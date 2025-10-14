@@ -138,9 +138,10 @@ const ptBR = {
         "Os dados de trajetória da Estação estão atualmente indisponíveis devido à falta de conexão. Por favor, verifique novamente mais tarde.",
     },
     header: {
-      firstTimeHead: "LISTA DE PRÓXIMOS AVISTAMENTOS",
+      firstTimeHead: "PRÓXIMO AVISTAMENTO",
       secondTimeHead: "CONTAGEM REGRESSIVA",
       timezone: "Fuso Horário",
+      opportunities: "Oportunidades de avistamento",
     },
     selectLocation: {
       title: "Selecionar Localização",

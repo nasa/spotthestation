@@ -138,9 +138,10 @@ const nl = {
         "De Station-trajectgegevens zijn momenteel niet beschikbaar vanwege geen verbinding. Kom later terug.",
     },
     header: {
-      firstTimeHead: "VOLGENDE WAARNEMING(EN) LIJST",
+      firstTimeHead: "VOLGENDE WAARNEMING",
       secondTimeHead: "Aftellen",
       timezone: "Tijdzone",
+      opportunities: "Waarnemingsmogelijkheden",
     },
     selectLocation: {
       title: "Selecteer een locatie",

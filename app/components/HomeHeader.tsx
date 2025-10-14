@@ -1,18 +1,14 @@
-import { Text, IconLinkButton } from "."
+import { Text, IconLinkButton, Button } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React from "react"
-import { ViewStyle, View, TextStyle, PressableProps, Pressable } from "react-native"
+import { ViewStyle, View, TextStyle, PressableProps } from "react-native"
 import { colors, typography } from "../theme"
 
 import { translate } from "../i18n"
-
-interface User {
-  firstName: string
-  address: string
-}
+import { LocationType } from "../services/api"
 
 export interface HomeHeaderProps {
-  user: User
+  location?: LocationType
   sighting?: string
   countdown?: string
   timezone?: string
@@ -21,7 +17,7 @@ export interface HomeHeaderProps {
 }
 
 export function HomeHeader({
-  user,
+  location,
   onLocationPress,
   onSightingsPress,
   sighting = "",
@@ -34,11 +30,16 @@ export function HomeHeader({
     $userContainer,
     $addressText,
     $timeContainer,
-    $outlined,
     $headText,
     $timeText,
     $tipText,
     $firstHeadText,
+    $tzText,
+    $sightingsContainer,
+    $upcomingText,
+    $button,
+    $buttonText,
+    $flex,
   } = useStyles(styles)
 
   return (
@@ -50,10 +51,19 @@ export function HomeHeader({
             accessibilityLabel="address"
             accessibilityHint="address"
             accessibilityRole="text"
-            text={user?.address?.replace(", ", "\n")}
+            text={location?.title || ""}
             style={$addressText}
             ellipsizeMode="tail"
             numberOfLines={2}
+          />
+
+          <Text
+            accessible
+            accessibilityLabel="timezone"
+            accessibilityHint="timezone"
+            accessibilityRole="text"
+            text={`${translate("homeScreen.header.timezone")}: ${timezone}`}
+            style={$tzText}
           />
         </View>
         <IconLinkButton
@@ -64,15 +74,8 @@ export function HomeHeader({
           onPress={onLocationPress}
         />
       </View>
-      <View style={$rowContainer}>
-        <Pressable
-          accessible
-          accessibilityLabel="next sighting"
-          accessibilityHint="open sightings modal"
-          accessibilityRole="button"
-          style={[$timeContainer, $outlined]}
-          onPress={onSightingsPress}
-        >
+      <View style={[$rowContainer, $sightingsContainer]}>
+        <View style={$flex}>
           <Text
             accessible
             accessibilityLabel="sighting header"
@@ -87,17 +90,22 @@ export function HomeHeader({
             accessibilityHint="sighting"
             accessibilityRole="text"
             text={sighting}
-            style={$timeText}
+            style={$upcomingText}
           />
-          <Text
+
+          <View style={$flex} />
+
+          <Button
             accessible
-            accessibilityLabel="timezone"
-            accessibilityHint="timezone"
-            accessibilityRole="text"
-            text={`${translate("homeScreen.header.timezone")}: ${timezone}`}
-            style={$tipText}
+            accessibilityLabel="sighting opportunities"
+            accessibilityHint="show sighting opportunities"
+            tx="homeScreen.header.opportunities"
+            textStyle={$buttonText}
+            style={$button}
+            pressedStyle={$button}
+            onPress={onSightingsPress}
           />
-        </Pressable>
+        </View>
         <View
           accessible
           accessibilityLabel="countdown"
@@ -125,7 +133,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-between",
-    paddingBottom: 5,
   }
 
   const $userContainer: ViewStyle = {
@@ -135,16 +142,16 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $addressText: TextStyle = {
     fontFamily: typography.primary.normal,
     color: colors.palette.neutral100,
-    fontSize: fontSizes[20],
+    fontSize: fontSizes[24],
     lineHeight: lineHeights[26],
   }
 
   const $timeContainer: ViewStyle = {
-    backgroundColor: colors.palette.neutral350,
-    width: "48%",
-    borderRadius: scale(10),
-    paddingVertical: 8,
-    borderWidth: scale(1.5),
+    borderRadius: scale(20),
+    padding: scale(12),
+    borderWidth: 0.5,
+    borderColor: colors.palette.neutral600,
+    gap: 3,
   }
 
   const $outlined: ViewStyle = {
@@ -153,8 +160,8 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $headText: TextStyle = {
     fontFamily: typography.primary.normal,
-    color: colors.palette.neutral450,
-    fontSize: fontSizes[14],
+    color: colors.palette.neutral500,
+    fontSize: fontSizes[12],
     lineHeight: lineHeights[16],
     textAlign: "center",
   }
@@ -164,7 +171,18 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     color: colors.palette.neutral250,
     fontSize: fontSizes[15],
     lineHeight: lineHeights[24],
-    textAlign: "center",
+  }
+
+  const $tzText: TextStyle = {
+    ...$headText,
+    fontSize: fontSizes[9],
+    textAlign: "left",
+  }
+
+  const $upcomingText: TextStyle = {
+    ...$timeText,
+    fontSize: fontSizes[20],
+    marginTop: scale(2),
   }
 
   const $tipText: TextStyle = {
@@ -174,7 +192,34 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $firstHeadText: TextStyle = {
     ...$headText,
-    fontSize: fontSizes[12],
+    textAlign: "left",
+    fontSize: fontSizes[10],
+  }
+
+  const $sightingsContainer: ViewStyle = {
+    backgroundColor: colors.palette.neutral350,
+    borderRadius: scale(20),
+    padding: scale(15),
+    gap: scale(15),
+    marginTop: scale(15),
+  }
+
+  const $button: ViewStyle = {
+    backgroundColor: colors.palette.buttonBlue,
+    borderRadius: scale(28),
+    borderWidth: 0,
+    minHeight: 0,
+    width: "100%",
+    paddingVertical: scale(8),
+  }
+
+  const $buttonText: TextStyle = {
+    color: colors.palette.neutral250,
+    fontSize: fontSizes[14],
+  }
+
+  const $flex: ViewStyle = {
+    flex: 1,
   }
 
   return {
@@ -187,6 +232,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $headText,
     $timeText,
     $tipText,
+    $tzText,
     $firstHeadText,
+    $sightingsContainer,
+    $upcomingText,
+    $button,
+    $buttonText,
+    $flex,
   }
 }

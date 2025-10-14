@@ -48,12 +48,6 @@ function calcLocation(
   return null
 }
 
-function calcAddress(selectedLocation: LocationType, currentLocation: LocationType) {
-  if (selectedLocation) return selectedLocation.subtitle
-  if (currentLocation) return currentLocation.subtitle
-  return null
-}
-
 export const HomeScreen = observer(function HomeScreen() {
   const { $container, $modal, $popupModal, $flatMap } = useStyles(styles)
   const navigation = useNavigation()
@@ -92,7 +86,6 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
-  const [address, setAddress] = useState("")
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   const current = useMemo(
@@ -103,10 +96,6 @@ export const HomeScreen = observer(function HomeScreen() {
     () => calcLocation(selectedLocation, currentLocation),
     [selectedLocation, currentLocation],
   )
-
-  useEffect(() => {
-    setAddress(calcAddress(selectedLocation, currentLocation))
-  }, [selectedLocation?.subtitle, currentLocation?.subtitle])
 
   useEffect(() => {
     const backAction = () => {
@@ -374,21 +363,25 @@ export const HomeScreen = observer(function HomeScreen() {
 
   const onSightingsPress = () => {
     if (current) {
+      if (currentModal?.name !== "sightings" || currentModal?.state !== "open") {
+        if (sightingsModalTimerRef.current) clearTimeout(sightingsModalTimerRef.current)
+        sightingsModalTimerRef.current = setTimeout(() => {
+          Sentry.captureMessage("Sightings modal is not open after 5 seconds")
+        }, 5000)
+      }
       requestOpenModal("sightings")
-      sightingsModalTimerRef.current = setTimeout(() => {
-        Sentry.captureMessage("Sightings modal is not open after 5 seconds")
-      }, 5000)
     }
   }
 
   useEffect(() => {
-    if (currentModal?.name === "sightings") {
+    if (currentModal?.name === "sightings" && currentModal?.state === "open") {
       clearTimeout(sightingsModalTimerRef.current)
       sightingsModalTimerRef.current = null
     }
   }, [currentModal?.name])
 
   const onSightingsClose = useCallback(() => {
+    if (sightingsModalTimerRef.current) clearTimeout(sightingsModalTimerRef.current)
     requestCloseModal("sightings")
   }, [])
 
@@ -403,7 +396,7 @@ export const HomeScreen = observer(function HomeScreen() {
       KeyboardAvoidingViewProps={{ behavior: undefined }} // kbd avoiding view messes with 3d globe, and we don't really need it here
     >
       <HomeHeader
-        user={{ firstName: "User", address }}
+        location={current}
         onLocationPress={() => requestOpenModal("location")}
         onSightingsPress={onSightingsPress}
         sighting={currentSighting.date ? formatedDate(currentSighting.date) : "-"}

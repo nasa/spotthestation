@@ -140,9 +140,10 @@ const fr = {
         "Les données de trajectoire Station sont actuellement indisponibles en raison d'une absence de connexion. S'il vous plaît, veuillez reessayer plus tard.",
     },
     header: {
-      firstTimeHead: "LISTE DES PROCHAINES OBSERVATIONS",
+      firstTimeHead: "PROCHAINE OBSERVATION",
       secondTimeHead: "COMPTE À REBOURS",
       timezone: "Fuseau horaire",
+      opportunities: "Opportunités d'observation",
     },
     selectLocation: {
       title: "Sélectionnez la localisation",

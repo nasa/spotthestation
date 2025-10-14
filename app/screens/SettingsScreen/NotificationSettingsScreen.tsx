@@ -114,13 +114,15 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     const permitted = await ensureExactAlarmPermissions()
     if (!permitted) return
 
-    setCurrentLocation(
-      {
-        ...currentLocation,
-        sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
-      },
-      true,
-    ).catch((e) => console.log(e))
+    if (currentLocation) {
+      setCurrentLocation(
+        {
+          ...currentLocation,
+          sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+        },
+        true,
+      ).catch((e) => console.log(e))
+    }
 
     if (selectedLocation) {
       setSelectedLocation(

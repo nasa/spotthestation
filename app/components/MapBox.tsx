@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, View, ViewStyle } from "react-native"
-import MapboxGL, { MapState } from "@rnmapbox/maps"
+import MapboxGL, { MapState, Camera } from "@rnmapbox/maps"
 import Config from "../config"
 import { colors } from "../theme"
 import { computeOld, toGeoJSON } from "../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../utils/useISSPathCurve"
 import { OrbitPoint } from "../services/api"
-import { CameraRef } from "@rnmapbox/maps/lib/typescript/src/components/Camera"
 
 const positionMarker = require("../../assets/icons/position.png")
 const pinMarker = require("../../assets/icons/fi_map-pin.png")
@@ -59,7 +58,7 @@ export function MapBox({
   const [terminatorCoords, setTerminatorCoords] = useState<any>(null)
   const [loading, setLoading] = useState<any>(true)
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
-  const cameraRef = useRef<CameraRef>()
+  const cameraRef = useRef<Camera>()
 
   const mapper = useCallback((p: [number, number]) => {
     return new Vector3(p[0], p[1], 0)

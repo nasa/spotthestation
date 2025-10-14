@@ -50,7 +50,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.0.2",
     "@react-navigation/stack": "^6.3.21",
-    "@rnmapbox/maps": "^10.1.43",
+    "@rnmapbox/maps": "^10.2.2",
     "@sentry/react-native": "^6.10.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/react-hooks": "^8.0.1",

@@ -153,12 +153,12 @@ PODS:
   - hermes-engine/Pre-built (0.79.4)
   - JWT (3.0.0-beta.14):
     - Base64 (~> 1.1.2)
-  - MapboxCommon (23.11.0)
-  - MapboxCoreMaps (10.19.1):
+  - MapboxCommon (23.11.4)
+  - MapboxCoreMaps (10.19.2):
     - MapboxCommon (~> 23.11)
-  - MapboxMaps (10.19.0):
-    - MapboxCommon (= 23.11.0)
-    - MapboxCoreMaps (= 10.19.1)
+  - MapboxMaps (10.19.4):
+    - MapboxCommon (= 23.11.4)
+    - MapboxCoreMaps (= 10.19.2)
     - MapboxMobileEvents (= 2.0.0)
     - Turf (= 2.8.0)
   - MapboxMobileEvents (2.0.0)
@@ -1963,14 +1963,14 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - rnmapbox-maps (10.1.43):
-    - MapboxMaps (= 10.19.0)
+  - rnmapbox-maps (10.2.2):
+    - MapboxMaps (= 10.19.4)
     - React
     - React-Core
-    - rnmapbox-maps/DynamicLibrary (= 10.1.43)
+    - rnmapbox-maps/DynamicLibrary (= 10.2.2)
     - Turf
-  - rnmapbox-maps/DynamicLibrary (10.1.43):
-    - MapboxMaps (= 10.19.0)
+  - rnmapbox-maps/DynamicLibrary (10.2.2):
+    - MapboxMaps (= 10.19.4)
     - React
     - React-Core
     - Turf
@@ -2601,9 +2601,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   hermes-engine: 8b5a5eb386b990287d072fd7b6f6ebd9544dd251
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
-  MapboxCommon: 119f3759f7dc9457f0695848108ab323eb643cb4
-  MapboxCoreMaps: ca17f67baced23f8c952166ac6314c35bad3f66c
-  MapboxMaps: b7f29ec7c33f7dc6d2947c1148edce6db81db9a7
+  MapboxCommon: cc47fafe3fe5408ca49240aa80fa64f27f275711
+  MapboxCoreMaps: 35685edba03e44468aed57c3dfd7f8795edafda8
+  MapboxMaps: f87023cf0d72b180b40ea0b6fb4b2d7db6b73b71
   MapboxMobileEvents: d044b9edbe0ec7df60f6c2c9634fe9a7f449266b
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
@@ -2686,7 +2686,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: 9e013537d8aa83f9b46971bb15d43c0ed9eabec2
   RNFBApp: fda4a8b08fe31bea8492808106aa638d1bb595b7
   RNGestureHandler: 57990734aadd7d828ceeba8bec11f965b772ff86
-  rnmapbox-maps: 3778146e16fe84bfe04a4ba9aaab696ecf445cf6
+  rnmapbox-maps: 77b6cbed356595b2eb581cf29ca1e49e8d916bda
   RNNotifee: 4a6ee5c7deaf00e005050052d73ee6315dff7ec9
   RNPermissions: d926727ebd31c2539ceb1f1b783779d2a6473288
   RNReanimated: e363cb3f5e5e2fdc7bd7d880f26363e7b1747cd0
@@ -2703,6 +2703,6 @@ SPEC CHECKSUMS:
   VisionCamera: 2230ecfd78a1f6cddd8be0fe4e6589f21a6385e1
   Yoga: dfabf1234ccd5ac41d1b1d43179f024366ae9831
 
-PODFILE CHECKSUM: 7700755930ef4cdaa28652578f7bf0e7ebf50f14
+PODFILE CHECKSUM: 7bd35efcb8674b201f1d458dc709d167e16c8cb6
 
 COCOAPODS: 1.16.2

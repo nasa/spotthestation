@@ -138,9 +138,10 @@ const hi = {
         "स्टेशन का त्राजेक्टरी डेटा वर्तमान में किसी भी कनेक्शन के कारण उपलब्ध नहीं है।कृपया कुछ देर बाद फिर से जांच करें।",
     },
     header: {
-      firstTimeHead: "अगली नजर(ओं) की सूची",
+      firstTimeHead: "अगली नजर",
       secondTimeHead: "उल्टी गिनती",
       timezone: "समय क्षेत्र",
+      opportunities: "नजर के अवसर",
     },
     selectLocation: {
       title: "स्थान चुनें",

@@ -5,7 +5,13 @@ import { render } from "@testing-library/react-native"
 it("renders correctly", () => {
   const tree = render(
     <HomeHeader
-      user={{ firstName: "John", address: "Continental" }}
+      location={{
+        title: "Continental",
+        subtitle: "test",
+        location: { lat: 0, lng: 0 },
+        firstHistorySightingOrbitPointAt: null,
+        sightingsHistoryLastUpdatedAt: null,
+      }}
       onLocationPress={() => ({})}
       onSightingsPress={() => ({})}
     />,

@@ -137,9 +137,10 @@ const tr = {
         "İstasyon yörünge verileri bağlantı olmadığı için şu anda kullanılamıyor. Lütfen daha sonra tekrar kontrol edin.",
     },
     header: {
-      firstTimeHead: "SONRAKİ GÖZLEMLER LİSTESİ",
+      firstTimeHead: "SONRAKİ GÖZLEM",
       secondTimeHead: "GERİ SAYIM",
       timezone: "Saat Dilimi",
+      opportunities: "Gözlem fırsatları",
     },
     selectLocation: {
       title: "Konum Seç",

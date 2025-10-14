@@ -137,9 +137,10 @@ const sv = {
         "Stationen -banan är för närvarande inte tillgänglig på grund av ingen anslutning. Kom tillbaka igen senare.",
     },
     header: {
-      firstTimeHead: "NÄSTA IAKTTAGELSE(ER) LISTA",
+      firstTimeHead: "NÄSTA IAKTTAGELSE",
       secondTimeHead: "NEDRÄKNING",
       timezone: "Tidszon",
+      opportunities: "Observationsmöjligheter",
     },
     selectLocation: {
       title: "Välj plats",

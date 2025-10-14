@@ -137,9 +137,10 @@ const en = {
         "The Station trajectory data is currently unavailable due to no connection. Please check back again later.",
     },
     header: {
-      firstTimeHead: "NEXT SIGHTING(S) LIST",
+      firstTimeHead: "UPCOMING SIGHTING",
       secondTimeHead: "COUNTDOWN",
       timezone: "Time Zone",
+      opportunities: "Sighting Opportunities",
     },
     selectLocation: {
       title: "Select Location",

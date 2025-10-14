@@ -136,9 +136,10 @@ const pl = {
         "Dane trajektorii stacji są obecnie niedostępne z powodu braku połączenia. Proszę spróbować ponownie później.",
     },
     header: {
-      firstTimeHead: "LISTA NASTĘPNYCH OBSERWACJI",
+      firstTimeHead: "NASTĘPNA OBSERWACJA",
       secondTimeHead: "ODLICZANIE",
       timezone: "Strefa czasowa",
+      opportunities: "Możliwości obserwacji",
     },
     selectLocation: {
       title: "Wybierz lokalizację",

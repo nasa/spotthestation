@@ -140,13 +140,15 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           ),
         )
       } else {
-        setCurrentLocation(
-          {
-            ...currentLocation,
-            sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
-          },
-          true,
-        ).catch((e) => console.log(e))
+        if (currentLocation) {
+          setCurrentLocation(
+            {
+              ...currentLocation,
+              sightings: currentLocation.sightings.map((s) => ({ ...s, notify: !isNotifyAll })),
+            },
+            true,
+          ).catch((e) => console.log(e))
+        }
       }
 
       if (selectedLocation && selectedLocation.title === title) {

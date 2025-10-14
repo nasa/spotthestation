@@ -140,9 +140,10 @@ const it = {
         "I dati della traiettoria della Stazione non sono attualmente disponibili a causa della mancanza di connessione. Si prega di riprovare più tardi.",
     },
     header: {
-      firstTimeHead: "ELENCO DEI PROSSIMI AVVISTAMENTI",
+      firstTimeHead: "PROSSIMO AVVISTAMENTO",
       secondTimeHead: "Conto alla rovescia",
       timezone: "Fuso orario",
+      opportunities: "Opportunità di avvistamento",
     },
     selectLocation: {
       title: "Seleziona posizione",
