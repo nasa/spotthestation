@@ -1,10 +1,9 @@
-import { Locale, format, parseISO, intervalToDuration, addDays } from "date-fns"
+import { Locale, format, parseISO, intervalToDuration } from "date-fns"
 import { formatInTimeZone } from "date-fns-tz"
 import I18n from "i18n-js"
 import { getCalendars } from "expo-localization"
 import moment from "moment-timezone"
 import { enUS, fr, uk, ja, es, it, nl, ru, sv, hi, de, nb } from "date-fns/locale"
-import { translate } from "../i18n"
 
 export const initPolyfills = () => {
   if ((global as any).HermesInternal) {
@@ -88,26 +87,11 @@ export const formatSightingDateTime = (
   timezone: string,
   isUS: boolean,
 ) => {
-  const today = formatDateWithTZ(
-    new Date().toISOString(),
-    `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}`,
-    timezone,
-  )
-  const yesterday = formatDateWithTZ(
-    addDays(new Date(), 1).toISOString(),
-    `${isUS ? "MMM dd, yyyy" : "dd MMM yyyy"}`,
-    timezone,
-  )
-
   const tf = timeFormat === "24hour" ? "H:mm" : "h:mm aa"
   const formatted = formatDateWithTZ(date, isUS ? "MMM dd, yyyy" : "dd MMM yyyy", timezone)
   const shortTZ = getShortTZ(timezone)
   const formattedTime = formatDateWithTZ(date, tf, timezone)
 
-  if (formatted === today)
-    return `${translate("homeScreen.selectSightings.today")}, ${formattedTime} ${shortTZ}`
-  if (formatted === yesterday)
-    return `${translate("homeScreen.selectSightings.tomorrow")}, ${formattedTime} ${shortTZ}`
   return `${formatted}, ${formattedTime} ${shortTZ}`
 }
 

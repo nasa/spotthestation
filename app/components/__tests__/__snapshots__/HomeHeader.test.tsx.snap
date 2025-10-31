@@ -59,7 +59,7 @@ exports[`renders correctly 1`] = `
           ]
         }
       >
-        Continental
+        test
       </Text>
       <Text
         accessibilityHint="timezone"
@@ -238,6 +238,7 @@ exports[`renders correctly 1`] = `
           "justifyContent": "space-between",
         },
         {
+          "alignItems": "stretch",
           "backgroundColor": "#1E2022",
           "borderRadius": 29,
           "gap": 22,
@@ -313,7 +314,7 @@ exports[`renders correctly 1`] = `
             {
               "color": "#DEDDDE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 29,
+              "fontSize": 23,
               "lineHeight": 35,
               "marginTop": 3,
             },
@@ -443,6 +444,7 @@ exports[`renders correctly 1`] = `
           "borderRadius": 29,
           "borderWidth": 0.5,
           "gap": 3,
+          "justifyContent": "center",
           "padding": 17,
         }
       }

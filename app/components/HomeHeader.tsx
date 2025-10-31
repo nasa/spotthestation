@@ -51,7 +51,7 @@ export function HomeHeader({
             accessibilityLabel="address"
             accessibilityHint="address"
             accessibilityRole="text"
-            text={location?.title || ""}
+            text={location?.subtitle || ""}
             style={$addressText}
             ellipsizeMode="tail"
             numberOfLines={2}
@@ -152,6 +152,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     borderWidth: 0.5,
     borderColor: colors.palette.neutral600,
     gap: 3,
+    justifyContent: "center",
   }
 
   const $outlined: ViewStyle = {
@@ -181,7 +182,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $upcomingText: TextStyle = {
     ...$timeText,
-    fontSize: fontSizes[20],
+    fontSize: fontSizes[16],
     marginTop: scale(2),
   }
 
@@ -202,6 +203,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     padding: scale(15),
     gap: scale(15),
     marginTop: scale(15),
+    alignItems: "stretch",
   }
 
   const $button: ViewStyle = {

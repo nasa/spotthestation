@@ -120,9 +120,7 @@ describe("HomeScreen", () => {
 
       await userEvent.press(await component.findByText("Phoenix, Arizona"))
       await waitForLoad(component)
-      expect(await component.findByAccessibilityHint("address")).toHaveTextContent(
-        "Phoenix, AZ",
-      )
+      expect(await component.findByAccessibilityHint("address")).toHaveTextContent("Phoenix, Arizona")
     })
 
     it("renders tutorial on first load", async () => {
@@ -206,7 +204,9 @@ describe("HomeScreen", () => {
 
         await waitForLoad(component)
 
-        await userEvent.press(await component.findByAccessibilityHint("show sighting opportunities"))
+        await userEvent.press(
+          await component.findByAccessibilityHint("show sighting opportunities"),
+        )
         await waitFor(() => {
           expect(component.queryAllByAccessibilityHint("pressable list item")).toHaveLength(5)
         })
@@ -255,7 +255,9 @@ describe("HomeScreen", () => {
           })
         })
 
-        await userEvent.press(await component.findByAccessibilityHint("show sighting opportunities"))
+        await userEvent.press(
+          await component.findByAccessibilityHint("show sighting opportunities"),
+        )
         const sightings = await waitFor(() => {
           const items = component.queryAllByAccessibilityHint("pressable list item")
           expect(items).toHaveLength(5)
