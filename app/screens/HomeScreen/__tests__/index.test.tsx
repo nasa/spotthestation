@@ -120,7 +120,9 @@ describe("HomeScreen", () => {
 
       await userEvent.press(await component.findByText("Phoenix, Arizona"))
       await waitForLoad(component)
-      expect(await component.findByAccessibilityHint("address")).toHaveTextContent("Phoenix, Arizona")
+      expect(await component.findByAccessibilityHint("address")).toHaveTextContent(
+        "Phoenix, Arizona",
+      )
     })
 
     it("renders tutorial on first load", async () => {

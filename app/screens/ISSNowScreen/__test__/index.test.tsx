@@ -2,7 +2,7 @@ import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { ISSNowScreen } from "../index"
 import { act, render, userEvent, waitFor } from "@testing-library/react-native"
-import Orientation, { OrientationType } from "react-native-orientation-locker"
+import * as ScreenOrientation from "expo-screen-orientation"
 import MockDate from "mockdate"
 import { TabNavigatorContext } from "../../../navigators"
 import { RootStoreModel, RootStoreProvider } from "../../../models"
@@ -51,9 +51,10 @@ describe("ISSNowScreen", () => {
   })
 
   it("renders correctly in landscape mode", async () => {
-    let listener: (orientation: OrientationType) => void
-    ;(Orientation.addOrientationListener as jest.Mock).mockImplementation((l) => {
+    let listener: (orientation: ScreenOrientation.OrientationChangeEvent) => void
+    ;(ScreenOrientation.addOrientationChangeListener as jest.Mock).mockImplementation((l) => {
       listener = l
+      return { remove: jest.fn() }
     })
 
     const tree = render(
@@ -67,7 +68,10 @@ describe("ISSNowScreen", () => {
     )
 
     await act(() => {
-      listener(OrientationType["LANDSCAPE-LEFT"])
+      listener({
+        orientationInfo: { orientation: ScreenOrientation.Orientation.LANDSCAPE_LEFT },
+        orientationLock: undefined,
+      })
     })
 
     expect(tree.toJSON()).toMatchSnapshot()
@@ -91,9 +95,10 @@ describe("ISSNowScreen", () => {
   })
 
   it("renders correctly in fullscreen + landscape mode", async () => {
-    let listener: (orientation: OrientationType) => void
-    ;(Orientation.addOrientationListener as jest.Mock).mockImplementation((l) => {
+    let listener: (orientation: ScreenOrientation.OrientationChangeEvent) => void
+    ;(ScreenOrientation.addOrientationChangeListener as jest.Mock).mockImplementation((l) => {
       listener = l
+      return { remove: jest.fn() }
     })
 
     const tree = render(
@@ -107,7 +112,10 @@ describe("ISSNowScreen", () => {
     )
 
     await act(() => {
-      listener(OrientationType["LANDSCAPE-LEFT"])
+      listener({
+        orientationInfo: { orientation: ScreenOrientation.Orientation.LANDSCAPE_LEFT },
+        orientationLock: undefined,
+      })
     })
 
     await userEvent.press(await tree.findByAccessibilityHint("enable/disable full screen mode"))

@@ -108,6 +108,24 @@ struct ActionButtontView: View {
   }
 }
 
+struct CompactActionButtonView: View {
+  let context: ActivityViewContext<NotificationAttributes>
+  
+  var body: some View {
+    VStack {
+      Text(timerInterval: Date.now...Date(timeInterval: context.state.intervalInMinutes, since: .now))
+        .foregroundColor(.init(red: 222/255, green: 221/255, blue: 222/255))
+        .font(.system(size: 18))
+        .multilineTextAlignment(.center)
+        .padding(5)
+    }
+    .background(Color(red: 255/255, green: 255/255, blue: 255/255, opacity: 0.2))
+    .cornerRadius(16)
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .padding(.horizontal, 10)
+  }
+}
+
 struct NotificationWidget: Widget {
 
     var body: some WidgetConfiguration {
@@ -129,11 +147,11 @@ struct NotificationWidget: Widget {
           }
 
           DynamicIslandExpandedRegion(.center) {
-            ContentView(context: context)
+            CompactActionButtonView(context: context)
           }
 
           DynamicIslandExpandedRegion(.bottom) {
-            ActionButtontView(context: context)
+            ContentView(context: context)
           }
         } compactLeading: {
           // Create the compact leading view.

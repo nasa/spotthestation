@@ -142,7 +142,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $addressText: TextStyle = {
     fontFamily: typography.primary.normal,
     color: colors.palette.neutral100,
-    fontSize: fontSizes[24],
+    fontSize: fontSizes[20],
     lineHeight: lineHeights[26],
   }
 
@@ -176,7 +176,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $tzText: TextStyle = {
     ...$headText,
-    fontSize: fontSizes[9],
+    fontSize: fontSizes[10],
     textAlign: "left",
   }
 
@@ -201,7 +201,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     backgroundColor: colors.palette.neutral350,
     borderRadius: scale(20),
     padding: scale(15),
-    gap: scale(15),
+    gap: scale(12),
     marginTop: scale(15),
     alignItems: "stretch",
   }
@@ -213,6 +213,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     minHeight: 0,
     width: "100%",
     paddingVertical: scale(8),
+    paddingHorizontal: scale(8),
   }
 
   const $buttonText: TextStyle = {

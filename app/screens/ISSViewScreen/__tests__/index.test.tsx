@@ -3,6 +3,7 @@ import { PermissionsAndroid, Alert, MeasureInWindowOnSuccessCallback, Platform }
 import { NavigationContainer, useRoute } from "@react-navigation/native"
 import { ISSViewScreen } from "../index"
 import { act, fireEvent, render, userEvent, waitFor } from "@testing-library/react-native"
+import * as ScreenOrientation from "expo-screen-orientation"
 import { TabNavigatorContext } from "../../../navigators"
 import { RootStoreModel, RootStoreProvider } from "../../../models"
 import { api } from "../../../services/api"
@@ -14,7 +15,6 @@ import { isAvailable } from "react-native-sensors/src/rnsensors"
 import * as storage from "../../../utils/storage"
 import * as orientation from "../../../utils/orientation"
 import { AccuracyWatcherFunc } from "../../../utils/orientation"
-import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { ReactTestInstance } from "react-test-renderer"
 import { captureScreen } from "react-native-view-shot"
 import { CameraRoll } from "@react-native-camera-roll/camera-roll"
@@ -105,9 +105,10 @@ describe("ISSViewScreen", () => {
   })
 
   it("renders correctly in landscape mode", async () => {
-    let listener: (orientation: OrientationType) => void
-    ;(Orientation.addOrientationListener as jest.Mock).mockImplementation((l) => {
+    let listener: (orientation: ScreenOrientation.OrientationChangeEvent) => void
+    ;(ScreenOrientation.addOrientationChangeListener as jest.Mock).mockImplementation((l) => {
       listener = l
+      return { remove: jest.fn() }
     })
 
     const tree = render(
@@ -122,7 +123,10 @@ describe("ISSViewScreen", () => {
 
     await waitForLoad()
     await act(() => {
-      listener(OrientationType["LANDSCAPE-LEFT"])
+      listener({
+        orientationInfo: { orientation: ScreenOrientation.Orientation.LANDSCAPE_LEFT },
+        orientationLock: undefined,
+      })
     })
 
     expect(tree.toJSON()).toMatchSnapshot()

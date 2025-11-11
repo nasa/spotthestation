@@ -49,84 +49,85 @@ describe("CameraControls", () => {
     expect(controls.spherical.theta).toBeCloseTo(initialTheta - Math.PI / 4, 5)
   })
 
-  it("should dispatch events on touch start, move, and end", () => {
+  it("should dispatch events on touch move", () => {
     const touchStart = {
-      pageX: 0,
-      pageY: 0,
-      changedTouches: [],
-      identifier: "1",
-      locationX: 0,
-      locationY: 0,
-      target: null,
-      timestamp: Date.now(),
-      touches: [],
+      x: 0,
+      y: 0,
+      absoluteX: 0,
+      absoluteY: 0,
+      translationX: 0,
+      translationY: 0,
+      velocityX: 0,
+      velocityY: 0,
+      oldState: null,
+      handlerTag: 0,
+      numberOfPointers: 1,
+      state: 4 as const,
+      pointerType: 0,
     }
 
     const touchEnd = {
-      pageX: 10,
-      pageY: 10,
-      changedTouches: [],
-      identifier: "2",
-      locationX: 10,
-      locationY: 10,
-      target: null,
-      timestamp: Date.now(),
-      touches: [],
+      x: 10,
+      y: 10,
+      absoluteX: 10,
+      absoluteY: 10,
+      translationX: 10,
+      translationY: 10,
+      velocityX: 10,
+      velocityY: 10,
+      oldState: null,
+      handlerTag: 0,
+      numberOfPointers: 1,
+      state: 4 as const,
+      pointerType: 0,
     }
 
-    const touchStartEvent = { ...touchStart, touches: [touchStart] }
-    const touchMoveEvent = { ...touchEnd, touches: [touchEnd] }
+    const touchStartEvent = touchStart
+    const touchMoveEvent = touchEnd
 
-    const startListener = jest.fn()
     const changeListener = jest.fn()
-    const endListener = jest.fn()
 
-    controls.addEventListener("start", startListener)
     controls.addEventListener("change", changeListener)
-    controls.addEventListener("end", endListener)
 
     controls.onTouchStart(touchStartEvent)
-    expect(startListener).toHaveBeenCalledTimes(1)
-
     controls.onTouchMove(touchMoveEvent)
     expect(changeListener).toHaveBeenCalledTimes(1)
-
-    controls.onTouchEnd(null)
-    expect(endListener).toHaveBeenCalledTimes(1)
   })
 
   it("should handle touch rotation", () => {
     const rotateStart = {
-      pageX: 0,
-      pageY: 0,
-      changedTouches: [],
-      identifier: "1",
-      locationX: 0,
-      locationY: 0,
-      target: null,
-      timestamp: Date.now(),
-      touches: [],
+      x: 0,
+      y: 0,
+      absoluteX: 0,
+      absoluteY: 0,
+      translationX: 0,
+      translationY: 0,
+      velocityX: 0,
+      velocityY: 0,
+      oldState: null,
+      handlerTag: 0,
+      numberOfPointers: 1,
+      state: 4 as const,
+      pointerType: 0,
     }
     const rotateEnd = {
-      pageX: 10,
-      pageY: 10,
-      changedTouches: [],
-      identifier: "2",
-      locationX: 10,
-      locationY: 10,
-      target: null,
-      timestamp: Date.now(),
-      touches: [],
+      x: 10,
+      y: 10,
+      absoluteX: 10,
+      absoluteY: 10,
+      translationX: 10,
+      translationY: 10,
+      velocityX: 10,
+      velocityY: 10,
+      oldState: null,
+      handlerTag: 0,
+      numberOfPointers: 1,
+      state: 4 as const,
+      pointerType: 0,
     }
 
-    controls.handleTouchStartRotate({
-      ...rotateStart,
-      touches: [rotateStart],
-    })
-    controls.handleTouchMoveRotate({
-      ...rotateEnd,
-      touches: [rotateEnd],
-    })
+    controls.handleTouchStartRotate(rotateStart)
+    controls.handleTouchMoveRotate(rotateEnd)
 
     expect(controls.rotateDelta.x).toBeGreaterThan(0)
     expect(controls.rotateDelta.y).toBeGreaterThan(0)

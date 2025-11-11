@@ -1,27 +1,27 @@
 import {
-  Screen,
   FlatMap,
   Globe,
   HomeHeader,
+  HomeTutorialModal,
+  InitLoaderModal,
+  ModalContainer,
+  Screen,
   SelectLocation,
   Sightings,
-  InitLoaderModal,
   TrajectoryErrorModal,
-  ModalContainer,
-  HomeTutorialModal,
 } from "../../components"
 import { observer } from "mobx-react-lite"
 import * as Sentry from "@sentry/react-native"
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { BackHandler, Platform, ViewStyle } from "react-native"
+import { BackHandler, Platform, View, ViewStyle } from "react-native"
 
 import { LocationType, OrbitPoint } from "../../services/api"
 import { colors } from "../../theme"
 import {
   formatDateWithTZ,
+  formatDuration,
   getCurrentTimeZone,
   getShortTZ,
-  formatDuration,
 } from "../../utils/datetime"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../utils/storage"
@@ -33,7 +33,8 @@ import { translate } from "../../i18n"
 import i18n from "i18n-js"
 import { navigationRef } from "../../navigators/navigationUtilities"
 import { useCurrentSighting } from "../../utils/useCurrentSighting"
-import { startActivity, endActivity } from "../../components/LiveActivity"
+import { endActivity, startActivity } from "../../components/LiveActivity"
+import { useScreenOrientation } from "../../utils/screen"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -49,7 +50,16 @@ function calcLocation(
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { $container, $modal, $popupModal, $flatMap } = useStyles(styles)
+  const {
+    $container,
+    $modal,
+    $popupModal,
+    $flatMap,
+    $flatMapLandscape,
+    $flex,
+    $contentRow,
+    $contentRowLandscape,
+  } = useStyles(styles)
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
@@ -87,6 +97,7 @@ export const HomeScreen = observer(function HomeScreen() {
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isInitialLoad, setIsInitialLoad] = useState(true)
+  const { isLandscape } = useScreenOrientation()
 
   const current = useMemo(
     () => selectedLocation || currentLocation,
@@ -403,10 +414,24 @@ export const HomeScreen = observer(function HomeScreen() {
         countdown={`${translate("units.time")} ${countdown}`}
         timezone={current?.timezone || getCurrentTimeZone()}
       />
-      {globeVisible && (
-        <Globe zoom={1.5} marker={location} issPath={issData} defaultCameraPosition={location} />
-      )}
-      <FlatMap style={$flatMap} issPath={issData} currentLocation={location} />
+      <View style={isLandscape ? $contentRowLandscape : $contentRow}>
+        <View style={$flex}>
+          {globeVisible && (
+            <Globe
+              key={isLandscape.toString()}
+              zoom={1}
+              marker={location}
+              issPath={issData}
+              defaultCameraPosition={location}
+            />
+          )}
+        </View>
+        <FlatMap
+          style={isLandscape ? $flatMapLandscape : $flatMap}
+          issPath={issData}
+          currentLocation={location}
+        />
+      </View>
       <ModalContainer
         name="location"
         onBackdropPress={() => requestCloseModal("location")}
@@ -499,7 +524,7 @@ export const HomeScreen = observer(function HomeScreen() {
   )
 })
 
-const styles: StyleFn = () => {
+const styles: StyleFn = ({ scale }) => {
   const $container: ViewStyle = {
     flex: 1,
     backgroundColor: colors.backgroundDark,
@@ -519,5 +544,33 @@ const styles: StyleFn = () => {
     width: "100%",
   }
 
-  return { $container, $modal, $popupModal, $flatMap }
+  const $flatMapLandscape: ViewStyle = {
+    flex: 1,
+    maxHeight: "100%",
+  }
+
+  const $contentRow: ViewStyle = {
+    flex: 1,
+    flexDirection: "column",
+  }
+
+  const $contentRowLandscape: ViewStyle = {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: scale(16),
+  }
+
+  const $flex: ViewStyle = { flex: 1 }
+
+  return {
+    $container,
+    $modal,
+    $popupModal,
+    $flatMap,
+    $flatMapLandscape,
+    $contentRow,
+    $contentRowLandscape,
+    $flex,
+  }
 }

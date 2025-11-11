@@ -1,6 +1,6 @@
 import { iconRegistry, ControlsView } from "."
 import { StyleFn, useStyles } from "../utils/useStyles"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ActivityIndicator, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native"
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl"
 import { Renderer, loadTextureAsync } from "expo-three"
@@ -20,7 +20,8 @@ import { colors } from "../theme"
 
 import { OrbitPoint } from "../services/api"
 import { copyAssetToCacheAsync, createSphere, useTrajectoryLines, GLOBE_RADIUS } from "../utils/gl"
-import { cartesianToLatLon, latLonToCartesian } from "../utils/geometry"
+import { cartesianToLatLon, degToRad, latLonToCartesian } from "../utils/geometry"
+import debounce from "lodash/debounce"
 
 const CloudsTexture = require("../../assets/images/clouds.png")
 const GlobeTexturesNight = require("../../assets/images/World-Map.jpg")
@@ -32,7 +33,8 @@ export interface GlobeProps {
   pastIssPathCoords?: [number, number][]
   futureIssPathCoords?: [number, number][]
   issPath: OrbitPoint[]
-  onCameraChange?: (coords: [number, number]) => void
+  onCameraPositionChange?: (coords: [number, number]) => void
+  onCameraZoomChange?: (zoom: number) => void
   defaultCameraPosition?: [number, number]
 }
 
@@ -40,7 +42,8 @@ export function Globe({
   marker,
   zoom,
   issPath,
-  onCameraChange,
+  onCameraPositionChange,
+  onCameraZoomChange,
   defaultCameraPosition,
 }: GlobeProps) {
   const { $container, $pan } = useStyles(styles)
@@ -84,7 +87,7 @@ export function Globe({
   }, [markerTexture, marker, sceneRef.current])
 
   useEffect(() => {
-    if (camera) {
+    if (camera && camera.zoom !== zoom) {
       camera.zoom = zoom
       camera.updateProjectionMatrix()
     }
@@ -127,11 +130,15 @@ export function Globe({
 
   const handleCameraChange = useCallback(() => {
     checkMarkerVisibility()
-    if (onCameraChange) {
+    if (onCameraPositionChange) {
       const coords = cartesianToLatLon([camera.position.x, camera.position.y, camera.position.z])
-      onCameraChange(coords)
+      onCameraPositionChange(coords)
     }
-  }, [onCameraChange, checkMarkerVisibility])
+
+    if (onCameraZoomChange && zoom !== camera.zoom) {
+      onCameraZoomChange(camera.zoom)
+    }
+  }, [zoom, onCameraPositionChange, onCameraZoomChange, checkMarkerVisibility])
 
   useEffect(() => {
     checkMarkerVisibility()
@@ -139,7 +146,7 @@ export function Globe({
 
   useEffect(() => {
     if (!camera || !defaultCameraPosition) return
-    const cameraPosition = latLonToCartesian(defaultCameraPosition, 850)
+    const cameraPosition = latLonToCartesian(defaultCameraPosition, camera.position.length())
     camera.position.set(...cameraPosition)
     camera.lookAt(new Vector3(0, 0, 0))
   }, [defaultCameraPosition?.[0], defaultCameraPosition?.[1], camera])
@@ -147,16 +154,22 @@ export function Globe({
   const contextRenderer = async (gl: ExpoWebGLRenderingContext) => {
     const scene = new Scene()
     sceneRef.current = scene
-    const camera = new PerspectiveCamera(
-      75,
-      gl.drawingBufferWidth / gl.drawingBufferHeight,
-      1,
-      1000,
-    )
+
+    const aspect = gl.drawingBufferWidth / gl.drawingBufferHeight
+    const fov = 75
+    const camera = new PerspectiveCamera(fov, aspect, 1, 1000)
+
+    const fovVertical = degToRad(fov)
+    const fovHorizontal = 2 * Math.atan(Math.tan(fovVertical / 2) * aspect)
+
+    const distanceVertical = GLOBE_RADIUS / Math.sin(fovVertical / 2)
+    const distanceHorizontal = GLOBE_RADIUS / Math.sin(fovHorizontal / 2)
+
+    const distance = Math.max(distanceVertical, distanceHorizontal)
 
     const ambient = new AmbientLight("white", 666)
 
-    const cameraPosition = latLonToCartesian(defaultCameraPosition || [0, 0], 850)
+    const cameraPosition = latLonToCartesian(defaultCameraPosition || [0, 0], distance * 1.1)
     camera.position.set(...cameraPosition)
 
     setCamera(camera)
@@ -192,18 +205,27 @@ export function Globe({
     render()
   }
 
+  const handleHeightChange = useMemo(
+    () =>
+      debounce((h: number) => {
+        if (initialHeight === null) setInitialHeight(h)
+        setHeight(h)
+      }, 300),
+    [],
+  )
+
   const handleLayoutChange = (e: LayoutChangeEvent) => {
-    if (initialHeight === null) setInitialHeight(e.nativeEvent.layout.height)
-    setHeight(e.nativeEvent.layout.height)
+    handleHeightChange(e.nativeEvent.layout.height)
   }
 
   return (
     <View style={$pan} onLayout={handleLayoutChange}>
-      {initialHeight !== null && (
+      {!!initialHeight && (
         <ControlsView
           style={{ height: initialHeight, transform: `scale(${height / initialHeight})` }}
           camera={camera}
-          onPositionChange={handleCameraChange}
+          onCameraChange={handleCameraChange}
+          maxZoom={6}
         >
           <GLView style={$container} onContextCreate={contextRenderer} key="d" />
           {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}

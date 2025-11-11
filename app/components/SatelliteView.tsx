@@ -204,7 +204,8 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
         ref={controlsRef}
         style={$pan}
         camera={camera}
-        onPositionChange={handleCameraChange}
+        onCameraChange={handleCameraChange}
+        enableZoom={false}
       >
         <GLView style={$container} onContextCreate={contextRenderer} key="d" />
         {!isReady && <ActivityIndicator style={StyleSheet.absoluteFill} />}

@@ -32,7 +32,6 @@ import {
 } from "react-native"
 import Modal from "react-native-modal"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { check, openSettings, PERMISSIONS, request, RESULTS } from "react-native-permissions"
 import Share from "react-native-share"
 import ViewShot, { captureScreen } from "react-native-view-shot"
@@ -64,6 +63,7 @@ import {
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { NavigationProp, useNavigation, useRoute } from "@react-navigation/native"
 import * as storage from "../../utils/storage"
+import { useScreenOrientation } from "../../utils/screen"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -232,7 +232,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
-  const [isLandscape, setIsLandscape] = useState(false)
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [isRecording, setIsRecording] = useState(false)
@@ -247,6 +246,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [arCoachCompleted, setArCoachCompleted] = useState<boolean | null>(null)
   const [safetyAcknowledged, setSafetyAcknowledged] = useState<boolean | null>(null)
   const safetyBackClicked = useRef(false)
+
+  const { isLandscape } = useScreenOrientation()
 
   useEffect(() => {
     storage
@@ -450,14 +451,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     else requestCloseModal("trajectoryError")
   }, [trajectoryError])
 
-  const onOrientationDidChange = (orientation) => {
-    if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
-      setIsLandscape(true)
-    } else {
-      setIsLandscape(false)
-    }
-  }
-
   const flashCameraIcon = useCallback(() => {
     whiteness.value = withSequence(
       withTiming(1, { duration: 300 }),
@@ -568,22 +561,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       setRecordedSeconds(0)
     }
   }
-
-  useEffect(() => {
-    const initial = Orientation.getInitialOrientation()
-
-    if (
-      initial === ("LANDSCAPE-LEFT" as OrientationType) ||
-      initial === ("LANDSCAPE-RIGHT" as OrientationType)
-    ) {
-      setIsLandscape(true)
-    } else {
-      setIsLandscape(false)
-    }
-
-    Orientation.addOrientationListener(onOrientationDidChange)
-    return () => Orientation.removeOrientationListener(onOrientationDidChange)
-  }, [])
 
   const { toggleBottomTabs, toggleIsLandscape } = useContext(TabNavigatorContext)
 

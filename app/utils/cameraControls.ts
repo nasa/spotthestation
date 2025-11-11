@@ -8,7 +8,12 @@ import {
   BaseEvent,
   Quaternion,
 } from "three"
-import { NativeTouchEvent } from "react-native"
+import {
+  GestureStateChangeEvent,
+  GestureUpdateEvent,
+  PinchGestureHandlerEventPayload,
+} from "react-native-gesture-handler"
+import { PanGestureHandlerEventPayload } from "react-native-screens"
 
 const STATE = {
   NONE: -1,
@@ -37,6 +42,9 @@ export class CameraControls extends EventDispatcher {
   minAzimuthAngle: number
   maxAzimuthAngle: number
   enableRotate: boolean
+  enableZoom: boolean
+  minZoom: number
+  maxZoom: number
   rotateSpeed: number
   touches: { ONE: TOUCH }
   target0: Vector3
@@ -44,12 +52,9 @@ export class CameraControls extends EventDispatcher {
   quat: Quaternion
   update: () => boolean
   private changeEvent: BaseEvent
-  private startEvent: BaseEvent
-  private endEvent: BaseEvent
   state
   spherical: Spherical
   private sphericalDelta: Spherical
-  private scale
   private panOffset: Vector3
   rotateStart: Vector2
   rotateEnd: Vector2
@@ -64,11 +69,14 @@ export class CameraControls extends EventDispatcher {
   getElementWidth: () => number
   height: number
   getElementHeight: () => number
-  handleTouchStartRotate: (event: NativeTouchEvent) => void
-  handleTouchMoveRotate: (event: NativeTouchEvent) => void
-  onTouchStart: (event: NativeTouchEvent) => void
-  onTouchMove: (event: NativeTouchEvent) => void
-  onTouchEnd: (event: NativeTouchEvent) => void
+  handleTouchStartRotate: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void
+  handleTouchMoveRotate: (event: GestureUpdateEvent<PanGestureHandlerEventPayload>) => void
+  onTouchStart: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void
+  onTouchMove: (event: GestureUpdateEvent<PanGestureHandlerEventPayload>) => void
+  onTouchEnd: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void
+  onPinch: (event: GestureUpdateEvent<PinchGestureHandlerEventPayload>) => void
+  onPinchStart: (event: GestureUpdateEvent<PinchGestureHandlerEventPayload>) => void
+  lastScale: number
 
   constructor(object) {
     super()
@@ -82,20 +90,21 @@ export class CameraControls extends EventDispatcher {
     this.minAzimuthAngle = -Infinity // radians
     this.maxAzimuthAngle = Infinity // radians
     this.enableRotate = true
+    this.enableZoom = true
     this.rotateSpeed = 0.5
     this.touches = { ONE: TOUCH.ROTATE }
     this.changeEvent = { type: "change" }
-    this.startEvent = { type: "start" }
-    this.endEvent = { type: "end" }
     this.state = STATE.NONE
     this.spherical = new Spherical()
     this.sphericalDelta = new Spherical()
-    this.scale = 1
     this.panOffset = new Vector3()
     this.rotateStart = new Vector2()
     this.rotateEnd = new Vector2()
     this.rotateDelta = new Vector2()
     this.quat = new Quaternion()
+    this.lastScale = 1
+    this.minZoom = 1
+    this.maxZoom = 6
 
     this.setTarget = (target) => {
       this.target = target
@@ -135,24 +144,16 @@ export class CameraControls extends EventDispatcher {
       return this.height
     }
 
-    this.handleTouchStartRotate = ({ touches }) => {
-      if (touches.length === 1) {
-        this.rotateStart.set(touches[0].pageX, touches[0].pageY)
-      } else {
-        const x = 0.5 * (touches[0].pageX + touches[1].pageX)
-        const y = 0.5 * (touches[0].pageY + touches[1].pageY)
-        this.rotateStart.set(x, y)
-      }
+    this.handleTouchStartRotate = (e) => {
+      const x = e.absoluteX - e.translationX
+      const y = e.absoluteY - e.translationY
+      this.rotateStart.set(x, y)
     }
 
-    this.handleTouchMoveRotate = ({ touches }) => {
-      if (touches.length === 1) {
-        this.rotateEnd.set(touches[0].pageX, touches[0].pageY)
-      } else {
-        const x = 0.5 * (touches[0].pageX + touches[1].pageX)
-        const y = 0.5 * (touches[0].pageY + touches[1].pageY)
-        this.rotateEnd.set(x, y)
-      }
+    this.handleTouchMoveRotate = (e) => {
+      const x = e.absoluteX
+      const y = e.absoluteY
+      this.rotateEnd.set(x, y)
       this.rotateDelta.subVectors(this.rotateEnd, this.rotateStart).multiplyScalar(this.rotateSpeed)
       this.rotateLeft((2 * Math.PI * this.rotateDelta.x) / this.getElementHeight())
       this.rotateUp((2 * Math.PI * this.rotateDelta.y) / this.getElementHeight())
@@ -162,23 +163,14 @@ export class CameraControls extends EventDispatcher {
     this.onTouchStart = (event) => {
       if (this.enabled === false) return
 
-      switch (event.touches.length) {
-        case 1:
-          switch (this.touches.ONE) {
-            case TOUCH.ROTATE:
-              if (this.enableRotate === false) return
-              this.handleTouchStartRotate(event)
-              this.state = STATE.TOUCH_ROTATE
-              break
-            default:
-              this.state = STATE.NONE
-          }
+      switch (this.touches.ONE) {
+        case TOUCH.ROTATE:
+          if (this.enableRotate === false) return
+          this.handleTouchStartRotate(event)
+          this.state = STATE.TOUCH_ROTATE
           break
         default:
           this.state = STATE.NONE
-      }
-      if (this.state !== STATE.NONE) {
-        this.dispatchEvent(this.startEvent)
       }
     }
 
@@ -198,8 +190,26 @@ export class CameraControls extends EventDispatcher {
 
     this.onTouchEnd = () => {
       if (this.enabled === false) return
-      this.dispatchEvent(this.endEvent)
+
       this.state = STATE.NONE
+    }
+
+    this.onPinch = (event) => {
+      if (!this.enableZoom) return
+
+      this.object.zoom = Math.max(
+        this.minZoom,
+        Math.min(this.maxZoom, this.lastScale * event.scale),
+      )
+      this.object.updateProjectionMatrix()
+
+      this.update()
+    }
+
+    this.onPinchStart = () => {
+      if (!this.enableZoom) return
+
+      this.lastScale = this.object.zoom
     }
 
     this.target0 = this.target.clone()
@@ -226,7 +236,6 @@ export class CameraControls extends EventDispatcher {
           Math.min(this.maxPolarAngle, this.spherical.phi),
         )
         this.spherical.makeSafe()
-        this.spherical.radius *= this.scale
         this.spherical.radius = Math.max(
           this.minDistance,
           Math.min(this.maxDistance, this.spherical.radius),
@@ -240,7 +249,6 @@ export class CameraControls extends EventDispatcher {
         this.object.lookAt(this.target)
         this.sphericalDelta.set(0, 0, 0)
         this.panOffset.set(0, 0, 0)
-        this.scale = 1
 
         this.dispatchEvent(this.changeEvent)
 

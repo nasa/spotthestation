@@ -6,13 +6,17 @@ import React, {
   useMemo,
   useState,
 } from "react"
-import { View, PanResponder, LayoutRectangle, ViewProps } from "react-native"
+import { View, LayoutRectangle, ViewProps } from "react-native"
 import { Camera } from "three"
 import { CameraControls } from "../utils/cameraControls"
+import { Gesture, GestureDetector } from "react-native-gesture-handler"
 
 export interface ControlsViewProps extends ViewProps {
   camera: Camera
-  onPositionChange?: () => void
+  onCameraChange?: () => void
+  enableZoom?: boolean
+  minZoom?: number
+  maxZoom?: number
 }
 
 export interface ControlsRef {
@@ -20,22 +24,57 @@ export interface ControlsRef {
 }
 
 export const ControlsView = forwardRef(
-  ({ camera, onPositionChange, ...props }: ControlsViewProps, ref: ForwardedRef<ControlsRef>) => {
+  (
+    {
+      camera,
+      onCameraChange,
+      enableZoom = true,
+      minZoom = 1,
+      maxZoom = 6,
+      ...props
+    }: ControlsViewProps,
+    ref: ForwardedRef<ControlsRef>,
+  ) => {
     const [size, setSize] = useState<LayoutRectangle | null>(null)
+
+    const pinchGesture = Gesture.Pinch()
+      .onStart((e) => {
+        controls.onPinchStart(e)
+      })
+      .onUpdate((event) => {
+        controls.onPinch(event)
+      })
+      .runOnJS(true)
+
+    const panGesture = Gesture.Pan()
+      .onStart((e) => {
+        controls.onTouchStart(e)
+      })
+      .onUpdate((e) => {
+        controls.onTouchMove(e)
+      })
+      .onEnd((e) => {
+        controls.onTouchEnd(e)
+      })
+      .runOnJS(true)
 
     const controls: CameraControls = useMemo(() => {
       if (camera) {
-        return new CameraControls(camera)
+        const ctrl = new CameraControls(camera)
+        ctrl.enableZoom = enableZoom
+        ctrl.minZoom = minZoom
+        ctrl.maxZoom = maxZoom
+        return ctrl
       }
       return null
-    }, [camera])
+    }, [camera, enableZoom])
 
     useEffect(() => {
-      if (!controls || !onPositionChange) return undefined
+      if (!controls || !onCameraChange) return undefined
 
-      controls.addEventListener("change", onPositionChange)
-      return () => controls.removeEventListener("change", onPositionChange)
-    }, [controls, onPositionChange])
+      controls.addEventListener("change", onCameraChange)
+      return () => controls.removeEventListener("change", onCameraChange)
+    }, [controls, onCameraChange])
 
     useImperativeHandle(
       ref,
@@ -47,28 +86,6 @@ export const ControlsView = forwardRef(
       [controls],
     )
 
-    const responder = useMemo(() => {
-      if (!controls) return null
-      return PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onStartShouldSetPanResponderCapture: () => true,
-        onMoveShouldSetPanResponder: () => true,
-        onMoveShouldSetPanResponderCapture: () => true,
-        onPanResponderGrant({ nativeEvent }) {
-          return controls.onTouchStart(nativeEvent)
-        },
-        onPanResponderMove({ nativeEvent }) {
-          return controls.onTouchMove(nativeEvent)
-        },
-        onPanResponderRelease({ nativeEvent }) {
-          return controls.onTouchEnd(nativeEvent)
-        },
-        onPanResponderTerminate({ nativeEvent }) {
-          return controls.onTouchEnd(nativeEvent)
-        },
-      })
-    }, [controls])
-
     useEffect(() => {
       if (!controls || !size) return
 
@@ -77,16 +94,17 @@ export const ControlsView = forwardRef(
     }, [size, controls])
 
     return (
-      <View
-        {...props}
-        {...responder?.panHandlers}
-        onLayout={(event) => {
-          if (props.onLayout) {
-            props.onLayout(event)
-          }
-          setSize(event.nativeEvent.layout)
-        }}
-      />
+      <GestureDetector gesture={Gesture.Race(panGesture, pinchGesture)}>
+        <View
+          {...props}
+          onLayout={(event) => {
+            if (props.onLayout) {
+              props.onLayout(event)
+            }
+            setSize(event.nativeEvent.layout)
+          }}
+        />
+      </GestureDetector>
     )
   },
 )

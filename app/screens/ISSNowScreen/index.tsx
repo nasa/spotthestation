@@ -15,7 +15,6 @@ import { observer } from "mobx-react-lite"
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { BackHandler, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import Orientation, { OrientationType } from "react-native-orientation-locker"
 import Modal from "react-native-modal"
 
 import { colors, typography } from "../../theme"
@@ -25,6 +24,7 @@ import { LocationType, OrbitPoint } from "../../services/api"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 import { TabNavigatorContext } from "../../navigators/navigationUtilities"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
+import { useScreenOrientation } from "../../utils/screen"
 
 export const ISSNowScreen = observer(function ISSNowScreen() {
   const {
@@ -80,7 +80,6 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0)
   const [satZoomLevel, setSatZoomLevel] = useState(2)
-  const [isLandscape, setIsLandscape] = useState(false)
   const [isLocation, setIsLocation] = useState(false)
   const [address, setAddress] = useState("")
   const [defaultCameraPosition, setDefaultCameraPosition] = useState<[number, number]>([0, 0])
@@ -90,31 +89,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     [selectedLocation, currentLocation],
   )
 
-  const onOrientationDidChange = (orientation) => {
-    if (orientation === "LANDSCAPE-LEFT" || orientation === "LANDSCAPE-RIGHT") {
-      setIsLandscape(true)
-    } else {
-      setIsLandscape(false)
-    }
-  }
-
-  useEffect(() => {
-    const initial = Orientation.getInitialOrientation()
-
-    if (
-      initial === ("LANDSCAPE-LEFT" as OrientationType) ||
-      initial === ("LANDSCAPE-RIGHT" as OrientationType)
-    ) {
-      setIsLandscape(true)
-    } else {
-      setIsLandscape(false)
-    }
-
-    Orientation.addOrientationListener(onOrientationDidChange)
-    return () => {
-      Orientation.removeOrientationListener(onOrientationDidChange)
-    }
-  }, [])
+  const { isLandscape } = useScreenOrientation()
 
   useEffect(() => {
     if (selectedLocation) setAddress(selectedLocation.subtitle)
@@ -193,8 +168,12 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
     [selectedLocation, currentLocation],
   )
 
-  const handleCameraChange = useCallback((coords: [number, number]) => {
+  const handleCameraPositionChange = useCallback((coords: [number, number]) => {
     cameraPosition.current = coords
+  }, [])
+
+  const handleCameraZoomChange = useCallback((zoom: number) => {
+    setZoomLevel(zoom - 1)
   }, [])
 
   const headerStyle = { ...(isFullScreen ? $headerStyleOverrideFs : $headerStyleOverride) }
@@ -269,7 +248,8 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             zoom={zoomLevel + 1}
             defaultCameraPosition={defaultCameraPosition}
             marker={current && [current?.location?.lat, current?.location?.lng]}
-            onCameraChange={handleCameraChange}
+            onCameraPositionChange={handleCameraPositionChange}
+            onCameraZoomChange={handleCameraZoomChange}
           />
         )}
         {mode === "map" && (
@@ -279,7 +259,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
             style={$flatMap}
             zoom={zoomLevel}
             defaultCameraPosition={defaultCameraPosition}
-            onCameraChange={handleCameraChange}
+            onCameraChange={handleCameraPositionChange}
             markers={
               current?.location
                 ? [{ latitude: current?.location?.lat, longitude: current?.location?.lng }]
@@ -386,7 +366,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
                 accessibilityHint="zoom view"
                 text="+"
                 disabled={zoomLevel === 5}
-                onPress={() => setZoomLevel(zoomLevel + 1)}
+                onPress={() => setZoomLevel(Math.floor(zoomLevel) + 1)}
                 buttonStyle={zoomLevel === 5 ? [$lightIcon, $disabled] : $lightIcon}
                 blurIntensity={50}
               />
@@ -396,7 +376,7 @@ export const ISSNowScreen = observer(function ISSNowScreen() {
                 accessibilityHint="zoom out view"
                 text="-"
                 disabled={zoomLevel === 0}
-                onPress={() => setZoomLevel(zoomLevel - 1)}
+                onPress={() => setZoomLevel(Math.floor(zoomLevel) - 1)}
                 buttonStyle={zoomLevel === 0 ? [$lightIcon, $disabled] : $lightIcon}
                 blurIntensity={50}
               />

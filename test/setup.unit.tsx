@@ -73,21 +73,19 @@ jest.mock("@rnmapbox/maps", () => ({
   MapboxGL: <div />,
 }))
 
-jest.mock("react-native-orientation-locker", () => ({
-  OrientationType: {
+jest.mock("expo-screen-orientation", () => ({
+  Orientation: {
     "PORTRAIT": "PORTRAIT",
-    "PORTRAIT-UPSIDEDOWN": "PORTRAIT-UPSIDEDOWN",
-    "LANDSCAPE-LEFT": "LANDSCAPE-LEFT",
-    "LANDSCAPE-RIGHT": "LANDSCAPE-RIGHT",
-    "FACE-UP": "FACE-UP",
-    "FACE-DOWN": "FACE-DOWN",
+    "PORTRAIT-UP": "PORTRAIT-UP",
+    "PORTRAIT-DOWN": "PORTRAIT-DOWN",
+    "LANDSCAPE_LEFT": "LANDSCAPE_LEFT",
+    "LANDSCAPE_RIGHT": "LANDSCAPE_RIGHT",
     "UNKNOWN": "UNKNOWN",
   },
-  PORTRAIT: 'p',
-  UNLOCK: 'u',
-  getInitialOrientation: jest.fn(),
-  addOrientationListener: jest.fn(),
-  removeOrientationListener: jest.fn()
+  getOrientationAsync: jest.fn().mockResolvedValue("PORTRAIT"),
+  addOrientationChangeListener: jest.fn(() => ({ remove: jest.fn() })),
+  lockAsync: jest.fn(),
+  unlockAsync: jest.fn(),
 }))
 
 jest.mock('../app/components/Screen', () => ({ Screen: ({children}) => <div>{children}</div> }))

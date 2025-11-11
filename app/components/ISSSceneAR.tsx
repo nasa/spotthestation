@@ -32,17 +32,18 @@ import { maxBy, minBy } from "lodash"
 import { copyAssetToCacheAsync } from "../utils/gl"
 import { cartesianToAzAlt } from "../utils/geometry"
 import watchOrientation from "../utils/orientation"
-import Orientation, { OrientationType } from "react-native-orientation-locker"
 import { LocationType } from "../services/api"
 import { useIsFocused } from "@react-navigation/native"
 import { Gesture, GestureDetector } from "react-native-gesture-handler"
 import Reanimated, {
-  useSharedValue,
+  runOnJS,
   useAnimatedProps,
   useDerivedValue,
-  runOnJS,
+  useSharedValue,
 } from "react-native-reanimated"
 import { useIsForeground } from "../utils/useIsForeground"
+import { useScreenOrientation } from "../utils/screen"
+import { Orientation } from "expo-screen-orientation"
 
 interface ISSSceneProps {
   onScreenPositionChange: (value: [number, number]) => void
@@ -110,7 +111,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
 }: ISSSceneProps) {
   const [layout, setLayout] = useState<LayoutRectangle>()
   const device = useCameraDevice("back", { physicalDevices: ["wide-angle-camera"] })
-  const [orientation, setOrientation] = useState(Orientation.getInitialOrientation())
+  const { orientation, isLandscape } = useScreenOrientation()
 
   const [activeFormat, setActiveFormat] = useState<CameraDeviceFormat>(null)
   const [issTexture, setIssTexture] = useState<Texture>(null)
@@ -242,7 +243,6 @@ export const ISSSceneAR = memo(function ISSSceneAR({
   useEffect(() => {
     if (!layout || !activeFormat) return
 
-    const isLandscape = orientation.startsWith("LANDSCAPE")
     const layoutRatio = layout.width / layout.height
     const cameraRatio = isLandscape
       ? activeFormat.videoWidth / activeFormat.videoHeight
@@ -276,7 +276,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     camera.rotation.set(0, 0, 0)
 
     cameraRef.current = camera
-  }, [layout, orientation, activeFormat])
+  }, [layout, isLandscape, activeFormat])
 
   const contextRenderer = useCallback(
     (gl: ExpoWebGLRenderingContext) => {
@@ -350,9 +350,9 @@ export const ISSSceneAR = memo(function ISSSceneAR({
     const unsub = watchOrientation(
       (rotation) => {
         const targetRot = rotation
-        if (orientation === ("LANDSCAPE-RIGHT" as OrientationType)) {
+        if (orientation === Orientation.LANDSCAPE_LEFT) {
           targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), Math.PI / 2))
-        } else if (orientation === ("LANDSCAPE-LEFT" as OrientationType)) {
+        } else if (orientation === Orientation.LANDSCAPE_RIGHT) {
           targetRot.multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), -Math.PI / 2))
         }
 
@@ -393,11 +393,6 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       .catch((e) => console.log(e))
   }, [still])
 
-  useEffect(() => {
-    Orientation.addOrientationListener(setOrientation)
-    return () => Orientation.removeOrientationListener(setOrientation)
-  }, [])
-
   const minZoom = device?.minZoom ?? 1
   const maxZoom = device?.maxZoom ?? 1
 
@@ -406,7 +401,8 @@ export const ISSSceneAR = memo(function ISSSceneAR({
       previousZoom.value = zoom.value
     })
     .onUpdate((event) => {
-      zoom.value = Math.min(Math.max(minZoom, previousZoom.value * event.scale), maxZoom)
+      const newZoom = Math.min(Math.max(minZoom, previousZoom.value * event.scale), maxZoom)
+      zoom.value = Number.isNaN(newZoom) ? 1 : newZoom
     })
 
   const updateSceneCameraZoom = useCallback((value) => {

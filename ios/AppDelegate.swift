@@ -12,7 +12,7 @@ import UserNotifications
 class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
   var window: UIWindow?
  
-  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeDelegate: ExpoReactNativeFactoryDelegate?
   var reactNativeFactory: RCTReactNativeFactory?
 
   override func application(
@@ -30,26 +30,22 @@ class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
     UNUserNotificationCenter.current().delegate = self
 
     let delegate = ReactNativeDelegate()
-    let factory = RCTReactNativeFactory(delegate: delegate)
+    let factory = ExpoReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()
      
     reactNativeDelegate = delegate
     reactNativeFactory = factory
-     
+    bindReactNativeFactory(factory)
+
+#if os(iOS) || os(tvOS)
     window = UIWindow(frame: UIScreen.main.bounds)
-     
     factory.startReactNative(
       withModuleName: "STSApp",
       in: window,
-      launchOptions: launchOptions
-    )
+      launchOptions: launchOptions)
+#endif
     
-    return true
-  }
-
-  // Handle orientation via react-native-orientation
-  override func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-    return Orientation.getOrientation()
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
   // Foreground push notification presentation
@@ -61,7 +57,7 @@ class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
 }
 
 
-class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+class ReactNativeDelegate: ExpoReactNativeFactoryDelegate {
   override func sourceURL(for bridge: RCTBridge) -> URL? {
     self.bundleURL()
   }
@@ -72,10 +68,5 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     #else
     return CodePush.bundleURL()
     #endif
-  }
-  
-  override func customize(_ rootView: RCTRootView) {
-    super.customize(rootView)
-    RNBootSplash.initWithStoryboard("BootSplash", rootView: rootView) // ⬅️ initialize the splash screen
   }
 }

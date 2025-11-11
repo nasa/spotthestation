@@ -1104,10 +1104,7 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
           "paddingHorizontal": 26,
           "top": 35,
         },
-        {
-          "left": 0,
-          "paddingHorizontal": 26,
-        },
+        false,
       ]
     }
   >
@@ -1471,11 +1468,7 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
         {
           "marginTop": 0,
         },
-        {
-          "marginBottom": 0,
-          "marginHorizontal": 0,
-          "marginTop": 0,
-        },
+        false,
       ]
     }
   >
@@ -1514,11 +1507,7 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
             "padding": 0,
             "position": "absolute",
           },
-          {
-            "bottom": 49,
-            "flexDirection": "row",
-            "height": "auto",
-          },
+          false,
         ]
       }
     >
@@ -1934,11 +1923,7 @@ exports[`ISSNowScreen renders correctly in fullscreen + landscape mode 1`] = `
             "position": "absolute",
             "right": 26,
           },
-          {
-            "bottom": 49,
-            "flexDirection": "row",
-            "height": "auto",
-          },
+          false,
         ]
       }
     >
@@ -3307,10 +3292,7 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
           "paddingHorizontal": 0,
           "top": 35,
         },
-        {
-          "left": 26,
-          "paddingHorizontal": 78,
-        },
+        false,
       ]
     }
   >
@@ -3666,11 +3648,7 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
         {
           "marginTop": 115,
         },
-        {
-          "marginBottom": 17,
-          "marginHorizontal": 52,
-          "marginTop": 17,
-        },
+        false,
       ]
     }
   >
@@ -3709,11 +3687,7 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
             "padding": 0,
             "position": "absolute",
           },
-          {
-            "bottom": 26,
-            "flexDirection": "row",
-            "height": "auto",
-          },
+          false,
         ]
       }
     >
@@ -4129,11 +4103,7 @@ exports[`ISSNowScreen renders correctly in landscape mode 1`] = `
             "position": "absolute",
             "right": 26,
           },
-          {
-            "bottom": 26,
-            "flexDirection": "row",
-            "height": "auto",
-          },
+          false,
         ]
       }
     >

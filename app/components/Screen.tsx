@@ -3,7 +3,7 @@ import { useScrollToTop } from "@react-navigation/native"
 import { StatusBar, StatusBarProps } from "expo-status-bar"
 import { GestureDetector, Gesture } from "react-native-gesture-handler"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -16,7 +16,7 @@ import {
   View,
   ViewStyle,
 } from "react-native"
-import { OrientationLocker, PORTRAIT, UNLOCK } from "react-native-orientation-locker"
+import * as ScreenOrientation from "expo-screen-orientation"
 import { colors } from "../theme"
 import { ExtendedEdge, useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
 
@@ -214,13 +214,24 @@ export function Screen(props: ScreenProps) {
     dismissKeyboardOnPress,
   } = props
 
+  useEffect(() => {
+    if (isPortrait) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() =>
+        console.error("failed to set orientation lock"),
+      )
+    }
+
+    return () => {
+      ScreenOrientation.unlockAsync().catch(() => console.error("failed to unlock orientation"))
+    }
+  }, [isPortrait])
+
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges)
   const Wrapper = dismissKeyboardOnPress === false ? View : GestureDetector
 
   return (
     <Wrapper style={dismissKeyboardOnPress === false && $flex} gesture={tap}>
       <View style={[$containerStyle, { backgroundColor }, $containerInsets]}>
-        <OrientationLocker orientation={isPortrait ? PORTRAIT : UNLOCK} />
         <StatusBar style={statusBarStyle} {...StatusBarProps} />
 
         <KeyboardAvoidingView
