@@ -211,7 +211,7 @@ export function Globe({
         if (initialHeight === null) setInitialHeight(h)
         setHeight(h)
       }, 300),
-    [],
+    [initialHeight],
   )
 
   const handleLayoutChange = (e: LayoutChangeEvent) => {

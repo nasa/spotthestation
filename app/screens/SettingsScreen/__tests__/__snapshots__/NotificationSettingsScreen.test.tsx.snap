@@ -875,20 +875,7 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                   jestAnimatedStyle={
                     {
                       "value": {
-                        "opacity": {
-                          "callStart": null,
-                          "callback": undefined,
-                          "current": 0,
-                          "easing": [Function],
-                          "onFrame": [Function],
-                          "onStart": [Function],
-                          "progress": 0,
-                          "reduceMotion": false,
-                          "startTime": 1762885856045,
-                          "startValue": 0,
-                          "toValue": 0,
-                          "type": "timing",
-                        },
+                        "opacity": 0,
                       },
                     }
                   }
@@ -942,37 +929,8 @@ exports[`NotificationSettingsScreen renders correctly 1`] = `
                   jestAnimatedStyle={
                     {
                       "value": {
-                        "marginStart": {
-                          "callStart": null,
-                          "callback": undefined,
-                          "current": 6,
-                          "easing": [Function],
-                          "onFrame": [Function],
-                          "onStart": [Function],
-                          "progress": 0,
-                          "reduceMotion": false,
-                          "startTime": 1762885856045,
-                          "startValue": 6,
-                          "toValue": 6,
-                          "type": "timing",
-                        },
-                        "start": {
-                          "__prefix": "",
-                          "__suffix": "%",
-                          "callStart": null,
-                          "callback": undefined,
-                          "current": "0%",
-                          "easing": [Function],
-                          "onFrame": [Function],
-                          "onStart": [Function],
-                          "progress": 0,
-                          "reduceMotion": false,
-                          "startTime": 1762885856151,
-                          "startValue": 0,
-                          "strippedCurrent": 0,
-                          "toValue": 0,
-                          "type": "timing",
-                        },
+                        "marginStart": 6,
+                        "start": "0%",
                       },
                     }
                   }
