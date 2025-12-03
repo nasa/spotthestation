@@ -11,7 +11,6 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import org.wonday.orientation.OrientationActivityLifecycle
 import com.microsoft.codepush.react.CodePush
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
