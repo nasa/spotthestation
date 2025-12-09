@@ -141,7 +141,7 @@ const hi = {
       firstTimeHead: "अगली नजर",
       secondTimeHead: "उल्टी गिनती",
       timezone: "समय क्षेत्र",
-      opportunities: "नजर के अवसर",
+      opportunities: "दर्शन",
     },
     selectLocation: {
       title: "स्थान चुनें",

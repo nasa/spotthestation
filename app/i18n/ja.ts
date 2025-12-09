@@ -140,7 +140,7 @@ const ja = {
       firstTimeHead: "次の目撃情報",
       secondTimeHead: "カウントダウン",
       timezone: "タイムゾーン",
-      opportunities: "目撃機会",
+      opportunities: "目撃情報",
     },
     selectLocation: {
       title: "[位置]を選択します",

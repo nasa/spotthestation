@@ -142,7 +142,7 @@ const de = {
       firstTimeHead: "NÄCHSTE SICHTUNG",
       secondTimeHead: "COUNTDOWN",
       timezone: "Zeitzone",
-      opportunities: "Sichtungsmöglichkeiten",
+      opportunities: "Sichtungen",
     },
     selectLocation: {
       title: "Ort auswählen",

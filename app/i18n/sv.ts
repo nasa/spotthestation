@@ -140,7 +140,7 @@ const sv = {
       firstTimeHead: "NÄSTA IAKTTAGELSE",
       secondTimeHead: "NEDRÄKNING",
       timezone: "Tidszon",
-      opportunities: "Observationsmöjligheter",
+      opportunities: "Observationer",
     },
     selectLocation: {
       title: "Välj plats",

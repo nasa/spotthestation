@@ -140,7 +140,7 @@ const tr = {
       firstTimeHead: "SONRAKİ GÖZLEM",
       secondTimeHead: "GERİ SAYIM",
       timezone: "Saat Dilimi",
-      opportunities: "Gözlem fırsatları",
+      opportunities: "Gözlemler",
     },
     selectLocation: {
       title: "Konum Seç",

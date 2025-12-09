@@ -47,6 +47,7 @@ export const ControlsView = forwardRef(
       .runOnJS(true)
 
     const panGesture = Gesture.Pan()
+      .maxPointers(1)
       .onStart((e) => {
         controls.onTouchStart(e)
       })

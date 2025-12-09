@@ -142,7 +142,7 @@ const es = {
       firstTimeHead: "PRÓXIMO AVISTAMIENTO",
       secondTimeHead: "Cuenta regresiva",
       timezone: "Zona horaria",
-      opportunities: "Oportunidades de avistamiento",
+      opportunities: "Avistamientos",
     },
     selectLocation: {
       title: "Seleccionar ubicación",

@@ -141,7 +141,7 @@ const nl = {
       firstTimeHead: "VOLGENDE WAARNEMING",
       secondTimeHead: "Aftellen",
       timezone: "Tijdzone",
-      opportunities: "Waarnemingsmogelijkheden",
+      opportunities: "Waarnemingen",
     },
     selectLocation: {
       title: "Selecteer een locatie",

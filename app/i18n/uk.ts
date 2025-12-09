@@ -141,7 +141,7 @@ const uk = {
       firstTimeHead: "НАСТУПНЕ СПОСТЕРЕЖЕННЯ",
       secondTimeHead: "ЗВОРОТНІЙ ВІДЛІК",
       timezone: "Часовий пояс",
-      opportunities: "Можливості спостереження",
+      opportunities: "Спостереження",
     },
     selectLocation: {
       title: "Вибрати локацію",

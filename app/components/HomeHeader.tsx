@@ -75,7 +75,7 @@ export function HomeHeader({
         />
       </View>
       <View style={[$rowContainer, $sightingsContainer]}>
-        <View style={$flex}>
+        <View>
           <Text
             accessible
             accessibilityLabel="sighting header"
@@ -211,7 +211,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     borderRadius: scale(28),
     borderWidth: 0,
     minHeight: 0,
-    width: "100%",
     paddingVertical: scale(8),
     paddingHorizontal: scale(8),
   }

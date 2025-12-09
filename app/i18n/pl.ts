@@ -139,7 +139,7 @@ const pl = {
       firstTimeHead: "NASTĘPNA OBSERWACJA",
       secondTimeHead: "ODLICZANIE",
       timezone: "Strefa czasowa",
-      opportunities: "Możliwości obserwacji",
+      opportunities: "Obserwacje",
     },
     selectLocation: {
       title: "Wybierz lokalizację",

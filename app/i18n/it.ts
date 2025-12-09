@@ -143,7 +143,7 @@ const it = {
       firstTimeHead: "PROSSIMO AVVISTAMENTO",
       secondTimeHead: "Conto alla rovescia",
       timezone: "Fuso orario",
-      opportunities: "Opportunità di avvistamento",
+      opportunities: "Avvistamenti",
     },
     selectLocation: {
       title: "Seleziona posizione",

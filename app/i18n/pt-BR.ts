@@ -141,7 +141,7 @@ const ptBR = {
       firstTimeHead: "PRÓXIMO AVISTAMENTO",
       secondTimeHead: "CONTAGEM REGRESSIVA",
       timezone: "Fuso Horário",
-      opportunities: "Oportunidades de avistamento",
+      opportunities: "Avistamentos",
     },
     selectLocation: {
       title: "Selecionar Localização",

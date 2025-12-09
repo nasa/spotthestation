@@ -140,7 +140,7 @@ const en = {
       firstTimeHead: "UPCOMING SIGHTING",
       secondTimeHead: "COUNTDOWN",
       timezone: "Time Zone",
-      opportunities: "Sighting Opportunities",
+      opportunities: "Sightings",
     },
     selectLocation: {
       title: "Select Location",

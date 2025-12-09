@@ -141,7 +141,7 @@ const ru = {
       firstTimeHead: "СЛЕДУЮЩЕЕ НАБЛЮДЕНИЕ",
       secondTimeHead: "ОБРАТНЫЙ ОТСЧЕТ",
       timezone: "Часовой пояс",
-      opportunities: "Возможности наблюдения",
+      opportunities: "Наблюдения",
     },
     selectLocation: {
       title: "Выбор местоположения",

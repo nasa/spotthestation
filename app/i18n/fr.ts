@@ -143,7 +143,7 @@ const fr = {
       firstTimeHead: "PROCHAINE OBSERVATION",
       secondTimeHead: "COMPTE À REBOURS",
       timezone: "Fuseau horaire",
-      opportunities: "Opportunités d'observation",
+      opportunities: "Observations",
     },
     selectLocation: {
       title: "Sélectionnez la localisation",
