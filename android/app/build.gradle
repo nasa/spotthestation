@@ -94,8 +94,8 @@ android {
         applicationId project.env.get("APP_BUNDLE_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2025090617
-        versionName "1.7.0"
+        versionCode 2025121014
+        versionName "1.8.0"
 
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
