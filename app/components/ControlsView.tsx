@@ -39,23 +39,23 @@ export const ControlsView = forwardRef(
 
     const pinchGesture = Gesture.Pinch()
       .onStart((e) => {
-        controls.onPinchStart(e)
+        controls?.onPinchStart(e)
       })
       .onUpdate((event) => {
-        controls.onPinch(event)
+        controls?.onPinch(event)
       })
       .runOnJS(true)
 
     const panGesture = Gesture.Pan()
       .maxPointers(1)
       .onStart((e) => {
-        controls.onTouchStart(e)
+        controls?.onTouchStart(e)
       })
       .onUpdate((e) => {
-        controls.onTouchMove(e)
+        controls?.onTouchMove(e)
       })
       .onEnd((e) => {
-        controls.onTouchEnd(e)
+        controls?.onTouchEnd(e)
       })
       .runOnJS(true)
 

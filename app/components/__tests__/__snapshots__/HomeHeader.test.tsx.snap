@@ -248,13 +248,7 @@ exports[`renders correctly 1`] = `
       ]
     }
   >
-    <View
-      style={
-        {
-          "flex": 1,
-        }
-      }
-    >
+    <View>
       <Text
         accessibilityHint="sighting header"
         accessibilityLabel="sighting header"
@@ -387,7 +381,6 @@ exports[`renders correctly 1`] = `
               "minHeight": 0,
               "paddingHorizontal": 12,
               "paddingVertical": 12,
-              "width": "100%",
             },
             false,
           ]
