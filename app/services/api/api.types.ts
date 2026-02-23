@@ -92,6 +92,32 @@ export interface LivestreamIdFailResponse {
 
 export type LivestreamIdResponse = LivestreamIdSuccessResponse | LivestreamIdFailResponse
 
+export type Token = "MAPBOX_API_TOKEN" | "GOOGLE_API_TOKEN" | "TIMEZONEDB_API_KEY"
+
+export interface TokensSuccessResponse {
+  ok: true
+  data: Record<Token, string>
+}
+
+export interface TokensFailResponse {
+  ok: false
+  data: string
+}
+
+export type TokensResponse = TokensSuccessResponse | TokensFailResponse
+
+export interface TokensVersionSuccessResponse {
+  ok: true
+  data: { version: string }
+}
+
+export interface TokensVersionFailResponse {
+  ok: false
+  data: string
+}
+
+export type TokensVersionResponse = TokensVersionSuccessResponse | TokensVersionFailResponse
+
 /**
  * The options used to configure apisauce.
  */

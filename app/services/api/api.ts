@@ -31,11 +31,14 @@ import {
   WeatherForecastResult,
   GooglePlaceData,
   GooglePlaceDetail,
+  TokensResponse,
+  TokensVersionResponse,
 } from "./api.types"
 import { SatData } from "../../utils/satellite"
 import i18n from "i18n-js"
 import uniqBy from "lodash/uniqBy"
 import qs from "qs"
+import { getToken } from "../../utils/tokens"
 
 /**
  * Configuring the apisauce instance.
@@ -100,14 +103,15 @@ export class Api {
     )
 
     if (!response.ok || !Array.isArray(response.data)) {
+      const googleToken = await getToken("GOOGLE_API_TOKEN")
       const responseGmaps: ApiResponse<{ predictions: GooglePlaceData[] }> =
         await this.apisauce.get(
           `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search.replaceAll(
             " ",
             "%20",
-          )}&types=locality|postal_code|plus_code&language=${i18n.locale}&key=${
-            Config.GOOGLE_API_TOKEN
-          }${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
+          )}&types=locality|postal_code|plus_code&language=${i18n.locale}&key=${googleToken}${
+            sessionToken ? `&sessiontoken=${sessionToken}` : ""
+          }`,
           {},
           { baseURL: "" },
         )
@@ -151,9 +155,10 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
+    const tzdbToken = await getToken("TIMEZONEDB_API_KEY")
     let response: ApiResponse<any> = await withRetry(() =>
       this.apisauce.get(
-        `https://api.timezonedb.com/v2.1/get-time-zone?key=${Config.TIMEZONEDB_API_KEY}&format=json&fields=zoneName&by=position&lat=${lat}&lng=${lon}`,
+        `https://api.timezonedb.com/v2.1/get-time-zone?key=${tzdbToken}&format=json&fields=zoneName&by=position&lat=${lat}&lng=${lon}`,
         {},
         { baseURL: "", timeout: 10000 },
       ),
@@ -170,11 +175,12 @@ export class Api {
 
     if (response.ok && !response.data?.timeZone) return { kind: "ok", zone: response.data.timeZone }
 
+    const googleToken = await getToken("GOOGLE_API_TOKEN")
     const responseGmaps: ApiResponse<any> = await withRetry(() =>
       this.apisauce.get(
         `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
           Date.now() / 1000
-        }&key=${Config.GOOGLE_API_TOKEN}`,
+        }&key=${googleToken}`,
         {},
         { baseURL: "" },
       ),
@@ -191,10 +197,11 @@ export class Api {
     placeId: string,
     sessionToken: string = null,
   ): Promise<{ kind: "ok"; place: PlaceDetails } | GeneralApiProblem> {
+    const googleToken = await getToken("GOOGLE_API_TOKEN")
     const response: ApiResponse<any> = await this.apisauce.get(
       `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name%2Cformatted_address%2Cgeometry&language=${
         i18n.locale
-      }&key=${Config.GOOGLE_API_TOKEN}${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
+      }&key=${googleToken}${sessionToken ? `&sessiontoken=${sessionToken}` : ""}`,
       {},
       { baseURL: "" },
     )
@@ -219,6 +226,7 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
+    const googleToken = await getToken("GOOGLE_API_TOKEN")
     const response: ApiResponse<OSMSearchResult> = await this.apisauce.get(
       `https://nominatim.spotthestation.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
@@ -227,7 +235,7 @@ export class Api {
 
     if (!response.ok || !response.data.name) {
       const responseGmaps: ApiResponse<any> = await this.apisauce.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality|postal_code|plus_code&language=${i18n.locale}&key=${Config.GOOGLE_API_TOKEN}`,
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality|postal_code|plus_code&language=${i18n.locale}&key=${googleToken}`,
         {},
         { baseURL: "" },
       )
@@ -365,6 +373,28 @@ export class Api {
         time: response.data.hourly.time.map((t) => `${t}:00Z`),
       },
     }
+  }
+
+  async getTokensVersion(): Promise<TokensVersionResponse> {
+    const response: ApiResponse<any> = await this.apisauce.get("/tokens/version", {}, {})
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: "" }
+    }
+
+    return { ok: true, data: response.data }
+  }
+
+  async getTokens(): Promise<TokensResponse> {
+    const response: ApiResponse<any> = await this.apisauce.get("/tokens", {})
+
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return { ok: false, data: "" }
+    }
+
+    return { ok: true, data: response.data }
   }
 }
 

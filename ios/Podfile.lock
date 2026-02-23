@@ -1986,6 +1986,30 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNKeychain (10.0.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - rnmapbox-maps (10.2.2):
     - MapboxMaps (= 10.19.4)
     - React
@@ -2325,6 +2349,7 @@ DEPENDENCIES:
   - "RNFBAnalytics (from `../node_modules/@react-native-firebase/analytics`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - "rnmapbox-maps (from `../node_modules/@rnmapbox/maps`)"
   - "RNNotifee (from `../node_modules/@notifee/react-native`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -2566,6 +2591,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   rnmapbox-maps:
     :path: "../node_modules/@rnmapbox/maps"
   RNNotifee:
@@ -2595,7 +2622,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   CodePush: f6242892847d82433430f1661cfc3da20fa4a25c
-  DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
+  DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EXApplication: b28de982d44768fc593de9d19ca5a7a0e49685b1
   EXConstants: be238322d57d084dc055dbd5d6fe6479510504ce
   Expo: 3ea568cf77dd4ccecc020537996b2a0e873ddc31
@@ -2620,7 +2647,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 31ee350d87b30a9349e907f84bf49ef8e6791e5a
   FirebaseInstallations: 781e0e37aa0e1c92b44d00e739aba79ad31b2dba
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
-  glog: fdfdfe5479092de0c4bdbebedd9056951f092c4f
+  glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   GoogleAppMeasurement: 8a82b93a6400c8e6551c0bcd66a9177f2e067aed
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   hermes-engine: 8b5a5eb386b990287d072fd7b6f6ebd9544dd251
@@ -2631,7 +2658,7 @@ SPEC CHECKSUMS:
   MapboxMobileEvents: d044b9edbe0ec7df60f6c2c9634fe9a7f449266b
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
+  RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 0418ac97b9f53b2e37f473da1663ef3061e46beb
   RCTRequired: b9fde7f981b11aa898f03a70d3d4d36b80f1b16d
   RCTTypeSafety: 397515ea9a8122b62a7a310adf30205f0a5e3bfc
@@ -2709,6 +2736,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: 9e013537d8aa83f9b46971bb15d43c0ed9eabec2
   RNFBApp: fda4a8b08fe31bea8492808106aa638d1bb595b7
   RNGestureHandler: 57990734aadd7d828ceeba8bec11f965b772ff86
+  RNKeychain: a4b56923118c05d8ec61840772df49c418682b25
   rnmapbox-maps: 77b6cbed356595b2eb581cf29ca1e49e8d916bda
   RNNotifee: 4a6ee5c7deaf00e005050052d73ee6315dff7ec9
   RNPermissions: d926727ebd31c2539ceb1f1b783779d2a6473288
@@ -2728,4 +2756,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7bd35efcb8674b201f1d458dc709d167e16c8cb6
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2

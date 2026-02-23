@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Platform, View, ViewStyle } from "react-native"
 import MapboxGL, { MapState, Camera } from "@rnmapbox/maps"
-import Config from "../config"
 import { colors } from "../theme"
 import { computeOld, toGeoJSON } from "../utils/terminator"
 import { Vector3 } from "three"
 import { useISSPathCurve } from "../utils/useISSPathCurve"
 import { OrbitPoint } from "../services/api"
+import { getToken } from "../utils/tokens"
+import Snackbar from "react-native-snackbar"
 
 const positionMarker = require("../../assets/icons/position.png")
 const pinMarker = require("../../assets/icons/fi_map-pin.png")
@@ -96,12 +97,20 @@ export function MapBox({
   }, [curve])
 
   useEffect(() => {
-    MapboxGL.setAccessToken(Config.MAPBOX_API_TOKEN)
+    getToken("MAPBOX_API_TOKEN")
+      .then((token) => MapboxGL.setAccessToken(token))
       .then(() => {
         MapboxGL.setTelemetryEnabled(false)
         setLoading(false)
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        Snackbar.show({
+          text: "Unable to load map",
+          duration: Snackbar.LENGTH_LONG,
+        })
+
+        console.error(e)
+      })
   }, [])
 
   useEffect(() => {
