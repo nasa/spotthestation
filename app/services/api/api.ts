@@ -103,7 +103,13 @@ export class Api {
     )
 
     if (!response.ok || !Array.isArray(response.data)) {
-      const googleToken = await getToken("GOOGLE_API_TOKEN")
+      let googleToken = ""
+      try {
+        googleToken = await getToken("GOOGLE_API_TOKEN")
+      } catch (e) {
+        console.error(e)
+        return { kind: "server" }
+      }
       const responseGmaps: ApiResponse<{ predictions: GooglePlaceData[] }> =
         await this.apisauce.get(
           `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search.replaceAll(
@@ -155,7 +161,14 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<TimeZoneDataResponse | GeneralApiProblem> {
-    const tzdbToken = await getToken("TIMEZONEDB_API_KEY")
+    let tzdbToken = ""
+    try {
+      tzdbToken = await getToken("TIMEZONEDB_API_KEY")
+    } catch (e) {
+      console.error(e)
+      return { kind: "server" }
+    }
+
     let response: ApiResponse<any> = await withRetry(() =>
       this.apisauce.get(
         `https://api.timezonedb.com/v2.1/get-time-zone?key=${tzdbToken}&format=json&fields=zoneName&by=position&lat=${lat}&lng=${lon}`,
@@ -175,7 +188,13 @@ export class Api {
 
     if (response.ok && !response.data?.timeZone) return { kind: "ok", zone: response.data.timeZone }
 
-    const googleToken = await getToken("GOOGLE_API_TOKEN")
+    let googleToken = ""
+    try {
+      googleToken = await getToken("GOOGLE_API_TOKEN")
+    } catch (e) {
+      console.error(e)
+      return { kind: "server" }
+    }
     const responseGmaps: ApiResponse<any> = await withRetry(() =>
       this.apisauce.get(
         `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${
@@ -197,7 +216,13 @@ export class Api {
     placeId: string,
     sessionToken: string = null,
   ): Promise<{ kind: "ok"; place: PlaceDetails } | GeneralApiProblem> {
-    const googleToken = await getToken("GOOGLE_API_TOKEN")
+    let googleToken = ""
+    try {
+      googleToken = await getToken("GOOGLE_API_TOKEN")
+    } catch (e) {
+      console.error(e)
+      return { kind: "server" }
+    }
     const response: ApiResponse<any> = await this.apisauce.get(
       `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name%2Cformatted_address%2Cgeometry&language=${
         i18n.locale
@@ -226,7 +251,14 @@ export class Api {
     lat: number,
     lon: number,
   ): Promise<ReverseGeocodeResponse | GeneralApiProblem> {
-    const googleToken = await getToken("GOOGLE_API_TOKEN")
+    let googleToken = ""
+    try {
+      googleToken = await getToken("GOOGLE_API_TOKEN")
+    } catch (e) {
+      console.error(e)
+      return { kind: "server" }
+    }
+
     const response: ApiResponse<OSMSearchResult> = await this.apisauce.get(
       `https://nominatim.spotthestation.org/reverse?lat=${lat}&lon=${lon}&zoom=10&format=jsonv2&addressdetails=1&accept-language=${i18n.locale}`,
       {},
