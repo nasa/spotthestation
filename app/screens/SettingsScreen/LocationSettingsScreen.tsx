@@ -34,6 +34,8 @@ import { api, LocationType } from "../../services/api"
 import { getCurrentTimeZone } from "../../utils/datetime"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import { ensureExactAlarmPermissions } from "../../utils/notifications"
+import Snackbar from "react-native-snackbar"
+import { translate } from "../../i18n"
 
 export interface LocationSettingsScreenParams {
   fromHomeScreen?: boolean
@@ -117,7 +119,11 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
       await setCurrentLocation(location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
-      console.log(e)
+      Snackbar.show({
+        text: e.message || translate("snackBar.defaultError"),
+        duration: Snackbar.LENGTH_SHORT,
+      })
+      console.error(e)
     }
   }, [currentLocation])
 

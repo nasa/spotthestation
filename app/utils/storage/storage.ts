@@ -25,7 +25,8 @@ export enum KEYS {
   NUMBER_OF_REVIEW_REQUESTS_KEY = "numberOfReviewRequests",
   FONT_SIZE_MODAL_CLOSED_KEY = "fontSizeModalClosed",
   LAST_FONT_SIZE_KEY = "lastFontSize",
-  TOKENS_VERSION = "tokensVersion",
+  LAST_TOKENS_UPDATED_AT = "lastTokensUpdatedAt",
+  LAST_TOKENS_REQUESTED_AT = "lastTokensRequestedAt",
 }
 
 /**

@@ -110,6 +110,10 @@ export function SelectLocation({
       if (!loc) return setIsSearchCurrentLocationUpdating(false)
       setTextValue(loc.subtitle)
     } catch (e) {
+      Snackbar.show({
+        text: e.message || translate("snackBar.defaultError"),
+        duration: Snackbar.LENGTH_SHORT,
+      })
       console.error(e)
     }
 
@@ -146,6 +150,10 @@ export function SelectLocation({
       await setCurrentLocation(location)
     } catch (e) {
       setIsCurrentLocationUpdating(false)
+      Snackbar.show({
+        text: e.message || translate("snackBar.defaultError"),
+        duration: Snackbar.LENGTH_SHORT,
+      })
       console.log(e)
     }
   }, [currentLocation])

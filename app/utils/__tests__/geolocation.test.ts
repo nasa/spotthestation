@@ -90,7 +90,7 @@ describe("getCurrentLocation", () => {
     await expect(getCurrentLocation()).rejects.toBeTruthy()
   })
 
-  it("returns null if reverse geocode fails", async () => {
+  it("throws error if reverse geocode fails", async () => {
     const permission = "granted"
 
     jest.mocked(requestAuthorization).mockResolvedValue(permission)
@@ -110,7 +110,7 @@ describe("getCurrentLocation", () => {
         cb({ coords, timestamp: 0 }),
       )
 
-    expect(await getCurrentLocation()).toBeNull()
+    await expect(getCurrentLocation()).rejects.toBeTruthy()
   })
 })
 

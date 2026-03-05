@@ -19,6 +19,7 @@ import { getCurrentLocation } from "../utils/geolocation"
 import * as storage from "../utils/storage"
 import { PositionError } from "react-native-geolocation-service"
 import { LocationType, OSMSearchResult } from "../services/api"
+import Snackbar from "react-native-snackbar"
 
 enum Statuses {
   start = "start",
@@ -108,8 +109,16 @@ export function SignupLocation({ value, onValueChange, onAction }: SignupLocatio
       if (
         e.code !== PositionError.POSITION_UNAVAILABLE &&
         e.code !== PositionError.PLAY_SERVICE_NOT_AVAILABLE
-      )
-        throw e
+      ) {
+        onValueChange(defaultLocation)
+        setStatus(Statuses.result)
+        console.error(e)
+        Snackbar.show({
+          text: e.message || translate("snackBar.defaultError"),
+          duration: Snackbar.LENGTH_SHORT,
+        })
+        return
+      }
 
       Alert.alert(
         translate("onboarding.completeProfile.location.serviceAlertTitle"),

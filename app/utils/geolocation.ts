@@ -86,7 +86,8 @@ export const getCurrentLocation = async (
       }
 
       const rgResponse = await api.reverseGeocode(latitude, longitude)
-      if (rgResponse.kind !== "ok" || (!rgResponse.name && !rgResponse.address)) return null
+      if (rgResponse.kind !== "ok" || (!rgResponse.name && !rgResponse.address))
+        throw Error("Unable to get current location")
 
       const result = {
         title: rgResponse.name || rgResponse.address,
