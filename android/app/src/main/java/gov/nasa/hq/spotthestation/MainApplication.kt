@@ -11,7 +11,6 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
-import com.microsoft.codepush.react.CodePush
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
 
@@ -26,10 +25,6 @@ class MainApplication : Application(), ReactApplication {
             }
 
         override fun getJSMainModuleName(): String = "index"
-
-        override fun getJSBundleFile(): String {
-            return CodePush.getJSBundleFile()
-        }
 
         override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 

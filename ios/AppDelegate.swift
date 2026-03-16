@@ -3,7 +3,6 @@ import Firebase
 import React
 import React_RCTAppDelegate
 import RNBootSplash
-import CodePush
 import Expo
 import ReactAppDependencyProvider
 import UserNotifications
@@ -11,7 +10,7 @@ import UserNotifications
 @main
 class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
   var window: UIWindow?
- 
+
   var reactNativeDelegate: ExpoReactNativeFactoryDelegate?
   var reactNativeFactory: RCTReactNativeFactory?
 
@@ -32,7 +31,7 @@ class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
     let delegate = ReactNativeDelegate()
     let factory = ExpoReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()
-     
+
     reactNativeDelegate = delegate
     reactNativeFactory = factory
     bindReactNativeFactory(factory)
@@ -44,7 +43,7 @@ class AppDelegate: ExpoAppDelegate, UNUserNotificationCenterDelegate {
       in: window,
       launchOptions: launchOptions)
 #endif
-    
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
@@ -61,12 +60,12 @@ class ReactNativeDelegate: ExpoReactNativeFactoryDelegate {
   override func sourceURL(for bridge: RCTBridge) -> URL? {
     self.bundleURL()
   }
- 
+
   override func bundleURL() -> URL? {
     #if DEBUG
-    return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+        RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
     #else
-    return CodePush.bundleURL()
+        Bundle.main.url(forResource: "main", withExtension: "jsbundle")
     #endif
   }
 }

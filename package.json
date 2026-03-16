@@ -91,7 +91,6 @@
     "react": "19.0.0",
     "react-native": "^0.79.0",
     "react-native-bootsplash": "^6.3.9",
-    "react-native-code-push": "^9.0.1",
     "react-native-config": "^1.5.5",
     "react-native-device-info": "^14.0.4",
     "react-native-element-dropdown": "^2.12.4",

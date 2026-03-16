@@ -14,7 +14,6 @@ import "./utils/ignoreWarnings"
 import { useFonts } from "expo-font"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
-import codePush from "react-native-code-push"
 import * as Linking from "expo-linking"
 import * as Sentry from "@sentry/react-native"
 import { RootStoreProvider, useInitialRootStore } from "./models"
@@ -33,11 +32,6 @@ import { ensureExactAlarmPermissions, hasExactAlarmPermissions } from "./utils/n
 import { LocationType } from "./services/api"
 import { initCrashReporting } from "./utils/crashReporting"
 import { initPolyfills } from "./utils/datetime"
-
-const codePushConfig = {
-  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
-  installMode: codePush.InstallMode.ON_NEXT_RESTART,
-}
 
 initPolyfills()
 initCrashReporting()
@@ -303,8 +297,7 @@ function App(props: AppProps) {
 }
 
 // @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-export default codePush(codePushConfig)(Sentry.wrap(App))
+export default Sentry.wrap(App)
 
 const $flex: ViewStyle = {
   flex: 1,

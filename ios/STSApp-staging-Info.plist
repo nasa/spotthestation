@@ -32,8 +32,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2026031401</string>
-	<key>CodePushDeploymentKey</key>
-	<string>$(CODE_PUSH_IOS_DEPLOYMENT_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>message</string>

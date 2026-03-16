@@ -322,14 +322,6 @@ jest.mock("expo-store-review", () => ({
 
 jest.mock("expo-calendar", () => ({}))
 
-jest.mock("react-native-code-push", () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  const fn = () => (p) => p
-  fn.CheckFrequency = {}
-  fn.InstallMode = {}
-  return fn
-})
-
 jest.mock("react-native-version-check", () => ({
   needUpdate: jest.fn().mockResolvedValue({ isNeeded: false }),
 }))
