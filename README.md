@@ -28,9 +28,6 @@ Before you can run this project, you will need to have the following software in
     ```
 2. In `scripts/config/.env.staging` file, provide values for the following variables:
    - `API_URL` - url of your backend, for example: http://localhost:5000/.
-   - `GOOGLE_API_TOKEN` - your Google Maps API token. Learn how to obtain it [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
-   - `MAPBOX_API_TOKEN` - your Mapbox token. Learn how to obtain it [here](#how-to-obtain-mapbox-token).
-   - `TIMEZONEDB_API_KEY` - your TimezoneDB API key. Learn how to obtain it [here](https://timezonedb.com/api).
    - You can leave other variables unchanged
 3. Run `config-env.sh` script
     ```
@@ -171,8 +168,5 @@ This directory will hold your Jest configs and mocks.
 2. Go to [Access tokens page](https://account.mapbox.com/access-tokens/)
 3. Click `Create a token`
 4. Name your token, tick all Public scopes checkboxes, tick the following Secret scopes checkboxes:
-   - styles:download
    - downloads:read
-   - vision:download
-   - navigation:download
 5. Click `Create token` and copy your token. It should start with `sk.`
