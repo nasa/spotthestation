@@ -226,7 +226,7 @@ const fr = {
         "Vous pouvez sélectionner ou modifier votre localisation pour une autre directement ici.",
       sightingsTitle: "Prochaine observation et compte à rebours",
       sightingsData:
-        "Cette section vous montre la date et un compte à rebours pour la prochaine observation Station à venir près de votre localisation sélectionnée. Vous pouvez appuyer sur la prochaine case d'observation pour voir une liste complète des prochaines observations.",
+        "Cette section vous montre la date/heure et un compte à rebours pour la prochaine observation Station à venir près de votre localisation sélectionnée. Vous pouvez appuyer sur la case Observations pour voir une liste complète des observations passées récentes et des prochaines observations.",
       globeTitle: "Terre interactive",
       globeData:
         "Vous pouvez afficher la position de la Station en temps réel en touchant l’écran. Cela vous permet d’interagir avec la carte de la terre et de suivre en temps réel l’emplacement de la station.",
@@ -492,6 +492,7 @@ const fr = {
     },
     faq: {
       title: "Questions Fréquemment Posées",
+      searchPlaceholder: "Rechercher des questions...",
       questions: {
         question1: "1. Pourquoi la Station spatiale internationale est-elle là-haut ?",
         answer1:

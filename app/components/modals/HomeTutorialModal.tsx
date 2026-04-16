@@ -51,7 +51,7 @@ export function HomeTutorialModal({ onComplete }: HomeTutorialModalProps) {
             icon="globe"
             title="homeScreen.coachMarks.globeTitle"
             bodyText="homeScreen.coachMarks.globeData"
-            style={{ marginTop: normalizeHeight(0.4) }}
+            style={{ marginTop: normalizeHeight(0.43) }}
             stage={stage}
             onPressFinish={onComplete}
             onPressNext={() => setStage(stage + 1)}

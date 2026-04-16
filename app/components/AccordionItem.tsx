@@ -10,17 +10,19 @@ import { TxKeyPath } from "../i18n"
 type AccordionItemProps = {
   titleTx: TxKeyPath
   contentTx: TxKeyPath
+  open?: boolean
 }
 
 export const AccordionItem = memo(function AccordionItem({
   titleTx,
   contentTx,
+  open: forceOpen = undefined,
 }: AccordionItemProps) {
   const [height, setHeight] = useState(0)
-  const [open, setOpen] = useState(false)
-  const [fullyClosed, setFullyClosed] = useState(true)
+  const [open, setOpen] = useState(forceOpen || false)
+  const [fullyClosed, setFullyClosed] = useState(!open)
   const timingRef = useRef<Animated.CompositeAnimation>(null)
-  const heightAnim = useAnimatedValue(0)
+  const heightAnim = useAnimatedValue(open ? 1 : 0)
   const { $animatedView, $wrapper, $text } = useStyles(styles)
 
   const onPress = () => {

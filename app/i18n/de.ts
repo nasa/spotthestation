@@ -224,7 +224,7 @@ const de = {
       locationData: "Sie können Ihren Standort hier direkt auswählen oder abändern.",
       sightingsTitle: "Nächste Sichtung & Countdown",
       sightingsData:
-        "In diesem Abschnitt wird das Datum und ein Countdown-Timer für die nächste bevorstehende Stations-Sichtung in der Nähe Ihres ausgewählten Standorts angezeigt. Sie können auf >Nächste Sichtung< tippen, um eine vollständige Liste der bevorstehenden Sichtungen zu sehen.",
+        "In diesem Abschnitt werden Datum/Uhrzeit und ein Countdown für die nächste bevorstehende Stations-Sichtung in der Nähe Ihres ausgewählten Standorts angezeigt. Sie können auf das Sichtungs-Feld tippen, um eine vollständige Liste der vergangenen und bevorstehenden Sichtungen zu sehen.",
       globeTitle: "Interaktive Erdansicht",
       globeData:
         "Sie können die Echtzeitposition der Station sehen, indem Sie auf dem Bildschirm wischen. Auf diese Weise können Sie mit der Darstellung der Erde interagieren und den Ort der Station in Echtzeit verfolgen.",
@@ -490,6 +490,7 @@ const de = {
     },
     faq: {
       title: "Häufig gestellte Fragen",
+      searchPlaceholder: "Fragen suchen...",
       questions: {
         question1: "1. Warum befindet sich die Internationale Raumstation dort oben?",
         answer1:

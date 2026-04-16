@@ -29,7 +29,8 @@ export interface ARTutorialModalProps {
 export const arTutorialTotalStages = 8
 
 export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProps) {
-  const { $container, $mark, $arrow, $left, $right, $scale60, $scale90 } = useStyles(styles)
+  const { $container, $mark, $arrow, $left, $leftTop, $right, $scale60, $scale90 } =
+    useStyles(styles)
   const [stage, setStage] = useState(1)
   const [containerLayout, setContainerLayout] = useState<ARTutorialModalItemLayout>()
 
@@ -152,15 +153,20 @@ export function ARTutorialModal({ onComplete, itemsLayout }: ARTutorialModalProp
             style={[
               $mark,
               {
-                bottom:
-                  containerLayout.height -
-                  (itemsLayout.fullScreen.y - containerLayout.y) +
-                  ($scale60.width as number),
+                marginTop:
+                  itemsLayout.fullScreen.y -
+                  containerLayout.y +
+                  itemsLayout.fullScreen.height +
+                  ($scale90.width as number),
                 maxHeight:
-                  itemsLayout.fullScreen.y - containerLayout.y - ($scale60.width as number),
+                  containerLayout.height -
+                  (itemsLayout.fullScreen.y -
+                    containerLayout.y +
+                    itemsLayout.fullScreen.height +
+                    ($scale90.width as number)),
               },
             ]}
-            arrowStyle={[$arrow, $left]}
+            arrowStyle={[$arrow, $leftTop]}
             stage={stage}
             onPressFinish={onComplete}
             onPressNext={() => setStage(stage + 1)}
@@ -259,7 +265,7 @@ const styles: StyleFn = ({ scale }) => {
     position: "absolute",
     width: "100%",
     height: "100%",
-    paddingHorizontal: 18,
+    paddingHorizontal: scale(36),
   }
 
   const $arrow: ViewStyle = {
@@ -270,6 +276,11 @@ const styles: StyleFn = ({ scale }) => {
     left: 0,
     bottom: scale(-70),
     transform: [{ rotate: "180deg" }],
+  }
+
+  const $leftTop = {
+    left: 0,
+    top: -scale(55) - 16,
   }
 
   const $right = {
@@ -296,6 +307,7 @@ const styles: StyleFn = ({ scale }) => {
     $mark,
     $arrow,
     $left,
+    $leftTop,
     $right,
     $scale60,
     $scale90,

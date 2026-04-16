@@ -46,7 +46,7 @@ export const ARView = memo(function ARView({
   const [futureIssPathCoords, setFutureIssPathCoords] = useState<Vector3[]>([])
   const [isSpotted, setIsSpotted] = useState(false)
 
-  const onScreenPositionChange = useCallback((pos: [number, number]) => {
+  const onScreenPositionChange = useCallback((pos: [number, number, number, number]) => {
     setPosition(pos)
   }, [])
 
@@ -66,10 +66,6 @@ export const ARView = memo(function ARView({
     setCurveStartsAt(new Date(issPath[0].date).valueOf())
     setCurveEndsAt(new Date(issPath[issPath.length - 1].date).valueOf())
   }, [issPath])
-
-  useEffect(() => {
-    if (!isFullScreen) setIsSpotted(false)
-  }, [isFullScreen])
 
   useEffect(() => {
     if (!curve) return undefined
@@ -154,16 +150,18 @@ export const ARView = memo(function ARView({
         location={location}
       />
 
-      {isFullScreen && Boolean(position) && !(still && isStillReady) && (
+      {Boolean(position) && !(still && isStillReady) && (
         <DirectionCircle
           screenX={position[0]}
           screenY={position[1]}
+          screenWidth={position[2]}
+          screenHeight={position[3]}
           setIsSpotted={setIsSpotted}
           onLayout={onDirectionCircleLayout}
         />
       )}
 
-      {isFullScreen && isSpotted && !(still && isStillReady) && (
+      {isSpotted && !(still && isStillReady) && (
         <Text tx="issView.issCaptured" style={$text} onPress={onTakeScreenshot} />
       )}
 

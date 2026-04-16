@@ -20,7 +20,6 @@ import Snackbar from "react-native-snackbar"
 import { colors, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { api } from "../../services/api"
-import { normalizeHeight } from "../../utils/normalizeHeight"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 
 export const ContactUsScreen = observer(function ContactUsScreen() {
@@ -229,46 +228,48 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
         backdropOpacity={0.5}
         style={$modal}
       >
-        <View
-          accessible
-          accessibilityLabel="coach mark"
-          accessibilityHint="coach mark"
-          accessibilityRole="text"
-          style={$modalBodyContainer}
-        >
-          <Text tx="thanksModal.body" style={$modalText} />
+        <View>
+          <ScrollView
+            accessible
+            accessibilityLabel="coach mark"
+            accessibilityHint="coach mark"
+            accessibilityRole="text"
+            contentContainerStyle={$modalBodyContainer}
+          >
+            <Text tx="thanksModal.body" style={$modalText} />
 
-          <View style={$buttonsContainer}>
-            <Button
-              accessible
-              accessibilityLabel="dismiss button"
-              accessibilityHint="dismiss coach mark"
-              tx="thanksModal.dismiss"
-              textStyle={$nextButtonText}
-              style={$nextButton}
-              pressedStyle={$nextButton}
-              onPress={() => {
-                setThanksModal(false)
-                setComments("")
-                setTitle("")
-              }}
-            />
+            <View style={$buttonsContainer}>
+              <Button
+                accessible
+                accessibilityLabel="dismiss button"
+                accessibilityHint="dismiss coach mark"
+                tx="thanksModal.dismiss"
+                textStyle={$nextButtonText}
+                style={$nextButton}
+                pressedStyle={$nextButton}
+                onPress={() => {
+                  setThanksModal(false)
+                  setComments("")
+                  setTitle("")
+                }}
+              />
 
-            <Button
-              accessible
-              accessibilityLabel="faq button"
-              tx="thanksModal.faq"
-              textStyle={$nextButtonText}
-              style={$nextButton}
-              pressedStyle={$nextButton}
-              onPress={() => {
-                setThanksModal(false)
-                setComments("")
-                setTitle("")
-                navigation.navigate("ResourcesScreens", { screen: "Faq" })
-              }}
-            />
-          </View>
+              <Button
+                accessible
+                accessibilityLabel="faq button"
+                tx="thanksModal.faq"
+                textStyle={$nextButtonText}
+                style={$nextButton}
+                pressedStyle={$nextButton}
+                onPress={() => {
+                  setThanksModal(false)
+                  setComments("")
+                  setTitle("")
+                  navigation.navigate("ResourcesScreens", { screen: "Faq" })
+                }}
+              />
+            </View>
+          </ScrollView>
         </View>
       </Modal>
     </Screen>
@@ -293,11 +294,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $modal: ViewStyle = {
-    flex: 1,
+    position: "absolute",
+    top: 0,
     left: 0,
+    right: 0,
+    bottom: 0,
     margin: 0,
     paddingHorizontal: 18,
-    justifyContent: "flex-start",
+    justifyContent: "center",
   }
 
   const $scrollContentContainerStyle: ViewStyle = {
@@ -425,8 +429,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     paddingVertical: 36,
     paddingHorizontal: 30,
     width: "100%",
-    alignSelf: "center",
-    marginTop: normalizeHeight(0.28),
   }
 
   const $modalText: TextStyle = {

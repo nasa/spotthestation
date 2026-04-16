@@ -444,9 +444,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $modal: ViewStyle = {
-    flex: 1,
     justifyContent: "flex-end",
+    position: "absolute",
+    top: 0,
     left: 0,
+    right: 0,
+    bottom: 0,
     margin: 0,
   }
 

@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../utils/useStyles"
 import React, { useEffect, useMemo } from "react"
-import { ViewStyle, View, useWindowDimensions, PixelRatio, LayoutChangeEvent } from "react-native"
+import { ViewStyle, View, PixelRatio, LayoutChangeEvent } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { arc as d3Arc } from "d3-shape"
 import { degToRad } from "../utils/geometry"
@@ -10,6 +10,8 @@ const arc = d3Arc()
 type DirectionCircleProps = {
   screenX: number
   screenY: number
+  screenWidth: number
+  screenHeight: number
   setIsSpotted: (value: boolean) => void
   onLayout: (event: LayoutChangeEvent) => void
 }
@@ -17,14 +19,15 @@ type DirectionCircleProps = {
 export const DirectionCircle = ({
   screenX,
   screenY,
+  screenWidth,
+  screenHeight,
   setIsSpotted,
   onLayout,
 }: DirectionCircleProps) => {
   const { $container, $innerCircle, $outerCircle } = useStyles(styles)
 
-  const dimensions = useWindowDimensions()
-  const width = useMemo(() => dimensions.width * PixelRatio.get(), [dimensions])
-  const height = useMemo(() => dimensions.height * PixelRatio.get(), [dimensions])
+  const width = useMemo(() => screenWidth * PixelRatio.get(), [screenWidth])
+  const height = useMemo(() => screenHeight * PixelRatio.get(), [screenHeight])
 
   const x = useMemo(() => screenX - width / 2, [screenX, width])
   const y = useMemo(() => screenY - height / 2, [screenY, height])

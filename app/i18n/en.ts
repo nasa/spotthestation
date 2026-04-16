@@ -222,10 +222,10 @@ const en = {
       locationData: "You can select or change your location to a different one directly from here.",
       sightingsTitle: "Next Sighting & Countdown",
       sightingsData:
-        "This section shows you the date and a countdown timer for the next upcoming Station sighting near your selected location. You can tap on the Next Sighting box to see a complete list of the upcoming sightings.",
+        "This section shows you the date/time and a countdown for the next upcoming Station sighting near your selected location. You can tap on the Sightings box to see a complete list of the recent past sightings and upcoming sightings.",
       globeTitle: "Interactive Earth",
       globeData:
-        "You can view the real-time position of the Station by swiping on the screen. This allows you to interact with the Earth and track the location of the ISS in real-time.",
+        "You can view the real-time position of the Station by swiping on the screen. This allows you to interact with the Earth and track the location of the Station in real-time.",
       mapTitle: "2D Map View",
       mapData:
         "This section shows a 2D representation of the full path of Station against the night and day regions across the earth.",
@@ -488,6 +488,7 @@ const en = {
     },
     faq: {
       title: "Frequently Asked Questions",
+      searchPlaceholder: "Search questions...",
       questions: {
         question1: "1. Why is the International Space Station up there?",
         answer1:

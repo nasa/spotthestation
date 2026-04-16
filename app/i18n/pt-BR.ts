@@ -224,10 +224,10 @@ const ptBR = {
         "Você pode selecionar ou alterar sua localização para uma diferente diretamente daqui.",
       sightingsTitle: "Próximo Avistamento & Contagem Regressiva",
       sightingsData:
-        "Esta seção mostra a data e um cronômetro para o próximo avistamento da Estação próximo à sua localização selecionada. Você pode tocar na caixa Próximo Avistamento para ver uma lista completa dos próximos avistamentos.",
+        "Esta seção mostra a data/hora e uma contagem regressiva para o próximo avistamento da Estação próximo à sua localização selecionada. Você pode tocar na caixa Avistamentos para ver uma lista completa dos últimos avistamentos e próximos avistamentos.",
       globeTitle: "Terra Interativa",
       globeData:
-        "Você pode visualizar a posição em tempo real da Estação deslizando na tela. Isso permite que você interaja com a Terra e rastreie a localização da ISS em tempo real.",
+        "Você pode visualizar a posição em tempo real da Estação deslizando na tela. Isso permite que você interaja com a Terra e rastreie a localização da Estação em tempo real.",
       mapTitle: "Vista de Mapa 2D",
       mapData:
         "Esta seção mostra uma representação 2D do caminho completo da Estação contra as regiões de noite e dia na Terra.",
@@ -490,6 +490,7 @@ const ptBR = {
     },
     faq: {
       title: "Perguntas Frequentes",
+      searchPlaceholder: "Pesquisar perguntas...",
       questions: {
         question1: "1. Por que a Estação Espacial Internacional está lá em cima?",
         answer1:

@@ -46,7 +46,7 @@ import { useScreenOrientation } from "../utils/screen"
 import { Orientation } from "expo-screen-orientation"
 
 interface ISSSceneProps {
-  onScreenPositionChange: (value: [number, number]) => void
+  onScreenPositionChange: (value: [number, number, number, number]) => void
   issMarkerPosition: Vector3
   pastIssPathCoords: Vector3[]
   futureIssPathCoords: Vector3[]
@@ -314,7 +314,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
           const projected = issMarkerPosition.clone().project(cameraRef.current)
           const x = ((projected.x + 1) * layout.width * PixelRatio.get()) / 2
           const y = (-(projected.y - 1) * layout.height * PixelRatio.get()) / 2
-          onScreenPositionChange([x, y])
+          onScreenPositionChange([x, y, layout.width, layout.height])
         } else {
           let angleX =
             (forward
@@ -336,9 +336,14 @@ export const ISSSceneAR = memo(function ISSSceneAR({
           angleX = issMarkerPosition.clone().cross(forward).y > 0 ? angleX : -angleX
 
           if (Math.abs(angleX) > Math.abs(angleY)) {
-            onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0])
+            onScreenPositionChange([angleX > 0 ? 100000 : -100000, 0, layout.width, layout.height])
           } else {
-            onScreenPositionChange([10000, angleY > 0 ? 1000000 : -1000000])
+            onScreenPositionChange([
+              10000,
+              angleY > 0 ? 1000000 : -1000000,
+              layout.width,
+              layout.height,
+            ])
           }
         }
       }, 50),
@@ -428,6 +433,7 @@ export const ISSSceneAR = memo(function ISSSceneAR({
           <>
             {(isFocused || Platform.OS !== "android") && (
               <ReanimatedCamera
+                fps={Math.min(Math.max(activeFormat.minFps, 24), activeFormat.maxFps)}
                 ref={realCameraRef}
                 lowLightBoost={device.supportsLowLightBoost}
                 style={StyleSheet.absoluteFill}

@@ -224,7 +224,7 @@ const es = {
       locationData: "Puedes seleccionar o cambiar tu ubicación directamente desde aquí.",
       sightingsTitle: "Proximo avistamiento y cuenta regresiva",
       sightingsData:
-        "Esta sección te muestra la fecha y un temporizador de cuenta regresiva para el próximo avistamiento de la estación cerca de tu ubicación seleccionada. Puedes pulsar la casilla de Proximo avistamiento para ver una lista completa de los próximos avistamientos.",
+        "Esta sección te muestra la fecha/hora y una cuenta regresiva para el próximo avistamiento de la estación cerca de tu ubicación seleccionada. Puedes pulsar la casilla de Avistamientos para ver una lista completa de los avistamientos pasados recientes y próximos avistamientos.",
       globeTitle: "Tierra interactiva",
       globeData:
         "Mientras deslizas el dedo por la pantalla, puedes ver la posición de la estación en tiempo real. Esto te permite interactuar con la Tierra y rastrear la ubicación de la estación en tiempo real.",
@@ -490,6 +490,7 @@ const es = {
     },
     faq: {
       title: "Preguntas Frecuentes",
+      searchPlaceholder: "Buscar preguntas...",
       questions: {
         question1: "1. ¿Por qué está la Estación Espacial Internacional allá arriba?",
         answer1:

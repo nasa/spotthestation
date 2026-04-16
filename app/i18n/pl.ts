@@ -219,10 +219,10 @@ const pl = {
       locationData: "Możesz wybrać lub zmienić swoją lokalizację na inną bezpośrednio stąd.",
       sightingsTitle: "Następna obserwacja i odliczanie",
       sightingsData:
-        "Ta sekcja pokazuje datę i licznik odliczania do następnej nadchodzącej obserwacji stacji w pobliżu wybranej lokalizacji. Możesz dotknąć pola Następna Obserwacja, aby zobaczyć pełną listę nadchodzących obserwacji.",
+        "Ta sekcja pokazuje datę/czas i odliczanie do następnej nadchodzącej obserwacji stacji w pobliżu wybranej lokalizacji. Możesz dotknąć pola Obserwacje, aby zobaczyć pełną listę ostatnich i nadchodzących obserwacji.",
       globeTitle: "Interaktywna Ziemia",
       globeData:
-        "Możesz zobaczyć rzeczywistą pozycję stacji, przesuwając ekran. Pozwala to na interakcję z Ziemią i śledzenie lokalizacji ISS w czasie rzeczywistym.",
+        "Możesz zobaczyć rzeczywistą pozycję stacji, przesuwając ekran. Pozwala to na interakcję z Ziemią i śledzenie lokalizacji stacji w czasie rzeczywistym.",
       mapTitle: "Widok mapy 2D",
       mapData:
         "Ta sekcja pokazuje dwuwymiarową reprezentację pełnej ścieżki stacji w stosunku do regionów nocnych i dziennych na Ziemi.",
@@ -483,6 +483,7 @@ const pl = {
     },
     faq: {
       title: "Najczęściej Zadawane Pytania",
+      searchPlaceholder: "Szukaj pytań...",
       questions: {
         question1: "1. Dlaczego Międzynarodowa Stacja Kosmiczna jest tam na górze?",
         answer1:

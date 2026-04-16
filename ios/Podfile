@@ -90,6 +90,13 @@ target 'STSApp' do
             config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
         end
       end
+
+      # Workaround for Xcode 26.4 fmt consteval error
+      if target.name == 'fmt'
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+      end
     end
     File.delete("./.xcode.env.local") if File.exist?("./.xcode.env.local")
   end

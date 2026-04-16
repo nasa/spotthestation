@@ -2,6 +2,7 @@
 import { flow, toGenerator } from "mobx-state-tree"
 import Snackbar from "react-native-snackbar"
 import { sub, add, isSameHour } from "date-fns"
+import sortBy from "lodash/sortBy"
 import * as Sentry from "@sentry/react-native"
 import { api, ISSSighting, LocationType } from "../services/api"
 import * as notifications from "../utils/notifications"
@@ -93,6 +94,8 @@ const RootStoreActions = (self) => ({
 
       sightingsHistory.push(sighting)
     })
+
+    sightingsHistory = sortBy(sightingsHistory, "date").reverse()
 
     if (isSelectedLocation) {
       self.selectedLocation.sightingsHistory = sightingsHistory.map((s) => ({ ...s }))

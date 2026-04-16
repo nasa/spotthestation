@@ -187,6 +187,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $bottomContainer,
     $buttonColumn,
     $closeButton,
+    $closeButtonFs,
     $activeButton,
     $timeContainer,
     $timeHeader,
@@ -229,7 +230,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const navigation = useNavigation<NavigationProp<any>>()
 
   const [isLocationSet, setIsLocationSet] = useState(false)
-  const [isFullScreen, setIsFullScreen] = useState(true)
+  const [isFullScreen, setIsFullScreen] = useState(false)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
   const [isPermissionsModal, setIsPermissionsModal] = useState(false)
@@ -371,7 +372,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
 
   const handleCameraPermission = useCallback(async (value: boolean) => {
     setIsCameraAllowed(value)
-    setIsFullScreen(value)
 
     if (!value) return
 
@@ -672,7 +672,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const bottomContainerStyle = { ...$bottomContainerStyleOverride }
   bottomContainerStyle.bottom = isFullScreen
     ? Number(bottomContainerStyle.bottom) + bottomInset
-    : 10
+    : 30
 
   const isActive =
     isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated && safetyAcknowledged
@@ -742,6 +742,39 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     [],
   )
 
+  const renderFullscreenButton = () => {
+    if (isFullScreen) {
+      return (
+        <IconLinkButton
+          accessible
+          accessibilityLabel="x button"
+          accessibilityHint="disable full screen mode"
+          icon="x"
+          onPress={() => setIsFullScreen(false)}
+          buttonStyle={[
+            isFullScreen ? $buttonFs : $button,
+            isFullScreen ? $closeButtonFs : $closeButton,
+          ]}
+        />
+      )
+    }
+
+    return (
+      <IconLinkButton
+        accessible
+        accessibilityLabel="maximize"
+        accessibilityHint="enable full screen"
+        icon="maximize"
+        buttonStyle={[
+          isFullScreen ? $buttonFs : $button,
+          isFullScreen ? $closeButtonFs : $closeButton,
+        ]}
+        onPress={() => setIsFullScreen(!isFullScreen)}
+        onLayout={handleTutorialItemLayout("fullScreen")}
+      />
+    )
+  }
+
   return (
     <Screen
       preset="fixed"
@@ -754,16 +787,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       isPortrait={false}
     >
       <View style={[$headerContainer, headerStyle]}>
-        {isFullScreen && (
-          <IconLinkButton
-            accessible
-            accessibilityLabel="x button"
-            accessibilityHint="disable full screen mode"
-            icon="x"
-            onPress={() => setIsFullScreen(false)}
-            buttonStyle={[isFullScreen ? $buttonFs : $button, $closeButton]}
-          />
-        )}
+        {isCameraAllowed && renderFullscreenButton()}
       </View>
       <View style={[$body, bodyStyle]}>
         {!isCameraAllowed && (
@@ -826,22 +850,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 ]}
                 onPress={() => setIsPathVisible(!isPathVisible)}
                 onLayout={handleTutorialItemLayout("trajectory")}
-              />
-            )}
-
-            {isCameraAllowed && (
-              <IconLinkButton
-                accessible
-                accessibilityLabel="compass"
-                accessibilityHint="enable full screen"
-                icon="compass"
-                buttonStyle={[
-                  isFullScreen ? $buttonFs : $button,
-                  isFullScreen && $activeButton,
-                  isLandscape && $mr24,
-                ]}
-                onPress={() => setIsFullScreen(!isFullScreen)}
-                onLayout={handleTutorialItemLayout("fullScreen")}
               />
             )}
           </View>
@@ -1090,9 +1098,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $modal: ViewStyle = {
-    // flex: 1,
     justifyContent: "flex-end",
+    position: "absolute",
+    top: 0,
     left: 0,
+    right: 0,
+    bottom: 0,
     margin: 0,
   }
 
@@ -1100,12 +1111,12 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $calibrateModal: ViewStyle = {
     justifyContent: "center",
-    marginHorizontal: scale(24),
+    paddingHorizontal: scale(24),
   }
 
   const $safetyModal: ViewStyle = {
     justifyContent: "center",
-    marginHorizontal: scale(24),
+    paddingHorizontal: scale(24),
   }
 
   const $infoModal: ViewStyle = {
@@ -1140,9 +1151,13 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   }
 
   const $closeButton: ViewStyle = {
+    marginTop: scale(24),
+    marginLeft: scale(24),
+  }
+
+  const $closeButtonFs: ViewStyle = {
     marginTop: 0,
-    width: scale(44),
-    height: scale(44),
+    marginLeft: 0,
   }
 
   const $activeButton: ViewStyle = {
@@ -1217,6 +1232,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $buttonColumn,
     $iconButton,
     $closeButton,
+    $closeButtonFs,
     $activeButton,
     $timeContainer,
     $timeHeader,

@@ -222,7 +222,7 @@ const sv = {
       locationData: "Du kan välja eller ändra din plats till en annan direkt härifrån.",
       sightingsTitle: "Nästa observation och nedräkning",
       sightingsData:
-        "Det här avsnittet visar dig datumet och en nedräkningstimer för nästa kommande Stationen -observation nära din valda plats.Du kan trycka på nästa observationsruta för att se en komplett lista över de kommande observationerna.",
+        "Det här avsnittet visar dig datum/tid och en nedräkning för nästa kommande Stationen-observation nära din valda plats. Du kan trycka på observationsrutan för att se en komplett lista över de senaste och kommande observationerna.",
       globeTitle: "Interaktiva jorden",
       globeData:
         "Du kan se Stationen i realtid genom att svepa på skärmen.Detta gör att du kan interagera med jorden och spåra platsen för Stationen i realtid.",
@@ -485,6 +485,7 @@ const sv = {
     },
     faq: {
       title: "Vanliga Frågor",
+      searchPlaceholder: "Sök frågor...",
       questions: {
         question1: "1. Varför är den internationella rymdstationen där uppe?",
         answer1:

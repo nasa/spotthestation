@@ -221,10 +221,10 @@ const tr = {
       locationData: "Buradan konumunuzu seçebilir veya değiştirebilirsiniz.",
       sightingsTitle: "Sonraki Gözlem ve Geri Sayım",
       sightingsData:
-        "Bu bölüm, seçilen konumunuzun yakınındaki bir sonraki İstasyon gözlemi için tarihi ve geri sayım sayacını gösterir. Yaklaşan gözlemlerin tam listesini görmek için Sonraki Gözlem kutusuna dokunabilirsiniz.",
+        "Bu bölüm, seçilen konumunuzun yakınındaki bir sonraki İstasyon gözlemi için tarih/saat ve geri sayımı gösterir. Son geçmiş gözlemlerin ve yaklaşan gözlemlerin tam listesini görmek için Gözlemler kutusuna dokunabilirsiniz.",
       globeTitle: "Etkileşimli Dünya",
       globeData:
-        "Ekranda kaydırarak İstasyonun gerçek zamanlı konumunu görebilirsiniz. Bu, Dünya ile etkileşime girmenizi ve ISS'nin konumunu gerçek zamanlı olarak takip etmenizi sağlar.",
+        "Ekranda kaydırarak İstasyonun gerçek zamanlı konumunu görebilirsiniz. Bu, Dünya ile etkileşime girmenizi ve İstasyonun konumunu gerçek zamanlı olarak takip etmenizi sağlar.",
       mapTitle: "2D Harita Görünümü",
       mapData:
         "Bu bölüm, İstasyonun tam yolunu gece ve gündüz bölgelerine karşı 2D bir temsilini gösterir.",
@@ -487,6 +487,7 @@ const tr = {
     },
     faq: {
       title: "Sıkça Sorulan Sorular",
+      searchPlaceholder: "Soru ara...",
       questions: {
         question1: "1. Uluslararası Uzay İstasyonu neden orada?",
         answer1:

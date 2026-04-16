@@ -225,7 +225,7 @@ const nl = {
         "U kunt uw locatie direct vanaf hier selecteren of wijzigen naar een andere locatie.",
       sightingsTitle: "Volgende waarneming & Aftellen",
       sightingsData:
-        'Deze sectie laat u de datum en een aftelklok zien voor de eerstvolgende Station-waarneming in de buurt van uw geselecteerde locatie. U kunt op de knop "Volgende Waarneming" tikken om een complete lijst van de aankomende waarnemingen te zien.',
+        'Deze sectie laat u de datum/tijd en een afteller zien voor de eerstvolgende Station-waarneming in de buurt van uw geselecteerde locatie. U kunt op de knop "Waarnemingen" tikken om een complete lijst van de recente en aankomende waarnemingen te zien.',
       globeTitle: "Interactieve aarde",
       globeData:
         "U kunt de realtime positie van het Station bekijken door over het scherm te vegen. Dit stelt u in staat de aarde te beinvloeden en het spoor van het Station in de werkelijke tijd te volgen.",
@@ -491,7 +491,7 @@ const nl = {
     },
     faq: {
       title: "Veelgestelde Vragen",
-
+      searchPlaceholder: "Zoek vragen...",
       questions: {
         question1: "1. Waarom is het Internationaal Ruimtestation daarboven?",
         answer1:
