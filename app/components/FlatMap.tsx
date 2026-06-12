@@ -28,12 +28,12 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
   const [layout, setLayout] = useState({ width: 0, height: 0 })
   const [terminatorCoords2D, setTerminatorCoords2D] = useState<[number, number][]>([])
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
-  const mapper = useCallback((p: [number, number]) => {
-    const coords = latLonTo2D([p[0], p[1]])
+  const mapper = useCallback((point: OrbitPoint) => {
+    const coords = latLonTo2D([point.latitude, point.longitude])
     return new Vector3(coords[0], coords[1], 0)
   }, [])
 
-  const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
+  const { curve, updateCurve, getT } = useISSPathCurve(issPath, mapper)
 
   useEffect(() => {
     const update = () => {
@@ -54,7 +54,7 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
     }
     const update = () => {
       if (!issPath?.length || new Date(issPath[issPath.length - 1].date) < new Date()) return
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      const t = getT(Date.now())
       if (t > 1) return updateCurve()
 
       let point: Vector3
@@ -74,7 +74,7 @@ export function FlatMap({ style, issPath = [], currentLocation }: FlatMapProps) 
     return () => {
       clearInterval(timeout)
     }
-  }, [curve])
+  }, [curve, getT])
 
   const issPathCoords2D: [number, number][] = useMemo(
     () => (curve ? curve.getPoints(200).map((p) => [p.x, p.y]) : []),

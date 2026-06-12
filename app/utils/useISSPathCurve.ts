@@ -1,14 +1,12 @@
-import { useEffect, useCallback, useState } from "react"
+import { useEffect, useCallback, useState, useRef } from "react"
 import { CatmullRomCurve3, Vector3 } from "three"
 import { OrbitPoint } from "../services/api"
 
-export function useISSPathCurve(
-  issPath: OrbitPoint[],
-  mapper: (point: [number, number]) => Vector3,
-) {
+export function useISSPathCurve(issPath: OrbitPoint[], mapper: (point: OrbitPoint) => Vector3) {
   const [curve, setCurve] = useState<CatmullRomCurve3>()
   const [curveStartsAt, setCurveStartsAt] = useState(0)
   const [curveEndsAt, setCurveEndsAt] = useState(0)
+  const issPathCoords = useRef<OrbitPoint[]>([])
 
   const updateCurve = useCallback(() => {
     if (!issPath.length) return
@@ -41,13 +39,12 @@ export function useISSPathCurve(
     const bf = issPath[startPositionIdx - 1]
     const af = issPath[endPositionIdx + 1]
 
-    const issPathCoords = issPath
-      .slice(startPositionIdx, endPositionIdx + 1)
-      .map((p) => [p.latitude, p.longitude])
-    if (bf) issPathCoords.unshift([bf.latitude, bf.longitude - 360])
-    if (af) issPathCoords.push([af.latitude, af.longitude + 360])
+    const coords = issPath.slice(startPositionIdx, endPositionIdx + 1)
+    if (bf) coords.unshift({ ...bf, latitude: bf.latitude, longitude: bf.longitude - 360 })
+    if (af) coords.push({ ...af, latitude: af.latitude, longitude: af.longitude + 360 })
 
-    const newCurve = new CatmullRomCurve3(issPathCoords.map(mapper))
+    issPathCoords.current = coords
+    const newCurve = new CatmullRomCurve3(coords.map(mapper))
 
     setCurve(newCurve)
     setCurveStartsAt(
@@ -62,10 +59,30 @@ export function useISSPathCurve(
     updateCurve()
   }, [issPath])
 
+  const getT = useCallback((timestamp: number) => {
+    const currentIdx = issPathCoords.current.findIndex(
+      (p) => new Date(p.date).valueOf() > timestamp,
+    )
+
+    if (currentIdx === -1) return Infinity
+    if (currentIdx === 0) return -Infinity
+
+    const prevIdx = currentIdx - 1
+
+    return (
+      (prevIdx +
+        (timestamp - new Date(issPathCoords.current[prevIdx].date).valueOf()) /
+          (new Date(issPathCoords.current[currentIdx].date).valueOf() -
+            new Date(issPathCoords.current[prevIdx].date).valueOf())) /
+      (issPathCoords.current.length - 1)
+    )
+  }, [])
+
   return {
     curve,
     curveStartsAt,
     curveEndsAt,
     updateCurve,
+    getT,
   }
 }

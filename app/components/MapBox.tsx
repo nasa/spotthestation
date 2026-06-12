@@ -61,11 +61,11 @@ export function MapBox({
   const [issCoords2D, setIssCoords2D] = useState<[number, number]>(null)
   const cameraRef = useRef<Camera>()
 
-  const mapper = useCallback((p: [number, number]) => {
-    return new Vector3(p[0], p[1], 0)
+  const mapper = useCallback((point: OrbitPoint) => {
+    return new Vector3(point.latitude, point.longitude, 0)
   }, [])
 
-  const { curve, curveStartsAt, curveEndsAt, updateCurve } = useISSPathCurve(issPath, mapper)
+  const { curve, updateCurve, getT } = useISSPathCurve(issPath, mapper)
 
   useEffect(() => {
     if (!curve) {
@@ -74,7 +74,7 @@ export function MapBox({
     }
     const update = () => {
       if (!issPath?.length || new Date(issPath[issPath.length - 1].date) < new Date()) return
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      const t = getT(Date.now())
       if (t > 1) return updateCurve()
 
       let point: Vector3
@@ -94,7 +94,7 @@ export function MapBox({
     return () => {
       clearInterval(timeout)
     }
-  }, [curve])
+  }, [curve, getT])
 
   useEffect(() => {
     getToken("MAPBOX_API_TOKEN")

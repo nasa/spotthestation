@@ -50,6 +50,7 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
   const curveRef = useRef<CatmullRomCurve3>(null)
   const curveStartsAtRef = useRef<number>(0)
   const curveEndsAtRef = useRef<number>(0)
+  const getTRef = useRef<(timestamp: number) => number>()
   const controlsRef = useRef<ControlsRef>()
 
   const issRef = useRef<Group>(null)
@@ -58,7 +59,7 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
   const sceneRef = useRef<Scene>(null)
   const deadRef = useRef<boolean>(false)
   const localCameraPositionRef = useRef<Vector3>(null)
-  const { curve, setIsVisible: setTrajectoryVisible } = useTrajectoryLines(
+  const { curve, setIsVisible: setTrajectoryVisible, getT } = useTrajectoryLines(
     sceneRef,
     issPath,
     400,
@@ -70,7 +71,8 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
     curveRef.current = curve
     curveStartsAtRef.current = new Date(issPath[0].date).getTime()
     curveEndsAtRef.current = new Date(issPath[issPath.length - 1].date).getTime()
-  }, [curve])
+    getTRef.current = getT
+  }, [curve, getT])
 
   useEffect(() => {
     if (zoom !== 0) {
@@ -138,14 +140,10 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
     setIsReady(true)
 
     function update() {
-      if (!curveRef.current) return
+      if (!curveRef.current || !getTRef.current) return
 
-      const t =
-        (Date.now() - curveStartsAtRef.current) /
-        (curveEndsAtRef.current - curveStartsAtRef.current)
-      const tNext =
-        (Date.now() + 100 - curveStartsAtRef.current) /
-        (curveEndsAtRef.current - curveStartsAtRef.current)
+      const t = getTRef.current(Date.now())
+      const tNext = getTRef.current(Date.now() + 100)
       if (t > 1) return
 
       let point: Vector3

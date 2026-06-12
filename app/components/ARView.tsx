@@ -38,8 +38,6 @@ export const ARView = memo(function ARView({
 }: ARViewProps) {
   const { $container, $hudContainer, $text } = useStyles(styles)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
-  const [curveStartsAt, setCurveStartsAt] = useState(0)
-  const [curveEndsAt, setCurveEndsAt] = useState(0)
   const [position, setPosition] = useState(null)
   const [issMarkerPosition, setIssMarkerPosition] = useState<Vector3>(null)
   const [pastIssPathCoords, setPastIssPathCoords] = useState<Vector3[]>([])
@@ -62,17 +60,34 @@ export const ARView = memo(function ARView({
         ),
       ),
     )
-
-    setCurveStartsAt(new Date(issPath[0].date).valueOf())
-    setCurveEndsAt(new Date(issPath[issPath.length - 1].date).valueOf())
   }, [issPath])
+
+  const getT = useCallback(
+    (timestamp: number) => {
+      const currentIdx = issPath.findIndex((p) => new Date(p.date).valueOf() > timestamp)
+
+      if (currentIdx === -1) return Infinity
+      if (currentIdx === 0) return -Infinity
+
+      const prevIdx = currentIdx - 1
+
+      return (
+        (prevIdx +
+          (timestamp - new Date(issPath[prevIdx].date).valueOf()) /
+            (new Date(issPath[currentIdx].date).valueOf() -
+              new Date(issPath[prevIdx].date).valueOf())) /
+        (issPath.length - 1)
+      )
+    },
+    [issPath],
+  )
 
   useEffect(() => {
     if (!curve) return undefined
 
     let tick = 0
     const update = () => {
-      const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
+      const t = getT(Date.now())
       let current: Vector3
       const pastPoints = []
       const futurePoints = []

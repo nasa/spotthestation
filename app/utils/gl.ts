@@ -223,19 +223,37 @@ export const useTrajectoryLines = (
 
   const curvePoints = useMemo(() => {
     if (!curve) return []
-    const curveStartsAt = new Date(issPath[0].date).getTime()
-    const curveEndsAt = new Date(issPath[issPath.length - 1].date).getTime()
-
-    const points: { date: number; coords: Vector3 }[] = []
+    const points: { t: number; coords: Vector3 }[] = []
     for (let i = 0; i <= segments; ++i) {
       const u = i / segments
       const pt = curve.getPointAt(i / segments)
       const t = curve.getUtoTmapping(u, null)
-      points.push({ date: curveStartsAt + t * (curveEndsAt - curveStartsAt), coords: pt })
+      points.push({ t, coords: pt })
     }
 
     return points
   }, [curve])
+
+  const getT = useCallback(
+    (timestamp: number) => {
+      const currentIdx = issPath.findIndex((p) => new Date(p.date).valueOf() > timestamp)
+
+      if (currentIdx === -1) return Infinity
+      if (currentIdx === 0) return -Infinity
+
+      const prevIdx = currentIdx - 1
+
+      const t =
+        (prevIdx +
+          (timestamp - new Date(issPath[prevIdx].date).valueOf()) /
+            (new Date(issPath[currentIdx].date).valueOf() -
+              new Date(issPath[prevIdx].date).valueOf())) /
+        (issPath.length - 1)
+
+      return t
+    },
+    [issPath],
+  )
 
   const updateTrajectoryCurve = useCallback(() => {
     if (!curvePoints.length || !sceneRef.current || !issMarkerTexture) {
@@ -248,37 +266,8 @@ export const useTrajectoryLines = (
     if (!futureRef.current || !pastRef.current) [pastRef.current, futureRef.current] = createOrbit()
     if (!issMarkerRef.current) issMarkerRef.current = createISSMarker(markerSize, issMarkerTexture)
 
-    if (currentPointIdxRef.current === undefined) currentPointIdxRef.current = 0
-    for (; currentPointIdxRef.current < curvePoints.length - 1; currentPointIdxRef.current += 1) {
-      if (curvePoints[currentPointIdxRef.current + 1].date > new Date().getTime()) break
-    }
-
-    if (startPointIdxRef.current === undefined)
-      startPointIdxRef.current = currentPointIdxRef.current
-    for (; startPointIdxRef.current > 0; startPointIdxRef.current -= 1) {
-      if (
-        curvePoints[startPointIdxRef.current].date - curvePoints[currentPointIdxRef.current].date <
-        -50 * 60 * 1000
-      ) {
-        break
-      }
-    }
-
-    if (endPointIdxRef.current === undefined) endPointIdxRef.current = currentPointIdxRef.current
-    for (; endPointIdxRef.current < curvePoints.length - 1; endPointIdxRef.current += 1) {
-      if (
-        curvePoints[endPointIdxRef.current].date - curvePoints[currentPointIdxRef.current].date >
-        50 * 60 * 1000
-      ) {
-        break
-      }
-    }
-
-    const curveStartsAt = new Date(issPath[0].date).getTime()
-    const curveEndsAt = new Date(issPath[issPath.length - 1].date).getTime()
-
-    const t = (Date.now() - curveStartsAt) / (curveEndsAt - curveStartsAt)
-    if (t > 1) return
+    const t = getT(Date.now())
+    if (!Number.isFinite(t)) return
 
     let point: Vector3
     try {
@@ -288,15 +277,17 @@ export const useTrajectoryLines = (
       return
     }
 
-    const pastPoints = curvePoints
-      .slice(startPointIdxRef.current, currentPointIdxRef.current + 1)
-      .map((p) => p.coords)
+    let startT = getT(Date.now() - 50 * 60 * 1000)
+    if (!Number.isFinite(startT)) startT = 0
+
+    let endT = getT(Date.now() + 50 * 60 * 1000)
+    if (!Number.isFinite(startT)) endT = 1
+
+    const pastPoints = curvePoints.filter((pt) => pt.t >= startT && pt.t <= t).map((p) => p.coords)
 
     pastPoints.push(point)
 
-    const futurePoints = curvePoints
-      .slice(currentPointIdxRef.current + 1, endPointIdxRef.current + 1)
-      .map((p) => p.coords)
+    const futurePoints = curvePoints.filter((pt) => pt.t > t && pt.t <= endT).map((p) => p.coords)
 
     pastPoints.push(point)
     futurePoints.unshift(point)
@@ -312,7 +303,7 @@ export const useTrajectoryLines = (
       sceneRef.current?.add(futureRef.current)
     if (!sceneRef.current.getObjectById(issMarkerRef.current.id))
       sceneRef.current?.add(issMarkerRef.current)
-  }, [curvePoints, sceneRef.current, issMarkerTexture])
+  }, [curvePoints, sceneRef.current, issMarkerTexture, getT])
 
   useEffect(() => {
     if (!curve || !isVisible) {
@@ -336,5 +327,6 @@ export const useTrajectoryLines = (
   return {
     curve,
     setIsVisible,
+    getT,
   }
 }
