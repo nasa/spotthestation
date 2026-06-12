@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/space-grotesk": "^0.3.0",
-    "@expo/webpack-config": "^0.17.2",
     "@formatjs/intl-datetimeformat": "^6.18.0",
     "@formatjs/intl-getcanonicallocales": "^2.5.5",
     "@formatjs/intl-locale": "^4.2.11",
@@ -78,7 +77,7 @@
     "expo-status-bar": "^2.2.3",
     "expo-store-review": "~8.1.5",
     "expo-three": "^8.0.0",
-    "fast-xml-parser": "^5.2.0",
+    "fast-xml-parser": "^5.3.5",
     "geomagnetism": "^0.2.0",
     "htmlparser2": "^10.0.0",
     "i18n-js": "^3.9.2",
@@ -128,9 +127,9 @@
     "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
-    "@react-native-community/cli": "^18.0.0",
-    "@react-native-community/cli-platform-android": "^18.0.0",
-    "@react-native-community/cli-platform-ios": "^18.0.0",
+    "@react-native-community/cli": "^18.0.1",
+    "@react-native-community/cli-platform-android": "^18.0.1",
+    "@react-native-community/cli-platform-ios": "^18.0.1",
     "@react-native/babel-preset": "^0.79.0",
     "@react-native/metro-config": "^0.79.0",
     "@types/d3-shape": "^3.1.1",
@@ -174,9 +173,7 @@
     "react-native-dotenv": "^3.4.6",
     "reactotron-core-client": "^2.8.10",
     "ts-jest": "^29.4.0",
-    "typescript": "5.4.5",
-    "webpack": "4",
-    "webpack-dev-server": "^3"
+    "typescript": "5.4.5"
   },
   "resolutions": {
     "@expo/dev-server": "0.1.120"
