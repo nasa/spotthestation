@@ -422,6 +422,8 @@ const nl = {
       titlePlaceholder: "Kies titel",
       commentsPlaceholder: "Opmerkingen invoeren",
       sendButton: "Versturen",
+      reportIssueHint:
+        "Voeg een beschrijving van het probleem toe, samen met de geselecteerde locatie en de datum en tijd van de waarnemingsmogelijkheid van het station, zodat ons supportteam het gemelde probleem beter kan reproduceren en diagnosticeren.",
       contactUsOptions: {
         reportAnIssue: "Een probleem melden",
         improvementIdeas: "Suggesties",
@@ -508,7 +510,8 @@ const nl = {
 
         question3: "3. Hoe vaak kan ik verwachten het Internationaal Ruimtestation te zien?",
         answer3:
-          "Het Internationaal Ruimtestation is zichtbaar omdat het zonlicht reflecteert – om dezelfde reden dat we de maan kunnen zien. Echter, in tegenstelling tot de maan, is het ruimtestation niet helder genoeg om overdag te zien. Kijkmogelijkheden kunnen variëren van één keer per maand tot meerdere keren per week, omdat het zonlicht op het station weerkaatst wanneer het bij zonsopgang en zonsondergang boven uw locatie passeert.",
+          "Het Internationaal Ruimtestation is zichtbaar omdat het zonlicht reflecteert – om dezelfde reden dat we de maan kunnen zien. Echter, in tegenstelling tot de maan, is het ruimtestation niet helder genoeg om overdag te zien. Kijkmogelijkheden kunnen variëren van één keer per maand tot meerdere keren per week, omdat het zonlicht op het station weerkaatst wanneer het bij zonsopgang en zonsondergang boven uw locatie passeert.<br/>" +
+          "De mobiele app berekent en toont aankomende waarnemingen voor de komende 14 dagen. Sinds mei 2026 heeft de Spot the Station-website van NASA de functie teruggebracht om waarnemingsmogelijkheden van het station rechtstreeks vanuit uw browser te vinden, zonder app: <a href='https://www.nasa.gov/spot-the-station/'>https://www.nasa.gov/spot-the-station/</a> Kies uw land en regio/stad om de aankomende waarnemingsmogelijkheden voor de komende 14 dagen te bekijken.",
 
         question4: "4. Wat is de Spot the Station-app?",
         answer4:
@@ -521,15 +524,15 @@ const nl = {
         question6:
           "6. Hoe waarschuwt de Spot the Station-app mij voor aankomende zichtmogelijkheden van het Internationaal Ruimtestation?",
         answer6:
-          "De Spot the Station-app stuurt pushmeldingen om gebruikers te waarschuwen voor aankomende passages van het Internationaal Ruimtestation. Gebruikers moeten ervoor zorgen dat de meldingsrechten van de app zijn ingeschakeld in de instellingen van hun apparaat.",
+          "De Spot the Station-app stuurt pushmeldingen om gebruikers te waarschuwen voor aankomende passages van het Internationaal Ruimtestation. Gebruikers moeten ervoor zorgen dat de meldingsrechten van de app zijn ingeschakeld in de instellingen van hun apparaat. Houd er rekening mee dat de app waarnemingen voor uw geselecteerde locatie berekent voor de komende 14 dagen, dus u ontvangt mogelijk geen meldingen meer als u de app een tijdje niet gebruikt.",
 
         question7: "7. Kan ik meldingen in de Spot the Station-app aanpassen?",
         answer7:
-          "De Spot the Station-app heeft de mogelijkheid om gepersonaliseerde meldingsinstellingen te configureren om specifieke pushmeldingen te ontvangen voor de voorkeurslocatie en -tijd van een gebruiker. De meldingsinstellingen zijn te vinden op de instellingenpagina van de app, waar gebruikers de meldingen voor alle aankomende evenementen kunnen inschakelen of meldingen voor de momenteel geselecteerde locatie kunnen aanpassen. Gebruikers kunnen meldingen voor andere locaties aanpassen via de locatie-instellingen.",
+          "De Spot the Station-app heeft de mogelijkheid om gepersonaliseerde meldingsinstellingen te configureren om specifieke pushmeldingen te ontvangen voor de voorkeurslocatie en -tijd van een gebruiker. De meldingsinstellingen zijn te vinden op de instellingenpagina van de app, waar gebruikers de meldingen voor alle aankomende evenementen kunnen inschakelen of meldingen voor de momenteel geselecteerde locatie kunnen aanpassen. Gebruikers kunnen meldingen voor andere locaties aanpassen via de locatie-instellingen. U kunt de Waarnemingen-pagina bezoeken vanaf de startpagina om meldingen voor elke aankomende waarnemingsmogelijkheid voor uw geselecteerde locatie in/uit te schakelen.",
 
         question8: "8. Wat moet ik doen als ik geen meldingen ontvang?",
         answer8:
-          "Gebruikers moeten de meldingsvoorkeuren in de Spot the Station-app controleren (meldingsinstellingen op de instellingenpagina) om te bevestigen dat het apparaat is ingesteld voor meldingen op een voorkeurslocatie en -tijd. Als gebruikers nog steeds geen meldingen ontvangen, moeten ze ervoor zorgen dat meldingen zijn ingeschakeld in de instellingen van hun apparaat.",
+          "Gebruikers moeten de meldingsvoorkeuren in de Spot the Station-app controleren (meldingsinstellingen op de instellingenpagina) om te bevestigen dat het apparaat is ingesteld voor meldingen op een voorkeurslocatie en -tijd. Als gebruikers nog steeds geen meldingen ontvangen, moeten ze ervoor zorgen dat meldingen zijn ingeschakeld in de instellingen van hun apparaat. Houd er rekening mee dat de app elke keer dat u deze opent waarnemingen voor uw geselecteerde locatie berekent voor de komende 14 dagen, dus u ontvangt mogelijk geen meldingen meer als u niet regelmatig terugkomt.",
 
         question9: "9. Werkt de Spot the Station-app internationaal?",
         answer9:
@@ -537,7 +540,7 @@ const nl = {
 
         question10: "10. Waarom zijn er geen kijkmogelijkheden voor mijn locatie?",
         answer10:
-          "Het moet donker zijn met goede zichtbaarheid op uw locatie en het ruimtestation moet boven u zijn om het te kunnen zien. Aangezien de baan van het ruimtestation het over de hele wereld brengt, kan het boven u passeren op momenten dat het niet zichtbaar is – ofwel midden op de dag of midden in de nacht. Spot The Station stuurt alleen meldingen wanneer er mogelijkheden zijn om het Internationaal Ruimtestation op uw locatie te zien, niet elke keer dat het boven u is.",
+          "Het moet donker zijn met goede zichtbaarheid op uw locatie en het ruimtestation moet boven u zijn om het te kunnen zien. Aangezien de baan van het ruimtestation het over de hele wereld brengt, kan het boven u passeren op momenten dat het niet zichtbaar is – ofwel midden op de dag of midden in de nacht wanneer het door de schaduw van de aarde wordt verduisterd. Spot The Station stuurt alleen meldingen wanneer er mogelijkheden zijn om het Internationaal Ruimtestation op uw locatie te zien, niet elke keer dat het boven u is. Waarnemingen worden tot 14 dagen van tevoren berekend, dus kom regelmatig terug voor nieuw voorspelde mogelijkheden.",
 
         question11: "11. Heb ik een telescoop nodig om het Internationaal Ruimtestation te zien?",
         answer11:
@@ -546,7 +549,7 @@ const nl = {
         question12:
           "12. Verschijnt en verdwijnt het Internationaal Ruimtestation door het licht van de maan?",
         answer12:
-          "Het Internationaal Ruimtestation is zichtbaar omdat het zonlicht reflecteert. Dit is dezelfde reden waarom de maan lijkt te schijnen. Zelfs wanneer de maan niet is opgekomen, kunnen gebruikers het station zien.",
+          "Het Internationaal Ruimtestation is zichtbaar omdat het zonlicht reflecteert, net als de maan. Terwijl het station rond de aarde reist, gaat het de schaduw van de aarde in en uit. Wanneer het in de schaduw van de aarde komt, is het niet zichtbaar, ook al draait het mogelijk nog steeds boven u.",
 
         question13: "13. Welke tijdzone wordt gebruikt voor meldingswaarschuwingen?",
         answer13:
@@ -554,7 +557,7 @@ const nl = {
 
         question14: "14. Welke informatie biedt de Spot the Station-app voor elke waarneming?",
         answer14:
-          "Voor elke waarneming toont de Spot the Station-app de tijd, de duur van de zichtbaarheid, de maximale hoogte boven de horizon en de richtingen waar het Internationaal Ruimtestation zal verschijnen en verdwijnen, waardoor gebruikers het nauwkeurig in de lucht kunnen lokaliseren.",
+          "Voor elke waarneming toont de Spot the Station-app de tijd, de duur van de zichtbaarheid boven de horizon, de maximale hoogte boven de horizon, de richtingen waar het Internationaal Ruimtestation zal verschijnen en verdwijnen, en de voorspelde bewolking voor de geselecteerde locatie op het tijdstip van de waarneming, waardoor gebruikers het nauwkeurig in de lucht kunnen lokaliseren.",
 
         question15:
           "15. Hoe kan ik het Internationaal Ruimtestation spotten tijdens een kijkmogelijkheid? Wat betekent al deze informatie?",
@@ -575,11 +578,11 @@ const nl = {
         question17:
           "17. Kan ik een live kaart van de locatie van het Internationaal Ruimtestation bekijken?",
         answer17:
-          "Ja, de Spot the Station-app bevat een realtime kaart die de huidige positie van het Internationaal Ruimtestation toont terwijl het om de aarde draait, waardoor gebruikers een visuele referentie krijgen om de voortgang te volgen.",
+          "Ja, de Spot the Station-app bevat een realtime kaart die de huidige positie van het Internationaal Ruimtestation toont terwijl het om de aarde draait, waardoor gebruikers een visuele referentie krijgen om de voortgang te volgen. Bezoek de Tracker-pagina om de baan van het station in 2D-, 3D- of satellietweergave te bekijken.",
 
         question18: "18. Wat is de augmented reality-functie in de Spot the Station-app?",
         answer18:
-          "De augmented reality-functie in de Spot the Station-app stelt gebruikers in staat om een virtuele overlay van het pad van het Internationaal Ruimtestation in de lucht te bekijken. Deze functie helpt gebruikers om het station nauwkeuriger te lokaliseren door hun apparaat uit te lijnen met de realtime positie van het station.",
+          "De augmented reality-functie in de Spot the Station-app stelt gebruikers in staat om een virtuele overlay van het pad van het Internationaal Ruimtestation in de lucht over de cameraweergave van de telefoon te bekijken. Deze functie helpt gebruikers om het station nauwkeuriger te lokaliseren door hun apparaat uit te lijnen met de realtime positie van het station.",
 
         question19:
           "19. Hoe krijg ik toegang tot de augmented reality-functie in de Spot the Station-app?",
@@ -589,11 +592,11 @@ const nl = {
         question20:
           "20. Heb ik een specifiek apparaat of software nodig om de augmented reality-functie te gebruiken?",
         answer20:
-          "De augmented reality-functie van Spot the Station vereist een apparaat dat zijn oriëntatie in 3D-ruimte kan bepalen. Het vereist specifieke hardware-ondersteuning, zoals een gyroscoop of bewegingscoprocessor. Oudere of budgetapparaten ondersteunen deze functionaliteit mogelijk niet.",
+          "De augmented reality-functie van Spot the Station vereist een apparaat dat zijn oriëntatie in 3D-ruimte kan bepalen. Het vereist specifieke hardware-ondersteuning, zoals een gyroscoop of bewegingscoprocessor. Oudere of budgetapparaten ondersteunen deze functionaliteit mogelijk niet vanwege beperkingen van hun magnetometersensor. De nauwkeurigheid kan verbeteren door de Kompaskalibratie-handleiding in het menu Instellingen van de app te volgen.",
 
         question21: "21. Hoe werkt de augmented reality-functie?",
         answer21:
-          "Met behulp van de camera en sensoren van het apparaat legt de augmented reality-functie van Spot the Station de locatie van het Internationaal Ruimtestation in de lucht over op het scherm, waarbij deze in realtime wordt aangepast terwijl de gebruiker het apparaat beweegt. De app begeleidt gebruikers om de camera van het apparaat in de juiste richting te richten en toont waar het station zal verschijnen en verdwijnen.",
+          "Met behulp van de camera en sensoren van het apparaat legt de augmented reality-functie van Spot the Station de locatie van het Internationaal Ruimtestation in de lucht over op het scherm, waarbij deze in realtime wordt aangepast terwijl de gebruiker het apparaat beweegt. De app begeleidt gebruikers om de camera van het apparaat in de juiste richting te richten en toont waar het station zal verschijnen en verdwijnen. Volg de Tutorial voor de AR-weergave vanuit het menu Instellingen van de app.",
 
         question22:
           "22. Kan ik de augmented reality-functie zowel overdag als 's nachts gebruiken?",
@@ -602,7 +605,7 @@ const nl = {
 
         question23: "23. Is de augmented reality-overlay nauwkeurig voor alle locaties?",
         answer23:
-          "Ja, de augmented reality-functie binnen de Spot the Station-app is ontworpen om nauwkeurige positie-informatie te bieden op basis van de GPS-locatie van het apparaat. De nauwkeurigheid kan echter enigszins variëren, afhankelijk van de kalibratie van het kompas en de sensoren van het apparaat. Als gebruikers discrepanties opmerken, kalibreer dan het kompas van het apparaat opnieuw via de instellingen.",
+          "Ja, de augmented reality-functie binnen de Spot the Station-app is ontworpen om nauwkeurige positie-informatie te bieden op basis van de GPS-locatie van het apparaat. De nauwkeurigheid kan echter enigszins variëren, afhankelijk van de kalibratie van het kompas en de sensoren van het apparaat. Als gebruikers discrepanties opmerken, kalibreer dan het kompas van het apparaat opnieuw door de Kompaskalibratie-handleiding in het menu Instellingen van de app te volgen. Oudere of budgetapparaten ondersteunen deze functionaliteit mogelijk niet vanwege beperkingen van hun magnetometersensor.",
 
         question24: "24. Kan de augmented reality-functie helpen met exacte waarnemingstijden?",
         answer24:
@@ -610,12 +613,12 @@ const nl = {
 
         question25: "25. Zijn er tips om mijn augmented reality-ervaring te optimaliseren?",
         answer25:
-          "Voor de beste augmented reality-ervaring in de Spot the Station-app, gebruik de functie in een open gebied met een vrij uitzicht op de lucht. Vermijd obstakels zoals hoge gebouwen of bomen, omdat deze de zichtbaarheid kunnen blokkeren. Kalibreer het kompas van het apparaat en zorg ervoor dat locatievoorzieningen en cameramachtigingen zijn ingeschakeld voor een soepele werking.",
+          "Voor de beste augmented reality-ervaring in de Spot the Station-app, gebruik de functie in een open gebied met een vrij uitzicht op de lucht. Vermijd obstakels zoals hoge gebouwen of bomen, omdat deze de zichtbaarheid kunnen blokkeren. Kalibreer het kompas van het apparaat (volg de Kompaskalibratie-handleiding in het menu Instellingen) en zorg ervoor dat locatievoorzieningen en cameramachtigingen zijn ingeschakeld voor een soepele werking.",
 
         question26:
           "26. Is de augmented reality-functie beschikbaar op zowel iOS- als Android-apparaten?",
         answer26:
-          "Ja, de augmented reality-functie van de Spot the Station-app is beschikbaar op zowel iOS- als Android-mobiele en tabletapparaten, zolang uw apparaat aan de hardwarevereisten voldoet.",
+          "Ja, de augmented reality-functie van de Spot the Station-app is beschikbaar op zowel iOS- als Android-mobiele en tabletapparaten, zolang uw apparaat aan de hardwarevereisten voldoet. Oudere of budgetapparaten ondersteunen deze functionaliteit mogelijk niet vanwege beperkingen van hun magnetometersensor.",
 
         question27: "27. Werkt de Spot the Station-app offline?",
         answer27:
@@ -631,7 +634,7 @@ const nl = {
 
         question30: "30. Wie kan ik contacteren voor ondersteuning van de Spot the Station-app?",
         answer30:
-          "Voor ondersteuning met de Spot the Station-app kunt u contact opnemen via de feedbackoptie van de app of <a href='mailto:hq-spotthestation@mail.nasa.gov'>een e-mail sturen naar het Spot the Station-team</a>.",
+          "Voor ondersteuning met de Spot the Station-app kunt u contact opnemen via de optie Contact opnemen in het menu Instellingen van de app of <a href='mailto:hq-spotthestation@mail.nasa.gov'>een e-mail sturen naar het Spot the Station-team</a>.",
       },
     },
     astronauts: {

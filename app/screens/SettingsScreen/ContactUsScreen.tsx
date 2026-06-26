@@ -44,6 +44,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
     $dropdownRightAccessory,
     $button,
     $buttonText,
+    $reportIssueHint,
     $modalBodyContainer,
     $modalText,
     $nextButton,
@@ -54,6 +55,7 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
 
   const navigation = useNavigation<NavigationProp<any>>()
   const topInset = useSafeAreaInsets().top
+  const bottomInset = useSafeAreaInsets().bottom
   const [title, setTitle] = useState("")
   const [comments, setComments] = useState("")
   const [thanksModal, setThanksModal] = useState(false)
@@ -126,7 +128,10 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
         accessibilityRole="scrollbar"
         style={$scrollContainer}
         scrollEnabled
-        contentContainerStyle={$scrollContentContainerStyle}
+        contentContainerStyle={[
+          $scrollContentContainerStyle,
+          { paddingBottom: topInset + bottomInset },
+        ]}
       >
         <Pressable
           accessible
@@ -206,6 +211,14 @@ export const ContactUsScreen = observer(function ContactUsScreen() {
           style={[$multiline, $inputWithoutPadding]}
           onChangeText={setComments}
         />
+        {title === "Report an Issue" && (
+          <Text
+            accessible
+            accessibilityRole="text"
+            tx="settings.contactUsData.reportIssueHint"
+            style={$reportIssueHint}
+          />
+        )}
         {!isSending && (
           <Button
             accessible
@@ -306,7 +319,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   const $scrollContentContainerStyle: ViewStyle = {
     flexGrow: 1,
-    paddingBottom: scale(60),
   }
 
   const $scrollContainer: ViewStyle = {
@@ -422,6 +434,15 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     lineHeight: lineHeights[21],
   }
 
+  const $reportIssueHint: TextStyle = {
+    fontFamily: typography.primary.normal,
+    fontSize: fontSizes[16],
+    lineHeight: lineHeights[20],
+    color: colors.palette.neutral450,
+    textAlign: "left",
+    marginTop: scale(18),
+  }
+
   const $modalBodyContainer: ViewStyle = {
     backgroundColor: colors.palette.buttonBlue,
     borderRadius: scale(16),
@@ -477,6 +498,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $dropdownRightAccessory,
     $button,
     $buttonText,
+    $reportIssueHint,
     $modalBodyContainer,
     $modalText,
     $nextButton,

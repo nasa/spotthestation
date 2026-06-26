@@ -90,7 +90,7 @@ android {
         applicationId project.env.get("APP_BUNDLE_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2026061216
+        versionCode 2026062615
         versionName "1.9.0"
 
         ndk {

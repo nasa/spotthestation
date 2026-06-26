@@ -102,7 +102,7 @@ describe("AddNewLocationScreen", () => {
     })
 
     expect(rootStore.savedLocations[1].title).toEqual("Phoenix, AZ")
-    expect(rootStore.savedLocations[1].sightings).toHaveLength(3)
+    expect(rootStore.savedLocations[1].sightings).toHaveLength(4)
     expect(mockNavigate).toBeCalledWith("LocationSettings", expect.anything())
   })
 
@@ -140,7 +140,7 @@ describe("AddNewLocationScreen", () => {
     })
 
     expect(rootStore.savedLocations[1].title).toEqual("My Awesome Location")
-    expect(rootStore.savedLocations[1].sightings).toHaveLength(3)
+    expect(rootStore.savedLocations[1].sightings).toHaveLength(4)
     expect(mockNavigate).toBeCalledWith("LocationSettings", expect.anything())
   })
 

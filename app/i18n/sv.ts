@@ -416,6 +416,8 @@ const sv = {
       titlePlaceholder: "Välj titel",
       commentsPlaceholder: "Ge synpunkter",
       sendButton: "Skicka",
+      reportIssueHint:
+        "Inkludera en beskrivning av problemet, tillsammans med den valda platsen och datum och tid för observationstillfället av stationen, så att vårt supportteam bättre kan återskapa och diagnostisera det rapporterade problemet.",
       contactUsOptions: {
         reportAnIssue: "Rapportera ett problem",
         improvementIdeas: "Förbättringsidéer",
@@ -502,7 +504,8 @@ const sv = {
 
         question3: "3. Hur ofta kan jag förvänta mig att se den internationella rymdstationen?",
         answer3:
-          "Den internationella rymdstationen är synlig eftersom den reflekterar solljus – av samma anledning som vi kan se månen. Men till skillnad från månen är rymdstationen inte tillräckligt ljus för att ses under dagen. Visningsmöjligheter kan variera från en gång i månaden till flera gånger i veckan, eftersom solens ljus reflekteras från stationen när den passerar över din plats vid gryning och skymning.",
+          "Den internationella rymdstationen är synlig eftersom den reflekterar solljus – av samma anledning som vi kan se månen. Men till skillnad från månen är rymdstationen inte tillräckligt ljus för att ses under dagen. Visningsmöjligheter kan variera från en gång i månaden till flera gånger i veckan, eftersom solens ljus reflekteras från stationen när den passerar över din plats vid gryning och skymning.<br/>" +
+          "Mobilappen beräknar och visar kommande observationsmöjligheter för upp till de närmaste 14 dagarna. Sedan maj 2026 har NASA:s webbplats Spot the Station återinfört funktionen för att hitta observationsmöjligheter för stationen direkt från din webbläsare, utan app: <a href='https://www.nasa.gov/spot-the-station/'>https://www.nasa.gov/spot-the-station/</a> Välj ditt land och din region/stad för att se kommande observationsmöjligheter för upp till de närmaste 14 dagarna.",
 
         question4: "4. Vad är Spot the Station-appen?",
         answer4:
@@ -515,15 +518,15 @@ const sv = {
         question6:
           "6. Hur meddelar Spot the Station-appen mig om kommande observationsmöjligheter för den internationella rymdstationen?",
         answer6:
-          "Spot the Station-appen skickar push-aviseringar för att varna användare om kommande passager av den internationella rymdstationen. Användare bör se till att appens meddelandetillstånd är aktiverade i deras enhetsinställningar.",
+          "Spot the Station-appen skickar push-aviseringar för att varna användare om kommande passager av den internationella rymdstationen. Användare bör se till att appens meddelandetillstånd är aktiverade i deras enhetsinställningar. Observera att appen beräknar observationsmöjligheter för din valda plats för upp till de närmaste 14 dagarna, så du kan sluta få aviseringar om du inte använder appen på ett tag.",
 
         question7: "7. Kan jag anpassa aviseringar i Spot the Station-appen?",
         answer7:
-          "Spot the Station-appen har möjlighet att konfigurera personliga varningsinställningar för att ta emot push-aviseringar specifika för en användares föredragna plats och tidpunkt. Meddelandeinställningarna finns på appens inställningssida, där användare kan aktivera aviseringar för alla kommande händelser eller anpassa aviseringar för den för närvarande valda platsen. Användare kan anpassa aviseringar för andra platser via platsinställningarna.",
+          "Spot the Station-appen har möjlighet att konfigurera personliga varningsinställningar för att ta emot push-aviseringar specifika för en användares föredragna plats och tidpunkt. Meddelandeinställningarna finns på appens inställningssida, där användare kan aktivera aviseringar för alla kommande händelser eller anpassa aviseringar för den för närvarande valda platsen. Användare kan anpassa aviseringar för andra platser via platsinställningarna. Du kan besöka observationssidan från startsidan för att aktivera/inaktivera aviseringar för varje kommande observationsmöjlighet för din valda plats.",
 
         question8: "8. Vad ska jag göra om jag inte får aviseringar?",
         answer8:
-          "Användare bör kontrollera meddelandeinställningarna i Spot the Station-appen (Meddelandeinställningar på inställningssidan) för att bekräfta att enheten är inställd för aviseringar på en föredragen plats och tidpunkt. Om användare fortfarande inte får aviseringar bör de se till att aviseringar är aktiverade i deras enhetsinställningar.",
+          "Användare bör kontrollera meddelandeinställningarna i Spot the Station-appen (Meddelandeinställningar på inställningssidan) för att bekräfta att enheten är inställd för aviseringar på en föredragen plats och tidpunkt. Om användare fortfarande inte får aviseringar bör de se till att aviseringar är aktiverade i deras enhetsinställningar. Observera att appen beräknar observationsmöjligheter för din valda plats för upp till de närmaste 14 dagarna varje gång du öppnar appen, så du kan sluta få aviseringar om du inte tittar tillbaka regelbundet.",
 
         question9: "9. Fungerar Spot the Station-appen internationellt?",
         answer9:
@@ -531,7 +534,7 @@ const sv = {
 
         question10: "10. Varför finns det inga visningsmöjligheter för min plats?",
         answer10:
-          "Det måste vara mörkt med god sikt på din plats och rymdstationen måste vara ovanför dig för att se den. Eftersom rymdstationens omloppsbana tar den runt hela världen kan den passera över vid tidpunkter då den inte kommer att vara synlig – antingen mitt på dagen eller mitt i natten. Spot The Station skickar endast aviseringar när det finns möjligheter att se den internationella rymdstationen på din plats, inte varje gång den är ovanför.",
+          "Det måste vara mörkt med god sikt på din plats och rymdstationen måste vara ovanför dig för att se den. Eftersom rymdstationens omloppsbana tar den runt hela världen kan den passera över vid tidpunkter då den inte kommer att vara synlig – antingen mitt på dagen eller mitt i natten när den är skymd av jordens skugga. Spot The Station skickar endast aviseringar när det finns möjligheter att se den internationella rymdstationen på din plats, inte varje gång den är ovanför. Observationsmöjligheter beräknas upp till 14 dagar i förväg, så titta tillbaka regelbundet efter nya förutspådda möjligheter.",
 
         question11: "11. Behöver jag ett teleskop för att se den internationella rymdstationen?",
         answer11:
@@ -540,7 +543,7 @@ const sv = {
         question12:
           "12. Visas och försvinner den internationella rymdstationen på grund av månens ljus?",
         answer12:
-          "Den internationella rymdstationen är synlig eftersom den reflekterar solljus. Detta är samma anledning till att månen verkar lysa. Även när månen inte har gått upp kan användare se stationen.",
+          "Den internationella rymdstationen är synlig eftersom den reflekterar solljus, precis som månen. När stationen färdas runt jorden går den in i och ut ur jordens skugga. När den går in i jordens skugga är den inte synlig, även om den fortfarande kan kretsa ovanför dig.",
 
         question13: "13. Vilken tidszon används för varningsmeddelanden?",
         answer13:
@@ -549,7 +552,7 @@ const sv = {
         question14:
           "14. Vilken information tillhandahåller Spot the Station-appen för varje observation?",
         answer14:
-          "För varje observation visar Spot the Station-appen tid, varaktighet av synlighet, maximal höjd över horisonten och riktningar där den internationella rymdstationen kommer att visas och försvinna, vilket hjälper användare att lokalisera den exakt på himlen.",
+          "För varje observation visar Spot the Station-appen tid, varaktighet av synlighet över horisonten, maximal höjd över horisonten, riktningar där den internationella rymdstationen kommer att visas och försvinna, och det prognostiserade molntäcket för den valda platsen vid observationstillfället, vilket hjälper användare att lokalisera den exakt på himlen.",
 
         question15:
           "15. Hur kan jag upptäcka den internationella rymdstationen under en visningsmöjlighet? Vad betyder all denna information?",
@@ -569,11 +572,11 @@ const sv = {
 
         question17: "17. Kan jag se en livekarta över den internationella rymdstationens plats?",
         answer17:
-          "Ja, Spot the Station-appen inkluderar en karta i realtid som visar den aktuella positionen för den internationella rymdstationen när den kretsar runt jorden, vilket ger användare en visuell referens för att spåra dess framsteg.",
+          "Ja, Spot the Station-appen inkluderar en karta i realtid som visar den aktuella positionen för den internationella rymdstationen när den kretsar runt jorden, vilket ger användare en visuell referens för att spåra dess framsteg. Besök Tracker-sidan för att se stationens bana i 2D-, 3D- eller satellitvy.",
 
         question18: "18. Vad är funktionen för förstärkt verklighet i Spot the Station-appen?",
         answer18:
-          "Funktionen för förstärkt verklighet i Spot the Station-appen gör det möjligt för användare att se en virtuell överlagring av den internationella rymdstationens bana på himlen. Denna funktion hjälper användare att lokalisera stationen mer exakt genom att justera sin enhet med stationens position i realtid.",
+          "Funktionen för förstärkt verklighet i Spot the Station-appen gör det möjligt för användare att se en virtuell överlagring av den internationella rymdstationens bana på himlen över telefonens kameravy. Denna funktion hjälper användare att lokalisera stationen mer exakt genom att justera sin enhet med stationens position i realtid.",
 
         question19:
           "19. Hur får jag tillgång till funktionen för förstärkt verklighet i Spot the Station-appen?",
@@ -583,11 +586,11 @@ const sv = {
         question20:
           "20. Behöver jag en specifik enhet eller programvara för att använda funktionen för förstärkt verklighet?",
         answer20:
-          "Funktionen för förstärkt verklighet i Spot the Station kräver en enhet som kan bestämma sin orientering i 3D-utrymme. Den kräver specifikt hårdvarustöd, såsom en gyroskop eller rörelsekoprocessor. Äldre eller budgetenheter kanske inte stöder denna funktionalitet.",
+          "Funktionen för förstärkt verklighet i Spot the Station kräver en enhet som kan bestämma sin orientering i 3D-utrymme. Den kräver specifikt hårdvarustöd, såsom en gyroskop eller rörelsekoprocessor. Äldre eller budgetenheter kanske inte stöder denna funktionalitet på grund av begränsningar i deras magnetometersensor. Noggrannheten kan förbättras genom att följa guiden för Kompasskalibrering i appens Inställningsmeny.",
 
         question21: "21. Hur fungerar funktionen för förstärkt verklighet?",
         answer21:
-          "Med hjälp av enhetens kamera och sensorer överlagrar funktionen för förstärkt verklighet i Spot the Station den internationella rymdstationens position på himlen på skärmen, justerar i realtid när användaren rör enheten. Appen guidar användare att rikta enhetens kamera i rätt riktning och visar var stationen kommer att visas och försvinna.",
+          "Med hjälp av enhetens kamera och sensorer överlagrar funktionen för förstärkt verklighet i Spot the Station den internationella rymdstationens position på himlen på skärmen, justerar i realtid när användaren rör enheten. Appen guidar användare att rikta enhetens kamera i rätt riktning och visar var stationen kommer att visas och försvinna. Följ guiden för AR-vyn från appens Inställningsmeny.",
 
         question22: "22. Kan jag använda funktionen för förstärkt verklighet både dag och natt?",
         answer22:
@@ -595,7 +598,7 @@ const sv = {
 
         question23: "23. Är överlagringen för förstärkt verklighet exakt för alla platser?",
         answer23:
-          "Ja, funktionen för förstärkt verklighet inom Spot the Station-appen är utformad för att ge exakt positionsinformation baserat på enhetens GPS-plats. Noggrannheten kan dock variera något beroende på enhetens kompass- och sensorkalibrering. Om användare märker avvikelser, kalibrera om enhetens kompass via inställningarna.",
+          "Ja, funktionen för förstärkt verklighet inom Spot the Station-appen är utformad för att ge exakt positionsinformation baserat på enhetens GPS-plats. Noggrannheten kan dock variera något beroende på enhetens kompass- och sensorkalibrering. Om användare märker avvikelser, kalibrera om enhetens kompass genom att följa guiden för Kompasskalibrering från appens Inställningsmeny. Äldre eller budgetenheter kanske inte stöder denna funktionalitet på grund av begränsningar i deras magnetometersensor.",
 
         question24:
           "24. Kan funktionen för förstärkt verklighet hjälpa till med exakta observationstider?",
@@ -604,12 +607,12 @@ const sv = {
 
         question25: "25. Finns det tips för att optimera min upplevelse av förstärkt verklighet?",
         answer25:
-          "För den bästa upplevelsen av förstärkt verklighet i Spot the Station-appen, använd funktionen i ett öppet område med fri sikt mot himlen. Undvik hinder som höga byggnader eller träd, eftersom dessa kan blockera synligheten. Kalibrera enhetens kompass och se till att plats- och kameratillstånd är aktiverade för smidig funktion.",
+          "För den bästa upplevelsen av förstärkt verklighet i Spot the Station-appen, använd funktionen i ett öppet område med fri sikt mot himlen. Undvik hinder som höga byggnader eller träd, eftersom dessa kan blockera synligheten. Kalibrera enhetens kompass (följ guiden för Kompasskalibrering i Inställningsmenyn) och se till att plats- och kameratillstånd är aktiverade för smidig funktion.",
 
         question26:
           "26. Är funktionen för förstärkt verklighet tillgänglig på både iOS- och Android-enheter?",
         answer26:
-          "Ja, funktionen för förstärkt verklighet i Spot the Station-appen är tillgänglig på både iOS- och Android-mobila enheter och surfplattor, så länge din enhet uppfyller hårdvarukraven.",
+          "Ja, funktionen för förstärkt verklighet i Spot the Station-appen är tillgänglig på både iOS- och Android-mobila enheter och surfplattor, så länge din enhet uppfyller hårdvarukraven. Äldre eller budgetenheter kanske inte stöder denna funktionalitet på grund av begränsningar i deras magnetometersensor.",
 
         question27: "27. Fungerar Spot the Station-appen offline?",
         answer27:
@@ -625,7 +628,7 @@ const sv = {
 
         question30: "30. Vem kan jag kontakta för support med Spot the Station-appen?",
         answer30:
-          "För support med Spot the Station-appen, kontakta via appens feedbackalternativ eller <a href='mailto:hq-spotthestation@mail.nasa.gov'>skicka ett e-postmeddelande till Spot the Station-teamet</a>.",
+          "För support med Spot the Station-appen, kontakta via alternativet Kontakta oss i appens Inställningsmeny eller <a href='mailto:hq-spotthestation@mail.nasa.gov'>skicka ett e-postmeddelande till Spot the Station-teamet</a>.",
       },
     },
     astronauts: {

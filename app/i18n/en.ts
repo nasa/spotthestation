@@ -419,6 +419,8 @@ const en = {
       titlePlaceholder: "Choose title",
       commentsPlaceholder: "Input comments",
       sendButton: "Send",
+      reportIssueHint:
+        "Please include a description of the issue, along with the selected location and date and time of the station sighting opportunity, so that our support team can better reproduce and diagnose your reported issue.",
       contactUsOptions: {
         reportAnIssue: "Report an Issue",
         improvementIdeas: "Improvement Ideas",
@@ -503,7 +505,8 @@ const en = {
           "The International Space Station orbits the Earth once every 90 minutes. It travels at about 17,500 mph (28,000 kilometers per hour), which allows the crew onboard to see 16 sunrises and sunsets every day. Crews have occupied the space station continuously since November 2000. In that time, 280 people from 23 countries have visited the orbital outpost, and the station has circumnavigated the Earth hundreds of thousands of times.",
         question3: "3. How often can I expect to see the International Space Station?",
         answer3:
-          "The International Space Station is visible because it reflects sunlight – the same reason we can see the Moon. However, unlike the Moon, the space station is not bright enough to see during the day. Viewing opportunities can range from one a month to several a week as the light from the Sun reflects off station as it passes overhead at dawn and dusk at your location.",
+          "The International Space Station is visible because it reflects sunlight – the same reason we can see the Moon. However, unlike the Moon, the space station is not bright enough to see during the day. Viewing opportunities can range from one a month to several a week as the light from the Sun reflects off station as it passes overhead at dawn and dusk at your location.<br/>" +
+          "The Mobile app calculates and displays upcoming sightings for up to the next 14 days. Since May 2026, NASA’s Spot the Station website has brought back the functionality to find the Station viewing opportunities right from your browser, no app required: <a href='https://www.nasa.gov/spot-the-station/'>https://www.nasa.gov/spot-the-station/</a> Choose your country and region/city, to see the upcoming sighting opportunities for up to the next 14 days.",
         question4: "4. What is the Spot the Station app?",
         answer4:
           "The Spot the Station mobile app is an official NASA app that helps users track and receive notifications for International Space Station viewings as it passes over their respective location. It also provides real-time tracking, flyover schedules, and alerts.",
@@ -513,32 +516,32 @@ const en = {
         question6:
           "6. How does the Spot the Station app notify me of upcoming International Space Station viewing opportunities?",
         answer6:
-          "The Spot the Station app sends push notifications to alert users of upcoming International Space Station passes. Users should ensure app notification permissions are enabled on their device’s settings.",
+          "The Spot the Station app sends push notifications to alert users of upcoming International Space Station passes. Users should ensure app notification permissions are enabled on their device’s settings. Note that the app calculates sightings for your selected location up to the next 14 days, so you may stop receiving notifications if you don’t use the app for a while.",
         question7: "7. Can I customize notifications in the Spot the Station app?",
         answer7:
-          "The Spot the Station app has the capability for personalized alert settings in order to receive push notifications specific to a user’s preferred location and timing of alerts. The Notification Settings can be found on the Settings page of the app, where users can turn on the notifications for all upcoming events, or customize notifications for the currently selected location. Users can customize notifications for other locations through the Location Settings.",
+          "The Spot the Station app has the capability for personalized alert settings in order to receive push notifications specific to a user’s preferred location and timing of alerts. The Notification Settings can be found on the Settings page of the app, where users can turn on the notifications for all upcoming events, or customize notifications for the currently selected location. Users can customize notifications for other locations through the Location Settings. You can visit the Sightings page from the Home page to toggle notifications on/off for each upcoming sighting opportunity for your selected location.",
         question8: "8. What should I do if I am not receiving notifications?",
         answer8:
-          "Users should check the notification preferences on the Spot the Station app (Notification Settings on the Settings page) to confirm the device is set up for alerts on a preferred location and timing. If users are still not receiving alerts, they should ensure notifications are enabled on their device’s settings.",
+          "Users should check the notification preferences on the Spot the Station app (Notification Settings on the Settings page) to confirm the device is set up for alerts on a preferred location and timing. If users are still not receiving alerts, they should ensure notifications are enabled on their device’s settings. Please note that the app calculates sightings for your selected location up to the next 14 days every time you open the app, so you may stop receiving notifications if you don’t check back regularly.",
         question9: "9. Does the Spot the Station app work internationally?",
         answer9:
           "The Spot the Station app is available worldwide and in multiple languages including English, Dutch, French, German, Hindi, Italian, Japanese, Polish, Portuguese (Brazil), Russian, Spanish, Turkish, and Ukrainian. The app provides viewing information for most inhabited locations, making it easy to view the International Space Station as it passes overhead from almost anywhere.",
         question10: "10. Why are there not viewing opportunities for my location?",
         answer10:
-          "It needs to be dark with good visibility at your location and the space station needs to be overhead to see it. Since the space station's orbit takes it all around the globe, it can pass overhead at times when it will not be visible – either in the middle of the day or the middle of the night. Spot The Station will send out notifications only when there are opportunities to see the International Space Station in your location, not every time it will be overhead.",
+          "It needs to be dark with good visibility at your location and the space station needs to be overhead to see it. Since the space station's orbit takes it all around the globe, it can pass overhead at times when it will not be visible – either in the middle of the day or the middle of the night when overshadowed by the Earth. Spot The Station will send out notifications only when there are opportunities to see the International Space Station in your location, not every time it will be overhead. Sightings are calculated up to 14 days in advance, so check back regularly for newly predicted opportunities.",
         question11: "11. Do I need a telescope to see the International Space Station?",
         answer11:
           "No, users can view the International Space Station with their bare eyes, no additional equipment is required.",
         question12:
           "12. Does the International Space Station appear and then disappear because of the light of the Moon?",
         answer12:
-          "The International Space Station is visible because it is reflecting sunlight. This is the same reason that the Moon appears to shine. Even when the Moon hasn't risen, users can see the station.",
+          "The International Space Station is visible because it reflects sunlight, much like the Moon. As the station travels around Earth, it enters and exits Earth's shadow. When it moves into Earth's shadow, it is not visible, even though it may still be orbiting overhead.",
         question13: "13. What time zone is used for alert notifications?",
         answer13:
           "All content within the Spot the Station app is listed in the local time zone for the user’s selected location. The app automatically adjusts for daylight savings time.",
         question14: "14. What information does the Spot the Station app provide for each sighting?",
         answer14:
-          "For each sighting, the Spot the Station app displays the time, visibility duration, maximum height above horizon, and directions where the International Space Station will appear and disappear, helping users locate it accurately in the sky.",
+          "For each sighting, the Spot the Station app displays the time, visibility duration above the horizon, maximum height above horizon, directions where the International Space Station will appear and disappear, and the forecasted cloud cover for the selected location at the sighting time, helping users locate it accurately in the sky.",
         question15:
           "15. How do I spot the International Space Station during a viewing opportunity? What does all this information mean? ",
         answer15:
@@ -555,10 +558,10 @@ const en = {
           "The Spot the Station software rounds off directions to the nearest cardinal and intracardinal directions. This can result in it seeming as though the International Space Station will be appearing and disappearing in the same direction even though it is traveling across the sky. This typically happens on flyovers with a short window of visibility because the station is quickly moving into (or out of) the Earth's dark shadow where, from the user’s location on the ground, a full pass across the sky cannot be observed.",
         question17: "17. Can I view a live map of the International Space Station’s location?",
         answer17:
-          "Yes, the Spot the Station app includes a real-time map showing the current position of the International Space Station as it orbits Earth, giving users a visual reference to track its progress.",
+          "Yes, the Spot the Station app includes a real-time map showing the current position of the International Space Station as it orbits Earth, giving users a visual reference to track its progress. Visit the Tracker page to see the trajectory of the station in 2D, 3D, or Satellite view.",
         question18: "18. What is the augmented reality feature in the Spot the Station app?",
         answer18:
-          "The augmented reality feature in the Spot the Station app allows users to view a virtual overlay of the International Space Station’s path in the sky. This feature helps users locate the station more accurately by aligning their device with the real-time position of the station.",
+          "The augmented reality feature in the Spot the Station app allows users to view a virtual overlay of the International Space Station’s path in the sky over the phone’s camera view. This feature helps users locate the station more accurately by aligning their device with the real-time position of the station.",
         question19:
           "19. How do I access the augmented reality feature in the Spot the Station app?",
         answer19:
@@ -566,26 +569,26 @@ const en = {
         question20:
           "20. Do I need a specific device or software to use the augmented reality feature?",
         answer20:
-          "The Spot the Station augmented reality feature requires a device that can determine its orientation in 3D space. It requires specific hardware support, such as a gyroscope or motion co-processor. Older or budget devices may not support this functionality.",
+          "The Spot the Station augmented reality feature requires a device that can determine its orientation in 3D space. It requires specific hardware support, such as a gyroscope or motion co-processor. Older or budget devices may not support this functionality due to limitations of their magnetometer sensor. The accuracy may improve by following the Compass Calibration guide in the app Settings menu.",
         question21: "21. How does the augmented reality feature work?",
         answer21:
-          "Using the device's camera and sensors, the Spot the Station augmented reality feature superimposes the location of the International Space Station in the sky onto the screen, adjusting in real time as the user moves the device. The app guides users to point the device’s camera in the correct direction and shows where the station will appear and disappear.",
+          "Using the device's camera and sensors, the Spot the Station augmented reality feature superimposes the location of the International Space Station in the sky onto the screen, adjusting in real time as the user moves the device. The app guides users to point the device’s camera in the correct direction and shows where the station will appear and disappear. Please follow the Tutorial for the AR View from the app Settings menu.",
         question22: "22. Can I use the augmented reality feature during both day and night?",
         answer22:
           "Yes, the augmented reality feature within the Spot the Station app is available during both day and night; however, the best viewing experience is typically during twilight or nighttime when the International Space Station is visible to the naked eye. The augmented reality overlay will work regardless of the light conditions, but actual viewing opportunities depend on visibility.",
         question23: "23. Is the augmented reality overlay accurate for all locations?",
         answer23:
-          "Yes, the augmented reality feature within the Spot the Station app is designed to provide accurate position information based on the device’s GPS location. However, accuracy may vary slightly depending on the device’s compass and sensor calibration. If users notice discrepancies, recalibrate the device’s compass through settings.",
+          "Yes, the augmented reality feature within the Spot the Station app is designed to provide accurate position information based on the device’s GPS location. However, accuracy may vary slightly depending on the device’s compass and sensor calibration. If users notice discrepancies, recalibrate the device’s compass by following the Compass Calibration guide from the app Settings menu. Older or budget devices may not support this functionality due to limitations of their magnetometer sensor.",
         question24: "24. Can the augmented reality feature help with exact sighting times?",
         answer24:
           "The augmented reality feature within the Spot the Station app visually guides users to locate the International Space Station at the precise time it appears in the sky. Coupled with the app’s alerts, it enhances the ability to see the station by providing a live, visual direction and height indicator to precisely track it.",
         question25: "25. Are there tips for optimizing my augmented reality experience?",
         answer25:
-          "For the best augmented reality experience in the Spot the Station app, use the feature in an open area with a clear view of the sky. Avoid obstructions like tall buildings or trees, as these can block visibility. Calibrate the device’s compass and ensure location services and camera permissions are enabled for smooth functioning.",
+          "For the best augmented reality experience in the Spot the Station app, use the feature in an open area with a clear view of the sky. Avoid obstructions like tall buildings or trees, as these can block visibility. Calibrate the device’s compass (follow Compass Calibration guide in the Settings menu) and ensure location services and camera permissions are enabled for smooth functioning.",
         question26:
           "26. Is the augmented reality feature available on both iOS and Android devices?",
         answer26:
-          "Yes, the Spot the Station app augmented reality feature is available on both iOS and Android mobile and tablet devices, as long as your device meets hardware requirements.",
+          "Yes, the Spot the Station app augmented reality feature is available on both iOS and Android mobile and tablet devices, as long as your device meets hardware requirements. Older or budget devices may not support this functionality due to limitations of their magnetometer sensor.",
         question27: "27. Does the Spot the Station app work offline?",
         answer27:
           "Some basic functionality, like accessing previously downloaded viewing opportunity schedules or receiving scheduled notifications, may work offline. However, features requiring real-time data, such as tracking, require cellular service or an internet connection.",
@@ -597,7 +600,7 @@ const en = {
           "Yes, the Spot the Station app is free to download and use, with no in-app purchases or subscriptions.",
         question30: "30. Who can I contact for Spot the Station app support?",
         answer30:
-          "For support with the Spot the Station app, reach out through the app’s feedback option or <a href='mailto:hq-spotthestation@mail.nasa.gov'>email Spot the Station team</a>.",
+          "For support with the Spot the Station app, reach out through the app’s Contact Us option from the Settings menu or <a href='mailto:hq-spotthestation@mail.nasa.gov'>email Spot the Station team</a>.",
       },
     },
     astronauts: {

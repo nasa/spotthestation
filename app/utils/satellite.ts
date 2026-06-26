@@ -343,7 +343,7 @@ export async function getSightings(
   lat: number,
   lon: number,
 ) {
-  const events = await findEvents(data, shadowIntervals, [lat, lon, 0], 10)
+  const events = await findEvents(data, shadowIntervals, [lat, lon, 0], 5)
   const res: Sighting[] = []
   events.forEach((event) => {
     const ti0 = new Date(event.startTime)

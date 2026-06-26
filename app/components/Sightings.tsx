@@ -266,6 +266,10 @@ export const Sightings = React.memo(function Sightings({
         value: "",
       },
       {
+        label: ">10°",
+        value: "10",
+      },
+      {
         label: ">15°",
         value: "15",
       },

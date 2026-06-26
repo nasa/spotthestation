@@ -414,6 +414,8 @@ const pl = {
       titlePlaceholder: "Wybierz tytuł",
       commentsPlaceholder: "Wprowadź komentarze",
       sendButton: "Wyślij",
+      reportIssueHint:
+        "Prosimy o dołączenie opisu problemu wraz z wybraną lokalizacją oraz datą i godziną możliwości obserwacji stacji, aby nasz zespół wsparcia mógł lepiej odtworzyć i zdiagnozować zgłoszony problem.",
       contactUsOptions: {
         reportAnIssue: "Zgłoś problem",
         improvementIdeas: "Pomysły na ulepszenia",
@@ -500,7 +502,8 @@ const pl = {
 
         question3: "3. Jak często mogę spodziewać się zobaczyć Międzynarodową Stację Kosmiczną?",
         answer3:
-          "Międzynarodowa Stacja Kosmiczna jest widoczna, ponieważ odbija światło słoneczne – z tego samego powodu, dla którego widzimy Księżyc. Jednak w przeciwieństwie do Księżyca, stacja kosmiczna nie jest wystarczająco jasna, aby ją zobaczyć w ciągu dnia. Możliwości obserwacji mogą się różnić od jednej w miesiącu do kilku w tygodniu, ponieważ światło Słońca odbija się od stacji, gdy przechodzi nad twoją lokalizacją o świcie i zmierzchu.",
+          "Międzynarodowa Stacja Kosmiczna jest widoczna, ponieważ odbija światło słoneczne – z tego samego powodu, dla którego widzimy Księżyc. Jednak w przeciwieństwie do Księżyca, stacja kosmiczna nie jest wystarczająco jasna, aby ją zobaczyć w ciągu dnia. Możliwości obserwacji mogą się różnić od jednej w miesiącu do kilku w tygodniu, ponieważ światło Słońca odbija się od stacji, gdy przechodzi nad twoją lokalizacją o świcie i zmierzchu.<br/>" +
+          "Aplikacja mobilna oblicza i wyświetla nadchodzące możliwości obserwacji na maksymalnie kolejne 14 dni. Od maja 2026 roku witryna Spot the Station NASA przywróciła funkcję wyszukiwania możliwości obserwacji stacji bezpośrednio z przeglądarki, bez potrzeby aplikacji: <a href='https://www.nasa.gov/spot-the-station/'>https://www.nasa.gov/spot-the-station/</a> Wybierz swój kraj i region/miasto, aby zobaczyć nadchodzące możliwości obserwacji na maksymalnie kolejne 14 dni.",
 
         question4: "4. Co to jest aplikacja Spot the Station?",
         answer4:
@@ -513,15 +516,15 @@ const pl = {
         question6:
           "6. Jak aplikacja Spot the Station powiadamia mnie o nadchodzących możliwościach obserwacji Międzynarodowej Stacji Kosmicznej?",
         answer6:
-          "Aplikacja Spot the Station wysyła powiadomienia push, aby ostrzec użytkowników o nadchodzących przelotach Międzynarodowej Stacji Kosmicznej. Użytkownicy powinni upewnić się, że uprawnienia do powiadomień aplikacji są włączone w ustawieniach ich urządzenia.",
+          "Aplikacja Spot the Station wysyła powiadomienia push, aby ostrzec użytkowników o nadchodzących przelotach Międzynarodowej Stacji Kosmicznej. Użytkownicy powinni upewnić się, że uprawnienia do powiadomień aplikacji są włączone w ustawieniach ich urządzenia. Pamiętaj, że aplikacja oblicza możliwości obserwacji dla wybranej lokalizacji na maksymalnie kolejne 14 dni, więc możesz przestać otrzymywać powiadomienia, jeśli przez jakiś czas nie korzystasz z aplikacji.",
 
         question7: "7. Czy mogę dostosować powiadomienia w aplikacji Spot the Station?",
         answer7:
-          "Aplikacja Spot the Station ma możliwość konfigurowania spersonalizowanych ustawień powiadomień, aby otrzymywać powiadomienia push specyficzne dla preferowanej lokalizacji i czasu użytkownika. Ustawienia powiadomień można znaleźć na stronie ustawień aplikacji, gdzie użytkownicy mogą włączyć powiadomienia dla wszystkich nadchodzących wydarzeń lub dostosować powiadomienia dla aktualnie wybranej lokalizacji. Użytkownicy mogą dostosować powiadomienia dla innych lokalizacji za pomocą ustawień lokalizacji.",
+          "Aplikacja Spot the Station ma możliwość konfigurowania spersonalizowanych ustawień powiadomień, aby otrzymywać powiadomienia push specyficzne dla preferowanej lokalizacji i czasu użytkownika. Ustawienia powiadomień można znaleźć na stronie ustawień aplikacji, gdzie użytkownicy mogą włączyć powiadomienia dla wszystkich nadchodzących wydarzeń lub dostosować powiadomienia dla aktualnie wybranej lokalizacji. Użytkownicy mogą dostosować powiadomienia dla innych lokalizacji za pomocą ustawień lokalizacji. Możesz odwiedzić stronę Obserwacje ze strony głównej, aby włączać/wyłączać powiadomienia dla każdej nadchodzącej możliwości obserwacji dla wybranej lokalizacji.",
 
         question8: "8. Co powinienem zrobić, jeśli nie otrzymuję powiadomień?",
         answer8:
-          "Użytkownicy powinni sprawdzić preferencje powiadomień w aplikacji Spot the Station (Ustawienia powiadomień na stronie ustawień), aby potwierdzić, że urządzenie jest skonfigurowane do otrzymywania powiadomień w preferowanej lokalizacji i czasie. Jeśli użytkownicy nadal nie otrzymują powiadomień, powinni upewnić się, że powiadomienia są włączone w ustawieniach ich urządzenia.",
+          "Użytkownicy powinni sprawdzić preferencje powiadomień w aplikacji Spot the Station (Ustawienia powiadomień na stronie ustawień), aby potwierdzić, że urządzenie jest skonfigurowane do otrzymywania powiadomień w preferowanej lokalizacji i czasie. Jeśli użytkownicy nadal nie otrzymują powiadomień, powinni upewnić się, że powiadomienia są włączone w ustawieniach ich urządzenia. Pamiętaj, że aplikacja oblicza możliwości obserwacji dla wybranej lokalizacji na maksymalnie kolejne 14 dni za każdym razem, gdy ją otwierasz, więc możesz przestać otrzymywać powiadomienia, jeśli nie sprawdzasz jej regularnie.",
 
         question9: "9. Czy aplikacja Spot the Station działa międzynarodowo?",
         answer9:
@@ -529,7 +532,7 @@ const pl = {
 
         question10: "10. Dlaczego nie ma możliwości obserwacji dla mojej lokalizacji?",
         answer10:
-          "Musi być ciemno z dobrą widocznością w twojej lokalizacji, a stacja kosmiczna musi być nad tobą, aby ją zobaczyć. Ponieważ orbita stacji kosmicznej prowadzi ją po całym świecie, może przechodzić nad tobą w momentach, gdy nie będzie widoczna – albo w środku dnia, albo w środku nocy. Spot The Station wyśle powiadomienia tylko wtedy, gdy będą możliwości zobaczenia Międzynarodowej Stacji Kosmicznej w twojej lokalizacji, a nie za każdym razem, gdy będzie nad tobą.",
+          "Musi być ciemno z dobrą widocznością w twojej lokalizacji, a stacja kosmiczna musi być nad tobą, aby ją zobaczyć. Ponieważ orbita stacji kosmicznej prowadzi ją po całym świecie, może przechodzić nad tobą w momentach, gdy nie będzie widoczna – albo w środku dnia, albo w środku nocy, gdy jest przesłonięta przez cień Ziemi. Spot The Station wyśle powiadomienia tylko wtedy, gdy będą możliwości zobaczenia Międzynarodowej Stacji Kosmicznej w twojej lokalizacji, a nie za każdym razem, gdy będzie nad tobą. Możliwości obserwacji są obliczane z wyprzedzeniem do 14 dni, więc sprawdzaj regularnie nowo przewidziane możliwości.",
 
         question11: "11. Czy potrzebuję teleskopu, aby zobaczyć Międzynarodową Stację Kosmiczną?",
         answer11:
@@ -538,7 +541,7 @@ const pl = {
         question12:
           "12. Czy Międzynarodowa Stacja Kosmiczna pojawia się i znika z powodu światła Księżyca?",
         answer12:
-          "Międzynarodowa Stacja Kosmiczna jest widoczna, ponieważ odbija światło słoneczne. To jest ten sam powód, dla którego Księżyc wydaje się świecić. Nawet gdy Księżyc nie wzeszedł, użytkownicy mogą zobaczyć stację.",
+          "Międzynarodowa Stacja Kosmiczna jest widoczna, ponieważ odbija światło słoneczne, podobnie jak Księżyc. Gdy stacja przemieszcza się wokół Ziemi, wchodzi w cień Ziemi i z niego wychodzi. Gdy wchodzi w cień Ziemi, nie jest widoczna, nawet jeśli nadal krąży nad tobą.",
 
         question13: "13. Jaka strefa czasowa jest używana do powiadomień o alertach?",
         answer13:
@@ -547,7 +550,7 @@ const pl = {
         question14:
           "14. Jakie informacje dostarcza aplikacja Spot the Station dla każdej obserwacji?",
         answer14:
-          "Dla każdej obserwacji aplikacja Spot the Station wyświetla czas, czas trwania widoczności, maksymalną wysokość nad horyzontem i kierunki, w których Międzynarodowa Stacja Kosmiczna pojawi się i zniknie, pomagając użytkownikom dokładnie ją zlokalizować na niebie.",
+          "Dla każdej obserwacji aplikacja Spot the Station wyświetla czas, czas trwania widoczności nad horyzontem, maksymalną wysokość nad horyzontem, kierunki, w których Międzynarodowa Stacja Kosmiczna pojawi się i zniknie, oraz prognozowane zachmurzenie dla wybranej lokalizacji w czasie obserwacji, pomagając użytkownikom dokładnie ją zlokalizować na niebie.",
 
         question15:
           "15. Jak mogę dostrzec Międzynarodową Stację Kosmiczną podczas możliwości obserwacji? Co oznaczają te wszystkie informacje?",
@@ -568,12 +571,12 @@ const pl = {
         question17:
           "17. Czy mogę zobaczyć mapę na żywo z lokalizacją Międzynarodowej Stacji Kosmicznej?",
         answer17:
-          "Tak, aplikacja Spot the Station zawiera mapę w czasie rzeczywistym, która pokazuje aktualną pozycję Międzynarodowej Stacji Kosmicznej, gdy okrąża Ziemię, dając użytkownikom wizualne odniesienie do śledzenia jej postępów.",
+          "Tak, aplikacja Spot the Station zawiera mapę w czasie rzeczywistym, która pokazuje aktualną pozycję Międzynarodowej Stacji Kosmicznej, gdy okrąża Ziemię, dając użytkownikom wizualne odniesienie do śledzenia jej postępów. Odwiedź stronę Tracker, aby zobaczyć trajektorię stacji w widoku 2D, 3D lub satelitarnym.",
 
         question18:
           "18. Co to jest funkcja rozszerzonej rzeczywistości w aplikacji Spot the Station?",
         answer18:
-          "Funkcja rozszerzonej rzeczywistości w aplikacji Spot the Station pozwala użytkownikom zobaczyć wirtualną nakładkę ścieżki Międzynarodowej Stacji Kosmicznej na niebie. Ta funkcja pomaga użytkownikom dokładniej zlokalizować stację, wyrównując ich urządzenie z pozycją stacji w czasie rzeczywistym.",
+          "Funkcja rozszerzonej rzeczywistości w aplikacji Spot the Station pozwala użytkownikom zobaczyć wirtualną nakładkę ścieżki Międzynarodowej Stacji Kosmicznej na niebie nad widokiem kamery telefonu. Ta funkcja pomaga użytkownikom dokładniej zlokalizować stację, wyrównując ich urządzenie z pozycją stacji w czasie rzeczywistym.",
 
         question19:
           "19. Jak uzyskać dostęp do funkcji rozszerzonej rzeczywistości w aplikacji Spot the Station?",
@@ -583,11 +586,11 @@ const pl = {
         question20:
           "20. Czy potrzebuję specjalnego urządzenia lub oprogramowania, aby korzystać z funkcji rozszerzonej rzeczywistości?",
         answer20:
-          "Funkcja rozszerzonej rzeczywistości Spot the Station wymaga urządzenia, które może określić swoją orientację w przestrzeni 3D. Wymaga to specjalnego wsparcia sprzętowego, takiego jak żyroskop lub koprocesor ruchu. Starsze lub budżetowe urządzenia mogą nie obsługiwać tej funkcjonalności.",
+          "Funkcja rozszerzonej rzeczywistości Spot the Station wymaga urządzenia, które może określić swoją orientację w przestrzeni 3D. Wymaga to specjalnego wsparcia sprzętowego, takiego jak żyroskop lub koprocesor ruchu. Starsze lub budżetowe urządzenia mogą nie obsługiwać tej funkcjonalności z powodu ograniczeń ich czujnika magnetometru. Dokładność można poprawić, postępując zgodnie z przewodnikiem Kalibracji Kompasu w menu Ustawienia aplikacji.",
 
         question21: "21. Jak działa funkcja rozszerzonej rzeczywistości?",
         answer21:
-          "Korzystając z kamery i czujników urządzenia, funkcja rozszerzonej rzeczywistości Spot the Station nakłada pozycję Międzynarodowej Stacji Kosmicznej na niebie na ekran, dostosowując się w czasie rzeczywistym, gdy użytkownik porusza urządzeniem. Aplikacja prowadzi użytkowników do skierowania kamery urządzenia we właściwym kierunku i pokazuje, gdzie stacja się pojawi i zniknie.",
+          "Korzystając z kamery i czujników urządzenia, funkcja rozszerzonej rzeczywistości Spot the Station nakłada pozycję Międzynarodowej Stacji Kosmicznej na niebie na ekran, dostosowując się w czasie rzeczywistym, gdy użytkownik porusza urządzeniem. Aplikacja prowadzi użytkowników do skierowania kamery urządzenia we właściwym kierunku i pokazuje, gdzie stacja się pojawi i zniknie. Postępuj zgodnie z Samouczkiem widoku AR z menu Ustawienia aplikacji.",
 
         question22:
           "22. Czy mogę korzystać z funkcji rozszerzonej rzeczywistości zarówno w dzień, jak i w nocy?",
@@ -597,7 +600,7 @@ const pl = {
         question23:
           "23. Czy nakładka rozszerzonej rzeczywistości jest dokładna dla wszystkich lokalizacji?",
         answer23:
-          "Tak, funkcja rozszerzonej rzeczywistości w aplikacji Spot the Station została zaprojektowana, aby dostarczać dokładnych informacji o pozycji na podstawie lokalizacji GPS urządzenia. Jednak dokładność może się nieznacznie różnić w zależności od kalibracji kompasu i czujników urządzenia. Jeśli użytkownicy zauważą rozbieżności, skalibruj kompas urządzenia ponownie za pomocą ustawień.",
+          "Tak, funkcja rozszerzonej rzeczywistości w aplikacji Spot the Station została zaprojektowana, aby dostarczać dokładnych informacji o pozycji na podstawie lokalizacji GPS urządzenia. Jednak dokładność może się nieznacznie różnić w zależności od kalibracji kompasu i czujników urządzenia. Jeśli użytkownicy zauważą rozbieżności, skalibruj kompas urządzenia ponownie, postępując zgodnie z przewodnikiem Kalibracji Kompasu z menu Ustawienia aplikacji. Starsze lub budżetowe urządzenia mogą nie obsługiwać tej funkcjonalności z powodu ograniczeń ich czujnika magnetometru.",
 
         question24:
           "24. Czy funkcja rozszerzonej rzeczywistości może pomóc w dokładnych czasach obserwacji?",
@@ -607,12 +610,12 @@ const pl = {
         question25:
           "25. Czy są jakieś wskazówki dotyczące optymalizacji mojego doświadczenia z rozszerzoną rzeczywistością?",
         answer25:
-          "Aby uzyskać najlepsze wrażenia z rozszerzonej rzeczywistości w aplikacji Spot the Station, używaj funkcji na otwartej przestrzeni z wyraźnym widokiem na niebo. Unikaj przeszkód, takich jak wysokie budynki lub drzewa, ponieważ mogą one blokować widoczność. Skalibruj kompas urządzenia i upewnij się, że usługi lokalizacyjne i uprawnienia do kamery są włączone dla płynnego działania.",
+          "Aby uzyskać najlepsze wrażenia z rozszerzonej rzeczywistości w aplikacji Spot the Station, używaj funkcji na otwartej przestrzeni z wyraźnym widokiem na niebo. Unikaj przeszkód, takich jak wysokie budynki lub drzewa, ponieważ mogą one blokować widoczność. Skalibruj kompas urządzenia (postępuj zgodnie z przewodnikiem Kalibracji Kompasu w menu Ustawienia) i upewnij się, że usługi lokalizacyjne i uprawnienia do kamery są włączone dla płynnego działania.",
 
         question26:
           "26. Czy funkcja rozszerzonej rzeczywistości jest dostępna na urządzeniach iOS i Android?",
         answer26:
-          "Tak, funkcja rozszerzonej rzeczywistości aplikacji Spot the Station jest dostępna na urządzeniach mobilnych i tabletach z systemem iOS i Android, o ile urządzenie spełnia wymagania sprzętowe.",
+          "Tak, funkcja rozszerzonej rzeczywistości aplikacji Spot the Station jest dostępna na urządzeniach mobilnych i tabletach z systemem iOS i Android, o ile urządzenie spełnia wymagania sprzętowe. Starsze lub budżetowe urządzenia mogą nie obsługiwać tej funkcjonalności z powodu ograniczeń ich czujnika magnetometru.",
 
         question27: "27. Czy aplikacja Spot the Station działa offline?",
         answer27:
@@ -630,7 +633,7 @@ const pl = {
         question30:
           "30. Z kim mogę się skontaktować w sprawie wsparcia aplikacji Spot the Station?",
         answer30:
-          "W celu uzyskania wsparcia dotyczącego aplikacji Spot the Station, skontaktuj się za pośrednictwem opcji opinii w aplikacji lub <a href='mailto:hq-spotthestation@mail.nasa.gov'>wyślij e-mail do zespołu Spot the Station</a>.",
+          "W celu uzyskania wsparcia dotyczącego aplikacji Spot the Station, skontaktuj się za pośrednictwem opcji Skontaktuj się z nami w menu Ustawienia aplikacji lub <a href='mailto:hq-spotthestation@mail.nasa.gov'>wyślij e-mail do zespołu Spot the Station</a>.",
       },
     },
     astronauts: {

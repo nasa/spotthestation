@@ -202,7 +202,7 @@ describe("ISSViewScreen", () => {
       })
       const component = renderWithStore(rootStore)
       expect(
-        await component.findByText("00:02:43:26", { exact: false }, { timeout: 4000 }),
+        await component.findByText("00:01:10:36", { exact: false }, { timeout: 4000 }),
       ).toBeVisible()
     })
 

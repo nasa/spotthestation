@@ -418,6 +418,8 @@ const tr = {
       titlePlaceholder: "Başlık seçin",
       commentsPlaceholder: "Yorumları girin",
       sendButton: "Gönder",
+      reportIssueHint:
+        "Destek ekibimizin bildirdiğiniz sorunu daha iyi yeniden oluşturabilmesi ve teşhis edebilmesi için lütfen sorunun bir açıklamasını, seçilen konumu ve istasyon gözlem fırsatının tarih ve saatini ekleyin.",
       contactUsOptions: {
         reportAnIssue: "Bir Sorunu Bildir",
         improvementIdeas: "Geliştirme Fikirleri",
@@ -504,7 +506,8 @@ const tr = {
 
         question3: "3. Uluslararası Uzay İstasyonu'nu ne sıklıkla görebilirim?",
         answer3:
-          "Uluslararası Uzay İstasyonu, güneş ışığını yansıttığı için görünür – Ay'ı görebilmemizin aynı nedeni. Ancak, Ay'ın aksine, uzay istasyonu gündüzleri görmek için yeterince parlak değildir. Gözlem fırsatları, Güneş ışığının istasyondan yansıdığı ve konumunuzun üzerinde şafak ve alacakaranlıkta geçtiği için ayda bir kezden haftada birkaç kez değişebilir.",
+          "Uluslararası Uzay İstasyonu, güneş ışığını yansıttığı için görünür – Ay'ı görebilmemizin aynı nedeni. Ancak, Ay'ın aksine, uzay istasyonu gündüzleri görmek için yeterince parlak değildir. Gözlem fırsatları, Güneş ışığının istasyondan yansıdığı ve konumunuzun üzerinde şafak ve alacakaranlıkta geçtiği için ayda bir kezden haftada birkaç kez değişebilir.<br/>" +
+          "Mobil uygulama, önümüzdeki 14 güne kadar olan gözlem fırsatlarını hesaplar ve görüntüler. Mayıs 2026'dan itibaren, NASA'nın Spot the Station web sitesi, İstasyon gözlem fırsatlarını uygulamaya gerek kalmadan doğrudan tarayıcınızdan bulma işlevini geri getirdi: <a href='https://www.nasa.gov/spot-the-station/'>https://www.nasa.gov/spot-the-station/</a> Önümüzdeki 14 güne kadar olan gözlem fırsatlarını görmek için ülkenizi ve bölgenizi/şehrinizi seçin.",
 
         question4: "4. Spot the Station uygulaması nedir?",
         answer4:
@@ -517,15 +520,15 @@ const tr = {
         question6:
           "6. Spot the Station uygulaması, Uluslararası Uzay İstasyonu'nun yaklaşan gözlem fırsatları hakkında beni nasıl bilgilendirir?",
         answer6:
-          "Spot the Station uygulaması, Uluslararası Uzay İstasyonu'nun yaklaşan geçişleri hakkında kullanıcıları uyarmak için push bildirimleri gönderir. Kullanıcılar, cihazlarının ayarlarında uygulama bildirim izinlerinin etkin olduğundan emin olmalıdır.",
+          "Spot the Station uygulaması, Uluslararası Uzay İstasyonu'nun yaklaşan geçişleri hakkında kullanıcıları uyarmak için push bildirimleri gönderir. Kullanıcılar, cihazlarının ayarlarında uygulama bildirim izinlerinin etkin olduğundan emin olmalıdır. Uygulamanın seçtiğiniz konum için önümüzdeki 14 güne kadar olan gözlem fırsatlarını hesapladığını unutmayın; bu nedenle uygulamayı bir süre kullanmazsanız bildirim almayı bırakabilirsiniz.",
 
         question7: "7. Spot the Station uygulamasında bildirimleri özelleştirebilir miyim?",
         answer7:
-          "Spot the Station uygulaması, kullanıcının tercih ettiği konum ve zamanlamaya özel push bildirimleri almak için kişiselleştirilmiş uyarı ayarlarını yapılandırma yeteneğine sahiptir. Bildirim ayarları, kullanıcıların tüm yaklaşan etkinlikler için bildirimleri açabileceği veya şu anda seçili konum için bildirimleri özelleştirebileceği uygulamanın ayarlar sayfasında bulunabilir. Kullanıcılar, Konum Ayarları aracılığıyla diğer konumlar için bildirimleri özelleştirebilir.",
+          "Spot the Station uygulaması, kullanıcının tercih ettiği konum ve zamanlamaya özel push bildirimleri almak için kişiselleştirilmiş uyarı ayarlarını yapılandırma yeteneğine sahiptir. Bildirim ayarları, kullanıcıların tüm yaklaşan etkinlikler için bildirimleri açabileceği veya şu anda seçili konum için bildirimleri özelleştirebileceği uygulamanın ayarlar sayfasında bulunabilir. Kullanıcılar, Konum Ayarları aracılığıyla diğer konumlar için bildirimleri özelleştirebilir. Seçtiğiniz konum için yaklaşan her gözlem fırsatına yönelik bildirimleri açıp/kapatmak için Ana Sayfa'dan Gözlemler sayfasını ziyaret edebilirsiniz.",
 
         question8: "8. Bildirim almıyorsam ne yapmalıyım?",
         answer8:
-          "Kullanıcılar, cihazın tercih edilen bir konum ve zamanda uyarılar için ayarlandığını doğrulamak için Spot the Station uygulamasındaki bildirim tercihlerini (Ayarlar sayfasındaki Bildirim Ayarları) kontrol etmelidir. Kullanıcılar hala uyarı almıyorsa, cihazlarının ayarlarında bildirimlerin etkin olduğundan emin olmalıdır.",
+          "Kullanıcılar, cihazın tercih edilen bir konum ve zamanda uyarılar için ayarlandığını doğrulamak için Spot the Station uygulamasındaki bildirim tercihlerini (Ayarlar sayfasındaki Bildirim Ayarları) kontrol etmelidir. Kullanıcılar hala uyarı almıyorsa, cihazlarının ayarlarında bildirimlerin etkin olduğundan emin olmalıdır. Uygulamanın, her açtığınızda seçtiğiniz konum için önümüzdeki 14 güne kadar olan gözlem fırsatlarını hesapladığını lütfen unutmayın; bu nedenle düzenli olarak kontrol etmezseniz bildirim almayı bırakabilirsiniz.",
 
         question9: "9. Spot the Station uygulaması uluslararası düzeyde çalışıyor mu?",
         answer9:
@@ -533,7 +536,7 @@ const tr = {
 
         question10: "10. Konumum için neden gözlem fırsatları yok?",
         answer10:
-          "Konumunuzda karanlık ve iyi bir görüş olmalı ve uzay istasyonu görmek için üzerinizde olmalıdır. Uzay istasyonunun yörüngesi onu dünya çapında dolaştırdığı için, gün ortasında veya gece yarısında görünmeyeceği zamanlarda üzerinizden geçebilir. Spot The Station, yalnızca konumunuzda Uluslararası Uzay İstasyonu'nu görme fırsatları olduğunda bildirim gönderir, her seferinde üzerinizde olduğunda değil.",
+          "Konumunuzda karanlık ve iyi bir görüş olmalı ve uzay istasyonu görmek için üzerinizde olmalıdır. Uzay istasyonunun yörüngesi onu dünya çapında dolaştırdığı için, gün ortasında veya Dünya'nın gölgesinde kaldığı gece yarısında görünmeyeceği zamanlarda üzerinizden geçebilir. Spot The Station, yalnızca konumunuzda Uluslararası Uzay İstasyonu'nu görme fırsatları olduğunda bildirim gönderir, her seferinde üzerinizde olduğunda değil. Gözlem fırsatları 14 güne kadar önceden hesaplanır; bu nedenle yeni tahmin edilen fırsatlar için düzenli olarak kontrol edin.",
 
         question11: "11. Uluslararası Uzay İstasyonu'nu görmek için teleskopa ihtiyacım var mı?",
         answer11:
@@ -541,7 +544,7 @@ const tr = {
 
         question12: "12. Uluslararası Uzay İstasyonu, Ay'ın ışığı nedeniyle mi görünüp kayboluyor?",
         answer12:
-          "Uluslararası Uzay İstasyonu, güneş ışığını yansıttığı için görünür. Bu, Ay'ın parlıyor gibi görünmesinin aynı nedenidir. Ay henüz doğmamış olsa bile, kullanıcılar istasyonu görebilir.",
+          "Uluslararası Uzay İstasyonu, tıpkı Ay gibi güneş ışığını yansıttığı için görünür. İstasyon Dünya'nın çevresinde dolaşırken Dünya'nın gölgesine girer ve çıkar. Dünya'nın gölgesine girdiğinde, hâlâ üzerinizde yörüngede olsa bile görünmez.",
 
         question13: "13. Uyarı bildirimleri için hangi saat dilimi kullanılıyor?",
         answer13:
@@ -549,7 +552,7 @@ const tr = {
 
         question14: "14. Spot the Station uygulaması her gözlem için hangi bilgileri sağlar?",
         answer14:
-          "Her gözlem için Spot the Station uygulaması, zamanı, görünürlük süresini, ufuk üzerindeki maksimum yüksekliği ve Uluslararası Uzay İstasyonu'nun görünüp kaybolacağı yönleri gösterir, bu da kullanıcıların onu gökyüzünde doğru bir şekilde bulmasına yardımcı olur.",
+          "Her gözlem için Spot the Station uygulaması, zamanı, ufuk üzerindeki görünürlük süresini, ufuk üzerindeki maksimum yüksekliği, Uluslararası Uzay İstasyonu'nun görünüp kaybolacağı yönleri ve gözlem anında seçili konum için tahmini bulut örtüsünü gösterir, bu da kullanıcıların onu gökyüzünde doğru bir şekilde bulmasına yardımcı olur.",
 
         question15:
           "15. Bir gözlem fırsatı sırasında Uluslararası Uzay İstasyonu'nu nasıl bulabilirim? Tüm bu bilgiler ne anlama geliyor?",
@@ -570,11 +573,11 @@ const tr = {
         question17:
           "17. Uluslararası Uzay İstasyonu'nun konumunu gösteren canlı bir harita görebilir miyim?",
         answer17:
-          "Evet, Spot the Station uygulaması, Uluslararası Uzay İstasyonu'nun Dünya etrafında dönerken mevcut konumunu gösteren bir gerçek zamanlı harita içerir ve kullanıcılara ilerlemesini izlemek için görsel bir referans sağlar.",
+          "Evet, Spot the Station uygulaması, Uluslararası Uzay İstasyonu'nun Dünya etrafında dönerken mevcut konumunu gösteren bir gerçek zamanlı harita içerir ve kullanıcılara ilerlemesini izlemek için görsel bir referans sağlar. İstasyonun yörüngesini 2D, 3D veya Uydu görünümünde görmek için Tracker sayfasını ziyaret edin.",
 
         question18: "18. Spot the Station uygulamasındaki artırılmış gerçeklik özelliği nedir?",
         answer18:
-          "Spot the Station uygulamasındaki artırılmış gerçeklik özelliği, kullanıcılara gökyüzünde Uluslararası Uzay İstasyonu'nun yolunun sanal bir örtüsünü görme imkanı tanır. Bu özellik, kullanıcıların cihazlarını istasyonun gerçek zamanlı konumuyla hizalayarak istasyonu daha doğru bir şekilde bulmalarına yardımcı olur.",
+          "Spot the Station uygulamasındaki artırılmış gerçeklik özelliği, kullanıcılara telefonun kamera görünümünün üzerinde gökyüzünde Uluslararası Uzay İstasyonu'nun yolunun sanal bir örtüsünü görme imkanı tanır. Bu özellik, kullanıcıların cihazlarını istasyonun gerçek zamanlı konumuyla hizalayarak istasyonu daha doğru bir şekilde bulmalarına yardımcı olur.",
 
         question19:
           "19. Spot the Station uygulamasında artırılmış gerçeklik özelliğine nasıl erişebilirim?",
@@ -584,11 +587,11 @@ const tr = {
         question20:
           "20. Artırılmış gerçeklik özelliğini kullanmak için belirli bir cihaza veya yazılıma ihtiyacım var mı?",
         answer20:
-          "Spot the Station'ın artırılmış gerçeklik özelliği, 3D uzayda yönünü belirleyebilen bir cihaz gerektirir. Jiroskop veya hareket yardımcı işlemcisi gibi belirli donanım desteği gerektirir. Daha eski veya bütçe dostu cihazlar bu işlevselliği desteklemeyebilir.",
+          "Spot the Station'ın artırılmış gerçeklik özelliği, 3D uzayda yönünü belirleyebilen bir cihaz gerektirir. Jiroskop veya hareket yardımcı işlemcisi gibi belirli donanım desteği gerektirir. Daha eski veya bütçe dostu cihazlar, manyetometre sensörlerinin sınırlamaları nedeniyle bu işlevselliği desteklemeyebilir. Doğruluk, uygulama Ayarlar menüsündeki Pusula Kalibrasyonu kılavuzunu izleyerek artırılabilir.",
 
         question21: "21. Artırılmış gerçeklik özelliği nasıl çalışır?",
         answer21:
-          "Cihazın kamerasını ve sensörlerini kullanarak, Spot the Station'ın artırılmış gerçeklik özelliği, Uluslararası Uzay İstasyonu'nun konumunu gökyüzünde ekrana bindirir ve kullanıcı cihazı hareket ettirdikçe gerçek zamanlı olarak ayarlanır. Uygulama, kullanıcıları cihazın kamerasını doğru yöne yönlendirmeleri için yönlendirir ve istasyonun nerede görünüp kaybolacağını gösterir.",
+          "Cihazın kamerasını ve sensörlerini kullanarak, Spot the Station'ın artırılmış gerçeklik özelliği, Uluslararası Uzay İstasyonu'nun konumunu gökyüzünde ekrana bindirir ve kullanıcı cihazı hareket ettirdikçe gerçek zamanlı olarak ayarlanır. Uygulama, kullanıcıları cihazın kamerasını doğru yöne yönlendirmeleri için yönlendirir ve istasyonun nerede görünüp kaybolacağını gösterir. Lütfen uygulama Ayarlar menüsünden AR Görünümü için Eğitimi izleyin.",
 
         question22:
           "22. Artırılmış gerçeklik özelliğini hem gündüz hem de gece kullanabilir miyim?",
@@ -597,7 +600,7 @@ const tr = {
 
         question23: "23. Artırılmış gerçeklik örtüsü tüm konumlar için doğru mu?",
         answer23:
-          "Evet, Spot the Station uygulamasındaki artırılmış gerçeklik özelliği, cihazın GPS konumuna dayalı olarak doğru konum bilgileri sağlamak üzere tasarlanmıştır. Ancak, cihazın pusula ve sensör kalibrasyonuna bağlı olarak doğruluk biraz değişebilir. Kullanıcılar tutarsızlık fark ederse, cihazın pusulasını ayarlar üzerinden yeniden kalibre edin.",
+          "Evet, Spot the Station uygulamasındaki artırılmış gerçeklik özelliği, cihazın GPS konumuna dayalı olarak doğru konum bilgileri sağlamak üzere tasarlanmıştır. Ancak, cihazın pusula ve sensör kalibrasyonuna bağlı olarak doğruluk biraz değişebilir. Kullanıcılar tutarsızlık fark ederse, uygulama Ayarlar menüsündeki Pusula Kalibrasyonu kılavuzunu izleyerek cihazın pusulasını yeniden kalibre edin. Daha eski veya bütçe dostu cihazlar, manyetometre sensörlerinin sınırlamaları nedeniyle bu işlevselliği desteklemeyebilir.",
 
         question24:
           "24. Artırılmış gerçeklik özelliği, kesin gözlem zamanlarına yardımcı olabilir mi?",
@@ -606,12 +609,12 @@ const tr = {
 
         question25: "25. Artırılmış gerçeklik deneyimimi optimize etmek için ipuçları var mı?",
         answer25:
-          "Spot the Station uygulamasında en iyi artırılmış gerçeklik deneyimi için, özelliği gökyüzünün net bir şekilde görülebildiği açık bir alanda kullanın. Yüksek binalar veya ağaçlar gibi engellerden kaçının, çünkü bunlar görünürlüğü engelleyebilir. Cihazın pusulasını kalibre edin ve konum hizmetlerinin ve kamera izinlerinin sorunsuz çalışması için etkin olduğundan emin olun.",
+          "Spot the Station uygulamasında en iyi artırılmış gerçeklik deneyimi için, özelliği gökyüzünün net bir şekilde görülebildiği açık bir alanda kullanın. Yüksek binalar veya ağaçlar gibi engellerden kaçının, çünkü bunlar görünürlüğü engelleyebilir. Cihazın pusulasını kalibre edin (Ayarlar menüsündeki Pusula Kalibrasyonu kılavuzunu izleyin) ve konum hizmetlerinin ve kamera izinlerinin sorunsuz çalışması için etkin olduğundan emin olun.",
 
         question26:
           "26. Artırılmış gerçeklik özelliği hem iOS hem de Android cihazlarda mevcut mu?",
         answer26:
-          "Evet, Spot the Station uygulamasının artırılmış gerçeklik özelliği, cihazınız donanım gereksinimlerini karşıladığı sürece hem iOS hem de Android mobil ve tablet cihazlarda mevcuttur.",
+          "Evet, Spot the Station uygulamasının artırılmış gerçeklik özelliği, cihazınız donanım gereksinimlerini karşıladığı sürece hem iOS hem de Android mobil ve tablet cihazlarda mevcuttur. Daha eski veya bütçe dostu cihazlar, manyetometre sensörlerinin sınırlamaları nedeniyle bu işlevselliği desteklemeyebilir.",
 
         question27: "27. Spot the Station uygulaması çevrimdışı çalışıyor mu?",
         answer27:
@@ -627,7 +630,7 @@ const tr = {
 
         question30: "30. Spot the Station uygulaması desteği için kiminle iletişime geçebilirim?",
         answer30:
-          "Spot the Station uygulaması desteği için, uygulamanın geri bildirim seçeneği aracılığıyla iletişime geçin veya <a href='mailto:hq-spotthestation@mail.nasa.gov'>Spot the Station ekibine e-posta gönderin</a>.",
+          "Spot the Station uygulaması desteği için, uygulamanın Ayarlar menüsündeki Bize Ulaşın seçeneği aracılığıyla iletişime geçin veya <a href='mailto:hq-spotthestation@mail.nasa.gov'>Spot the Station ekibine e-posta gönderin</a>.",
       },
     },
     astronauts: {

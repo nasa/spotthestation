@@ -59,12 +59,11 @@ export function SatelliteView({ issPath, zoom = 2 }: SatelliteViewProps) {
   const sceneRef = useRef<Scene>(null)
   const deadRef = useRef<boolean>(false)
   const localCameraPositionRef = useRef<Vector3>(null)
-  const { curve, setIsVisible: setTrajectoryVisible, getT } = useTrajectoryLines(
-    sceneRef,
-    issPath,
-    400,
-    5,
-  )
+  const {
+    curve,
+    setIsVisible: setTrajectoryVisible,
+    getT,
+  } = useTrajectoryLines(sceneRef, issPath, 400, 5)
 
   useEffect(() => {
     if (!curve) return

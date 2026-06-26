@@ -222,7 +222,7 @@ describe("HomeScreen", () => {
           await component.findByText("homeScreen.selectSightings.night", { exact: false }),
         )
         await waitFor(() => {
-          expect(component.queryAllByAccessibilityHint("pressable list item")).toHaveLength(4)
+          expect(component.queryAllByAccessibilityHint("pressable list item")).toHaveLength(5)
         })
 
         await userEvent.press(dropdowns[1])
